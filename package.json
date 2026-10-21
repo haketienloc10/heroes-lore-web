@@ -15,5 +15,8 @@
   },
   "engines": {
     "node": ">=22.19.0"
+  },
+  "devDependencies": {
+    "vitest": "^5.0.5"
   }
 }
