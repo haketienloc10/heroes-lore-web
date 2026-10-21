@@ -1,0 +1,25 @@
+# Dependencies / build output
+node_modules/
+**/dist/
+**/coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Game gốc và dữ liệu trích xuất: chỉ giữ cục bộ
+original/**
+!original/.gitkeep
+!original/README.md
+!original/SHA256.txt
+reverse-engineering/decompiled/**
+!reverse-engineering/decompiled/.gitkeep
+reverse-engineering/extracted-assets/**
+!reverse-engineering/extracted-assets/.gitkeep
+reference/recordings/**
+!reference/recordings/.gitkeep
+reference/screenshots/**
+!reference/screenshots/.gitkeep
+web/public/assets/**
+!web/public/assets/.gitkeep

@@ -1,0 +1,19 @@
+{
+  "name": "heroes-lore-web",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Faithful web port research for Heroes Lore: Wind of Soltia v2.1.2",
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace web",
+    "build": "npm run build --workspace web",
+    "test": "npm run test --workspace web",
+    "typecheck": "npm run typecheck --workspace web",
+    "hash:original": "node tools/hash-original.mjs"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
+}
