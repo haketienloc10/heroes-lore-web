@@ -1,6 +1,6 @@
 # SCN-0005 — Gameplay quan sát tối thiểu
 
-**Bản gốc:** chưa chạy; mechanics chưa xác minh. **Web:** chưa chạy. JAR/hash, P1 và quy tắc 3 lượt theo [quy trình](J2ME-RUNTIME-PROTOCOL.md); dùng [mẫu run](RUN_TEMPLATE.md).
+**Bản gốc:** đã quan sát gameplay trong nhà, di chuyển/Status và cửa ra ngoài; **chưa đạt toàn bộ**. Hai lượt lặp chuỗi trong nhà và một lượt cửa ra được ghi riêng; chưa có đặc tả combat/collision hoặc restore fixture cho từng biến thể. **Web:** chưa chạy.
 
 ## Tạo fixture
 
@@ -19,3 +19,23 @@ Tạo ba điểm neo: A khoảng trống; B gần vật thể có vẻ cản đ�
 **Evidence:** video kèm input, ảnh các điểm neo, bảng trạng thái trước/sau, trace update/render/state khi có. Mechanics chưa xuất hiện hoặc chưa tiếp cận được ghi rõ chưa xác minh; không đặt tên state số theo cảm giác.
 
 **Tiêu chí đóng:** tái lập được di chuyển/thả phím, khảo sát một biên/vật cản và một hành động/tương tác có phản ứng quan sát được; có đường tạo fixture và 3 lượt/biến thể. Đây là smoke verification gameplay cho milestone, không phải chứng minh full fidelity hoặc đặc tả toàn bộ gameplay. Chưa đặt tolerance cho web; không thay đổi `web/`.
+
+## Thực nghiệm 2026-10-21
+
+Game hash/emulator release 1.52/commit/SHA-256 và P1M Motorola như [SCN-0001](SCN-0001-startup.md#thực-nghiệm-2026-10-21). Các run kế thừa chuỗi startup/menu cùng hậu tố từ RMS sạch, dùng input tổng hợp qua emulator KeyListener; không thao tác tay và không ép tọa độ/state. Lượt khám phá P1-R01 chỉ tới/tiến hội thoại, không tính là biến thể gameplay đạt.
+
+**Fixture tái tạo:** New Game → Ronin → chọn Hestia/Ron → Yes → intro Roah/Ronin → W giữ 100 ms để Skip → chờ 10 giây và chụp. Ảnh cho thấy căn nhà với giường/HUD; snapshot `m.e:int=2`. Tên map theo UI/RNG chưa biết. Đây là đường replay, **chưa có snapshot save/restore đã xác minh**.
+
+| Run | Chuỗi thực tế | Kết quả và giới hạn |
+| --- | --- | --- |
+| M15-SCN-0005-P1M-R02 / R03 | Từ giường: Down, Right, Up, Left, mỗi hướng giữ 1000 ms; ảnh sau release và sau 1 giây idle; Enter 100 ms; W mở Status; W đóng; Right 1000 ms hai lần; Enter; W mở Status | Thấy nhân vật/camera đổi vị trí trong nhà. Hai ảnh ở mép phải không cho thấy tiến xuyên qua mép sau lần giữ Right thứ hai. Không restore fixture giữa từng hướng; không suy công thức tốc độ/hitbox hoặc timing dừng chính xác từ ảnh rời |
+| M15-SCN-0005-P1M-R04 — cửa ra | Sau Skip trở về giường: Down giữ 1000 ms, thả/nghỉ 1 giây; Down giữ 1000 ms lần nữa, thả/nghỉ 5 giây | **Đã ra khỏi nhà qua lối giữa phía dưới.** Ảnh `02-bed-start` → `03-Down-one-second` → `04-Down-two-holds` chuyển từ nội thất sang đường phố/NPC; snapshot sau cửa vẫn `m.e:int=2`. Console có map `64` rồi `0`; không dùng số map đặt tên địa điểm |
+| R04 — thử gần NPC | Ngoài nhà: Left 1000 ms, Enter 100 ms; tiếp Up 200 ms, Left 100 ms, Enter 100 ms; chụp sau mỗi nhóm | Có di chuyển ngoài phố; **chưa quan sát được hội thoại mới** từ hai lần thử này. Chưa xác minh đúng khoảng cách/hướng hay vai trò Enter cho NPC, không kết luận tương tác hỏng |
+
+Biến thể cửa ra bổ sung theo hướng dẫn người dùng, đã đối chiếu bằng ảnh/log; lời hướng dẫn không được dùng thay bằng chứng. Hai lần Down là **hai khoảng giữ 1 giây có release/nghỉ giữa**, không mô tả thành giữ liên tục 2 giây.
+
+Trong R02/R03, Status hiển thị Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 74/74, SP 60/60, tiền 800. W đã mở/đóng UI. Enter có trong log nhưng ảnh sau thao tác chưa đủ xác nhận animation/cơ chế combat; chưa có số đo damage, AI, quest, EXP hoặc audio.
+
+**Evidence:** `reference/screenshots/<run-id>/` chỉ local; native framebuffer 240×320. Mỗi run có input.log, framebuffer.log, launch.json nối tới console/config của session, state snapshots và manifest hash trong [runtime evidence](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/README.md). Ảnh không được tính thành trace callback hay số đo FPS.
+
+**Còn thiếu:** lặp độc lập tối thiểu 3 lần cho từng biến thể (hiện trong nhà 2, cửa ra 1); restore fixture trước từng hướng/điểm neo; tương tác NPC/mục tiêu có phản ứng được kiểm chứng và diễn tiến hành động chính. Collision chỉ được ghi ở mức quan sát ảnh; chưa có đặc tả mechanics. Vì vậy chưa đánh dấu đạt toàn bộ SCN-0005 hoặc milestone.

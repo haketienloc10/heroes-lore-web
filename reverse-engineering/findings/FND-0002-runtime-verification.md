@@ -1,6 +1,6 @@
 # FND-0002 — Milestone 1.5: Runtime Verification
 
-**Ngày:** 2026-10-21. **Phiên bản:** Heroes Lore v2.1.2. **Trạng thái:** kiểm tra lại tĩnh hoàn tất trong phạm vi dưới đây; scenario/protocol đã chuẩn bị; **runtime chưa xác minh, milestone chưa hoàn thành**.
+**Ngày:** 2026-10-21. **Phiên bản:** Heroes Lore v2.1.2. **Cập nhật:** đối chiếu tĩnh hoàn tất; lượt tiếp tục đã chạy FreeJ2ME-Plus và có quan sát một phần cho SCN-0001/0002/0005, **chưa có scenario đạt toàn bộ, milestone chưa hoàn thành**. Báo cáo thực nghiệm tại [FND-0003](FND-0003-emulator-smoke.md). Phần dưới giữ bằng chứng và giới hạn của lượt chuẩn bị ban đầu; 4 điểm CF vẫn chưa có trace runtime trực tiếp.
 
 **Artifact:** `original/heroes-lore-v2.1.2.jar`, 554715 byte, SHA-256 `7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61`. Lần kiểm tra này tính lại hash bằng Python; khớp fingerprint Milestone 1. Không sửa JAR hoặc `web/`.
 
@@ -15,7 +15,7 @@
 | **javap — chạy mới M1.5** | `javap 21.0.12.1 -c -p -s` trực tiếp trên JAR cho `bf bt m ar q br at` | Branch/goto/return, descriptor, call/store ở các BCI cần kiểm | Phân tích tĩnh; không chứng minh nhánh được chạm từ UI, timing hay interleaving thật |
 | **Local/Python** | Hash JAR/source/log; kiểm PATH, tìm file có giới hạn, ghi JVM/OS | Artifact identity và kết quả preflight trong phạm vi đã tìm | Không phải REA, JADX, hay emulator; có DISPLAY chưa chứng minh GUI chạy được |
 | **Tài liệu upstream emulator** | Đọc README/KEYMAP FreeJ2ME-Plus để chuẩn bị [profile](../../reference/scenarios/J2ME-RUNTIME-PROTOCOL.md) | Cơ sở chọn cách launch/mapping dự kiến | Không phải evidence Heroes Lore đã chạy hoặc tương thích |
-| **Emulator** | **Chưa launch, 0/8 scenario đã chạy** | Chưa có kết luận runtime | Chưa có build/profile hiệu lực, fixture, screenshot, console game hoặc trace |
+| **Emulator — lượt chuẩn bị** | Chưa launch ở thời điểm lập phần đối chiếu này | Không hỗ trợ kết luận runtime khi đó | Lượt tiếp tục đã có build/profile/log/ảnh, ghi riêng ở FND-0003; chưa có trace CF |
 
 Không có kết quả đo accuracy/fidelity. Không chuyển thành phần trăm 0/8 hay gộp thành hiệu quả REA.
 
@@ -86,12 +86,12 @@ Bộ [8 scenario](../../reference/scenarios/README.md) bao phủ startup, menu, 
 
 Protocol yêu cầu đo mapping host/raw/gameAction, release replay, callback/thread/correlation IDs, clock monotonic, cadence từng miền, input latency, overhead và snapshot RMS khi tiến trình dừng. Không dùng target `1000/i` làm FPS đã đo; không suy từ `repaint` thành `paint` 1:1; không dùng timestamp gần nhau để chứng minh happens-before giữa thread.
 
-Preflight chỉ tìm kiếm có giới hạn: không thấy emulator trong PATH/các search roots đã ghi; GUI chưa kiểm tra dù có biến DISPLAY. Vì chưa có build/profile emulator, **không chạy được phép thử trong phiên này**; đây chưa phải lỗi launch hay kết luận JAR không tương thích. Không có ảnh/video/log game runtime hoặc save fixture để viện dẫn.
+Preflight ban đầu chỉ tìm kiếm có giới hạn: không thấy emulator trong PATH/các search roots đã ghi; GUI khi đó chưa kiểm tra dù có biến DISPLAY. **Kết quả này chỉ áp dụng cho lượt chuẩn bị**, không phải kết luận JAR không tương thích. Lượt tiếp tục tìm thấy emulator tại `/home/locdt/tools/`, xác minh release/hash/commit và chạy game trên WSLg; xem FND-0003. Save fixture và trace CF vẫn chưa có.
 
 ## Kết luận và điều kiện hoàn thành
 
 **Đã xác minh tĩnh:** cả 4 sai lệch vẫn được bytecode trực tiếp làm rõ; CF-04 cần mô tả là thiếu return. Ảnh hưởng tới port đã được ghi là suy luận từ flow, không phải kết quả gameplay thực nghiệm. REA chỉ đóng góp evidence archive từ M1; đối chiếu mới là JADX đọc qua shell + `javap` độc lập.
 
-**Chưa xác minh runtime:** reachability/thực thi từng nhánh, bootstrap/Canvas height, callback ordering, cadence/FPS/latency, input repeat/multiple keys, visibility/resume, gameplay và save/load. Không có kết luận “đã đạt runtime verification”.
+**Chưa xác minh runtime ở mức cần để đóng milestone:** trace thực thi từng CF, ordering của bootstrap/Canvas height, callback ordering, cadence/FPS/latency, input repeat/multiple keys, visibility/resume và save/load. Gameplay/startup/menu đã có quan sát một phần trong lượt tiếp tục; không còn mô tả toàn bộ gameplay là chưa từng chạy. Chưa có kết luận “đã đạt runtime verification”.
 
 Để hoàn thành: chốt emulator/JVM/profile/mapping bằng lượt thực tế; tạo fixture tái lập; chạy đủ scenario/biến thể với 3 lượt độc lập; thu trace trực tiếp cho 4 CF và scheduler/input/visibility; đo timing kèm sai số/overhead; chứng minh save/load sau dừng tiến trình; cập nhật findings/overview/baseline với evidence và các giới hạn còn lại. Checklist chi tiết tại [index scenario](../../reference/scenarios/README.md#điều-kiện-hoàn-thành-milestone). Khi thiếu một điều kiện trọng tâm, milestone vẫn **chưa hoàn thành**. `web/` không cần thay đổi để đóng phần xác minh bản gốc này.

@@ -1,0 +1,10 @@
+{
+  "run_id": "M15-SCN-0005-P1-R01",
+  "utc": "2026-10-21T14:53:01.532696+00:00",
+  "pid": 50788,
+  "inherited_session": "M15-SCN-0001-P1-R02",
+  "menu_run": "M15-SCN-0002-P1-R01",
+  "fixture": "New Game / Ronin / Hestia và guardian màu xanh được chọn; intro hội thoại Roah; chưa có save snapshot",
+  "input_method": "emulator AWT KeyListener injection, bypass OS focus",
+  "instrumentation": "snapshot/listener agent; không transform class; không dùng để đo FPS"
+}

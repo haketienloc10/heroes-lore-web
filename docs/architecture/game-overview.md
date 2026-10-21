@@ -112,3 +112,5 @@ Chưa chạy emulator để xác nhận callback ordering, số frame trên mỗ
 Map/resource format, collision, save/load và mechanics vẫn ngoài kết luận của Milestone 1 này. Các call liên quan chỉ được ghi để nối kiến trúc, không được xem là đặc tả của những subsystem đó.
 
 **Theo dõi M1.5, 2026-10-21:** [FND-0002](../../reverse-engineering/findings/FND-0002-runtime-verification.md) kiểm tra lại 4 sai lệch bằng `javap`, đính chính mô tả thiếu return ở command `21/2`, và ghi ảnh hưởng tới port. [Bộ scenario/protocol](../../reference/scenarios/README.md) đã được chuẩn bị; chưa launch emulator, 0/8 scenario đã chạy. Phần kiến trúc trên vẫn là kết luận tĩnh, chưa có số đo hoặc xác nhận runtime mới.
+
+**Lượt tiếp tục cùng ngày:** [FND-0003](../../reverse-engineering/findings/FND-0003-emulator-smoke.md) đã xác minh FreeJ2ME-Plus 1.52 chạy trên WSLg, quan sát startup/menu/gameplay và đường từ giường ra ngoài nhà. 3/8 scenario có quan sát một phần, chưa có scenario đạt toàn bộ. Bằng chứng mới gồm ảnh, console, config, input tổng hợp và snapshot; chưa phải trace ordering/BCI hoặc số đo FPS, nên không dùng chúng để xác nhận toàn bộ sơ đồ kiến trúc tĩnh trên.

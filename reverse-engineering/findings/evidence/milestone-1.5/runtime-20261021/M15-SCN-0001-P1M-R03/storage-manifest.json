@@ -1,0 +1,36 @@
+{
+  "snapshot_after_process_stopped": true,
+  "files": [
+    {
+      "path": "reference/recordings/M15-SCN-0001-P1M-R03/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0001-P1M-R03/freej2me_system/FreeJ2ME.log",
+      "size": 1294,
+      "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0001-P1M-R03/freej2me_system/customFont/Put your ttf font here",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0001-P1M-R03/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0001-P1M-R03/rms/Heroes Lore/410decd402x2m_.1",
+      "size": 6,
+      "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0001-P1M-R03/rms/Heroes Lore/410decd402x2m_.rms",
+      "size": 382,
+      "sha256": "23d4f9afc5f6cf66e4787c78a246faad6661b3fa75e411fa1655aff85ea507b0"
+    }
+  ],
+  "note": "Metadata/config/log; RMS nhị phân chỉ local, chưa xác minh save/load semantics"
+}

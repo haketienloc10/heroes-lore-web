@@ -1,0 +1,105 @@
+{
+  "run_id": "M15-SCN-0005-P1-R01",
+  "control": "exploratory/mixed input or launch diagnostic",
+  "scenario_result": "khám phá/chẩn đoán; không dùng làm lượt lặp có kiểm soát",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1-R01/capture.jsonl",
+      "size": 4246,
+      "sha256": "a1fb93b9b96e012c88356bd193f44e298008b5b233aa4dfae367274063cb9250"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1-R01/input-inprocess.log",
+      "size": 2093,
+      "sha256": "ee3bce9fff3797c0e8b9f0c6467d92ea84fdbbf9055dda391aebd40b49a3df88"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1-R01/launch.json",
+      "size": 487,
+      "sha256": "1e7663135db5df91c9093b89183143d1469526e2a3ffd950875c5a881143a0fd"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/01-intro-dialogue.png",
+      "size": 25475,
+      "sha256": "6916124e984830570abb43ca973b6706ec976905bb92f56827b9aa19fba5a41f",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/02-dialogue-next.png",
+      "size": 25286,
+      "sha256": "631d9b426b2b9db2bb4d28756ac6f4339f6e38be023476e300ee36737db28243",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/03-intro-next.png",
+      "size": 25176,
+      "sha256": "6e7a605929ea921f5c3c162b704db40923131bf7f2424db63505965362afea04",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/04-intro-next.png",
+      "size": 25789,
+      "sha256": "0bc6c92049973ea54c35763541666cbaf040ae0a984eb3c5cb243e36538b1f0b",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/05-intro-next.png",
+      "size": 25123,
+      "sha256": "d042e1a356c1a47a93f0ccb667865b8d83e85817437dba79c872f916de00deaa",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/06-intro-next.png",
+      "size": 25666,
+      "sha256": "2780ace8cf7ea0ee5532a66dbb978827c42f45ba661f4f37719d6aaddfee7fb4",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/07-intro-next.png",
+      "size": 25137,
+      "sha256": "ded15714ca4a6950776839eb49fafb321171c9da14a70c992f555c013b2dfa44",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1-R01/08-intro-next.png",
+      "size": 26116,
+      "sha256": "722ede0ce87f3e66e2ef5584af2e092b61354fcf356372bca5b684fb672ac80a",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": null
+}

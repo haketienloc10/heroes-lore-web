@@ -1,0 +1,160 @@
+{
+  "run_id": "M15-SCN-0002-P1M-R03",
+  "control": "controlled synthetic emulator input",
+  "scenario_result": "đã quan sát một phần; chưa đạt toàn bộ",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/framebuffer.log",
+      "size": 3195,
+      "sha256": "0b47d293eb642e5900eb52dbe411546441c229c2b2c618a734cf1c26ce92514b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/input.log",
+      "size": 4904,
+      "sha256": "bcc7fb8760529a2bcfb3491a1e3ea8a5fe588b594dd993b394792208d4bc1ebe"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/launch.json",
+      "size": 206,
+      "sha256": "264be9ce31812bd54cf06bac5c3ef4db071a133ada067e2415b7f3f7affdd87a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/state-after-load.log",
+      "size": 8682,
+      "sha256": "c4c92d45550832a69eccc2216973c2a44ec57ea75f82b679129d56855c3ca318"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/01-Down.png",
+      "size": 5091,
+      "sha256": "c1fbeb752ea9e4c2767387ff13759eb84e4f7f61669928e8cebb98cdd40073f7",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/02-Up.png",
+      "size": 4908,
+      "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/03-open-Ronin.png",
+      "size": 7540,
+      "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/04-Back.png",
+      "size": 4908,
+      "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/05-open-Ronin-again.png",
+      "size": 7540,
+      "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/06-guardian-message.png",
+      "size": 846,
+      "sha256": "a4e14d0d825a44682f9974cf2ee81caac5548f5b07084434ec0c868cd5cee036",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/07-guardian-list.png",
+      "size": 6941,
+      "sha256": "8963d87c3b149df18126bccccffc7423bf4c1ac838b33a597b73272fa2b2ed7d",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/08-select-Hestia.png",
+      "size": 6791,
+      "sha256": "4eef20a18847ddf97425f26f3a7937ae468a177053e387fa4600cafde08dca6e",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/09-second-guardian.png",
+      "size": 6810,
+      "sha256": "a2e11fc87e586e133b2e5cde31fb6dc4f1f01241ceaf45915e642f7d46674a10",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/10-confirm-two-guardians.png",
+      "size": 6906,
+      "sha256": "c0ce7d4bc89ad375785a9e065806eed50d97ef00beeab97cc8662c52f5f648f1",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/11-Yes.png",
+      "size": 6903,
+      "sha256": "bdaf65f7c64a1688ef14f401088e13ab64d8e263521e74305988e5cbf336925b",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/12-start-loading.png",
+      "size": 583,
+      "sha256": "a1d57645a5ade342e3730919f5cf5ba73847e24dcb6f5bb2ebe36761fcea8aab",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/13-after-load.png",
+      "size": 19978,
+      "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": null
+}

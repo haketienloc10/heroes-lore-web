@@ -1,0 +1,115 @@
+{
+  "run_id": "M15-SCN-0001-P1M-R02",
+  "control": "controlled synthetic emulator input",
+  "scenario_result": "đã quan sát một phần; chưa đạt toàn bộ",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/artifacts/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/artifacts/freej2me_system/FreeJ2ME.log",
+      "size": 1294,
+      "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/artifacts/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/capture-x11.jsonl",
+      "size": 525,
+      "sha256": "480b980013a96be11ae48bb11096d127e15982ac25b9252a0fdb28c3292568a7"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/console.log",
+      "size": 28951,
+      "sha256": "d73e7885e1faa824d131065e366c71d098040edcadd55ba7ba8c7857651c4614"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/framebuffer.log",
+      "size": 504,
+      "sha256": "c75d11f5440e9ba19905b20d170200236ff2a4c072c67bb84c3558d18e59954b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/input.log",
+      "size": 409,
+      "sha256": "bb5073dd127c76749d80a0f2f2e27848929bb7bddba0ea3a77f33e35edc831aa"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/launch.json",
+      "size": 846,
+      "sha256": "8652efdbd360881dae6eb85370b736b555f2569a85b2747930400eca40466289"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/state-after-startup.log",
+      "size": 8681,
+      "sha256": "325894aebc106afedc0a14d42eba92f0c91c7f2ccb7b83fc0bd72a58fdd4e460"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/state-before-input.log",
+      "size": 5488,
+      "sha256": "f70322fbf822b5ee91bdd17b386321690a224d19c786282f5ca512d515708286"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/stop.json",
+      "size": 155,
+      "sha256": "09cd516ad6ac1931e9eefe42504f8475fae04e2d047515f87858670db10af758"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/storage-manifest.json",
+      "size": 1408,
+      "sha256": "15eb890462a7839f2bdc9568ec58aa237668ca34db8b62b999f4b62ff9d5d82f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/system-properties.txt",
+      "size": 3418,
+      "sha256": "bc1f700174febb69a3b66d17c9f83198af2418a20e3a9445456c05d7b924f033"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/threads-final.txt",
+      "size": 14019,
+      "sha256": "78f2b2347835cee1a132eb5fe423fa6e4795b4e1b5e368fe875b48f9418d096a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/window-tree.txt",
+      "size": 1218,
+      "sha256": "08af079cb824fe736edea263ef54eb170734197b9a2f4d65ab06e87e10253155"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R02/01-10s-X11.png",
+      "size": 10869,
+      "sha256": "83498848e6ac63aec8382ba7d04b84f7bee5e8bc3531766ee672bf081d90ce58",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R02/02-10s-framebuffer.png",
+      "size": 7851,
+      "sha256": "bd481542f50310d5806409380418487f341cbe59e9ea1a4b0b7b319fc970ea7a",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R02/03-after-startup-Enter.png",
+      "size": 4908,
+      "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": null
+}

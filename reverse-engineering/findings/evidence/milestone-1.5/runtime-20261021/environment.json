@@ -1,0 +1,62 @@
+{
+  "date_utc": "2026-10-21T14:42:32.183076+00:00",
+  "producer": "Local Python/Git/zipfile; GitHub API release metadata đối chiếu; không phải REA",
+  "emulator": {
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "size": 1161902,
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e",
+    "version": "FreeJ2ME-Plus release 1.52",
+    "tag": "1.52",
+    "tag_commit": "8f87bf1497e7a9738a32d1909379376a1faca7dd",
+    "installed_source_HEAD": "3933e75ef927a95eab9f5e065f0b76dabf336069",
+    "source_worktree_status": "",
+    "manifest": "Manifest-Version: 1.0\r\nAnt-Version: Apache Ant 1.10.14\r\nCreated-By: 1.8.0_472-b08 (Temurin)\r\nMain-Class: org.recompile.freej2me.FreeJ2ME\r\nImplementation-Title: FreeJ2ME\r\n\r\n",
+    "build_properties": "build.version=1.0.0\nbuild.buildNum=0\n",
+    "warning": "build.version=1.0.0/buildNum=0 là metadata trong JAR, không dùng thay release 1.52; checkout HEAD khác tag release."
+  },
+  "release_archive": {
+    "path": "/home/locdt/tools/freej2me-v1.52.zip",
+    "size": 1923469,
+    "sha256": "27eb4f51d4201b6f7682ed0259d08d86e0410d41f572412812fe1ae928df9688",
+    "jar_member_sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e",
+    "api_url": "https://api.github.com/repos/TASEmulators/freej2me-plus/releases/tags/1.52",
+    "release_url": "https://github.com/TASEmulators/freej2me-plus/releases/tag/1.52",
+    "api_asset_name": "freej2me-v1.52.zip",
+    "api_asset_digest": "sha256:27eb4f51d4201b6f7682ed0259d08d86e0410d41f572412812fe1ae928df9688",
+    "archive_matches_published_digest": true,
+    "installed_jar_matches_archive_member": true
+  },
+  "host": {
+    "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "java_version": "openjdk version \"21.0.12.1\" 2026-08-18\nOpenJDK Runtime Environment (build 21.0.12.1+1-1-24.04.4-Ubuntu)\nOpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-24.04.4-Ubuntu, mixed mode, sharing)\n",
+    "gui": {
+      "DISPLAY": ":0",
+      "WAYLAND_DISPLAY": "wayland-0",
+      "XDG_RUNTIME_DIR": "/run/user/1000"
+    }
+  },
+  "original": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "web_sha256_before": {
+    "web/README.md": "3f3de9ae2696db681adc0b0ecef884351ba5abc248c59af887b20e02ec145604",
+    "web/index.html": "0c14567a434450d15c72cb32732c3637f2bb899dce8050251d3cc1c146abf36e",
+    "web/package.json": "2f1c2767603f82aafc9df119fb7b719379475158839c6028f8287ccdb85eaa3e",
+    "web/public/assets/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/core/fixed-step.ts": "230726ae75627434ec2adceed6a94a889bdf83ec8157d24245667aa08e6b7b56",
+    "web/src/entities/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/input/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/main.ts": "5293ff9c893634009a833c9eeb55c141254db414e0ad9a4c47269f9c16108040",
+    "web/src/mechanics/README.md": "0fe819cf0a67ec4bf1f09eda3aa199a0977510b119fffa52fb8dd663fdc00314",
+    "web/src/persistence/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/rendering/BootScene.ts": "e22a5c00dc668e1b2fc7928828bbeacddff72a54a8d0cbd5ba8c6ad31a17e4d1",
+    "web/src/style.css": "e55f7d29d940cddbf2224f2782c5c039220a396999c0d05944aecd7c87269ac9",
+    "web/src/ui/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/world/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/tests/fixed-step.test.ts": "dc0af737dad3bb05eaf94be872d0132dbc281de00c83a8ac59d49e3a837e73d4",
+    "web/tsconfig.json": "b72863f29bcce7ccbbc88ffd809a130626dbb0e19a7311d3f9bb7820ea2af36f",
+    "web/vite.config.ts": "e81250ce9c30d834f85f87b91dc8cef5197e87230b21b362e9344344aec17df8"
+  }
+}

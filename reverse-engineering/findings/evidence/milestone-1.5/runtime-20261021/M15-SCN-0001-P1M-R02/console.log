@@ -1,0 +1,321 @@
+[INFO] Loading MIDlet: Heroes Lore | Main Class: rpg.GameMIDlet
+[ERROR] javax.microedition.media.Manager: Couldn't open Tone Player: Can not open line
+[INFO] javax.microedition.midlet.MIDlet: Create MIDlet
+startApp
+MyGameCanvas
+[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MAXMAPTILE
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-Demo
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-LangList
+en-GB
+langChoice 0
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MIDlet-Version
+readySound
+XFile _c
+javax.microedition.rms.RecordStoreNotFoundException: Record Store Doesn't Exist: Heroes Lore/410decd402x2m_.rms
+	at javax.microedition.rms.RecordStore.loadRecordStore(Unknown Source)
+	at javax.microedition.rms.RecordStore.<init>(Unknown Source)
+	at javax.microedition.rms.RecordStore.openRecordStore(Unknown Source)
+	at at.<init>(Unknown Source)
+	at br.i(Unknown Source)
+	at bv.d(Unknown Source)
+	at br.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+exists _c
+exists false
+exists _c
+exists false
+exists _k
+exists false
+exists _s
+exists false
+exists _w
+exists false
+exists _o
+exists false
+XFile _c
+write _c
+close : 6
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+MyGameCanvas
+MyGameCanvas
+[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320
+getSavedDataFor
+exists _k
+exists false
+getSavedDataFor
+exists _s
+exists false
+getSavedDataFor
+exists _w
+exists false
+[ERROR] org.recompile.mobile.PlatformPlayer: Could not prefetch midi stream:Cannot invoke "javax.sound.midi.Synthesizer.getReceiver()" because "this.synthesizer" is null
+[ERROR] org.recompile.mobile.PlatformPlayer: Could not prefetch midi stream:Cannot invoke "javax.sound.midi.Synthesizer.getReceiver()" because "this.synthesizer" is null
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+XFile _o
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+sleep
+map : 0
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+map : 64
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release

@@ -1,0 +1,215 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R03",
+  "control": "controlled synthetic emulator input",
+  "scenario_result": "đã quan sát một phần; chưa đạt toàn bộ",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/framebuffer.log",
+      "size": 4426,
+      "sha256": "0d0a710a3e47c15092deb29b54ea878b732eb4496bcb5bad62806340519057c6"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/input.log",
+      "size": 4908,
+      "sha256": "50c571a24135444f66282fda4a9081a3f660f5dc72d077abf47215d92aef4489"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/launch.json",
+      "size": 362,
+      "sha256": "f29561941f1d338f02d7208d823496ae186f83577f94ee6f6077805b3f2aba77"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/state-after-load.log",
+      "size": 8678,
+      "sha256": "2df6c087cde832ba9cdd1a457caad95fc17dea649b30c79f309afe72249a5c11"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/state-final.log",
+      "size": 8683,
+      "sha256": "9c03c1a9ef1f9dd3738286afac88f2f2443d8164c001385652ddb36f57d7cdf4"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/01-before-Skip.png",
+      "size": 19978,
+      "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/02-after-Skip.png",
+      "size": 608,
+      "sha256": "90a2d213f263d145e5f9509f41eebf3e481fcb9e8f8ef94e8e8dcd85fe24cc90",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/03-after-load.png",
+      "size": 16427,
+      "sha256": "be5ff71c18ec46c94d96d0cc2d1b1f7f15567d376d13396ce769068a4d9a518e",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/04-Down-idle.png",
+      "size": 16812,
+      "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/04-Down-release.png",
+      "size": 16812,
+      "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/05-Right-idle.png",
+      "size": 16055,
+      "sha256": "6c2236c18e5c79f115177cb1031d5254315424492a857d2ba1d049d09892cb34",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/05-Right-release.png",
+      "size": 16055,
+      "sha256": "6c2236c18e5c79f115177cb1031d5254315424492a857d2ba1d049d09892cb34",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/06-Up-idle.png",
+      "size": 16226,
+      "sha256": "2fb4ee56f8b95398f86315ed8a1dcec91730546ca19aa761f1be2442bc33cef9",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/06-Up-release.png",
+      "size": 16226,
+      "sha256": "2fb4ee56f8b95398f86315ed8a1dcec91730546ca19aa761f1be2442bc33cef9",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/07-Left-idle.png",
+      "size": 16695,
+      "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/07-Left-release.png",
+      "size": 16695,
+      "sha256": "ab427691ef0002f3dad20c43692c588c7a66f875cce5d307711aeaa5ebdc0614",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/08-action-Enter.png",
+      "size": 16695,
+      "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/09-W-menu.png",
+      "size": 3237,
+      "sha256": "a6b95e3618160789cec4c5337a73f9d058dbe8c3b4509b3d0a8b674d96c5cabd",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/10-close-menu.png",
+      "size": 16695,
+      "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/11-Right-boundary.png",
+      "size": 16167,
+      "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/12-Right-again.png",
+      "size": 16167,
+      "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/13-action-at-boundary.png",
+      "size": 16167,
+      "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/14-status-final.png",
+      "size": 3237,
+      "sha256": "a6b95e3618160789cec4c5337a73f9d058dbe8c3b4509b3d0a8b674d96c5cabd",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": "R02/R03 chuỗi trong nhà; R04 biến thể cửa ra, không cùng toàn bộ chuỗi"
+}

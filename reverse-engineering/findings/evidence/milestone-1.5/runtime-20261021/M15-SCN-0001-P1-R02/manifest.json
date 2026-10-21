@@ -1,0 +1,145 @@
+{
+  "run_id": "M15-SCN-0001-P1-R02",
+  "control": "exploratory/mixed input or launch diagnostic",
+  "scenario_result": "khám phá/chẩn đoán; không dùng làm lượt lặp có kiểm soát",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/artifacts/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/artifacts/freej2me_system/FreeJ2ME.log",
+      "size": 1294,
+      "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/artifacts/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/console.log",
+      "size": 10377,
+      "sha256": "6f8cb2625dd1a61a00179883d1369855d9238ffb000e5a586f89d69b1be3c495"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/input-host.jsonl",
+      "size": 6184,
+      "sha256": "a0f215dab598a04891f51efd6422fd75d6fd021380f86a165ad7bd431a60d5c8"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/input-inprocess.log",
+      "size": 299,
+      "sha256": "283a643809c54533c843d6bba9262d9f69f4c1841606d94659f2cd92321c81b8"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/launch.json",
+      "size": 636,
+      "sha256": "a7f7730d8472b29847815f167e35e0e3639c6751e5d5d74eeb2565ef4b450008"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/probe.log",
+      "size": 11254,
+      "sha256": "077007838d5320100728f3acd86a5ca008964ec7235c8758d3c5676332aa22a9"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/stop.json",
+      "size": 123,
+      "sha256": "cfc6ce8cf27c88bdc5bf3cc8b58341b7c1e27df77be6da46ef8e166eb86d4421"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/system-properties.txt",
+      "size": 3417,
+      "sha256": "8bb4fb9c493b82cb42b15e8e374db79d3c86f261e96982698fff085c7d0243ca"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/threads-final.txt",
+      "size": 17853,
+      "sha256": "c987c1330f2a18797c47e5110037ea5f146ce11353050153e7900f179f88e4b2"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/01-idle-startup.png",
+      "size": 10864,
+      "sha256": "b8fabddb4c6b0998f0fb28d85a6bbf6557125c784130c52bf2a67bbc8b5acf11",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/02-after-5.png",
+      "size": 10864,
+      "sha256": "b8fabddb4c6b0998f0fb28d85a6bbf6557125c784130c52bf2a67bbc8b5acf11",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/03-after-Return.png",
+      "size": 10864,
+      "sha256": "b8fabddb4c6b0998f0fb28d85a6bbf6557125c784130c52bf2a67bbc8b5acf11",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/04-late-menu-check.png",
+      "size": 9394,
+      "sha256": "8e795563f81b0e071de8d09d0cfbec43e39fae2b09e5bbf4a4e5ec1e2f8fd5dd",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/05-after-Down.png",
+      "size": 9394,
+      "sha256": "8e795563f81b0e071de8d09d0cfbec43e39fae2b09e5bbf4a4e5ec1e2f8fd5dd",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/06-Robot-Down.png",
+      "size": 9394,
+      "sha256": "8e795563f81b0e071de8d09d0cfbec43e39fae2b09e5bbf4a4e5ec1e2f8fd5dd",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/07-XSendEvent-Down.png",
+      "size": 9394,
+      "sha256": "8e795563f81b0e071de8d09d0cfbec43e39fae2b09e5bbf4a4e5ec1e2f8fd5dd",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R02/08-inprocess-Down.png",
+      "size": 9408,
+      "sha256": "448f608479034c420f943d7446932d48be48494b955888b14213994d5cc18eb9",
+      "width": 480,
+      "height": 640,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": null
+}

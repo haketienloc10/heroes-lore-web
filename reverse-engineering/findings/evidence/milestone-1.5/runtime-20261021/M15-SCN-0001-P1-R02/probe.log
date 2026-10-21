@@ -1,0 +1,120 @@
+2026-10-21T14:46:57.662557223Z mono_ns=8039547469706 snapshot_begin; fields read independently, no atomicity; no game method invoked
+2026-10-21T14:46:57.686057212Z mono_ns=8039565134709 field bt.a:byte=0
+2026-10-21T14:46:57.687083678Z mono_ns=8039566148299 field bt.g:java.lang.String[]=[Ljava.lang.String;@4556199e
+2026-10-21T14:46:57.687465384Z mono_ns=8039566520658 field bt.a:java.lang.String[]=[Ljava.lang.String;@67bc7242
+2026-10-21T14:46:57.687646413Z mono_ns=8039566696441 field bt.b:java.lang.String[]=[Ljava.lang.String;@293acaec
+2026-10-21T14:46:57.687786429Z mono_ns=8039566835312 field bt.c:java.lang.String[]=[Ljava.lang.String;@253cf277
+2026-10-21T14:46:57.687910994Z mono_ns=8039566959209 field bt.d:java.lang.String[]=[Ljava.lang.String;@50d395a7
+2026-10-21T14:46:57.688044238Z mono_ns=8039567092358 field bt.e:java.lang.String[]=[Ljava.lang.String;@54f9c39d
+2026-10-21T14:46:57.688335620Z mono_ns=8039567389081 field bt.f:java.lang.String[]=[Ljava.lang.String;@2beb1e44
+2026-10-21T14:46:57.688678316Z mono_ns=8039567737118 field bt.a:byte[][]=[[B@2534202e
+2026-10-21T14:46:57.689012523Z mono_ns=8039568113197 field bt.b:byte[][]=[[B@3fcbfa3e
+2026-10-21T14:46:57.689427611Z mono_ns=8039568482694 field bt.a:byte[]=[B@4c21cabd
+2026-10-21T14:46:57.689733586Z mono_ns=8039568785998 field bt.b:byte[]=[B@12897bf3
+2026-10-21T14:46:57.690433189Z mono_ns=8039569490943 field bt.a:boolean=false
+2026-10-21T14:46:57.694679547Z mono_ns=8039573744263 field m.b:int=0
+2026-10-21T14:46:57.695161973Z mono_ns=8039574229264 field m.c:int=0
+2026-10-21T14:46:57.695473766Z mono_ns=8039574553170 field m.d:int=0
+2026-10-21T14:46:57.695859191Z mono_ns=8039574937165 field m.e:int=9
+2026-10-21T14:46:57.696241755Z mono_ns=8039575309619 field m.b:byte=0
+2026-10-21T14:46:57.696522264Z mono_ns=8039575579541 field m.c:byte=9
+2026-10-21T14:46:57.696858665Z mono_ns=8039575913843 field m.d:byte=3
+2026-10-21T14:46:57.697120480Z mono_ns=8039576176707 field m.e:byte=0
+2026-10-21T14:46:57.698286676Z mono_ns=8039577361883 field bf.a:bf=null
+2026-10-21T14:46:57.698733048Z mono_ns=8039577793091 field ar.a:int=240
+2026-10-21T14:46:57.698956425Z mono_ns=8039578007121 field ar.b:int=299
+2026-10-21T14:46:57.699098731Z mono_ns=8039578145611 field ar.c:int=112
+2026-10-21T14:46:57.699219671Z mono_ns=8039578265883 field ar.d:int=149
+2026-10-21T14:46:57.699341279Z mono_ns=8039578391688 field ar.n:int=27
+2026-10-21T14:46:57.699474618Z mono_ns=8039578523978 field ar.o:int=173
+2026-10-21T14:46:57.700062151Z mono_ns=8039579126390 field ar.p:int=234
+2026-10-21T14:46:57.700289343Z mono_ns=8039579344808 field ar.e:int=0
+2026-10-21T14:46:57.700747161Z mono_ns=8039579913456 field q.g:int=240
+2026-10-21T14:46:57.701160247Z mono_ns=8039580218286 field q.h:int=320
+2026-10-21T14:46:57.701356250Z mono_ns=8039580405705 field q.i:int=120
+2026-10-21T14:46:57.701533368Z mono_ns=8039580584636 field q.j:int=160
+2026-10-21T14:46:57.701730326Z mono_ns=8039580781307 field q.b:boolean=false
+2026-10-21T14:46:57.701887605Z mono_ns=8039580936107 field q.k:int=28
+2026-10-21T14:46:57.702073498Z mono_ns=8039581121714 field q.l:int=52
+2026-10-21T14:46:57.702206647Z mono_ns=8039581255530 field q.m:int=0
+2026-10-21T14:46:57.702555256Z mono_ns=8039581613391 field br.a:int[]=[I@5d2618de
+2026-10-21T14:46:57.703085658Z mono_ns=8039582172597 field br.a:ar=ar@4b77d204
+2026-10-21T14:46:57.707251038Z mono_ns=8039586323289 field ar.c:boolean=false
+2026-10-21T14:46:57.707776957Z mono_ns=8039586838525 field ar.d:boolean=true
+2026-10-21T14:46:57.708003291Z mono_ns=8039587051888 field ar.e:boolean=false
+2026-10-21T14:46:57.708227717Z mono_ns=8039587276218 field ar.f:boolean=false
+2026-10-21T14:46:57.708414850Z mono_ns=8039587462779 field ar.g:boolean=false
+2026-10-21T14:46:57.708755924Z mono_ns=8039587807287 field ar.q:int=0
+2026-10-21T14:46:57.708992082Z mono_ns=8039588042110 field ar.r:int=0
+2026-10-21T14:46:57.709181123Z mono_ns=8039588229434 field ar.h:boolean=false
+2026-10-21T14:46:57.709367016Z mono_ns=8039588414468 field ar.s:int=0
+2026-10-21T14:46:57.711315413Z mono_ns=8039590382418 field ar.a:ak=null
+2026-10-21T14:46:57.712644993Z mono_ns=8039591714764 field ar.a:y=null
+2026-10-21T14:46:57.713230809Z mono_ns=8039592303918 field ar.t:int=0
+2026-10-21T14:46:57.713822444Z mono_ns=8039592906712 field ar.u:int=0
+2026-10-21T14:46:57.714261186Z mono_ns=8039593327237 field ar.a:javax.microedition.lcdui.Image[]=null
+2026-10-21T14:46:57.714753245Z mono_ns=8039593825114 field ar.a:java.util.Vector=null
+2026-10-21T14:46:57.715224893Z mono_ns=8039594304106 field ar.i:boolean=false
+2026-10-21T14:46:57.715998605Z mono_ns=8039595077151 field ar.a:char[]=[C@544f4e3c
+2026-10-21T14:46:57.716547987Z mono_ns=8039595618235 field q.a:boolean=false
+2026-10-21T14:46:57.716893067Z mono_ns=8039595955208 field q.f:int=0
+2026-10-21T14:46:57.717284120Z mono_ns=8039596345879 field br.a:java.lang.Object=java.lang.Object@775201b5
+2026-10-21T14:46:57.717748901Z mono_ns=8039596815429 field br.a:br=br@ba409e
+2026-10-21T14:46:57.718186212Z mono_ns=8039597245587 field br.a:javax.microedition.lcdui.Display=javax.microedition.lcdui.Display@4192c4cc
+2026-10-21T14:46:57.718465386Z mono_ns=8039597525237 field br.a:q=ar@4b77d204
+2026-10-21T14:46:57.718600824Z mono_ns=8039597650374 field ar.c:boolean=false
+2026-10-21T14:46:57.718728440Z mono_ns=8039597776370 field ar.d:boolean=true
+2026-10-21T14:46:57.718827348Z mono_ns=8039597873179 field ar.e:boolean=false
+2026-10-21T14:46:57.718918626Z mono_ns=8039597963789 field ar.f:boolean=false
+2026-10-21T14:46:57.719002177Z mono_ns=8039598048008 field ar.g:boolean=false
+2026-10-21T14:46:57.719115964Z mono_ns=8039598160937 field ar.q:int=0
+2026-10-21T14:46:57.721164891Z mono_ns=8039600245821 field ar.r:int=0
+2026-10-21T14:46:57.721629957Z mono_ns=8039600694959 field ar.h:boolean=false
+2026-10-21T14:46:57.721898258Z mono_ns=8039600951147 field ar.s:int=0
+2026-10-21T14:46:57.722093212Z mono_ns=8039601148009 field ar.a:ak=null
+2026-10-21T14:46:57.722265085Z mono_ns=8039601313395 field ar.a:y=null
+2026-10-21T14:46:57.722429422Z mono_ns=8039601476874 field ar.t:int=0
+2026-10-21T14:46:57.722645455Z mono_ns=8039601697486 field ar.u:int=0
+2026-10-21T14:46:57.722833542Z mono_ns=8039601890628 field ar.a:javax.microedition.lcdui.Image[]=null
+2026-10-21T14:46:57.723006273Z mono_ns=8039602054011 field ar.a:java.util.Vector=null
+2026-10-21T14:46:57.723166128Z mono_ns=8039602220733 field ar.i:boolean=false
+2026-10-21T14:46:57.723353261Z mono_ns=8039602417309 field ar.a:char[]=[C@544f4e3c
+2026-10-21T14:46:57.723679361Z mono_ns=8039602749322 field q.a:boolean=false
+2026-10-21T14:46:57.723898923Z mono_ns=8039602959919 field q.f:int=0
+2026-10-21T14:46:57.724528136Z mono_ns=8039603609639 field br.c:int=14
+2026-10-21T14:46:57.725234225Z mono_ns=8039604315918 field br.d:int=50
+2026-10-21T14:46:57.725812983Z mono_ns=8039604879035 field br.a:int=10
+2026-10-21T14:46:57.726280721Z mono_ns=8039605346200 field br.a:boolean=true
+2026-10-21T14:46:57.728677016Z mono_ns=8039607746692 field br.b:boolean=false
+2026-10-21T14:46:57.729770534Z mono_ns=8039608910980 field br.c:boolean=false
+2026-10-21T14:46:57.730742443Z mono_ns=8039609820417 field br.d:boolean=true
+2026-10-21T14:46:57.731413719Z mono_ns=8039610512199 field br.a:byte=2
+2026-10-21T14:46:57.731970731Z mono_ns=8039611038404 field br.b:byte=8
+2026-10-21T14:46:57.732412430Z mono_ns=8039611466177 field br.b:int=0
+2026-10-21T14:46:57.738682247Z mono_ns=8039618849351 field br.a:long=1792594017725
+2026-10-21T14:46:57.740598311Z mono_ns=8039619713292 field br.e:boolean=false
+2026-10-21T14:46:57.746989260Z mono_ns=8039626108246 field br.f:boolean=false
+2026-10-21T14:46:57.753156354Z mono_ns=8039632225267 emulator config=org.recompile.freej2me.Config@6221e269
+2026-10-21T14:46:57.754033362Z mono_ns=8039633104850 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Standard, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}
+2026-10-21T14:46:57.754545927Z mono_ns=8039633609499 emulator lcdWidth=240
+2026-10-21T14:46:57.754981236Z mono_ns=8039634061594 emulator lcdHeight=320
+2026-10-21T14:46:57.760773778Z mono_ns=8039639847746 emulator limitFPS=60
+2026-10-21T14:46:57.761388876Z mono_ns=8039640454259 emulator isFastForwarding=false
+2026-10-21T14:46:57.761739393Z mono_ns=8039640796097 emulator isPaused=false
+2026-10-21T14:46:57.797098299Z mono_ns=8039676172648 AWT listener attached; not a MIDlet callback trace; timing overhead unmeasured
+2026-10-21T14:46:57.797748305Z mono_ns=8039676814738 snapshot_end
+2026-10-21T14:54:44.013138804Z mono_ns=8483946623920 AWT_KEY id=401 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.014997543Z mono_ns=8483948497529 AWT_KEY id=400 code=0 location=0 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.095288985Z mono_ns=8484028834152 AWT_KEY id=402 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.695729487Z mono_ns=8484629295243 AWT_KEY id=401 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.698065970Z mono_ns=8484631557091 AWT_KEY id=400 code=0 location=0 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.745755217Z mono_ns=8484679235567 AWT_KEY id=402 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.838401557Z mono_ns=8484771999436 AWT_KEY id=401 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.840140955Z mono_ns=8484773637700 AWT_KEY id=400 code=0 location=0 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:44.917801375Z mono_ns=8484851278198 AWT_KEY id=402 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:45.563255779Z mono_ns=8485496763486 AWT_KEY id=401 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:45.564261595Z mono_ns=8485497739086 AWT_KEY id=400 code=0 location=0 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:45.629722203Z mono_ns=8485563243922 AWT_KEY id=402 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:45.721783468Z mono_ns=8485655269728 AWT_KEY id=401 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:45.722972108Z mono_ns=8485656455318 AWT_KEY id=400 code=0 location=0 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:54:45.794161922Z mono_ns=8485727690218 AWT_KEY id=402 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0

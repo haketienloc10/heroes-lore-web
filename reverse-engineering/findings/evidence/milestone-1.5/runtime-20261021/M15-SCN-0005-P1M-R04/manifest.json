@@ -1,0 +1,105 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R04",
+  "control": "controlled synthetic emulator input",
+  "scenario_result": "đã quan sát một phần; chưa đạt toàn bộ",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/framebuffer.log",
+      "size": 1735,
+      "sha256": "64c640228d5cfb2fa9313fd61f992bdb465c7847269fdf70bd8a2fe93581c426"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/input.log",
+      "size": 3270,
+      "sha256": "efaf596a5ebc8eed0becbf0a08f122481845810600e3af079f87ec6cd7e9f2ac"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/launch.json",
+      "size": 473,
+      "sha256": "494bebde97a1534c71bd35095b221c4224e438c3c53971f6e2ed7fbbf543c38e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/state-after-door.log",
+      "size": 8685,
+      "sha256": "08730f77439c3902d034db0f7d9e82834814d8aefb84100ccc0884c63c2c4f23"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/state-final.log",
+      "size": 17367,
+      "sha256": "2954c41a18f59fdbceaa64687ba904ab365743048198ac91c966d93a12fb4dac"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/01-before-Skip.png",
+      "size": 19978,
+      "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/02-bed-start.png",
+      "size": 16427,
+      "sha256": "be5ff71c18ec46c94d96d0cc2d1b1f7f15567d376d13396ce769068a4d9a518e",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/03-Down-one-second.png",
+      "size": 16812,
+      "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/04-Down-two-holds.png",
+      "size": 24523,
+      "sha256": "ff2c0e389e249a72a5569e1b6fcf063d25ede395a7dcf25a9ba5d8da8625fcf3",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/05-outside-Left.png",
+      "size": 25768,
+      "sha256": "8d098fcb6e2534b76251930cd21f86ba7570681d324745e286cb2104386f0862",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/06-NPC-action.png",
+      "size": 25768,
+      "sha256": "8d098fcb6e2534b76251930cd21f86ba7570681d324745e286cb2104386f0862",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/07-NPC-approach-action.png",
+      "size": 25649,
+      "sha256": "17666f39e636048f8b9abec3074d164aaaefef661f4b7ffd74597df0b70e1da0",
+      "width": 240,
+      "height": 320,
+      "producer": "Emulator frontbuffer via sidecar",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": "R02/R03 chuỗi trong nhà; R04 biến thể cửa ra, không cùng toàn bộ chuỗi"
+}

@@ -1,0 +1,46 @@
+{
+  "date_utc": "2026-10-21T15:17:47.218840+00:00",
+  "producer": "Local validation; không phải kiểm thử mechanics/ordering/FPS",
+  "game_jar_unchanged": true,
+  "emulator_jar_unchanged": true,
+  "web_17_files_unchanged": true,
+  "git_web_diff_empty": true,
+  "git_diff_check_passed": true,
+  "markdown_files_checked": 20,
+  "missing_local_links": [],
+  "markdown_trailing_whitespace": [],
+  "run_records": 15,
+  "controlled_session_count": 3,
+  "scenario_ids_observed_partially": 3,
+  "scenarios_fully_passed": 0,
+  "native_framebuffer_pngs_240x320": 102,
+  "black_robot_pngs_excluded": 2,
+  "external_awt_key_events_in_controlled_runs": [],
+  "controlled_startup_snapshots": {
+    "02": {
+      "before_controller_bf": true,
+      "after_controller_ar": true,
+      "lcd_240x320": true
+    },
+    "03": {
+      "before_controller_bf": true,
+      "after_controller_ar": true,
+      "lcd_240x320": true
+    },
+    "04": {
+      "before_controller_bf": true,
+      "after_controller_ar": true,
+      "lcd_240x320": true
+    }
+  },
+  "controlled_sessions_stopped": {
+    "02": true,
+    "03": true,
+    "04": true
+  },
+  "measured_FPS": null,
+  "callback_ordering_verified": false,
+  "runtime_CF01_to_CF04_verified": false,
+  "milestone_complete": false,
+  "manifest_hash_errors": []
+}

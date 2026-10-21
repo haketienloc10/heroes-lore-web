@@ -127,3 +127,5 @@ Bắt đầu từ sáu seed được yêu cầu; chỉ mở rộng thân method 
 Để xác minh hành vi cần emulator/scenario cho start, `bf→ar`, input press/release, visibility và cadence; chưa có scenario đã chạy để liên kết. Cần audit workers/shared state trước khi mô tả bảo đảm concurrency. Map/resource format, collision, persistence và mechanics cần findings riêng. Không có coverage/accuracy/fidelity định lượng ở giai đoạn này.
 
 **Cập nhật M1.5, 2026-10-21:** đã chuẩn bị [8 scenario và protocol](../../reference/scenarios/README.md), kiểm tra lại cả 4 sai lệch bằng `javap`; xem [FND-0002](FND-0002-runtime-verification.md). Chưa launch emulator, 0/8 scenario đã chạy; mọi kết luận runtime vẫn chưa xác minh.
+
+**Lượt tiếp tục:** [FND-0003](FND-0003-emulator-smoke.md) đã có quan sát emulator cho startup/menu/gameplay (3 scenario một phần, chưa đạt toàn bộ), gồm chuyển từ giường ra ngoài nhà. Chưa có trace BCI cho 4 sai lệch hoặc callback ordering; không coi snapshot/ảnh là xác nhận mọi flow ở finding này. Đoạn cập nhật phía trên là lịch sử lượt chuẩn bị.

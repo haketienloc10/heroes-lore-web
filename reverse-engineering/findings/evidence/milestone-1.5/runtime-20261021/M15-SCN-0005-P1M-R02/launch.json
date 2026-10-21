@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R02",
+  "pid": 58216,
+  "inherited_session": "M15-SCN-0001-P1M-R02",
+  "menu_run": "M15-SCN-0002-P1M-R02",
+  "profile": "P1M Motorola",
+  "fixture": "Ronin, Hestia + guardian màu xanh; intro map : 0; không có snapshot save",
+  "input_method": "emulator AWT KeyListener injection, không input thủ công"
+}

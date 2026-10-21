@@ -1,0 +1,4 @@
+{"utc":"2026-10-21T14:42:52.063967319Z","mono_ns":7804857659626,"producer":"AWT Robot host","event":"capture_begin","x":1051,"y":283,"width":250,"height":375}
+{"utc":"2026-10-21T14:42:52.143633846Z","mono_ns":7804932063308,"producer":"AWT Robot host","event":"capture_end"}
+{"utc":"2026-10-21T14:43:09.858733009Z","mono_ns":7822654392492,"producer":"AWT Robot host","event":"capture_begin","x":1051,"y":283,"width":250,"height":375}
+{"utc":"2026-10-21T14:43:09.935612342Z","mono_ns":7822724033099,"producer":"AWT Robot host","event":"capture_end"}

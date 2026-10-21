@@ -1,6 +1,6 @@
 # SCN-0001 — Startup và chuyển Canvas
 
-**Trạng thái bản gốc:** chưa chạy; runtime chưa xác minh. **Web:** chưa chạy. Dùng JAR/hash, P1, mapping và quy tắc 3 lượt trong [quy trình](J2ME-RUNTIME-PROTOCOL.md); ghi kết quả bằng [mẫu run](RUN_TEMPLATE.md).
+**Trạng thái bản gốc:** đã quan sát một phần; **chưa đạt toàn bộ**. Startup sạch được lặp 3 session P1M-R02/R03/R04; biến thể có save và trace CF-01/ordering chưa xác minh. **Web:** chưa chạy. Kế hoạch ban đầu và biên bản thực nghiệm tách riêng bên dưới.
 
 ## Điều kiện và input
 
@@ -21,4 +21,23 @@ Biến thể bắt buộc A: working directory mới, RMS sạch. B: khởi đ�
 
 **Cơ sở tĩnh:** FND-0001 E01–E07; CF-01 trong [FND-0002](../../reverse-engineering/findings/FND-0002-runtime-verification.md). Dự đoán bytecode là giả thuyết cần đối chiếu runtime, không phải kết quả của scenario.
 
-**Tiêu chí đóng:** có run A/B tái lập, ảnh và console startup; trace các mốc Canvas/chiều cao và CF-01 trên đường thành công. Mỗi lần chưa tới `ar` phải báo điểm dừng. Hiện không có evidence runtime, chưa có thời gian startup để báo cáo.
+**Tiêu chí đóng:** có run A/B tái lập, ảnh và console startup; trace các mốc Canvas/chiều cao và CF-01 trên đường thành công. Mỗi lần chưa tới `ar` phải báo điểm dừng. Lượt chuẩn bị ban đầu chưa có evidence runtime; kết quả lượt tiếp tục nằm dưới đây.
+
+## Thực nghiệm 2026-10-21
+
+**Phiên bản và cấu hình:** game SHA-256 ở [index](README.md); FreeJ2ME-Plus release 1.52, tag commit `8f87bf1497e7a9738a32d1909379376a1faca7dd`, emulator SHA-256 `92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e`. P1M Motorola, LCD 240×320, limiter 60, encoding ISO_8859_1; OpenJDK 21.0.12.1/WSLg. Cấu hình RAM, config disk và giới hạn input/ảnh tại [FND-0003](../../reverse-engineering/findings/FND-0003-emulator-smoke.md).
+
+| Run | Điều kiện / thao tác | Kết quả quan sát | Evidence |
+| --- | --- | --- | --- |
+| M15-SCN-0001-P1-R01 | Launch UTF-8 mặc định | Auto-restart vì encoding; không giữ đầy đủ console/profile; ảnh Robot đen không dùng để chứng minh UI | launch/console/input-host; ảnh XGetImage logo; lượt khám phá |
+| M15-SCN-0001-P1-R02 | Standard, encoding đặt từ launch | Log MIDlet/Canvas, vào menu và chơi được sau đó; có cả input OS khó đối chiếu và injection, không dùng làm lượt lặp chuẩn | console, snapshot, ảnh host; liên kết các run menu/gameplay P1-R01 |
+| M15-SCN-0001-P1M-R01 | Motorola, có thao tác tay | AWT Enter ngoài harness lúc 14:55:13Z; người dùng xác nhận điều khiển tay | probe.log; lượt hỗn hợp, loại khỏi lặp có kiểm soát |
+| M15-SCN-0001-P1M-R02 / R03 / R04 | Ba working directory/RMS sạch độc lập; không input 10 giây; capture; injection Enter AWT 10 giữ 100 ms, chờ 2 giây; capture/snapshot | Có logo ở checkpoint; sau xác nhận vào menu. Snapshot trước input có controller `bf`, sau startup có `ar`, `q.g/h=240/320`; không quan sát fatal crash ngăn tiếp tục | Mỗi run có launch.json, console.log, input.log, framebuffer.log, state-before-input.log, state-after-startup.log, window-tree.txt và manifest |
+
+Thời gian trên là **lịch checkpoint/wait của harness**, không phải latency startup hoặc thời điểm đầu tiên frame xuất hiện. Không dùng các checkpoint để báo FPS hoặc suy callback ordering. Ảnh sau Enter xác nhận đã vào menu tại mốc capture, chưa đo chính xác thời gian hoàn tất startup.
+
+Ảnh local `reference/screenshots/<run-id>/02-10s-framebuffer.png`, `03-after-startup-Enter.png`; ảnh host `01-10s-X11.png` có producer riêng. Metadata/hash ảnh và log tại [runtime evidence](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/README.md); ảnh ignored, chưa được phân phối trong Git.
+
+**Lỗi đã ghi:** auto-restart encoding ở lượt mặc định; Tone/MIDI không mở được; RecordStore `_c` vắng ở RMS sạch rồi có bước tạo/ghi. Game vẫn tiếp tục. Không kết luận game crash từ exception đã log; audio chưa xác minh.
+
+**Còn thiếu để đạt:** startup B với save fixture hợp lệ; trace constructor/clip/paint và CF-01 theo invocation/BCI; hiệu chuẩn đường input vật lý. Snapshot `q.h=320` sau startup không chứng minh nó được gán đúng trước constructor `ar`.

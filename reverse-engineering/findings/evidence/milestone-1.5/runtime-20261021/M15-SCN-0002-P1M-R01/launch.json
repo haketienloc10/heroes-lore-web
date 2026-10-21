@@ -1,0 +1,10 @@
+{
+  "run_id": "M15-SCN-0002-P1M-R01",
+  "utc": "2026-10-21T14:56:50.596175+00:00",
+  "pid": 55761,
+  "inherited_session": "M15-SCN-0001-P1M-R01",
+  "profile": "P1M Motorola",
+  "initial_UI": "New Game được chọn; có AWT Return không thuộc harness lúc 14:55:13Z",
+  "input_method": "in-process emulator KeyListener injection",
+  "status": "diagnostic, chưa đủ điều kiện đạt"
+}

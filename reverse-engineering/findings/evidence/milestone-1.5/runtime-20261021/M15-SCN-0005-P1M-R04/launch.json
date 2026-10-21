@@ -1,0 +1,10 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R04",
+  "pid": 63071,
+  "inherited_session": "M15-SCN-0001-P1M-R04",
+  "menu_run": "M15-SCN-0002-P1M-R04",
+  "profile": "P1M Motorola",
+  "variant": "Bổ sung cửa ra theo hướng dẫn người dùng: từ giường đi thẳng xuống giữa dưới; premise cần kiểm chứng",
+  "fixture": "RMS sạch → Ronin + Hestia/Ron → intro",
+  "input_method": "in-process emulator KeyListener; không thao tác tay, không ép state"
+}

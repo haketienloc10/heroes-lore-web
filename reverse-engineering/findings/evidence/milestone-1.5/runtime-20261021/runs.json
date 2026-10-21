@@ -1,0 +1,156 @@
+{
+  "date_utc": "2026-10-21T15:17:00.989822+00:00",
+  "scenario_ids_with_partial_runtime": [
+    "SCN-0001",
+    "SCN-0002",
+    "SCN-0005"
+  ],
+  "scenarios_fully_passed": 0,
+  "controlled_physical_sessions": [
+    "M15-SCN-0001-P1M-R02",
+    "M15-SCN-0001-P1M-R03",
+    "M15-SCN-0001-P1M-R04"
+  ],
+  "controlled_input": "in-process emulator KeyListener; no manual inputs during controlled sessions",
+  "gameplay_repetitions": {
+    "interior_sequence": 2,
+    "exit_house_variant": 1
+  },
+  "runs": [
+    {
+      "run_id": "M15-SCN-0001-P1-R01",
+      "controlled": false,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R01/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R01/manifest.json",
+      "physical_session": "M15-SCN-0001-P1-R01",
+      "screenshot_count": 3,
+      "scenario_status": "diagnostic"
+    },
+    {
+      "run_id": "M15-SCN-0001-P1-R02",
+      "controlled": false,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R02/manifest.json",
+      "physical_session": "M15-SCN-0001-P1-R02",
+      "screenshot_count": 8,
+      "scenario_status": "diagnostic"
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R01",
+      "controlled": false,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R01/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R01/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R01",
+      "screenshot_count": 4,
+      "scenario_status": "diagnostic"
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R02",
+      "screenshot_count": 3,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R03",
+      "screenshot_count": 3,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R04",
+      "screenshot_count": 3,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0002-P1-R01",
+      "controlled": false,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1-R01/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1-R01/manifest.json",
+      "physical_session": "M15-SCN-0001-P1-R02",
+      "screenshot_count": 10,
+      "scenario_status": "diagnostic"
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R01",
+      "controlled": false,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R01/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R01/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R01",
+      "screenshot_count": 13,
+      "scenario_status": "diagnostic"
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R02",
+      "screenshot_count": 13,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R03",
+      "screenshot_count": 13,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R04",
+      "screenshot_count": 13,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0005-P1-R01",
+      "controlled": false,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1-R01/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1-R01/manifest.json",
+      "physical_session": "M15-SCN-0001-P1-R02",
+      "screenshot_count": 8,
+      "scenario_status": "diagnostic"
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R02",
+      "screenshot_count": 18,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R03",
+      "screenshot_count": 18,
+      "scenario_status": "partial"
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "controlled": true,
+      "launch": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/launch.json",
+      "manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/manifest.json",
+      "physical_session": "M15-SCN-0001-P1M-R04",
+      "screenshot_count": 7,
+      "scenario_status": "partial"
+    }
+  ]
+}

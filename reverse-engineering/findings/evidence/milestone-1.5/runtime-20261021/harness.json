@@ -1,0 +1,41 @@
+{
+  "utc": "2026-10-21T15:17:00.905424+00:00",
+  "source_sha256": {
+    "reverse-engineering/scripts/README.md": "657300389f23d3fcbf0e108922eb1d3051c89ceead0bcd0f2c9dafdade0da284",
+    "reverse-engineering/scripts/RuntimeFramebufferProbe.java": "1278293767602915b65d2e08ebb0224d71a59d9cc39f36875e8b2b63cdfcb1e1",
+    "reverse-engineering/scripts/RuntimeGuiControl.java": "9c738289affd8cfe4ffb520698561f734bf9fa70f0429cafc35c464646b2e81b",
+    "reverse-engineering/scripts/RuntimeStateProbe.java": "5832b9795cb0b2acd0570fdc9cb92dbf03b686289004756c4f5898f8413a1c2d",
+    "reverse-engineering/scripts/run_runtime_gameplay.py": "dbecb6b53b5fe8f718b18ccbda7b2c3416b4c4501b86e983d459f6c50defcd60",
+    "reverse-engineering/scripts/run_runtime_smoke.py": "4e04ad44358fddae6591ae9819423f5fe7e5b9f167cc84d884f78e37fceeb743",
+    "reverse-engineering/scripts/runtime_x11.py": "8ca6fd9d6a47b8bb276e970c54eabec844976a63d6ab4f144b35c45d3f17d5b0",
+    "reverse-engineering/scripts/stop_runtime_session.py": "d93d816a4d87aa9435692fbc65809d40fd279696939ec10635c0b9f944755bd9"
+  },
+  "compiled_probes": [
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/frame-probe.jar",
+      "sha256": "6d98ee15d60d9c8b83dcd0009374c6583c88dc01c07c973e4a21804f459dacac",
+      "size": 1988
+    },
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/input-probe.jar",
+      "sha256": "303544713b74359467851bda8148c5b1c42d795c909ff187039081f8f657dad2",
+      "size": 4671
+    },
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/probe-current.jar",
+      "sha256": "f7c7c3449fdb28db748390a0f39beae5a0b2dbe4d874f100ace3e49bc0bacbc8",
+      "size": 5118
+    },
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/probe-v2.jar",
+      "sha256": "23fcc53f05b9a5a2147f60e73f25ba2093b369c9f47aa75f2181bc0528980876",
+      "size": 4671
+    },
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/probe.jar",
+      "sha256": "3bd3867ba6cb88cadbb3356fe2e4ed8ac15520ab0e014779081cb8d0898bc02a",
+      "size": 3513
+    }
+  ],
+  "note": "Các probe là sidecar local; không ghi lại JAR game. Native frame probe đọc framebuffer theo cùng đường ScreenShot của emulator. Snapshot không nguyên tử; input injection bypass OS focus; không đo overhead/FPS; snapshot/KeyListener không phải trace callback MIDlet."
+}

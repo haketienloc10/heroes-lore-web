@@ -1,0 +1,55 @@
+{
+  "run_id": "M15-SCN-0001-P1-R01",
+  "control": "exploratory/mixed input or launch diagnostic",
+  "scenario_result": "khám phá/chẩn đoán; không dùng làm lượt lặp có kiểm soát",
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R01/console.log",
+      "size": 143,
+      "sha256": "39742ba9abebb7c88a392fe14c7f648bdf8a7a626a853c5005429a0503e45568"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R01/input-host.jsonl",
+      "size": 548,
+      "sha256": "e13208e7bd2769360d314d6ddcd390757bd1b3a85a3a88278528aa4fbd77bbb6"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1-R01/launch.json",
+      "size": 595,
+      "sha256": "7696fbe77003150d46c7ed7f35c24187d528d68f0a4d70f37c2b6c32039456f8"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R01/01-after-encoding-restart.png",
+      "size": 353,
+      "sha256": "dfcf25914c788cbdc883b3995f30bb4074f081254f910855a92f36e7c9a97a8a",
+      "width": 250,
+      "height": 375,
+      "producer": "AWT Robot (ảnh đen)",
+      "valid_for_behavior": false,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R01/02-x11-capture.png",
+      "size": 353,
+      "sha256": "dfcf25914c788cbdc883b3995f30bb4074f081254f910855a92f36e7c9a97a8a",
+      "width": 250,
+      "height": 375,
+      "producer": "AWT Robot (ảnh đen)",
+      "valid_for_behavior": false,
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0001-P1-R01/03-xgetimage-canvas.png",
+      "size": 4479,
+      "sha256": "ff5d2de74bf70784ea98df1b202920b3dea5d9b2af290e8e343f47ec684bc8a4",
+      "width": 174,
+      "height": 253,
+      "producer": "X11 XGetImage drawable",
+      "valid_for_behavior": true,
+      "availability": "local, Git ignored"
+    }
+  ],
+  "gameplay_note": null
+}

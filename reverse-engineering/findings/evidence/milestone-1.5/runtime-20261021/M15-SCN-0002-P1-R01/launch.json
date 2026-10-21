@@ -1,0 +1,8 @@
+{
+  "run_id": "M15-SCN-0002-P1-R01",
+  "utc": "2026-10-21T14:49:49.566927+00:00",
+  "pid": 50788,
+  "inherited_session": "M15-SCN-0001-P1-R02",
+  "initial_UI": "Menu chính, Options được chọn theo ảnh 08 của startup",
+  "instrumentation": "snapshot agent + in-process emulator AWT KeyListener input; OS focus bypass, không sửa field hoặc JAR game"
+}

@@ -1,0 +1,14 @@
+{
+  "retrieved_utc": "2026-10-21T14:59:57.289549+00:00",
+  "url": "https://api.github.com/repos/TASEmulators/freej2me-plus/git/ref/tags/1.52",
+  "payload": {
+    "ref": "refs/tags/1.52",
+    "node_id": "REF_kwDOMwLJla5yZWZzL3RhZ3MvMS41Mg",
+    "url": "https://api.github.com/repos/TASEmulators/freej2me-plus/git/refs/tags/1.52",
+    "object": {
+      "sha": "8f87bf1497e7a9738a32d1909379376a1faca7dd",
+      "type": "commit",
+      "url": "https://api.github.com/repos/TASEmulators/freej2me-plus/git/commits/8f87bf1497e7a9738a32d1909379376a1faca7dd"
+    }
+  }
+}

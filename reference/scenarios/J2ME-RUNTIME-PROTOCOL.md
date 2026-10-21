@@ -1,6 +1,6 @@
 # Quy trình chạy và đo J2ME — Milestone 1.5
 
-**Trạng thái 2026-10-21:** chưa có emulator được khởi chạy. Đây là cấu hình và quy trình **dự kiến**, chưa chứng minh tương thích với Heroes Lore. JAR/SHA-256 và danh sách scenario tại [index](README.md).
+**Cập nhật 2026-10-21:** đã chạy game bằng FreeJ2ME-Plus 1.52; SCN-0001/0002/0005 có quan sát một phần. Mục “Môi trường đã kiểm tra” và profile dự kiến dưới đây giữ bối cảnh lượt chuẩn bị; **cấu hình thực tế ở cuối tài liệu** thay thế các thông số chưa chốt. Chưa có số đo FPS/callback ordering. JAR/SHA-256 và trạng thái milestone tại [index](README.md).
 
 ## Môi trường đã kiểm tra
 
@@ -100,3 +100,24 @@ Quy tắc phân tích:
 8. Thu trạng thái/command ở entry/exit và tại nhánh cần kiểm; không giả định mọi pending được tiêu thụ đúng một lần vì chỉ có một slot. Visibility và worker phải nằm trên cùng timeline nhưng vẫn tách thread. Chưa quan sát race không chứng minh không có race.
 
 Không có số đo thực nghiệm trong tài liệu này. Kết luận runtime chỉ được cập nhật từ run có evidence theo mẫu và phạm vi tương ứng.
+
+## Cấu hình đã chạy trong lượt tiếp tục
+
+Đã tìm thấy emulator ngoài phạm vi preflight cũ: `/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar`. SHA-256 `92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e`; release `1.52`, tag commit `8f87bf1497e7a9738a32d1909379376a1faca7dd`. Archive khớp digest upstream; checkout source HEAD riêng khác release, không dùng làm version binary. Xem [environment.json](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/environment.json) và [FND-0003](../../reverse-engineering/findings/FND-0003-emulator-smoke.md).
+
+**P1M thực nghiệm** tách khỏi P1 Standard dự kiến: LCD 240×320, Motorola (layout CLI `2` ở release 1.52), rotate 0, scale yêu cầu 2, sound on, limiter 60, fast-forward false. JVM OpenJDK 21.0.12.1; property MIDP-2.0/CLDC-1.1, game manifest MIDP-2.0/CLDC-1.0. Native framebuffer và field kích thước khớp 240×320. Limiter 60 **không phải FPS thực tế**.
+
+```bash
+java -Dfile.encoding=ISO_8859_1 -Dsun.java2d.uiScale=1 \
+  -jar /home/locdt/tools/freej2me-plus-v1.52/freej2me.jar \
+  file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar \
+  0 240 320 2 2 60
+```
+
+Cần truyền encoding từ đầu để tránh auto-restart làm mất chuỗi log/profile của lượt mặc định. Lưu config disk **và** snapshot config hiệu lực trong RAM: disk có thể còn Standard/fps0 trong khi CLI đã đặt Motorola/fps60. Bản 1.52 có key phụ width/height từ parse khác với scrwidth/scrheight; không dùng riêng các key phụ để suy LCD.
+
+Input có kiểm soát: AWT `38/40/37/39/10/87` tương ứng Up/Down/Left/Right/Enter/W; mapper P1M tính raw `-1/-6/-2/-4/-20/-22`. Điều khiển qua KeyListener của emulator trên AWT EventQueue bằng sidecar, không ép state hoặc sửa JAR. Đây là **input tổng hợp**, chưa chứng minh đường bàn phím vật lý hay callback game. Standard phát W `-7`; P1M phát W `-22` và ảnh xác nhận quay lại/Skip/Status. Hàng số/numpad chưa được xác minh đầy đủ; không dùng bảng KEYMAP devel thay phép đo của release này.
+
+Ảnh native frontbuffer 240×320 là nguồn chính để đọc UI. Ảnh X11 là nguồn host riêng; ảnh AWT Robot đen do ScreencastHelper bị loại. Không suy cadence/present timing từ các ảnh rời. Audio có lỗi mở Tone/MIDI nhưng game vẫn chạy; chưa xác minh nghe được âm thanh.
+
+Các lượt khám phá P1-R01/R02 và P1M-R01 có thao tác hỗn hợp. Sau xác nhận của người dùng, P1M-R02/R03/R04 dùng RMS sạch và input tự động; log từng phím/ảnh/snapshot riêng. Tài liệu tái lập và manifest bằng chứng tại [runtime-20261021](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/README.md). Các phép đo timing/BCI/callback trong phần kế hoạch vẫn chưa thực hiện.

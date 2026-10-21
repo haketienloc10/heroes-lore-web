@@ -1,0 +1,23 @@
+{
+  "run_id": "M15-SCN-0001-P1-R02",
+  "utc": "2026-10-21T14:43:53.709511+00:00",
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "0",
+    "60"
+  ],
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1-R02",
+  "pid": 50788,
+  "instrumentation": false,
+  "rms_before": "working directory mới",
+  "screenshots": "/home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0001-P1-R02"
+}

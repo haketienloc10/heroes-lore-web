@@ -1,0 +1,69 @@
+2026-10-21T14:54:59.970231767Z mono_ns=8499907510865 snapshot_begin; fields read independently, no atomicity; no game method invoked
+2026-10-21T14:55:00.002051538Z mono_ns=8499935539838 field m.b:int=0
+2026-10-21T14:55:00.002529144Z mono_ns=8499936022976 field m.c:int=0
+2026-10-21T14:55:00.002902967Z mono_ns=8499936366085 field m.d:int=0
+2026-10-21T14:55:00.003140387Z mono_ns=8499936599975 field m.e:int=0
+2026-10-21T14:55:00.003720439Z mono_ns=8499937200917 field m.b:byte=0
+2026-10-21T14:55:00.004339218Z mono_ns=8499937807105 field m.c:byte=0
+2026-10-21T14:55:00.004678989Z mono_ns=8499938138863 field m.d:byte=0
+2026-10-21T14:55:00.004990906Z mono_ns=8499938450208 field m.e:byte=0
+2026-10-21T14:55:00.006367158Z mono_ns=8499939849639 field bf.a:bf=null
+2026-10-21T14:55:00.011598499Z mono_ns=8499945074399 field ar.a:int=0
+2026-10-21T14:55:00.012014294Z mono_ns=8499945482944 field ar.b:int=0
+2026-10-21T14:55:00.012239695Z mono_ns=8499945693941 field ar.c:int=0
+2026-10-21T14:55:00.012403475Z mono_ns=8499945880710 field ar.d:int=0
+2026-10-21T14:55:00.012590149Z mono_ns=8499946042392 field ar.n:int=0
+2026-10-21T14:55:00.012735519Z mono_ns=8499946188621 field ar.o:int=0
+2026-10-21T14:55:00.012886709Z mono_ns=8499946338952 field ar.p:int=0
+2026-10-21T14:55:00.013042381Z mono_ns=8499946496246 field ar.e:int=0
+2026-10-21T14:55:00.013276558Z mono_ns=8499946729850 field q.g:int=240
+2026-10-21T14:55:00.013479733Z mono_ns=8499946933121 field q.h:int=320
+2026-10-21T14:55:00.013646185Z mono_ns=8499947098523 field q.i:int=120
+2026-10-21T14:55:00.013800426Z mono_ns=8499947260682 field q.j:int=160
+2026-10-21T14:55:00.014435994Z mono_ns=8499947907982 field q.b:boolean=false
+2026-10-21T14:55:00.015044090Z mono_ns=8499948571117 field q.k:int=22
+2026-10-21T14:55:00.015986233Z mono_ns=8499949482259 field q.l:int=30
+2026-10-21T14:55:00.016467272Z mono_ns=8499949931344 field q.m:int=3
+2026-10-21T14:55:00.017169611Z mono_ns=8499950706463 field br.a:int[]=[I@1c4062b8
+2026-10-21T14:55:00.017673544Z mono_ns=8499951144197 field br.a:ar=null
+2026-10-21T14:55:00.018173184Z mono_ns=8499951646603 field br.a:java.lang.Object=java.lang.Object@54c83630
+2026-10-21T14:55:00.018662331Z mono_ns=8499952143095 field br.a:br=br@5a35a71c
+2026-10-21T14:55:00.020397908Z mono_ns=8499953877528 field br.a:javax.microedition.lcdui.Display=javax.microedition.lcdui.Display@575efc04
+2026-10-21T14:55:00.021550763Z mono_ns=8499955032004 field br.a:q=bf@7355d3f2
+2026-10-21T14:55:00.028207290Z mono_ns=8499961692823 field bf.a:byte=1
+2026-10-21T14:55:00.029735971Z mono_ns=8499963282171 field bf.b:byte=1
+2026-10-21T14:55:00.031120617Z mono_ns=8499964606151 field bf.a:int=97
+2026-10-21T14:55:00.034970841Z mono_ns=8499968460095 field bf.a:short=83
+2026-10-21T14:55:00.035459989Z mono_ns=8499968926254 field bf.b:short=178
+2026-10-21T14:55:00.035750063Z mono_ns=8499969209174 field bf.c:byte=4
+2026-10-21T14:55:00.035992156Z mono_ns=8499969446498 field bf.c:short=214
+2026-10-21T14:55:00.036176922Z mono_ns=8499969630692 field bf.d:short=231
+2026-10-21T14:55:00.036420542Z mono_ns=8499969893007 field bf.d:byte=7
+2026-10-21T14:55:00.036777959Z mono_ns=8499970233446 field bf.c:boolean=false
+2026-10-21T14:55:00.037110576Z mono_ns=8499970566825 field q.a:boolean=false
+2026-10-21T14:55:00.037372033Z mono_ns=8499970835341 field q.f:int=0
+2026-10-21T14:55:00.037643888Z mono_ns=8499971101473 field br.c:int=14
+2026-10-21T14:55:00.037862516Z mono_ns=8499971321436 field br.d:int=66
+2026-10-21T14:55:00.038047759Z mono_ns=8499971500002 field br.a:int=10
+2026-10-21T14:55:00.038282508Z mono_ns=8499971735705 field br.a:boolean=true
+2026-10-21T14:55:00.038487591Z mono_ns=8499971941170 field br.b:boolean=false
+2026-10-21T14:55:00.039094924Z mono_ns=8499972592571 field br.c:boolean=false
+2026-10-21T14:55:00.039394822Z mono_ns=8499972854410 field br.d:boolean=true
+2026-10-21T14:55:00.039599047Z mono_ns=8499973056060 field br.a:byte=2
+2026-10-21T14:55:00.039839042Z mono_ns=8499973292430 field br.b:byte=8
+2026-10-21T14:55:00.040038211Z mono_ns=8499973489882 field br.b:int=0
+2026-10-21T14:55:00.042319787Z mono_ns=8499975798071 field br.a:long=1792594499982
+2026-10-21T14:55:00.043849518Z mono_ns=8499977342968 field br.e:boolean=false
+2026-10-21T14:55:00.045105867Z mono_ns=8499978617632 field br.f:boolean=false
+2026-10-21T14:55:00.054069820Z mono_ns=8499987544670 emulator config=org.recompile.freej2me.Config@652bf791
+2026-10-21T14:55:00.054753367Z mono_ns=8499988262080 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}
+2026-10-21T14:55:00.055257109Z mono_ns=8499988735775 emulator lcdWidth=240
+2026-10-21T14:55:00.055571697Z mono_ns=8499989031095 emulator lcdHeight=320
+2026-10-21T14:55:00.057928820Z mono_ns=8499991507833 emulator limitFPS=60
+2026-10-21T14:55:00.059154646Z mono_ns=8499992666697 emulator isFastForwarding=false
+2026-10-21T14:55:00.061513390Z mono_ns=8499995204579 emulator isPaused=false
+2026-10-21T14:55:00.085749562Z mono_ns=8500019226988 AWT listener attached; not a MIDlet callback trace; timing overhead unmeasured
+2026-10-21T14:55:00.086015503Z mono_ns=8500019471752 snapshot_end
+2026-10-21T14:55:13.450032973Z mono_ns=8511815992062 AWT_KEY id=401 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:55:13.453041528Z mono_ns=8511819005303 AWT_KEY id=400 code=0 location=0 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
+2026-10-21T14:55:13.559254068Z mono_ns=8511925205793 AWT_KEY id=402 code=10 location=1 source=org.recompile.freej2me.FreeJ2ME$LCD@5c5a1b69 thread=AWT-EventQueue-0
