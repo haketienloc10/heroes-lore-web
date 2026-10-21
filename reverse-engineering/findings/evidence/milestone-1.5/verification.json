@@ -1,0 +1,21 @@
+{
+  "date_utc": "2026-10-21T14:27:59.415573+00:00",
+  "producer": "Kiểm tra local Python; không phải kiểm thử emulator",
+  "markdown_files_checked": 18,
+  "missing_local_link_targets": [],
+  "jar_identity_matches": true,
+  "javap_output_hash_matches": true,
+  "jadx_sources_unchanged": true,
+  "web_snapshot_unchanged": true,
+  "tracked_web_diff_empty": true,
+  "static_bytecode_checks": {
+    "CF-01_success_goto_and_join": true,
+    "CF-02_success_goto_and_join": true,
+    "CF-03_return_at_6": true,
+    "CF-04_return_before_other_worker": true
+  },
+  "emulator_tests_run": 0,
+  "runtime_verified": false,
+  "markdown_trailing_whitespace": [],
+  "git_diff_check_passed": true
+}

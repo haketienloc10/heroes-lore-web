@@ -77,4 +77,6 @@ Giới hạn tool trả về: inventory ZIP chỉ đọc central-directory entri
 
 Không gộp hiệu quả của JADX hoặc JEB độc lập vào REA.
 
+**Theo dõi M1.5, 2026-10-21:** kiểm tra lại bằng `javap` độc lập và chuẩn bị [scenario runtime](../../reference/scenarios/README.md), chi tiết [FND-0002](../../reverse-engineering/findings/FND-0002-runtime-verification.md). Không gọi lại REA/provider trong M1.5 nên không cập nhật readiness hoặc phạm vi năng lực từ kết quả cũ. Chưa launch emulator, 0/8 scenario đã chạy; chưa có bằng chứng runtime mới và chưa hoàn thành milestone. Kết quả preflight local không phải kết quả REA.
+
 **Baseline hiện tại:** REA effectiveness xác minh được identity + archive inventory và chẩn đoán blocker provider/target; chưa cung cấp Java call graph/decompilation. Chưa đo coverage mechanics, accuracy runtime, fidelity, traceability implementation hay thời gian/tốc độ so với workflow khác. Chưa có scenario chạy trên bản gốc và web; không báo phần trăm hoặc tuyên bố hành vi đã tái tạo.

@@ -1,0 +1,108 @@
+{
+  "captured_at": "2026-10-21T13:44:37.166323+00:00",
+  "jar_path": "original/heroes-lore-v2.1.2.jar",
+  "jar_size": 554715,
+  "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "matches_original_SHA256_txt": true,
+  "manifest": {
+    "path": "META-INF/MANIFEST.MF",
+    "sha256": "98f236933f79be424f653e133b8a70e67fd6e22a2dd424e33cc042ae81998479",
+    "lines": [
+      "Manifest-Version: 1.0",
+      "MIDlet-Name: (WaP.Ka4Ka.Ru) Heroes Lore",
+      "MIDlet-Version: 2.1.2",
+      "MIDlet-Vendor: Hands-On Mobile",
+      "MIDlet-1: Heroes Lore, /icon.png, rpg.GameMIDlet",
+      "MicroEdition-Profile: MIDP-2.0",
+      "MicroEdition-Configuration: CLDC-1.0",
+      "MIDlet-Icon: /icon.png",
+      "MIDlet-Data-Size: 10000",
+      "Created-By: Metaflow",
+      "HO-Demo: BEJ8K52N7A",
+      "HO-LangList: en-GB",
+      "HO-BuySetup: off",
+      "MAXMAPTILE: 100",
+      "MIDlet-Delete-Confirm: More Games for your phone on my-moto.ru ",
+      ""
+    ]
+  },
+  "jar_class_count": 89,
+  "classes": [
+    {
+      "binary_class": "rpg.GameMIDlet",
+      "jar_member": "rpg/GameMIDlet.class",
+      "class_sha256": "d5421a8d539f4ff1d8e6697e70ca41a52591928e70700b69d1d0ee7330b126e6",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/rpg/GameMIDlet.java",
+      "source_sha256": "87e00d467c205c0528fb5f53ca530c2d73995c06da56ffdb675df8935ab09964",
+      "source_lines": 43
+    },
+    {
+      "binary_class": "ar",
+      "jar_member": "ar.class",
+      "class_sha256": "a48584b80fe32c0ef742e542fc5d6c32af92c6501c8986fe37a9664ee5bf430c",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/defpackage/ar.java",
+      "source_sha256": "dac71be5ea2729cbda8bb04d65fa35fd6af3f22428935810cc4613081f6ba903",
+      "source_lines": 788
+    },
+    {
+      "binary_class": "bf",
+      "jar_member": "bf.class",
+      "class_sha256": "9e754a3797b95385b558dcab73f5ca1bdfed6da94b764d475a5912a9997a6c4d",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/defpackage/bf.java",
+      "source_sha256": "3fb29fc3a22ef32844a4ec96671c33882e146db5c14b8cc48baef33b8d63331a",
+      "source_lines": 282
+    },
+    {
+      "binary_class": "br",
+      "jar_member": "br.class",
+      "class_sha256": "d0a3c70e89f4d09235f22e98bcd4691a4a8279f6534aa8de4d50578ddbe398d2",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/defpackage/br.java",
+      "source_sha256": "2e0a7fa0ef3514163eb0dc56666bd88ef3d5a4b6aafc678590bae40fb056f45a",
+      "source_lines": 200
+    },
+    {
+      "binary_class": "bt",
+      "jar_member": "bt.class",
+      "class_sha256": "f613e911ecbcc05fac7a9f61e907038ec22a4196ba9b29be25f6accd3f338bbd",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/defpackage/bt.java",
+      "source_sha256": "bcb11860e3b6e1cc4642fb63660fbf7c556db364d588066480ebcf13ec08a9ec",
+      "source_lines": 578
+    },
+    {
+      "binary_class": "q",
+      "jar_member": "q.class",
+      "class_sha256": "7e70547356959254a74b18c2627b564b8c06dff0674d59fbfa43e79f3d4be413",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/defpackage/q.java",
+      "source_sha256": "33c1a191cfd74274166d214f57770894bff1c58f396bb39fadd42b89bb6b14ae",
+      "source_lines": 213
+    },
+    {
+      "binary_class": "m",
+      "jar_member": "m.class",
+      "class_sha256": "d4402d114fdf69cd9503cd5dfd441732e121e34f11830b40413bdb144170c0c2",
+      "existing_resource_bytes_equal": true,
+      "source_path": "reverse-engineering/decompiled/sources/defpackage/m.java",
+      "source_sha256": "343c112f417b761e6b156a051a67271459fdb5dd1bce18921f8efcfb081d6a4c",
+      "source_lines": 790
+    }
+  ],
+  "javap_version": "21.0.12.1",
+  "commands": [
+    "sha256sum original/heroes-lore-v2.1.2.jar",
+    "python3 zipfile: read META-INF/MANIFEST.MF; SHA-256 and compare seven existing .class resources",
+    "rg / nl -ba / sed: read existing JADX source, no decompilation in this session",
+    "javap -classpath original/heroes-lore-v2.1.2.jar -c -p -s rpg.GameMIDlet br q bf bt",
+    "javap -classpath original/heroes-lore-v2.1.2.jar -c -p -s ar m"
+  ],
+  "limitations": [
+    "No original Java source or original JADX invocation/version log was provided.",
+    "Matching extracted class bytes and source headers do not prove correctness of decompiled Java.",
+    "No target execution or emulator observation."
+  ]
+}

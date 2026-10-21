@@ -110,3 +110,5 @@ Các ví dụ transition có bằng chứng:
 Chưa chạy emulator để xác nhận callback ordering, số frame trên mỗi request, FPS, độ trễ input, visibility/resume và race giữa worker với Display. Chưa giải thích đường `bf.keyPressed()` đặt mode `a=3` rồi start Thread trong khi bytecode `bf.run()` chỉ xử lý `a=0` (`defpackage/bf.java:51–56,68–120`). Chưa có scenario tham chiếu nên không gán trạng thái “đã kiểm thử hành vi”.
 
 Map/resource format, collision, save/load và mechanics vẫn ngoài kết luận của Milestone 1 này. Các call liên quan chỉ được ghi để nối kiến trúc, không được xem là đặc tả của những subsystem đó.
+
+**Theo dõi M1.5, 2026-10-21:** [FND-0002](../../reverse-engineering/findings/FND-0002-runtime-verification.md) kiểm tra lại 4 sai lệch bằng `javap`, đính chính mô tả thiếu return ở command `21/2`, và ghi ảnh hưởng tới port. [Bộ scenario/protocol](../../reference/scenarios/README.md) đã được chuẩn bị; chưa launch emulator, 0/8 scenario đã chạy. Phần kiến trúc trên vẫn là kết luận tĩnh, chưa có số đo hoặc xác nhận runtime mới.

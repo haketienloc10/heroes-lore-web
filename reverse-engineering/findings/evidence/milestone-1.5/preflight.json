@@ -1,0 +1,130 @@
+{
+  "date_utc": "2026-10-21T14:17:27.582586+00:00",
+  "producer": "Python standard library + subprocess javap; không phải REA hoặc emulator",
+  "artifact": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "host": {
+    "system": "Linux",
+    "release": "6.18.40.1-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "DISPLAY": ":0",
+    "WAYLAND_DISPLAY": "wayland-0",
+    "gui_access_tested": false
+  },
+  "tools_in_PATH": {
+    "java": "/usr/bin/java",
+    "javap": "/usr/bin/javap",
+    "jadx": "/usr/local/bin/jadx",
+    "microemulator": null,
+    "freej2me": null,
+    "freej2me-plus": null,
+    "kemulator": null,
+    "j2me-loader": null,
+    "adb": null,
+    "Xvfb": null,
+    "xvfb-run": null,
+    "ffmpeg": null,
+    "xdotool": null
+  },
+  "versions": {
+    "java -version": {
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "openjdk version \"21.0.12.1\" 2026-08-18\nOpenJDK Runtime Environment (build 21.0.12.1+1-1-24.04.4-Ubuntu)\nOpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-24.04.4-Ubuntu, mixed mode, sharing)\n"
+    },
+    "javap -version": {
+      "exit_code": 0,
+      "stdout": "21.0.12.1\n",
+      "stderr": ""
+    }
+  },
+  "emulator_search": {
+    "roots": [
+      "/opt",
+      "/usr/share",
+      "/usr/local/bin",
+      "/home/locdt/.local/share",
+      "/home/locdt/.cache",
+      "/home/locdt/Downloads",
+      "/home/locdt/heroes-lore-web"
+    ],
+    "filename_substrings": [
+      "microemu",
+      "freej2me",
+      "kemulator",
+      "j2me-loader",
+      "j2me_loader"
+    ],
+    "excluded_directory_names": [
+      "node_modules",
+      ".git",
+      "decompiled",
+      "extracted-assets"
+    ],
+    "candidates": [],
+    "errors": [],
+    "scope_note": "Tìm kiếm có giới hạn; không quét filesystem Windows hoặc toàn bộ máy."
+  },
+  "javap": {
+    "argv": [
+      "javap",
+      "-classpath",
+      "original/heroes-lore-v2.1.2.jar",
+      "-c",
+      "-p",
+      "-s",
+      "bf",
+      "bt",
+      "m",
+      "ar",
+      "q",
+      "br",
+      "at"
+    ],
+    "exit_code": 0,
+    "stderr": "",
+    "output": "javap-runtime-targets.txt",
+    "sha256": "32672db8837277805ec66185357b3e52a3a6dfedf2af48de1a1e76c8f4c75cc2"
+  },
+  "jadx_sources": {
+    "regenerated": false,
+    "original_producer_version": null,
+    "sha256": {
+      "reverse-engineering/decompiled/sources/defpackage/bf.java": "3fb29fc3a22ef32844a4ec96671c33882e146db5c14b8cc48baef33b8d63331a",
+      "reverse-engineering/decompiled/sources/defpackage/bt.java": "bcb11860e3b6e1cc4642fb63660fbf7c556db364d588066480ebcf13ec08a9ec",
+      "reverse-engineering/decompiled/sources/defpackage/m.java": "343c112f417b761e6b156a051a67271459fdb5dd1bce18921f8efcfb081d6a4c",
+      "reverse-engineering/decompiled/sources/defpackage/ar.java": "dac71be5ea2729cbda8bb04d65fa35fd6af3f22428935810cc4613081f6ba903",
+      "reverse-engineering/decompiled/sources/defpackage/q.java": "33c1a191cfd74274166d214f57770894bff1c58f396bb39fadd42b89bb6b14ae",
+      "reverse-engineering/decompiled/sources/defpackage/br.java": "2e0a7fa0ef3514163eb0dc56666bd88ef3d5a4b6aafc678590bae40fb056f45a",
+      "reverse-engineering/decompiled/sources/defpackage/at.java": "674f8bf8551502535d67f079a91625005c81348bf7c7bc8a75a6284af60dd8e3"
+    }
+  },
+  "web_snapshot_sha256": {
+    "web/README.md": "3f3de9ae2696db681adc0b0ecef884351ba5abc248c59af887b20e02ec145604",
+    "web/index.html": "0c14567a434450d15c72cb32732c3637f2bb899dce8050251d3cc1c146abf36e",
+    "web/package.json": "2f1c2767603f82aafc9df119fb7b719379475158839c6028f8287ccdb85eaa3e",
+    "web/public/assets/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/core/fixed-step.ts": "230726ae75627434ec2adceed6a94a889bdf83ec8157d24245667aa08e6b7b56",
+    "web/src/entities/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/input/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/main.ts": "5293ff9c893634009a833c9eeb55c141254db414e0ad9a4c47269f9c16108040",
+    "web/src/mechanics/README.md": "0fe819cf0a67ec4bf1f09eda3aa199a0977510b119fffa52fb8dd663fdc00314",
+    "web/src/persistence/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/rendering/BootScene.ts": "e22a5c00dc668e1b2fc7928828bbeacddff72a54a8d0cbd5ba8c6ad31a17e4d1",
+    "web/src/style.css": "e55f7d29d940cddbf2224f2782c5c039220a396999c0d05944aecd7c87269ac9",
+    "web/src/ui/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/src/world/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web/tests/fixed-step.test.ts": "dc0af737dad3bb05eaf94be872d0132dbc281de00c83a8ac59d49e3a837e73d4",
+    "web/tsconfig.json": "b72863f29bcce7ccbbc88ffd809a130626dbb0e19a7311d3f9bb7820ea2af36f",
+    "web/vite.config.ts": "e81250ce9c30d834f85f87b91dc8cef5197e87230b21b362e9344344aec17df8"
+  },
+  "runtime": {
+    "emulator_launched": false,
+    "scenarios_executed": 0,
+    "status": "chưa xác minh",
+    "reason": "Không tìm thấy emulator J2ME trong PATH hoặc phạm vi tìm file đã ghi; chưa có build/profile emulator để chạy."
+  }
+}
