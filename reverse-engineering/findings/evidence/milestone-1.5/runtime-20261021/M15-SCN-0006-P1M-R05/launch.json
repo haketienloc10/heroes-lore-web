@@ -1,0 +1,7 @@
+{
+  "run_id": "M15-SCN-0006-P1M-R05",
+  "pid": 69768,
+  "inherited_session": "M15-SCN-0001-P1M-R05",
+  "initial_ui": "Status opened by W in SCN-0003 R05; bed location",
+  "purpose": "discover save/load via UI; not yet a save test"
+}

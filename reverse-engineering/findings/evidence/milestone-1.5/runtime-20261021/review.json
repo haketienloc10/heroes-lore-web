@@ -1,0 +1,140 @@
+{
+  "kind": "derived human/agent visual review of captured artifacts; NOT runtime event log",
+  "utc": "2026-10-21T15:43:44.418145+00:00",
+  "runtime_observations": [
+    {
+      "claim": "All 15 A-E restored-fixture captures show the lower indoor anchor left of the central table/chair; snapshot storage is immutable and verified on copy. This is not whole-RAM/RNG equivalence.",
+      "sources": [
+        "M15-SCN-0003-P1M-A-R01/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-A-R02/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-A-R03/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R01/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R02/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R03/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-C-R01/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-C-R02/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-C-R03/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-D-R01/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-D-R02/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-D-R03/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-E-R01/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-E-R02/04-restored-fixture.png (local screenshots)",
+        "M15-SCN-0003-P1M-E-R03/04-restored-fixture.png (local screenshots)"
+      ]
+    },
+    {
+      "claim": "A mapper outputs remain 98->56,100->52,102->54,104->50. A-R01 images show Down/Left/Right/Up; A-R02 and A-R03 endpoint positions differ from A-R01. Do not call the three visual trajectories identical or assert every tap yields the same displacement.",
+      "sources": [
+        "M15-SCN-0003-P1M-A-R01/sequence-input.log",
+        "M15-SCN-0003-P1M-A-R01/A-num8-idle.png (local screenshots)",
+        "M15-SCN-0003-P1M-A-R02/A-num8-idle.png (local screenshots)",
+        "M15-SCN-0003-P1M-A-R03/A-num8-idle.png (local screenshots)"
+      ]
+    },
+    {
+      "claim": "B all three show changed character/environment relation between held-middle and held-end. R01 release->idle-1s still changes map position, then idle-1s/2s keep the same anchor. No instantaneous stop or callback ordering conclusion.",
+      "sources": [
+        "M15-SCN-0003-P1M-B-R01/B-held-middle.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R01/B-held-end.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R01/B-release.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R01/B-idle-1s.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R01/B-idle-2s.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R02/B-held-middle.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R02/B-held-end.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R02/B-release.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R02/B-idle-1s.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R02/B-idle-2s.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R03/B-held-middle.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R03/B-held-end.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R03/B-release.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R03/B-idle-1s.png (local screenshots)",
+        "M15-SCN-0003-P1M-B-R03/B-idle-2s.png (local screenshots)"
+      ]
+    },
+    {
+      "claim": "C has one short down/up per run; all three idle captures show a position change relative to start. No claim that q.f was used, no latency/game speed measurement.",
+      "sources": [
+        "M15-SCN-0003-P1M-C-R01/sequence-input.log",
+        "M15-SCN-0003-P1M-C-R02/sequence-input.log",
+        "M15-SCN-0003-P1M-C-R03/sequence-input.log"
+      ]
+    },
+    {
+      "claim": "D overlaps raw-mapped Up/Right at emulator listener with recorded scheduling intervals. Idle positions changed; arbitration, collision cause and game callback order remain unknown.",
+      "sources": [
+        "M15-SCN-0003-P1M-D-R01/sequence-input.log",
+        "M15-SCN-0003-P1M-D-R02/sequence-input.log",
+        "M15-SCN-0003-P1M-D-R03/sequence-input.log"
+      ]
+    },
+    {
+      "claim": "E-R01/R02 E-W-status captures show Ronin Status; E-R03 E-W-status is mostly black with Ok/Back labels. E-R03 later state-final snapshot records m.e:int=5. This does not prove the missing pixels were presented or identify their cause; capture/paint unsynchronized. No combat conclusion.",
+      "sources": [
+        "M15-SCN-0003-P1M-E-R01/E-W-status.png (local screenshots)",
+        "M15-SCN-0003-P1M-E-R02/E-W-status.png (local screenshots)",
+        "M15-SCN-0003-P1M-E-R03/E-W-status.png (local screenshots)",
+        "M15-SCN-0003-P1M-E-R03/state-final.log"
+      ]
+    },
+    {
+      "claim": "Save UI message and cold loads confirm bed S0->S1 and lower-room S2, after old JVM terminated. UI Exit returned logo with JVM alive; harness SIGTERM performed before quiescent copies.",
+      "sources": [
+        "M15-SCN-0006-P1M-R05/exit-confirm-observation.json",
+        "M15-SCN-0001-P1M-R05/stop.json",
+        "M15-SCN-0001-P1M-R05/BED-SAVE-001-storage.json",
+        "M15-SCN-0006-P1M-R05L/HOUSE-INPUT-001-storage.json"
+      ]
+    }
+  ],
+  "listener_hold_bounds_ms_B": {
+    "M15-SCN-0003-P1M-B-R01": [
+      1032.583436,
+      1035.174751
+    ],
+    "M15-SCN-0003-P1M-B-R02": [
+      1043.727503,
+      1046.071977
+    ],
+    "M15-SCN-0003-P1M-B-R03": [
+      1030.692602,
+      1033.960788
+    ]
+  },
+  "listener_hold_bounds_ms_C": {
+    "M15-SCN-0003-P1M-C-R01": [
+      21.335651,
+      23.29718
+    ],
+    "M15-SCN-0003-P1M-C-R02": [
+      20.879167,
+      22.952297
+    ],
+    "M15-SCN-0003-P1M-C-R03": [
+      21.23123,
+      22.873798
+    ]
+  },
+  "static_only": [
+    "JADX/javap ar normalization ±21->53 and ±22->-8",
+    "Deferred single release slot/pending-action hypotheses; not traced here"
+  ],
+  "unknown": [
+    "FPS/cadence",
+    "MIDlet callback ordering",
+    "callback raw/normalized/gameAction trace",
+    "latency",
+    "clock resolution and overhead",
+    "physical keyboard and auto-repeat",
+    "full state/RNG equivalence",
+    "cause of A endpoint variability",
+    "cause of E-R03 blank capture",
+    "complete save schema/all slots and 3 independent save cycles per state"
+  ],
+  "scenario_status": "5/8 have partial runtime evidence; 0 fully passed; milestone incomplete",
+  "audio": "Tone/MIDI backend errors are emulator/runtime limitations, not evidence of an original-game defect",
+  "web": "not tested; unchanged",
+  "source_resolution": {
+    "pngs": "reference/screenshots/<run-id>/<image>.png (local, ignored)",
+    "logs": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/<run-id>/<log>"
+  }
+}

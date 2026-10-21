@@ -1,0 +1,8 @@
+{
+  "variant": "A",
+  "repeat": "01",
+  "status": "recorded; UI and mapping require review; no MIDlet callback trace",
+  "fixture": "HOUSE-INPUT-001",
+  "game_state_writes": false,
+  "measured_fps": null
+}

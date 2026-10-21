@@ -1,0 +1,27 @@
+# Planned synthetic AWT sequence; logs from the emulator record actual dispatch.
+wait 2000
+frame A-start
+down 98
+wait 100
+up 98
+frame A-num2-release
+wait 500
+frame A-num2-idle
+down 100
+wait 100
+up 100
+frame A-num4-release
+wait 500
+frame A-num4-idle
+down 102
+wait 100
+up 102
+frame A-num6-release
+wait 500
+frame A-num6-idle
+down 104
+wait 100
+up 104
+frame A-num8-release
+wait 500
+frame A-num8-idle

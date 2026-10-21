@@ -1,0 +1,13 @@
+wait 2000
+frame E-start
+down 101
+wait 100
+up 101
+frame E-num5-release
+wait 1000
+frame E-num5-idle
+down 87
+wait 100
+up 87
+wait 1000
+frame E-W-status

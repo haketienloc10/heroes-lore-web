@@ -1,0 +1,31 @@
+2026-10-21T15:34:07.111363169Z mono_ns=10737106237931 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R02/input-A.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-21T15:34:07.112345132Z mono_ns=10737107215783 wait_requested_ms=2000
+2026-10-21T15:34:09.125697659Z mono_ns=10739120569744 computed_emulator_mapping host_awt=98 internal=17 raw=56
+2026-10-21T15:34:09.127666460Z mono_ns=10739122546958 listener_dispatch_begin phase=down code=98
+2026-10-21T15:34:09.128656644Z mono_ns=10739123588094 listener_dispatch_end phase=down code=98
+2026-10-21T15:34:09.129073347Z mono_ns=10739123940939 wait_requested_ms=100
+2026-10-21T15:34:09.229795076Z mono_ns=10739224682074 listener_dispatch_begin phase=up code=98
+2026-10-21T15:34:09.230647315Z mono_ns=10739225519592 listener_dispatch_end phase=up code=98
+2026-10-21T15:34:09.242217593Z mono_ns=10739237096274 wait_requested_ms=500
+2026-10-21T15:34:09.751743061Z mono_ns=10739746620499 computed_emulator_mapping host_awt=100 internal=15 raw=52
+2026-10-21T15:34:09.752180221Z mono_ns=10739747074771 listener_dispatch_begin phase=down code=100
+2026-10-21T15:34:09.752789073Z mono_ns=10739747712588 listener_dispatch_end phase=down code=100
+2026-10-21T15:34:09.753119739Z mono_ns=10739748027864 wait_requested_ms=100
+2026-10-21T15:34:09.853658975Z mono_ns=10739848569490 listener_dispatch_begin phase=up code=100
+2026-10-21T15:34:09.854382064Z mono_ns=10739849260076 listener_dispatch_end phase=up code=100
+2026-10-21T15:34:09.862414619Z mono_ns=10739857279821 wait_requested_ms=500
+2026-10-21T15:34:10.377469353Z mono_ns=10740372366386 computed_emulator_mapping host_awt=102 internal=16 raw=54
+2026-10-21T15:34:10.377985171Z mono_ns=10740372866240 listener_dispatch_begin phase=down code=102
+2026-10-21T15:34:10.378586926Z mono_ns=10740373461878 listener_dispatch_end phase=down code=102
+2026-10-21T15:34:10.378912515Z mono_ns=10740373786032 wait_requested_ms=100
+2026-10-21T15:34:10.479492102Z mono_ns=10740474376708 listener_dispatch_begin phase=up code=102
+2026-10-21T15:34:10.480147294Z mono_ns=10740475031040 listener_dispatch_end phase=up code=102
+2026-10-21T15:34:10.486909037Z mono_ns=10740481779592 wait_requested_ms=500
+2026-10-21T15:34:10.998226198Z mono_ns=10740993105068 computed_emulator_mapping host_awt=104 internal=14 raw=50
+2026-10-21T15:34:10.998670321Z mono_ns=10740993541927 listener_dispatch_begin phase=down code=104
+2026-10-21T15:34:10.999272268Z mono_ns=10740994137851 listener_dispatch_end phase=down code=104
+2026-10-21T15:34:10.999657601Z mono_ns=10740994529016 wait_requested_ms=100
+2026-10-21T15:34:11.100332686Z mono_ns=10741095211556 listener_dispatch_begin phase=up code=104
+2026-10-21T15:34:11.101109854Z mono_ns=10741096048279 listener_dispatch_end phase=up code=104
+2026-10-21T15:34:11.108161434Z mono_ns=10741103021282 wait_requested_ms=500
+2026-10-21T15:34:11.616500884Z mono_ns=10741611370291 sequence_end

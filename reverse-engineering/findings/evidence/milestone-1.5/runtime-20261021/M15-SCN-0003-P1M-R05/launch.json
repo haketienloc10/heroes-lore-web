@@ -1,0 +1,7 @@
+{
+  "run_id": "M15-SCN-0003-P1M-R05",
+  "pid": 69768,
+  "inherited_session": "M15-SCN-0001-P1M-R05",
+  "fixture": "New Game Ronin Hestia/Ron; intro -> W Skip; fresh RMS",
+  "input_method": "synthetic emulator KeyListener; no game state writes"
+}

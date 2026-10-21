@@ -1,0 +1,2776 @@
+{
+  "kind": "derived analysis, NOT runtime trace",
+  "utc": "2026-10-21T15:45:43.931337+00:00",
+  "cases": [
+    {
+      "run_id": "M15-SCN-0003-P1M-A-R01",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R01/sequence-input.log",
+        "size": 3003,
+        "sha256": "f1544c6fcbfa92b1bb37d753382068ce4f3914a7c89bb9683a7aaecf2c066f1a"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:33:34.471434184Z",
+          "mono_ns": 10705953549072,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R01/input-A.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:33:34.472456231Z",
+          "mono_ns": 10705954565191,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.494572257Z",
+          "mono_ns": 10707976684467,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=98 internal=17 raw=56"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.496431390Z",
+          "mono_ns": 10707978561762,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=98"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.505337884Z",
+          "mono_ns": 10707987547410,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=98"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.505793299Z",
+          "mono_ns": 10707987895567,
+          "line": 6,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.606528777Z",
+          "mono_ns": 10708088685247,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=98"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.607607758Z",
+          "mono_ns": 10708089723218,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=98"
+        },
+        {
+          "utc": "2026-10-21T15:33:36.619364802Z",
+          "mono_ns": 10708101481791,
+          "line": 9,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.144217736Z",
+          "mono_ns": 10708626434909,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=100 internal=15 raw=52"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.145710166Z",
+          "mono_ns": 10708627917015,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=down code=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.149036491Z",
+          "mono_ns": 10708631429463,
+          "line": 12,
+          "text": "listener_dispatch_end phase=down code=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.151051348Z",
+          "mono_ns": 10708633220723,
+          "line": 13,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.253435649Z",
+          "mono_ns": 10708735618408,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.254840132Z",
+          "mono_ns": 10708736992682,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.276853185Z",
+          "mono_ns": 10708758996081,
+          "line": 16,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.789446629Z",
+          "mono_ns": 10709271567155,
+          "line": 17,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.789977086Z",
+          "mono_ns": 10709272097230,
+          "line": 18,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.790647303Z",
+          "mono_ns": 10709272763718,
+          "line": 19,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.790915256Z",
+          "mono_ns": 10709273021251,
+          "line": 20,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.891656756Z",
+          "mono_ns": 10709373793246,
+          "line": 21,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.892653812Z",
+          "mono_ns": 10709374785523,
+          "line": 22,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.902605926Z",
+          "mono_ns": 10709384721576,
+          "line": 23,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.413074387Z",
+          "mono_ns": 10709895193192,
+          "line": 24,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.413579129Z",
+          "mono_ns": 10709895689139,
+          "line": 25,
+          "text": "listener_dispatch_begin phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.414202026Z",
+          "mono_ns": 10709896316052,
+          "line": 26,
+          "text": "listener_dispatch_end phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.414600944Z",
+          "mono_ns": 10709896720228,
+          "line": 27,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.515302390Z",
+          "mono_ns": 10709997425593,
+          "line": 28,
+          "text": "listener_dispatch_begin phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.516066099Z",
+          "mono_ns": 10709998189015,
+          "line": 29,
+          "text": "listener_dispatch_end phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.523374436Z",
+          "mono_ns": 10710005476130,
+          "line": 30,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:33:39.029688145Z",
+          "mono_ns": 10710511794045,
+          "line": 31,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:33:36.494572257Z",
+          "mono_ns": 10707976684467,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=98 internal=17 raw=56"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.144217736Z",
+          "mono_ns": 10708626434909,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=100 internal=15 raw=52"
+        },
+        {
+          "utc": "2026-10-21T15:33:37.789446629Z",
+          "mono_ns": 10709271567155,
+          "line": 17,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:33:38.413074387Z",
+          "mono_ns": 10709895193192,
+          "line": 24,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 98,
+          "down_begin": {
+            "utc": "2026-10-21T15:33:36.496431390Z",
+            "mono_ns": 10707978561762,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:33:36.505337884Z",
+            "mono_ns": 10707987547410,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:33:36.606528777Z",
+            "mono_ns": 10708088685247,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:33:36.607607758Z",
+            "mono_ns": 10708089723218,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            101137837,
+            111161456
+          ]
+        },
+        {
+          "awt": 100,
+          "down_begin": {
+            "utc": "2026-10-21T15:33:37.145710166Z",
+            "mono_ns": 10708627917015,
+            "line": 11
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:33:37.149036491Z",
+            "mono_ns": 10708631429463,
+            "line": 12
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:33:37.253435649Z",
+            "mono_ns": 10708735618408,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:33:37.254840132Z",
+            "mono_ns": 10708736992682,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            104188945,
+            109075667
+          ]
+        },
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:33:37.789977086Z",
+            "mono_ns": 10709272097230,
+            "line": 18
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:33:37.790647303Z",
+            "mono_ns": 10709272763718,
+            "line": 19
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:33:37.891656756Z",
+            "mono_ns": 10709373793246,
+            "line": 21
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:33:37.892653812Z",
+            "mono_ns": 10709374785523,
+            "line": 22
+          },
+          "listener_hold_bounds_ns": [
+            101029528,
+            102688293
+          ]
+        },
+        {
+          "awt": 104,
+          "down_begin": {
+            "utc": "2026-10-21T15:33:38.413579129Z",
+            "mono_ns": 10709895689139,
+            "line": 25
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:33:38.414202026Z",
+            "mono_ns": 10709896316052,
+            "line": 26
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:33:38.515302390Z",
+            "mono_ns": 10709997425593,
+            "line": 28
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:33:38.516066099Z",
+            "mono_ns": 10709998189015,
+            "line": 29
+          },
+          "listener_hold_bounds_ns": [
+            101109541,
+            102499876
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-A-R02",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R02/sequence-input.log",
+        "size": 3003,
+        "sha256": "44fa9290c8868991fcb01e26ed2dd8782698e3f9c739e4fa44a2f4f48f7db9ec"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:34:07.111363169Z",
+          "mono_ns": 10737106237931,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R02/input-A.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:34:07.112345132Z",
+          "mono_ns": 10737107215783,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.125697659Z",
+          "mono_ns": 10739120569744,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=98 internal=17 raw=56"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.127666460Z",
+          "mono_ns": 10739122546958,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.128656644Z",
+          "mono_ns": 10739123588094,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.129073347Z",
+          "mono_ns": 10739123940939,
+          "line": 6,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.229795076Z",
+          "mono_ns": 10739224682074,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.230647315Z",
+          "mono_ns": 10739225519592,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.242217593Z",
+          "mono_ns": 10739237096274,
+          "line": 9,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.751743061Z",
+          "mono_ns": 10739746620499,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=100 internal=15 raw=52"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.752180221Z",
+          "mono_ns": 10739747074771,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=down code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.752789073Z",
+          "mono_ns": 10739747712588,
+          "line": 12,
+          "text": "listener_dispatch_end phase=down code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.753119739Z",
+          "mono_ns": 10739748027864,
+          "line": 13,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.853658975Z",
+          "mono_ns": 10739848569490,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.854382064Z",
+          "mono_ns": 10739849260076,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.862414619Z",
+          "mono_ns": 10739857279821,
+          "line": 16,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.377469353Z",
+          "mono_ns": 10740372366386,
+          "line": 17,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.377985171Z",
+          "mono_ns": 10740372866240,
+          "line": 18,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.378586926Z",
+          "mono_ns": 10740373461878,
+          "line": 19,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.378912515Z",
+          "mono_ns": 10740373786032,
+          "line": 20,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.479492102Z",
+          "mono_ns": 10740474376708,
+          "line": 21,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.480147294Z",
+          "mono_ns": 10740475031040,
+          "line": 22,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.486909037Z",
+          "mono_ns": 10740481779592,
+          "line": 23,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.998226198Z",
+          "mono_ns": 10740993105068,
+          "line": 24,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.998670321Z",
+          "mono_ns": 10740993541927,
+          "line": 25,
+          "text": "listener_dispatch_begin phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.999272268Z",
+          "mono_ns": 10740994137851,
+          "line": 26,
+          "text": "listener_dispatch_end phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.999657601Z",
+          "mono_ns": 10740994529016,
+          "line": 27,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:11.100332686Z",
+          "mono_ns": 10741095211556,
+          "line": 28,
+          "text": "listener_dispatch_begin phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:11.101109854Z",
+          "mono_ns": 10741096048279,
+          "line": 29,
+          "text": "listener_dispatch_end phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:11.108161434Z",
+          "mono_ns": 10741103021282,
+          "line": 30,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:11.616500884Z",
+          "mono_ns": 10741611370291,
+          "line": 31,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:34:09.125697659Z",
+          "mono_ns": 10739120569744,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=98 internal=17 raw=56"
+        },
+        {
+          "utc": "2026-10-21T15:34:09.751743061Z",
+          "mono_ns": 10739746620499,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=100 internal=15 raw=52"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.377469353Z",
+          "mono_ns": 10740372366386,
+          "line": 17,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:34:10.998226198Z",
+          "mono_ns": 10740993105068,
+          "line": 24,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 98,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:09.127666460Z",
+            "mono_ns": 10739122546958,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:09.128656644Z",
+            "mono_ns": 10739123588094,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:09.229795076Z",
+            "mono_ns": 10739224682074,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:09.230647315Z",
+            "mono_ns": 10739225519592,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            101093980,
+            102972634
+          ]
+        },
+        {
+          "awt": 100,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:09.752180221Z",
+            "mono_ns": 10739747074771,
+            "line": 11
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:09.752789073Z",
+            "mono_ns": 10739747712588,
+            "line": 12
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:09.853658975Z",
+            "mono_ns": 10739848569490,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:09.854382064Z",
+            "mono_ns": 10739849260076,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            100856902,
+            102185305
+          ]
+        },
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:10.377985171Z",
+            "mono_ns": 10740372866240,
+            "line": 18
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:10.378586926Z",
+            "mono_ns": 10740373461878,
+            "line": 19
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:10.479492102Z",
+            "mono_ns": 10740474376708,
+            "line": 21
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:10.480147294Z",
+            "mono_ns": 10740475031040,
+            "line": 22
+          },
+          "listener_hold_bounds_ns": [
+            100914830,
+            102164800
+          ]
+        },
+        {
+          "awt": 104,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:10.998670321Z",
+            "mono_ns": 10740993541927,
+            "line": 25
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:10.999272268Z",
+            "mono_ns": 10740994137851,
+            "line": 26
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:11.100332686Z",
+            "mono_ns": 10741095211556,
+            "line": 28
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:11.101109854Z",
+            "mono_ns": 10741096048279,
+            "line": 29
+          },
+          "listener_hold_bounds_ns": [
+            101073705,
+            102506352
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-A-R03",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R03/sequence-input.log",
+        "size": 3003,
+        "sha256": "5e6276fa7575b7ef7b42781f084793f22231c4b8d037c6e789a265aa90253a02"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:34:39.636308751Z",
+          "mono_ns": 10768146758824,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-A-R03/input-A.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:34:39.638730709Z",
+          "mono_ns": 10768149189193,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.669480565Z",
+          "mono_ns": 10770179942586,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=98 internal=17 raw=56"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.674903872Z",
+          "mono_ns": 10770185411874,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.676055965Z",
+          "mono_ns": 10770186525634,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.676508027Z",
+          "mono_ns": 10770186980373,
+          "line": 6,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.777812692Z",
+          "mono_ns": 10770288283795,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.778667968Z",
+          "mono_ns": 10770289120525,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=98"
+        },
+        {
+          "utc": "2026-10-21T15:34:41.790370909Z",
+          "mono_ns": 10770300815055,
+          "line": 9,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.316693280Z",
+          "mono_ns": 10770827184170,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=100 internal=15 raw=52"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.317536606Z",
+          "mono_ns": 10770828071852,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=down code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.319068014Z",
+          "mono_ns": 10770829708413,
+          "line": 12,
+          "text": "listener_dispatch_end phase=down code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.320182634Z",
+          "mono_ns": 10770830680695,
+          "line": 13,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.421352226Z",
+          "mono_ns": 10770931907929,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.422779150Z",
+          "mono_ns": 10770933264783,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.447612150Z",
+          "mono_ns": 10770958105813,
+          "line": 16,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.973725457Z",
+          "mono_ns": 10771484228775,
+          "line": 17,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.974570982Z",
+          "mono_ns": 10771485049445,
+          "line": 18,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.975677094Z",
+          "mono_ns": 10771486340245,
+          "line": 19,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.976439357Z",
+          "mono_ns": 10771486918968,
+          "line": 20,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.077420534Z",
+          "mono_ns": 10771587957023,
+          "line": 21,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.078716208Z",
+          "mono_ns": 10771589277552,
+          "line": 22,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.104808557Z",
+          "mono_ns": 10771615288167,
+          "line": 23,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.618718106Z",
+          "mono_ns": 10772129177258,
+          "line": 24,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.619172734Z",
+          "mono_ns": 10772129626819,
+          "line": 25,
+          "text": "listener_dispatch_begin phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.620813541Z",
+          "mono_ns": 10772131296686,
+          "line": 26,
+          "text": "listener_dispatch_end phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.621982323Z",
+          "mono_ns": 10772132456196,
+          "line": 27,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.723051068Z",
+          "mono_ns": 10772233523508,
+          "line": 28,
+          "text": "listener_dispatch_begin phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.723972367Z",
+          "mono_ns": 10772234452358,
+          "line": 29,
+          "text": "listener_dispatch_end phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.735181761Z",
+          "mono_ns": 10772245628009,
+          "line": 30,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:34:44.243061690Z",
+          "mono_ns": 10772753501533,
+          "line": 31,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:34:41.669480565Z",
+          "mono_ns": 10770179942586,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=98 internal=17 raw=56"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.316693280Z",
+          "mono_ns": 10770827184170,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=100 internal=15 raw=52"
+        },
+        {
+          "utc": "2026-10-21T15:34:42.973725457Z",
+          "mono_ns": 10771484228775,
+          "line": 17,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:34:43.618718106Z",
+          "mono_ns": 10772129177258,
+          "line": 24,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 98,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:41.674903872Z",
+            "mono_ns": 10770185411874,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:41.676055965Z",
+            "mono_ns": 10770186525634,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:41.777812692Z",
+            "mono_ns": 10770288283795,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:41.778667968Z",
+            "mono_ns": 10770289120525,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            101758161,
+            103708651
+          ]
+        },
+        {
+          "awt": 100,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:42.317536606Z",
+            "mono_ns": 10770828071852,
+            "line": 11
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:42.319068014Z",
+            "mono_ns": 10770829708413,
+            "line": 12
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:42.421352226Z",
+            "mono_ns": 10770931907929,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:42.422779150Z",
+            "mono_ns": 10770933264783,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            102199516,
+            105192931
+          ]
+        },
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:42.974570982Z",
+            "mono_ns": 10771485049445,
+            "line": 18
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:42.975677094Z",
+            "mono_ns": 10771486340245,
+            "line": 19
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:43.077420534Z",
+            "mono_ns": 10771587957023,
+            "line": 21
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:43.078716208Z",
+            "mono_ns": 10771589277552,
+            "line": 22
+          },
+          "listener_hold_bounds_ns": [
+            101616778,
+            104228107
+          ]
+        },
+        {
+          "awt": 104,
+          "down_begin": {
+            "utc": "2026-10-21T15:34:43.619172734Z",
+            "mono_ns": 10772129626819,
+            "line": 25
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:34:43.620813541Z",
+            "mono_ns": 10772131296686,
+            "line": 26
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:34:43.723051068Z",
+            "mono_ns": 10772233523508,
+            "line": 28
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:34:43.723972367Z",
+            "mono_ns": 10772234452358,
+            "line": 29
+          },
+          "listener_hold_bounds_ns": [
+            102226822,
+            104825539
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-B-R01",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R01/sequence-input.log",
+        "size": 1218,
+        "sha256": "fe95ec5a0b2b3d2fa67fa41f802091aa2c9f6e03fc3a6bdd7a9c3a21f6c8ecca"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:32:41.436009164Z",
+          "mono_ns": 10654409376497,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R01/input-B.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:32:41.436991727Z",
+          "mono_ns": 10654410352850,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:32:43.455310185Z",
+          "mono_ns": 10656428689461,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:32:43.461404676Z",
+          "mono_ns": 10656434804590,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:32:43.462936994Z",
+          "mono_ns": 10656436312544,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:32:43.463362255Z",
+          "mono_ns": 10656436723665,
+          "line": 6,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:32:43.985855282Z",
+          "mono_ns": 10656959253953,
+          "line": 7,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:32:44.495513456Z",
+          "mono_ns": 10657468895980,
+          "line": 8,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:32:44.496581243Z",
+          "mono_ns": 10657469979341,
+          "line": 9,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:32:44.507549474Z",
+          "mono_ns": 10657480935056,
+          "line": 10,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:32:45.516148774Z",
+          "mono_ns": 10658489510279,
+          "line": 11,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:32:46.523238018Z",
+          "mono_ns": 10659496591784,
+          "line": 12,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:32:43.455310185Z",
+          "mono_ns": 10656428689461,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:32:43.461404676Z",
+            "mono_ns": 10656434804590,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:32:43.462936994Z",
+            "mono_ns": 10656436312544,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:32:44.495513456Z",
+            "mono_ns": 10657468895980,
+            "line": 8
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:32:44.496581243Z",
+            "mono_ns": 10657469979341,
+            "line": 9
+          },
+          "listener_hold_bounds_ns": [
+            1032583436,
+            1035174751
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-B-R02",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R02/sequence-input.log",
+        "size": 1218,
+        "sha256": "a353947f1501559c7e4ada9f099dfa85c26508f26d4b2e9c0f5a77c776e157fd"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:35:12.158757311Z",
+          "mono_ns": 10799172972874,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R02/input-B.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:35:12.160256948Z",
+          "mono_ns": 10799174469356,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:35:14.217263442Z",
+          "mono_ns": 10801231494682,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:35:14.220278584Z",
+          "mono_ns": 10801234505330,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:14.221308771Z",
+          "mono_ns": 10801235533702,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:14.221720101Z",
+          "mono_ns": 10801235971319,
+          "line": 6,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:35:14.750246615Z",
+          "mono_ns": 10801764566372,
+          "line": 7,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:35:15.265001001Z",
+          "mono_ns": 10802279261205,
+          "line": 8,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:15.266330963Z",
+          "mono_ns": 10802280577307,
+          "line": 9,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:15.275818306Z",
+          "mono_ns": 10802290037502,
+          "line": 10,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:35:16.288656526Z",
+          "mono_ns": 10803302889200,
+          "line": 11,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:35:17.310886927Z",
+          "mono_ns": 10804325140246,
+          "line": 12,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:35:14.217263442Z",
+          "mono_ns": 10801231494682,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:35:14.220278584Z",
+            "mono_ns": 10801234505330,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:35:14.221308771Z",
+            "mono_ns": 10801235533702,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:35:15.265001001Z",
+            "mono_ns": 10802279261205,
+            "line": 8
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:35:15.266330963Z",
+            "mono_ns": 10802280577307,
+            "line": 9
+          },
+          "listener_hold_bounds_ns": [
+            1043727503,
+            1046071977
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-B-R03",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/sequence-input.log",
+        "size": 1218,
+        "sha256": "6c8c39a2a2e2ddaf46135fd9b853a7326187f1594b4e6419b2a08f3500b4c515"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:35:45.152256832Z",
+          "mono_ns": 10830675191015,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/input-B.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:35:45.153176780Z",
+          "mono_ns": 10830676104750,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:35:47.171057346Z",
+          "mono_ns": 10832693977956,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:35:47.172693256Z",
+          "mono_ns": 10832695607844,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:47.173416960Z",
+          "mono_ns": 10832696334511,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:47.173851889Z",
+          "mono_ns": 10832696760933,
+          "line": 6,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:35:47.690185194Z",
+          "mono_ns": 10833213109628,
+          "line": 7,
+          "text": "wait_requested_ms=500"
+        },
+        {
+          "utc": "2026-10-21T15:35:48.204090922Z",
+          "mono_ns": 10833727027113,
+          "line": 8,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:48.206494602Z",
+          "mono_ns": 10833729568632,
+          "line": 9,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:35:48.218495508Z",
+          "mono_ns": 10833741402736,
+          "line": 10,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:35:49.225621704Z",
+          "mono_ns": 10834748538108,
+          "line": 11,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:35:50.232710907Z",
+          "mono_ns": 10835755618422,
+          "line": 12,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:35:47.171057346Z",
+          "mono_ns": 10832693977956,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:35:47.172693256Z",
+            "mono_ns": 10832695607844,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:35:47.173416960Z",
+            "mono_ns": 10832696334511,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:35:48.204090922Z",
+            "mono_ns": 10833727027113,
+            "line": 8
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:35:48.206494602Z",
+            "mono_ns": 10833729568632,
+            "line": 9
+          },
+          "listener_hold_bounds_ns": [
+            1030692602,
+            1033960788
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-C-R01",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-C-R01/sequence-input.log",
+        "size": 1064,
+        "sha256": "6523a91002be02887bb79cc9a25abd1b93f34271ffac279d1bfcab0458bf2ce0"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:36:18.475509306Z",
+          "mono_ns": 10862510659721,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-C-R01/input-C.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:36:18.479168449Z",
+          "mono_ns": 10862514092994,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.492536212Z",
+          "mono_ns": 10864527462190,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.496089637Z",
+          "mono_ns": 10864531015615,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.497066052Z",
+          "mono_ns": 10864532075286,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.497754083Z",
+          "mono_ns": 10864532673848,
+          "line": 6,
+          "text": "wait_requested_ms=20"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.518447298Z",
+          "mono_ns": 10864553410937,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.519382324Z",
+          "mono_ns": 10864554312795,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:20.528800261Z",
+          "mono_ns": 10864563723850,
+          "line": 9,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:36:21.537648362Z",
+          "mono_ns": 10865572567554,
+          "line": 10,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:36:20.492536212Z",
+          "mono_ns": 10864527462190,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:36:20.496089637Z",
+            "mono_ns": 10864531015615,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:36:20.497066052Z",
+            "mono_ns": 10864532075286,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:36:20.518447298Z",
+            "mono_ns": 10864553410937,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:36:20.519382324Z",
+            "mono_ns": 10864554312795,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            21335651,
+            23297180
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-C-R02",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-C-R02/sequence-input.log",
+        "size": 1064,
+        "sha256": "2b23e5b92eb48aa2212d1d0039743995eba31b59c93b29efc638cfcd68e8a324"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:36:49.555181541Z",
+          "mono_ns": 10892102092259,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-C-R02/input-C.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:36:49.557767606Z",
+          "mono_ns": 10892104699832,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.573117515Z",
+          "mono_ns": 10894120061017,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.574916127Z",
+          "mono_ns": 10894121818240,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.575999767Z",
+          "mono_ns": 10894122923005,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.576343297Z",
+          "mono_ns": 10894123245220,
+          "line": 6,
+          "text": "wait_requested_ms=20"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.596884478Z",
+          "mono_ns": 10894143802172,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.597856858Z",
+          "mono_ns": 10894144770537,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:36:51.607213423Z",
+          "mono_ns": 10894154118213,
+          "line": 9,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:36:52.629312681Z",
+          "mono_ns": 10895176368781,
+          "line": 10,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:36:51.573117515Z",
+          "mono_ns": 10894120061017,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:36:51.574916127Z",
+            "mono_ns": 10894121818240,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:36:51.575999767Z",
+            "mono_ns": 10894122923005,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:36:51.596884478Z",
+            "mono_ns": 10894143802172,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:36:51.597856858Z",
+            "mono_ns": 10894144770537,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            20879167,
+            22952297
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-C-R03",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-C-R03/sequence-input.log",
+        "size": 1064,
+        "sha256": "d5cc48619f54cc88264df39eccf81046de312cc165955561a816e62cd4c2704e"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:37:20.707750623Z",
+          "mono_ns": 10921755854384,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-C-R03/input-C.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:37:20.709109871Z",
+          "mono_ns": 10921757211339,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.726921341Z",
+          "mono_ns": 10923775165329,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.730956358Z",
+          "mono_ns": 10923779054289,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.731871892Z",
+          "mono_ns": 10923779986454,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.732345239Z",
+          "mono_ns": 10923780436574,
+          "line": 6,
+          "text": "wait_requested_ms=20"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.753067562Z",
+          "mono_ns": 10923801217684,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.753824516Z",
+          "mono_ns": 10923801928087,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:22.762995715Z",
+          "mono_ns": 10923811087337,
+          "line": 9,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:37:23.770892353Z",
+          "mono_ns": 10924818983305,
+          "line": 10,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:37:22.726921341Z",
+          "mono_ns": 10923775165329,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:37:22.730956358Z",
+            "mono_ns": 10923779054289,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:37:22.731871892Z",
+            "mono_ns": 10923779986454,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:37:22.753067562Z",
+            "mono_ns": 10923801217684,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:37:22.753824516Z",
+            "mono_ns": 10923801928087,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            21231230,
+            22873798
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-D-R01",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-D-R01/sequence-input.log",
+        "size": 1710,
+        "sha256": "fdccbe634e4a3e7dc7d8f87eb248d9b2d25924ab29b45770434a76660b3db287"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:37:52.156547158Z",
+          "mono_ns": 10951707981873,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-D-R01/input-D.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:37:52.157463098Z",
+          "mono_ns": 10951708907445,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.181785189Z",
+          "mono_ns": 10953733226674,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.188205924Z",
+          "mono_ns": 10953739643310,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.189192336Z",
+          "mono_ns": 10953740627242,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.192656507Z",
+          "mono_ns": 10953744127268,
+          "line": 6,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.252765164Z",
+          "mono_ns": 10953804205505,
+          "line": 7,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.253206303Z",
+          "mono_ns": 10953804642258,
+          "line": 8,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.254520851Z",
+          "mono_ns": 10953805971015,
+          "line": 9,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.255276394Z",
+          "mono_ns": 10953806716354,
+          "line": 10,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.306253018Z",
+          "mono_ns": 10953857769839,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.309810261Z",
+          "mono_ns": 10953861320311,
+          "line": 12,
+          "text": "listener_dispatch_end phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.310883547Z",
+          "mono_ns": 10953862375955,
+          "line": 13,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.363954484Z",
+          "mono_ns": 10953915591268,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.366516828Z",
+          "mono_ns": 10953918017246,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.393975007Z",
+          "mono_ns": 10953945412106,
+          "line": 16,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:37:56.400364219Z",
+          "mono_ns": 10955951784153,
+          "line": 17,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:37:54.181785189Z",
+          "mono_ns": 10953733226674,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:37:54.252765164Z",
+          "mono_ns": 10953804205505,
+          "line": 7,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 104,
+          "down_begin": {
+            "utc": "2026-10-21T15:37:54.188205924Z",
+            "mono_ns": 10953739643310,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:37:54.189192336Z",
+            "mono_ns": 10953740627242,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:37:54.306253018Z",
+            "mono_ns": 10953857769839,
+            "line": 11
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:37:54.309810261Z",
+            "mono_ns": 10953861320311,
+            "line": 12
+          },
+          "listener_hold_bounds_ns": [
+            117142597,
+            121677001
+          ]
+        },
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:37:54.253206303Z",
+            "mono_ns": 10953804642258,
+            "line": 8
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:37:54.254520851Z",
+            "mono_ns": 10953805971015,
+            "line": 9
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:37:54.363954484Z",
+            "mono_ns": 10953915591268,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:37:54.366516828Z",
+            "mono_ns": 10953918017246,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            109620253,
+            113374988
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-D-R02",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-D-R02/sequence-input.log",
+        "size": 1710,
+        "sha256": "5bfa80d29b9410b8bffc343927bd86b12e3e2a5c09007454aee396587949fee0"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:38:24.321731316Z",
+          "mono_ns": 10982314072409,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-D-R02/input-D.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:38:24.323941859Z",
+          "mono_ns": 10982316174811,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.347114557Z",
+          "mono_ns": 10984339336934,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.349446103Z",
+          "mono_ns": 10984341662191,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.350510548Z",
+          "mono_ns": 10984342949682,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.351313360Z",
+          "mono_ns": 10984343536022,
+          "line": 6,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.404866501Z",
+          "mono_ns": 10984397104884,
+          "line": 7,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.405627771Z",
+          "mono_ns": 10984397860628,
+          "line": 8,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.406190768Z",
+          "mono_ns": 10984398410286,
+          "line": 9,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.406535103Z",
+          "mono_ns": 10984398791017,
+          "line": 10,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.457224952Z",
+          "mono_ns": 10984449482772,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.458940717Z",
+          "mono_ns": 10984451170430,
+          "line": 12,
+          "text": "listener_dispatch_end phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.459356224Z",
+          "mono_ns": 10984451570216,
+          "line": 13,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.509908206Z",
+          "mono_ns": 10984502166312,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.510455578Z",
+          "mono_ns": 10984502670618,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.527996527Z",
+          "mono_ns": 10984520199181,
+          "line": 16,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:38:28.536288149Z",
+          "mono_ns": 10986528497568,
+          "line": 17,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:38:26.347114557Z",
+          "mono_ns": 10984339336934,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:26.404866501Z",
+          "mono_ns": 10984397104884,
+          "line": 7,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 104,
+          "down_begin": {
+            "utc": "2026-10-21T15:38:26.349446103Z",
+            "mono_ns": 10984341662191,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:38:26.350510548Z",
+            "mono_ns": 10984342949682,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:38:26.457224952Z",
+            "mono_ns": 10984449482772,
+            "line": 11
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:38:26.458940717Z",
+            "mono_ns": 10984451170430,
+            "line": 12
+          },
+          "listener_hold_bounds_ns": [
+            106533090,
+            109508239
+          ]
+        },
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:38:26.405627771Z",
+            "mono_ns": 10984397860628,
+            "line": 8
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:38:26.406190768Z",
+            "mono_ns": 10984398410286,
+            "line": 9
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:38:26.509908206Z",
+            "mono_ns": 10984502166312,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:38:26.510455578Z",
+            "mono_ns": 10984502670618,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            103756026,
+            104809990
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-D-R03",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-D-R03/sequence-input.log",
+        "size": 1710,
+        "sha256": "8aff141913db62007a17def171c18a5ae6a949ba99cebab7d7af4f6b448aeb37"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:38:57.183702072Z",
+          "mono_ns": 11013618714819,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-D-R03/input-D.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:38:57.185033176Z",
+          "mono_ns": 11013619976257,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.208025395Z",
+          "mono_ns": 11015642979180,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.211057625Z",
+          "mono_ns": 11015646008542,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.212310653Z",
+          "mono_ns": 11015647267400,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.212853645Z",
+          "mono_ns": 11015647804849,
+          "line": 6,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.264849637Z",
+          "mono_ns": 11015699808008,
+          "line": 7,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.265677025Z",
+          "mono_ns": 11015700665881,
+          "line": 8,
+          "text": "listener_dispatch_begin phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.266453670Z",
+          "mono_ns": 11015701416724,
+          "line": 9,
+          "text": "listener_dispatch_end phase=down code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.267457564Z",
+          "mono_ns": 11015702463717,
+          "line": 10,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.319719127Z",
+          "mono_ns": 11015754737130,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.322844053Z",
+          "mono_ns": 11015757848485,
+          "line": 12,
+          "text": "listener_dispatch_end phase=up code=104"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.323813640Z",
+          "mono_ns": 11015758807847,
+          "line": 13,
+          "text": "wait_requested_ms=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.375193343Z",
+          "mono_ns": 11015810446814,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.376980189Z",
+          "mono_ns": 11015811993413,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=102"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.396869719Z",
+          "mono_ns": 11015831822644,
+          "line": 16,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:39:01.416627402Z",
+          "mono_ns": 11017851570101,
+          "line": 17,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:38:59.208025395Z",
+          "mono_ns": 11015642979180,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=104 internal=14 raw=50"
+        },
+        {
+          "utc": "2026-10-21T15:38:59.264849637Z",
+          "mono_ns": 11015699808008,
+          "line": 7,
+          "text": "computed_emulator_mapping host_awt=102 internal=16 raw=54"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 104,
+          "down_begin": {
+            "utc": "2026-10-21T15:38:59.211057625Z",
+            "mono_ns": 11015646008542,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:38:59.212310653Z",
+            "mono_ns": 11015647267400,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:38:59.319719127Z",
+            "mono_ns": 11015754737130,
+            "line": 11
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:38:59.322844053Z",
+            "mono_ns": 11015757848485,
+            "line": 12
+          },
+          "listener_hold_bounds_ns": [
+            107469730,
+            111839943
+          ]
+        },
+        {
+          "awt": 102,
+          "down_begin": {
+            "utc": "2026-10-21T15:38:59.265677025Z",
+            "mono_ns": 11015700665881,
+            "line": 8
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:38:59.266453670Z",
+            "mono_ns": 11015701416724,
+            "line": 9
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:38:59.375193343Z",
+            "mono_ns": 11015810446814,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:38:59.376980189Z",
+            "mono_ns": 11015811993413,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            109030090,
+            111327532
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-E-R01",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-E-R01/sequence-input.log",
+        "size": 1709,
+        "sha256": "6c7dc84ccb48d336f7a1cba1be93c4b1762e263bff0752c2646d7e3415264656"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:39:30.080969742Z",
+          "mono_ns": 11044972271504,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-E-R01/input-E.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:39:30.082005515Z",
+          "mono_ns": 11044973308900,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.113526802Z",
+          "mono_ns": 11047004817581,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=101 internal=18 raw=53"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.115644759Z",
+          "mono_ns": 11047006934297,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=101"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.116346957Z",
+          "mono_ns": 11047007633916,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=101"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.116988513Z",
+          "mono_ns": 11047008307559,
+          "line": 6,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.219280631Z",
+          "mono_ns": 11047110707400,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=101"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.222286339Z",
+          "mono_ns": 11047113712152,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=101"
+        },
+        {
+          "utc": "2026-10-21T15:39:32.259539669Z",
+          "mono_ns": 11047150852890,
+          "line": 9,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.270945982Z",
+          "mono_ns": 11048162233609,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.271355095Z",
+          "mono_ns": 11048162636611,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=down code=87"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.271971727Z",
+          "mono_ns": 11048163330405,
+          "line": 12,
+          "text": "listener_dispatch_end phase=down code=87"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.272327839Z",
+          "mono_ns": 11048163636763,
+          "line": 13,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.373044621Z",
+          "mono_ns": 11048264342276,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=87"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.373653899Z",
+          "mono_ns": 11048264939999,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=87"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.374311499Z",
+          "mono_ns": 11048265592251,
+          "line": 16,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:39:34.380438199Z",
+          "mono_ns": 11049271773576,
+          "line": 17,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:39:32.113526802Z",
+          "mono_ns": 11047004817581,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=101 internal=18 raw=53"
+        },
+        {
+          "utc": "2026-10-21T15:39:33.270945982Z",
+          "mono_ns": 11048162233609,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 101,
+          "down_begin": {
+            "utc": "2026-10-21T15:39:32.115644759Z",
+            "mono_ns": 11047006934297,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:39:32.116346957Z",
+            "mono_ns": 11047007633916,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:39:32.219280631Z",
+            "mono_ns": 11047110707400,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:39:32.222286339Z",
+            "mono_ns": 11047113712152,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            103073484,
+            106777855
+          ]
+        },
+        {
+          "awt": 87,
+          "down_begin": {
+            "utc": "2026-10-21T15:39:33.271355095Z",
+            "mono_ns": 11048162636611,
+            "line": 11
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:39:33.271971727Z",
+            "mono_ns": 11048163330405,
+            "line": 12
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:39:33.373044621Z",
+            "mono_ns": 11048264342276,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:39:33.373653899Z",
+            "mono_ns": 11048264939999,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            101011871,
+            102303388
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-E-R02",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-E-R02/sequence-input.log",
+        "size": 1709,
+        "sha256": "8c9dcab729ccc1680812ac3e0285258e06f91eae8c082fc4ba6359047eefcc08"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:40:02.608038610Z",
+          "mono_ns": 11075978445722,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-E-R02/input-E.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:40:02.608807972Z",
+          "mono_ns": 11075979210215,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.626063143Z",
+          "mono_ns": 11077996472367,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=101 internal=18 raw=53"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.631056788Z",
+          "mono_ns": 11078001567198,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.632172024Z",
+          "mono_ns": 11078002659567,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.633503352Z",
+          "mono_ns": 11078003934585,
+          "line": 6,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.734201180Z",
+          "mono_ns": 11078104621552,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.734932729Z",
+          "mono_ns": 11078105333759,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:04.747216329Z",
+          "mono_ns": 11078117609451,
+          "line": 9,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.760146284Z",
+          "mono_ns": 11079130623728,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.760748636Z",
+          "mono_ns": 11079131156145,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=down code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.761196826Z",
+          "mono_ns": 11079131595284,
+          "line": 12,
+          "text": "listener_dispatch_end phase=down code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.765770198Z",
+          "mono_ns": 11079136186091,
+          "line": 13,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.866327204Z",
+          "mono_ns": 11079236756818,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.866993011Z",
+          "mono_ns": 11079237400425,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.867604795Z",
+          "mono_ns": 11079238033551,
+          "line": 16,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:40:06.882672992Z",
+          "mono_ns": 11080253132047,
+          "line": 17,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:40:04.626063143Z",
+          "mono_ns": 11077996472367,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=101 internal=18 raw=53"
+        },
+        {
+          "utc": "2026-10-21T15:40:05.760146284Z",
+          "mono_ns": 11079130623728,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 101,
+          "down_begin": {
+            "utc": "2026-10-21T15:40:04.631056788Z",
+            "mono_ns": 11078001567198,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:40:04.632172024Z",
+            "mono_ns": 11078002659567,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:40:04.734201180Z",
+            "mono_ns": 11078104621552,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:40:04.734932729Z",
+            "mono_ns": 11078105333759,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            101961985,
+            103766561
+          ]
+        },
+        {
+          "awt": 87,
+          "down_begin": {
+            "utc": "2026-10-21T15:40:05.760748636Z",
+            "mono_ns": 11079131156145,
+            "line": 11
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:40:05.761196826Z",
+            "mono_ns": 11079131595284,
+            "line": 12
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:40:05.866327204Z",
+            "mono_ns": 11079236756818,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:40:05.866993011Z",
+            "mono_ns": 11079237400425,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            105161534,
+            106244280
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": "M15-SCN-0003-P1M-E-R03",
+      "source": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-E-R03/sequence-input.log",
+        "size": 1709,
+        "sha256": "55de241a2d7b544c08584ad1bbd7a9a4c04ea3ebd1e15b4c47af65aff63acf40"
+      },
+      "events": [
+        {
+          "utc": "2026-10-21T15:40:34.986144240Z",
+          "mono_ns": 11106795712736,
+          "line": 1,
+          "text": "sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-E-R03/input-E.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured"
+        },
+        {
+          "utc": "2026-10-21T15:40:34.987225270Z",
+          "mono_ns": 11106796789471,
+          "line": 2,
+          "text": "wait_requested_ms=2000"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.019470515Z",
+          "mono_ns": 11108829062955,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=101 internal=18 raw=53"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.021508648Z",
+          "mono_ns": 11108831086369,
+          "line": 4,
+          "text": "listener_dispatch_begin phase=down code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.024125103Z",
+          "mono_ns": 11108833727100,
+          "line": 5,
+          "text": "listener_dispatch_end phase=down code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.024694920Z",
+          "mono_ns": 11108834258496,
+          "line": 6,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.125415070Z",
+          "mono_ns": 11108935011046,
+          "line": 7,
+          "text": "listener_dispatch_begin phase=up code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.126589971Z",
+          "mono_ns": 11108936169508,
+          "line": 8,
+          "text": "listener_dispatch_end phase=up code=101"
+        },
+        {
+          "utc": "2026-10-21T15:40:37.141017368Z",
+          "mono_ns": 11108950599867,
+          "line": 9,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.151379627Z",
+          "mono_ns": 11109960950562,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.151837908Z",
+          "mono_ns": 11109961415725,
+          "line": 11,
+          "text": "listener_dispatch_begin phase=down code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.152384596Z",
+          "mono_ns": 11109962013067,
+          "line": 12,
+          "text": "listener_dispatch_end phase=down code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.152728092Z",
+          "mono_ns": 11109962285742,
+          "line": 13,
+          "text": "wait_requested_ms=100"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.253502816Z",
+          "mono_ns": 11110063108444,
+          "line": 14,
+          "text": "listener_dispatch_begin phase=up code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.254199173Z",
+          "mono_ns": 11110063779093,
+          "line": 15,
+          "text": "listener_dispatch_end phase=up code=87"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.254562358Z",
+          "mono_ns": 11110064123735,
+          "line": 16,
+          "text": "wait_requested_ms=1000"
+        },
+        {
+          "utc": "2026-10-21T15:40:39.271592583Z",
+          "mono_ns": 11111081163232,
+          "line": 17,
+          "text": "sequence_end"
+        }
+      ],
+      "computed_mappings": [
+        {
+          "utc": "2026-10-21T15:40:37.019470515Z",
+          "mono_ns": 11108829062955,
+          "line": 3,
+          "text": "computed_emulator_mapping host_awt=101 internal=18 raw=53"
+        },
+        {
+          "utc": "2026-10-21T15:40:38.151379627Z",
+          "mono_ns": 11109960950562,
+          "line": 10,
+          "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+        }
+      ],
+      "inputs": [
+        {
+          "awt": 101,
+          "down_begin": {
+            "utc": "2026-10-21T15:40:37.021508648Z",
+            "mono_ns": 11108831086369,
+            "line": 4
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:40:37.024125103Z",
+            "mono_ns": 11108833727100,
+            "line": 5
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:40:37.125415070Z",
+            "mono_ns": 11108935011046,
+            "line": 7
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:40:37.126589971Z",
+            "mono_ns": 11108936169508,
+            "line": 8
+          },
+          "listener_hold_bounds_ns": [
+            101283946,
+            105083139
+          ]
+        },
+        {
+          "awt": 87,
+          "down_begin": {
+            "utc": "2026-10-21T15:40:38.151837908Z",
+            "mono_ns": 11109961415725,
+            "line": 11
+          },
+          "down_end": {
+            "utc": "2026-10-21T15:40:38.152384596Z",
+            "mono_ns": 11109962013067,
+            "line": 12
+          },
+          "up_begin": {
+            "utc": "2026-10-21T15:40:38.253502816Z",
+            "mono_ns": 11110063108444,
+            "line": 14
+          },
+          "up_end": {
+            "utc": "2026-10-21T15:40:38.254199173Z",
+            "mono_ns": 11110063779093,
+            "line": 15
+          },
+          "listener_hold_bounds_ns": [
+            101095377,
+            102363368
+          ]
+        }
+      ]
+    }
+  ],
+  "time_semantics": "Listener hold bounds bracket calls to emulator listeners. Not MIDlet callback durations or physical input latency. Logging/capture/clock resolution overhead unmeasured.",
+  "fps": null,
+  "midlet_callback_ordering": "chưa xác minh",
+  "full_internal_state_equivalence": "chưa xác minh"
+}

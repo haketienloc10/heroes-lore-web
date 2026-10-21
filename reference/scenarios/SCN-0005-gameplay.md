@@ -4,7 +4,7 @@
 
 ## Tạo fixture
 
-Theo đường menu đã ghi ở SCN-0002 vào một màn chơi được. Ghi nhân vật, map theo nhãn UI hoặc ảnh nếu chưa biết tên, vị trí so với mốc hình ảnh, cấp độ, HP/MP, tiền, trang bị/inventory nhìn thấy, ngôn ngữ, RNG nếu biết. Lưu đường đi từ startup/RMS sạch; chỉ lưu snapshot nếu cơ chế save thực tế đã được xác nhận. Hiện chưa có fixture nào và chưa biết các giá trị trên.
+Theo đường menu đã ghi ở SCN-0002 vào một màn chơi được. Ghi nhân vật, map theo nhãn UI hoặc ảnh nếu chưa biết tên, vị trí so với mốc hình ảnh, cấp độ, HP/MP, tiền, trang bị/inventory nhìn thấy, ngôn ngữ, RNG nếu biết. Lưu đường đi từ startup/RMS sạch; chỉ lưu snapshot nếu cơ chế save thực tế đã được xác nhận. Lượt tiếp tục đã có fixture replay HOUSE-EXIT-001 và snapshot HOUSE-INPUT-001; biên bản bên dưới phân biệt hai nguồn khởi tạo.
 
 Tạo ba điểm neo: A khoảng trống; B gần vật thể có vẻ cản đường; C gần đối tượng có thể tương tác hoặc mục tiêu. Đây là lựa chọn khám phá, không coi hình ảnh vật thể là bằng chứng collision hay NPC AI.
 
@@ -39,3 +39,9 @@ Trong R02/R03, Status hiển thị Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80
 **Evidence:** `reference/screenshots/<run-id>/` chỉ local; native framebuffer 240×320. Mỗi run có input.log, framebuffer.log, launch.json nối tới console/config của session, state snapshots và manifest hash trong [runtime evidence](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/README.md). Ảnh không được tính thành trace callback hay số đo FPS.
 
 **Còn thiếu:** lặp độc lập tối thiểu 3 lần cho từng biến thể (hiện trong nhà 2, cửa ra 1); restore fixture trước từng hướng/điểm neo; tương tác NPC/mục tiêu có phản ứng được kiểm chứng và diễn tiến hành động chính. Collision chỉ được ghi ở mức quan sát ảnh; chưa có đặc tả mechanics. Vì vậy chưa đánh dấu đạt toàn bộ SCN-0005 hoặc milestone.
+
+## Chuẩn hóa fixture và đối chiếu session
+
+[HOUSE-EXIT-001](fixtures/HOUSE-EXIT-001.md) chốt đường startup sạch → cạnh giường → hai lần giữ Down có release → ngoài nhà; kèm mốc giờ thực R04, ảnh và liên kết audit 71 cặp input/164 hash đã kiểm. Chỉ R04 thực hiện cửa ra; R02/R03 đi bốn hướng và có timing khác, không phải ba replay HOUSE-EXIT-001 tương đương. Khởi tạo RAM/RNG giống nhau chưa được chứng minh.
+
+Đã bổ sung snapshot [HOUSE-INPUT-001](fixtures/HOUSE-INPUT-001.md) ở gian dưới cho SCN-0003 và cold load qua SCN-0006. Đây là fixture có save, không tự tăng số lượt cửa ra từ startup sạch. Combat/collision formula/NPC và FPS/ordering vẫn chưa xác minh.

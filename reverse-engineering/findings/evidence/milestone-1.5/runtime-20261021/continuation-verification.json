@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-21T15:45:43.931337+00:00",
+  "producer": "local artifact validation, not mechanics test",
+  "game": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "game_jar_unchanged": true,
+  "emulator_jar_unchanged": true,
+  "web_files_compared": 17,
+  "web_hash_errors": [],
+  "git_web_diff_empty": true,
+  "manifest_entries_checked": 482,
+  "manifest_errors": [],
+  "observed_external_awt_key_events": [],
+  "measured_fps": null,
+  "callback_ordering_verified": false,
+  "milestone_complete": false
+}

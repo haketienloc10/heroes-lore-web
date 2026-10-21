@@ -1,0 +1,13 @@
+wait 2000
+frame B-start
+down 102
+wait 500
+frame B-held-middle
+wait 500
+frame B-held-end
+up 102
+frame B-release
+wait 1000
+frame B-idle-1s
+wait 1000
+frame B-idle-2s

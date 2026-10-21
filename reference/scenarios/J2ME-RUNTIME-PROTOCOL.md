@@ -1,6 +1,6 @@
 # Quy trình chạy và đo J2ME — Milestone 1.5
 
-**Cập nhật 2026-10-21:** đã chạy game bằng FreeJ2ME-Plus 1.52; SCN-0001/0002/0005 có quan sát một phần. Mục “Môi trường đã kiểm tra” và profile dự kiến dưới đây giữ bối cảnh lượt chuẩn bị; **cấu hình thực tế ở cuối tài liệu** thay thế các thông số chưa chốt. Chưa có số đo FPS/callback ordering. JAR/SHA-256 và trạng thái milestone tại [index](README.md).
+**Cập nhật 2026-10-21:** đã chạy game bằng FreeJ2ME-Plus 1.52; SCN-0001/0002/0003/0005/0006 có quan sát một phần. Mục “Môi trường đã kiểm tra” và profile dự kiến dưới đây giữ bối cảnh lượt chuẩn bị; **cấu hình thực tế ở cuối tài liệu** thay thế các thông số chưa chốt. Chưa có số đo FPS/callback ordering. JAR/SHA-256 và trạng thái milestone tại [index](README.md).
 
 ## Môi trường đã kiểm tra
 
@@ -121,3 +121,11 @@ Input có kiểm soát: AWT `38/40/37/39/10/87` tương ứng Up/Down/Left/Right
 Ảnh native frontbuffer 240×320 là nguồn chính để đọc UI. Ảnh X11 là nguồn host riêng; ảnh AWT Robot đen do ScreencastHelper bị loại. Không suy cadence/present timing từ các ảnh rời. Audio có lỗi mở Tone/MIDI nhưng game vẫn chạy; chưa xác minh nghe được âm thanh.
 
 Các lượt khám phá P1-R01/R02 và P1M-R01 có thao tác hỗn hợp. Sau xác nhận của người dùng, P1M-R02/R03/R04 dùng RMS sạch và input tự động; log từng phím/ảnh/snapshot riêng. Tài liệu tái lập và manifest bằng chứng tại [runtime-20261021](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/README.md). Các phép đo timing/BCI/callback trong phần kế hoạch vẫn chưa thực hiện.
+
+## Hiệu chuẩn bổ sung: snapshot và numpad
+
+SCN-0003 dùng [HOUSE-INPUT-001](fixtures/HOUSE-INPUT-001.md), khác [HOUSE-EXIT-001](fixtures/HOUSE-EXIT-001.md) từ startup sạch. Snapshot chỉ copy sau xác nhận JVM dừng, mỗi case kiểm hash/size rồi khởi chạy working directory mới. Với snapshot có save, menu chọn sẵn Load Game; kiểm ảnh trước replay. SCN-0006 đã cold load qua UI; điều này không xác minh toàn bộ state/schema/RNG.
+
+Mapper P1M thực đo: AWT numpad `98/100/102/104/101` → raw `56/52/54/50/53`; ảnh A cho Down/Left/Right/Up theo thứ tự đó. Numpad 2/8 ở build này không khớp ASCII nhãn phím. Q `81` → `-21`; W `87` → `-22`. Các giá trị vẫn là mapper emulator, chưa phải callback entry/normalize/gameAction runtime. Hàng số và numpad chưa được chứng minh tương đương.
+
+Sequence sidecar mới chụp trong khi hold và ghi trước/sau mỗi dispatch listener trên EventQueue. Không transform class, không gọi method/ghi field game, không tự phát repeat. B gồm hai wait 500 ms cộng overhead capture/log nên phải đọc hold bounds từ log. Không công bố physical repeat, callback ordering, release-slot behavior, FPS, latency hoặc độ chính xác đồng hồ từ phép thử này. Xem [SCN-0003](SCN-0003-input.md#thực-nghiệm-tiếp-tục--fixture-trong-nhà) và [SCN-0006](SCN-0006-save-load.md#thực-nghiệm-tiếp-tục--cold-load-đã-quan-sát).

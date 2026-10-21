@@ -1,10 +1,10 @@
 # SCN-0001 — Startup và chuyển Canvas
 
-**Trạng thái bản gốc:** đã quan sát một phần; **chưa đạt toàn bộ**. Startup sạch được lặp 3 session P1M-R02/R03/R04; biến thể có save và trace CF-01/ordering chưa xác minh. **Web:** chưa chạy. Kế hoạch ban đầu và biên bản thực nghiệm tách riêng bên dưới.
+**Trạng thái bản gốc:** đã quan sát một phần; **chưa đạt toàn bộ**. Startup sạch có R02/R03/R04; cold startup/load với snapshot có save đã quan sát ở SCN-0006. Trace CF-01/ordering chưa xác minh. **Web:** chưa chạy. Kế hoạch ban đầu và biên bản thực nghiệm tách riêng bên dưới.
 
 ## Điều kiện và input
 
-Biến thể bắt buộc A: working directory mới, RMS sạch. B: khởi động lạnh tiến trình với RMS fixture đã tạo ở SCN-0006. Hiện chưa có fixture B; không giả tạo save. Profile P2/P3 là bổ sung theo quy trình.
+Biến thể bắt buộc A: working directory mới, RMS sạch. B: khởi động lạnh tiến trình với RMS fixture đã tạo ở SCN-0006. Fixture B trong lượt tiếp tục là BED-SAVE-001/HOUSE-INPUT-001 tạo qua UI save và snapshot sau dừng JVM; xem SCN-0006. Kế hoạch trace vẫn chưa thực hiện. Profile P2/P3 là bổ sung theo quy trình.
 
 1. Bắt đầu console/capture/trace trước launch. Ghi `t0` launch, `startApp`, `setCurrent(bf)`, `bf.paint` đầu tiên và kích thước/clip.
 2. Không input 10 giây; chụp mọi màn chuyển và trạng thái cuối khoảng chờ. Nếu màn chờ phím đã xuất hiện sớm, vẫn lưu mốc xuất hiện.
@@ -41,3 +41,7 @@ Thời gian trên là **lịch checkpoint/wait của harness**, không phải la
 **Lỗi đã ghi:** auto-restart encoding ở lượt mặc định; Tone/MIDI không mở được; RecordStore `_c` vắng ở RMS sạch rồi có bước tạo/ghi. Game vẫn tiếp tục. Không kết luận game crash từ exception đã log; audio chưa xác minh.
 
 **Còn thiếu để đạt:** startup B với save fixture hợp lệ; trace constructor/clip/paint và CF-01 theo invocation/BCI; hiệu chuẩn đường input vật lý. Snapshot `q.h=320` sau startup không chứng minh nó được gán đúng trước constructor `ar`.
+
+## Bổ sung cold startup có save
+
+Lượt R05 sạch tạo save cạnh giường; PID cũ đã dừng trước snapshot. R05L dùng bản sao BED-SAVE-001 và PID mới, menu chọn sẵn Load Game thay vì New Game. Đường tạo/load/ảnh/hash xem [SCN-0006](SCN-0006-save-load.md#thực-nghiệm-tiếp-tục--cold-load-đã-quan-sát). Đây là quan sát biến thể có save, không thay trace CF-01/Canvas/ordering hoặc ba chu kỳ độc lập. Audit R02/R03/R04 nằm ở [HOUSE-EXIT-001](fixtures/HOUSE-EXIT-001.md); không gộp ba session thành ba replay cửa ra.

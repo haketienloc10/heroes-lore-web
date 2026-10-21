@@ -1,0 +1,219 @@
+{
+  "run_id": "M15-SCN-0003-P1M-B-R03",
+  "control": "synthetic emulator KeyListener",
+  "scenario_result": "runtime captured; partial, no callback/BCI/FPS verification",
+  "launch": {
+    "run_id": "M15-SCN-0003-P1M-B-R03",
+    "pid": 78828,
+    "argv": [
+      "java",
+      "-Dfile.encoding=ISO_8859_1",
+      "-Dsun.java2d.uiScale=1",
+      "-jar",
+      "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+      "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+      "0",
+      "240",
+      "320",
+      "2",
+      "2",
+      "60"
+    ],
+    "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0003-P1M-B-R03",
+    "utc": "2026-10-21T15:35:18.466109+00:00",
+    "profile": "P1M",
+    "snapshot_source": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0006-P1M-R05L/HOUSE-INPUT-001-storage.json",
+    "previous_pid": 74133,
+    "previous_proc_state_at_copy": "absent",
+    "input_method": "synthetic emulator KeyListener; no game state writes"
+  },
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/artifacts/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/artifacts/freej2me_system/FreeJ2ME.log",
+      "size": 1294,
+      "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/artifacts/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/console.log",
+      "size": 6244,
+      "sha256": "0fb6bef2fcf86082e4bd61c7b7faa185dcf4b9b0b620eab82649ece35701d71e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/framebuffer.log",
+      "size": 2461,
+      "sha256": "e52d05d0fdef4a681d6e4bc31309aba1aa21964477f587081d46a88d94e5c54c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/input-B.plan",
+      "size": 163,
+      "sha256": "bcc0349a9e5f59a22568564b868d5c001b7697fcaf1bd248b40f8be1f88503c3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/input.log",
+      "size": 1239,
+      "sha256": "1fabbc940a622bab535bddd99ffd543194b62037e48cfca709c6f3ff25d4a0bf"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/launch.json",
+      "size": 787,
+      "sha256": "df615fa82e7874a74d1e31b6a2b9fa687ea6462f5de5c6b81b45b2dbc0d04b83"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/review-required.json",
+      "size": 206,
+      "sha256": "4e32c0d7ae246c41a10b6054184bf69d3f27881c194952b057f99baeb3aea612"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/sequence-input.log",
+      "size": 1218,
+      "sha256": "6c8c39a2a2e2ddaf46135fd9b853a7326187f1594b4e6419b2a08f3500b4c515"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/state-final.log",
+      "size": 8793,
+      "sha256": "9e1ce7d2b41c8d747c4355cb2ea8d942b0217d92ebefdd3cb30d4f5148568ace"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/state-fixture.log",
+      "size": 8792,
+      "sha256": "d3a5bee9ce81f1ea1a26926c82dfd08239449bdb1d870c8ae9a17a430628894b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/state-startup.log",
+      "size": 5554,
+      "sha256": "3f04cb956bee22a6b76f1bbf0333121375c5380d4cc82461269910a670a36f63"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/stop.json",
+      "size": 155,
+      "sha256": "f7ad752c88e2fcaa82e9d4d6a9c14ff584112419cbc014ae2a75d27cdc3c8110"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/storage-manifest.json",
+      "size": 2259,
+      "sha256": "a410c4a31c1b891b91a771453a5a31f59c599147b5cd3f63045b18c59245b8f2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/system-properties.txt",
+      "size": 3393,
+      "sha256": "aadc90add3601746e432afcc37256025937b5714dcdd4d94fcc6ccf39440adc7"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0003-P1M-B-R03/threads-final.txt",
+      "size": 14214,
+      "sha256": "7d09cf69bf44388f4891800922eff4014987095477340afd3457a25080f6d450"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/01-cold-startup.png",
+      "size": 7854,
+      "sha256": "5ef3216bd556ce5a73d09c5dc8dfbbc6a4873809f2e25c09c00a963c5a1a4f16",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/02-menu.png",
+      "size": 5014,
+      "sha256": "8d40e12b462bdae04f458a48e35208ae8387c07074c42d2c93f27d8fd64b4d62",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/03-load-Ronin.png",
+      "size": 7711,
+      "sha256": "8aaf08e67a403ac1a0c526a84c6fed1dc2beb56668f08892898eb5e6b76eb372",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/04-restored-fixture.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/B-held-end.png",
+      "size": 16245,
+      "sha256": "47da6076fabb483babd41c46ec28f1d8e99c2cbf865cb58e29f95f22f4268b35",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/B-held-middle.png",
+      "size": 16919,
+      "sha256": "963456e6858afaca34663812ea3a04fbedd5efe1adcfb3549c0980ce97ef71af",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/B-idle-1s.png",
+      "size": 16231,
+      "sha256": "28cb77128eef9706887915f7676fb23a24329e9730776a5205d363ecaf5861ed",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/B-idle-2s.png",
+      "size": 16231,
+      "sha256": "28cb77128eef9706887915f7676fb23a24329e9730776a5205d363ecaf5861ed",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/B-release.png",
+      "size": 16245,
+      "sha256": "47da6076fabb483babd41c46ec28f1d8e99c2cbf865cb58e29f95f22f4268b35",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0003-P1M-B-R03/B-start.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+      "width": 240,
+      "height": 320,
+      "producer": "emulator native frontbuffer via sidecar",
+      "availability": "local, Git ignored",
+      "valid_for_behavior": true
+    }
+  ]
+}

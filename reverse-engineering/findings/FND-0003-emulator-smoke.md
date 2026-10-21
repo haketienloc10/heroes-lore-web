@@ -1,6 +1,6 @@
 # FND-0003 — Thực nghiệm FreeJ2ME-Plus trên WSLg
 
-**Ngày:** 2026-10-21. **Phạm vi:** tiếp tục M1.5, SCN-0001/0002/0005. **Trạng thái:** đã chạy game và quan sát một phần; **chưa đánh dấu scenario đạt toàn bộ, milestone chưa hoàn thành**. Không sửa JAR gốc hoặc `web/`.
+**Ngày:** 2026-10-21. **Phạm vi:** tiếp tục M1.5, SCN-0001/0002/0003/0005/0006. **Trạng thái:** đã chạy game và quan sát một phần; **chưa đánh dấu scenario đạt toàn bộ, milestone chưa hoàn thành**. Không sửa JAR gốc hoặc `web/`.
 
 ## Danh tính emulator và game
 
@@ -59,15 +59,15 @@ Input có kiểm soát dùng sidecar agent gọi **KeyListener của LCD emulato
 
 Probe và runner: [harness.json](evidence/milestone-1.5/runtime-20261021/harness.json), [scripts](../scripts/). Các probe không transform class; Java 21 có warning dynamic agent loading, được giữ nguyên trong console. Không gộp warning này với exception của game.
 
-## Kết quả thực nghiệm trọng tâm
+## Kết quả thực nghiệm ban đầu (R02/R03/R04)
 
 Các session có kiểm soát: **P1M-R02/R03/R04**, cùng JAR và RMS sạch, đều hoàn tất chuỗi startup/menu vào intro. Gameplay R02/R03 lặp chuỗi trong nhà; R04 dùng biến thể cửa ra theo hướng dẫn người dùng. Không mô tả thành ba lần lặp cùng toàn bộ gameplay. Lượt Standard và P1M-R01 có input hỗn hợp, giữ làm chẩn đoán riêng. Log, config, ảnh và hash: [runtime evidence](evidence/milestone-1.5/runtime-20261021/README.md).
 
 | Scenario | Điều đã quan sát | Điều chưa được xác minh |
 | --- | --- | --- |
-| SCN-0001 | MIDlet `rpg.GameMIDlet` được tạo; Canvas log 240×320; logo ở checkpoint 10 giây, sau Enter vào menu; snapshot controller hiện tại từ `bf` sang `ar` | Thứ tự chính xác constructor/paint/clip; CF-01 theo BCI; startup với save fixture; không có thời gian startup chính xác |
-| SCN-0002 | Menu New Game/Load Game/Options/Help/About/Exit; Down từ New Game tới Options ở dữ liệu sạch, Up trở lại; mở Ronin, W quay về; chọn Ronin, Hestia và Ron, Yes; loading rồi intro Roah/Ronin | Chưa xác minh load save; chưa phủ hết biên menu; CF-02 chưa có method/BCI trace |
-| SCN-0005 | Skip intro → căn nhà và HUD; snapshot `m.e:int=2`; di chuyển bốn hướng, giữ/thả phím; hai lần Right tại mép phải cho vị trí hiển thị không tiến qua mép trong ảnh; W mở/đóng Status. R04 từ giường Down 1 giây hai lần có release/nghỉ giữa đã ra đường phố qua cửa giữa dưới, console map `64→0`; state sau cửa vẫn `2` | Không suy collision formula/hitbox/tốc độ; Enter có được phát nhưng chưa đủ ảnh diễn tiến để xác nhận combat; hai lần thử gần NPC ngoài phố chưa có hội thoại mới; chưa có fixture restore độc lập và chưa đủ 3 lượt mỗi biến thể gameplay |
+| SCN-0001 | MIDlet `rpg.GameMIDlet` được tạo; Canvas log 240×320; logo ở checkpoint 10 giây, sau Enter vào menu; snapshot controller hiện tại từ `bf` sang `ar` | Thứ tự chính xác constructor/paint/clip; CF-01 theo BCI; lượt có save bổ sung bên dưới; không có thời gian startup chính xác |
+| SCN-0002 | Menu New Game/Load Game/Options/Help/About/Exit; Down từ New Game tới Options ở dữ liệu sạch, Up trở lại; mở Ronin, W quay về; chọn Ronin, Hestia và Ron, Yes; loading rồi intro Roah/Ronin | Cold load bổ sung bên dưới; chưa phủ hết biên menu; CF-02 chưa có method/BCI trace |
+| SCN-0005 | Skip intro → căn nhà và HUD; snapshot `m.e:int=2`; di chuyển bốn hướng, giữ/thả phím; hai lần Right tại mép phải cho vị trí hiển thị không tiến qua mép trong ảnh; W mở/đóng Status. R04 từ giường Down 1 giây hai lần có release/nghỉ giữa đã ra đường phố qua cửa giữa dưới, console map `64→0`; state sau cửa vẫn `2` | Không suy collision formula/hitbox/tốc độ; Enter có được phát nhưng chưa đủ ảnh diễn tiến để xác nhận combat; hai lần thử gần NPC ngoài phố chưa có hội thoại mới; fixture restore bổ sung bên dưới, chưa đủ 3 lượt mỗi biến thể gameplay |
 
 Status đã đọc được: Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 74/74, SP 60/60, tiền 800. Đây là mẫu trạng thái của lượt chơi mới đã quan sát, không phải đặc tả mọi nhân vật/save. Tên map trong nhà chưa được UI xác nhận; không đặt tên chỉ từ hình ảnh.
 
@@ -76,7 +76,7 @@ Status đã đọc được: Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 7
 | Hiện tượng | Bằng chứng/giải thích có giới hạn | Xử lý và trạng thái |
 | --- | --- | --- |
 | Launch mặc định UTF-8 tự restart | Console R01 báo encoding UTF-8 khác ISO_8859_1; thấy process con. Source tag cho `checkFileEncoding/restartApp` | Lượt đầu mất chuỗi console đầy đủ và tham số profile sau restart không được giữ đầy đủ; lượt mới truyền `-Dfile.encoding=ISO_8859_1` ngay từ launch, không còn restart này |
-| Tone/MIDI không mở được | `Couldn't open Tone Player: Can not open line`; có lỗi prefetch vì `synthesizer` null | Game vẫn tới menu/gameplay. Lỗi backend Java Sound theo log; nguyên nhân thiết bị/driver sâu hơn chưa xác minh. Sound `on` không chứng minh audio phát được |
+| Tone/MIDI không mở được | `Couldn't open Tone Player: Can not open line`; có lỗi prefetch vì `synthesizer` null | Game vẫn tới menu/gameplay. Giới hạn backend Java Sound của emulator theo log; **không quy kết game gốc lỗi Tone/MIDI**. Nguyên nhân thiết bị/driver sâu hơn chưa xác minh. Sound `on` không chứng minh audio phát được |
 | `RecordStoreNotFoundException` với `_c` ở RMS sạch | Stack qua `at`, `br.i`, `bv.d`; sau đó log kiểm tra vắng dữ liệu và `write _c`, `close : 6` | Trong các lượt này không làm dừng game. Không coi exception được log là crash, cũng không suy ra save gameplay đã đúng |
 | Robot chụp đen | `Could not load native libraries for ScreencastHelper`; file PNG đen | Loại khỏi kết luận UI; dùng XGetImage và framebuffer có nguồn rõ |
 | Input OS khó đối chiếu ở lượt khám phá | XTest/Robot/XSendEvent không có tương quan AWT/MIDlet đáng tin cậy, lại có thao tác tay | Không gán ảnh đổi màn cho một input OS cụ thể. Lượt mới dùng input tổng hợp có log, tách giới hạn về bàn phím vật lý |
@@ -88,4 +88,26 @@ Không quan sát thấy fatal exception ngăn vào gameplay ở các lượt có
 
 Kết quả trên do **emulator + GUI/sidecar local**, không phải REA. REA vẫn chỉ có identity/inventory từ M1; JADX/`javap` giải thích nhánh và mapping game tĩnh, không biến thành runtime trace. Thay đổi trạng thái được snapshot ở các mốc không chứng minh thứ tự callback/BCI.
 
-Chưa đánh dấu đạt toàn bộ SCN-0001/0002/0005. Cần hoàn tất biến thể/fixture của từng scenario, trace các nhánh CF, đường input vật lý nếu muốn kết luận về bàn phím, dữ liệu timing có sai số/overhead, save/load sau dừng tiến trình và các scenario còn lại. Xem [checklist milestone](../../reference/scenarios/README.md). Kết quả web: chưa chạy; không có thay đổi gameplay web.
+Chưa đánh dấu đạt toàn bộ SCN-0001/0002/0005. Cần hoàn tất biến thể/fixture của từng scenario, trace các nhánh CF, đường input vật lý nếu muốn kết luận về bàn phím, dữ liệu timing có sai số/overhead, bổ sung chu kỳ save/load độc lập (cold load đã quan sát bên dưới) và các scenario còn lại. Xem [checklist milestone](../../reference/scenarios/README.md). Kết quả web: chưa chạy; không có thay đổi gameplay web.
+
+## Tiếp tục: fixture, input và save/load
+
+Đợt bổ sung có **5/8 scenario quan sát một phần, 0 đạt toàn bộ**. [Audit ba session cũ](evidence/milestone-1.5/runtime-20261021/session-audit.json) trích **71 cặp down/up** cùng UTC/nanoTime, hold yêu cầu/bracket thực, khoảng nghỉ, ảnh 240×320, cấu hình hiệu lực và storage sau dừng. Đã kiểm **164 mục size/hash**, không lệch manifest nguồn. [CSV](evidence/milestone-1.5/runtime-20261021/session-inputs.csv) giữ số nanosecond nguyên, không làm tròn thành thời gian kế hoạch. Đây là phân tích dẫn xuất từ log, không phải evidence runtime mới.
+
+**HOUSE-EXIT-001** được chuẩn hóa tại [fixture](../../reference/scenarios/fixtures/HOUSE-EXIT-001.md): startup sạch → Ronin/Hestia+Ron → Skip → cạnh giường → Down 1000 ms/release → nghỉ/chụp → Down 1000 ms/release → ngoài nhà. R02/R03 đi bốn hướng trong nhà, R04 mới dùng hai lần Down. Khoảng Skip-release→movement đầu lần lượt 63.737638972 / 11.102502671 / 11.390434631 giây. R04 có bracket Down 1037.721205 và 1001.718762 ms, khoảng nghỉ giữa 1719.101485 ms. Không coi là ba replay tương đương cửa ra hoặc thời gian giữ liên tục 2 giây. RMS mới/profile là điều kiện được ghi; không có snapshot byte trước startup cũ, và chưa kiểm toàn bộ state/RNG tương đương.
+
+**SCN-0003:** tạo [HOUSE-INPUT-001](../../reference/scenarios/fixtures/HOUSE-INPUT-001.md) bằng UI save ở gian dưới; dừng JVM, copy snapshot bất biến rồi cold load trong directory/PID mới cho mỗi case. Thu A–E với ba lượt mỗi biến thể; 15 lượt là cùng điều kiện storage/profile/điểm neo quan sát được trong từng biến thể, không phải chứng minh RAM/RNG/scheduling giống nhau. Sidecar mới có ảnh khi đang giữ phím và log trước/sau dispatch listener; không transformer, không sửa class hoặc ghi state game. [Phân tích input](evidence/milestone-1.5/runtime-20261021/input-case-analysis.json) chứa khoảng bao giữ phím ở listener, không phải timing callback MIDlet.
+
+Mapping thực đo đáng chú ý: AWT numpad `98/100/102/104/101` → raw mapper `56/52/54/50/53`; ảnh A cho xuống/trái/phải/lên theo thứ tự đó. Không đồng nhất numpad 2 với raw 50 hoặc hàng số. D dùng numpad 8/raw 50 cho Up và numpad 6/raw 54 cho Right. Q raw `-21` đóng dialog Yes mà Enter raw `-20` chưa đóng trong ảnh; W raw `-22` mở Status. Đây là quan sát mapper/UI, **normalize/gameAction bên trong game vẫn chỉ có cơ sở tĩnh JADX/javap**.
+
+B có chuyển động giữa ảnh đang giữ phím. B-R01 còn dịch map từ ảnh release tới ảnh nghỉ 1 giây, rồi điểm neo ổn định giữa ảnh nghỉ 1/2 giây; không kết luận dừng tức thì hay độ trễ từ ảnh rời. C đã phát input ngắn và có thay đổi vị trí sau nghỉ; không suy đường release slot. D có overlap ở listener và ảnh sau thả, chưa xác minh arbitration/callback order. E-R01/R02 chụp Status, E-R03 ảnh gần đen có Ok/Back (chi tiết bên dưới); chưa đủ diễn tiến xác nhận combat/damage. Các kết quả và giới hạn nằm ở [SCN-0003](../../reference/scenarios/SCN-0003-input.md#thực-nghiệm-tiếp-tục--fixture-trong-nhà).
+
+**SCN-0006:** W → System → Save hiện “Game saved”; console ghi `_k` 432 byte và `_o` 22 byte. Từ S0 cạnh giường, UI Quit/Exit đã thử nhưng JVM còn sống và ảnh về logo; harness gửi SIGTERM, xác nhận process dừng rồi snapshot **BED-SAVE-001**. PID 69768 → PID mới 74133 cold load Ronin về cạnh giường. Status khớp Ronin/Rookie Swordsman, LV1/EXP0/NEXT80, HP74/74, SP60/60, tiền800; màn Items Empty và trang bị Dull two hands sword/Attacking10/Refining0/22 cũng khớp. Không suy mọi field/slot đã được lưu.
+
+Từ phiên load, di chuyển Down1000 ms/Left500 ms, save lại ở gian dưới (S2), dừng PID74133, snapshot **HOUSE-INPUT-001**. PID76026 và các case input cold load phục hồi điểm neo S2 thay vì S0. Menu có save chọn sẵn Load Game; bấm Down như ở RMS sạch sẽ sang Options. Giữ nguyên các ảnh khám phá có tên dự đoán chưa đúng và giải thích nội dung thực tại [SCN-0006](../../reference/scenarios/SCN-0006-save-load.md#thực-nghiệm-tiếp-tục--cold-load-đã-quan-sát). Mỗi trạng thái chỉ có một lần tạo save; nhiều cold load cùng snapshot không phải ba chu kỳ save/load độc lập. UI Exit chưa chứng minh kết thúc JVM; round-trip sau khi **harness đã dừng JVM** đã có evidence.
+
+**Giới hạn emulator:** lỗi mở Tone Player/MIDI và synthesizer null tiếp tục xuất hiện trong console. Game vẫn load và phản ứng input/save trong các lượt đã nêu. Đây là giới hạn audio của runtime/emulator đang thử; không quy kết game gốc lỗi, không coi sound=on là đã nghe được âm thanh.
+
+**Chưa xác minh:** FPS/cadence, latency, clock resolution/overhead, callback ordering, physical repeat, trace normalize/release-slot/pending action, toàn bộ state/RNG, 4 CF và visibility. Snapshot field chỉ là số đọc tại mốc, không phải trace hoặc state restore nguyên tử. SCN-0003/0006 và milestone vẫn chưa đạt toàn bộ; chưa có kết quả web. Bằng chứng vẫn là emulator/probe/local, không có đóng góp REA runtime mới.
+
+**Sai khác thực tế không được bỏ qua:** A-R02/R03 có endpoint khác A-R01; chưa xác minh nguyên nhân. E-R01/R02 có ảnh Status rõ, E-R03 ảnh gần đen chỉ còn Ok/Back dù snapshot sau đó `m.e:int=5`. Giữ ảnh gốc và ghi giới hạn capture không đồng bộ paint; chưa kết luận emulator/game vẽ lỗi hoặc mọi lượt E đều có cùng kết quả UI. Xem [review.json](evidence/milestone-1.5/runtime-20261021/review.json). B thực giữ ở listener nằm trong các bracket khoảng 1031–1046 ms; C khoảng 21–24 ms, không thay bằng đúng 1000/20 ms của plan.

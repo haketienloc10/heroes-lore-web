@@ -1,0 +1,90 @@
+{
+  "utc": "2026-10-21T15:32:43.735902+00:00",
+  "producer": "local shell/Python, not REA",
+  "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "jvm": "openjdk version \"21.0.12.1\" 2026-08-18\nOpenJDK Runtime Environment (build 21.0.12.1+1-1-24.04.4-Ubuntu)\nOpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-24.04.4-Ubuntu, mixed mode, sharing)\n",
+  "gui": {
+    "DISPLAY": ":0",
+    "WAYLAND_DISPLAY": "wayland-0"
+  },
+  "game": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "emulator": {
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "size": 1161902,
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e"
+  },
+  "probe_binaries": [
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/probe-current.jar",
+      "size": 5118,
+      "sha256": "f7c7c3449fdb28db748390a0f39beae5a0b2dbe4d874f100ace3e49bc0bacbc8"
+    },
+    {
+      "path": "/tmp/heroes-lore-runtime-probe/frame-probe.jar",
+      "size": 1988,
+      "sha256": "6d98ee15d60d9c8b83dcd0009374c6583c88dc01c07c973e4a21804f459dacac"
+    },
+    {
+      "path": "/tmp/heroes-lore-runtime-sequence/sequence-probe.jar",
+      "size": 5888,
+      "sha256": "c822079498bc72de4f93bcdeaad16c0c8ccb4f0098c3ed85f162b931949998b7"
+    }
+  ],
+  "runtime_sources": [
+    {
+      "path": "reverse-engineering/scripts/RuntimeSequenceProbe.java",
+      "size": 4703,
+      "sha256": "cb2ac1eb026bf352752ece9d7eae4ad86c56ff2a275e131486347eaf2d018006"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeFramebufferProbe.java",
+      "size": 1497,
+      "sha256": "1278293767602915b65d2e08ebb0224d71a59d9cc39f36875e8b2b63cdfcb1e1"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeStateProbe.java",
+      "size": 7506,
+      "sha256": "5832b9795cb0b2acd0570fdc9cb92dbf03b686289004756c4f5898f8413a1c2d"
+    },
+    {
+      "path": "reverse-engineering/scripts/run_runtime_input_case.py",
+      "size": 1835,
+      "sha256": "6238d546f4a47f2b618f61da2c57f0d2679a57654d283d3793c779a89562dc0e"
+    },
+    {
+      "path": "reverse-engineering/scripts/run_runtime_sequence.py",
+      "size": 1406,
+      "sha256": "864b1e2e222943edc6678735cd26b2e8ed236c94aff2e2627b329b6bdcf4b5fb"
+    },
+    {
+      "path": "reverse-engineering/scripts/snapshot_runtime_storage.py",
+      "size": 1852,
+      "sha256": "34154b5ee67b1abe2b26e16f0b849ccfe592a69eba3223a0108d8ce5fc9487a9"
+    },
+    {
+      "path": "reverse-engineering/scripts/start_runtime_from_snapshot.py",
+      "size": 2196,
+      "sha256": "82752707a70b202d4f0fd4e91aeb8f5dc6c4c837bd02f2cb56760efec653374a"
+    },
+    {
+      "path": "reverse-engineering/scripts/run_runtime_smoke.py",
+      "size": 4504,
+      "sha256": "4e04ad44358fddae6591ae9819423f5fe7e5b9f167cc84d884f78e37fceeb743"
+    },
+    {
+      "path": "reverse-engineering/scripts/stop_runtime_session.py",
+      "size": 2343,
+      "sha256": "d93d816a4d87aa9435692fbc65809d40fd279696939ec10635c0b9f944755bd9"
+    }
+  ],
+  "limits": [
+    "Synthetic KeyListener only; no physical repeat",
+    "No transformer, game field writes, or direct game methods",
+    "No MIDlet callback/BCI trace, FPS or overhead measurement"
+  ],
+  "rea": "No active REA tools; read-only CLI doctor reports registration config_drift. No configuration changes; runtime evidence is local emulator/probes."
+}

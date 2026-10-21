@@ -1,0 +1,12 @@
+wait 2000
+frame D-start
+down 104
+wait 50
+down 102
+wait 50
+up 104
+wait 50
+up 102
+frame D-both-released
+wait 2000
+frame D-idle

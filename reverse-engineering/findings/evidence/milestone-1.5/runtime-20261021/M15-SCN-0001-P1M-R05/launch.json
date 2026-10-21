@@ -1,0 +1,26 @@
+{
+  "run_id": "M15-SCN-0001-P1M-R05",
+  "pid": 69768,
+  "utc": "2026-10-21T15:21:59.051075+00:00",
+  "mono_ns": 10042946669217,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R05",
+  "profile": "P1M Motorola, 240×320, limiter60, scale2 requested",
+  "rms_before": "directory mới",
+  "input_coordination": "Người dùng đã chọn agent tự động, không thao tác tay",
+  "instrumentation_at_launch": false,
+  "later_probes": "đọc state/framebuffer và injection emulator KeyListener; không transform class"
+}

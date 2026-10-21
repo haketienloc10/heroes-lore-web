@@ -1,10 +1,10 @@
 # SCN-0002 — Menu và tải vào màn chơi
 
-**Bản gốc:** đã quan sát menu/New Game/Back/loading trong 3 lượt P1M có kiểm soát; **chưa đạt toàn bộ**. Load save, các biên menu và trace CF-02 còn thiếu. **Web:** chưa chạy. Kế hoạch ban đầu và biên bản thực nghiệm tách riêng bên dưới.
+**Bản gốc:** đã quan sát menu/New Game/Back/loading trong 3 lượt P1M có kiểm soát; **chưa đạt toàn bộ**. Load save đã được khám phá ở SCN-0006; các biên menu, 3 chu kỳ save/load và trace CF-02 còn thiếu. **Web:** chưa chạy. Kế hoạch ban đầu và biên bản thực nghiệm tách riêng bên dưới.
 
 ## Điều kiện và chuỗi thao tác
 
-Từ đường startup đã ghi ở SCN-0001, lưu ảnh menu cùng fixture RMS. Tên menu/ngôn ngữ và vị trí mục chưa được quan sát; lần khám phá phải ghi lại để các lượt sau replay đúng input. Không gán tên menu cho state số.
+Từ đường startup đã ghi ở SCN-0001, lưu ảnh menu cùng fixture RMS. Tên menu tiếng Anh và đường New Game/Load Game đã được quan sát trong các lượt tiếp tục; kế hoạch dưới đây giữ tiêu chí cần kiểm. Không gán tên menu cho state số.
 
 1. Không input 2 giây, lưu ảnh mục đang chọn và trace state nếu có.
 2. `tap(8,100)`, `wait(500)`; `tap(2,100)`, `wait(500)`. Chụp ảnh sau mỗi lần; ghi dịch chuyển lựa chọn, wrap/clamp nếu xuất hiện. Sau đó đi đến từng biên bằng số tap thực tế được ghi và thử thêm một tap để xác định biên.
@@ -41,4 +41,8 @@ Lượt khám phá Standard có W/A không quay lại màn Ronin; P1M Motorola �
 
 **Evidence:** mỗi run có launch.json liên kết session console/config/RMS, input.log, framebuffer.log, state-after-load.log và manifest; xem [runtime evidence](../../reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/README.md) và [FND-0003](../../reverse-engineering/findings/FND-0003-emulator-smoke.md).
 
-**Chưa xác minh:** CF-02 phải có trace `bt.run`/BCI tới hậu xử lý; log `sleep`, `map : 0` và ảnh loading **không thay thế** trace đó. Chưa kiểm hết menu bounds/wrap, fixture có save hoặc load/continue. Chưa có timing/latency/FPS thực tế; chưa đánh dấu đạt toàn bộ.
+**Chưa xác minh:** CF-02 phải có trace `bt.run`/BCI tới hậu xử lý; log `sleep`, `map : 0` và ảnh loading **không thay thế** trace đó. Chưa kiểm hết menu bounds/wrap. Fixture có save và cold load được ghi bổ sung tại SCN-0006; không gộp thành ba lượt menu tương đương RMS sạch. Chưa có timing/latency/FPS thực tế; chưa đánh dấu đạt toàn bộ.
+
+## Bổ sung menu có save
+
+Sau cold startup từ BED-SAVE-001, Load Game được chọn sẵn; Enter mở danh sách Ronin rồi Enter tải lại cạnh giường. Bấm Down tại menu đó chuyển sang Options. Evidence R05L và sai lệch tên file chụp khám phá được giải thích ở [SCN-0006](SCN-0006-save-load.md#thực-nghiệm-tiếp-tục--cold-load-đã-quan-sát); không áp dụng chuỗi Down/Up của RMS sạch cho fixture có save mà không kiểm ảnh. CF-02 vẫn chưa có trace trực tiếp.

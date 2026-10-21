@@ -1,0 +1,25 @@
+{
+  "run_id": "M15-SCN-0003-P1M-E-R02",
+  "pid": 83075,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0003-P1M-E-R02",
+  "utc": "2026-10-21T15:39:35.536731+00:00",
+  "profile": "P1M",
+  "snapshot_source": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0006-P1M-R05L/HOUSE-INPUT-001-storage.json",
+  "previous_pid": 74133,
+  "previous_proc_state_at_copy": "absent",
+  "input_method": "synthetic emulator KeyListener; no game state writes"
+}

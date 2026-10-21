@@ -1,0 +1,4666 @@
+{
+  "kind": "derived analysis of saved evidence, NOT a new runtime recording",
+  "producer": {
+    "path": "reverse-engineering/scripts/audit_runtime_sessions.py",
+    "size": 7594,
+    "sha256": "15308c043b687f8ef16788cdb0658b831add75c1d1120fa25070bc470c30fc97"
+  },
+  "time_semantics": "UTC and System.nanoTime preserved verbatim. Durations only subtract Java monotonic points within a process. Down is logged before KeyListener dispatch; up after dispatch, so listener_bracket_ns is not exact callback hold duration. Clock resolution, overhead, FPS, latency and callback ordering unmeasured. Do not subtract Python launch mono_ns from Java timestamps.",
+  "sessions": [
+    {
+      "session_id": "M15-SCN-0001-P1M-R02",
+      "records": [
+        {
+          "run_id": "M15-SCN-0001-P1M-R02",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/input.log",
+              "size": 409,
+              "sha256": "bb5073dd127c76749d80a0f2f2e27848929bb7bddba0ea3a77f33e35edc831aa"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/framebuffer.log",
+              "size": 504,
+              "sha256": "c75d11f5440e9ba19905b20d170200236ff2a4c072c67bb84c3558d18e59954b"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/launch.json",
+              "size": 846,
+              "sha256": "8652efdbd360881dae6eb85370b736b555f2569a85b2747930400eca40466289"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/manifest.json",
+              "size": 4997,
+              "sha256": "4eedcb3e3b873bf3d1047efb5151a3e200ecb98b90b9c2716f37e888ba33cbbd"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0001-P1M-R02",
+            "pid": 58216,
+            "utc": "2026-10-21T14:59:32.652116+00:00",
+            "mono_ns": 8760167770930,
+            "argv": [
+              "java",
+              "-Dfile.encoding=ISO_8859_1",
+              "-Dsun.java2d.uiScale=1",
+              "-jar",
+              "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+              "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+              "0",
+              "240",
+              "320",
+              "2",
+              "2",
+              "60"
+            ],
+            "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R02",
+            "profile": "P1M Motorola, 240×320, limiter60, scale2 requested",
+            "rms_before": "directory mới",
+            "input_coordination": "Người dùng đã chọn agent tự động, không thao tác tay",
+            "instrumentation_at_launch": false,
+            "later_probes": "đọc state/framebuffer và injection emulator KeyListener; không transform class"
+          },
+          "inputs": [
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T14:59:46.162338624Z",
+                "mono_ns": 8772066588789,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T14:59:46.271656911Z",
+                "mono_ns": 8772175906064,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 109317275
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T14:59:45.256197737Z",
+              "mono_ns": 8771166567843,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0001-P1M-R02/02-10s-framebuffer.png",
+              "size": 7851,
+              "sha256": "bd481542f50310d5806409380418487f341cbe59e9ea1a4b0b7b319fc970ea7a",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:48.635018685Z",
+              "mono_ns": 8774539278506,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0001-P1M-R02/03-after-startup-Enter.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/state-after-startup.log",
+                "size": 8681,
+                "sha256": "325894aebc106afedc0a14d42eba92f0c91c7f2ccb7b83fc0bd72a58fdd4e460"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T14:59:48.920417027Z mono_ns=8774824651466 field m.e:int=9"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T14:59:48.921162868Z mono_ns=8774825397858 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T14:59:48.923759976Z mono_ns=8774828024119 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T14:59:48.923961748Z mono_ns=8774828197106 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T14:59:48.942942892Z mono_ns=8774847197471 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T14:59:48.943099693Z mono_ns=8774847331097 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T14:59:48.943194418Z mono_ns=8774847423522 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T14:59:48.943481902Z mono_ns=8774847714501 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T14:59:48.943591709Z mono_ns=8774847825780 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T14:59:48.943682571Z mono_ns=8774847914434 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/state-before-input.log",
+                "size": 5488,
+                "sha256": "f70322fbf822b5ee91bdd17b386321690a224d19c786282f5ca512d515708286"
+              },
+              "selected_observations": [
+                {
+                  "line": 5,
+                  "text": "2026-10-21T14:59:45.575325099Z mono_ns=8771479562112 field m.e:int=0"
+                },
+                {
+                  "line": 9,
+                  "text": "2026-10-21T14:59:45.582930192Z mono_ns=8771487200681 field m.e:byte=0"
+                },
+                {
+                  "line": 19,
+                  "text": "2026-10-21T14:59:45.600244827Z mono_ns=8771504497015 field q.g:int=240"
+                },
+                {
+                  "line": 20,
+                  "text": "2026-10-21T14:59:45.601108292Z mono_ns=8771505364067 field q.h:int=320"
+                },
+                {
+                  "line": 59,
+                  "text": "2026-10-21T14:59:45.652698590Z mono_ns=8771556946088 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 60,
+                  "text": "2026-10-21T14:59:45.653183617Z mono_ns=8771557442426 emulator lcdWidth=240"
+                },
+                {
+                  "line": 61,
+                  "text": "2026-10-21T14:59:45.653543386Z mono_ns=8771557804403 emulator lcdHeight=320"
+                },
+                {
+                  "line": 62,
+                  "text": "2026-10-21T14:59:45.664873821Z mono_ns=8771569127848 emulator limitFPS=60"
+                },
+                {
+                  "line": 63,
+                  "text": "2026-10-21T14:59:45.665391955Z mono_ns=8771569641660 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 64,
+                  "text": "2026-10-21T14:59:45.665752736Z mono_ns=8771569993152 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "run_id": "M15-SCN-0002-P1M-R02",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/input.log",
+              "size": 4904,
+              "sha256": "3648824793d8503f024ef4f6e21206c53a7a1ee4b35ab96393e4964626a67090"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/framebuffer.log",
+              "size": 3195,
+              "sha256": "248428b689b35463fce727727422938f52c92ae43d45b3fd4af9d519ef3da048"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/launch.json",
+              "size": 206,
+              "sha256": "87038632310bd34ec4642828ce17d56dd5c925b7e8ad3bc5fbe42b5031a6deac"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/manifest.json",
+              "size": 5963,
+              "sha256": "a684505e74896274274c40cc7ad9976f9241a0cf01108a45f2cb732047bdb5f7"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0002-P1M-R02",
+            "pid": 58216,
+            "inherited_session": "M15-SCN-0001-P1M-R02",
+            "input_method": "in-process emulator AWT KeyListener; không ép state",
+            "profile": "P1M Motorola"
+          },
+          "inputs": [
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T14:59:49.251821977Z",
+                "mono_ns": 8775156090995,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T14:59:49.353848406Z",
+                "mono_ns": 8775258132689,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 102041694
+            },
+            {
+              "key_awt": 38,
+              "down": {
+                "utc": "2026-10-21T14:59:50.631191936Z",
+                "mono_ns": 8776535497521,
+                "source_line": 7
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 5,
+                "text": "computed_emulator_mapping host_awt=38 internal=0 raw=-1"
+              },
+              "gap_since_previous_up_ns": 1277364832,
+              "up": {
+                "utc": "2026-10-21T14:59:50.734267885Z",
+                "mono_ns": 8776638591687,
+                "source_line": 8
+              },
+              "listener_bracket_ns": 103094166
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T14:59:52.027033547Z",
+                "mono_ns": 8777931273699,
+                "source_line": 11
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 9,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1292682012,
+              "up": {
+                "utc": "2026-10-21T14:59:52.129930659Z",
+                "mono_ns": 8778034247879,
+                "source_line": 12
+              },
+              "listener_bracket_ns": 102974180
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T14:59:53.665591514Z",
+                "mono_ns": 8779569834814,
+                "source_line": 15
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 13,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1535586935,
+              "up": {
+                "utc": "2026-10-21T14:59:53.769552584Z",
+                "mono_ns": 8779673892884,
+                "source_line": 16
+              },
+              "listener_bracket_ns": 104058070
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T14:59:55.066082871Z",
+                "mono_ns": 8780970406862,
+                "source_line": 19
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 17,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1296513978,
+              "up": {
+                "utc": "2026-10-21T14:59:55.168867818Z",
+                "mono_ns": 8781073178742,
+                "source_line": 20
+              },
+              "listener_bracket_ns": 102771880
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T14:59:56.468889850Z",
+                "mono_ns": 8782373130479,
+                "source_line": 23
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 21,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1299951737,
+              "up": {
+                "utc": "2026-10-21T14:59:56.570366858Z",
+                "mono_ns": 8782474657657,
+                "source_line": 24
+              },
+              "listener_bracket_ns": 101527178
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T14:59:57.974381340Z",
+                "mono_ns": 8783878630077,
+                "source_line": 27
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 25,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1403972420,
+              "up": {
+                "utc": "2026-10-21T14:59:58.075466816Z",
+                "mono_ns": 8783979719845,
+                "source_line": 28
+              },
+              "listener_bracket_ns": 101089768
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T14:59:59.402463085Z",
+                "mono_ns": 8785306728058,
+                "source_line": 31
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 29,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1327008213,
+              "up": {
+                "utc": "2026-10-21T14:59:59.504286732Z",
+                "mono_ns": 8785408556293,
+                "source_line": 32
+              },
+              "listener_bracket_ns": 101828235
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:00:00.795260401Z",
+                "mono_ns": 8786699530536,
+                "source_line": 35
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 33,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1290974243,
+              "up": {
+                "utc": "2026-10-21T15:00:00.897778669Z",
+                "mono_ns": 8786802186084,
+                "source_line": 36
+              },
+              "listener_bracket_ns": 102655548
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:00:02.230836415Z",
+                "mono_ns": 8788135097659,
+                "source_line": 39
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 37,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1332911575,
+              "up": {
+                "utc": "2026-10-21T15:00:02.333910017Z",
+                "mono_ns": 8788238221546,
+                "source_line": 40
+              },
+              "listener_bracket_ns": 103123887
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:00:03.760197831Z",
+                "mono_ns": 8789664718435,
+                "source_line": 43
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 41,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 1426496889,
+              "up": {
+                "utc": "2026-10-21T15:00:03.862489817Z",
+                "mono_ns": 8789766749818,
+                "source_line": 44
+              },
+              "listener_bracket_ns": 102031383
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:00:05.210317403Z",
+                "mono_ns": 8791114553505,
+                "source_line": 47
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 45,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1347803687,
+              "up": {
+                "utc": "2026-10-21T15:00:05.314127213Z",
+                "mono_ns": 8791218392090,
+                "source_line": 48
+              },
+              "listener_bracket_ns": 103838585
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T14:59:50.334398407Z",
+              "mono_ns": 8776238690830,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/01-Down.png",
+              "size": 5091,
+              "sha256": "c1fbeb752ea9e4c2767387ff13759eb84e4f7f61669928e8cebb98cdd40073f7",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:51.752478879Z",
+              "mono_ns": 8777656827859,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/02-Up.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:53.288089373Z",
+              "mono_ns": 8779192350986,
+              "source_line": 3,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/03-open-Ronin.png",
+              "size": 7540,
+              "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:54.757735090Z",
+              "mono_ns": 8780661997370,
+              "source_line": 4,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/04-Back.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:56.186947093Z",
+              "mono_ns": 8782091207943,
+              "source_line": 5,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/05-open-Ronin-again.png",
+              "size": 7540,
+              "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:57.648635116Z",
+              "mono_ns": 8783552899781,
+              "source_line": 6,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/06-guardian-message.png",
+              "size": 846,
+              "sha256": "a4e14d0d825a44682f9974cf2ee81caac5548f5b07084434ec0c868cd5cee036",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T14:59:59.112919689Z",
+              "mono_ns": 8785017212099,
+              "source_line": 7,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/07-guardian-list.png",
+              "size": 6941,
+              "sha256": "8963d87c3b149df18126bccccffc7423bf4c1ac838b33a597b73272fa2b2ed7d",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:00.505167407Z",
+              "mono_ns": 8786409436203,
+              "source_line": 8,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/08-select-Hestia.png",
+              "size": 6791,
+              "sha256": "4eef20a18847ddf97425f26f3a7937ae468a177053e387fa4600cafde08dca6e",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:01.911137297Z",
+              "mono_ns": 8787815398732,
+              "source_line": 9,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/09-second-guardian.png",
+              "size": 6807,
+              "sha256": "c013257016977e2fa1e556a074d05911fde591c80faaf7cd4b2258ecc0cc4d96",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:03.319492189Z",
+              "mono_ns": 8789223778862,
+              "source_line": 10,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/10-confirm-two-guardians.png",
+              "size": 6906,
+              "sha256": "c0ce7d4bc89ad375785a9e065806eed50d97ef00beeab97cc8662c52f5f648f1",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:04.857546128Z",
+              "mono_ns": 8790761805078,
+              "source_line": 11,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/11-Yes.png",
+              "size": 6903,
+              "sha256": "bdaf65f7c64a1688ef14f401088e13ab64d8e263521e74305988e5cbf336925b",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:06.306920984Z",
+              "mono_ns": 8792211220946,
+              "source_line": 12,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/12-start-loading.png",
+              "size": 583,
+              "sha256": "a1d57645a5ade342e3730919f5cf5ba73847e24dcb6f5bb2ebe36761fcea8aab",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:18.164111342Z",
+              "mono_ns": 8802462486904,
+              "source_line": 13,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R02/13-after-load.png",
+              "size": 19978,
+              "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/state-after-load.log",
+                "size": 8686,
+                "sha256": "867f0e78fa278110e5e9f8f87b9aba56361e1514b6ae87f8aaefc1979e6a8917"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:00:18.585943814Z mono_ns=8802884243692 field m.e:int=4"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:00:18.586464157Z mono_ns=8802884753452 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:00:18.587345914Z mono_ns=8802885635682 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:00:18.587430386Z mono_ns=8802885723650 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:00:18.626821566Z mono_ns=8802925171711 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:00:18.637116924Z mono_ns=8802935467636 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:00:18.637840887Z mono_ns=8802936158434 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:00:18.638234144Z mono_ns=8802936538180 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:00:18.638521953Z mono_ns=8802936819563 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:00:18.638702708Z mono_ns=8802936996728 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "run_id": "M15-SCN-0005-P1M-R02",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/input.log",
+              "size": 4908,
+              "sha256": "4ddb483dd003c729ead9844b1be5704c975ebd78faf96355acea91eb4fb7044e"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/framebuffer.log",
+              "size": 4426,
+              "sha256": "0f79c000a8aeeff02e0fc8a0d97d2b191061c1655fb6fb3274c5e86fdd664dee"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/launch.json",
+              "size": 343,
+              "sha256": "95f02ee2d9d21f9d826a3d7cdee7e7276b32a612c264e352e7a7d3a5bb3ac2f4"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/manifest.json",
+              "size": 8387,
+              "sha256": "c779cdc3316731ac31280a6765dc973c1ccdba11406bb6c5dd7b39260ad2b1cf"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0005-P1M-R02",
+            "pid": 58216,
+            "inherited_session": "M15-SCN-0001-P1M-R02",
+            "menu_run": "M15-SCN-0002-P1M-R02",
+            "profile": "P1M Motorola",
+            "fixture": "Ronin, Hestia + guardian màu xanh; intro map : 0; không có snapshot save",
+            "input_method": "emulator AWT KeyListener injection, không input thủ công"
+          },
+          "inputs": [
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:00:32.679537402Z",
+                "mono_ns": 8816977861343,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:00:32.781245371Z",
+                "mono_ns": 8817079595732,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 101734389
+            },
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T15:01:39.810218276Z",
+                "mono_ns": 8880817234704,
+                "source_line": 7
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 5,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": 63737638972,
+              "up": {
+                "utc": "2026-10-21T15:01:40.818406063Z",
+                "mono_ns": 8881825429986,
+                "source_line": 8
+              },
+              "listener_bracket_ns": 1008195282
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:01:42.614447620Z",
+                "mono_ns": 8883621459819,
+                "source_line": 11
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 9,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1796029833,
+              "up": {
+                "utc": "2026-10-21T15:01:43.615758714Z",
+                "mono_ns": 8884622780042,
+                "source_line": 12
+              },
+              "listener_bracket_ns": 1001320223
+            },
+            {
+              "key_awt": 38,
+              "down": {
+                "utc": "2026-10-21T15:01:45.322504551Z",
+                "mono_ns": 8886329520114,
+                "source_line": 15
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 13,
+                "text": "computed_emulator_mapping host_awt=38 internal=0 raw=-1"
+              },
+              "gap_since_previous_up_ns": 1706740072,
+              "up": {
+                "utc": "2026-10-21T15:01:46.326091475Z",
+                "mono_ns": 8887333119050,
+                "source_line": 16
+              },
+              "listener_bracket_ns": 1003598936
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:01:48.043802433Z",
+                "mono_ns": 8889050829579,
+                "source_line": 19
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 17,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 1717710529,
+              "up": {
+                "utc": "2026-10-21T15:01:50.670933718Z",
+                "mono_ns": 8890053079200,
+                "source_line": 20
+              },
+              "listener_bracket_ns": 1002249621
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:01:52.525295979Z",
+                "mono_ns": 8891907342180,
+                "source_line": 23
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 21,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1854262980,
+              "up": {
+                "utc": "2026-10-21T15:01:52.627220593Z",
+                "mono_ns": 8892009256209,
+                "source_line": 24
+              },
+              "listener_bracket_ns": 101914029
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:01:54.137822191Z",
+                "mono_ns": 8893519851607,
+                "source_line": 27
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 25,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1510595398,
+              "up": {
+                "utc": "2026-10-21T15:01:54.242470694Z",
+                "mono_ns": 8893624513941,
+                "source_line": 28
+              },
+              "listener_bracket_ns": 104662334
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:03:16.726828133Z",
+                "mono_ns": 8972859945209,
+                "source_line": 31
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 29,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 79235431268,
+              "up": {
+                "utc": "2026-10-21T15:03:16.829520158Z",
+                "mono_ns": 8972962710090,
+                "source_line": 32
+              },
+              "listener_bracket_ns": 102764881
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:03:18.307018847Z",
+                "mono_ns": 8974440129427,
+                "source_line": 35
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 33,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1477419337,
+              "up": {
+                "utc": "2026-10-21T15:03:19.308253380Z",
+                "mono_ns": 8975441399824,
+                "source_line": 36
+              },
+              "listener_bracket_ns": 1001270397
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:03:20.828041497Z",
+                "mono_ns": 8976961151389,
+                "source_line": 39
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 37,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1519751565,
+              "up": {
+                "utc": "2026-10-21T15:03:21.829336989Z",
+                "mono_ns": 8977962460059,
+                "source_line": 40
+              },
+              "listener_bracket_ns": 1001308670
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:23.430680925Z",
+                "mono_ns": 8979563792068,
+                "source_line": 43
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 41,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1601332009,
+              "up": {
+                "utc": "2026-10-21T15:03:23.533005084Z",
+                "mono_ns": 8979666152871,
+                "source_line": 44
+              },
+              "listener_bracket_ns": 102360803
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:03:25.041348320Z",
+                "mono_ns": 8981174463791,
+                "source_line": 47
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 45,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1508310920,
+              "up": {
+                "utc": "2026-10-21T15:03:25.144556064Z",
+                "mono_ns": 8981277688462,
+                "source_line": 48
+              },
+              "listener_bracket_ns": 103224671
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:00:32.450125708Z",
+              "mono_ns": 8816748446407,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/01-before-Skip.png",
+              "size": 19978,
+              "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:35.033350769Z",
+              "mono_ns": 8819331672899,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/02-after-Skip.png",
+              "size": 606,
+              "sha256": "8c6137ceeec037bb0346bb55a9d158348c5bccbfcd69aa3574861fea4bcd0302",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:00:53.320587708Z",
+              "mono_ns": 8835967201719,
+              "source_line": 3,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/03-after-load.png",
+              "size": 16427,
+              "sha256": "be5ff71c18ec46c94d96d0cc2d1b1f7f15567d376d13396ce769068a4d9a518e",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:41.149217682Z",
+              "mono_ns": 8882156320119,
+              "source_line": 4,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/04-Down-release.png",
+              "size": 16812,
+              "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:42.393997707Z",
+              "mono_ns": 8883401028453,
+              "source_line": 5,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/04-Down-idle.png",
+              "size": 16812,
+              "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:43.850807016Z",
+              "mono_ns": 8884857838531,
+              "source_line": 6,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/05-Right-release.png",
+              "size": 16055,
+              "sha256": "6c2236c18e5c79f115177cb1031d5254315424492a857d2ba1d049d09892cb34",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:45.097079083Z",
+              "mono_ns": 8886104111271,
+              "source_line": 7,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/05-Right-idle.png",
+              "size": 16055,
+              "sha256": "6c2236c18e5c79f115177cb1031d5254315424492a857d2ba1d049d09892cb34",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:46.558357887Z",
+              "mono_ns": 8887565395168,
+              "source_line": 8,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/06-Up-release.png",
+              "size": 16226,
+              "sha256": "2fb4ee56f8b95398f86315ed8a1dcec91730546ca19aa761f1be2442bc33cef9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:47.819197377Z",
+              "mono_ns": 8888826227849,
+              "source_line": 9,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/06-Up-idle.png",
+              "size": 16226,
+              "sha256": "2fb4ee56f8b95398f86315ed8a1dcec91730546ca19aa761f1be2442bc33cef9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:50.913348625Z",
+              "mono_ns": 8890295406317,
+              "source_line": 10,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/07-Left-release.png",
+              "size": 16711,
+              "sha256": "dcc54767b51002c2d536bd970a1935428e80f7b398777684b927d2d8bd29a67c",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:52.263917555Z",
+              "mono_ns": 8891645960733,
+              "source_line": 11,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/07-Left-idle.png",
+              "size": 16695,
+              "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:53.880668745Z",
+              "mono_ns": 8893262730496,
+              "source_line": 12,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/08-action-Enter.png",
+              "size": 16695,
+              "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:01:55.583141528Z",
+              "mono_ns": 8894965166842,
+              "source_line": 13,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/09-W-menu.png",
+              "size": 3237,
+              "sha256": "a6b95e3618160789cec4c5337a73f9d058dbe8c3b4509b3d0a8b674d96c5cabd",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:18.086647746Z",
+              "mono_ns": 8974219782518,
+              "source_line": 14,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/10-close-menu.png",
+              "size": 16695,
+              "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:20.562780524Z",
+              "mono_ns": 8976695922168,
+              "source_line": 15,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/11-Right-boundary.png",
+              "size": 16167,
+              "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:23.200347598Z",
+              "mono_ns": 8979333502502,
+              "source_line": 16,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/12-Right-again.png",
+              "size": 16167,
+              "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:24.783094817Z",
+              "mono_ns": 8980916222022,
+              "source_line": 17,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/13-action-at-boundary.png",
+              "size": 16167,
+              "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:26.491691631Z",
+              "mono_ns": 8982624831916,
+              "source_line": 18,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R02/14-status-final.png",
+              "size": 3237,
+              "sha256": "a6b95e3618160789cec4c5337a73f9d058dbe8c3b4509b3d0a8b674d96c5cabd",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/state-after-Skip.log",
+                "size": 8682,
+                "sha256": "5e07e8a879a8ce68c1eebdafa602afd7a146b4b2c631b530ede42d68f02c6dc7"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:00:35.312347586Z mono_ns=8819610635474 field m.e:int=2"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:00:35.312620176Z mono_ns=8819610908160 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:00:35.313452254Z mono_ns=8819611740619 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:00:35.313515776Z mono_ns=8819611803760 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:00:35.326131521Z mono_ns=8819624424560 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:00:35.326284508Z mono_ns=8819624573827 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:00:35.326423092Z mono_ns=8819624711744 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:00:35.326586188Z mono_ns=8819624874840 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:00:35.326707414Z mono_ns=8819624996352 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:00:35.326817480Z mono_ns=8819625119485 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/state-after-load.log",
+                "size": 8682,
+                "sha256": "ac31ef8d55dea871e9543f2158bfbd0f3d5b4028291f6130a304c8273f570562"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:00:53.652146979Z mono_ns=8836298729739 field m.e:int=2"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:00:53.652865571Z mono_ns=8836299446448 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:00:53.653896111Z mono_ns=8836300508239 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:00:53.654018951Z mono_ns=8836300599169 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:00:53.664353998Z mono_ns=8836310932428 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:00:53.664445399Z mono_ns=8836311034277 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:00:53.664514961Z mono_ns=8836311089625 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:00:53.664601373Z mono_ns=8836311176978 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:00:53.664647026Z mono_ns=8836311220561 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:00:53.664688255Z mono_ns=8836311263673 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/state-final.log",
+                "size": 17370,
+                "sha256": "d16902d162b45a6655fe98ca9a447ce369baf4851adb52e87f913dab93766539"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:01:55.817120888Z mono_ns=8895199120545 field m.e:int=5"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:01:55.817314322Z mono_ns=8895199313788 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:01:55.818122013Z mono_ns=8895200126820 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:01:55.818189734Z mono_ns=8895200190821 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:01:55.834393242Z mono_ns=8895216397477 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:01:55.834486811Z mono_ns=8895216486945 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:01:55.834821409Z mono_ns=8895216828983 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:01:55.834991856Z mono_ns=8895216993611 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:01:55.835051088Z mono_ns=8895217050840 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:01:55.835086761Z mono_ns=8895217085082 emulator isPaused=false"
+                },
+                {
+                  "line": 122,
+                  "text": "2026-10-21T15:03:26.792559618Z mono_ns=8982925665568 field m.e:int=5"
+                },
+                {
+                  "line": 126,
+                  "text": "2026-10-21T15:03:26.795267981Z mono_ns=8982928374988 field m.e:byte=0"
+                },
+                {
+                  "line": 136,
+                  "text": "2026-10-21T15:03:26.795833986Z mono_ns=8982928940128 field q.g:int=240"
+                },
+                {
+                  "line": 137,
+                  "text": "2026-10-21T15:03:26.795868899Z mono_ns=8982928974944 field q.h:int=320"
+                },
+                {
+                  "line": 202,
+                  "text": "2026-10-21T15:03:26.810013167Z mono_ns=8982943120848 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 203,
+                  "text": "2026-10-21T15:03:26.810070585Z mono_ns=8982943175573 emulator lcdWidth=240"
+                },
+                {
+                  "line": 204,
+                  "text": "2026-10-21T15:03:26.810149547Z mono_ns=8982943255400 emulator lcdHeight=320"
+                },
+                {
+                  "line": 205,
+                  "text": "2026-10-21T15:03:26.810261305Z mono_ns=8982943366966 emulator limitFPS=60"
+                },
+                {
+                  "line": 206,
+                  "text": "2026-10-21T15:03:26.810302181Z mono_ns=8982943414863 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 207,
+                  "text": "2026-10-21T15:03:26.810338344Z mono_ns=8982943443043 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "stop": {
+        "utc": "2026-10-21T15:03:27.589141+00:00",
+        "method": "SIGTERM do harness gửi; không kiểm thử thoát/save qua UI",
+        "process_stopped": true
+      },
+      "storage_after_stop": {
+        "snapshot_after_process_stopped": true,
+        "files": [
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R02/config/Heroes Lore/game.conf",
+            "size": 387,
+            "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R02/freej2me_system/FreeJ2ME.log",
+            "size": 1294,
+            "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R02/freej2me_system/customFont/Put your ttf font here",
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R02/freej2me_system/freej2me.conf",
+            "size": 512,
+            "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R02/rms/Heroes Lore/410decd402x2m_.1",
+            "size": 6,
+            "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R02/rms/Heroes Lore/410decd402x2m_.rms",
+            "size": 382,
+            "sha256": "c4c95b13816b005433bb8d2c5a455ac30e8587fc09451ac0aea16dc33de61c28"
+          }
+        ],
+        "note": "Metadata/config/log; RMS nhị phân chỉ local, chưa xác minh save/load semantics"
+      },
+      "storage_manifest_identity": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/storage-manifest.json",
+        "size": 1408,
+        "sha256": "15eb890462a7839f2bdc9568ec58aa237668ca34db8b62b999f4b62ff9d5d82f"
+      },
+      "initial_condition_assessment": {
+        "fresh_rms": "declared in launch.json; no pre-launch byte snapshot",
+        "bed_anchor": "03-after-load.png",
+        "rng_and_internal_state_equivalence": "chưa xác minh",
+        "house_exit_replay": false,
+        "variant": "four-directions-inside"
+      }
+    },
+    {
+      "session_id": "M15-SCN-0001-P1M-R03",
+      "records": [
+        {
+          "run_id": "M15-SCN-0001-P1M-R03",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/input.log",
+              "size": 409,
+              "sha256": "68e3ef119583e03a208fa54a338424f5405da87b0858db958a0e32a02e82cd18"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/framebuffer.log",
+              "size": 504,
+              "sha256": "e7fbd80062cceeb5c5d37c376d26e7f482fd0a76b87e00b70db6b58166faea8b"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/launch.json",
+              "size": 846,
+              "sha256": "3c9bca2c13835ad5a7e9d79ba37c566afb2eba75ca09d401eab662ec672ba617"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/manifest.json",
+              "size": 4997,
+              "sha256": "41e2b815579f0edea3e5b1639ae1e8d92dd2ae38ddb29932e969044f80fb2992"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0001-P1M-R03",
+            "pid": 61023,
+            "utc": "2026-10-21T15:03:27.668318+00:00",
+            "mono_ns": 8983800671261,
+            "argv": [
+              "java",
+              "-Dfile.encoding=ISO_8859_1",
+              "-Dsun.java2d.uiScale=1",
+              "-jar",
+              "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+              "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+              "0",
+              "240",
+              "320",
+              "2",
+              "2",
+              "60"
+            ],
+            "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R03",
+            "profile": "P1M Motorola, 240×320, limiter60, scale2 requested",
+            "rms_before": "directory mới",
+            "input_coordination": "Người dùng đã chọn agent tự động, không thao tác tay",
+            "instrumentation_at_launch": false,
+            "later_probes": "đọc state/framebuffer và injection emulator KeyListener; không transform class"
+          },
+          "inputs": [
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:40.912316838Z",
+                "mono_ns": 8995420761597,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:03:41.016952705Z",
+                "mono_ns": 8995525413035,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 104651438
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:03:40.191646136Z",
+              "mono_ns": 8994703505703,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0001-P1M-R03/02-10s-framebuffer.png",
+              "size": 7851,
+              "sha256": "cfebc672fea67fa3dcca28805348aab4a6d41f8042c82da587e08ffa699201f6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:43.250689391Z",
+              "mono_ns": 8997759156486,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0001-P1M-R03/03-after-startup-Enter.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/state-after-startup.log",
+                "size": 8677,
+                "sha256": "70b757b0cdb13c6fa3b19b35dd8bd2e3e3806fa2d4563bda8cd1620d5aec31c5"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:03:43.486222502Z mono_ns=8997994650116 field m.e:int=9"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:03:43.488215632Z mono_ns=8997996660298 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:03:43.492748319Z mono_ns=8998001177416 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:03:43.492850079Z mono_ns=8998001279269 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:03:43.509931994Z mono_ns=8998018370915 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:03:43.510308822Z mono_ns=8998018744221 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:03:43.511674152Z mono_ns=8998020125770 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:03:43.512344491Z mono_ns=8998020776275 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:03:43.512617797Z mono_ns=8998021049212 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:03:43.512795461Z mono_ns=8998021264502 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/state-before-input.log",
+                "size": 5490,
+                "sha256": "ffa0b3276164b9ef1b3fcc438836a8399b98d721a49076bb90e4d7eb7b0bfe62"
+              },
+              "selected_observations": [
+                {
+                  "line": 5,
+                  "text": "2026-10-21T15:03:40.471777117Z mono_ns=8994980222433 field m.e:int=0"
+                },
+                {
+                  "line": 9,
+                  "text": "2026-10-21T15:03:40.473979884Z mono_ns=8994982411298 field m.e:byte=0"
+                },
+                {
+                  "line": 19,
+                  "text": "2026-10-21T15:03:40.489621863Z mono_ns=8994998052536 field q.g:int=240"
+                },
+                {
+                  "line": 20,
+                  "text": "2026-10-21T15:03:40.489776265Z mono_ns=8994998208513 field q.h:int=320"
+                },
+                {
+                  "line": 59,
+                  "text": "2026-10-21T15:03:40.532663302Z mono_ns=8995041104540 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 60,
+                  "text": "2026-10-21T15:03:40.533458293Z mono_ns=8995041894619 emulator lcdWidth=240"
+                },
+                {
+                  "line": 61,
+                  "text": "2026-10-21T15:03:40.534059030Z mono_ns=8995042578118 emulator lcdHeight=320"
+                },
+                {
+                  "line": 62,
+                  "text": "2026-10-21T15:03:40.535056151Z mono_ns=8995043492755 emulator limitFPS=60"
+                },
+                {
+                  "line": 63,
+                  "text": "2026-10-21T15:03:40.535342433Z mono_ns=8995043827507 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 64,
+                  "text": "2026-10-21T15:03:40.536033717Z mono_ns=8995044474399 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "run_id": "M15-SCN-0002-P1M-R03",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/input.log",
+              "size": 4904,
+              "sha256": "bcc7fb8760529a2bcfb3491a1e3ea8a5fe588b594dd993b394792208d4bc1ebe"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/framebuffer.log",
+              "size": 3195,
+              "sha256": "0b47d293eb642e5900eb52dbe411546441c229c2b2c618a734cf1c26ce92514b"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/launch.json",
+              "size": 206,
+              "sha256": "264be9ce31812bd54cf06bac5c3ef4db071a133ada067e2415b7f3f7affdd87a"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/manifest.json",
+              "size": 5963,
+              "sha256": "21b03299fdc9bd35fc62f09d2b10bd2e52b46c676219b8ea5a8956ede78662f8"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0002-P1M-R03",
+            "pid": 61023,
+            "inherited_session": "M15-SCN-0001-P1M-R03",
+            "input_method": "in-process emulator AWT KeyListener; không ép state",
+            "profile": "P1M Motorola"
+          },
+          "inputs": [
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T15:03:43.902667839Z",
+                "mono_ns": 8998411107780,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:03:44.005815023Z",
+                "mono_ns": 8998514390366,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 103282586
+            },
+            {
+              "key_awt": 38,
+              "down": {
+                "utc": "2026-10-21T15:03:45.195767251Z",
+                "mono_ns": 8999704219610,
+                "source_line": 7
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 5,
+                "text": "computed_emulator_mapping host_awt=38 internal=0 raw=-1"
+              },
+              "gap_since_previous_up_ns": 1189829244,
+              "up": {
+                "utc": "2026-10-21T15:03:45.301433233Z",
+                "mono_ns": 8999809943608,
+                "source_line": 8
+              },
+              "listener_bracket_ns": 105723998
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:46.473315044Z",
+                "mono_ns": 9000981789924,
+                "source_line": 11
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 9,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1171846316,
+              "up": {
+                "utc": "2026-10-21T15:03:46.576265901Z",
+                "mono_ns": 9001084725139,
+                "source_line": 12
+              },
+              "listener_bracket_ns": 102935215
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:03:47.745984056Z",
+                "mono_ns": 9002254447141,
+                "source_line": 15
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 13,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1169722002,
+              "up": {
+                "utc": "2026-10-21T15:03:47.849199945Z",
+                "mono_ns": 9002357738836,
+                "source_line": 16
+              },
+              "listener_bracket_ns": 103291695
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:49.039246439Z",
+                "mono_ns": 9003547692448,
+                "source_line": 19
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 17,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1189953612,
+              "up": {
+                "utc": "2026-10-21T15:03:49.142220461Z",
+                "mono_ns": 9003650726609,
+                "source_line": 20
+              },
+              "listener_bracket_ns": 103034161
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:50.400160650Z",
+                "mono_ns": 9004908601312,
+                "source_line": 23
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 21,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1257874703,
+              "up": {
+                "utc": "2026-10-21T15:03:50.502655912Z",
+                "mono_ns": 9005011164968,
+                "source_line": 24
+              },
+              "listener_bracket_ns": 102563656
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:51.657776317Z",
+                "mono_ns": 9006166217729,
+                "source_line": 27
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 25,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1155052761,
+              "up": {
+                "utc": "2026-10-21T15:03:51.760012918Z",
+                "mono_ns": 9006268516814,
+                "source_line": 28
+              },
+              "listener_bracket_ns": 102299085
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:53.058047993Z",
+                "mono_ns": 9007566483682,
+                "source_line": 31
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 29,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1297966868,
+              "up": {
+                "utc": "2026-10-21T15:03:53.159819906Z",
+                "mono_ns": 9007668372494,
+                "source_line": 32
+              },
+              "listener_bracket_ns": 101888812
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:03:54.379427890Z",
+                "mono_ns": 9008887886752,
+                "source_line": 35
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 33,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1219514258,
+              "up": {
+                "utc": "2026-10-21T15:03:54.481431349Z",
+                "mono_ns": 9008990075974,
+                "source_line": 36
+              },
+              "listener_bracket_ns": 102189222
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:55.679780817Z",
+                "mono_ns": 9010188237996,
+                "source_line": 39
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 37,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1198162022,
+              "up": {
+                "utc": "2026-10-21T15:03:55.782414527Z",
+                "mono_ns": 9010290904491,
+                "source_line": 40
+              },
+              "listener_bracket_ns": 102666495
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:03:57.020324959Z",
+                "mono_ns": 9011528764299,
+                "source_line": 43
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 41,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 1237859808,
+              "up": {
+                "utc": "2026-10-21T15:03:57.122819621Z",
+                "mono_ns": 9011631508803,
+                "source_line": 44
+              },
+              "listener_bracket_ns": 102744504
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:03:58.331290906Z",
+                "mono_ns": 9012839719351,
+                "source_line": 47
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 45,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1208210548,
+              "up": {
+                "utc": "2026-10-21T15:03:58.432745704Z",
+                "mono_ns": 9012941199798,
+                "source_line": 48
+              },
+              "listener_bracket_ns": 101480447
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:03:44.963077773Z",
+              "mono_ns": 8999471541903,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/01-Down.png",
+              "size": 5091,
+              "sha256": "c1fbeb752ea9e4c2767387ff13759eb84e4f7f61669928e8cebb98cdd40073f7",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:46.252835130Z",
+              "mono_ns": 9000761328452,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/02-Up.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:47.520627104Z",
+              "mono_ns": 9002029092065,
+              "source_line": 3,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/03-open-Ronin.png",
+              "size": 7540,
+              "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:48.801666683Z",
+              "mono_ns": 9003310120574,
+              "source_line": 4,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/04-Back.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:50.111826895Z",
+              "mono_ns": 9004620289510,
+              "source_line": 5,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/05-open-Ronin-again.png",
+              "size": 7540,
+              "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:51.435904102Z",
+              "mono_ns": 9005944362308,
+              "source_line": 6,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/06-guardian-message.png",
+              "size": 846,
+              "sha256": "a4e14d0d825a44682f9974cf2ee81caac5548f5b07084434ec0c868cd5cee036",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:52.725445792Z",
+              "mono_ns": 9007233918727,
+              "source_line": 7,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/07-guardian-list.png",
+              "size": 6941,
+              "sha256": "8963d87c3b149df18126bccccffc7423bf4c1ac838b33a597b73272fa2b2ed7d",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:54.099168709Z",
+              "mono_ns": 9008607628510,
+              "source_line": 8,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/08-select-Hestia.png",
+              "size": 6791,
+              "sha256": "4eef20a18847ddf97425f26f3a7937ae468a177053e387fa4600cafde08dca6e",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:55.441527583Z",
+              "mono_ns": 9009949987752,
+              "source_line": 9,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/09-second-guardian.png",
+              "size": 6810,
+              "sha256": "a2e11fc87e586e133b2e5cde31fb6dc4f1f01241ceaf45915e642f7d46674a10",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:56.734131489Z",
+              "mono_ns": 9011242600433,
+              "source_line": 10,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/10-confirm-two-guardians.png",
+              "size": 6906,
+              "sha256": "c0ce7d4bc89ad375785a9e065806eed50d97ef00beeab97cc8662c52f5f648f1",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:58.103059099Z",
+              "mono_ns": 9012611602195,
+              "source_line": 11,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/11-Yes.png",
+              "size": 6903,
+              "sha256": "bdaf65f7c64a1688ef14f401088e13ab64d8e263521e74305988e5cbf336925b",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:03:59.369206527Z",
+              "mono_ns": 9013877659560,
+              "source_line": 12,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/12-start-loading.png",
+              "size": 583,
+              "sha256": "a1d57645a5ade342e3730919f5cf5ba73847e24dcb6f5bb2ebe36761fcea8aab",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:11.201785467Z",
+              "mono_ns": 9024110377104,
+              "source_line": 13,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R03/13-after-load.png",
+              "size": 19978,
+              "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/state-after-load.log",
+                "size": 8682,
+                "sha256": "c4c92d45550832a69eccc2216973c2a44ec57ea75f82b679129d56855c3ca318"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:04:11.485894493Z mono_ns=9024394441301 field m.e:int=4"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:04:11.486480803Z mono_ns=9024395017691 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:04:11.487985065Z mono_ns=9024396521953 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:04:11.488111541Z mono_ns=9024396647857 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:04:11.501716666Z mono_ns=9024410259277 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:04:11.501873473Z mono_ns=9024410411029 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:04:11.501967519Z mono_ns=9024410503072 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:04:11.502407419Z mono_ns=9024410946310 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:04:11.502584352Z mono_ns=9024411128107 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:04:11.502675441Z mono_ns=9024411227209 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "run_id": "M15-SCN-0005-P1M-R03",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/input.log",
+              "size": 4908,
+              "sha256": "50c571a24135444f66282fda4a9081a3f660f5dc72d077abf47215d92aef4489"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/framebuffer.log",
+              "size": 4426,
+              "sha256": "0d0a710a3e47c15092deb29b54ea878b732eb4496bcb5bad62806340519057c6"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/launch.json",
+              "size": 362,
+              "sha256": "f29561941f1d338f02d7208d823496ae186f83577f94ee6f6077805b3f2aba77"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/manifest.json",
+              "size": 8142,
+              "sha256": "82140442815247d777ba9aa7a020953779f95603964142fb4fcd806b22d1c7f0"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0005-P1M-R03",
+            "pid": 61023,
+            "inherited_session": "M15-SCN-0001-P1M-R03",
+            "menu_run": "M15-SCN-0002-P1M-R03",
+            "profile": "P1M Motorola",
+            "fixture": "New Game / Ronin / Hestia + guardian thứ hai; intro được tạo từ RMS sạch",
+            "input_method": "in-process emulator KeyListener; không thao tác tay hoặc ép state"
+          },
+          "inputs": [
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:04:19.490193060Z",
+                "mono_ns": 9032398749160,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:04:19.593189774Z",
+                "mono_ns": 9032501799689,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 103050529
+            },
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T15:04:30.695698260Z",
+                "mono_ns": 9043604302360,
+                "source_line": 7
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 5,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": 11102502671,
+              "up": {
+                "utc": "2026-10-21T15:04:31.697387733Z",
+                "mono_ns": 9044605944441,
+                "source_line": 8
+              },
+              "listener_bracket_ns": 1001642081
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:04:33.424645054Z",
+                "mono_ns": 9046333188592,
+                "source_line": 11
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 9,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1727244151,
+              "up": {
+                "utc": "2026-10-21T15:04:34.426472667Z",
+                "mono_ns": 9047335052542,
+                "source_line": 12
+              },
+              "listener_bracket_ns": 1001863950
+            },
+            {
+              "key_awt": 38,
+              "down": {
+                "utc": "2026-10-21T15:04:36.314306649Z",
+                "mono_ns": 9049222861114,
+                "source_line": 15
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 13,
+                "text": "computed_emulator_mapping host_awt=38 internal=0 raw=-1"
+              },
+              "gap_since_previous_up_ns": 1887808572,
+              "up": {
+                "utc": "2026-10-21T15:04:37.318055828Z",
+                "mono_ns": 9050226672829,
+                "source_line": 16
+              },
+              "listener_bracket_ns": 1003811715
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:04:40.731170894Z",
+                "mono_ns": 9052029870143,
+                "source_line": 19
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 17,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 1803197314,
+              "up": {
+                "utc": "2026-10-21T15:04:41.733651311Z",
+                "mono_ns": 9053032401078,
+                "source_line": 20
+              },
+              "listener_bracket_ns": 1002530935
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:04:43.617870911Z",
+                "mono_ns": 9054916559253,
+                "source_line": 23
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 21,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1884158175,
+              "up": {
+                "utc": "2026-10-21T15:04:43.719737135Z",
+                "mono_ns": 9055018504453,
+                "source_line": 24
+              },
+              "listener_bracket_ns": 101945200
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:04:45.276243665Z",
+                "mono_ns": 9056575033398,
+                "source_line": 27
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 25,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1556528945,
+              "up": {
+                "utc": "2026-10-21T15:04:45.378018514Z",
+                "mono_ns": 9056676725074,
+                "source_line": 28
+              },
+              "listener_bracket_ns": 101691676
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:04:46.836369824Z",
+                "mono_ns": 9058135063743,
+                "source_line": 31
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 29,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1458338669,
+              "up": {
+                "utc": "2026-10-21T15:04:46.938356529Z",
+                "mono_ns": 9058237104499,
+                "source_line": 32
+              },
+              "listener_bracket_ns": 102040756
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:04:48.457522376Z",
+                "mono_ns": 9059756238370,
+                "source_line": 35
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 33,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1519133871,
+              "up": {
+                "utc": "2026-10-21T15:04:49.459398646Z",
+                "mono_ns": 9060758114003,
+                "source_line": 36
+              },
+              "listener_bracket_ns": 1001875633
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:04:50.916718475Z",
+                "mono_ns": 9062215409942,
+                "source_line": 39
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 37,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1457295939,
+              "up": {
+                "utc": "2026-10-21T15:04:51.918106297Z",
+                "mono_ns": 9063216814570,
+                "source_line": 40
+              },
+              "listener_bracket_ns": 1001404628
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:04:53.397379263Z",
+                "mono_ns": 9064696088207,
+                "source_line": 43
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 41,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1479273637,
+              "up": {
+                "utc": "2026-10-21T15:04:53.501183449Z",
+                "mono_ns": 9064799969367,
+                "source_line": 44
+              },
+              "listener_bracket_ns": 103881160
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:04:55.051964474Z",
+                "mono_ns": 9066350765366,
+                "source_line": 47
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 45,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1550795999,
+              "up": {
+                "utc": "2026-10-21T15:04:55.153963188Z",
+                "mono_ns": 9066452852022,
+                "source_line": 48
+              },
+              "listener_bracket_ns": 102086656
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:04:19.146478240Z",
+              "mono_ns": 9032055042055,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/01-before-Skip.png",
+              "size": 19978,
+              "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:21.847763848Z",
+              "mono_ns": 9034756328530,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/02-after-Skip.png",
+              "size": 608,
+              "sha256": "90a2d213f263d145e5f9509f41eebf3e481fcb9e8f8ef94e8e8dcd85fe24cc90",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:30.120918564Z",
+              "mono_ns": 9043029555156,
+              "source_line": 3,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/03-after-load.png",
+              "size": 16427,
+              "sha256": "be5ff71c18ec46c94d96d0cc2d1b1f7f15567d376d13396ce769068a4d9a518e",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:31.938065187Z",
+              "mono_ns": 9044846627374,
+              "source_line": 4,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/04-Down-release.png",
+              "size": 16812,
+              "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:33.188316640Z",
+              "mono_ns": 9046096877096,
+              "source_line": 5,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/04-Down-idle.png",
+              "size": 16812,
+              "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:34.713895776Z",
+              "mono_ns": 9047622481034,
+              "source_line": 6,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/05-Right-release.png",
+              "size": 16055,
+              "sha256": "6c2236c18e5c79f115177cb1031d5254315424492a857d2ba1d049d09892cb34",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:36.057646230Z",
+              "mono_ns": 9048966226105,
+              "source_line": 7,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/05-Right-idle.png",
+              "size": 16055,
+              "sha256": "6c2236c18e5c79f115177cb1031d5254315424492a857d2ba1d049d09892cb34",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:37.608738434Z",
+              "mono_ns": 9050517302259,
+              "source_line": 8,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/06-Up-release.png",
+              "size": 16226,
+              "sha256": "2fb4ee56f8b95398f86315ed8a1dcec91730546ca19aa761f1be2442bc33cef9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:40.475198629Z",
+              "mono_ns": 9051773931511,
+              "source_line": 9,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/06-Up-idle.png",
+              "size": 16226,
+              "sha256": "2fb4ee56f8b95398f86315ed8a1dcec91730546ca19aa761f1be2442bc33cef9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:42.113962521Z",
+              "mono_ns": 9053412689683,
+              "source_line": 10,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/07-Left-release.png",
+              "size": 16695,
+              "sha256": "ab427691ef0002f3dad20c43692c588c7a66f875cce5d307711aeaa5ebdc0614",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:43.395749286Z",
+              "mono_ns": 9054694460996,
+              "source_line": 11,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/07-Left-idle.png",
+              "size": 16695,
+              "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:45.038093939Z",
+              "mono_ns": 9056336846949,
+              "source_line": 12,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/08-action-Enter.png",
+              "size": 16695,
+              "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:46.600817947Z",
+              "mono_ns": 9057899531760,
+              "source_line": 13,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/09-W-menu.png",
+              "size": 3237,
+              "sha256": "a6b95e3618160789cec4c5337a73f9d058dbe8c3b4509b3d0a8b674d96c5cabd",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:48.231222471Z",
+              "mono_ns": 9059529963536,
+              "source_line": 14,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/10-close-menu.png",
+              "size": 16695,
+              "sha256": "0a9768fb2ee819f45e7ca2e56aa082ef1c084cc81ac51d4cad8f820467170ee6",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:50.678851084Z",
+              "mono_ns": 9061977562172,
+              "source_line": 15,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/11-Right-boundary.png",
+              "size": 16167,
+              "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:53.152404893Z",
+              "mono_ns": 9064451114124,
+              "source_line": 16,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/12-Right-again.png",
+              "size": 16167,
+              "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:54.779661664Z",
+              "mono_ns": 9066078377095,
+              "source_line": 17,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/13-action-at-boundary.png",
+              "size": 16167,
+              "sha256": "3ee6670bdeb8599efc10ce37b9cf356217e5d7b443581eb67abde31b732dfbe0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:04:56.400109273Z",
+              "mono_ns": 9067698824226,
+              "source_line": 18,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R03/14-status-final.png",
+              "size": 3237,
+              "sha256": "a6b95e3618160789cec4c5337a73f9d058dbe8c3b4509b3d0a8b674d96c5cabd",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/state-after-load.log",
+                "size": 8678,
+                "sha256": "2df6c087cde832ba9cdd1a457caad95fc17dea649b30c79f309afe72249a5c11"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:04:30.380116804Z mono_ns=9043288651017 field m.e:int=2"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:04:30.380539394Z mono_ns=9043289075817 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:04:30.381443212Z mono_ns=9043289978675 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:04:30.381506274Z mono_ns=9043290041929 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:04:30.398786400Z mono_ns=9043307323305 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:04:30.398938094Z mono_ns=9043307473076 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:04:30.399064890Z mono_ns=9043307599584 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:04:30.399239367Z mono_ns=9043307774060 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:04:30.399370777Z mono_ns=9043307906144 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:04:30.399515454Z mono_ns=9043308050820 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/state-final.log",
+                "size": 8683,
+                "sha256": "9c03c1a9ef1f9dd3738286afac88f2f2443d8164c001385652ddb36f57d7cdf4"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:04:56.680605832Z mono_ns=9067979333758 field m.e:int=5"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:04:56.680843618Z mono_ns=9067979522804 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:04:56.686287805Z mono_ns=9067984975575 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:04:56.686458538Z mono_ns=9067985142492 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:04:56.693525260Z mono_ns=9067992231438 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:04:56.693681876Z mono_ns=9067992366689 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:04:56.693730044Z mono_ns=9067992409229 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:04:56.693817509Z mono_ns=9067992496313 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:04:56.693914035Z mono_ns=9067992597226 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:04:56.693964873Z mono_ns=9067992644154 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "stop": {
+        "utc": "2026-10-21T15:05:06.030897+00:00",
+        "method": "SIGTERM do harness gửi; không kiểm thử thoát/save qua UI",
+        "process_stopped": true
+      },
+      "storage_after_stop": {
+        "snapshot_after_process_stopped": true,
+        "files": [
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R03/config/Heroes Lore/game.conf",
+            "size": 387,
+            "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R03/freej2me_system/FreeJ2ME.log",
+            "size": 1294,
+            "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R03/freej2me_system/customFont/Put your ttf font here",
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R03/freej2me_system/freej2me.conf",
+            "size": 512,
+            "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R03/rms/Heroes Lore/410decd402x2m_.1",
+            "size": 6,
+            "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R03/rms/Heroes Lore/410decd402x2m_.rms",
+            "size": 382,
+            "sha256": "23d4f9afc5f6cf66e4787c78a246faad6661b3fa75e411fa1655aff85ea507b0"
+          }
+        ],
+        "note": "Metadata/config/log; RMS nhị phân chỉ local, chưa xác minh save/load semantics"
+      },
+      "storage_manifest_identity": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/storage-manifest.json",
+        "size": 1408,
+        "sha256": "fadff813f8d9a73a55f9341cab0517a7384d0d40b365ab100294c305b14f0543"
+      },
+      "initial_condition_assessment": {
+        "fresh_rms": "declared in launch.json; no pre-launch byte snapshot",
+        "bed_anchor": "03-after-load.png",
+        "rng_and_internal_state_equivalence": "chưa xác minh",
+        "house_exit_replay": false,
+        "variant": "four-directions-inside"
+      }
+    },
+    {
+      "session_id": "M15-SCN-0001-P1M-R04",
+      "records": [
+        {
+          "run_id": "M15-SCN-0001-P1M-R04",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/input.log",
+              "size": 409,
+              "sha256": "14a91317816cfa27afd0ee80a20e02353d4eae8714f749130561571aa9198a73"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/framebuffer.log",
+              "size": 504,
+              "sha256": "c66e2745b4cf9cd607ad3899b894624dd36c8512a14ddde54c53aa3a66731218"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/launch.json",
+              "size": 846,
+              "sha256": "35433dfbea391a1b33c16c42b7a06d17d3805be4c1d3bc896e613fda4eedf0aa"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/manifest.json",
+              "size": 4997,
+              "sha256": "7d136a4236ab1db5de36cd66b9ec33e34c2cd9793f8571a6742ec5f832102eea"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0001-P1M-R04",
+            "pid": 63071,
+            "utc": "2026-10-21T15:05:06.122900+00:00",
+            "mono_ns": 9077420819940,
+            "argv": [
+              "java",
+              "-Dfile.encoding=ISO_8859_1",
+              "-Dsun.java2d.uiScale=1",
+              "-jar",
+              "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+              "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+              "0",
+              "240",
+              "320",
+              "2",
+              "2",
+              "60"
+            ],
+            "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R04",
+            "profile": "P1M Motorola, 240×320, limiter60, scale2 requested",
+            "rms_before": "directory mới",
+            "input_coordination": "Người dùng đã chọn agent tự động, không thao tác tay",
+            "instrumentation_at_launch": false,
+            "later_probes": "đọc state/framebuffer và injection emulator KeyListener; không transform class"
+          },
+          "inputs": [
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:19.276862128Z",
+                "mono_ns": 9089058769954,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:05:19.386280258Z",
+                "mono_ns": 9089168211719,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 109441765
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:05:18.677745995Z",
+              "mono_ns": 9088462978344,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0001-P1M-R04/02-10s-framebuffer.png",
+              "size": 7851,
+              "sha256": "bd481542f50310d5806409380418487f341cbe59e9ea1a4b0b7b319fc970ea7a",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:21.631335411Z",
+              "mono_ns": 9091413267508,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0001-P1M-R04/03-after-startup-Enter.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/state-after-startup.log",
+                "size": 8677,
+                "sha256": "76444192f5341b9a59ac568c3b17f447b792398a417455856afcd4678dc2a014"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:05:21.888622413Z mono_ns=9091670523427 field m.e:int=9"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:05:21.891826189Z mono_ns=9091673738382 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:05:21.895859220Z mono_ns=9091677759143 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:05:21.895989098Z mono_ns=9091677881477 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:05:21.920794866Z mono_ns=9091702796673 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:05:21.921480883Z mono_ns=9091703407890 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:05:21.921683470Z mono_ns=9091703577485 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:05:21.922408114Z mono_ns=9091704310946 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:05:21.922693319Z mono_ns=9091704598331 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:05:21.922841192Z mono_ns=9091704732935 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/state-before-input.log",
+                "size": 5486,
+                "sha256": "6ef99c2068c381b20a505bf31d59f3c21fdebe34891487065069aef47f7174cd"
+              },
+              "selected_observations": [
+                {
+                  "line": 5,
+                  "text": "2026-10-21T15:05:18.928188015Z mono_ns=9088710107668 field m.e:int=0"
+                },
+                {
+                  "line": 9,
+                  "text": "2026-10-21T15:05:18.932515379Z mono_ns=9088714426543 field m.e:byte=0"
+                },
+                {
+                  "line": 19,
+                  "text": "2026-10-21T15:05:18.947975770Z mono_ns=9088729889891 field q.g:int=240"
+                },
+                {
+                  "line": 20,
+                  "text": "2026-10-21T15:05:18.948225384Z mono_ns=9088730121477 field q.h:int=320"
+                },
+                {
+                  "line": 59,
+                  "text": "2026-10-21T15:05:18.991462495Z mono_ns=9088773362785 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 60,
+                  "text": "2026-10-21T15:05:18.991779161Z mono_ns=9088773676400 emulator lcdWidth=240"
+                },
+                {
+                  "line": 61,
+                  "text": "2026-10-21T15:05:18.991998730Z mono_ns=9088773894346 emulator lcdHeight=320"
+                },
+                {
+                  "line": 62,
+                  "text": "2026-10-21T15:05:18.993330923Z mono_ns=9088775238844 emulator limitFPS=60"
+                },
+                {
+                  "line": 63,
+                  "text": "2026-10-21T15:05:18.993675823Z mono_ns=9088775711078 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 64,
+                  "text": "2026-10-21T15:05:18.994723971Z mono_ns=9088776633036 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "run_id": "M15-SCN-0002-P1M-R04",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/input.log",
+              "size": 4904,
+              "sha256": "1f2ef49270c21bda62d7b98a7b24bf79b9e45943df642f4f1fb6ab48828a6bc7"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/framebuffer.log",
+              "size": 3195,
+              "sha256": "edc9203a99d27d2fc6c39650af2624e062b07f96d265853deb4eeb3ee78ea343"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/launch.json",
+              "size": 206,
+              "sha256": "3a43a15ecf903671db6111a1bf6dfba648ed42f9042be1ac11ba5dd851f31b04"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/manifest.json",
+              "size": 5963,
+              "sha256": "4804bcb89d8144d14f46a0ecd37f11ffc8d5aa25a960783ceb983e188f04116f"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0002-P1M-R04",
+            "pid": 63071,
+            "inherited_session": "M15-SCN-0001-P1M-R04",
+            "input_method": "in-process emulator AWT KeyListener; không ép state",
+            "profile": "P1M Motorola"
+          },
+          "inputs": [
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T15:05:22.177758492Z",
+                "mono_ns": 9091959671320,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:05:22.280897984Z",
+                "mono_ns": 9092063128918,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 103457598
+            },
+            {
+              "key_awt": 38,
+              "down": {
+                "utc": "2026-10-21T15:05:23.448152451Z",
+                "mono_ns": 9093230076368,
+                "source_line": 7
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 5,
+                "text": "computed_emulator_mapping host_awt=38 internal=0 raw=-1"
+              },
+              "gap_since_previous_up_ns": 1166947450,
+              "up": {
+                "utc": "2026-10-21T15:05:23.550884768Z",
+                "mono_ns": 9093332862400,
+                "source_line": 8
+              },
+              "listener_bracket_ns": 102786032
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:24.792016394Z",
+                "mono_ns": 9094573951854,
+                "source_line": 11
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 9,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1241089454,
+              "up": {
+                "utc": "2026-10-21T15:05:24.896418856Z",
+                "mono_ns": 9094678452838,
+                "source_line": 12
+              },
+              "listener_bracket_ns": 104500984
+            },
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:05:26.111185362Z",
+                "mono_ns": 9095893133546,
+                "source_line": 15
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 13,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": 1214680708,
+              "up": {
+                "utc": "2026-10-21T15:05:26.213955398Z",
+                "mono_ns": 9095995940664,
+                "source_line": 16
+              },
+              "listener_bracket_ns": 102807118
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:27.551127927Z",
+                "mono_ns": 9097333034513,
+                "source_line": 19
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 17,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1337093849,
+              "up": {
+                "utc": "2026-10-21T15:05:27.653267622Z",
+                "mono_ns": 9097435284660,
+                "source_line": 20
+              },
+              "listener_bracket_ns": 102250147
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:28.858397047Z",
+                "mono_ns": 9098640320133,
+                "source_line": 23
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 21,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1205035473,
+              "up": {
+                "utc": "2026-10-21T15:05:28.960052680Z",
+                "mono_ns": 9098741999040,
+                "source_line": 24
+              },
+              "listener_bracket_ns": 101678907
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:30.212601555Z",
+                "mono_ns": 9099994509190,
+                "source_line": 27
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 25,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1252510150,
+              "up": {
+                "utc": "2026-10-21T15:05:30.315091396Z",
+                "mono_ns": 9100097063699,
+                "source_line": 28
+              },
+              "listener_bracket_ns": 102554509
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:31.636223281Z",
+                "mono_ns": 9101418141121,
+                "source_line": 31
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 29,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1321077422,
+              "up": {
+                "utc": "2026-10-21T15:05:31.740246286Z",
+                "mono_ns": 9101522216586,
+                "source_line": 32
+              },
+              "listener_bracket_ns": 104075465
+            },
+            {
+              "key_awt": 39,
+              "down": {
+                "utc": "2026-10-21T15:05:32.945226438Z",
+                "mono_ns": 9102727138556,
+                "source_line": 35
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 33,
+                "text": "computed_emulator_mapping host_awt=39 internal=3 raw=-5"
+              },
+              "gap_since_previous_up_ns": 1204921970,
+              "up": {
+                "utc": "2026-10-21T15:05:33.047526279Z",
+                "mono_ns": 9102829620767,
+                "source_line": 36
+              },
+              "listener_bracket_ns": 102482211
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:34.355457252Z",
+                "mono_ns": 9104137365078,
+                "source_line": 39
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 37,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1307744311,
+              "up": {
+                "utc": "2026-10-21T15:05:34.457715602Z",
+                "mono_ns": 9104239668257,
+                "source_line": 40
+              },
+              "listener_bracket_ns": 102303179
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:05:35.717861008Z",
+                "mono_ns": 9105499860686,
+                "source_line": 43
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 41,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 1260192429,
+              "up": {
+                "utc": "2026-10-21T15:05:35.820628490Z",
+                "mono_ns": 9105602612812,
+                "source_line": 44
+              },
+              "listener_bracket_ns": 102752126
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:05:37.094336964Z",
+                "mono_ns": 9106876228098,
+                "source_line": 47
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 45,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1273615286,
+              "up": {
+                "utc": "2026-10-21T15:05:37.195529790Z",
+                "mono_ns": 9106977465181,
+                "source_line": 48
+              },
+              "listener_bracket_ns": 101237083
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:05:23.236884755Z",
+              "mono_ns": 9093018798493,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/01-Down.png",
+              "size": 5091,
+              "sha256": "c1fbeb752ea9e4c2767387ff13759eb84e4f7f61669928e8cebb98cdd40073f7",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:24.563233089Z",
+              "mono_ns": 9094345229080,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/02-Up.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:25.892947523Z",
+              "mono_ns": 9095674880802,
+              "source_line": 3,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/03-open-Ronin.png",
+              "size": 7540,
+              "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:27.251016559Z",
+              "mono_ns": 9097032940886,
+              "source_line": 4,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/04-Back.png",
+              "size": 4908,
+              "sha256": "c5521f509b2a7a7e110569c6af92ce8650387f9f86c079af7cfa760866698e49",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:28.621991791Z",
+              "mono_ns": 9098403919456,
+              "source_line": 5,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/05-open-Ronin-again.png",
+              "size": 7540,
+              "sha256": "b609b9749091ddc8c465a2413935d56a8db2e041537bf2948679e602ae4e8136",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:29.955037317Z",
+              "mono_ns": 9099736951533,
+              "source_line": 6,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/06-guardian-message.png",
+              "size": 846,
+              "sha256": "a4e14d0d825a44682f9974cf2ee81caac5548f5b07084434ec0c868cd5cee036",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:31.378102777Z",
+              "mono_ns": 9101160044177,
+              "source_line": 7,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/07-guardian-list.png",
+              "size": 6956,
+              "sha256": "cbc6b4dafc56f7b0174a5ca044b492c5b96f1930ee86ed6bfad426918a32cc51",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:32.712504630Z",
+              "mono_ns": 9102494424569,
+              "source_line": 8,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/08-select-Hestia.png",
+              "size": 6791,
+              "sha256": "4eef20a18847ddf97425f26f3a7937ae468a177053e387fa4600cafde08dca6e",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:34.115209357Z",
+              "mono_ns": 9103897139311,
+              "source_line": 9,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/09-second-guardian.png",
+              "size": 6796,
+              "sha256": "d22764ecabf210b6c178d62bca7c480eac6e123565b3ea7cd3fba57065aadd75",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:35.469968272Z",
+              "mono_ns": 9105251884587,
+              "source_line": 10,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/10-confirm-two-guardians.png",
+              "size": 6906,
+              "sha256": "c0ce7d4bc89ad375785a9e065806eed50d97ef00beeab97cc8662c52f5f648f1",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:36.796792333Z",
+              "mono_ns": 9106578785716,
+              "source_line": 11,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/11-Yes.png",
+              "size": 6903,
+              "sha256": "bdaf65f7c64a1688ef14f401088e13ab64d8e263521e74305988e5cbf336925b",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:38.167196004Z",
+              "mono_ns": 9107949116134,
+              "source_line": 12,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/12-start-loading.png",
+              "size": 583,
+              "sha256": "a1d57645a5ade342e3730919f5cf5ba73847e24dcb6f5bb2ebe36761fcea8aab",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:05:50.253851577Z",
+              "mono_ns": 9118230344970,
+              "source_line": 13,
+              "path": "reference/screenshots/M15-SCN-0002-P1M-R04/13-after-load.png",
+              "size": 19978,
+              "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/state-after-load.log",
+                "size": 8682,
+                "sha256": "80fc1f68444e514f9d595d70f18d28a56ff192d987f055f0ab9e0191c9900885"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:05:50.590148698Z mono_ns=9118566592684 field m.e:int=4"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:05:50.590753706Z mono_ns=9118567189298 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:05:50.591679007Z mono_ns=9118568113931 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:05:50.591826753Z mono_ns=9118568264349 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:05:50.603365973Z mono_ns=9118579827414 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:05:50.603689318Z mono_ns=9118580132541 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:05:50.603811789Z mono_ns=9118580248335 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:05:50.604322941Z mono_ns=9118580767785 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:05:50.604880735Z mono_ns=9118581343034 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:05:50.605088954Z mono_ns=9118581527503 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "run_id": "M15-SCN-0005-P1M-R04",
+          "sources": [
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/input.log",
+              "size": 3270,
+              "sha256": "efaf596a5ebc8eed0becbf0a08f122481845810600e3af079f87ec6cd7e9f2ac"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/framebuffer.log",
+              "size": 1735,
+              "sha256": "64c640228d5cfb2fa9313fd61f992bdb465c7847269fdf70bd8a2fe93581c426"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/launch.json",
+              "size": 473,
+              "sha256": "494bebde97a1534c71bd35095b221c4224e438c3c53971f6e2ed7fbbf543c38e"
+            },
+            {
+              "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/manifest.json",
+              "size": 4103,
+              "sha256": "6928cbcfd3b6feac4463be70c9128847cbc65546ca598b496a94b02a1bd0478a"
+            }
+          ],
+          "launch": {
+            "run_id": "M15-SCN-0005-P1M-R04",
+            "pid": 63071,
+            "inherited_session": "M15-SCN-0001-P1M-R04",
+            "menu_run": "M15-SCN-0002-P1M-R04",
+            "profile": "P1M Motorola",
+            "variant": "Bổ sung cửa ra theo hướng dẫn người dùng: từ giường đi thẳng xuống giữa dưới; premise cần kiểm chứng",
+            "fixture": "RMS sạch → Ronin + Hestia/Ron → intro",
+            "input_method": "in-process emulator KeyListener; không thao tác tay, không ép state"
+          },
+          "inputs": [
+            {
+              "key_awt": 87,
+              "down": {
+                "utc": "2026-10-21T15:08:47.397006169Z",
+                "mono_ns": 9287559693601,
+                "source_line": 3
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 1,
+                "text": "computed_emulator_mapping host_awt=87 internal=8 raw=-22"
+              },
+              "gap_since_previous_up_ns": null,
+              "up": {
+                "utc": "2026-10-21T15:08:47.498565171Z",
+                "mono_ns": 9287661316127,
+                "source_line": 4
+              },
+              "listener_bracket_ns": 101622526
+            },
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T15:08:58.889013441Z",
+                "mono_ns": 9299051750758,
+                "source_line": 7
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 5,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": 11390434631,
+              "up": {
+                "utc": "2026-10-21T15:08:59.926765073Z",
+                "mono_ns": 9300089471963,
+                "source_line": 8
+              },
+              "listener_bracket_ns": 1037721205
+            },
+            {
+              "key_awt": 40,
+              "down": {
+                "utc": "2026-10-21T15:09:01.645896032Z",
+                "mono_ns": 9301808573448,
+                "source_line": 11
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 9,
+                "text": "computed_emulator_mapping host_awt=40 internal=1 raw=-6"
+              },
+              "gap_since_previous_up_ns": 1719101485,
+              "up": {
+                "utc": "2026-10-21T15:09:02.647555846Z",
+                "mono_ns": 9302810292210,
+                "source_line": 12
+              },
+              "listener_bracket_ns": 1001718762
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:10:30.629143045Z",
+                "mono_ns": 9386115769300,
+                "source_line": 15
+              },
+              "requested_hold_ms": 1000,
+              "computed_mapping": {
+                "source_line": 13,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 83305477090,
+              "up": {
+                "utc": "2026-10-21T15:10:31.631703956Z",
+                "mono_ns": 9387118202682,
+                "source_line": 16
+              },
+              "listener_bracket_ns": 1002433382
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:10:33.369301286Z",
+                "mono_ns": 9388855784846,
+                "source_line": 19
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 17,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 1737582164,
+              "up": {
+                "utc": "2026-10-21T15:10:33.470842513Z",
+                "mono_ns": 9388957343242,
+                "source_line": 20
+              },
+              "listener_bracket_ns": 101558396
+            },
+            {
+              "key_awt": 38,
+              "down": {
+                "utc": "2026-10-21T15:10:54.693870674Z",
+                "mono_ns": 9408616170812,
+                "source_line": 23
+              },
+              "requested_hold_ms": 200,
+              "computed_mapping": {
+                "source_line": 21,
+                "text": "computed_emulator_mapping host_awt=38 internal=0 raw=-1"
+              },
+              "gap_since_previous_up_ns": 19658827570,
+              "up": {
+                "utc": "2026-10-21T15:10:54.898764077Z",
+                "mono_ns": 9408821045615,
+                "source_line": 24
+              },
+              "listener_bracket_ns": 204874803
+            },
+            {
+              "key_awt": 37,
+              "down": {
+                "utc": "2026-10-21T15:10:55.705506729Z",
+                "mono_ns": 9409627778537,
+                "source_line": 27
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 25,
+                "text": "computed_emulator_mapping host_awt=37 internal=2 raw=-2"
+              },
+              "gap_since_previous_up_ns": 806732922,
+              "up": {
+                "utc": "2026-10-21T15:10:55.809549589Z",
+                "mono_ns": 9409731847342,
+                "source_line": 28
+              },
+              "listener_bracket_ns": 104068805
+            },
+            {
+              "key_awt": 10,
+              "down": {
+                "utc": "2026-10-21T15:10:56.601838175Z",
+                "mono_ns": 9410524112273,
+                "source_line": 31
+              },
+              "requested_hold_ms": 100,
+              "computed_mapping": {
+                "source_line": 29,
+                "text": "computed_emulator_mapping host_awt=10 internal=7 raw=-20"
+              },
+              "gap_since_previous_up_ns": 792264931,
+              "up": {
+                "utc": "2026-10-21T15:10:56.703275233Z",
+                "mono_ns": 9410625565356,
+                "source_line": 32
+              },
+              "listener_bracket_ns": 101453083
+            }
+          ],
+          "captures": [
+            {
+              "utc": "2026-10-21T15:08:46.833041762Z",
+              "mono_ns": 9286995794531,
+              "source_line": 1,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/01-before-Skip.png",
+              "size": 19978,
+              "sha256": "318ca743991977473ef89322bdd9ecc7b17f0d86a2c85cf986cdaff03c505a29",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:08:58.040542904Z",
+              "mono_ns": 9298203247410,
+              "source_line": 2,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/02-bed-start.png",
+              "size": 16427,
+              "sha256": "be5ff71c18ec46c94d96d0cc2d1b1f7f15567d376d13396ce769068a4d9a518e",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:09:01.284787465Z",
+              "mono_ns": 9301447480906,
+              "source_line": 3,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/03-Down-one-second.png",
+              "size": 16812,
+              "sha256": "c90e8fdf9d96374f2a43faf2c13e61c15d7c767474055e0d298d373df607bca9",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:09:07.958948405Z",
+              "mono_ns": 9308121651002,
+              "source_line": 4,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/04-Down-two-holds.png",
+              "size": 24523,
+              "sha256": "ff2c0e389e249a72a5569e1b6fcf063d25ede395a7dcf25a9ba5d8da8625fcf3",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:10:33.055400279Z",
+              "mono_ns": 9388541900627,
+              "source_line": 5,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/05-outside-Left.png",
+              "size": 25768,
+              "sha256": "8d098fcb6e2534b76251930cd21f86ba7570681d324745e286cb2104386f0862",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:10:34.787885890Z",
+              "mono_ns": 9390274407509,
+              "source_line": 6,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/06-NPC-action.png",
+              "size": 25768,
+              "sha256": "8d098fcb6e2534b76251930cd21f86ba7570681d324745e286cb2104386f0862",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            },
+            {
+              "utc": "2026-10-21T15:10:57.460754326Z",
+              "mono_ns": 9411383044734,
+              "source_line": 7,
+              "path": "reference/screenshots/M15-SCN-0005-P1M-R04/07-NPC-approach-action.png",
+              "size": 25649,
+              "sha256": "17666f39e636048f8b9abec3074d164aaaefef661f4b7ffd74597df0b70e1da0",
+              "width": 240,
+              "height": 320,
+              "availability": "local, Git ignored"
+            }
+          ],
+          "state_snapshots": [
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/state-after-door.log",
+                "size": 8685,
+                "sha256": "08730f77439c3902d034db0f7d9e82834814d8aefb84100ccc0884c63c2c4f23"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:09:08.283623562Z mono_ns=9308446336271 field m.e:int=2"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:09:08.287137105Z mono_ns=9308449795731 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:09:08.289930694Z mono_ns=9308452600003 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:09:08.290027603Z mono_ns=9308452688328 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:09:08.300330536Z mono_ns=9308463001180 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:09:08.300480860Z mono_ns=9308463142634 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:09:08.300547724Z mono_ns=9308463206350 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:09:08.300652264Z mono_ns=9308463310986 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:09:08.300716934Z mono_ns=9308463375179 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:09:08.300768918Z mono_ns=9308463426781 emulator isPaused=false"
+                }
+              ]
+            },
+            {
+              "source": {
+                "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/state-final.log",
+                "size": 17367,
+                "sha256": "2954c41a18f59fdbceaa64687ba904ab365743048198ac91c966d93a12fb4dac"
+              },
+              "selected_observations": [
+                {
+                  "line": 18,
+                  "text": "2026-10-21T15:10:35.077233362Z mono_ns=9390563701756 field m.e:int=2"
+                },
+                {
+                  "line": 22,
+                  "text": "2026-10-21T15:10:35.077674226Z mono_ns=9390564142143 field m.e:byte=0"
+                },
+                {
+                  "line": 32,
+                  "text": "2026-10-21T15:10:35.078762652Z mono_ns=9390565231427 field q.g:int=240"
+                },
+                {
+                  "line": 33,
+                  "text": "2026-10-21T15:10:35.081018767Z mono_ns=9390568064139 field q.h:int=320"
+                },
+                {
+                  "line": 98,
+                  "text": "2026-10-21T15:10:35.092836357Z mono_ns=9390579304656 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 99,
+                  "text": "2026-10-21T15:10:35.092923919Z mono_ns=9390579390883 emulator lcdWidth=240"
+                },
+                {
+                  "line": 100,
+                  "text": "2026-10-21T15:10:35.092994026Z mono_ns=9390579463756 emulator lcdHeight=320"
+                },
+                {
+                  "line": 101,
+                  "text": "2026-10-21T15:10:35.093093607Z mono_ns=9390579560094 emulator limitFPS=60"
+                },
+                {
+                  "line": 102,
+                  "text": "2026-10-21T15:10:35.093333021Z mono_ns=9390579813624 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 103,
+                  "text": "2026-10-21T15:10:35.093444143Z mono_ns=9390579912823 emulator isPaused=false"
+                },
+                {
+                  "line": 122,
+                  "text": "2026-10-21T15:10:57.793823951Z mono_ns=9411716095951 field m.e:int=2"
+                },
+                {
+                  "line": 126,
+                  "text": "2026-10-21T15:10:57.794180018Z mono_ns=9411716441335 field m.e:byte=0"
+                },
+                {
+                  "line": 136,
+                  "text": "2026-10-21T15:10:57.794695090Z mono_ns=9411716973098 field q.g:int=240"
+                },
+                {
+                  "line": 137,
+                  "text": "2026-10-21T15:10:57.794769203Z mono_ns=9411717030996 field q.h:int=320"
+                },
+                {
+                  "line": 202,
+                  "text": "2026-10-21T15:10:57.806525808Z mono_ns=9411728789032 effective_config={rotate=0, soundfont=Default, compatoverrideplatchecks=on, compatsiemensfriendlydrawing=off, compatimmediaterepaints=off, sound=on, fps=60, compattranstooriginonreset=off, textfont=Default, backlightcolor=Disabled, compatfantasyzonefix=off, scrwidth=240, phone=Motorola, fpshack=Disabled, scrheight=320, fontoffset=0, width=0, spdhackm3ghalfres=off, dojaversion=200, compatignorevolumechanges=off, spdhacknoalpha=off, height=240}"
+                },
+                {
+                  "line": 203,
+                  "text": "2026-10-21T15:10:57.806611653Z mono_ns=9411728871730 emulator lcdWidth=240"
+                },
+                {
+                  "line": 204,
+                  "text": "2026-10-21T15:10:57.806648566Z mono_ns=9411728908166 emulator lcdHeight=320"
+                },
+                {
+                  "line": 205,
+                  "text": "2026-10-21T15:10:57.806755778Z mono_ns=9411729020146 emulator limitFPS=60"
+                },
+                {
+                  "line": 206,
+                  "text": "2026-10-21T15:10:57.806805759Z mono_ns=9411729065835 emulator isFastForwarding=false"
+                },
+                {
+                  "line": 207,
+                  "text": "2026-10-21T15:10:57.806841051Z mono_ns=9411729101032 emulator isPaused=false"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "stop": {
+        "utc": "2026-10-21T15:12:47.506015+00:00",
+        "method": "SIGTERM do harness gửi; không kiểm thử thoát/save qua UI",
+        "process_stopped": true
+      },
+      "storage_after_stop": {
+        "snapshot_after_process_stopped": true,
+        "files": [
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R04/config/Heroes Lore/game.conf",
+            "size": 387,
+            "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R04/freej2me_system/FreeJ2ME.log",
+            "size": 1294,
+            "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R04/freej2me_system/customFont/Put your ttf font here",
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R04/freej2me_system/freej2me.conf",
+            "size": 512,
+            "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R04/rms/Heroes Lore/410decd402x2m_.1",
+            "size": 6,
+            "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+          },
+          {
+            "path": "reference/recordings/M15-SCN-0001-P1M-R04/rms/Heroes Lore/410decd402x2m_.rms",
+            "size": 382,
+            "sha256": "7614d11e0f9c04121b9e658f037339a20e8ffbed79423699f768dc76311de2e6"
+          }
+        ],
+        "note": "Metadata/config/log; RMS nhị phân chỉ local, chưa xác minh save/load semantics"
+      },
+      "storage_manifest_identity": {
+        "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/storage-manifest.json",
+        "size": 1408,
+        "sha256": "5a077417bcce0990e13b12a5051b0d5a1bbb07008876869040fbac38d6773d98"
+      },
+      "initial_condition_assessment": {
+        "fresh_rms": "declared in launch.json; no pre-launch byte snapshot",
+        "bed_anchor": "02-bed-start.png",
+        "rng_and_internal_state_equivalence": "chưa xác minh",
+        "house_exit_replay": true,
+        "variant": "two-Down-holds-exit"
+      }
+    }
+  ],
+  "saved_manifest_checks": [
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/artifacts/config/Heroes Lore/game.conf",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/artifacts/freej2me_system/FreeJ2ME.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/artifacts/freej2me_system/freej2me.conf",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/capture-x11.jsonl",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/console.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/state-after-startup.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/state-before-input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/stop.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/storage-manifest.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/system-properties.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/threads-final.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R02/window-tree.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R02/01-10s-X11.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R02/02-10s-framebuffer.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R02/03-after-startup-Enter.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R02/state-after-load.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/01-Down.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/02-Up.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/03-open-Ronin.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/04-Back.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/05-open-Ronin-again.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/06-guardian-message.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/07-guardian-list.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/08-select-Hestia.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/09-second-guardian.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/10-confirm-two-guardians.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/11-Yes.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/12-start-loading.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R02/13-after-load.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/state-after-Skip.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/state-after-load.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R02/state-final.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/01-before-Skip.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/02-after-Skip.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/03-after-load.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/04-Down-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/04-Down-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/05-Right-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/05-Right-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/06-Up-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/06-Up-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/07-Left-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/07-Left-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/08-action-Enter.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/09-W-menu.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/10-close-menu.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/11-Right-boundary.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/12-Right-again.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/13-action-at-boundary.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R02",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R02/14-status-final.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/artifacts/config/Heroes Lore/game.conf",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/artifacts/freej2me_system/FreeJ2ME.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/artifacts/freej2me_system/freej2me.conf",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/capture-x11.jsonl",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/console.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/state-after-startup.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/state-before-input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/stop.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/storage-manifest.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/system-properties.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/threads-final.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R03/window-tree.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R03/01-10s-X11.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R03/02-10s-framebuffer.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R03/03-after-startup-Enter.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R03/state-after-load.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/01-Down.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/02-Up.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/03-open-Ronin.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/04-Back.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/05-open-Ronin-again.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/06-guardian-message.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/07-guardian-list.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/08-select-Hestia.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/09-second-guardian.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/10-confirm-two-guardians.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/11-Yes.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/12-start-loading.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R03/13-after-load.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/state-after-load.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R03/state-final.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/01-before-Skip.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/02-after-Skip.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/03-after-load.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/04-Down-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/04-Down-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/05-Right-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/05-Right-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/06-Up-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/06-Up-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/07-Left-idle.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/07-Left-release.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/08-action-Enter.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/09-W-menu.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/10-close-menu.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/11-Right-boundary.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/12-Right-again.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/13-action-at-boundary.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R03",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R03/14-status-final.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/artifacts/config/Heroes Lore/game.conf",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/artifacts/freej2me_system/FreeJ2ME.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/artifacts/freej2me_system/freej2me.conf",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/capture-x11.jsonl",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/console.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/state-after-startup.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/state-before-input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/stop.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/storage-manifest.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/system-properties.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/threads-final.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0001-P1M-R04/window-tree.txt",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R04/01-10s-X11.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R04/02-10s-framebuffer.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0001-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0001-P1M-R04/03-after-startup-Enter.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0002-P1M-R04/state-after-load.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/01-Down.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/02-Up.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/03-open-Ronin.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/04-Back.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/05-open-Ronin-again.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/06-guardian-message.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/07-guardian-list.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/08-select-Hestia.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/09-second-guardian.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/10-confirm-two-guardians.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/11-Yes.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/12-start-loading.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0002-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0002-P1M-R04/13-after-load.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/framebuffer.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/input.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/launch.json",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/state-after-door.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R04/state-final.log",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/01-before-Skip.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/02-bed-start.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/03-Down-one-second.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/04-Down-two-holds.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/05-outside-Left.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/06-NPC-action.png",
+      "matches_saved_manifest": true
+    },
+    {
+      "run_id": "M15-SCN-0005-P1M-R04",
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R04/07-NPC-approach-action.png",
+      "matches_saved_manifest": true
+    }
+  ],
+  "conclusion": "R02/R03/R04 are not three equivalent HOUSE-EXIT-001 replays; only R04 executed the exit path. Same declared fresh RMS/profile does not prove identical internal initialization or timing."
+}

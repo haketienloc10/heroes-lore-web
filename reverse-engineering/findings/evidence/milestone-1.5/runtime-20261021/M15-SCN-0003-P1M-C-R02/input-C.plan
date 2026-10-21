@@ -1,0 +1,8 @@
+wait 2000
+frame C-start
+down 102
+wait 20
+up 102
+frame C-release
+wait 1000
+frame C-idle
