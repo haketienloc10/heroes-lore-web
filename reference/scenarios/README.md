@@ -1,6 +1,6 @@
 # Milestone 1.5 — Runtime Verification v2.1.2
 
-**Cập nhật:** 2026-10-21. **Trạng thái:** đã chạy FreeJ2ME-Plus 1.52 trên WSLg; **5/8 scenario có quan sát runtime một phần, 0 scenario được đánh dấu đạt toàn bộ; milestone chưa hoàn thành**. Chưa có số đo FPS, latency hoặc callback ordering. Phần kế hoạch và biên bản thực nghiệm được ghi riêng trong từng scenario; xem [FND-0003](../../reverse-engineering/findings/FND-0003-emulator-smoke.md).
+**Cập nhật:** 2026-10-22. **Trạng thái:** đã chạy FreeJ2ME-Plus 1.52 trên WSLg; **7/8 scenario có quan sát runtime một phần, 0 scenario được đánh dấu đạt toàn bộ; milestone chưa hoàn thành**. Có cadence scheduler và một số callback/control-flow ordering theo route; chưa đo FPS hiển thị vật lý, latency phản ứng và chưa phủ đầy đủ callback ordering. Phần kế hoạch và biên bản thực nghiệm được ghi riêng trong từng scenario; xem [FND-0003](../../reverse-engineering/findings/FND-0003-emulator-smoke.md).
 
 **JAR dùng chung:** `original/heroes-lore-v2.1.2.jar`, 554715 byte, SHA-256 `7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61`.
 
@@ -11,11 +11,11 @@
 | [SCN-0001](SCN-0001-startup.md) | Startup sạch, startup có dữ liệu, `bf→ar`, kích thước Canvas | Emulator/profile đã hiệu chuẩn; RMS sạch hoặc snapshot | Đã quan sát startup sạch; thiếu biến thể save/trace |
 | [SCN-0002](SCN-0002-menu.md) | Menu, chọn/quay lại, tải vào màn chơi | Có đường vào menu được ghi bằng ảnh/input | Đã quan sát menu/New Game/Back/loading; chưa đạt toàn bộ |
 | [SCN-0003](SCN-0003-input.md) | Press/release, giữ phím, repeat, hai phím, alias | Có fixture đứng yên; log callback nếu cần kết luận nội bộ | Đã thu A–E trong nhà; callback/repeat vật lý còn thiếu |
-| [SCN-0004](SCN-0004-game-loop.md) | Scheduler/update/render, pending rỗng, pacing | Trace method/state và cửa sổ đo ổn định | Chưa chạy |
+| [SCN-0004](SCN-0004-game-loop.md) | Scheduler/update/render, pending rỗng, pacing | Trace method/state và cửa sổ đo ổn định | Đã quan sát một phần: cadence/ordering ở một số route; nhiều nhánh và presentation còn mở |
 | [SCN-0005](SCN-0005-gameplay.md) | Di chuyển, vật cản, thao tác chính và tương tác | Fixture chơi được; xác định hành vi bằng quan sát | Đã quan sát gameplay/di chuyển/Status; chưa đạt toàn bộ |
 | [SCN-0006](SCN-0006-save-load.md) | Save/load sau thoát tiến trình, snapshot RMS | Xác định đường save/load thật trong UI | Đã cold load save cạnh giường và vị trí khác; chưa đủ 3 chu kỳ/biến thể |
 | [SCN-0007](SCN-0007-visibility.md) | Hide/show, pause/resume khi đang tải/đang chơi | Cơ chế phát lifecycle/visibility của emulator đã kiểm tra | Chưa chạy |
-| [SCN-0008](SCN-0008-control-flow.md) | Phủ runtime cả 4 sai lệch JADX/javap | Trace BCI hoặc method và fixture chạm nhánh | Chưa chạy |
+| [SCN-0008](SCN-0008-control-flow.md) | Phủ runtime cả 4 sai lệch JADX/javap | Trace BCI hoặc method và fixture chạm nhánh | Đã quan sát một phần: CF-01/02/03 và CF-04 injected body; CF-04 natural còn mở |
 
 Chạy theo thứ tự `0001 → 0002 → 0005` để tạo fixture, sau đó `0003/0004/0006/0007`; `0008` tận dụng các lượt trước và bổ sung nhánh chưa chạm. Đã ghi đường tạo phiên Ronin/Hestia/Ron từ RMS sạch và UI tiếng Anh. Đã có snapshot storage/cold load qua UI; tên map theo UI và RNG vẫn chưa biết; không điền chúng bằng suy đoán. Các lượt P1M-R02/R03/R04 có kiểm soát được tách khỏi lượt khám phá có cả thao tác tay và tự động.
 
@@ -36,7 +36,7 @@ Chạy theo thứ tự `0001 → 0002 → 0005` để tạo fixture, sau đó `0
 
 `Chưa chạy` = chưa có lượt emulator; `chưa xác minh` = thiếu bằng chứng cho một kết luận; `bị chặn` = lượt đã chuẩn bị nhưng thiếu điều kiện để tiếp tục; `đã quan sát` = có evidence hành vi nhưng chưa đủ phủ; `đạt/không đạt` chỉ dùng khi đã thực hiện và có tiêu chí đối chiếu rõ. Khác giả thuyết tĩnh cần điều tra cả emulator và cách đo, không tự coi game gốc sai.
 
-Số `5/8` là số scenario có quan sát một phần, không phải tỷ lệ đạt, fidelity hoặc accuracy. Không tính emulator, JADX hay `javap` thành đóng góp REA.
+Số `7/8` là số scenario có quan sát một phần, không phải tỷ lệ đạt, fidelity hoặc accuracy. Không tính emulator, JADX hay `javap` thành đóng góp REA.
 
 ## Fixture và audit lượt tiếp tục
 

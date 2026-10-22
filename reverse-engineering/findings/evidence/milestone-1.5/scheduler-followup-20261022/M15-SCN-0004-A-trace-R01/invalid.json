@@ -1,0 +1,5 @@
+{
+  "run_id": "M15-SCN-0004-A-trace-R01",
+  "valid": false,
+  "reason": "Follow-up probe VerifyError: field-store marker left one extra boolean on the operand stack after ag.a:Z PUTFSTATIC. Console confirms EventProcessing-Thread terminated at br.b(); screenshot is blank and XDamage=0. Retained as an excluded instrumentation pilot."
+}

@@ -1,0 +1,95 @@
+{
+  "run_id": "M15-SCN-0004-E-key-input-physical-R01",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-key-input-physical-R01/01-startup.png",
+      "size": 11271,
+      "sha256": "fbae25bd217df25c24bedef3c868a940e912dc064cdaf74de1df97eb1252acd4"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-key-input-physical-R01/02-gameplay-ready.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-key-input-physical-R01/03-after-user-input.png",
+      "size": 21671,
+      "sha256": "cc35d0a78a7e11c80bc6a645f63e551999c7301b27df19599c6a7e6bdc828c47"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/checkpoint-x11.jsonl",
+      "size": 1715,
+      "sha256": "90b731529b6235899ec5c43f28467c1f7a48b80b920721d63554b6f950595ff7"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/console.log",
+      "size": 3055,
+      "sha256": "1aa0a94f321b91edf915287412c7cf1bb762652b332c85446e4c8cc17694a69f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/key-input-analysis.json",
+      "size": 1458,
+      "sha256": "476756ed31ae37c018426d49a0b71a275cb2ae9df5124ee22093d5c762c2d069"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/launch.json",
+      "size": 1698,
+      "sha256": "bd8bcda1c8f7ec50e7075fa59d433dd8a064c41a5b4204f8a74038dc35b4c911"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/operator-report.json",
+      "size": 319,
+      "sha256": "e624be1b135f5d2c412223f2ca13476d922bfed6ce312ce1f8f8cf391322c740"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/process-exit.json",
+      "size": 76,
+      "sha256": "0fdb470d1b0bbf83283b644ab4e475daa7ebaedb97e18e7c14f013b6261852f0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/restore-input-01.log",
+      "size": 413,
+      "sha256": "7afe332bf6a253a32a11c1e4e9a3d0f8c2d450ff82e08bba5bc70340c097bc29"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/restore-input-02.log",
+      "size": 413,
+      "sha256": "364c47838534eafadb4fe178687438823d19920396cb57514b85707d52975a79"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/restore-input-03.log",
+      "size": 413,
+      "sha256": "b7954c71bb3d270802abdfc12c7b7d2b395436be0fcd3f427f7c446acb59bf16"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/session-status.json",
+      "size": 411,
+      "sha256": "8bd573199b6f630ba978d670a0cb0dbf7c413f60fecdb5158c3a2a6800f9edfa"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/trace-health.json",
+      "size": 110,
+      "sha256": "ab79d2dd45d22f831b377dd89f266d9271821ebbabd8a4846debdfa6ad63b55c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/trace-probe-start.json",
+      "size": 153,
+      "sha256": "9c258fd3cbe181abd00aae0f543deb6d9cd2a0ea3b11600b42513704ee2736c1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/trace.jsonl",
+      "size": 1543,
+      "sha256": "cda2a3d1b73312e780fafe71c1c7a5ab2ba1e5b126f97eb7b248c7e50713f199"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "8dcd867f7ea37f9456d630d7ea0e022cde8e752aa4f287a9d8bc86cdd27767ee"
+    }
+  ]
+}

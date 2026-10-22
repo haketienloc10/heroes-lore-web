@@ -1,0 +1,71 @@
+{
+  "producer": "Python hashlib/zipfile, static verification only",
+  "files": [
+    {
+      "path": "/home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+      "size_ok": true,
+      "hash_ok": true
+    },
+    {
+      "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+      "size_ok": true,
+      "hash_ok": true
+    },
+    {
+      "path": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/game-traced.jar",
+      "size_ok": true,
+      "hash_ok": true
+    },
+    {
+      "path": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/emulator-traced.jar",
+      "size_ok": true,
+      "hash_ok": true
+    },
+    {
+      "path": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/probe.jar",
+      "size_ok": true,
+      "hash_ok": true
+    },
+    {
+      "path": "/home/locdt/heroes-lore-web/reverse-engineering/scripts/SchedulerInstrumenter.java",
+      "size_ok": true,
+      "hash_ok": true
+    },
+    {
+      "path": "/home/locdt/heroes-lore-web/reverse-engineering/scripts/TraceProbe.java",
+      "size_ok": true,
+      "hash_ok": true
+    }
+  ],
+  "archives": [
+    {
+      "original": "/home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+      "copy": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/game-traced.jar",
+      "member_count": 826,
+      "changed_members": [
+        "ad.class",
+        "ar.class",
+        "bf.class",
+        "br.class",
+        "bt.class",
+        "m.class",
+        "q.class"
+      ],
+      "all_other_member_bytes_equal": true
+    },
+    {
+      "original": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+      "copy": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/emulator-traced.jar",
+      "member_count": 1506,
+      "changed_members": [
+        "javax/microedition/lcdui/Canvas.class",
+        "javax/microedition/lcdui/Display.class",
+        "org/recompile/freej2me/FreeJ2ME$LCD.class",
+        "org/recompile/mobile/MobilePlatform.class"
+      ],
+      "all_other_member_bytes_equal": true
+    }
+  ],
+  "web_unchanged": true,
+  "web_file_count": 17
+}

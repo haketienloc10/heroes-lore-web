@@ -1,0 +1,5 @@
+{"run_id":"M15-SCN-0004-E-pacing-period-R01","event":"probe_ready","utc":"2026-10-22T17:44:36.233153280Z","mono_ns":19638857709809,"reflection":false,"direct_game_method_calls":false,"game_field_writes":false}
+{"run_id":"M15-SCN-0004-E-pacing-period-R01","event":"natural_state_4_observed","utc":"2026-10-22T17:45:01.948637634Z","mono_ns":19664041228424,"state":4}
+{"run_id":"M15-SCN-0004-E-pacing-period-R01","event":"auto_key_down_begin","utc":"2026-10-22T17:45:01.951919697Z","mono_ns":19664044494091,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-pacing-period-R01","event":"auto_key_down_dispatched","utc":"2026-10-22T17:45:01.953264819Z","mono_ns":19664045831312,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-pacing-period-R01","event":"auto_key_up_dispatched","utc":"2026-10-22T17:45:02.047459021Z","mono_ns":19664140349869,"awt_key_code":87}

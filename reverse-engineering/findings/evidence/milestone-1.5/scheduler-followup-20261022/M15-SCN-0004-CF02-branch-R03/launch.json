@@ -1,0 +1,30 @@
+{
+  "run_id": "M15-SCN-0004-CF02-branch-R03",
+  "pid": 130313,
+  "utc": "2026-10-22T15:35:42.961903+00:00",
+  "mono_ns": 11909383372249,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-cf02-branch-20261022/cf02-probe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R03/trace.jsonl|M15-SCN-0004-CF02-branch-R03",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-cf02-branch-20261022/heroes-lore-cf02-probed.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "mode": "CF-02 branch trace",
+  "fixture": "HOUSE-INPUT-001",
+  "fixture_hashes_verified": 10,
+  "input": "AWT LCD KeyListener sidecar; synthetic, not physical",
+  "game_field_writes": false,
+  "rng_controlled": false,
+  "profile": "FreeJ2ME-Plus 1.52; phone:Standard; 240x320; limiter 60",
+  "display": ":0",
+  "window_xid": "0x600007"
+}

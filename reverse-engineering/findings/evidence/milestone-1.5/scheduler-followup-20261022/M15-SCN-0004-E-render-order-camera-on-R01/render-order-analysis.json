@@ -1,0 +1,1861 @@
+{
+  "producer": "analyze_render_order_trace.py; derived from bounded no-reflection method trace",
+  "trace_path": "/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/trace.jsonl",
+  "gameplay_checkpoint_path": null,
+  "gameplay_checkpoint_mono_ns": null,
+  "trace_integrity": {
+    "serialized_rows": 2077,
+    "unique_sequence_values": 2077,
+    "sequence_min": 1,
+    "sequence_max": 2077,
+    "sequence_gaps_within_file": [],
+    "health_events_seen": 2085,
+    "health_retained": 2077,
+    "health_dropped_capacity": 0,
+    "health_events_seen_minus_serialized": 8,
+    "incomplete_paint_spans_at_trace_end": 1,
+    "shutdown_note": "The health counter exceeds serialized rows; the probe shutdown hook snapshots a concurrent queue while game threads may still emit events. Treat the terminal trace segment as censored; capacity dropped count remains a separate metric."
+  },
+  "paint_entry_spans": 324,
+  "paint_exit_spans": 323,
+  "branch_observations": {
+    "true": 476
+  },
+  "branch_to_next_call_segment_counts": {
+    "true:no calls:paint_exit": 237,
+    "true:no calls:trace_end": 1,
+    "true:g→i:next_branch": 238
+  },
+  "expected_order_mismatches_with_calls": [],
+  "samples_first_100_call_bearing_segments": [
+    {
+      "paint_span_id": 88,
+      "branch_seq": 176,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521405895902
+    },
+    {
+      "paint_span_id": 91,
+      "branch_seq": 184,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521477761436
+    },
+    {
+      "paint_span_id": 94,
+      "branch_seq": 192,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521548683543
+    },
+    {
+      "paint_span_id": 97,
+      "branch_seq": 200,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521619416245
+    },
+    {
+      "paint_span_id": 100,
+      "branch_seq": 208,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521691908264
+    },
+    {
+      "paint_span_id": 103,
+      "branch_seq": 216,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521763829903
+    },
+    {
+      "paint_span_id": 106,
+      "branch_seq": 224,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521834703833
+    },
+    {
+      "paint_span_id": 109,
+      "branch_seq": 232,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521907336152
+    },
+    {
+      "paint_span_id": 112,
+      "branch_seq": 240,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15521978886100
+    },
+    {
+      "paint_span_id": 115,
+      "branch_seq": 248,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522050378483
+    },
+    {
+      "paint_span_id": 118,
+      "branch_seq": 256,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522122939930
+    },
+    {
+      "paint_span_id": 121,
+      "branch_seq": 264,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522194633478
+    },
+    {
+      "paint_span_id": 124,
+      "branch_seq": 272,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522266292674
+    },
+    {
+      "paint_span_id": 127,
+      "branch_seq": 280,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522338012426
+    },
+    {
+      "paint_span_id": 130,
+      "branch_seq": 288,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522410696738
+    },
+    {
+      "paint_span_id": 133,
+      "branch_seq": 296,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522482608643
+    },
+    {
+      "paint_span_id": 136,
+      "branch_seq": 304,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522554255107
+    },
+    {
+      "paint_span_id": 139,
+      "branch_seq": 312,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522625998060
+    },
+    {
+      "paint_span_id": 142,
+      "branch_seq": 320,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522697811736
+    },
+    {
+      "paint_span_id": 145,
+      "branch_seq": 328,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522769371566
+    },
+    {
+      "paint_span_id": 148,
+      "branch_seq": 336,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522841337776
+    },
+    {
+      "paint_span_id": 151,
+      "branch_seq": 344,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522913562145
+    },
+    {
+      "paint_span_id": 154,
+      "branch_seq": 352,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15522985759826
+    },
+    {
+      "paint_span_id": 157,
+      "branch_seq": 360,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523056639924
+    },
+    {
+      "paint_span_id": 160,
+      "branch_seq": 368,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523127696576
+    },
+    {
+      "paint_span_id": 163,
+      "branch_seq": 376,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523198754049
+    },
+    {
+      "paint_span_id": 166,
+      "branch_seq": 384,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523269582516
+    },
+    {
+      "paint_span_id": 169,
+      "branch_seq": 392,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523340756083
+    },
+    {
+      "paint_span_id": 172,
+      "branch_seq": 400,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523411906657
+    },
+    {
+      "paint_span_id": 175,
+      "branch_seq": 408,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523483099771
+    },
+    {
+      "paint_span_id": 178,
+      "branch_seq": 416,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523554482941
+    },
+    {
+      "paint_span_id": 181,
+      "branch_seq": 424,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523625877149
+    },
+    {
+      "paint_span_id": 184,
+      "branch_seq": 432,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523698664718
+    },
+    {
+      "paint_span_id": 187,
+      "branch_seq": 440,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523770265057
+    },
+    {
+      "paint_span_id": 190,
+      "branch_seq": 448,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523842035658
+    },
+    {
+      "paint_span_id": 193,
+      "branch_seq": 456,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523913976010
+    },
+    {
+      "paint_span_id": 196,
+      "branch_seq": 464,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15523985187896
+    },
+    {
+      "paint_span_id": 199,
+      "branch_seq": 472,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524056564424
+    },
+    {
+      "paint_span_id": 202,
+      "branch_seq": 480,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524127903342
+    },
+    {
+      "paint_span_id": 205,
+      "branch_seq": 488,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524200539863
+    },
+    {
+      "paint_span_id": 208,
+      "branch_seq": 496,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524271701264
+    },
+    {
+      "paint_span_id": 211,
+      "branch_seq": 504,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524342747591
+    },
+    {
+      "paint_span_id": 214,
+      "branch_seq": 512,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524413833979
+    },
+    {
+      "paint_span_id": 217,
+      "branch_seq": 520,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524486002618
+    },
+    {
+      "paint_span_id": 220,
+      "branch_seq": 528,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524558100901
+    },
+    {
+      "paint_span_id": 223,
+      "branch_seq": 536,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524629255765
+    },
+    {
+      "paint_span_id": 226,
+      "branch_seq": 544,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524700460718
+    },
+    {
+      "paint_span_id": 229,
+      "branch_seq": 552,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524772967947
+    },
+    {
+      "paint_span_id": 232,
+      "branch_seq": 560,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524843567369
+    },
+    {
+      "paint_span_id": 235,
+      "branch_seq": 568,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524914735163
+    },
+    {
+      "paint_span_id": 238,
+      "branch_seq": 576,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15524985780895
+    },
+    {
+      "paint_span_id": 241,
+      "branch_seq": 584,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525057051918
+    },
+    {
+      "paint_span_id": 244,
+      "branch_seq": 592,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525128447447
+    },
+    {
+      "paint_span_id": 247,
+      "branch_seq": 600,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525199910880
+    },
+    {
+      "paint_span_id": 250,
+      "branch_seq": 608,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525271908784
+    },
+    {
+      "paint_span_id": 253,
+      "branch_seq": 616,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525344426091
+    },
+    {
+      "paint_span_id": 256,
+      "branch_seq": 624,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525415933401
+    },
+    {
+      "paint_span_id": 259,
+      "branch_seq": 632,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525488546682
+    },
+    {
+      "paint_span_id": 262,
+      "branch_seq": 640,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525559719546
+    },
+    {
+      "paint_span_id": 265,
+      "branch_seq": 648,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525631197297
+    },
+    {
+      "paint_span_id": 268,
+      "branch_seq": 656,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525703268788
+    },
+    {
+      "paint_span_id": 271,
+      "branch_seq": 664,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525775147202
+    },
+    {
+      "paint_span_id": 274,
+      "branch_seq": 672,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525847079390
+    },
+    {
+      "paint_span_id": 277,
+      "branch_seq": 680,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525918487640
+    },
+    {
+      "paint_span_id": 280,
+      "branch_seq": 688,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15525989831362
+    },
+    {
+      "paint_span_id": 283,
+      "branch_seq": 696,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526061121818
+    },
+    {
+      "paint_span_id": 286,
+      "branch_seq": 704,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526133539084
+    },
+    {
+      "paint_span_id": 289,
+      "branch_seq": 712,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526204984063
+    },
+    {
+      "paint_span_id": 292,
+      "branch_seq": 720,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526276845026
+    },
+    {
+      "paint_span_id": 295,
+      "branch_seq": 728,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526348609704
+    },
+    {
+      "paint_span_id": 298,
+      "branch_seq": 736,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526420082178
+    },
+    {
+      "paint_span_id": 301,
+      "branch_seq": 744,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526491549103
+    },
+    {
+      "paint_span_id": 304,
+      "branch_seq": 752,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526563375974
+    },
+    {
+      "paint_span_id": 307,
+      "branch_seq": 760,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526634390546
+    },
+    {
+      "paint_span_id": 310,
+      "branch_seq": 768,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526706350846
+    },
+    {
+      "paint_span_id": 313,
+      "branch_seq": 776,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526777700049
+    },
+    {
+      "paint_span_id": 316,
+      "branch_seq": 784,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526849113993
+    },
+    {
+      "paint_span_id": 319,
+      "branch_seq": 792,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526920569210
+    },
+    {
+      "paint_span_id": 322,
+      "branch_seq": 800,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15526992248896
+    },
+    {
+      "paint_span_id": 325,
+      "branch_seq": 808,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527063922008
+    },
+    {
+      "paint_span_id": 328,
+      "branch_seq": 816,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527136034550
+    },
+    {
+      "paint_span_id": 331,
+      "branch_seq": 824,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527208805127
+    },
+    {
+      "paint_span_id": 334,
+      "branch_seq": 832,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527279964658
+    },
+    {
+      "paint_span_id": 337,
+      "branch_seq": 840,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527351840188
+    },
+    {
+      "paint_span_id": 340,
+      "branch_seq": 848,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527424384181
+    },
+    {
+      "paint_span_id": 343,
+      "branch_seq": 856,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527496177080
+    },
+    {
+      "paint_span_id": 346,
+      "branch_seq": 864,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527568253090
+    },
+    {
+      "paint_span_id": 349,
+      "branch_seq": 872,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527640093409
+    },
+    {
+      "paint_span_id": 352,
+      "branch_seq": 880,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527712234193
+    },
+    {
+      "paint_span_id": 355,
+      "branch_seq": 888,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527783556520
+    },
+    {
+      "paint_span_id": 358,
+      "branch_seq": 896,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527855511355
+    },
+    {
+      "paint_span_id": 361,
+      "branch_seq": 904,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527927213146
+    },
+    {
+      "paint_span_id": 364,
+      "branch_seq": 912,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15527999210256
+    },
+    {
+      "paint_span_id": 367,
+      "branch_seq": 920,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528070844045
+    },
+    {
+      "paint_span_id": 370,
+      "branch_seq": 928,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528142396916
+    },
+    {
+      "paint_span_id": 373,
+      "branch_seq": 936,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528213771809
+    },
+    {
+      "paint_span_id": 376,
+      "branch_seq": 944,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528285463006
+    },
+    {
+      "paint_span_id": 379,
+      "branch_seq": 952,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528356995295
+    },
+    {
+      "paint_span_id": 382,
+      "branch_seq": 960,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528428975259
+    },
+    {
+      "paint_span_id": 385,
+      "branch_seq": 968,
+      "branch_value": true,
+      "observed_order": [
+        "g",
+        "i"
+      ],
+      "expected_order": [
+        "g",
+        "i"
+      ],
+      "matches_expected": true,
+      "boundary": "next_branch",
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "branch_mono_ns": 15528501274401
+    }
+  ],
+  "gameplay_checkpoint_fields": null,
+  "post_gameplay_checkpoint": null,
+  "limits": [
+    "The probe logs the boolean operand immediately before the original IFEQ at BCI 94; it does not read game fields reflectively.",
+    "Call order is grouped from a branch marker up to the next visit to that branch or the containing paint return; it establishes observed method order, not rendering causality.",
+    "The gameplay checkpoint is a sequential read-only field snapshot and screenshot, not synchronized with each paint invocation.",
+    "Only normal method returns are hooked; exceptional exits are not represented.",
+    "Trace timing includes instrumentation overhead and is not a physical presentation measurement."
+  ],
+  "run_id": "M15-SCN-0004-E-render-order-camera-on-R01",
+  "status": "loading_state_only_not_gameplay",
+  "route_checkpoint": {
+    "mono_ns": 15517923406166,
+    "fields": {
+      "m.e:I": 1,
+      "br.d:Z": true
+    },
+    "source": "runtime-state-after-load.log; sequential read-only snapshot"
+  },
+  "checkpoint_file": "state-checkpoint.json",
+  "counted_for_gameplay_camera_on_conclusion": false,
+  "limitations": [
+    "One saved-game route and one run; does not establish behavior in all states or interleavings.",
+    "Three Enter callbacks were synthetic AWT input, not physical keyboard input.",
+    "X11 screenshot and internal method order do not measure compositor or physical presentation."
+  ],
+  "conclusion": "Checkpoint remained at m.e:I=1 (loading); this run is excluded from gameplay render-order evidence.",
+  "trace_health_note": "Health saw 2085 events and serialized 2077 with capacity dropped=0; eight terminal sequence values were not serialized at shutdown.",
+  "checkpoint_screenshot": "reference/screenshots/M15-SCN-0004-E-render-order-camera-on-R01/02-after-load.png"
+}

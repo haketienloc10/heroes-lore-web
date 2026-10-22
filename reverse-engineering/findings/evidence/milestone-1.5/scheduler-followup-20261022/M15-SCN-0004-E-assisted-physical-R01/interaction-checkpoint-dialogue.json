@@ -1,0 +1,13 @@
+{
+  "run_id": "M15-SCN-0004-E-assisted-physical-R01",
+  "checkpoint": "user-reported dialogue open",
+  "utc": "2026-10-22T13:49:35.312665+00:00",
+  "mono_ns": 5541735453900,
+  "pid": 58681,
+  "pid_alive": true,
+  "window": "0x600007",
+  "awt_event_count_at_capture": 1884,
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/09-dialogue-open.png",
+  "input_sent_by_harness": false,
+  "screenshot_sha256": "f45db223f30045823a2824040dd3aaf275b1b39b8902d8c3afc7a76fd4b67ce2"
+}

@@ -1,0 +1,43 @@
+[INFO] Loading MIDlet: Heroes Lore | Main Class: rpg.GameMIDlet
+[ERROR] javax.microedition.media.Manager: Couldn't open Tone Player: Can not open line
+[INFO] javax.microedition.midlet.MIDlet: Create MIDlet
+startApp
+[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320
+MyGameCanvas
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MAXMAPTILE
+en-GB
+langChoice 0
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-Demo
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-LangList
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MIDlet-Version
+readySound
+XFile _c
+javax.microedition.rms.RecordStoreNotFoundException: Record Store Doesn't Exist: Heroes Lore/410decd402x2m_.rms
+	at javax.microedition.rms.RecordStore.loadRecordStore(Unknown Source)
+	at javax.microedition.rms.RecordStore.<init>(Unknown Source)
+	at javax.microedition.rms.RecordStore.openRecordStore(Unknown Source)
+	at at.<init>(Unknown Source)
+	at br.i(Unknown Source)
+	at bv.d(Unknown Source)
+	at br.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+exists _c
+exists false
+exists _c
+exists false
+exists _k
+exists false
+exists _s
+exists false
+exists _w
+exists false
+exists _o
+exists false
+XFile _c
+write _c
+close : 6

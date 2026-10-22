@@ -1,0 +1,15 @@
+{
+  "run_id": "M15-SCN-0004-E-order-false-scout-R01",
+  "valid_for_branch_analysis": false,
+  "reasons": [
+    "All 13 captured X11 checkpoints show the emulator window with a blank white LCD; the game menu, settings, and gameplay are not visually verifiable.",
+    "The trace probe did not flush trace.jsonl or trace-health.json before the process was forcibly stopped; br.d:Z was not observed at runtime.",
+    "The run harness used time.sleep(5000) instead of time.sleep(5) for the final wait, so the planned run did not finish. The exact runner used is preserved as runner-used.py.",
+    "No conclusion is drawn about whether the synthetic input reached the game or whether the preference changed."
+  ],
+  "captured_checkpoints": 13,
+  "trace_file_present": false,
+  "trace_health_present": false,
+  "python_exit_code": 130,
+  "java_process_stopped_with_sigkill": true
+}

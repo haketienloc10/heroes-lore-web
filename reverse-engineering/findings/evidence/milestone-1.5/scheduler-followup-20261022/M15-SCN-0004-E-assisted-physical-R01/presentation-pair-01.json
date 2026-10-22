@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-22T13:54:58.658877+00:00",
+  "window": "0x600007",
+  "x11_screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/16-x11-after-frontbuffer.png",
+  "x11_sha256": "b6d27bf04dff139251f211ccade1725749a6fa64242782380e3c7a2308e0670c",
+  "frontbuffer": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/15-frontbuffer-current.png",
+  "frontbuffer_sha256": "ced63acf3368351fa23b742d3469c99b4e08c005e3a48442f7a20504253f984d",
+  "frontbuffer_capture_log": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/frontbuffer-capture.log",
+  "awt_event_file_bytes": 684371
+}

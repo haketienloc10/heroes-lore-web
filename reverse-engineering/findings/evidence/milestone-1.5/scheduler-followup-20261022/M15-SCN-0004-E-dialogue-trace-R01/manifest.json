@@ -1,0 +1,56 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R01",
+  "status": "invalid startup attempt; no user input",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R01/01-startup.png",
+      "size": 2695,
+      "sha256": "f6438f26d36b04dcf12db5d888cd8a349449161e89abfd5c9c51f3b6386ac1d4"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/checkpoint-x11.jsonl",
+      "size": 551,
+      "sha256": "f75e66f84f147bf332e99f76601e913ecdaf2eb93e78d27f26636325c986617e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/clock.json",
+      "size": 160,
+      "sha256": "5e1e1147e03d3b97ae7ccc316fa835597b3077b0761d06b0357fcc6637de9f0b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/console.log",
+      "size": 932,
+      "sha256": "554e3ff9b0676a807f3145f3cba58e0aa8034b191aef6da2f83a495c62011f50"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/invalid.json",
+      "size": 436,
+      "sha256": "ed2030d831ddb5b4d9a85e5dad0c90da329c257efea259957e151a7c5302b848"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/launch.json",
+      "size": 1556,
+      "sha256": "c91fc596907746955235c936faf406839cdbb7d2ba1e22b0f26fde84d31ddda1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/process-exit.json",
+      "size": 234,
+      "sha256": "1d63c599c1b4deaaa263ad488bd225f54deef2552e5dd6c0e49adba8464f84a2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/startup-error.json",
+      "size": 95,
+      "sha256": "1c00a349686253594ee7d533f6eb514924a532d1aedd38d8a52230c5eb8909fb"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/window-tree-startup.txt",
+      "size": 2117,
+      "sha256": "ce894a7714e66a42dec18727aae447cfc1c4213086212969f74448aa00632220"
+    }
+  ]
+}

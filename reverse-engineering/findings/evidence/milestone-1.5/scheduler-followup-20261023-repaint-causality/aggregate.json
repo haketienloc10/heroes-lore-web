@@ -1,0 +1,55 @@
+{
+  "purpose": "Runtime correlation from the FreeJ2ME LCD repaint request through the same-source AWT update event to LCD.paint.",
+  "run_count": 1,
+  "run_id": "M15-SCN-0004-E-repaint-causality-R01",
+  "trace_events": 3693,
+  "trace_dropped": 0,
+  "assessment": "flush_repaint_update_event_lcd_paint_causality_observed",
+  "counts": {
+    "ar_paint_entries": 285,
+    "ar_paint_state_2_entries": 216,
+    "flush_graphics_entries": 446,
+    "painter_run_entries": 446,
+    "lcd_repaint_requests": 446,
+    "lcd_paint_entries": 447,
+    "paint_event_update_same_lcd": 446,
+    "linked_update_event_lcd_paints": 446,
+    "request_ids_linked_to_lcd_paint": 446,
+    "request_ids_nested_in_flush_and_painter": 446,
+    "request_ids_with_gameplay_ar_paint_ancestor": 0,
+    "distinct_linked_paint_event_ids": 446,
+    "one_request_per_update_event": true,
+    "unmatched_requests_at_shutdown": 0,
+    "update_paints_without_tracked_requests": 0,
+    "paints_outside_paint_event": 0
+  },
+  "gameplay_capture_window": {
+    "start_mono_ns": 20590800818429,
+    "end_mono_ns": 20601258266166,
+    "duration_seconds": 10.457,
+    "ar_paint_state_2_entries": 146,
+    "flush_graphics_entries": 146,
+    "lcd_repaint_requests": 146,
+    "same_source_update_lcd_paints": 146,
+    "request_ids_linked_to_update_paint": 146,
+    "every_gameplay_window_request_linked": true
+  },
+  "censored_spans_at_shutdown": [
+    {
+      "span_id": 1623,
+      "owner": "ar",
+      "method": "paint(Ljavax/microedition/lcdui/Graphics;)V",
+      "thread_name": "EventProcessing-Thread",
+      "game_state": 2,
+      "entry_seq": 3691
+    }
+  ],
+  "limitations": [
+    "One controlled fixture route and emulator profile; the result applies to captured events only.",
+    "One PaintEvent.UPDATE can consume several pending repaint calls; this measures batching/coalescing, not one request per paint.",
+    "PaintEvent.PAINT expose events and presentation by the desktop compositor are outside the request-to-update link.",
+    "The captured ar.paint state-2 entries are not stack ancestors of the emulator flush/repaint call; the evidence links the FreeJ2ME repaint request to its AWT paint, not each game update to a displayed frame.",
+    "Normal method returns are hooked; exceptional exits can leave method spans censored.",
+    "Synthetic AWT menu input is used; physical keyboard and input-to-visible latency are not measured."
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "run_id": "M15-SCN-0004-E-exit-scout-R03",
+  "valid_for_branch_analysis": false,
+  "reason": "Aborted before route completion. RuntimeStateProbe stopped after snapshot_begin during a reflective field snapshot in the early UI state; no scenario observations from this run are used."
+}

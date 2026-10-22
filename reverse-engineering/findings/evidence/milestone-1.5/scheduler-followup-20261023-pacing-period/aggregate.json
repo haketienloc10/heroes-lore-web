@@ -1,0 +1,37 @@
+{
+  "purpose": "direct observation of br.a(JJ)V second long argument, which br.b() loads from br.d:I",
+  "run_count": 1,
+  "independent_fixture_copies": 1,
+  "profile": "FreeJ2ME-Plus 1.52, phone:Motorola, 240x320, limiter 60",
+  "trace_events": 2445,
+  "trace_dropped": 0,
+  "helper_entries": 346,
+  "period_markers": 346,
+  "target_period_ms_by_last_observed_state_setter": {
+    "1": {
+      "200": 35
+    },
+    "2": {
+      "71": 130
+    },
+    "4": {
+      "71": 2
+    },
+    "9": {
+      "50": 43
+    },
+    "unknown_before_first_m_e_store": {
+      "50": 57,
+      "66": 74,
+      "200": 5
+    }
+  },
+  "run_id": "M15-SCN-0004-E-pacing-period-R01",
+  "limitations": [
+    "target period is observed from br.a(JJ)V's second long argument; original br.b() bytecode passes br.d:I there",
+    "state attribution applies only between observed m.a(I)V stores on this single game thread",
+    "one controlled HOUSE-INPUT-001 route, Motorola profile; no claim for other states/routes",
+    "target period is a requested pacing interval, not observed callback or presentation rate",
+    "synthetic AWT input; not a physical keyboard or compositor measurement"
+  ]
+}

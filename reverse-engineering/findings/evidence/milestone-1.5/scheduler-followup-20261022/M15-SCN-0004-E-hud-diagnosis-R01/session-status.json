@@ -1,0 +1,14 @@
+{
+  "run_id": "M15-SCN-0004-E-hud-diagnosis-R01",
+  "captured_utc": "2026-10-22T14:27:25.451716+00:00",
+  "pid": 88203,
+  "pid_alive": false,
+  "status": "normal-scene checkpoint captured; baseline process closed cleanly",
+  "user_input_started": true,
+  "harness_input_sent": false,
+  "instrumentation": false,
+  "next_checkpoint": "none; no HUD-only gameplay issue was found in the reviewed valid captures",
+  "user_completed_load": true,
+  "checkpoint": "normal-scene",
+  "closed_utc": "2026-10-22T14:46:24.016090+00:00"
+}

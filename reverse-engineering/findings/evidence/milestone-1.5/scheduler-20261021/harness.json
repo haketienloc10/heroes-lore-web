@@ -1,0 +1,157 @@
+{
+  "sources": [
+    {
+      "path": "reverse-engineering/scripts/SchedulerInstrumenter.java",
+      "size": 5069,
+      "sha256": "9619e06e4bd426505ea3a40d179ccc0d5fb46cfbef18f281a7e075ce5094c5c2"
+    },
+    {
+      "path": "reverse-engineering/scripts/TraceProbe.java",
+      "size": 5625,
+      "sha256": "933b16623e60d3c8a409bc4f7705d6558723c059fab151557394df3bde1967a9"
+    },
+    {
+      "path": "reverse-engineering/scripts/SchedulerBytecodeAudit.java",
+      "size": 4299,
+      "sha256": "9e327541b66526bb896b8ef81e8e1c18013da2a8d699d5ca13287b1081e63382"
+    },
+    {
+      "path": "reverse-engineering/scripts/SchedulerClockCalibration.java",
+      "size": 1982,
+      "sha256": "af1af9dafd75c1af5480caca974710d994fc39566e82037024ba1a0b958c221b"
+    },
+    {
+      "path": "reverse-engineering/scripts/build_scheduler_probe.py",
+      "size": 1718,
+      "sha256": "4ea22819f9261f74704581efab289b16487df921dcda130ad2599fd04aef3588"
+    },
+    {
+      "path": "reverse-engineering/scripts/run_scheduler_verification.py",
+      "size": 6159,
+      "sha256": "0a602bc3749e737875a756637cfa2e1214810711501ce045b3acfd73edab7f51"
+    },
+    {
+      "path": "reverse-engineering/scripts/analyze_scheduler_trace.py",
+      "size": 10976,
+      "sha256": "fd5771ad0ff1facd79c1eb73ec893e65bb8619d767b07b04fd8d5093c7dfab2f"
+    },
+    {
+      "path": "reverse-engineering/scripts/summarize_scheduler.py",
+      "size": 9092,
+      "sha256": "97faacff46fedf6a6efea5ce8ef87d3ef822a3ad4860733380e8085ab7285619"
+    },
+    {
+      "path": "reverse-engineering/scripts/scheduler_xdamage.py",
+      "size": 3029,
+      "sha256": "1bddb6ad2af571ff49b36962060c74df00d76874f436677efe956f38db3e5ac9"
+    },
+    {
+      "path": "reverse-engineering/scripts/verify_scheduler_copies.py",
+      "size": 2325,
+      "sha256": "2531b77ab964a5fa33c3c1dfb38e8629cf6a0850b7b35859ea2c31833e45fd3a"
+    },
+    {
+      "path": "reverse-engineering/scripts/calibrate_scheduler_clocks.py",
+      "size": 1875,
+      "sha256": "e9b8667af1bedf2f889b94c58ebc9627bf34ea5fddc47aa7bb442a6e53864790"
+    },
+    {
+      "path": "reverse-engineering/scripts/finalize_scheduler_evidence.py",
+      "size": 5117,
+      "sha256": "93f2f22f9933f779ae133e953816c7581924046a478af2cb632baf255c30eaf0"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeStateProbe.java",
+      "size": 7506,
+      "sha256": "5832b9795cb0b2acd0570fdc9cb92dbf03b686289004756c4f5898f8413a1c2d"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeSequenceProbe.java",
+      "size": 4703,
+      "sha256": "cb2ac1eb026bf352752ece9d7eae4ad86c56ff2a275e131486347eaf2d018006"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeFramebufferProbe.java",
+      "size": 1497,
+      "sha256": "1278293767602915b65d2e08ebb0224d71a59d9cc39f36875e8b2b63cdfcb1e1"
+    },
+    {
+      "path": "reverse-engineering/scripts/run_runtime_smoke.py",
+      "size": 4504,
+      "sha256": "4e04ad44358fddae6591ae9819423f5fe7e5b9f167cc84d884f78e37fceeb743"
+    },
+    {
+      "path": "reverse-engineering/scripts/runtime_x11.py",
+      "size": 4238,
+      "sha256": "8ca6fd9d6a47b8bb276e970c54eabec844976a63d6ab4f144b35c45d3f17d5b0"
+    }
+  ],
+  "local_binaries": [
+    {
+      "path": "reference/recordings/scheduler-probe-v3/classes/SchedulerInstrumenter.class",
+      "size": 8239,
+      "sha256": "b51d825248bba56e48f1c0d7a91bcb8edaaca2399066a976001dacf89feb411c"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-v3/classes/org/recompile/hlprobe/TraceProbe.class",
+      "size": 8811,
+      "sha256": "91da48357b85ebc4d28a66786322ed109620a52e3ed68e540c0476a8390a47e8"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-v3/emulator-traced.jar",
+      "size": 1187230,
+      "sha256": "5856e96a4be7a81dc68a62f03368f278cdffbc41584522fe6c586991c16d31eb"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-v3/game-traced.jar",
+      "size": 570649,
+      "sha256": "2580e8d9b750f9fe04efd771d36db868a1c98ba557f72cffea28226d0b74b1c3"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-v3/probe.jar",
+      "size": 4798,
+      "sha256": "2c12ba1e09782ed935e0b42fcb1ce33c8e5a3c24470199c6bcede3727fcdf2ff"
+    }
+  ],
+  "existing_attach_sidecars": [
+    {
+      "original_path": "/tmp/heroes-lore-runtime-probe/RuntimeStateProbe.class",
+      "retained": {
+        "path": "reference/recordings/scheduler-sidecars/RuntimeStateProbe.class",
+        "size": 9136,
+        "sha256": "18bdb5a9ee0e8a5a108ed13ef2d7b136b6b71d94ff8493653103f82cd50a80cd"
+      }
+    },
+    {
+      "original_path": "/tmp/heroes-lore-runtime-probe/frame-probe.jar",
+      "retained": {
+        "path": "reference/recordings/scheduler-sidecars/frame-probe.jar",
+        "size": 1988,
+        "sha256": "6d98ee15d60d9c8b83dcd0009374c6583c88dc01c07c973e4a21804f459dacac"
+      }
+    },
+    {
+      "original_path": "/tmp/heroes-lore-runtime-probe/probe-current.jar",
+      "retained": {
+        "path": "reference/recordings/scheduler-sidecars/probe-current.jar",
+        "size": 5118,
+        "sha256": "f7c7c3449fdb28db748390a0f39beae5a0b2dbe4d874f100ace3e49bc0bacbc8"
+      }
+    },
+    {
+      "original_path": "/tmp/heroes-lore-runtime-sequence/sequence-probe.jar",
+      "retained": {
+        "path": "reference/recordings/scheduler-sidecars/sequence-probe.jar",
+        "size": 5888,
+        "sha256": "c822079498bc72de4f93bcdeaad16c0c8ccb4f0098c3ed85f162b931949998b7"
+      }
+    }
+  ],
+  "sidecar_rebuild": "javac --add-modules jdk.attach -d <sidecar-dir> reverse-engineering/scripts/RuntimeStateProbe.java reverse-engineering/scripts/RuntimeFramebufferProbe.java reverse-engineering/scripts/RuntimeSequenceProbe.java; jar cfm <agent.jar> <manifest with Agent-Class> -C <sidecar-dir> .",
+  "sidecar_agent_classes": {
+    "probe-current.jar": "RuntimeStateProbe",
+    "frame-probe.jar": "RuntimeFramebufferProbe",
+    "sequence-probe.jar": "RuntimeSequenceProbe"
+  },
+  "runtime_game_field_writes": false
+}

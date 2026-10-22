@@ -1,0 +1,29 @@
+{
+  "captured_utc": "2026-10-22T13:56:04.963892+00:00",
+  "pid_alive": true,
+  "runtime_snapshot": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot-post-toggle.json",
+  "runtime_fields": {
+    "event": "runtime_flag_snapshot",
+    "utc": "2026-10-22T13:56:04.028205119Z",
+    "mono_ns": 5930451014919,
+    "scope": "selected fields only; sequential reads; no game methods invoked",
+    "fields": {
+      "br.d:Z": "false",
+      "br.d:I": "50",
+      "m.e:I": "5",
+      "q.b:Z": "false",
+      "m.c:B": "0",
+      "m.d:B": "0",
+      "ag.a:Z": "false",
+      "m.b:B": "0"
+    }
+  },
+  "frontbuffer": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/18-frontbuffer-camera-off.png",
+  "frontbuffer_log": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/frontbuffer-camera-off.log",
+  "x11": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/19-x11-camera-off.png",
+  "sha256": {
+    "runtime-flag-snapshot-post-toggle.json": "5babdf2c70af18aed503ed812c3d663a1ae0de644d29169b4dec7e749b7509c4",
+    "18-frontbuffer-camera-off.png": "998c10e80fc791803ed46004d7386f09ca845c0c36b62f941da532fafa19af40",
+    "19-x11-camera-off.png": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+  }
+}

@@ -1,0 +1,6 @@
+wait 5000
+down 102
+wait 20
+up 102
+wait 5000
+frame 06-after-input

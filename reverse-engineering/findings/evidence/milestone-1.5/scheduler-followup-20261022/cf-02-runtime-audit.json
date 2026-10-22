@@ -1,0 +1,410 @@
+{
+  "finding": "CF-02",
+  "generated_utc_date": "2026-10-22",
+  "superseded_by": "cf-02-branch-proof.json",
+  "artifact": {
+    "game_jar": "original/heroes-lore-v2.1.2.jar",
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "status": "partial_runtime_evidence",
+  "static_control_flow": {
+    "method": "bt.run()V",
+    "mode_field": "bt.a:B=1",
+    "bci_146": "goto 150 (load-success path)",
+    "bci_149": "Exception handler pop, then fall through to BCI 150",
+    "common_suffix": "BCI 150 -> j()V at 151 -> k()V at 155 -> m.b(BBBB)V at 168 -> q.b:Z=true store at 172 -> return at 175"
+  },
+  "runtime_conclusion": "Trong ba trace UI save-load hợp lệ, cùng invocation bt.run()V ở mode 1 chạy bt.i/j/k, gọi m.b(BBBB)V, ghi q.b:Z=true rồi return bình thường. Đây là bằng chứng runtime cho hậu xử lý chung sau điểm hợp nhất trên route đã ghi.",
+  "limitation": "Probe r6 đánh dấu lệnh gọi m.b(BBBB)V và store q.b nhưng không đánh dấu BCI 146 hoặc handler BCI 149. Hai đường đều nhập tại BCI 150, nên trace không phân biệt tạo resource thành công với đường bắt exception. Vì vậy chưa chứng minh load /sgui/q… thành công và chưa đóng đủ tiêu chí CF-02.",
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-D-trace-R03",
+      "valid": true,
+      "xdamage_events": 380,
+      "scenario_variant": "D real UI save-load transition, pending command and worker observed",
+      "input": "AWT LCD KeyListener sidecar; not physical",
+      "fixture": "HOUSE-INPUT-001",
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R03/trace.jsonl",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R03/manifest.json",
+      "after_load_screenshot": "reference/screenshots/M15-SCN-0004-D-trace-R03/04-after-load.png",
+      "health": {
+        "events": 22580,
+        "retained": 22580,
+        "dropped": 0,
+        "field_read_errors": 0,
+        "capacity": 1000000
+      },
+      "worker_mode1": {
+        "span_id": 7319,
+        "thread_id": 46,
+        "thread_name": "Thread-10",
+        "entry_seq": 7319,
+        "mode_field_bt.a:B": 1,
+        "state_m.e:I": 1,
+        "helper_and_call_spans": {
+          "bt.i": {
+            "entry": {
+              "seq": 7514,
+              "t_mono_ns": 1941043379830,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7514,
+              "parent_span_id": 7319
+            },
+            "exit": {
+              "seq": 7660,
+              "t_mono_ns": 1941900720604,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=37",
+              "span_id": 7514,
+              "parent_span_id": 7319
+            }
+          },
+          "bt.j": {
+            "entry": {
+              "seq": 7661,
+              "t_mono_ns": 1941901157703,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7661,
+              "parent_span_id": 7319
+            },
+            "exit": {
+              "seq": 7842,
+              "t_mono_ns": 1942757160024,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=91",
+              "span_id": 7661,
+              "parent_span_id": 7319
+            }
+          },
+          "bt.k": {
+            "entry": {
+              "seq": 7843,
+              "t_mono_ns": 1942757298824,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7843,
+              "parent_span_id": 7319
+            },
+            "exit": {
+              "seq": 7988,
+              "t_mono_ns": 1943637993419,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=37",
+              "span_id": 7843,
+              "parent_span_id": 7319
+            }
+          },
+          "m.b(BBBB)": {
+            "entry": {
+              "seq": 7989,
+              "t_mono_ns": 1943638046219,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7989,
+              "parent_span_id": 7319
+            },
+            "exit": {
+              "seq": 7995,
+              "t_mono_ns": 1943638108519,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=8",
+              "span_id": 7989,
+              "parent_span_id": 7319
+            }
+          }
+        },
+        "post_command_m.b_marker": {
+          "seq": 7996,
+          "t_mono_ns": 1943638115719,
+          "phase": "point",
+          "detail": "worker_post_command_m.b(BBBB);original_bci=168;op_index=55",
+          "span_id": 7319,
+          "parent_span_id": 7319,
+          "m.b:B": 1,
+          "q.b:Z": false
+        },
+        "q_b_true_store_marker": {
+          "seq": 7997,
+          "t_mono_ns": 1943638132319,
+          "phase": "point",
+          "detail": "field_store_after=q.b:Z;op_index=57",
+          "span_id": 7319,
+          "parent_span_id": 7319,
+          "q.b:Z": true
+        },
+        "normal_return": {
+          "seq": 7998,
+          "t_mono_ns": 1943638138719,
+          "phase": "exit",
+          "detail": "normal_return=1;op_index=58",
+          "span_id": 7319,
+          "parent_span_id": 0,
+          "q.b:Z": true
+        }
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R04",
+      "valid": true,
+      "xdamage_events": 382,
+      "scenario_variant": "D real UI save-load transition, pending command and worker observed",
+      "input": "AWT LCD KeyListener sidecar; not physical",
+      "fixture": "HOUSE-INPUT-001",
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R04/trace.jsonl",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R04/manifest.json",
+      "after_load_screenshot": "reference/screenshots/M15-SCN-0004-D-trace-R04/04-after-load.png",
+      "health": {
+        "events": 22546,
+        "retained": 22546,
+        "dropped": 0,
+        "field_read_errors": 0,
+        "capacity": 1000000
+      },
+      "worker_mode1": {
+        "span_id": 7393,
+        "thread_id": 48,
+        "thread_name": "Thread-12",
+        "entry_seq": 7393,
+        "mode_field_bt.a:B": 1,
+        "state_m.e:I": 1,
+        "helper_and_call_spans": {
+          "bt.i": {
+            "entry": {
+              "seq": 7580,
+              "t_mono_ns": 1997153779338,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7580,
+              "parent_span_id": 7393
+            },
+            "exit": {
+              "seq": 7726,
+              "t_mono_ns": 1998020064223,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=37",
+              "span_id": 7580,
+              "parent_span_id": 7393
+            }
+          },
+          "bt.j": {
+            "entry": {
+              "seq": 7727,
+              "t_mono_ns": 1998020655566,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7727,
+              "parent_span_id": 7393
+            },
+            "exit": {
+              "seq": 7908,
+              "t_mono_ns": 1998927514958,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=91",
+              "span_id": 7727,
+              "parent_span_id": 7393
+            }
+          },
+          "bt.k": {
+            "entry": {
+              "seq": 7909,
+              "t_mono_ns": 1998927862242,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7909,
+              "parent_span_id": 7393
+            },
+            "exit": {
+              "seq": 8054,
+              "t_mono_ns": 1999795210585,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=37",
+              "span_id": 7909,
+              "parent_span_id": 7393
+            }
+          },
+          "m.b(BBBB)": {
+            "entry": {
+              "seq": 8055,
+              "t_mono_ns": 1999795273400,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 8055,
+              "parent_span_id": 7393
+            },
+            "exit": {
+              "seq": 8061,
+              "t_mono_ns": 1999795337815,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=8",
+              "span_id": 8055,
+              "parent_span_id": 7393
+            }
+          }
+        },
+        "post_command_m.b_marker": {
+          "seq": 8062,
+          "t_mono_ns": 1999795348118,
+          "phase": "point",
+          "detail": "worker_post_command_m.b(BBBB);original_bci=168;op_index=55",
+          "span_id": 7393,
+          "parent_span_id": 7393,
+          "m.b:B": 1,
+          "q.b:Z": false
+        },
+        "q_b_true_store_marker": {
+          "seq": 8063,
+          "t_mono_ns": 1999795356420,
+          "phase": "point",
+          "detail": "field_store_after=q.b:Z;op_index=57",
+          "span_id": 7393,
+          "parent_span_id": 7393,
+          "q.b:Z": true
+        },
+        "normal_return": {
+          "seq": 8064,
+          "t_mono_ns": 1999795366422,
+          "phase": "exit",
+          "detail": "normal_return=1;op_index=58",
+          "span_id": 7393,
+          "parent_span_id": 0,
+          "q.b:Z": true
+        }
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R05",
+      "valid": true,
+      "xdamage_events": 381,
+      "scenario_variant": "D real UI save-load transition, pending command and worker observed",
+      "input": "AWT LCD KeyListener sidecar; not physical",
+      "fixture": "HOUSE-INPUT-001",
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R05/trace.jsonl",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R05/manifest.json",
+      "after_load_screenshot": "reference/screenshots/M15-SCN-0004-D-trace-R05/04-after-load.png",
+      "health": {
+        "events": 22402,
+        "retained": 22402,
+        "dropped": 0,
+        "field_read_errors": 0,
+        "capacity": 1000000
+      },
+      "worker_mode1": {
+        "span_id": 7660,
+        "thread_id": 46,
+        "thread_name": "Thread-10",
+        "entry_seq": 7660,
+        "mode_field_bt.a:B": 1,
+        "state_m.e:I": 1,
+        "helper_and_call_spans": {
+          "bt.i": {
+            "entry": {
+              "seq": 7850,
+              "t_mono_ns": 2041336119181,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 7850,
+              "parent_span_id": 7660
+            },
+            "exit": {
+              "seq": 8032,
+              "t_mono_ns": 2042361345916,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=37",
+              "span_id": 7850,
+              "parent_span_id": 7660
+            }
+          },
+          "bt.j": {
+            "entry": {
+              "seq": 8033,
+              "t_mono_ns": 2042362236686,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 8033,
+              "parent_span_id": 7660
+            },
+            "exit": {
+              "seq": 8214,
+              "t_mono_ns": 2043235651780,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=91",
+              "span_id": 8033,
+              "parent_span_id": 7660
+            }
+          },
+          "bt.k": {
+            "entry": {
+              "seq": 8215,
+              "t_mono_ns": 2043235809109,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 8215,
+              "parent_span_id": 7660
+            },
+            "exit": {
+              "seq": 8360,
+              "t_mono_ns": 2044133553699,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=37",
+              "span_id": 8215,
+              "parent_span_id": 7660
+            }
+          },
+          "m.b(BBBB)": {
+            "entry": {
+              "seq": 8361,
+              "t_mono_ns": 2044133610509,
+              "phase": "entry",
+              "detail": "",
+              "span_id": 8361,
+              "parent_span_id": 7660
+            },
+            "exit": {
+              "seq": 8367,
+              "t_mono_ns": 2044133670321,
+              "phase": "exit",
+              "detail": "normal_return=0;op_index=8",
+              "span_id": 8361,
+              "parent_span_id": 7660
+            }
+          }
+        },
+        "post_command_m.b_marker": {
+          "seq": 8368,
+          "t_mono_ns": 2044133676722,
+          "phase": "point",
+          "detail": "worker_post_command_m.b(BBBB);original_bci=168;op_index=55",
+          "span_id": 7660,
+          "parent_span_id": 7660,
+          "m.b:B": 1,
+          "q.b:Z": false
+        },
+        "q_b_true_store_marker": {
+          "seq": 8369,
+          "t_mono_ns": 2044133687724,
+          "phase": "point",
+          "detail": "field_store_after=q.b:Z;op_index=57",
+          "span_id": 7660,
+          "parent_span_id": 7660,
+          "q.b:Z": true
+        },
+        "normal_return": {
+          "seq": 8370,
+          "t_mono_ns": 2044133693925,
+          "phase": "exit",
+          "detail": "normal_return=1;op_index=58",
+          "span_id": 7660,
+          "parent_span_id": 0,
+          "q.b:Z": true
+        }
+      }
+    }
+  ],
+  "methodology_limits": [
+    "Input phím AWT do sidecar tổng hợp; không phải thao tác phím vật lý.",
+    "Trace agent đọc field tuần tự; đây không phải snapshot trạng thái nguyên tử.",
+    "Ba lượt là ba lần khởi chạy emulator riêng từ fixture HOUSE-INPUT-001; ảnh cho thấy cảnh trong nhà sau load nhưng không xác định đã đi qua nhánh BCI 146 hay handler BCI 149."
+  ]
+}

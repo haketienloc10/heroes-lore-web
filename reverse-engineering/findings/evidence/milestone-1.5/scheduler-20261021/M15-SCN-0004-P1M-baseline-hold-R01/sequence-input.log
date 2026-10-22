@@ -1,0 +1,10 @@
+2026-10-21T16:03:37.948430882Z mono_ns=12423873818233 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-hold-R01/input.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-21T16:03:37.949721277Z mono_ns=12423875127645 wait_requested_ms=5000
+2026-10-21T16:03:42.957167772Z mono_ns=12428882632142 computed_emulator_mapping host_awt=102 internal=16 raw=54
+2026-10-21T16:03:42.959234153Z mono_ns=12428884626924 listener_dispatch_begin phase=down code=102
+2026-10-21T16:03:42.962010246Z mono_ns=12428887402161 listener_dispatch_end phase=down code=102
+2026-10-21T16:03:42.962615840Z mono_ns=12428888251838 wait_requested_ms=1000
+2026-10-21T16:03:43.964571701Z mono_ns=12429889984915 listener_dispatch_begin phase=up code=102
+2026-10-21T16:03:43.966346172Z mono_ns=12429891779544 listener_dispatch_end phase=up code=102
+2026-10-21T16:03:43.968601200Z mono_ns=12429893999581 wait_requested_ms=5000
+2026-10-21T16:03:48.979628381Z mono_ns=12434905026121 sequence_end

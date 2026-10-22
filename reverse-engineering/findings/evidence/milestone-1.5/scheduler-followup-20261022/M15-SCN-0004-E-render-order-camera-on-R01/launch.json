@@ -1,0 +1,41 @@
+{
+  "run_id": "M15-SCN-0004-E-render-order-camera-on-R01",
+  "pid": 169594,
+  "utc": "2026-10-22T16:35:35.147374+00:00",
+  "mono_ns": 15501569048568,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-render-r1/probe-render-order-safe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/trace.jsonl|M15-SCN-0004-E-render-order-camera-on-R01",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-render-r1/game-traced.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "reference/recordings/M15-SCN-0004-E-render-order-camera-on-R01",
+  "fixture": "HOUSE-INPUT-001",
+  "route": "Three synthetic Enter callbacks through the save UI",
+  "mode": "bounded trace-only run on an isolated instrumented game copy",
+  "instrumented_game_sha256": "c6faf23b8fda24208ea96ce1244d18e47bfb180053805274ab8079224ae1e3ee",
+  "emulator_sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e",
+  "trace_target": [
+    "ar.paint(Graphics)V",
+    "m.i()V",
+    "m.g()V",
+    "br.d:Z operand before original IFEQ BCI 94"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "game_state_writes": false,
+  "synthetic_awt_input": true,
+  "physical_input": false,
+  "rng_controlled": false,
+  "host_display": ":0",
+  "emulator_profile": "effective profile recorded by the read-only runtime snapshot"
+}

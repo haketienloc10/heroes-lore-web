@@ -1,0 +1,165 @@
+{
+  "run_id": "M15-SCN-0004-E-render-order-R01",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/01-startup.png",
+      "size": 11267,
+      "sha256": "1d1b2ffb9db33f8ab2f6a37ac55d523914fdd1a33418740d8153bf6858f3d91c"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-gameplay-after-back-frontbuffer.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-gameplay-after-back-x11-after.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-gameplay-after-back-x11-before.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-gameplay-frontbuffer.png",
+      "size": 2966,
+      "sha256": "998c10e80fc791803ed46004d7386f09ca845c0c36b62f941da532fafa19af40"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-gameplay-x11-after.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-gameplay-x11-before.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-menu-frontbuffer.png",
+      "size": 2966,
+      "sha256": "998c10e80fc791803ed46004d7386f09ca845c0c36b62f941da532fafa19af40"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-menu-x11-after.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/02-camera-off-menu-x11-before.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/window-tree-camera-off-gameplay-after-back.txt",
+      "size": 1209,
+      "sha256": "f30a5cab0c915117f997b7c3d8599259e27548e9113d740946d219358d20777e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/window-tree-camera-off-gameplay.txt",
+      "size": 1209,
+      "sha256": "f30a5cab0c915117f997b7c3d8599259e27548e9113d740946d219358d20777e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-R01/window-tree-camera-off-menu.txt",
+      "size": 1209,
+      "sha256": "f30a5cab0c915117f997b7c3d8599259e27548e9113d740946d219358d20777e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/capture-boundary.json",
+      "size": 1296,
+      "sha256": "bcc16c7646a04f777ed8b6bdeac42f8590314c2999411282a7656884073b9f8c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/checkpoint-x11.jsonl",
+      "size": 4127,
+      "sha256": "7602116ddd7e7f7ebd0b1725ca4d362ca79068d400c591b5ab7fd6bfb3e2260f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/console.log",
+      "size": 4451,
+      "sha256": "e691163890abef094b959ef7ae7fab71a2f93d217a8c469aa5006bfe89024ce2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/frontbuffer-camera-off-gameplay-after-back.log",
+      "size": 288,
+      "sha256": "2449b6e4ffcd99fdd2189f4c805204d380c238bc7f912d61b73afc7130fea11b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/frontbuffer-camera-off-gameplay.log",
+      "size": 277,
+      "sha256": "f62adb4c4ba7cb4d41dc23f5c4e5e4caea2e8bbe301d55932a664b9a09226bd5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/frontbuffer-camera-off-menu.log",
+      "size": 273,
+      "sha256": "bbb32b303decde35ff9aee13ec68ede07d76e243895163d4473aec6d0aff835f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/launch.json",
+      "size": 1573,
+      "sha256": "7bb819b6927c3751e34363fcfbdef7584aaba1b5c975dd783c75f2e57db99801"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/operator-guide.md",
+      "size": 1280,
+      "sha256": "aa8f9b32d3d529c1af8ec582bf7e76666a03e3d302c1261a028fa9e99a94aed9"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/render-order-analysis.json",
+      "size": 41541,
+      "sha256": "6f51716a4c495a4ea1a39df50fbe8a5fc7b9c61eb4c6f59167f572a77773cc3a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/runtime-state-camera-off-gameplay-after-back.json",
+      "size": 294,
+      "sha256": "d5a104ce13326572fbb8ddddbb88c49cbb6758694c14f76330ecc63bf2e7e79c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/runtime-state-camera-off-gameplay.json",
+      "size": 294,
+      "sha256": "4646083c21f825a717043700cc7258c6a552421a957b41746d9e44f846227b2a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/runtime-state-camera-off-menu.json",
+      "size": 294,
+      "sha256": "a4073a4af0da83b1e91733c414663029522604f4c4e8741e7a092ef94253d568"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/session-status.json",
+      "size": 962,
+      "sha256": "1e419108b9ac549388a37a1831b7071e14be1cdf6dd3279806175a80d2c71a9b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/timeline.jsonl",
+      "size": 3640,
+      "sha256": "45b6d8d826195531ef6e7114ef8b72c6f91d6f586f90668708c14dc1fa590c61"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/trace-health.json",
+      "size": 144,
+      "sha256": "6d45633e50933671fab3e15ef74bc7acfc81ba91087a20ddecb4ac00637f0990"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/trace-probe-start.json",
+      "size": 211,
+      "sha256": "76bab4bceb12cfa504ab28e1b31ce8852543407524afae3acd15140e0aaf103f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/trace.jsonl",
+      "size": 3506808,
+      "sha256": "e0376a989acf57a71d4bee10c280b52e1086e763d3a0f4729717ab19fb9a8ac4"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/window-tree-startup.txt",
+      "size": 1211,
+      "sha256": "1bba2d08fe591dc71b4947f42d10a8e58738019dd25cf4ce5d1f2151df12179b"
+    }
+  ]
+}

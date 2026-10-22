@@ -1,0 +1,4 @@
+2026-10-22T17:23:31.900988065Z mono_ns=18378323868279 computed_emulator_mapping host_awt=98 internal=17 raw=56
+2026-10-22T17:23:31.903019266Z mono_ns=18378325818653 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=98 hold_ms=1000
+2026-10-22T17:23:31.903435912Z mono_ns=18378326226263 emulator_key_down code=98
+2026-10-22T17:23:32.905776111Z mono_ns=18379328660923 emulator_key_up code=98

@@ -1,0 +1,7 @@
+down 98
+wait 950
+down 87
+wait 100
+up 87
+wait 450
+up 98

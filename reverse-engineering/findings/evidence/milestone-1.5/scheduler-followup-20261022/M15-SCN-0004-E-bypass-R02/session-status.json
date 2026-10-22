@@ -1,0 +1,26 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R02",
+  "captured_utc": "2026-10-22T15:13:36.980528+00:00",
+  "pid": 116506,
+  "pid_alive": false,
+  "status": "user reported pressing W during loading; assistant sent SIGTERM to flush the trace; trace and health flushed successfully",
+  "user_input_started": true,
+  "harness_input_sent": false,
+  "trace_targets": [
+    "ar.keyPressed raw key",
+    "m.e:I state operand",
+    "ag.a(II)V",
+    "br.b ag.a:Z operand",
+    "br.a(JJ)V"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "game_state_writes": false,
+  "next_checkpoint": "Use a fresh Motorola-profile trace; from the house interior, start leaving with Down, then press Right Soft (W in this run's input map) about 0.9 seconds after Down starts, before NOW LOADING appears. The scout measured state 4 starting about 0.934 seconds after Down and lasting about 286 ms.",
+  "updated_utc": "2026-10-22T15:20:48.168099+00:00",
+  "trace_serialized_rows": 11022,
+  "trace_capacity_dropped": 0,
+  "target_state4_key_events": 0,
+  "ag_a_ii_invocations": 0,
+  "bypass_true_observations": 0
+}

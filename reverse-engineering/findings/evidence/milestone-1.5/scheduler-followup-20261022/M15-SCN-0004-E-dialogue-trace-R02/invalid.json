@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R02",
+  "valid": false,
+  "reasons": [
+    "Probe-induced class-initialization deadlock confirmed in full JVM thread dump.",
+    "AWT key events reached LCD canvas but runtime event processing and shutdown flush were blocked.",
+    "Trace and trace-health were not flushed; no game behavior conclusions are valid."
+  ]
+}

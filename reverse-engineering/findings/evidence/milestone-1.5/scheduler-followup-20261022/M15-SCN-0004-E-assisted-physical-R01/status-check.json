@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-22T13:44:22.320106+00:00",
+  "pid": 58681,
+  "process_alive": true,
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0004-E-assisted-physical-R01",
+  "windows": [
+    "0x600007"
+  ],
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/02-current-state.png",
+  "console_tail": "[INFO] Loading MIDlet: Heroes Lore | Main Class: rpg.GameMIDlet\n[ERROR] javax.microedition.media.Manager: Couldn't open Tone Player: Can not open line\n[INFO] javax.microedition.midlet.MIDlet: Create MIDlet\nstartApp\nMyGameCanvas\n[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MAXMAPTILE\nen-GB\nlangChoice 0\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-Demo\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-LangList\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB\n[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MIDlet-Version\nreadySound\nXFile _c\nread _c\nexists _c\nXFile _c\nread _c\n"
+}

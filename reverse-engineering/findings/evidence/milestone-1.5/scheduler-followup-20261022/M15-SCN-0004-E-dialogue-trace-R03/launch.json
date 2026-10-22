@@ -1,0 +1,36 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R03",
+  "pid": 83005,
+  "utc": "2026-10-22T14:18:57.205416+00:00",
+  "mono_ns": 7303626494442,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/probe-dialogue-safe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/trace.jsonl|M15-SCN-0004-E-dialogue-trace-R03",
+    "-jar",
+    "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/emulator-traced.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/game-traced.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R03",
+  "mode": "user-operated trace-only session; original artifacts remain unchanged",
+  "fixture": "HOUSE-INPUT-001",
+  "instrumented_game_sha256": "098edbe73145c677536d4d65315d1b0562093a7cb18f495fd47ae741c06618ce",
+  "instrumented_emulator_sha256": "5d9d0c3d9860e904e38afc1f690a9c5990fdd1c0220133df1958cedee1215300",
+  "trace_target": [
+    "ar.keyPressed(I)V",
+    "ag.a(II)V"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "input": "user-operated window; no input injection or game-field writes",
+  "rng_controlled": false,
+  "host_display": ":0",
+  "profile": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60"
+}

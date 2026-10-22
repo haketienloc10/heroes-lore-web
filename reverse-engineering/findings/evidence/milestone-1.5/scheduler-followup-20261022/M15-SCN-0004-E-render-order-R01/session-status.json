@@ -1,0 +1,34 @@
+{
+  "run_id": "M15-SCN-0004-E-render-order-R01",
+  "captured_utc": "2026-10-22T14:46:32.845950+00:00",
+  "pid": 99613,
+  "pid_alive": false,
+  "status": "user reported window closed; PID absent at finalization; trace and health files present with an eight-event shutdown-tail discrepancy",
+  "user_input_started": true,
+  "harness_input_sent": false,
+  "trace_targets": [
+    "ar.paint(Graphics)V",
+    "m.i()V",
+    "m.g()V",
+    "br.d:Z operand"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "game_state_writes": false,
+  "next_checkpoint": null,
+  "updated_utc": "2026-10-22T14:55:56.792802+00:00",
+  "gameplay_checkpoint_fields": {
+    "br.d:Z": "false",
+    "br.d:I": "71",
+    "m.e:I": "2",
+    "q.b:Z": "false",
+    "m.c:B": "0",
+    "m.d:B": "0",
+    "ag.a:Z": "false",
+    "m.b:B": "0"
+  },
+  "trace_serialized_rows": 12413,
+  "trace_health_events_seen": 12421,
+  "trace_capacity_dropped": 0,
+  "terminal_incomplete_paint_spans": 1
+}

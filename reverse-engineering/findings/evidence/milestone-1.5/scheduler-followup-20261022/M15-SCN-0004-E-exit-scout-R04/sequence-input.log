@@ -1,0 +1,15 @@
+2026-10-22T13:20:40.147281021Z mono_ns=3806570074821 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R04/input-05-overlap.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-22T13:20:40.155636208Z mono_ns=3806578436308 computed_emulator_mapping host_awt=98 internal=17 raw=56
+2026-10-22T13:20:40.157919904Z mono_ns=3806580711604 listener_dispatch_begin phase=down code=98
+2026-10-22T13:20:40.159189202Z mono_ns=3806581986702 listener_dispatch_end phase=down code=98
+2026-10-22T13:20:40.159720102Z mono_ns=3806582507402 wait_requested_ms=950
+2026-10-22T13:20:41.113824430Z mono_ns=3807536666730 computed_emulator_mapping host_awt=87 internal=8 raw=-22
+2026-10-22T13:20:41.114992428Z mono_ns=3807538004928 listener_dispatch_begin phase=down code=87
+2026-10-22T13:20:41.116066427Z mono_ns=3807538887827 listener_dispatch_end phase=down code=87
+2026-10-22T13:20:41.116946525Z mono_ns=3807539950625 wait_requested_ms=100
+2026-10-22T13:20:41.219481863Z mono_ns=3807642450562 listener_dispatch_begin phase=up code=87
+2026-10-22T13:20:41.223087457Z mono_ns=3807645949457 listener_dispatch_end phase=up code=87
+2026-10-22T13:20:41.224146655Z mono_ns=3807646988655 wait_requested_ms=450
+2026-10-22T13:20:41.675350140Z mono_ns=3808098245440 listener_dispatch_begin phase=up code=98
+2026-10-22T13:20:41.676257339Z mono_ns=3808099053139 listener_dispatch_end phase=up code=98
+2026-10-22T13:20:41.676964638Z mono_ns=3808099791437 sequence_end

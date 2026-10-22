@@ -1,0 +1,3 @@
+{"mono_ns": 17499097203140, "event": "fixture_restore_key", "step": 1, "awt_code": 10, "hold_ms": 100, "producer": "RuntimeStateProbe AWT KeyListener"}
+{"mono_ns": 17500411875275, "event": "fixture_restore_key", "step": 2, "awt_code": 10, "hold_ms": 100, "producer": "RuntimeStateProbe AWT KeyListener"}
+{"mono_ns": 17501797645656, "event": "fixture_restore_key", "step": 3, "awt_code": 10, "hold_ms": 100, "producer": "RuntimeStateProbe AWT KeyListener"}

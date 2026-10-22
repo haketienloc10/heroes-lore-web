@@ -1,0 +1,51 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R03",
+  "valid_for": "direct observation of dialogue input handler invocation in this user-operated capture",
+  "user_reported": "dialogue opened and completed",
+  "visible_dialogue": "Trainer / Griffon conversation",
+  "dialogue_open_x11": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/02-dialogue-open.png",
+  "dialogue_open_frontbuffer": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/02-dialogue-frontbuffer.png",
+  "after_dialogue_x11": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/03-after-dialogue-x11.png",
+  "after_dialogue_frontbuffer": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/03-after-dialogue-frontbuffer.png",
+  "trace_rows": 22,
+  "ar_keyPressed_calls": 10,
+  "ar_keyPressed_normal_returns": 10,
+  "ag_a_II_calls": 1,
+  "ag_a_II_normal_returns": 1,
+  "handler_records": [
+    {
+      "phase": "entry",
+      "seq": 20,
+      "t_mono_ns": 7442062121735,
+      "arg0_int": 8,
+      "arg1_int": -20,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread"
+    },
+    {
+      "phase": "exit",
+      "seq": 21,
+      "t_mono_ns": 7442062169337,
+      "arg0_int": 8,
+      "arg1_int": -20,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread"
+    }
+  ],
+  "nesting": "The single ag.a(II)V entry/return occurs between the entry/return of one ar.keyPressed(I)V invocation on the same EventProcessing-Thread.",
+  "collector_health": {
+    "events_seen": 22,
+    "retained": 22,
+    "dropped": 0,
+    "capacity": 50000,
+    "exceptional_exit_hooks": false,
+    "reflection": false
+  },
+  "scope_limits": [
+    "One user-operated dialogue run only.",
+    "The game probe does not attribute input to physical hardware versus other sources outside the JVM.",
+    "The dialogue page screenshot shows Trainer/Griffon, not the earlier Villager dialogue.",
+    "X11 and emulator-frontbuffer captures are sequential snapshots, not synchronized compositor presentation measurements.",
+    "This two-method probe provides no scheduler cadence or game-state field values."
+  ]
+}

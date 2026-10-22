@@ -1,0 +1,90 @@
+{
+  "run_id": "M15-SCN-0004-E-render-order-camera-on-R01",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-camera-on-R01/01-startup.png",
+      "size": 11277,
+      "sha256": "49329293db7c913a7bc2c800d14ee4799f3ca6918de2871704bd6f80f3771877"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-render-order-camera-on-R01/02-after-load.png",
+      "size": 1797,
+      "sha256": "6b512189c3d9a18be3ae88fd03c13dc7acb1a31c0ff02dc0f9389eef01642952"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/checkpoint-x11.jsonl",
+      "size": 1144,
+      "sha256": "805bfab0f674af40a0752d69cd4d16ec1695dfb5d891a475acf853c525ee12a3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/console.log",
+      "size": 3505,
+      "sha256": "b77fcdc5342c51f05380f83b4aebb0a0b3fa50ee8d81b4e4870b294ff99c9f77"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/input-01.log",
+      "size": 412,
+      "sha256": "4cc6849a0338868b66c9cd66a7b69c70f0305d00c733ac09b4014d6c9666ac20"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/input-02.log",
+      "size": 412,
+      "sha256": "0c714032daf52ebb0733d902debff90991876180eb2337f8982b7f7a75cca61a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/input-03.log",
+      "size": 412,
+      "sha256": "4fcf84c53e15826e1a3a5f9809c150624da23fb61fe99a0cd80b02e85c8bab0a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/launch.json",
+      "size": 1684,
+      "sha256": "db89827f4678040fc21045229a8e777fdd4725a2386aa630de607dd585497c60"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/process-exit.json",
+      "size": 76,
+      "sha256": "6b73ba1a958f7c97bd663fa22f3c138f0c573fba234a90696dcdebe5f4283a7a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/render-order-analysis.json",
+      "size": 41952,
+      "sha256": "329eec382e20597ef87342a9b3212c114af4be3ecf0a6b32ea207fc52b18fb7a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/runtime-state-after-load.log",
+      "size": 8923,
+      "sha256": "bcf438054b9e0f610a50db5128a9d2c2031b2dbda19e1761a2f48977c1261789"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/state-checkpoint.json",
+      "size": 161,
+      "sha256": "1ded4549b19b9b1a1ca193499eeb0460ec707cf7901b256444cca972f4207547"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/trace-health.json",
+      "size": 142,
+      "sha256": "cfd6d4bfaa0017fd1db15031949a1d5dea415993f664a5efcace1d2d0cd4ef5f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/trace-probe-start.json",
+      "size": 211,
+      "sha256": "190a6fa01003c5e06248f5939c41ec2e99406599e43359c2598fac5982238372"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/trace.jsonl",
+      "size": 596964,
+      "sha256": "1618ff87b64302a517d528b1732922f294d30eccce699364dcaf98d2230196a1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-camera-on-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "da244d86d88deb18eadd9de3c540a215ddcfc4c470cf7253c9489db4d5d8ef8d"
+    }
+  ]
+}

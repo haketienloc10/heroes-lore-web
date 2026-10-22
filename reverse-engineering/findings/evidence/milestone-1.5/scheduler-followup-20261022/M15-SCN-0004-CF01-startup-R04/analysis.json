@@ -1,0 +1,28 @@
+{
+  "run_id": "M15-SCN-0004-CF01-startup-R04",
+  "valid": true,
+  "trace_event_count": 7,
+  "trace_sequence_contiguous": true,
+  "invocations": [
+    {
+      "span_id": 1,
+      "thread_id": 35,
+      "bf.a:B": 0,
+      "bf.b:B": 1,
+      "sites": [
+        "bf_run_entry",
+        "resource_load_success_goto_BCI_92",
+        "call_cd_y_BCI_96",
+        "call_cd_A_BCI_99",
+        "call_bf_b_BCI_208",
+        "call_q_k_BCI_211",
+        "bf_run_exit"
+      ],
+      "decision": "success_BCI_92",
+      "ordered_suffix": true,
+      "exception_handler_observed": false,
+      "return_outcome": "normal_return"
+    }
+  ],
+  "interpretation": "Success requires the same bf.run() invocation to enter a=0,b=1, execute the success goto, run cd.y/cd.A/bf.b/q.k, and return normally without the IOException handler marker."
+}

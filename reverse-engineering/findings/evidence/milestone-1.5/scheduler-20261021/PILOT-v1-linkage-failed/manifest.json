@@ -1,0 +1,132 @@
+{
+  "run_id": "PILOT-v1-linkage-failed",
+  "evidence": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/clock.json",
+      "size": 157,
+      "sha256": "fea07afd560e28404c3a3132dab430ccacf9fdf2e85742080298372cf6c987ff"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/console.log",
+      "size": 2662,
+      "sha256": "0d7561024d38d309fdabac6433bd85dc6161f4eeb0671adde993c1ca09f0bf12"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/framebuffer.log",
+      "size": 503,
+      "sha256": "782f754e96bba9b7fd9aefe349101c444ef0dc075c2484035193e90c1575d2b0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/input.log",
+      "size": 413,
+      "sha256": "e014abec64765ddf61890371dae21d1a678b7ec31db5e5f86c364e170a7798ae"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/invalid.json",
+      "size": 186,
+      "sha256": "78a610812c20e157916a3eb0564fb07b350d182e7503ea77597ae80cf882332a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/launch.json",
+      "size": 1017,
+      "sha256": "2e0df686e110b1151fe466367b5c03708638c9c5e4ee1f9ef2385a4f7ccb8e1a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/menu-window-tree.txt",
+      "size": 1218,
+      "sha256": "c8a226cee26276e5e9b6c00e125974c020ad7472234bdd61b19b7da21c86cb4d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/snapshot-before.json",
+      "size": 1923,
+      "sha256": "7f3bf5932bc06dde8d1b450d2ca9071de0b3d264b788af9f14b0051b7835a8b3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/stop.json",
+      "size": 108,
+      "sha256": "9d95d07556aca91d2067583957df81bc9a1ebc8c9a409f285722526cdf4cf0c5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/trace-health.json",
+      "size": 109,
+      "sha256": "de2c576f5e8fd5923c3c4e6391fc2102a05341769f57f1a2cb4bed338eb49a91"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/PILOT-v1-linkage-failed/trace-retention.json",
+      "size": 488,
+      "sha256": "2470c98eef185556994cbdbccde7dbe0bdb92e16450844a3c236a67a1a841cc3"
+    }
+  ],
+  "local_only_artifacts": [
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/freej2me_system/FreeJ2ME.log",
+      "size": 637,
+      "sha256": "428e4a5d9b6eeefd6ed999ced10bf4b6b114f9c9ae27b5e6d584d94280c111ce"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/freej2me_system/customFont/Put your ttf font here",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/rms/Heroes Lore/410decd402x28_.1",
+      "size": 22,
+      "sha256": "be2eeed879d2c61d4db1ed70ebee08a59b37ac5d448d082a244f35019c322d0a"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/rms/Heroes Lore/410decd402x28_.rms",
+      "size": 382,
+      "sha256": "7a3815e4b1856a1bfc41dfe8da3ea54b507fbd8c94d1a1124a881d0cebb34c67"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/rms/Heroes Lore/410decd402x2m_.1",
+      "size": 6,
+      "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/rms/Heroes Lore/410decd402x2m_.rms",
+      "size": 382,
+      "sha256": "42fb8742390b1dc9bec451ca1b9e7ab19a72964c82718d84e716c8d677657fc0"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/rms/Heroes Lore/410decd402x2s_.1",
+      "size": 432,
+      "sha256": "76dc0aa8a0a618ad47cdf192cd2e7d524eca7359264d204d523f4108df3405ba"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/rms/Heroes Lore/410decd402x2s_.rms",
+      "size": 382,
+      "sha256": "2d8bf19494b1a9c962d6db984731857fd1c897f992cd3776fddd33c8a342f650"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/trace.jsonl",
+      "size": 840,
+      "sha256": "fdb7c58da553d849c6a9eba9c7cf76797dd59babaf7bb0612e6a750401b53994"
+    },
+    {
+      "path": "reference/recordings/SCN0004-PILOT-v1-linkage-failed/trace.jsonl.gz",
+      "size": 335,
+      "sha256": "812e168159e3951256708c6bac1db456c80437a7a69176a3ab8db4a740c60227"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-PILOT-v1-linkage-failed/01-startup.png",
+      "size": 924,
+      "sha256": "8ad00175103e220323f98873e9c2b968e454caae88d525bd3dea86e3925daa78"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-PILOT-v1-linkage-failed/02-menu.png",
+      "size": 924,
+      "sha256": "8ad00175103e220323f98873e9c2b968e454caae88d525bd3dea86e3925daa78"
+    }
+  ]
+}

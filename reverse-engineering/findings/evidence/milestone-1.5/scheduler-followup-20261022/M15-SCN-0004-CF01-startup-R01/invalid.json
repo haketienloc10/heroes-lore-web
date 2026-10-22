@@ -1,0 +1,5 @@
+{
+  "run_id": "M15-SCN-0004-CF01-startup-R01",
+  "valid": false,
+  "reason": "Harness metadata path error occurred immediately after emulator launch, when digest() tried to express the external emulator JAR as a workspace-relative path. The process was terminated before any checkpoint, screenshot, or usable trace; excluded from evidence."
+}

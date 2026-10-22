@@ -1,0 +1,9 @@
+{"utc": "2026-10-22T18:00:29.091981+00:00", "mono_ns": 20577392188533, "event": "startup_checkpoint", "no_input_seconds": 10}
+{"utc": "2026-10-22T18:00:29.092392+00:00", "mono_ns": 20577392591544, "event": "synthetic_key_begin", "step": 1, "awt_code": 10, "hold_ms": 10, "wait_ms": 1000}
+{"utc": "2026-10-22T18:00:29.560721+00:00", "mono_ns": 20577860929053, "event": "synthetic_key_end", "step": 1, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T18:00:30.561145+00:00", "mono_ns": 20578861354064, "event": "synthetic_key_begin", "step": 2, "awt_code": 10, "hold_ms": 10, "wait_ms": 1000}
+{"utc": "2026-10-22T18:00:30.852402+00:00", "mono_ns": 20579152633871, "event": "synthetic_key_end", "step": 2, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T18:00:31.852863+00:00", "mono_ns": 20580153071048, "event": "synthetic_key_begin", "step": 3, "awt_code": 10, "hold_ms": 10, "wait_ms": 10000}
+{"utc": "2026-10-22T18:00:32.079597+00:00", "mono_ns": 20580379807731, "event": "synthetic_key_end", "step": 3, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T18:00:43.003749+00:00", "mono_ns": 20590800818429, "event": "gameplay_after_load_checkpoint", "screenshot": "reference/screenshots/M15-SCN-0004-E-repaint-causality-R01/02-gameplay-after-load.png"}
+{"utc": "2026-10-22T18:00:53.461158+00:00", "mono_ns": 20601258266166, "event": "idle_capture_finished", "duration_ms": 10000, "start_mono_ns": 20590800945976}

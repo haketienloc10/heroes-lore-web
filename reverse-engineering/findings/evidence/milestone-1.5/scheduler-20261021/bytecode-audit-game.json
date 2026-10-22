@@ -1,0 +1,1 @@
+{"original":"original/heroes-lore-v2.1.2.jar","copy":"reference/recordings/scheduler-probe-v3/game-traced.jar","changed_classes":7,"methods_compared":196,"original_instructions_and_exception_regions_preserved_after_probe_removal":true,"class_versions_unchanged":true,"runtime_equivalence_claimed":false}

@@ -1,0 +1,8 @@
+{
+  "run_id": "M15-SCN-0004-E-state-scout-R01",
+  "steps": 11,
+  "purpose": "observe natural state/flag/paint returns while leaving HOUSE-INPUT and trying nearby interaction",
+  "cadence_sample": false,
+  "state_values_from_sidecar_are_sequential_snapshots": true,
+  "synthetic_input_is_not_physical": true
+}

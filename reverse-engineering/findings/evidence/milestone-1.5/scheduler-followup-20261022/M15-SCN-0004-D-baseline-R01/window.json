@@ -1,0 +1,8 @@
+{
+  "start_mono_ns": 2084808124100,
+  "end_mono_ns": 2114808124100,
+  "duration_seconds": 30,
+  "xdamage_events": 383,
+  "includes_input_and_loading_transition": true,
+  "physical_presentation": false
+}

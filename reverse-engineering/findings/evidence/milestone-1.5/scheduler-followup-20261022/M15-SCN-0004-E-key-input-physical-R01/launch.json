@@ -1,0 +1,39 @@
+{
+  "run_id": "M15-SCN-0004-E-key-input-physical-R01",
+  "utc": "2026-10-22T17:12:05.809752+00:00",
+  "mono_ns": 17692231261929,
+  "pid": 203140,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/probe-dialogue-safe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-key-input-physical-R01/trace.jsonl|M15-SCN-0004-E-key-input-physical-R01",
+    "-jar",
+    "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/emulator-traced.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/game-traced.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "fixture": "HOUSE-INPUT-001",
+  "fixture_verified_files": 10,
+  "work_copy_profile": "phone:Standard",
+  "fixture_restore_input": "RuntimeStateProbe AWT KeyListener; three Enter taps",
+  "measurement_input": "user-operated physical keyboard",
+  "trace_targets": [
+    "ar.keyPressed(I)V",
+    "ag.a(II)V"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "build_manifest": "reference/recordings/scheduler-probe-followup-20261022-dialogue-r2/build-manifest.json",
+  "build_sha256": {
+    "probe-dialogue-safe.jar": "e895df1f05fec051a988bda40be08681695ce16e023c71d8f917fb4b94ed6557",
+    "game-traced.jar": "098edbe73145c677536d4d65315d1b0562093a7cb18f495fd47ae741c06618ce",
+    "emulator-traced.jar": "5d9d0c3d9860e904e38afc1f690a9c5990fdd1c0220133df1958cedee1215300"
+  },
+  "display": ":0"
+}

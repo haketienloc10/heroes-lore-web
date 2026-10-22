@@ -1,0 +1,2257 @@
+{
+  "producer": "analyze_scheduler_followup.py",
+  "date": "2026-10-22",
+  "scope": "SCN-0004 variants A and D",
+  "valid_run_count": 12,
+  "groups": {
+    "A": {
+      "runs": [
+        {
+          "run_id": "M15-SCN-0004-A-baseline-R01",
+          "mode": "baseline",
+          "variant": "A",
+          "xdamage": {
+            "count": 452,
+            "rate_hz": 15.066666666666666,
+            "interval_ms": {
+              "n": 451,
+              "median": 66.482908,
+              "p95": 91.646906,
+              "max": 99.506603
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1287461241300,
+            "end_mono_ns": 1317461241300,
+            "duration_seconds": 30,
+            "xdamage_events": 452,
+            "physical_presentation": false
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-A-baseline-R02",
+          "mode": "baseline",
+          "variant": "A",
+          "xdamage": {
+            "count": 450,
+            "rate_hz": 15.0,
+            "interval_ms": {
+              "n": 449,
+              "median": 66.530027,
+              "p95": 94.896801,
+              "max": 100.085594
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1339814890932,
+            "end_mono_ns": 1369814890932,
+            "duration_seconds": 30,
+            "xdamage_events": 450,
+            "physical_presentation": false
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-A-baseline-R03",
+          "mode": "baseline",
+          "variant": "A",
+          "xdamage": {
+            "count": 451,
+            "rate_hz": 15.033333333333333,
+            "interval_ms": {
+              "n": 450,
+              "median": 66.59021899999999,
+              "p95": 95.630985,
+              "max": 100.133678
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1389878518785,
+            "end_mono_ns": 1419878518785,
+            "duration_seconds": 30,
+            "xdamage_events": 451,
+            "physical_presentation": false
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-A-trace-R02",
+          "mode": "trace",
+          "variant": "A",
+          "xdamage": {
+            "count": 450,
+            "rate_hz": 15.0,
+            "interval_ms": {
+              "n": 449,
+              "median": 66.751341,
+              "p95": 88.38804,
+              "max": 97.140961
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1216026737689,
+            "end_mono_ns": 1246026737689,
+            "duration_seconds": 30,
+            "xdamage_events": 450,
+            "physical_presentation": false
+          },
+          "trace_health": {
+            "events": 20911,
+            "retained": 20911,
+            "dropped": 0,
+            "field_read_errors": 0,
+            "capacity": 1000000,
+            "pending_ticket_queue_dropped": 0,
+            "pending_repaints_at_shutdown": 1,
+            "exceptional_exit_hooks": false
+          },
+          "trace_window": {
+            "scheduler_run": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.667186,
+                "p95": 67.453106,
+                "max": 68.432724
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_pacing": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.691809,
+                "p95": 67.791346,
+                "max": 69.301598
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_wait_helper": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.70392,
+                "p95": 67.796872,
+                "max": 69.315398
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "midp_ar_paint": {
+              "count": 0,
+              "rate_hz": 0.0,
+              "interval_ms": {
+                "n": 0,
+                "median": null,
+                "p95": null,
+                "max": null
+              },
+              "threads": []
+            },
+            "emulator_awt_paint": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.709946,
+                "p95": 67.625912,
+                "max": 69.053799
+              },
+              "threads": [
+                "AWT-EventQueue-0"
+              ]
+            },
+            "emulator_flush": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.718523,
+                "p95": 67.418056,
+                "max": 68.145462
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "m_e": {
+              "count": 0,
+              "rate_hz": 0.0,
+              "interval_ms": {
+                "n": 0,
+                "median": null,
+                "p95": null,
+                "max": null
+              },
+              "threads": []
+            },
+            "ag_a_values": [
+              "False"
+            ],
+            "br_d_order_values": [
+              "True"
+            ],
+            "br_d_period_values_ms": [
+              66
+            ],
+            "pacing_helper": {
+              "helper_entries": 450,
+              "inclusive_duration_ms": {
+                "n": 449,
+                "median": 65.387239,
+                "p95": 66.365916,
+                "max": 67.284165
+              },
+              "sleep_requested_ms": {
+                "n": 450,
+                "median": 65.0,
+                "p95": 66,
+                "max": 66
+              },
+              "sleep_call_count": 450,
+              "observed_sleep_bracket_ms": {
+                "n": 449,
+                "median": 65.327632,
+                "p95": 66.313706,
+                "max": 67.249665
+              },
+              "yield_call_count": 0
+            },
+            "serial_identity": {
+              "callSerially_entries": 450,
+              "br_run_callbacks": 450,
+              "matched_callback_runnable_ids": 450,
+              "bootstrap_or_unmatched": 0
+            },
+            "repaint_paint_candidate_sets": {
+              "unique_request_ids": 450,
+              "paint_callbacks": 450,
+              "callbacks_with_candidates": 367,
+              "candidate_links": 450,
+              "candidate_count_per_paint": {
+                "n": 367,
+                "median": 1,
+                "p95": 2,
+                "max": 2
+              },
+              "interpretation": "candidate sets only; no one-to-one causal claim"
+            }
+          },
+          "worker_and_dispatch": null
+        },
+        {
+          "run_id": "M15-SCN-0004-A-trace-R03",
+          "mode": "trace",
+          "variant": "A",
+          "xdamage": {
+            "count": 449,
+            "rate_hz": 14.966666666666667,
+            "interval_ms": {
+              "n": 448,
+              "median": 66.788448,
+              "p95": 91.566496,
+              "max": 99.113833
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1441849009041,
+            "end_mono_ns": 1471849009041,
+            "duration_seconds": 30,
+            "xdamage_events": 449,
+            "physical_presentation": false
+          },
+          "trace_health": {
+            "events": 20821,
+            "retained": 20821,
+            "dropped": 0,
+            "field_read_errors": 0,
+            "capacity": 1000000,
+            "pending_ticket_queue_dropped": 0,
+            "pending_repaints_at_shutdown": 0,
+            "exceptional_exit_hooks": false
+          },
+          "trace_window": {
+            "scheduler_run": {
+              "count": 449,
+              "rate_hz": 14.966666666666667,
+              "interval_ms": {
+                "n": 448,
+                "median": 66.69423850000001,
+                "p95": 67.503707,
+                "max": 70.447178
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_pacing": {
+              "count": 449,
+              "rate_hz": 14.966666666666667,
+              "interval_ms": {
+                "n": 448,
+                "median": 66.75079,
+                "p95": 67.910017,
+                "max": 74.325406
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_wait_helper": {
+              "count": 449,
+              "rate_hz": 14.966666666666667,
+              "interval_ms": {
+                "n": 448,
+                "median": 66.755329,
+                "p95": 67.923193,
+                "max": 74.375806
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "midp_ar_paint": {
+              "count": 0,
+              "rate_hz": 0.0,
+              "interval_ms": {
+                "n": 0,
+                "median": null,
+                "p95": null,
+                "max": null
+              },
+              "threads": []
+            },
+            "emulator_awt_paint": {
+              "count": 449,
+              "rate_hz": 14.966666666666667,
+              "interval_ms": {
+                "n": 448,
+                "median": 66.689915,
+                "p95": 67.872924,
+                "max": 70.131401
+              },
+              "threads": [
+                "AWT-EventQueue-0"
+              ]
+            },
+            "emulator_flush": {
+              "count": 449,
+              "rate_hz": 14.966666666666667,
+              "interval_ms": {
+                "n": 448,
+                "median": 66.73939899999999,
+                "p95": 67.449405,
+                "max": 70.452884
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "m_e": {
+              "count": 0,
+              "rate_hz": 0.0,
+              "interval_ms": {
+                "n": 0,
+                "median": null,
+                "p95": null,
+                "max": null
+              },
+              "threads": []
+            },
+            "ag_a_values": [
+              "False"
+            ],
+            "br_d_order_values": [
+              "True"
+            ],
+            "br_d_period_values_ms": [
+              66
+            ],
+            "pacing_helper": {
+              "helper_entries": 449,
+              "inclusive_duration_ms": {
+                "n": 448,
+                "median": 65.3342355,
+                "p95": 66.366572,
+                "max": 70.003171
+              },
+              "sleep_requested_ms": {
+                "n": 449,
+                "median": 65,
+                "p95": 66,
+                "max": 66
+              },
+              "sleep_call_count": 449,
+              "observed_sleep_bracket_ms": {
+                "n": 448,
+                "median": 65.261537,
+                "p95": 66.309862,
+                "max": 69.977271
+              },
+              "yield_call_count": 0
+            },
+            "serial_identity": {
+              "callSerially_entries": 449,
+              "br_run_callbacks": 449,
+              "matched_callback_runnable_ids": 449,
+              "bootstrap_or_unmatched": 0
+            },
+            "repaint_paint_candidate_sets": {
+              "unique_request_ids": 449,
+              "paint_callbacks": 449,
+              "callbacks_with_candidates": 362,
+              "candidate_links": 449,
+              "candidate_count_per_paint": {
+                "n": 362,
+                "median": 1.0,
+                "p95": 2,
+                "max": 2
+              },
+              "interpretation": "candidate sets only; no one-to-one causal claim"
+            }
+          },
+          "worker_and_dispatch": null
+        },
+        {
+          "run_id": "M15-SCN-0004-A-trace-R04",
+          "mode": "trace",
+          "variant": "A",
+          "xdamage": {
+            "count": 450,
+            "rate_hz": 15.0,
+            "interval_ms": {
+              "n": 449,
+              "median": 66.75411,
+              "p95": 92.241744,
+              "max": 98.53419
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1493347507722,
+            "end_mono_ns": 1523347507722,
+            "duration_seconds": 30,
+            "xdamage_events": 450,
+            "physical_presentation": false
+          },
+          "trace_health": {
+            "events": 20911,
+            "retained": 20911,
+            "dropped": 0,
+            "field_read_errors": 0,
+            "capacity": 1000000,
+            "pending_ticket_queue_dropped": 0,
+            "pending_repaints_at_shutdown": 1,
+            "exceptional_exit_hooks": false
+          },
+          "trace_window": {
+            "scheduler_run": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.714478,
+                "p95": 67.58323,
+                "max": 69.156508
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_pacing": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.725033,
+                "p95": 67.888628,
+                "max": 69.863782
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_wait_helper": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.730944,
+                "p95": 67.956129,
+                "max": 69.891182
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "midp_ar_paint": {
+              "count": 0,
+              "rate_hz": 0.0,
+              "interval_ms": {
+                "n": 0,
+                "median": null,
+                "p95": null,
+                "max": null
+              },
+              "threads": []
+            },
+            "emulator_awt_paint": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.693043,
+                "p95": 67.885861,
+                "max": 72.759202
+              },
+              "threads": [
+                "AWT-EventQueue-0"
+              ]
+            },
+            "emulator_flush": {
+              "count": 450,
+              "rate_hz": 15.0,
+              "interval_ms": {
+                "n": 449,
+                "median": 66.726517,
+                "p95": 67.518372,
+                "max": 68.890671
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "m_e": {
+              "count": 0,
+              "rate_hz": 0.0,
+              "interval_ms": {
+                "n": 0,
+                "median": null,
+                "p95": null,
+                "max": null
+              },
+              "threads": []
+            },
+            "ag_a_values": [
+              "False"
+            ],
+            "br_d_order_values": [
+              "True"
+            ],
+            "br_d_period_values_ms": [
+              66
+            ],
+            "pacing_helper": {
+              "helper_entries": 450,
+              "inclusive_duration_ms": {
+                "n": 449,
+                "median": 65.368154,
+                "p95": 66.401658,
+                "max": 67.69781
+              },
+              "sleep_requested_ms": {
+                "n": 450,
+                "median": 65.0,
+                "p95": 66,
+                "max": 66
+              },
+              "sleep_call_count": 450,
+              "observed_sleep_bracket_ms": {
+                "n": 449,
+                "median": 65.29673,
+                "p95": 66.315498,
+                "max": 67.62631
+              },
+              "yield_call_count": 0
+            },
+            "serial_identity": {
+              "callSerially_entries": 450,
+              "br_run_callbacks": 450,
+              "matched_callback_runnable_ids": 450,
+              "bootstrap_or_unmatched": 0
+            },
+            "repaint_paint_candidate_sets": {
+              "unique_request_ids": 450,
+              "paint_callbacks": 450,
+              "callbacks_with_candidates": 374,
+              "candidate_links": 450,
+              "candidate_count_per_paint": {
+                "n": 374,
+                "median": 1.0,
+                "p95": 2,
+                "max": 2
+              },
+              "interpretation": "candidate sets only; no one-to-one causal claim"
+            }
+          },
+          "worker_and_dispatch": null
+        }
+      ],
+      "baseline_xdamage_rate_hz_median": 15.033333333333333,
+      "trace_xdamage_rate_hz_median": 15.0,
+      "trace_xdamage_rate_hz_p95_three_trials": 15.0
+    },
+    "D": {
+      "runs": [
+        {
+          "run_id": "M15-SCN-0004-D-baseline-R01",
+          "mode": "baseline",
+          "variant": "D",
+          "xdamage": {
+            "count": 383,
+            "rate_hz": 12.766666666666667,
+            "interval_ms": {
+              "n": 382,
+              "median": 71.11408,
+              "p95": 165.948801,
+              "max": 401.200119
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 2084808124100,
+            "end_mono_ns": 2114808124100,
+            "duration_seconds": 30,
+            "xdamage_events": 383,
+            "includes_input_and_loading_transition": true,
+            "physical_presentation": false
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-D-baseline-R02",
+          "mode": "baseline",
+          "variant": "D",
+          "xdamage": {
+            "count": 384,
+            "rate_hz": 12.8,
+            "interval_ms": {
+              "n": 383,
+              "median": 71.406369,
+              "p95": 125.694402,
+              "max": 399.077044
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 2127602201239,
+            "end_mono_ns": 2157602201239,
+            "duration_seconds": 30,
+            "xdamage_events": 384,
+            "includes_input_and_loading_transition": true,
+            "physical_presentation": false
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-D-baseline-R03",
+          "mode": "baseline",
+          "variant": "D",
+          "xdamage": {
+            "count": 382,
+            "rate_hz": 12.733333333333333,
+            "interval_ms": {
+              "n": 381,
+              "median": 71.08623,
+              "p95": 153.41024,
+              "max": 401.121526
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 2172128225181,
+            "end_mono_ns": 2202128225181,
+            "duration_seconds": 30,
+            "xdamage_events": 382,
+            "includes_input_and_loading_transition": true,
+            "physical_presentation": false
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-D-trace-R03",
+          "mode": "trace",
+          "variant": "D",
+          "xdamage": {
+            "count": 380,
+            "rate_hz": 12.666666666666666,
+            "interval_ms": {
+              "n": 379,
+              "median": 71.58487,
+              "p95": 198.3403,
+              "max": 383.925693
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1935825931566,
+            "end_mono_ns": 1965825931566,
+            "duration_seconds": 30,
+            "xdamage_events": 380,
+            "includes_input_and_loading_transition": true,
+            "physical_presentation": false
+          },
+          "trace_health": {
+            "events": 22580,
+            "retained": 22580,
+            "dropped": 0,
+            "field_read_errors": 0,
+            "capacity": 1000000,
+            "pending_ticket_queue_dropped": 0,
+            "pending_repaints_at_shutdown": 0,
+            "exceptional_exit_hooks": false
+          },
+          "trace_window": {
+            "scheduler_run": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.8044615,
+                "p95": 200.743386,
+                "max": 202.517278
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_pacing": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.631812,
+                "p95": 200.609304,
+                "max": 276.419121
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_wait_helper": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.634511,
+                "p95": 200.621504,
+                "max": 276.425421
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "midp_ar_paint": {
+              "count": 374,
+              "rate_hz": 12.466666666666667,
+              "interval_ms": {
+                "n": 373,
+                "median": 71.726772,
+                "p95": 200.553081,
+                "max": 203.109377
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "emulator_awt_paint": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.7678215,
+                "p95": 200.56258,
+                "max": 205.709076
+              },
+              "threads": [
+                "AWT-EventQueue-0"
+              ]
+            },
+            "emulator_flush": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.76422,
+                "p95": 200.763586,
+                "max": 202.777077
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "m_e": {
+              "count": 374,
+              "rate_hz": 12.466666666666667,
+              "interval_ms": {
+                "n": 373,
+                "median": 71.72887,
+                "p95": 200.479986,
+                "max": 203.207778
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "ag_a_values": [
+              "False"
+            ],
+            "br_d_order_values": [
+              "True"
+            ],
+            "br_d_period_values_ms": [
+              50,
+              66,
+              71,
+              200
+            ],
+            "pacing_helper": {
+              "helper_entries": 383,
+              "inclusive_duration_ms": {
+                "n": 382,
+                "median": 69.3653715,
+                "p95": 198.48589,
+                "max": 200.769782
+              },
+              "sleep_requested_ms": {
+                "n": 382,
+                "median": 69.0,
+                "p95": 198,
+                "max": 200
+              },
+              "sleep_call_count": 382,
+              "observed_sleep_bracket_ms": {
+                "n": 381,
+                "median": 69.234074,
+                "p95": 198.28959,
+                "max": 200.242391
+              },
+              "yield_call_count": 1
+            },
+            "serial_identity": {
+              "callSerially_entries": 383,
+              "br_run_callbacks": 383,
+              "matched_callback_runnable_ids": 383,
+              "bootstrap_or_unmatched": 0
+            },
+            "repaint_paint_candidate_sets": {
+              "unique_request_ids": 384,
+              "paint_callbacks": 383,
+              "callbacks_with_candidates": 347,
+              "candidate_links": 384,
+              "candidate_count_per_paint": {
+                "n": 347,
+                "median": 1,
+                "p95": 2,
+                "max": 2
+              },
+              "interpretation": "candidate sets only; no one-to-one causal claim"
+            }
+          },
+          "worker_and_dispatch": {
+            "bf_run_entries": 2,
+            "bt_run_entries": 2,
+            "bt_modes_observed": [
+              0,
+              1,
+              2
+            ],
+            "bt_worker_branch_markers": [
+              {
+                "thread": "Thread-10",
+                "detail": "worker_post_command_m.b(BBBB);original_bci=168;op_index=55",
+                "bt.a:B": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false,
+                "span_id": 7319
+              },
+              {
+                "thread": "Thread-11",
+                "detail": "worker_mode2_branch_call;original_bci=49;op_index=7",
+                "bt.a:B": 2,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false,
+                "span_id": 8044
+              }
+            ],
+            "pending_and_worker_field_stores": [
+              {
+                "thread": "Thread-1",
+                "method": "q.<clinit>()V",
+                "detail": "field_store_after=q.b:Z;op_index=211",
+                "m.e:I": null,
+                "m.b:B": null,
+                "m.c:B": null,
+                "m.d:B": null,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-1",
+                "method": "m.<clinit>()V",
+                "detail": "field_store_after=m.b:B;op_index=99",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-5",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-5",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-5",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 0,
+                "m.b:B": 2,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 0,
+                "m.b:B": 21,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.r()V",
+                "detail": "field_store_after=m.c:B;op_index=153",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 5,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.r()V",
+                "detail": "field_store_after=m.d:B;op_index=157",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 5,
+                "m.d:B": 15,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 15,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "bt.run()V",
+                "detail": "field_store_after=q.b:Z;op_index=57",
+                "m.e:I": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": true
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": true
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "q.a(Ljava/lang/String;I)V",
+                "detail": "field_store_after=q.b:Z;op_index=10",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-11",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-11",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-11",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 15,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.b:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.c:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.d:B;op_index=5",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 2,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              }
+            ],
+            "q_b_values": [
+              "False",
+              "True"
+            ],
+            "ar_paint_return_markers": {
+              "original_bci=441;op_index=159": 373
+            },
+            "ar_paint_after_m_e_states": {
+              "1": 27,
+              "2": 285,
+              "9": 62
+            },
+            "ag_a_values": [
+              "False",
+              "None"
+            ],
+            "br_d_order_values": [
+              "None",
+              "True"
+            ]
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-D-trace-R04",
+          "mode": "trace",
+          "variant": "D",
+          "xdamage": {
+            "count": 382,
+            "rate_hz": 12.733333333333333,
+            "interval_ms": {
+              "n": 381,
+              "median": 71.456995,
+              "p95": 194.050921,
+              "max": 398.926633
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 1991770200565,
+            "end_mono_ns": 2021770200565,
+            "duration_seconds": 30,
+            "xdamage_events": 382,
+            "includes_input_and_loading_transition": true,
+            "physical_presentation": false
+          },
+          "trace_health": {
+            "events": 22546,
+            "retained": 22546,
+            "dropped": 0,
+            "field_read_errors": 0,
+            "capacity": 1000000,
+            "pending_ticket_queue_dropped": 0,
+            "pending_repaints_at_shutdown": 0,
+            "exceptional_exit_hooks": false
+          },
+          "trace_window": {
+            "scheduler_run": {
+              "count": 385,
+              "rate_hz": 12.833333333333334,
+              "interval_ms": {
+                "n": 384,
+                "median": 71.68163100000001,
+                "p95": 200.966345,
+                "max": 202.932608
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_pacing": {
+              "count": 385,
+              "rate_hz": 12.833333333333334,
+              "interval_ms": {
+                "n": 384,
+                "median": 71.5602705,
+                "p95": 200.774331,
+                "max": 280.292295
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_wait_helper": {
+              "count": 385,
+              "rate_hz": 12.833333333333334,
+              "interval_ms": {
+                "n": 384,
+                "median": 71.54870399999999,
+                "p95": 200.752526,
+                "max": 279.928094
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "midp_ar_paint": {
+              "count": 378,
+              "rate_hz": 12.6,
+              "interval_ms": {
+                "n": 377,
+                "median": 71.628122,
+                "p95": 200.866153,
+                "max": 203.797926
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "emulator_awt_paint": {
+              "count": 385,
+              "rate_hz": 12.833333333333334,
+              "interval_ms": {
+                "n": 384,
+                "median": 71.659003,
+                "p95": 201.060109,
+                "max": 206.632603
+              },
+              "threads": [
+                "AWT-EventQueue-0"
+              ]
+            },
+            "emulator_flush": {
+              "count": 385,
+              "rate_hz": 12.833333333333334,
+              "interval_ms": {
+                "n": 384,
+                "median": 71.670098,
+                "p95": 201.10933,
+                "max": 202.34651
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "m_e": {
+              "count": 378,
+              "rate_hz": 12.6,
+              "interval_ms": {
+                "n": 377,
+                "median": 71.615179,
+                "p95": 200.672573,
+                "max": 203.728109
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "ag_a_values": [
+              "False"
+            ],
+            "br_d_order_values": [
+              "True"
+            ],
+            "br_d_period_values_ms": [
+              50,
+              66,
+              71,
+              200
+            ],
+            "pacing_helper": {
+              "helper_entries": 385,
+              "inclusive_duration_ms": {
+                "n": 384,
+                "median": 69.36892900000001,
+                "p95": 198.635106,
+                "max": 200.360931
+              },
+              "sleep_requested_ms": {
+                "n": 384,
+                "median": 69.0,
+                "p95": 198,
+                "max": 200
+              },
+              "sleep_call_count": 384,
+              "observed_sleep_bracket_ms": {
+                "n": 383,
+                "median": 69.233093,
+                "p95": 198.306627,
+                "max": 200.242713
+              },
+              "yield_call_count": 1
+            },
+            "serial_identity": {
+              "callSerially_entries": 385,
+              "br_run_callbacks": 385,
+              "matched_callback_runnable_ids": 385,
+              "bootstrap_or_unmatched": 0
+            },
+            "repaint_paint_candidate_sets": {
+              "unique_request_ids": 386,
+              "paint_callbacks": 385,
+              "callbacks_with_candidates": 340,
+              "candidate_links": 386,
+              "candidate_count_per_paint": {
+                "n": 340,
+                "median": 1.0,
+                "p95": 2,
+                "max": 2
+              },
+              "interpretation": "candidate sets only; no one-to-one causal claim"
+            }
+          },
+          "worker_and_dispatch": {
+            "bf_run_entries": 2,
+            "bt_run_entries": 2,
+            "bt_modes_observed": [
+              0,
+              1,
+              2
+            ],
+            "bt_worker_branch_markers": [
+              {
+                "thread": "Thread-12",
+                "detail": "worker_post_command_m.b(BBBB);original_bci=168;op_index=55",
+                "bt.a:B": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false,
+                "span_id": 7393
+              },
+              {
+                "thread": "Thread-13",
+                "detail": "worker_mode2_branch_call;original_bci=49;op_index=7",
+                "bt.a:B": 2,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false,
+                "span_id": 8110
+              }
+            ],
+            "pending_and_worker_field_stores": [
+              {
+                "thread": "Thread-1",
+                "method": "q.<clinit>()V",
+                "detail": "field_store_after=q.b:Z;op_index=211",
+                "m.e:I": null,
+                "m.b:B": null,
+                "m.c:B": null,
+                "m.d:B": null,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-1",
+                "method": "m.<clinit>()V",
+                "detail": "field_store_after=m.b:B;op_index=99",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-6",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-6",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-6",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 0,
+                "m.b:B": 2,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 0,
+                "m.b:B": 21,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.r()V",
+                "detail": "field_store_after=m.c:B;op_index=153",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 5,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.r()V",
+                "detail": "field_store_after=m.d:B;op_index=157",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 5,
+                "m.d:B": 15,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-12",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 15,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-12",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-12",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-12",
+                "method": "bt.run()V",
+                "detail": "field_store_after=q.b:Z;op_index=57",
+                "m.e:I": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": true
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": true
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "q.a(Ljava/lang/String;I)V",
+                "detail": "field_store_after=q.b:Z;op_index=10",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-13",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-13",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-13",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 15,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.b:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.c:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.d:B;op_index=5",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 2,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              }
+            ],
+            "q_b_values": [
+              "False",
+              "True"
+            ],
+            "ar_paint_return_markers": {
+              "original_bci=441;op_index=159": 377
+            },
+            "ar_paint_after_m_e_states": {
+              "1": 27,
+              "2": 283,
+              "9": 68
+            },
+            "ag_a_values": [
+              "False",
+              "None"
+            ],
+            "br_d_order_values": [
+              "None",
+              "True"
+            ]
+          }
+        },
+        {
+          "run_id": "M15-SCN-0004-D-trace-R05",
+          "mode": "trace",
+          "variant": "D",
+          "xdamage": {
+            "count": 381,
+            "rate_hz": 12.7,
+            "interval_ms": {
+              "n": 380,
+              "median": 71.574614,
+              "p95": 199.62362,
+              "max": 402.772186
+            },
+            "window_seconds": 30
+          },
+          "window": {
+            "start_mono_ns": 2035522861019,
+            "end_mono_ns": 2065522861019,
+            "duration_seconds": 30,
+            "xdamage_events": 381,
+            "includes_input_and_loading_transition": true,
+            "physical_presentation": false
+          },
+          "trace_health": {
+            "events": 22402,
+            "retained": 22402,
+            "dropped": 0,
+            "field_read_errors": 0,
+            "capacity": 1000000,
+            "pending_ticket_queue_dropped": 0,
+            "pending_repaints_at_shutdown": 0,
+            "exceptional_exit_hooks": false
+          },
+          "trace_window": {
+            "scheduler_run": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.8136055,
+                "p95": 200.813684,
+                "max": 203.094422
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_pacing": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.7043,
+                "p95": 200.491823,
+                "max": 292.560434
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "scheduler_wait_helper": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.709927,
+                "p95": 200.482522,
+                "max": 292.221564
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "midp_ar_paint": {
+              "count": 375,
+              "rate_hz": 12.5,
+              "interval_ms": {
+                "n": 374,
+                "median": 71.772899,
+                "p95": 200.456239,
+                "max": 203.700661
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "emulator_awt_paint": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.73520149999999,
+                "p95": 200.446454,
+                "max": 207.847203
+              },
+              "threads": [
+                "AWT-EventQueue-0"
+              ]
+            },
+            "emulator_flush": {
+              "count": 383,
+              "rate_hz": 12.766666666666667,
+              "interval_ms": {
+                "n": 382,
+                "median": 71.7854075,
+                "p95": 200.893578,
+                "max": 202.588917
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "m_e": {
+              "count": 375,
+              "rate_hz": 12.5,
+              "interval_ms": {
+                "n": 374,
+                "median": 71.7671495,
+                "p95": 200.531354,
+                "max": 203.732067
+              },
+              "threads": [
+                "EventProcessing-Thread"
+              ]
+            },
+            "ag_a_values": [
+              "False"
+            ],
+            "br_d_order_values": [
+              "True"
+            ],
+            "br_d_period_values_ms": [
+              50,
+              66,
+              71,
+              200
+            ],
+            "pacing_helper": {
+              "helper_entries": 383,
+              "inclusive_duration_ms": {
+                "n": 382,
+                "median": 69.292705,
+                "p95": 198.591263,
+                "max": 201.18908
+              },
+              "sleep_requested_ms": {
+                "n": 382,
+                "median": 69.0,
+                "p95": 198,
+                "max": 200
+              },
+              "sleep_call_count": 382,
+              "observed_sleep_bracket_ms": {
+                "n": 381,
+                "median": 69.178267,
+                "p95": 198.281004,
+                "max": 200.459841
+              },
+              "yield_call_count": 1
+            },
+            "serial_identity": {
+              "callSerially_entries": 383,
+              "br_run_callbacks": 383,
+              "matched_callback_runnable_ids": 383,
+              "bootstrap_or_unmatched": 0
+            },
+            "repaint_paint_candidate_sets": {
+              "unique_request_ids": 384,
+              "paint_callbacks": 383,
+              "callbacks_with_candidates": 331,
+              "candidate_links": 385,
+              "candidate_count_per_paint": {
+                "n": 331,
+                "median": 1,
+                "p95": 2,
+                "max": 2
+              },
+              "interpretation": "candidate sets only; no one-to-one causal claim"
+            }
+          },
+          "worker_and_dispatch": {
+            "bf_run_entries": 2,
+            "bt_run_entries": 2,
+            "bt_modes_observed": [
+              0,
+              1,
+              2
+            ],
+            "bt_worker_branch_markers": [
+              {
+                "thread": "Thread-10",
+                "detail": "worker_post_command_m.b(BBBB);original_bci=168;op_index=55",
+                "bt.a:B": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false,
+                "span_id": 7660
+              },
+              {
+                "thread": "Thread-11",
+                "detail": "worker_mode2_branch_call;original_bci=49;op_index=7",
+                "bt.a:B": 2,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false,
+                "span_id": 8416
+              }
+            ],
+            "pending_and_worker_field_stores": [
+              {
+                "thread": "Thread-1",
+                "method": "q.<clinit>()V",
+                "detail": "field_store_after=q.b:Z;op_index=211",
+                "m.e:I": null,
+                "m.b:B": null,
+                "m.c:B": null,
+                "m.d:B": null,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-1",
+                "method": "m.<clinit>()V",
+                "detail": "field_store_after=m.b:B;op_index=99",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-5",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-5",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-5",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 0,
+                "m.b:B": 2,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 9,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 3,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 0,
+                "m.b:B": 21,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.r()V",
+                "detail": "field_store_after=m.c:B;op_index=153",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 5,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.r()V",
+                "detail": "field_store_after=m.d:B;op_index=157",
+                "m.e:I": 0,
+                "m.b:B": 0,
+                "m.c:B": 5,
+                "m.d:B": 15,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 15,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "m.a(BBBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-10",
+                "method": "bt.run()V",
+                "detail": "field_store_after=q.b:Z;op_index=57",
+                "m.e:I": 1,
+                "m.b:B": 1,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": true
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": true
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "q.a(Ljava/lang/String;I)V",
+                "detail": "field_store_after=q.b:Z;op_index=10",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-11",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 5,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-11",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "Thread-11",
+                "method": "m.a(BB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 15,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.b:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 1,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.c:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.d()V",
+                "detail": "field_store_after=m.d:B;op_index=5",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 0,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.c:B;op_index=1",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 0,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.d:B;op_index=3",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.a(BBB)V",
+                "detail": "field_store_after=m.b:B;op_index=7",
+                "m.e:I": 1,
+                "m.b:B": 2,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              },
+              {
+                "thread": "EventProcessing-Thread",
+                "method": "m.e()V",
+                "detail": "field_store_after=m.b:B;op_index=6",
+                "m.e:I": 1,
+                "m.b:B": 0,
+                "m.c:B": 2,
+                "m.d:B": 1,
+                "q.b:Z": false
+              }
+            ],
+            "q_b_values": [
+              "False",
+              "True"
+            ],
+            "ar_paint_return_markers": {
+              "original_bci=441;op_index=159": 374
+            },
+            "ar_paint_after_m_e_states": {
+              "1": 28,
+              "2": 274,
+              "9": 73
+            },
+            "ag_a_values": [
+              "False",
+              "None"
+            ],
+            "br_d_order_values": [
+              "None",
+              "True"
+            ]
+          }
+        }
+      ],
+      "baseline_xdamage_rate_hz_median": 12.766666666666667,
+      "trace_xdamage_rate_hz_median": 12.7,
+      "trace_xdamage_rate_hz_p95_three_trials": 12.733333333333333
+    }
+  }
+}

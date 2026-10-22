@@ -1,0 +1,11 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R02",
+  "captured_utc": "2026-10-22T14:21:29.031092+00:00",
+  "pid": 76536,
+  "pid_alive": false,
+  "status": "stopped after diagnosing probe-induced deadlock",
+  "user_input_started": true,
+  "harness_input_sent": false,
+  "trace_output": "not flushed: shutdown hook blocked on TraceProbeFollowup.class monitor held in class initialization deadlock",
+  "next_checkpoint": "rebuild with minimal no-reflection event probe before another user-operated capture"
+}

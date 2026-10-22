@@ -1,0 +1,428 @@
+{
+  "producer": "finalize_state_pacing_probe.py; SHA-256 metadata only",
+  "date": "2026-10-23",
+  "run_count": 3,
+  "per_run_manifest_files_checked": 63,
+  "files": [
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/PROBE.MF",
+      "size": 82,
+      "sha256": "f9cf232a6de3ca35dda10b2cf219a8f7dd63a36c2d2f1fa6bffbc3295dc8e6df"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/build-manifest.json",
+      "size": 1516,
+      "sha256": "6b1e90119bda08e95dcec31535722eb581a45f740d8cf464c593e07ad5286864"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/classes/StatePacingInstrumenter.class",
+      "size": 8453,
+      "sha256": "e4aa7e70d61ae88f216eec45c249e30207998aab2fd0a05fc001da80817cfe87"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/classes/org/recompile/hlprobe/StatePacingTraceProbe$Row.class",
+      "size": 1471,
+      "sha256": "bea271bf049b14a461db3b745bcaeac8fcb1a1b64ad5f7a9a73457c4077a7f72"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/classes/org/recompile/hlprobe/StatePacingTraceProbe.class",
+      "size": 12137,
+      "sha256": "d13fd1958cc8be90ede413b5df7b069e7456c9af0ed197c12f5df8aeb0a9f39b"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/game-state-pacing.jar",
+      "size": 569026,
+      "sha256": "1bfea6e7295d640a72935260377a964730d8050299c62026fcb981d257a6f96b"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/probe-state-pacing.jar",
+      "size": 7363,
+      "sha256": "d50cd7671a07354273959104741daea7798edf29e4c906dcd0d6a63f55c618fb"
+    },
+    {
+      "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/transform.log",
+      "size": 232,
+      "sha256": "ba6ff22babc44da629c574fa58d501522b59f5e8c56aa9400252772d41eb32e8"
+    },
+    {
+      "path": "reference/scenarios/SCN-0004-game-loop.md",
+      "size": 35255,
+      "sha256": "27cd379bac37a8731edc4cbe5606d7e2c91d78b3059f1fda2924c94142df113c"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R01/01-startup.png",
+      "size": 11304,
+      "sha256": "e8e50c0cc9be052d50dc337eac41c3ecaec39a94970792a2698576678a92d968"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R01/02-gameplay-before-exit.png",
+      "size": 25486,
+      "sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R01/03-after-exit-transition.png",
+      "size": 33464,
+      "sha256": "71e032d218d0ddbb737108859ff7925cd46c170813db5786d782f742a970c917"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R02/01-startup.png",
+      "size": 11304,
+      "sha256": "13b68d1b82c35f8f267c8cbba7fd531413341566f90257ccd7bfbda87aeef8e5"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R02/02-gameplay-before-exit.png",
+      "size": 25486,
+      "sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R02/03-after-exit-transition.png",
+      "size": 33464,
+      "sha256": "71e032d218d0ddbb737108859ff7925cd46c170813db5786d782f742a970c917"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R03/01-startup.png",
+      "size": 11267,
+      "sha256": "1d1b2ffb9db33f8ab2f6a37ac55d523914fdd1a33418740d8153bf6858f3d91c"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R03/02-gameplay-before-exit.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-pacing-state-R03/03-after-exit-transition.png",
+      "size": 29369,
+      "sha256": "96e9212f448a9be0f0d00411368c51ba882334caee5c88daf04b8c17306e32e0"
+    },
+    {
+      "path": "reverse-engineering/findings/FND-0004-runtime-scheduler.md",
+      "size": 47975,
+      "sha256": "ec03a7aa2b45703041d374c3cf09b9f2bdca632300ea5c9c966e6e70363ef591"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/analysis.json",
+      "size": 12370,
+      "sha256": "2b33a1973a9248c58f5df148240f5c75b6239fdabb58c70810e16e228bbd02ae"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/checkpoint-x11.jsonl",
+      "size": 1701,
+      "sha256": "0b5cbf80e680632013b3f5e3637c604977f4f1c3322b76f7d0be51b98cf7a7fe"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/console.log",
+      "size": 3982,
+      "sha256": "a8f2ebf4e484ef23aecd81a720b778fbe3205458e3613651e226badd2a34cd67"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/emulator-profile-override.json",
+      "size": 439,
+      "sha256": "0a2216386f6bea847d7e629c2f881cdf3d6ec41295bf985a30b3c1827bdd047b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/fixture-verification.json",
+      "size": 2088,
+      "sha256": "7d434925be0c76516d06d3cec70eef3cef0a0eb8a41fb185fafefd40dbd4541e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/input-01.log",
+      "size": 412,
+      "sha256": "1c33df58419e39ad282e18777a1431c508bd05fb95e1a9d0d1c43a8bfa851245"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/input-02.log",
+      "size": 412,
+      "sha256": "adf55ef85cec4c15fd0d32d3494687987b758506a44b09b74d157dadfb1eae6f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/input-03.log",
+      "size": 412,
+      "sha256": "4b3a0cfbd11767ed516b00215bf88d6b9e4068e139f2aa989b8dcf51c36c8577"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/input-04.log",
+      "size": 418,
+      "sha256": "2c227f6a046ff9dfdd2be1c3b6cb4268e4583b71bb6ad619770f7e6facde5d24"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/input-05.log",
+      "size": 414,
+      "sha256": "459aadd8cfcad52bacf3ef1190ad734223ed9bc3080af08e5b71d0c60fb33b8c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/launch.json",
+      "size": 2693,
+      "sha256": "642e9f16ad75ff6eb44d79819812235edf90d5df510d79a398b35001eb0519e5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/manifest.json",
+      "size": 5632,
+      "sha256": "54668f812e544570018591af74ade85622a521de88753e617a4df6fdb9b3682a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/process-exit.json",
+      "size": 76,
+      "sha256": "40869c8eec9fa9efcd0ac3dd65f3dd9e5611b7854ec636d19a42ab459477a8a4"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/route.json",
+      "size": 845,
+      "sha256": "c95b00ad8e6a802546c5cc42670e7eab62c8e52c660109afbfcaac6ba8d52355"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/timeline.jsonl",
+      "size": 1988,
+      "sha256": "9bc12aff10920e4b3b161c71a9484a4a3d941951d802050d1c8fb2c39b202c0d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/trace-health.json",
+      "size": 171,
+      "sha256": "0317f4b59b06a67d4a457006657ff6fadad32fb0d64f324c5ba3f45ff79cc243"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/trace.jsonl",
+      "size": 541741,
+      "sha256": "caa96fdef2d7d4d10ba8fa44c9830327f42f2d8fe4f7cedd4ebe99f76ba22487"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/trigger-actions.jsonl",
+      "size": 842,
+      "sha256": "fc34fc897a03eaca04e0064752a97216a7da5806e2e288bb10fe95f310b53b53"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "c81ac6b88e65e8fe7a34f6424009cd3c15744e483802f89788273005ddb10abb"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/analysis.json",
+      "size": 12308,
+      "sha256": "118dd872d1972050139931196a013701114a500e1afa25042bf695505df5ec04"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/checkpoint-x11.jsonl",
+      "size": 1701,
+      "sha256": "8ca75bdcfa68039ce8688388a34e0fdca65a9dba6565077eb5f79bfa1d7dcbcc"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/console.log",
+      "size": 3982,
+      "sha256": "c9f8fb6dea3c9a36c5e66703249db3e1fbfd117f0d5a58dbc2e5782601bbb5f2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/emulator-profile-override.json",
+      "size": 439,
+      "sha256": "820e87f0d73e4e1e095abf2c169314e55ea57fbbc777d386a873ba33ffc53288"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/fixture-verification.json",
+      "size": 2088,
+      "sha256": "7d434925be0c76516d06d3cec70eef3cef0a0eb8a41fb185fafefd40dbd4541e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/input-01.log",
+      "size": 412,
+      "sha256": "2a0032cdadb4cca6437874f5804ef19e69465883bc45c65bd729ccaface03d07"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/input-02.log",
+      "size": 412,
+      "sha256": "a1a71609f6022d53c523d98e00b40bc211b8bb533d67275834ff5d16d77e2f74"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/input-03.log",
+      "size": 412,
+      "sha256": "1874f2e7d9286842faa9f4cb15901ccdf24fde3db4e904121f81a5ed43325140"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/input-04.log",
+      "size": 418,
+      "sha256": "e0649e3f07931b7e6732efc6957b68cb42c45c1a6dbc5d519a21cf746247adc3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/input-05.log",
+      "size": 414,
+      "sha256": "e130fed5b279c1c57ee2d637ffcd67d61fc5b982d0b6cf634dc6ffa6235a6de2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/launch.json",
+      "size": 2693,
+      "sha256": "483222140dfa5fecb0057c90fc586cfe24488ea4e4a7b01b66c7437f19d7bdfa"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/manifest.json",
+      "size": 5632,
+      "sha256": "e028128793b052c7c7c9b38c1dbe4844c76563dfdfe37187c9a84e2d87e676ac"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/process-exit.json",
+      "size": 76,
+      "sha256": "ead59ec3c7024e3f8588b3b1327231e44608b432f5579a51b6226ef401989db5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/route.json",
+      "size": 845,
+      "sha256": "c95b00ad8e6a802546c5cc42670e7eab62c8e52c660109afbfcaac6ba8d52355"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/timeline.jsonl",
+      "size": 1988,
+      "sha256": "c31312b43e7e60187207966d0e06ed96cd92ab961c28488f1b9f834813cf018f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/trace-health.json",
+      "size": 171,
+      "sha256": "f544dc4640203bfe37037c99c687ba389b3782d53d2e18add03fcef200bc8213"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/trace.jsonl",
+      "size": 535437,
+      "sha256": "c66e0feab6d9f5b60e2b4ce85fc93034ddb607e9f52338189455af8496a204cd"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/trigger-actions.jsonl",
+      "size": 842,
+      "sha256": "d7e272874c1e1aa954ea1cca326923f128826efd5dbe6f9b482311eed70a48d1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R02/window-tree.txt",
+      "size": 1218,
+      "sha256": "f61f14026eb1153b74f92276edf9bc559459c23f354332613fc3547e16f4fa0d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/analysis.json",
+      "size": 12413,
+      "sha256": "8f0a744f56e25c623e12e18af82742dadcda235de4baf0ec24028d28a1d3a8aa"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/checkpoint-x11.jsonl",
+      "size": 1701,
+      "sha256": "9cc38877763b64857c3c5e29d7ed671c8b870939978a81dfa81caeb18a3588a4"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/console.log",
+      "size": 3982,
+      "sha256": "e115a19f669fff6f556d7944b296dfe754a01fa1af1e203d08e242cbf33c6f10"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/emulator-profile-override.json",
+      "size": 439,
+      "sha256": "3855b27620b355e19ddbd0860b2c448f6a136ea1dfb3f04b71441410814ff77e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/fixture-verification.json",
+      "size": 2088,
+      "sha256": "7d434925be0c76516d06d3cec70eef3cef0a0eb8a41fb185fafefd40dbd4541e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/input-01.log",
+      "size": 412,
+      "sha256": "fa2ecd5442c6092e1ffea09fb72afb425c49dfe69502687533e1ae25e00cc1df"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/input-02.log",
+      "size": 412,
+      "sha256": "30183ea18bf8182ccdb43e30822bc29bac7c46c83ce0e421a6c5ce00859ba750"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/input-03.log",
+      "size": 412,
+      "sha256": "e4416f6004f5d5db8ac0106523fa3e4576c6e790b288406620a19a954c9e5c5f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/input-04.log",
+      "size": 418,
+      "sha256": "14b9664f3f7e72d099f9bf4d0fab32b3ab7fcc877c09138b9495fb17625f01fc"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/input-05.log",
+      "size": 414,
+      "sha256": "9b358e93a0bfc63f51c748cb840c1a6cad6eb8b545ead309df97c5eebbf26164"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/launch.json",
+      "size": 2693,
+      "sha256": "80a3f84b0898a85ac7843a22ba20ccd6c6cc3fc38b3444177338e5ce32244c2a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/manifest.json",
+      "size": 5632,
+      "sha256": "a2ddf3d917e374709aedc4a2bc6cccc88782f58bb284a623d88b2e6b5e075c8a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/process-exit.json",
+      "size": 76,
+      "sha256": "d12cad5c8ab49c7bbadbc16a4c62d977cd2a2d0cf6d165c2f8ba7c8d81b62c69"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/route.json",
+      "size": 845,
+      "sha256": "c95b00ad8e6a802546c5cc42670e7eab62c8e52c660109afbfcaac6ba8d52355"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/timeline.jsonl",
+      "size": 1988,
+      "sha256": "df0a6fadb5052c0439bf43d5b1fb71adaec73a8949421a773dcaec7d39e09636"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/trace-health.json",
+      "size": 171,
+      "sha256": "003c98498dcb1ae1bc4e5fd99f8d22c106284ab69ab2e4f9989ea7c9c5e02257"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/trace.jsonl",
+      "size": 543317,
+      "sha256": "ed82e1f578b2a912b92e2fae5f876d940efadf0aa2bd3621b6d95f7cb6793cdf"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/trigger-actions.jsonl",
+      "size": 842,
+      "sha256": "ad4d9a47c4063d82b7bce579ef963d70c361cf47e4cb91dd996a589914081ab1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/window-tree.txt",
+      "size": 1218,
+      "sha256": "b343e24fadfb68d6fb1a235cfde0feabdeb6cb60200bd9daee74aa35d9c791cc"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/README.md",
+      "size": 3754,
+      "sha256": "c25c9fc12e8e2a745a5eb21546140470122898610b9658a26e5f0d1f2e839b3f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/aggregate.json",
+      "size": 15960,
+      "sha256": "83f1be6653f5544dd541d3336d42bf31e405cba2e633bd7c3e4d7273d05708d2"
+    },
+    {
+      "path": "reverse-engineering/scripts/StatePacingInstrumenter.java",
+      "size": 8412,
+      "sha256": "845706faff46b3f97dcb9f918516b43580960ec6d90de94574576d6e7cbfc5d8"
+    },
+    {
+      "path": "reverse-engineering/scripts/StatePacingTraceProbe.java",
+      "size": 9788,
+      "sha256": "3161c87a04df73a4111965a71a69ea62279da64790af325a2ee7dc2566003276"
+    },
+    {
+      "path": "reverse-engineering/scripts/analyze_state_pacing_probe.py",
+      "size": 9420,
+      "sha256": "4e8a01a9d1d24afc164eb7284e112fc9bc3cd058a2d1ec0890a264e73c16657c"
+    },
+    {
+      "path": "reverse-engineering/scripts/build_state_pacing_probe.py",
+      "size": 3578,
+      "sha256": "1fcf25afeea3cfac8993626c80bb86593781e1260dbc394e9c5691b194a3d6da"
+    },
+    {
+      "path": "reverse-engineering/scripts/finalize_state_pacing_probe.py",
+      "size": 7891,
+      "sha256": "b08b2f36c3a31c2a3bbad6ffb78ad93b44da56c168d326f6b963ce04808c8636"
+    },
+    {
+      "path": "reverse-engineering/scripts/run_state_pacing_probe.py",
+      "size": 9246,
+      "sha256": "cc5777c7cf965eca23873db648152ddb034600152ef0d80402f057022cb6fa39"
+    }
+  ]
+}

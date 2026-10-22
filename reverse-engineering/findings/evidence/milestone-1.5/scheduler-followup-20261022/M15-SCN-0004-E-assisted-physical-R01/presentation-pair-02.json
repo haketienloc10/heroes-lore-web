@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-22T13:56:59.802466+00:00",
+  "pid_alive": true,
+  "frontbuffer": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/21-frontbuffer-idle.png",
+  "frontbuffer_log": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/frontbuffer-idle.log",
+  "x11": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/22-x11-idle.png",
+  "hashes": {
+    "21-frontbuffer-idle.png": "64e82ce5465a23d16ba3466f88bce6343a4cbd631cb637727187fd55e49ca830",
+    "22-x11-idle.png": "fd0179014d35838814f9fb9d058c28a7e45bfdfc815f36feb9ffbb73c87e5d30"
+  }
+}

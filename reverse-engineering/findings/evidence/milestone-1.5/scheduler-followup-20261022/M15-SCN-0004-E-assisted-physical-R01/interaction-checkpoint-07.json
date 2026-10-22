@@ -1,0 +1,108 @@
+{
+  "utc": "2026-10-22T13:51:50.582062+00:00",
+  "pid_alive": true,
+  "key_events": 2253,
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/12-current.png",
+  "last_25": [
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_released",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_released",
+      "code": 39
+    }
+  ]
+}

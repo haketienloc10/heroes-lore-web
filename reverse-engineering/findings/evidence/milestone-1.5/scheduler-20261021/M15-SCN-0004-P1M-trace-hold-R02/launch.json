@@ -1,0 +1,28 @@
+{
+  "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+  "pid": 97539,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/probe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R02/trace.jsonl|M15-SCN-0004-P1M-trace-hold-R02",
+    "-jar",
+    "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/emulator-traced.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/game-traced.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0004-P1M-trace-hold-R02",
+  "utc": "2026-10-21T16:08:48.041303+00:00",
+  "mode": "trace",
+  "case": "hold",
+  "fixture": "HOUSE-INPUT-001",
+  "synthetic_input": true,
+  "game_field_writes": false,
+  "rng_controlled": false,
+  "baseline_has_method_hooks": false
+}

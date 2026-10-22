@@ -1,0 +1,3 @@
+{"utc": "2026-10-22T13:17:03.966714+00:00", "mono_ns": 3590389483306, "event": "x11_checkpoint", "label": "01-startup.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R03/01-startup.png"}
+{"utc": "2026-10-22T13:17:03.967196+00:00", "mono_ns": 3590389959604, "event": "synthetic_key_begin", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:17:04.369183+00:00", "mono_ns": 3590791963933, "event": "synthetic_key_end", "step": 1, "awt_key_code": 10, "hold_ms": 10}

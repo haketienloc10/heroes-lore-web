@@ -1,0 +1,30 @@
+{
+  "run_id": "M15-SCN-0004-D-trace-R03",
+  "pid": 20795,
+  "utc": "2026-10-22T12:49:18.621471+00:00",
+  "mono_ns": 1925043359197,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-r6/probe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R03/trace.jsonl|M15-SCN-0004-D-trace-R03",
+    "-jar",
+    "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-r6/emulator-traced.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261022-r6/game-traced.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "reference/recordings/M15-SCN-0004-D-trace-R03",
+  "mode": "trace",
+  "scenario_variant": "D real UI save-load transition, pending command and worker observed",
+  "fixture": "HOUSE-INPUT-001",
+  "synthetic_input": "AWT LCD KeyListener sidecar; not physical",
+  "game_field_writes": false,
+  "rng_controlled": false,
+  "host_display": ":0",
+  "profile": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60"
+}

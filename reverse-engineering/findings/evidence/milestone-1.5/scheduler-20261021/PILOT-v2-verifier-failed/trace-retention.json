@@ -1,0 +1,14 @@
+{
+  "producer": "lossless archival of measured trace",
+  "raw": {
+    "path": "reference/recordings/SCN0004-PILOT-v2-verifier-failed/trace.jsonl",
+    "size": 8462,
+    "sha256": "41ce210ac76bc1dde209b158e8f1e680adefe0e10afc3c19066fd345aeaa9724"
+  },
+  "gzip": {
+    "path": "reference/recordings/SCN0004-PILOT-v2-verifier-failed/trace.jsonl.gz",
+    "size": 903,
+    "sha256": "5e99a46c7807fbc473d1b5f470ca42ef4e4de56a1f6a623c8829f9301f908a62"
+  },
+  "decompressed_sha256_verified": true
+}

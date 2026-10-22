@@ -1,0 +1,30 @@
+{
+  "single_key_hold": {
+    "ar_keyPressed_entries": 0,
+    "entries_by_raw_key": {},
+    "distinct_raw_keys": []
+  },
+  "overlapping_keys": {
+    "ar_keyPressed_entries": 0,
+    "entries_by_raw_key": {},
+    "distinct_raw_keys": []
+  },
+  "repeat_callback_observed": false,
+  "multiple_raw_keys_observed_during_overlap": false,
+  "interpretation_limit": "X11 XTest host-generated events only; not physical keyboard evidence. Callback counts show delivery to ar.keyPressed, not action-state consumption or rendered response.",
+  "status": "captured",
+  "run_id": "M15-SCN-0004-E-key-input-R01",
+  "trace_event_count": 4,
+  "fixture_verified_files": 10,
+  "failures": [],
+  "stimulus_windows_mono_ns": {
+    "single_key_hold": [
+      17516753619260,
+      17518555606130
+    ],
+    "overlapping_keys": [
+      17519255852137,
+      17520160600927
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0004-D-trace-R02",
+  "status": "partial_not_counted",
+  "reasons": [
+    "Transition reached the in-house scene, but trace-health reports 45,034 field-read errors caused by the probe attempting instance-field reflection before the matching object receiver was available.",
+    "The probe version also looked up worker classes before their natural method entry, so this trace is excluded from worker mode/pending-field conclusions.",
+    "Retained as a route and scene-discovery pilot; do not count toward three valid D runs."
+  ]
+}

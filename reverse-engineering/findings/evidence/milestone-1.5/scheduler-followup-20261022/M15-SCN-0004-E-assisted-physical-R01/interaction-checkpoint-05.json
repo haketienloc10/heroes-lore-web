@@ -1,0 +1,109 @@
+{
+  "utc": "2026-10-22T13:48:19.460612+00:00",
+  "pid_alive": true,
+  "key_events": 1422,
+  "new_key_events_since_checkpoint": 400,
+  "last_codes": [
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_pressed",
+      "code": 39
+    },
+    {
+      "e": "key_released",
+      "code": 39
+    }
+  ],
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/07-after-user-input.png"
+}

@@ -1,0 +1,16 @@
+{
+  "query_succeeded": true,
+  "global_auto_repeat": 1,
+  "key_auto_repeat": {
+    "KP_6": {
+      "keycode": 85,
+      "enabled": true
+    },
+    "KP_8": {
+      "keycode": 80,
+      "enabled": true
+    }
+  },
+  "display": ":0",
+  "note": "XGetKeyboardControl reports repeat enablement; this server API does not expose delay/rate here."
+}

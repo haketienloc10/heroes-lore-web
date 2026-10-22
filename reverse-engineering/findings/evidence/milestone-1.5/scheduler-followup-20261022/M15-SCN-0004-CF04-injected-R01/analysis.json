@@ -1,0 +1,293 @@
+{
+  "run_id": "M15-SCN-0004-CF04-injected-R01",
+  "status": "controlled_branch_body_observed",
+  "valid": true,
+  "failures": [],
+  "game_sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "build_manifest": "reference/recordings/scheduler-cf04-injected-v4-20261022/build-manifest.json",
+  "fixture_manifest": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0006-P1M-R05L/HOUSE-INPUT-001-storage.json",
+  "fixture_verification": {
+    "count": 10,
+    "all_valid": true,
+    "files": [
+      {
+        "path": "config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5",
+        "valid": true
+      },
+      {
+        "path": "freej2me_system/FreeJ2ME.log",
+        "size": 1294,
+        "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b",
+        "valid": true
+      },
+      {
+        "path": "freej2me_system/customFont/Put your ttf font here",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "valid": true
+      },
+      {
+        "path": "freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0",
+        "valid": true
+      },
+      {
+        "path": "rms/Heroes Lore/410decd402x28_.1",
+        "size": 22,
+        "sha256": "be2eeed879d2c61d4db1ed70ebee08a59b37ac5d448d082a244f35019c322d0a",
+        "valid": true
+      },
+      {
+        "path": "rms/Heroes Lore/410decd402x28_.rms",
+        "size": 382,
+        "sha256": "7a3815e4b1856a1bfc41dfe8da3ea54b507fbd8c94d1a1124a881d0cebb34c67",
+        "valid": true
+      },
+      {
+        "path": "rms/Heroes Lore/410decd402x2m_.1",
+        "size": 6,
+        "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76",
+        "valid": true
+      },
+      {
+        "path": "rms/Heroes Lore/410decd402x2m_.rms",
+        "size": 382,
+        "sha256": "42fb8742390b1dc9bec451ca1b9e7ab19a72964c82718d84e716c8d677657fc0",
+        "valid": true
+      },
+      {
+        "path": "rms/Heroes Lore/410decd402x2s_.1",
+        "size": 432,
+        "sha256": "76dc0aa8a0a618ad47cdf192cd2e7d524eca7359264d204d523f4108df3405ba",
+        "valid": true
+      },
+      {
+        "path": "rms/Heroes Lore/410decd402x2s_.rms",
+        "size": 382,
+        "sha256": "2d8bf19494b1a9c962d6db984731857fd1c897f992cd3776fddd33c8a342f650",
+        "valid": true
+      }
+    ]
+  },
+  "synthetic_inputs": [
+    {
+      "step": 1,
+      "utc": "2026-10-22T16:22:22.962328+00:00",
+      "mono_ns": 14709385102155,
+      "awt_code": 10,
+      "hold_ms": 10,
+      "physical": false,
+      "stdout": "",
+      "stderr": "",
+      "sidecar_output": "2026-10-22T16:22:23.329169916Z mono_ns=14709756410838 computed_emulator_mapping host_awt=10 internal=7 raw=-20\n2026-10-22T16:22:23.346459596Z mono_ns=14709769287463 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=10 hold_ms=10\n2026-10-22T16:22:23.349035952Z mono_ns=14709771828724 emulator_key_down code=10\n2026-10-22T16:22:23.364761656Z mono_ns=14709787552545 emulator_key_up code=10\n"
+    },
+    {
+      "step": 2,
+      "utc": "2026-10-22T16:22:24.378646+00:00",
+      "mono_ns": 14710801424189,
+      "awt_code": 10,
+      "hold_ms": 10,
+      "physical": false,
+      "stdout": "",
+      "stderr": "",
+      "sidecar_output": "2026-10-22T16:22:24.702729587Z mono_ns=14711125530114 computed_emulator_mapping host_awt=10 internal=7 raw=-20\n2026-10-22T16:22:24.703375870Z mono_ns=14711126169256 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=10 hold_ms=10\n2026-10-22T16:22:24.703737495Z mono_ns=14711126818812 emulator_key_down code=10\n2026-10-22T16:22:24.715463038Z mono_ns=14711138754625 emulator_key_up code=10\n"
+    },
+    {
+      "step": 3,
+      "utc": "2026-10-22T16:22:25.745558+00:00",
+      "mono_ns": 14712168338767,
+      "awt_code": 10,
+      "hold_ms": 10,
+      "physical": false,
+      "stdout": "",
+      "stderr": "",
+      "sidecar_output": "2026-10-22T16:22:25.998828327Z mono_ns=14712421628552 computed_emulator_mapping host_awt=10 internal=7 raw=-20\n2026-10-22T16:22:25.999604853Z mono_ns=14712422398433 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=10 hold_ms=10\n2026-10-22T16:22:25.999967728Z mono_ns=14712422777175 emulator_key_down code=10\n2026-10-22T16:22:26.012108140Z mono_ns=14712434907071 emulator_key_up code=10\n"
+    }
+  ],
+  "process_exit": {
+    "returncode": 143,
+    "proc_absent": true,
+    "mono_ns": 14727509587926
+  },
+  "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF04-injected-R01/trace.jsonl",
+  "event_count": 37,
+  "controlled_injection_events": [
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 21,
+      "t_mono_ns": 14718154572892,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "controlled_injection_requested",
+      "m_e_span": null,
+      "trigger_m.e:I": 2,
+      "trigger_m.b:B": 0,
+      "command": 21,
+      "param": 2
+    }
+  ],
+  "m_e_span_id": 6,
+  "m_e_span_events": [
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 23,
+      "t_mono_ns": 14718154785762,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.e_entry_pending",
+      "m_e_span": 6,
+      "m.e:I": 2,
+      "m.b:B": 21,
+      "m.c:B": 2,
+      "m.d:B": 0,
+      "m.e:B": 0
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 24,
+      "t_mono_ns": 14718154856515,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.e_call_m.c;opcode_index=126",
+      "m_e_span": 6
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 25,
+      "t_mono_ns": 14718213540619,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.a(I)_state_setter",
+      "m_e_span": 6,
+      "new_m.e:I": 1
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 26,
+      "t_mono_ns": 14718213583315,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.e_call_bt.d;opcode_index=132",
+      "m_e_span": 6
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 27,
+      "t_mono_ns": 14718213606086,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "bt.d_entry",
+      "m_e_span": 6,
+      "bt.a:B": 2
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 28,
+      "t_mono_ns": 14718213620928,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "bt.d_after_mode_store",
+      "m_e_span": 6,
+      "bt.a:B": 5
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 29,
+      "t_mono_ns": 14718213642784,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "bt_worker_constructed",
+      "m_e_span": 6,
+      "worker_id": 3
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 30,
+      "t_mono_ns": 14718213902214,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "bt.d_return",
+      "m_e_span": 6,
+      "bt.a:B": 5
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 31,
+      "t_mono_ns": 14718213925188,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.e_return_immediately_after_bt.d",
+      "m_e_span": 6
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 32,
+      "t_mono_ns": 14718213937285,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.e_return",
+      "m_e_span": 6,
+      "transformed_opcode_index": 133
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 33,
+      "t_mono_ns": 14718214107460,
+      "thread_id": 48,
+      "thread_name": "Thread-12",
+      "site": "bt.run_entry",
+      "m_e_span": 6,
+      "bt.a:B": 5,
+      "worker_id": 3
+    },
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 34,
+      "t_mono_ns": 14718314396125,
+      "thread_id": 48,
+      "thread_name": "Thread-12",
+      "site": "bt.run_case5_BCI_190",
+      "m_e_span": 6,
+      "bt.a:B": 5,
+      "worker_id": 3
+    }
+  ],
+  "identity_linked_mode5_worker_events": [
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 34,
+      "t_mono_ns": 14718314396125,
+      "thread_id": 48,
+      "thread_name": "Thread-12",
+      "site": "bt.run_case5_BCI_190",
+      "m_e_span": 6,
+      "bt.a:B": 5,
+      "worker_id": 3
+    }
+  ],
+  "pending_setter_events": [
+    {
+      "run_id": "M15-SCN-0004-CF04-injected-R01",
+      "seq": 22,
+      "t_mono_ns": 14718154697523,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "m.a(BB)_entry",
+      "m_e_span": null,
+      "argument_command": 21,
+      "argument_param": 2
+    }
+  ],
+  "original_bci_mapping": {
+    "m.c()V": 439,
+    "ah.a(false)": 446,
+    "m.a(1)": 450,
+    "bt.d()V": 453,
+    "return after bt.d()": 456,
+    "bt.run() mode-5 switch target": 190
+  },
+  "scope_limit": "Controlled injection validates the branch body and identity-linked worker mode-5 dispatch. It does not establish natural UI reachability of state 14 or command 21/2, nor does it prove the 0.9-second bypass case."
+}

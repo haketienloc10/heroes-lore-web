@@ -1,0 +1,1 @@
+{"event":"probe_started","utc":"2026-10-22T15:13:28.561605861Z","targets":["ar.keyPressed(I)V","m.e:I key operand","ag.a(II)V","br.b()V","ag.a:Z branch operand","br.a(JJ)V"],"reflection":false,"game_state_reads":false,"game_state_writes":false}

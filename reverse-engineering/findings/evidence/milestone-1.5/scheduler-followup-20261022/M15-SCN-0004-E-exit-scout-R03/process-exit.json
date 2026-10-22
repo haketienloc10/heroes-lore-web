@@ -1,0 +1,7 @@
+{
+  "status": "terminated after sidecar stall",
+  "emulator_pid": 41432,
+  "runner_pid": 41431,
+  "runner_proc_absent": true,
+  "emulator_proc_absent": true
+}

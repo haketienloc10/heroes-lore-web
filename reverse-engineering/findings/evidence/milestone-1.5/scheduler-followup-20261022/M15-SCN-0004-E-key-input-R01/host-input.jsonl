@@ -1,0 +1,11 @@
+{"utc": "2026-10-22T17:09:05.883694+00:00", "mono_ns": 17512306481822, "producer": "X11 XTest host input", "event": "focus", "window": "0x600007"}
+{"utc": "2026-10-22T17:09:10.330876+00:00", "mono_ns": 17516753649469, "producer": "X11 XTest host input", "event": "stimulus_begin", "stimulus": "single_key_hold", "keysym": "KP_6", "hold_ms": 1800}
+{"utc": "2026-10-22T17:09:10.331987+00:00", "mono_ns": 17516754754650, "producer": "X11 XTest host input", "event": "key_down", "keysym": "KP_6", "x11_keycode": 85, "phase": "single_key_hold"}
+{"utc": "2026-10-22T17:09:12.132619+00:00", "mono_ns": 17518555399765, "producer": "X11 XTest host input", "event": "key_up", "keysym": "KP_6", "x11_keycode": 85, "phase": "single_key_hold"}
+{"utc": "2026-10-22T17:09:12.132867+00:00", "mono_ns": 17518555645145, "producer": "X11 XTest host input", "event": "stimulus_end", "stimulus": "single_key_hold"}
+{"utc": "2026-10-22T17:09:12.833111+00:00", "mono_ns": 17519255889271, "producer": "X11 XTest host input", "event": "stimulus_begin", "stimulus": "overlapping_keys", "keysyms": ["KP_6", "KP_8"]}
+{"utc": "2026-10-22T17:09:12.833688+00:00", "mono_ns": 17519256461628, "producer": "X11 XTest host input", "event": "key_down", "keysym": "KP_6", "x11_keycode": 85, "phase": "overlapping_keys"}
+{"utc": "2026-10-22T17:09:12.984526+00:00", "mono_ns": 17519407301454, "producer": "X11 XTest host input", "event": "key_down", "keysym": "KP_8", "x11_keycode": 80, "phase": "overlapping_keys"}
+{"utc": "2026-10-22T17:09:13.585854+00:00", "mono_ns": 17520008648059, "producer": "X11 XTest host input", "event": "key_up", "keysym": "KP_8", "x11_keycode": 80, "phase": "overlapping_keys"}
+{"utc": "2026-10-22T17:09:13.737537+00:00", "mono_ns": 17520160319233, "producer": "X11 XTest host input", "event": "key_up", "keysym": "KP_6", "x11_keycode": 85, "phase": "overlapping_keys"}
+{"utc": "2026-10-22T17:09:13.737850+00:00", "mono_ns": 17520160616076, "producer": "X11 XTest host input", "event": "stimulus_end", "stimulus": "overlapping_keys"}

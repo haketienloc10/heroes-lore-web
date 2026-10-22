@@ -1,0 +1,9 @@
+{
+  "setting": "phone",
+  "source_value": "Standard",
+  "run_value": "Motorola",
+  "scope": "isolated work copy only; source fixture and original JARs unchanged",
+  "config_path": "reference/recordings/M15-SCN-0004-E-pacing-state-R02/config/Heroes Lore/game.conf",
+  "sha256_before": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5",
+  "sha256_after": "99320679cc134cb0691012ec3ad339a6e526d05e95a209f74dc1d363dc40df5c"
+}

@@ -1,0 +1,12 @@
+2026-10-21T16:16:31.122196682Z mono_ns=13158884871303 computed_emulator_mapping host_awt=10 internal=7 raw=-20
+2026-10-21T16:16:31.130420939Z mono_ns=13158893060434 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=10 hold_ms=100
+2026-10-21T16:16:31.133148206Z mono_ns=13158895831870 emulator_key_down code=10
+2026-10-21T16:16:31.243017845Z mono_ns=13159005681329 emulator_key_up code=10
+2026-10-21T16:16:32.730269436Z mono_ns=13160492908454 computed_emulator_mapping host_awt=10 internal=7 raw=-20
+2026-10-21T16:16:32.730859807Z mono_ns=13160493490067 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=10 hold_ms=100
+2026-10-21T16:16:32.731204016Z mono_ns=13160493825899 emulator_key_down code=10
+2026-10-21T16:16:32.832359823Z mono_ns=13160595018926 emulator_key_up code=10
+2026-10-21T16:16:34.370949724Z mono_ns=13162133585410 computed_emulator_mapping host_awt=10 internal=7 raw=-20
+2026-10-21T16:16:34.371461467Z mono_ns=13162134088015 INJECT emulator AWT KeyListener; bypass OS focus; not physical input; code=10 hold_ms=100
+2026-10-21T16:16:34.372020235Z mono_ns=13162134662109 emulator_key_down code=10
+2026-10-21T16:16:34.474959054Z mono_ns=13162237604165 emulator_key_up code=10

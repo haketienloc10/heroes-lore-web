@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-22T13:58:25.829391+00:00",
+  "pid_alive": true,
+  "runtime_snapshot": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot-after-return.json",
+  "runtime_state": "m.e:I=2, br.d:Z=false (sequential read)",
+  "frontbuffer": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/24-gameplay-frontbuffer.png",
+  "frontbuffer_log": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/gameplay-frontbuffer.log",
+  "x11": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/25-gameplay-x11.png",
+  "sha256": {
+    "24-gameplay-frontbuffer.png": "e3a00d399f47c82ac36affe3cfa4f413f909706ffafb9d6adf5828c7b0ef4224",
+    "25-gameplay-x11.png": "80a24c9ef45d3f2080d9b61b8c5d826469767302b4f175b3fe6ebb0f79632154"
+  }
+}

@@ -1,0 +1,479 @@
+{
+  "producer": "Initial visual review corrected 2026-10-22 after per-file SHA-256 re-audit and direct single-image review; this is derived evidence, not a runtime log.",
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-tap-R01",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/04-fixture.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-tap-R01",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R01/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R01/05-before-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R01",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/05-before-input.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/06-after-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-hold-R01",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/05-before-input.png",
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/06-after-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-tap-R02",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R02/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R02/05-before-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-tap-R02",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/05-before-input.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/06-after-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-hold-R02",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/diagnostic-X11.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R02/04-fixture.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-tap-R03",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture-X11.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input-X11.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-tap-R03",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture-X11.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R03",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture-X11.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input-X11.png",
+        "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/06-after-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-hold-R03",
+      "reviewed_files": [
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input-X11.png",
+        "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/06-after-input.png"
+      ],
+      "observation": "Reviewed pre-input screenshot(s) show the full house interior and character. The HUD-only classification for the centered room image was incorrect; black pixels surround the room.",
+      "pre_input_visual_anchor_confirmed": true,
+      "state_and_storage_do_not_prove_full_frame": true
+    }
+  ],
+  "limits": [
+    "The reviewed P1M pre-input screenshots show the house; the prior HUD-only visual labels were false. Their identical hashes do not characterize every intervening frame.",
+    "Matching storage hashes and screenshots do not prove identical RAM, RNG, or scheduling.",
+    "Capture X11 was added outside some measurement windows; it did not change the 30 s collector window.",
+    "Do not use screenshots to prove deferred release or latency."
+  ],
+  "excluded_runs": [
+    "PILOT-v1-linkage-failed",
+    "PILOT-v2-verifier-failed",
+    "ABORTED-harness-baseline-hold-R03"
+  ],
+  "image_hash_reaudit": {
+    "method": "Read-only size/SHA-256/dimension audit of all P1M 04-fixture, 05-before-input, and diagnostic-X11 screenshots; opened one representative PNG per unique hash separately.",
+    "pre_input_run_count": 12,
+    "frontbuffer_file_count": 24,
+    "frontbuffer_unique_sha256": [
+      "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    ],
+    "x11_file_count": 9,
+    "x11_hash_groups": [
+      {
+        "dimensions": [
+          480,
+          640
+        ],
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "count": 7,
+        "paths": [
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/diagnostic-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/05-before-input-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input-X11.png"
+        ]
+      },
+      {
+        "dimensions": [
+          414,
+          573
+        ],
+        "sha256": "2891c697080c4d9eb64680b4edfb85ff2e7e31c1b7ad52fa4166870916540f55",
+        "count": 2,
+        "paths": [
+          "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input-X11.png"
+        ]
+      }
+    ],
+    "direct_visual_classification": "All unique image byte groups show the full house interior and player character. Black areas surround the room and are not a blank playfield.",
+    "files": [
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/diagnostic-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/05-before-input-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture-X11.png",
+        "size": 25080,
+        "sha256": "2891c697080c4d9eb64680b4edfb85ff2e7e31c1b7ad52fa4166870916540f55",
+        "dimensions": [
+          414,
+          573
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input-X11.png",
+        "size": 25080,
+        "sha256": "2891c697080c4d9eb64680b4edfb85ff2e7e31c1b7ad52fa4166870916540f55",
+        "dimensions": [
+          414,
+          573
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      }
+    ],
+    "limit": "Repeated byte-identical screenshots establish their captured pixels, not that every intervening frame was identical or that storage implies identical RAM/RNG."
+  }
+}

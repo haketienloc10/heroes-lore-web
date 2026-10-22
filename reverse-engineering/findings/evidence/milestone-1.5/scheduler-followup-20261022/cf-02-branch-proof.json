@@ -1,0 +1,134 @@
+{
+  "finding": "CF-02",
+  "date": "2026-10-22",
+  "status": "three_success_routes_observed",
+  "criterion": "Three independent UI save-load launches observe mode-1 bt.run()V take success BCI 146, avoid catch handler BCI 149, execute the common suffix through q.b=true, and return normally.",
+  "result": "All three traces contain the success-branch marker and common suffix in one mode-1 invocation.",
+  "instrumentation": {
+    "instrumenter": "reverse-engineering/scripts/CF02Instrumenter.java",
+    "probe": "reverse-engineering/scripts/CF02TraceProbe.java",
+    "build_manifest": "reference/recordings/scheduler-cf02-branch-20261022/build-manifest.json",
+    "BCI_146": "marker immediately before original goto 150; executing it identifies the success path.",
+    "BCI_149": "marker immediately before original exception-handler pop; the exception object remains on the stack.",
+    "join_and_suffix_markers": [
+      "150",
+      "151",
+      "155",
+      "168",
+      "172",
+      "175"
+    ],
+    "original_game_jar_modified": false
+  },
+  "methodology_limits": [
+    "Each run begins from the hash-verified HOUSE-INPUT-001 fixture and enters the load path through the actual UI using synthetic AWT Enter events; input is not physical.",
+    "The instrumentation is in a separate game-JAR copy and records only bt.run() mode-1 branch events; it still adds small runtime overhead.",
+    "The screenshot is an X11 window capture and does not establish compositor or physical presentation timing."
+  ],
+  "excluded_pilot": {
+    "run_id": "M15-SCN-0004-CF02-branch-R01",
+    "reason": "The trace reached BCI 146 and the complete suffix, but a timeline logging keyword collision raised after the screenshot capture. It is retained as an invalid pilot and excluded from the three-run result.",
+    "record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R01/valid.json"
+  },
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R02",
+      "valid": true,
+      "failure_reasons": [],
+      "worker_invocations": [
+        {
+          "span_id": 1,
+          "thread_id": 46,
+          "mode": 1,
+          "decision": "success_BCI_146",
+          "sites": [
+            "worker_entry",
+            "load_success_branch_BCI_146",
+            "common_join_BCI_150",
+            "call_j_BCI_151",
+            "call_k_BCI_155",
+            "call_m_b_BBBB_BCI_168",
+            "q_b_store_after_BCI_172",
+            "normal_return_BCI_175"
+          ],
+          "suffix_present": true,
+          "suffix_ordered": true,
+          "q_b_store_value": true
+        }
+      ],
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R02/trace.jsonl",
+      "validity_record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R02/valid.json",
+      "input_timeline": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R02/timeline.jsonl",
+      "fixture_verification": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R02/fixture-verification.json",
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF02-branch-R02/04-after-load.png",
+      "screenshot_sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R02/manifest.json"
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R03",
+      "valid": true,
+      "failure_reasons": [],
+      "worker_invocations": [
+        {
+          "span_id": 1,
+          "thread_id": 46,
+          "mode": 1,
+          "decision": "success_BCI_146",
+          "sites": [
+            "worker_entry",
+            "load_success_branch_BCI_146",
+            "common_join_BCI_150",
+            "call_j_BCI_151",
+            "call_k_BCI_155",
+            "call_m_b_BBBB_BCI_168",
+            "q_b_store_after_BCI_172",
+            "normal_return_BCI_175"
+          ],
+          "suffix_present": true,
+          "suffix_ordered": true,
+          "q_b_store_value": true
+        }
+      ],
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R03/trace.jsonl",
+      "validity_record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R03/valid.json",
+      "input_timeline": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R03/timeline.jsonl",
+      "fixture_verification": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R03/fixture-verification.json",
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF02-branch-R03/04-after-load.png",
+      "screenshot_sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R03/manifest.json"
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R04",
+      "valid": true,
+      "failure_reasons": [],
+      "worker_invocations": [
+        {
+          "span_id": 1,
+          "thread_id": 46,
+          "mode": 1,
+          "decision": "success_BCI_146",
+          "sites": [
+            "worker_entry",
+            "load_success_branch_BCI_146",
+            "common_join_BCI_150",
+            "call_j_BCI_151",
+            "call_k_BCI_155",
+            "call_m_b_BBBB_BCI_168",
+            "q_b_store_after_BCI_172",
+            "normal_return_BCI_175"
+          ],
+          "suffix_present": true,
+          "suffix_ordered": true,
+          "q_b_store_value": true
+        }
+      ],
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R04/trace.jsonl",
+      "validity_record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R04/valid.json",
+      "input_timeline": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R04/timeline.jsonl",
+      "fixture_verification": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R04/fixture-verification.json",
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF02-branch-R04/04-after-load.png",
+      "screenshot_sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF02-branch-R04/manifest.json"
+    }
+  ]
+}

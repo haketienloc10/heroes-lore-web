@@ -1,0 +1,53 @@
+{
+  "run_id": "M15-SCN-0004-E-assisted-physical-R01",
+  "pid": 58681,
+  "utc": "2026-10-22T13:43:48.400035+00:00",
+  "mono_ns": 5194821870387,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "reference/recordings/M15-SCN-0004-E-assisted-physical-R01",
+  "mode": "interactive user-operated stock emulator, no trace agent",
+  "fixture": "HOUSE-INPUT-001",
+  "input": "physical keyboard/mouse operated by user; not injected",
+  "game_field_writes": false,
+  "rng_controlled": false,
+  "host_display": ":0",
+  "profile": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+  "game_artifact": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "emulator_artifact": {
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "size": 1161902,
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e"
+  },
+  "input_observer": {
+    "attach_utc": "2026-10-22T13:45:44.889588705Z",
+    "jar": {
+      "path": "reference/recordings/scheduler-sidecars/manual-input-observer.jar",
+      "size": 3049,
+      "sha256": "7e53a004fd581b52d365d94253532b8b9d6bc50fdfe0e37c6a72331ee6efa911"
+    },
+    "source": {
+      "path": "reverse-engineering/scripts/RuntimeInputObserver.java",
+      "size": 3903,
+      "sha256": "e4763889532cd55479c3a4939cf27174c77f150da9a5e0d443168752c6767341"
+    },
+    "scope": "AWT key events routed to this emulator window; read-only, no input injection or game field writes",
+    "source_attribution": "AWT alone cannot distinguish physical from synthetic host input"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R04",
+  "decision": "skipped",
+  "reason": "User said they cannot determine when 0.9 seconds has elapsed and asked to pass this case. No input was attempted in this run.",
+  "interpretation": "Do not count this as a test pass or as evidence about state 4 or the bypass branch."
+}

@@ -1,0 +1,86 @@
+{
+  "run_id": "M15-SCN-0004-E-hud-diagnosis-R01",
+  "valid_for": "uninstrumented normal-scene checkpoint and cross-campaign PNG visual/hash re-audit",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/01-startup.png",
+      "size": 11273,
+      "sha256": "89663e1789f4fa50e1bacc798eab061eeef49626fc5b2f577e61611883e477dd"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-frontbuffer.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-x11-after.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-x11-before.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/window-tree-normal-scene.txt",
+      "size": 1216,
+      "sha256": "40500c0e175d091a96a01c4c6f432bf4affe6b80e9d003d08ed62f6d22ec3323"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/checkpoint-x11.jsonl",
+      "size": 1709,
+      "sha256": "d6d93dffde51a9fabca0fdd541f31cb821da226a4c1defaab369a00f563c52d1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/console.log",
+      "size": 2611,
+      "sha256": "790f8fcea8bcb673f2297cd94b55e9b759ef7a2900119d99b01cbc62bf588142"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/frontbuffer-normal-scene.log",
+      "size": 271,
+      "sha256": "58740eeff1e0bbd55e81986a9277f38bdfa8bef76e683e18ebaf3835653751fb"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/hud-diagnosis-result.json",
+      "size": 3559,
+      "sha256": "9bc1c7bb51ac7c6d176844b09b50ff6144ef329ed4e3bd2be5b7beeaf8b024a3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/launch.json",
+      "size": 1011,
+      "sha256": "64a3be2524f51216d913faa0575ba8da2cc14b0f9ab95912dc7660d3f3e042c0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/operator-guide.md",
+      "size": 728,
+      "sha256": "03368e915320f43e8fdce9af09ee110bc2082e945d6a96c9d1133c122fef5391"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/runtime-state-normal-scene.json",
+      "size": 293,
+      "sha256": "551e93cb9d7a1db24136e6644645119409cebdbdd6abed903771cfda113fc017"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/session-status.json",
+      "size": 526,
+      "sha256": "8b314bb41fdbd5cc07b3f166d1b07a778001894e4c090dd29ea2b3cf0257a2bc"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/timeline.jsonl",
+      "size": 1150,
+      "sha256": "21f426bb148fe6df45cb41199be0ac39c44b3e375acf8ff31d4c822bb4ed937f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/window-tree-startup.txt",
+      "size": 1218,
+      "sha256": "23b595e7b44fd401d60dbbaaccd705de5c123d82978b36ae1526390434453c65"
+    }
+  ]
+}

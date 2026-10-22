@@ -1,0 +1,2 @@
+{"utc": "2026-10-22T14:09:02.298402+00:00", "mono_ns": 6708721178151, "event": "interactive_trace_ready", "window": "0x800007", "title": "FreeJ2ME-Plus - SCN-0004 dialogue trace", "screenshot": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R02/01-startup.png", "target": "ag.a(II)V"}
+{"event": "probe_deadlock_diagnosed", "evidence": "console.log full thread dump", "classification": "instrumentation-induced; invalid game behavior evidence", "trace_flushed": false}

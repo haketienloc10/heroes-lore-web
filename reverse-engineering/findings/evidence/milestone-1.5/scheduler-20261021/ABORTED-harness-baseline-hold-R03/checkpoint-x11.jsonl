@@ -1,0 +1,2 @@
+{"utc": "2026-10-21T16:15:31.945834+00:00", "mono_ns": 13103088276848, "producer": "X11 host control", "event": "capture_begin", "window": "0x600023", "width": 480, "height": 640, "output": "/home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png"}
+{"utc": "2026-10-21T16:15:32.432726+00:00", "mono_ns": 13103575186822, "producer": "X11 host control", "event": "capture_end", "window": "0x600023", "output": "/home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png"}

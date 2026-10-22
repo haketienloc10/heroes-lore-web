@@ -1,0 +1,55 @@
+{
+  "run_id": "M15-SCN-0004-P1M-baseline-hold-R01",
+  "mode": "baseline",
+  "case": "hold",
+  "windows": {
+    "gameplay": {
+      "start_ns": 12393405363430,
+      "end_ns": 12423405363430,
+      "seconds": 30.0,
+      "domains": {
+        "xdamage_receive": {
+          "N": 419,
+          "rate_hz": 13.966666666666667,
+          "interval_ms": {
+            "n": 418,
+            "median": 71.3933995,
+            "p95": 92.564853,
+            "max": 141.193187
+          }
+        }
+      },
+      "cpu_seconds": 1.18
+    }
+  },
+  "listener_dispatch": [
+    {
+      "t_mono_ns": 12428884626924,
+      "edge": "begin",
+      "phase": "down",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12428887402161,
+      "edge": "end",
+      "phase": "down",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12429889984915,
+      "edge": "begin",
+      "phase": "up",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12429891779544,
+      "edge": "end",
+      "phase": "up",
+      "code": 102
+    }
+  ],
+  "listener_hold_bounds_ms": [
+    1002.582754,
+    1007.15262
+  ]
+}

@@ -1,0 +1,1485 @@
+{
+  "groups": {
+    "baseline/gameplay/hold": {
+      "cpu_seconds_per_window": {
+        "n": 3,
+        "median": 1.18,
+        "p95": 1.78,
+        "max": 1.78
+      },
+      "sleep_bracket_ms": {
+        "n": 0,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "domains": {
+        "xdamage_receive": {
+          "counts": [
+            419,
+            419,
+            420
+          ],
+          "N": 1258,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 13.966666666666667,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1255,
+            "median": 71.433854,
+            "p95": 91.690551,
+            "max": 141.193187
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "baseline/gameplay/tap": {
+      "cpu_seconds_per_window": {
+        "n": 3,
+        "median": 0.92,
+        "p95": 1.05,
+        "max": 1.05
+      },
+      "sleep_bracket_ms": {
+        "n": 0,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "domains": {
+        "xdamage_receive": {
+          "counts": [
+            421,
+            421,
+            419
+          ],
+          "N": 1261,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.033333333333333,
+            "p95": 14.033333333333333,
+            "max": 14.033333333333333
+          },
+          "interval_ms_pooled": {
+            "n": 1258,
+            "median": 71.29586599999999,
+            "p95": 93.319977,
+            "max": 137.910741
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "baseline/menu/tap": {
+      "cpu_seconds_per_window": {
+        "n": 3,
+        "median": 1.18,
+        "p95": 1.24,
+        "max": 1.24
+      },
+      "sleep_bracket_ms": {
+        "n": 0,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "domains": {
+        "xdamage_receive": {
+          "counts": [
+            593,
+            594,
+            595
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.437995,
+            "p95": 94.442364,
+            "max": 100.658062
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        }
+      }
+    },
+    "trace/gameplay/hold": {
+      "cpu_seconds_per_window": {
+        "n": 3,
+        "median": 1.28,
+        "p95": 1.32,
+        "max": 1.32
+      },
+      "sleep_bracket_ms": {
+        "n": 0,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "domains": {
+        "xdamage_receive": {
+          "counts": [
+            419,
+            418,
+            418
+          ],
+          "N": 1255,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 13.933333333333334,
+            "p95": 13.966666666666667,
+            "max": 13.966666666666667
+          },
+          "interval_ms_pooled": {
+            "n": 1252,
+            "median": 71.3301295,
+            "p95": 91.075235,
+            "max": 142.322853
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "scheduler": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.353894,
+            "p95": 72.235329,
+            "max": 98.632918
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.063122,
+            "p95": 0.178397,
+            "max": 16.15859
+          }
+        },
+        "release_drain": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.3563215,
+            "p95": 72.230621,
+            "max": 98.649482
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.002687,
+            "p95": 0.014787,
+            "max": 0.103746
+          }
+        },
+        "repaint_trigger": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.352946,
+            "p95": 72.227411,
+            "max": 98.650529
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.02159,
+            "p95": 0.057545,
+            "max": 0.199488
+          }
+        },
+        "repaint_request": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.355383,
+            "p95": 72.230746,
+            "max": 98.652814
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.01431,
+            "p95": 0.036247,
+            "max": 0.140148
+          }
+        },
+        "paint": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.36398750000001,
+            "p95": 72.264388,
+            "max": 98.731158
+          },
+          "duration_ms_pooled": {
+            "n": 1256,
+            "median": 70.9551405,
+            "p95": 71.863412,
+            "max": 72.341853
+          }
+        },
+        "transition": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.3648045,
+            "p95": 72.275849,
+            "max": 98.770472
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.003047,
+            "p95": 0.019324,
+            "max": 0.293073
+          }
+        },
+        "offset_update": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.362999,
+            "p95": 72.293362,
+            "max": 98.777706
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.002854,
+            "p95": 0.020224,
+            "max": 0.436697
+          }
+        },
+        "update": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.3630515,
+            "p95": 72.295452,
+            "max": 98.778944
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.031664,
+            "p95": 0.147918,
+            "max": 2.676001
+          }
+        },
+        "world_render": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.34392299999999,
+            "p95": 72.319607,
+            "max": 98.77942
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.463167,
+            "p95": 1.162727,
+            "max": 4.723914
+          }
+        },
+        "hud_render": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.31926250000001,
+            "p95": 72.559133,
+            "max": 99.567995
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.083284,
+            "p95": 0.228137,
+            "max": 0.556818
+          }
+        },
+        "pacing": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.3136235,
+            "p95": 72.587257,
+            "max": 99.620066
+          },
+          "duration_ms_pooled": {
+            "n": 1256,
+            "median": 70.17069000000001,
+            "p95": 71.196576,
+            "max": 71.792727
+          }
+        },
+        "frontbuffer_flush": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.37071599999999,
+            "p95": 72.223985,
+            "max": 98.472614
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.155663,
+            "p95": 0.348689,
+            "max": 1.028028
+          }
+        },
+        "awt_paint_submission": {
+          "counts": [
+            420,
+            420,
+            419
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.3527015,
+            "p95": 72.285964,
+            "max": 98.713737
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.50702,
+            "p95": 1.052619,
+            "max": 4.309297
+          }
+        }
+      }
+    },
+    "trace/gameplay/tap": {
+      "cpu_seconds_per_window": {
+        "n": 3,
+        "median": 1.03,
+        "p95": 1.11,
+        "max": 1.11
+      },
+      "sleep_bracket_ms": {
+        "n": 0,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "domains": {
+        "xdamage_receive": {
+          "counts": [
+            418,
+            419,
+            420
+          ],
+          "N": 1257,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 13.966666666666667,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1254,
+            "median": 71.35002349999999,
+            "p95": 93.364815,
+            "max": 141.811117
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "scheduler": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.27934400000001,
+            "p95": 72.184895,
+            "max": 92.239613
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.045729,
+            "p95": 0.100728,
+            "max": 7.672761
+          }
+        },
+        "release_drain": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.281914,
+            "p95": 72.190547,
+            "max": 92.29012
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.002291,
+            "p95": 0.005537,
+            "max": 0.070784
+          }
+        },
+        "repaint_trigger": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2811805,
+            "p95": 72.191301,
+            "max": 92.298045
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.014974,
+            "p95": 0.033542,
+            "max": 7.638464
+          }
+        },
+        "repaint_request": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.279294,
+            "p95": 72.190946,
+            "max": 92.301291
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.010596,
+            "p95": 0.02406,
+            "max": 7.633376
+          }
+        },
+        "paint": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2768255,
+            "p95": 72.208033,
+            "max": 92.402782
+          },
+          "duration_ms_pooled": {
+            "n": 1256,
+            "median": 70.9349205,
+            "p95": 71.853789,
+            "max": 73.69615
+          }
+        },
+        "transition": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2788725,
+            "p95": 72.214739,
+            "max": 92.397245
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.002355,
+            "p95": 0.005496,
+            "max": 0.855219
+          }
+        },
+        "offset_update": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.281115,
+            "p95": 72.217878,
+            "max": 92.404214
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.00257,
+            "p95": 0.006363,
+            "max": 0.13671
+          }
+        },
+        "update": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2805585,
+            "p95": 72.219691,
+            "max": 92.411279
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.022873,
+            "p95": 0.072441,
+            "max": 1.039907
+          }
+        },
+        "world_render": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2786405,
+            "p95": 72.228976,
+            "max": 92.434098
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.462009,
+            "p95": 1.130011,
+            "max": 2.242351
+          }
+        },
+        "hud_render": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.23723100000001,
+            "p95": 72.337218,
+            "max": 93.184731
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.071137,
+            "p95": 0.182994,
+            "max": 13.795497
+          }
+        },
+        "pacing": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2287555,
+            "p95": 72.383664,
+            "max": 93.288609
+          },
+          "duration_ms_pooled": {
+            "n": 1256,
+            "median": 70.1773015,
+            "p95": 71.192584,
+            "max": 72.271777
+          }
+        },
+        "frontbuffer_flush": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.28650999999999,
+            "p95": 72.175242,
+            "max": 91.158347
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.151477,
+            "p95": 0.319561,
+            "max": 0.813445
+          }
+        },
+        "awt_paint_submission": {
+          "counts": [
+            419,
+            420,
+            420
+          ],
+          "N": 1259,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 14.0,
+            "p95": 14.0,
+            "max": 14.0
+          },
+          "interval_ms_pooled": {
+            "n": 1256,
+            "median": 71.2718325,
+            "p95": 72.230791,
+            "max": 92.493485
+          },
+          "duration_ms_pooled": {
+            "n": 1259,
+            "median": 0.489084,
+            "p95": 0.948996,
+            "max": 14.493739
+          }
+        }
+      }
+    },
+    "trace/menu/tap": {
+      "cpu_seconds_per_window": {
+        "n": 3,
+        "median": 1.35,
+        "p95": 1.43,
+        "max": 1.43
+      },
+      "sleep_bracket_ms": {
+        "n": 0,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "domains": {
+        "xdamage_receive": {
+          "counts": [
+            593,
+            595,
+            593
+          ],
+          "N": 1781,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.766666666666666,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1778,
+            "median": 50.5616545,
+            "p95": 93.675806,
+            "max": 99.973659
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "scheduler": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.602842,
+            "p95": 51.181124,
+            "max": 59.990379
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.0664075,
+            "p95": 0.203021,
+            "max": 5.687375
+          }
+        },
+        "release_drain": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.605278,
+            "p95": 51.187421,
+            "max": 59.986192
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.0030485,
+            "p95": 0.014786,
+            "max": 0.1714
+          }
+        },
+        "repaint_trigger": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.60546,
+            "p95": 51.191286,
+            "max": 59.985716
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.023149,
+            "p95": 0.064327,
+            "max": 5.612649
+          }
+        },
+        "repaint_request": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.605003,
+            "p95": 51.203849,
+            "max": 59.98134
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.0155365,
+            "p95": 0.04078,
+            "max": 2.024726
+          }
+        },
+        "paint": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.604217,
+            "p95": 51.257158,
+            "max": 59.961741
+          },
+          "duration_ms_pooled": {
+            "n": 1779,
+            "median": 50.323701,
+            "p95": 50.652655,
+            "max": 58.301246
+          }
+        },
+        "transition": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.602558,
+            "p95": 51.265384,
+            "max": 59.961361
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.003333,
+            "p95": 0.017426,
+            "max": 0.570453
+          }
+        },
+        "offset_update": {
+          "counts": [
+            0,
+            0,
+            0
+          ],
+          "N": 0,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 0.0,
+            "p95": 0.0,
+            "max": 0.0
+          },
+          "interval_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "update": {
+          "counts": [
+            0,
+            0,
+            0
+          ],
+          "N": 0,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 0.0,
+            "p95": 0.0,
+            "max": 0.0
+          },
+          "interval_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "world_render": {
+          "counts": [
+            0,
+            0,
+            0
+          ],
+          "N": 0,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 0.0,
+            "p95": 0.0,
+            "max": 0.0
+          },
+          "interval_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "hud_render": {
+          "counts": [
+            0,
+            0,
+            0
+          ],
+          "N": 0,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 0.0,
+            "p95": 0.0,
+            "max": 0.0
+          },
+          "interval_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          },
+          "duration_ms_pooled": {
+            "n": 0,
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        "pacing": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.588905,
+            "p95": 51.389753,
+            "max": 67.631198
+          },
+          "duration_ms_pooled": {
+            "n": 1779,
+            "median": 50.108408,
+            "p95": 50.242916,
+            "max": 58.090393
+          }
+        },
+        "frontbuffer_flush": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.599558,
+            "p95": 51.179284,
+            "max": 59.755665
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.160335,
+            "p95": 0.371733,
+            "max": 10.291908
+          }
+        },
+        "awt_paint_submission": {
+          "counts": [
+            593,
+            595,
+            594
+          ],
+          "N": 1782,
+          "rate_hz_across_runs": {
+            "n": 3,
+            "median": 19.8,
+            "p95": 19.833333333333332,
+            "max": 19.833333333333332
+          },
+          "interval_ms_pooled": {
+            "n": 1779,
+            "median": 50.598688,
+            "p95": 51.225081,
+            "max": 59.983147
+          },
+          "duration_ms_pooled": {
+            "n": 1782,
+            "median": 0.491468,
+            "p95": 1.058772,
+            "max": 17.622762
+          }
+        }
+      }
+    }
+  },
+  "overhead": {
+    "menu/tap": {
+      "paired_differences": [
+        {
+          "repeat": "01",
+          "damage_rate_delta_hz": 0.0,
+          "cpu_delta_seconds": 0.25,
+          "damage_interval_median_delta_ms": 0.05539349999999388,
+          "damage_interval_p95_delta_ms": -1.6957129999999978
+        },
+        {
+          "repeat": "02",
+          "damage_rate_delta_hz": 0.03333333333333144,
+          "cpu_delta_seconds": 0.22999999999999998,
+          "damage_interval_median_delta_ms": 0.19380650000000088,
+          "damage_interval_p95_delta_ms": -0.8405989999999974
+        },
+        {
+          "repeat": "03",
+          "damage_rate_delta_hz": -0.06666666666666643,
+          "cpu_delta_seconds": 0.07000000000000006,
+          "damage_interval_median_delta_ms": 0.14091700000000174,
+          "damage_interval_p95_delta_ms": -0.1025460000000038
+        }
+      ],
+      "rate_delta_hz": {
+        "n": 3,
+        "median": 0.0,
+        "p95": 0.03333333333333144,
+        "max": 0.03333333333333144
+      },
+      "interval_median_delta_ms": {
+        "n": 3,
+        "median": 0.14091700000000174,
+        "p95": 0.19380650000000088,
+        "max": 0.19380650000000088
+      },
+      "interval_p95_delta_ms": {
+        "n": 3,
+        "median": -0.8405989999999974,
+        "p95": -0.1025460000000038,
+        "max": -0.1025460000000038
+      },
+      "cpu_delta_seconds": {
+        "n": 3,
+        "median": 0.22999999999999998,
+        "p95": 0.25,
+        "max": 0.25
+      }
+    },
+    "gameplay/tap": {
+      "paired_differences": [
+        {
+          "repeat": "01",
+          "damage_rate_delta_hz": -0.09999999999999964,
+          "cpu_delta_seconds": 0.21000000000000008,
+          "damage_interval_median_delta_ms": 0.14098200000000816,
+          "damage_interval_p95_delta_ms": 0.6620280000000065
+        },
+        {
+          "repeat": "02",
+          "damage_rate_delta_hz": -0.06666666666666643,
+          "cpu_delta_seconds": -0.020000000000000018,
+          "damage_interval_median_delta_ms": 0.05251200000000722,
+          "damage_interval_p95_delta_ms": 0.052424000000002025
+        },
+        {
+          "repeat": "03",
+          "damage_rate_delta_hz": 0.033333333333333215,
+          "cpu_delta_seconds": 0.09999999999999998,
+          "damage_interval_median_delta_ms": -0.09602650000000779,
+          "damage_interval_p95_delta_ms": 1.1994510000000105
+        }
+      ],
+      "rate_delta_hz": {
+        "n": 3,
+        "median": -0.06666666666666643,
+        "p95": 0.033333333333333215,
+        "max": 0.033333333333333215
+      },
+      "interval_median_delta_ms": {
+        "n": 3,
+        "median": 0.05251200000000722,
+        "p95": 0.14098200000000816,
+        "max": 0.14098200000000816
+      },
+      "interval_p95_delta_ms": {
+        "n": 3,
+        "median": 0.6620280000000065,
+        "p95": 1.1994510000000105,
+        "max": 1.1994510000000105
+      },
+      "cpu_delta_seconds": {
+        "n": 3,
+        "median": 0.09999999999999998,
+        "p95": 0.21000000000000008,
+        "max": 0.21000000000000008
+      }
+    },
+    "gameplay/hold": {
+      "paired_differences": [
+        {
+          "repeat": "01",
+          "damage_rate_delta_hz": 0.0,
+          "cpu_delta_seconds": 0.0,
+          "damage_interval_median_delta_ms": -0.005519000000006713,
+          "damage_interval_p95_delta_ms": -2.176443000000006
+        },
+        {
+          "repeat": "02",
+          "damage_rate_delta_hz": -0.033333333333333215,
+          "cpu_delta_seconds": 0.28,
+          "damage_interval_median_delta_ms": -0.20308949999999015,
+          "damage_interval_p95_delta_ms": 1.5806240000000003
+        },
+        {
+          "repeat": "03",
+          "damage_rate_delta_hz": -0.06666666666666643,
+          "cpu_delta_seconds": -0.45999999999999996,
+          "damage_interval_median_delta_ms": -0.04140900000000158,
+          "damage_interval_p95_delta_ms": -1.238355999999996
+        }
+      ],
+      "rate_delta_hz": {
+        "n": 3,
+        "median": -0.033333333333333215,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "interval_median_delta_ms": {
+        "n": 3,
+        "median": -0.04140900000000158,
+        "p95": -0.005519000000006713,
+        "max": -0.005519000000006713
+      },
+      "interval_p95_delta_ms": {
+        "n": 3,
+        "median": -1.238355999999996,
+        "p95": 1.5806240000000003,
+        "max": 1.5806240000000003
+      },
+      "cpu_delta_seconds": {
+        "n": 3,
+        "median": 0.0,
+        "p95": 0.28,
+        "max": 0.28
+      }
+    }
+  },
+  "input": {
+    "tap": {
+      "run_n": 3,
+      "deferred_release_count": 1,
+      "press_to_original_release_ms": {
+        "n": 3,
+        "median": 71.169181,
+        "p95": 71.187197,
+        "max": 71.187197
+      },
+      "press_to_next_m_i_ms": {
+        "n": 3,
+        "median": 0.094011,
+        "p95": 0.101613,
+        "max": 0.101613
+      },
+      "listener_hold_bounds_ms": [
+        [
+          21.138874,
+          23.407073
+        ],
+        [
+          21.232429,
+          22.797313
+        ],
+        [
+          21.462435,
+          23.266589
+        ]
+      ]
+    },
+    "hold": {
+      "run_n": 3,
+      "deferred_release_count": 0,
+      "press_to_original_release_ms": {
+        "n": 3,
+        "median": 1002.067397,
+        "p95": 1004.076412,
+        "max": 1004.076412
+      },
+      "press_to_next_m_i_ms": {
+        "n": 3,
+        "median": 0.124762,
+        "p95": 0.127769,
+        "max": 0.127769
+      },
+      "listener_hold_bounds_ms": [
+        [
+          1001.518881,
+          1003.470155
+        ],
+        [
+          1001.092526,
+          1004.021619
+        ],
+        [
+          1001.267825,
+          1003.36354
+        ]
+      ]
+    }
+  },
+  "valid_run_count": 12,
+  "trace_event_total": 269207,
+  "cf03_bci6_total": 6911,
+  "cf03_reset_total": 30
+}

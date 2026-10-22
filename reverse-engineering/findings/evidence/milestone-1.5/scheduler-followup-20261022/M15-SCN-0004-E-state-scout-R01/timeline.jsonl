@@ -1,0 +1,34 @@
+{"utc": "2026-10-22T13:09:53.443553+00:00", "mono_ns": 3159866340640, "event": "x11_checkpoint", "label": "01-startup.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/01-startup.png"}
+{"utc": "2026-10-22T13:09:53.443879+00:00", "mono_ns": 3159866642746, "event": "synthetic_key_begin", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:09:53.930068+00:00", "mono_ns": 3160352842842, "event": "synthetic_key_end", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:09:56.195642+00:00", "mono_ns": 3162618412884, "event": "x11_checkpoint", "label": "step-01-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-01-key-10.png"}
+{"utc": "2026-10-22T13:09:56.196332+00:00", "mono_ns": 3162619095397, "event": "synthetic_key_begin", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:09:56.512951+00:00", "mono_ns": 3162935737865, "event": "synthetic_key_end", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:09:58.365563+00:00", "mono_ns": 3164788334917, "event": "x11_checkpoint", "label": "step-02-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-02-key-10.png"}
+{"utc": "2026-10-22T13:09:58.365764+00:00", "mono_ns": 3164788526913, "event": "synthetic_key_begin", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:09:58.962771+00:00", "mono_ns": 3165385550046, "event": "synthetic_key_end", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:10:09.960920+00:00", "mono_ns": 3176383689763, "event": "x11_checkpoint", "label": "step-03-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-03-key-10.png"}
+{"utc": "2026-10-22T13:10:09.961207+00:00", "mono_ns": 3176383969368, "event": "synthetic_key_begin", "step": 4, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:11.271085+00:00", "mono_ns": 3177693881388, "event": "synthetic_key_end", "step": 4, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:13.326738+00:00", "mono_ns": 3179749515668, "event": "x11_checkpoint", "label": "step-04-key-98.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-04-key-98.png"}
+{"utc": "2026-10-22T13:10:13.327046+00:00", "mono_ns": 3179749813564, "event": "synthetic_key_begin", "step": 5, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:14.820366+00:00", "mono_ns": 3181243141616, "event": "synthetic_key_end", "step": 5, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:20.646434+00:00", "mono_ns": 3187069211473, "event": "x11_checkpoint", "label": "step-05-key-98.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-05-key-98.png"}
+{"utc": "2026-10-22T13:10:20.646742+00:00", "mono_ns": 3187069505876, "event": "synthetic_key_begin", "step": 6, "awt_key_code": 100, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:21.933463+00:00", "mono_ns": 3188356235357, "event": "synthetic_key_end", "step": 6, "awt_key_code": 100, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:23.911696+00:00", "mono_ns": 3190334467369, "event": "x11_checkpoint", "label": "step-06-key-100.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-06-key-100.png"}
+{"utc": "2026-10-22T13:10:23.911973+00:00", "mono_ns": 3190334735664, "event": "synthetic_key_begin", "step": 7, "awt_key_code": 100, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:25.197459+00:00", "mono_ns": 3191620238848, "event": "synthetic_key_end", "step": 7, "awt_key_code": 100, "hold_ms": 1000}
+{"utc": "2026-10-22T13:10:27.039301+00:00", "mono_ns": 3193462071098, "event": "x11_checkpoint", "label": "step-07-key-100.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-07-key-100.png"}
+{"utc": "2026-10-22T13:10:27.039561+00:00", "mono_ns": 3193462323596, "event": "synthetic_key_begin", "step": 8, "awt_key_code": 101, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:27.434874+00:00", "mono_ns": 3193857657431, "event": "synthetic_key_end", "step": 8, "awt_key_code": 101, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:30.327313+00:00", "mono_ns": 3196750080799, "event": "x11_checkpoint", "label": "step-08-key-101.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-08-key-101.png"}
+{"utc": "2026-10-22T13:10:30.327620+00:00", "mono_ns": 3196750382696, "event": "synthetic_key_begin", "step": 9, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:30.788767+00:00", "mono_ns": 3197211547735, "event": "synthetic_key_end", "step": 9, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:33.663112+00:00", "mono_ns": 3200085882116, "event": "x11_checkpoint", "label": "step-09-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-09-key-10.png"}
+{"utc": "2026-10-22T13:10:33.663341+00:00", "mono_ns": 3200086103913, "event": "synthetic_key_begin", "step": 10, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:34.073592+00:00", "mono_ns": 3200496366271, "event": "synthetic_key_end", "step": 10, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:35.958156+00:00", "mono_ns": 3202380926038, "event": "x11_checkpoint", "label": "step-10-key-87.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-10-key-87.png"}
+{"utc": "2026-10-22T13:10:35.958397+00:00", "mono_ns": 3202381159335, "event": "synthetic_key_begin", "step": 11, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:36.362998+00:00", "mono_ns": 3202785775393, "event": "synthetic_key_end", "step": 11, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:10:38.115916+00:00", "mono_ns": 3204538694017, "event": "x11_checkpoint", "label": "step-11-key-87.png", "output": "reference/screenshots/M15-SCN-0004-E-state-scout-R01/step-11-key-87.png"}

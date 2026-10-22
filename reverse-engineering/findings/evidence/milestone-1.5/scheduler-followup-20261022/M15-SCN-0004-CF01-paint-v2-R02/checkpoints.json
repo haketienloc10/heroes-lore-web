@@ -1,0 +1,23 @@
+{
+  "checkpoints": [
+    {
+      "elapsed_target_seconds": 12,
+      "mono_ns": 13465435423379,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-v2-R02/12s-cold-start.png",
+      "input": "none"
+    },
+    {
+      "elapsed_target_seconds": 15,
+      "mono_ns": 13468382391334,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-v2-R02/15s-cold-start.png",
+      "input": "none"
+    },
+    {
+      "elapsed_target_seconds": 45,
+      "mono_ns": 13498259417543,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-v2-R02/45s-cold-start.png",
+      "input": "none"
+    }
+  ],
+  "presentation": "X11 window capture only; not physical presentation"
+}

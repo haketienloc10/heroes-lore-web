@@ -1,0 +1,921 @@
+{
+  "producer": "audit_scheduler_phone_profile.py",
+  "scope": "SCN-0004 M1.5/P1M and 2026-10-22 follow-up runs with launch.json",
+  "emulator": {
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e"
+  },
+  "run_count": 40,
+  "configured_phone_profile_counts": {
+    "Standard": 40
+  },
+  "launch_profile_metadata_counts": {
+    "<missing>": 12,
+    "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60": 28
+  },
+  "motorola_metadata_vs_config_mismatches": 28,
+  "launch_profile_metadata_absent": 12,
+  "configuration_authority": "Per-run config/Heroes Lore/game.conf is the configuration loaded by FreeJ2ME for that run. In FreeJ2ME 1.52 Mobile.updateSettings(), phone=Standard clears vendor flags and phone=Motorola sets Mobile.motorola=true. The 28 follow-up launch.json profile strings saying Motorola conflict with their per-run game.conf values; initial P1M launch files omit profile metadata.",
+  "input_mapping": {
+    "per_run_system_config": "input_RightSoft:87 (W), input_LeftSoft:81 (Q)",
+    "AWTGUI_default_input_slots": {
+      "slot_1_host_key_code": 87,
+      "slot_1_key": "W"
+    },
+    "Mobile.awtguiKeycodes_slot_1": 8,
+    "Mobile.getMobileKey_Standard_argument_8": -7,
+    "Mobile.getMobileKey_Motorola_argument_8": -22,
+    "game_key_handler": "ar.keyPressed(I)V maps raw -22 or 22 to -8 before dispatch; state m.e:I=4 calls ag.a(II)V.",
+    "operator_instruction_for_motorola_profile": "With the per-run phone profile set to Motorola and the recorded default RightSoft mapping unchanged, press W during the brief state-4 NOW LOADING transition. Escape did not produce the target -22/22 value in bypass R01."
+  },
+  "interpretation": "The scheduler and rendering measurements remain observations of the recorded FreeJ2ME configuration, but these runs used phone=Standard. Do not describe them as Motorola-profile measurements. The R01 bypass attempt is not a test of the intended Motorola softkey route.",
+  "static_mapping_facts": [
+    "FreeJ2ME 1.52 FreeJ2ME.getMobileKey(I): looks up the configured AWT key slot, then calls Mobile.convertAWTKeycode(slot).",
+    "FreeJ2ME 1.52 Mobile.convertAWTKeycode(1) reads awtguiKeycodes[1]=8.",
+    "FreeJ2ME 1.52 Mobile.getMobileKey(8) returns -7 in Standard mode and -22 when motorola=true.",
+    "FreeJ2ME 1.52 Mobile.updateSettings() sets all vendor flags false, then enables motorola only when phone.equals(\"Motorola\").",
+    "Original game ar.keyPressed(I)V normalizes raw -22 and 22 to -8, and dispatches m.e:I=4 to ag.a(II)V."
+  ],
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-hold-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-hold-R01/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-hold-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-hold-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-hold-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-hold-R02/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-hold-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-hold-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-hold-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-hold-R03/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-hold-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-hold-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-tap-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-tap-R01/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-tap-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-tap-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-tap-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-tap-R02/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-tap-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-tap-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-baseline-tap-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-baseline-tap-R03/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-tap-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-baseline-tap-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R02/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R03/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-tap-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-tap-R01/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-tap-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-tap-R02/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-tap-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-tap-R03/launch.json",
+      "previous_launch_profile_metadata": null,
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": false,
+      "metadata_mismatch": false,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-baseline-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-baseline-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-baseline-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-baseline-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-baseline-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-baseline-R02/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-baseline-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-baseline-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-baseline-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-baseline-R03/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-baseline-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-baseline-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-trace-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-trace-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-trace-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-trace-R02/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-trace-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-trace-R03/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-A-trace-R04",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-A-trace-R04/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R04/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-A-trace-R04/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-baseline-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-baseline-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-baseline-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-baseline-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-baseline-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-baseline-R02/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-baseline-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-baseline-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-baseline-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-baseline-R03/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-baseline-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-baseline-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R02/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R03/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R04",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R04/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R04/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R04/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R05",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-D-trace-R05/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R05/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-D-trace-R05/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-assisted-physical-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-assisted-physical-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-assisted-physical-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-bypass-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-bypass-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-bypass-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-bypass-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-dialogue-trace-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-dialogue-trace-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R02/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-dialogue-trace-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-dialogue-trace-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R02",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R02/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R02/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R02/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R03",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R03/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R03/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R03/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R04",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R04/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R04/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-exit-scout-R04/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-hud-diagnosis-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-hud-diagnosis-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-hud-diagnosis-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-hud-diagnosis-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-order-false-scout-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-order-false-scout-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-order-false-scout-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-order-false-scout-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-render-order-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-render-order-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-render-order-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-render-order-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-state-scout-R01",
+      "launch_file": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-state-scout-R01/launch.json",
+      "previous_launch_profile_metadata": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60",
+      "configured_phone_profile": "Standard",
+      "launch_metadata_says_motorola": true,
+      "metadata_mismatch": true,
+      "game_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-state-scout-R01/config/Heroes Lore/game.conf",
+        "size": 387,
+        "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+      },
+      "system_config": {
+        "path": "reference/recordings/M15-SCN-0004-E-state-scout-R01/freej2me_system/freej2me.conf",
+        "size": 512,
+        "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+      },
+      "softkey_host_mappings": {
+        "LeftSoft_AWT_key_code": 81,
+        "RightSoft_AWT_key_code": 87
+      }
+    }
+  ]
+}

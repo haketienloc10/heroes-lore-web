@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-22T13:56:41.865275+00:00",
+  "pid_alive": true,
+  "key_event_count": 2283,
+  "last_events": [
+    {
+      "utc": "2026-10-22T13:52:13.551017807Z",
+      "event": "key_typed",
+      "code": 0
+    },
+    {
+      "utc": "2026-10-22T13:52:13.670531168Z",
+      "event": "key_released",
+      "code": 10
+    },
+    {
+      "utc": "2026-10-22T13:54:29.436306643Z",
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:54:29.558553101Z",
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:54:29.708533938Z",
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:54:29.802244423Z",
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:54:29.986818406Z",
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:54:30.088009049Z",
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:55:32.535278636Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:55:32.644645868Z",
+      "event": "key_released",
+      "code": 39
+    }
+  ],
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/20-after-back.png"
+}

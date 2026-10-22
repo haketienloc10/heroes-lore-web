@@ -1,0 +1,110 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-state-triggered-R01",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-bypass-state-triggered-R01/01-startup.png",
+      "size": 11306,
+      "sha256": "1ee5f7ed122910751ca7cce08b18b5595cf042e1cb85aef68fe62168992fe8fa"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-bypass-state-triggered-R01/02-gameplay-before-exit.png",
+      "size": 25486,
+      "sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-bypass-state-triggered-R01/03-after-exit-transition.png",
+      "size": 33464,
+      "sha256": "71e032d218d0ddbb737108859ff7925cd46c170813db5786d782f742a970c917"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/analysis.json",
+      "size": 2056,
+      "sha256": "eb2ae75c0698df50da00521674ef407d929056a869e1d68baa5f5c419d8b6cc5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/checkpoint-x11.jsonl",
+      "size": 1761,
+      "sha256": "c6693531936402d4d4f33b408854040a0c0ac378ca7025a7248564c4f05827c8"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/console.log",
+      "size": 3982,
+      "sha256": "81483f1a19d4af546eaeec3a4a4581c6ea7d295461495182e3b9228f6a36179d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/emulator-profile-override.json",
+      "size": 449,
+      "sha256": "e31d81c92038517cb26bc76c3dc175b608d5a6f97b408dd2459310b223aff8ca"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/fixture-verification.json",
+      "size": 2088,
+      "sha256": "7d434925be0c76516d06d3cec70eef3cef0a0eb8a41fb185fafefd40dbd4541e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/input-01.log",
+      "size": 412,
+      "sha256": "f967ff476820dcec928617be48a6bcc673a7b7e8e85d6d5fec9ee65e7f5216a9"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/input-02.log",
+      "size": 412,
+      "sha256": "841e2f9b747a28fc6dc6398443576424d5722d3438d743bc875395a38a6d6e10"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/input-03.log",
+      "size": 412,
+      "sha256": "9a1727d666df0f87f46fec19954f739bb5d0d60f0b9efaa251799f0909d3190d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/input-04.log",
+      "size": 418,
+      "sha256": "69e2f6202040588c1ba4b610654618c343457e0f2c739ad22cc8d96fb0b4cbac"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/input-05.log",
+      "size": 414,
+      "sha256": "f9dc7efa15e2124b8fa5f0c44f72f03f258715e2d23810182771579dccbece93"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/launch.json",
+      "size": 2686,
+      "sha256": "a5d3273f39fbd6bee67268c43c590a51750ed23e237874e1617ef8be307fe088"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/process-exit.json",
+      "size": 76,
+      "sha256": "473512263f1f0c50eb464648376e97b6ceb8decdee70fe76a890bcd13e8b5045"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/route.json",
+      "size": 845,
+      "sha256": "c95b00ad8e6a802546c5cc42670e7eab62c8e52c660109afbfcaac6ba8d52355"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/timeline.jsonl",
+      "size": 2008,
+      "sha256": "493c8dc398acaa2b86a6dbccaa394b63b111b82161f0bdd95e24c53b737e43a7"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/trace-health.json",
+      "size": 171,
+      "sha256": "fc8fb9a95628e714521fae9e006a3da87c3c8f8618d10849d73e5aca3eccb17e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/trace.jsonl",
+      "size": 454227,
+      "sha256": "e86805c5e27b8f1da1dd408ed685710c60b8562b340fb1441717a7bb9643cbe3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/trigger-actions.jsonl",
+      "size": 892,
+      "sha256": "30d1f4066c3ba2e028a158942bc7e00dd6f64b1aa2026f41ba11f058e4bf68d1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023/M15-SCN-0004-E-bypass-state-triggered-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "72caf74319083d5db405365523c9f49417aecf2e2b052a65a176b68744db3353"
+    }
+  ]
+}

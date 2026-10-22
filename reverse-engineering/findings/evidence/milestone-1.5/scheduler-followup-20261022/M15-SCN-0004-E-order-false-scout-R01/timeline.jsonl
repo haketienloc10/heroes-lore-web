@@ -1,0 +1,51 @@
+{"utc": "2026-10-22T13:32:40.915447+00:00", "mono_ns": 4527338219018, "event": "x11_checkpoint", "label": "01-startup.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/01-startup.png"}
+{"utc": "2026-10-22T13:32:40.915735+00:00", "mono_ns": 4527338499816, "event": "synthetic_key_begin", "step": 1, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:41.439064+00:00", "mono_ns": 4527861847521, "event": "synthetic_key_end", "step": 1, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:43.038045+00:00", "mono_ns": 4529460814566, "event": "x11_checkpoint", "label": "02-main-menu.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/02-main-menu.png"}
+{"utc": "2026-10-22T13:32:43.038716+00:00", "mono_ns": 4529461479661, "event": "synthetic_key_begin", "step": 2, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:43.423547+00:00", "mono_ns": 4529846318459, "event": "synthetic_key_end", "step": 2, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:45.036630+00:00", "mono_ns": 4531459399192, "event": "x11_checkpoint", "label": "03-load-selection.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/03-load-selection.png"}
+{"utc": "2026-10-22T13:32:45.036874+00:00", "mono_ns": 4531459636599, "event": "synthetic_key_begin", "step": 3, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:45.430191+00:00", "mono_ns": 4531852981782, "event": "synthetic_key_end", "step": 3, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:56.164035+00:00", "mono_ns": 4542586805485, "event": "x11_checkpoint", "label": "04-loaded-gameplay.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/04-loaded-gameplay.png"}
+{"utc": "2026-10-22T13:32:56.164374+00:00", "mono_ns": 4542587137084, "event": "synthetic_key_begin", "step": 4, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:56.568640+00:00", "mono_ns": 4542991426895, "event": "synthetic_key_end", "step": 4, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:58.133698+00:00", "mono_ns": 4544556470857, "event": "x11_checkpoint", "label": "05-status.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/05-status.png"}
+{"utc": "2026-10-22T13:32:58.133911+00:00", "mono_ns": 4544556673456, "event": "synthetic_key_begin", "step": 5, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:58.527795+00:00", "mono_ns": 4544950568462, "event": "synthetic_key_end", "step": 5, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:58.828273+00:00", "mono_ns": 4545251044188, "event": "synthetic_key_begin", "step": 6, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:59.233401+00:00", "mono_ns": 4545656178386, "event": "synthetic_key_end", "step": 6, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:59.533902+00:00", "mono_ns": 4545956685251, "event": "synthetic_key_begin", "step": 7, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:32:59.921045+00:00", "mono_ns": 4546343816817, "event": "synthetic_key_end", "step": 7, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:00.221584+00:00", "mono_ns": 4546644360440, "event": "synthetic_key_begin", "step": 8, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:00.653789+00:00", "mono_ns": 4547076582351, "event": "synthetic_key_end", "step": 8, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:00.954702+00:00", "mono_ns": 4547377495414, "event": "synthetic_key_begin", "step": 9, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:01.361623+00:00", "mono_ns": 4547784404541, "event": "synthetic_key_end", "step": 9, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:02.287442+00:00", "mono_ns": 4548710212211, "event": "x11_checkpoint", "label": "06-system.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/06-system.png"}
+{"utc": "2026-10-22T13:33:02.287799+00:00", "mono_ns": 4548710564910, "event": "synthetic_key_begin", "step": 10, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:02.747328+00:00", "mono_ns": 4549170102043, "event": "synthetic_key_end", "step": 10, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:03.047897+00:00", "mono_ns": 4549470689680, "event": "synthetic_key_begin", "step": 11, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:03.488669+00:00", "mono_ns": 4549911470598, "event": "synthetic_key_end", "step": 11, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:04.415818+00:00", "mono_ns": 4550838592270, "event": "x11_checkpoint", "label": "07-options-selected.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/07-options-selected.png"}
+{"utc": "2026-10-22T13:33:04.416069+00:00", "mono_ns": 4550838832969, "event": "synthetic_key_begin", "step": 12, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:04.808885+00:00", "mono_ns": 4551231679404, "event": "synthetic_key_end", "step": 12, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:06.376026+00:00", "mono_ns": 4552798795519, "event": "x11_checkpoint", "label": "08-settings.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/08-settings.png"}
+{"utc": "2026-10-22T13:33:06.376238+00:00", "mono_ns": 4552799000119, "event": "synthetic_key_begin", "step": 13, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:06.734216+00:00", "mono_ns": 4553157002661, "event": "synthetic_key_end", "step": 13, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:07.034736+00:00", "mono_ns": 4553457521663, "event": "synthetic_key_begin", "step": 14, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:07.440196+00:00", "mono_ns": 4553862974721, "event": "synthetic_key_end", "step": 14, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:07.740700+00:00", "mono_ns": 4554163472220, "event": "synthetic_key_begin", "step": 15, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:08.150712+00:00", "mono_ns": 4554573513769, "event": "synthetic_key_end", "step": 15, "awt_key_code": 40, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:09.061231+00:00", "mono_ns": 4555483999721, "event": "x11_checkpoint", "label": "09-order-row-selected.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/09-order-row-selected.png"}
+{"utc": "2026-10-22T13:33:09.061593+00:00", "mono_ns": 4555484369318, "event": "synthetic_key_begin", "step": 16, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:09.439766+00:00", "mono_ns": 4555862557096, "event": "synthetic_key_end", "step": 16, "awt_key_code": 39, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:11.132761+00:00", "mono_ns": 4557555530514, "event": "x11_checkpoint", "label": "10-order-toggled.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/10-order-toggled.png"}
+{"utc": "2026-10-22T13:33:11.133029+00:00", "mono_ns": 4557555791712, "event": "synthetic_key_begin", "step": 17, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:11.536051+00:00", "mono_ns": 4557958828162, "event": "synthetic_key_end", "step": 17, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:13.286921+00:00", "mono_ns": 4559709689549, "event": "x11_checkpoint", "label": "11-settings-return.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/11-settings-return.png"}
+{"utc": "2026-10-22T13:33:13.287173+00:00", "mono_ns": 4559709934848, "event": "synthetic_key_begin", "step": 18, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:13.651451+00:00", "mono_ns": 4560074223942, "event": "synthetic_key_end", "step": 18, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:15.247605+00:00", "mono_ns": 4561670404369, "event": "x11_checkpoint", "label": "12-system-return.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/12-system-return.png"}
+{"utc": "2026-10-22T13:33:15.247991+00:00", "mono_ns": 4561670753366, "event": "synthetic_key_begin", "step": 19, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:15.587925+00:00", "mono_ns": 4562010717319, "event": "synthetic_key_end", "step": 19, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:33:17.154748+00:00", "mono_ns": 4563577517127, "event": "x11_checkpoint", "label": "13-gameplay-return.png", "output": "reference/screenshots/M15-SCN-0004-E-order-false-scout-R01/13-gameplay-return.png"}

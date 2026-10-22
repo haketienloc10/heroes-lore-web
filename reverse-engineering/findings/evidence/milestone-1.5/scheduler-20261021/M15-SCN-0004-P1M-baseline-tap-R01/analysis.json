@@ -1,0 +1,73 @@
+{
+  "run_id": "M15-SCN-0004-P1M-baseline-tap-R01",
+  "mode": "baseline",
+  "case": "tap",
+  "windows": {
+    "gameplay": {
+      "start_ns": 12250626093922,
+      "end_ns": 12280626093922,
+      "seconds": 30.0,
+      "domains": {
+        "xdamage_receive": {
+          "N": 421,
+          "rate_hz": 14.033333333333333,
+          "interval_ms": {
+            "n": 420,
+            "median": 71.22488,
+            "p95": 93.473835,
+            "max": 100.285284
+          }
+        }
+      },
+      "cpu_seconds": 0.9
+    },
+    "menu": {
+      "start_ns": 12203058161953,
+      "end_ns": 12233058161953,
+      "seconds": 30.0,
+      "domains": {
+        "xdamage_receive": {
+          "N": 593,
+          "rate_hz": 19.766666666666666,
+          "interval_ms": {
+            "n": 592,
+            "median": 50.511035500000006,
+            "p95": 94.729034,
+            "max": 100.39891
+          }
+        }
+      },
+      "cpu_seconds": 1.18
+    }
+  },
+  "listener_dispatch": [
+    {
+      "t_mono_ns": 12286182625479,
+      "edge": "begin",
+      "phase": "down",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12286183771449,
+      "edge": "end",
+      "phase": "down",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12286205887826,
+      "edge": "begin",
+      "phase": "up",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12286206611691,
+      "edge": "end",
+      "phase": "up",
+      "code": 102
+    }
+  ],
+  "listener_hold_bounds_ms": [
+    22.116377,
+    23.986212
+  ]
+}

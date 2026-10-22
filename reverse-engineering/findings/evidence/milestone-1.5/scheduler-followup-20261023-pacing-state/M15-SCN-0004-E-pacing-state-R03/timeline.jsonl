@@ -1,0 +1,12 @@
+{"utc": "2026-10-22T17:35:59.131711+00:00", "mono_ns": 19125554496594, "event": "synthetic_key_begin", "step": 1, "awt_key_code": 10, "hold_ms": 10, "wait_ms": 1000}
+{"utc": "2026-10-22T17:35:59.545928+00:00", "mono_ns": 19125968750924, "event": "synthetic_key_end", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T17:36:00.547320+00:00", "mono_ns": 19126970112597, "event": "synthetic_key_begin", "step": 2, "awt_key_code": 10, "hold_ms": 10, "wait_ms": 1000}
+{"utc": "2026-10-22T17:36:00.829099+00:00", "mono_ns": 19127251872353, "event": "synthetic_key_end", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T17:36:01.829572+00:00", "mono_ns": 19128252361228, "event": "synthetic_key_begin", "step": 3, "awt_key_code": 10, "hold_ms": 10, "wait_ms": 10000}
+{"utc": "2026-10-22T17:36:02.080719+00:00", "mono_ns": 19128503494346, "event": "synthetic_key_end", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T17:36:12.652151+00:00", "mono_ns": 19139074921351, "event": "gameplay_checkpoint", "screenshot": "reference/screenshots/M15-SCN-0004-E-pacing-state-R03/02-gameplay-before-exit.png"}
+{"utc": "2026-10-22T17:36:12.652395+00:00", "mono_ns": 19139075157046, "event": "synthetic_key_begin", "step": 4, "awt_key_code": 102, "hold_ms": 1000, "wait_ms": 1000}
+{"utc": "2026-10-22T17:36:13.897108+00:00", "mono_ns": 19140319879042, "event": "synthetic_key_end", "step": 4, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T17:36:14.897554+00:00", "mono_ns": 19141320328095, "event": "synthetic_key_begin", "step": 5, "awt_key_code": 98, "hold_ms": 1000, "wait_ms": 1800}
+{"utc": "2026-10-22T17:36:16.161129+00:00", "mono_ns": 19142583917303, "event": "synthetic_key_end", "step": 5, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T17:36:18.494860+00:00", "mono_ns": 19144917629363, "event": "post_transition_checkpoint", "screenshot": "reference/screenshots/M15-SCN-0004-E-pacing-state-R03/03-after-exit-transition.png"}

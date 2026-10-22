@@ -1,0 +1,124 @@
+{
+  "purpose": "controlled runtime verification of the state-4 Right Soft pacing bypass",
+  "run_count": 3,
+  "independent_fixture_copies": 3,
+  "state_2_to_4_observed": 3,
+  "right_soft_raw_minus_22_in_state_4": 3,
+  "ag_a_ii_calls_after_triggered_key": 3,
+  "true_bypass_observations": 6,
+  "true_bypass_spans_without_br_a_helper": 6,
+  "helper_calls_in_false_pacing_spans": 1025,
+  "trace_events_total": 5194,
+  "trace_dropped_total": 0,
+  "timing_ms": {
+    "Down_key_to_state_4": {
+      "values": [
+        645.844,
+        635.145,
+        586.803
+      ],
+      "min": 586.803,
+      "median": 635.145,
+      "max": 645.844
+    },
+    "state_4_to_Right_Soft_callback": {
+      "values": [
+        71.386,
+        71.465,
+        71.421
+      ],
+      "min": 71.386,
+      "median": 71.421,
+      "max": 71.465
+    },
+    "state_4_to_next_state_1_after_trigger": {
+      "values": [
+        177.364,
+        175.936,
+        178.296
+      ],
+      "min": 175.936,
+      "median": 177.364,
+      "max": 178.296
+    }
+  },
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-E-bypass-state-triggered-R01",
+      "assessment": "runtime_true_branch_observed",
+      "state4_transition": {
+        "previous_state": 2,
+        "entry_t_mono_ns": 18295215031420,
+        "exit_state": 1,
+        "exit_t_mono_ns": 18295392395858,
+        "duration_ms": 177.364
+      },
+      "down_key_to_state4_ms": 645.844,
+      "state4_to_key_ms": 71.386,
+      "key": {
+        "seq": 1580,
+        "t_mono_ns": 18295286416961,
+        "raw_key": -22,
+        "m_e_operand": 4,
+        "thread": "EventProcessing-Thread"
+      },
+      "handler": 1,
+      "true_branches_without_helper": 2,
+      "trace_events": 1693,
+      "trace_dropped": 0
+    },
+    {
+      "run_id": "M15-SCN-0004-E-bypass-state-triggered-R02",
+      "assessment": "runtime_true_branch_observed",
+      "state4_transition": {
+        "previous_state": 2,
+        "entry_t_mono_ns": 18347766439777,
+        "exit_state": 1,
+        "exit_t_mono_ns": 18347942376147,
+        "duration_ms": 175.936
+      },
+      "down_key_to_state4_ms": 635.145,
+      "state4_to_key_ms": 71.465,
+      "key": {
+        "seq": 1615,
+        "t_mono_ns": 18347837905193,
+        "raw_key": -22,
+        "m_e_operand": 4,
+        "thread": "EventProcessing-Thread"
+      },
+      "handler": 1,
+      "true_branches_without_helper": 2,
+      "trace_events": 1743,
+      "trace_dropped": 0
+    },
+    {
+      "run_id": "M15-SCN-0004-E-bypass-state-triggered-R03",
+      "assessment": "runtime_true_branch_observed",
+      "state4_transition": {
+        "previous_state": 2,
+        "entry_t_mono_ns": 18378913028987,
+        "exit_state": 1,
+        "exit_t_mono_ns": 18379091325206,
+        "duration_ms": 178.296
+      },
+      "down_key_to_state4_ms": 586.803,
+      "state4_to_key_ms": 71.421,
+      "key": {
+        "seq": 1630,
+        "t_mono_ns": 18378984450232,
+        "raw_key": -22,
+        "m_e_operand": 4,
+        "thread": "EventProcessing-Thread"
+      },
+      "handler": 1,
+      "true_branches_without_helper": 2,
+      "trace_events": 1758,
+      "trace_dropped": 0
+    }
+  ],
+  "limitations": [
+    "synthetic AWT inputs; not physical keyboard input",
+    "one fixed save-exit route and Motorola profile",
+    "does not measure compositor or physical presentation latency"
+  ]
+}

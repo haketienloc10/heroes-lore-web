@@ -1,0 +1,30 @@
+
+xwininfo: Window id: 0x3a9 (the root window) (has no name)
+
+  Root window id: 0x3a9 (the root window) (has no name)
+  Parent window id: 0x0 (none)
+     7 children:
+     0x20140d (has no name): ()  556x762+1051+283  +1051+283
+        1 child:
+        0x800007 "FreeJ2ME-Plus": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  480x665+38+59  +1089+342
+           3 children:
+           0x800020 "sun-awt-X11-XMenuBarPeer": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  480x25+0+0  +1089+342
+           0x80001f "FocusProxy": ("Focus-Proxy-Window" "FocusProxy")  1x1+-1+-1  +1088+341
+           0x80001c "Content window": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  556x762+-38+-59  +1051+283
+              1 child:
+              0x800023 "sun-awt-X11-XCanvasPeer": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  480x640+38+84  +1089+367
+     0x800008 "org-recompile-freej2me-FreeJ2ME": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  1x1+1+1  +1+1
+     0x201073 (has no name): ()  556x762+1693+-19  +1693+-19
+        1 child:
+        0x600007 "FreeJ2ME-Plus": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  480x665+38+59  +1731+40
+           3 children:
+           0x600020 "sun-awt-X11-XMenuBarPeer": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  480x25+0+0  +1731+40
+           0x60001f "FocusProxy": ("Focus-Proxy-Window" "FocusProxy")  1x1+-1+-1  +1730+39
+           0x60001c "Content window": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  556x762+-38+-59  +1693+-19
+              1 child:
+              0x600023 "sun-awt-X11-XCanvasPeer": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  480x640+38+84  +1731+65
+     0x600008 "org-recompile-freej2me-FreeJ2ME": ("org-recompile-freej2me-FreeJ2ME" "org-recompile-freej2me-FreeJ2ME")  1x1+1+1  +1+1
+     0x200027 "Weston WM": ()  10x10+0+0  +0+0
+     0x200002 (has no name): ()  8192x8192+0+0  +0+0
+     0x200001 (has no name): ()  10x10+0+0  +0+0
+

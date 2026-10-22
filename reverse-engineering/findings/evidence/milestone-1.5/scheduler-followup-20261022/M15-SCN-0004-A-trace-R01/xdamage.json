@@ -1,0 +1,17 @@
+{
+  "producer": "Python ctypes XDamageReportNonEmpty, receive time",
+  "window": "0x600007",
+  "start_ns": 1126686064952,
+  "end_ns": 1156686064952,
+  "loop_exit_ns": 1156686332816,
+  "seconds": 30,
+  "events": [],
+  "physical_presentation": false,
+  "coalescence_possible": true,
+  "clock": {
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "monotonic": true,
+    "adjustable": false,
+    "resolution": 1e-09
+  }
+}

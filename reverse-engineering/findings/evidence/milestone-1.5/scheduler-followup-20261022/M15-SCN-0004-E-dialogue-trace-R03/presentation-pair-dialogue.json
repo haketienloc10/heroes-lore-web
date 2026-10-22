@@ -1,0 +1,35 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R03",
+  "capture_method": "sequential X11 screenshot and read-only FreeJ2ME emulator frontbuffer snapshot; not synchronized",
+  "dialogue_open": {
+    "x11": {
+      "begin_utc": "2026-10-22T14:20:28.430395+00:00",
+      "end_utc": "2026-10-22T14:20:28.979868+00:00",
+      "begin_mono_ns": 7394853175337,
+      "end_mono_ns": 7395402646299
+    },
+    "frontbuffer": {
+      "log": "frontbuffer-dialogue.log",
+      "utc": "2026-10-22T14:20:52.510291136Z",
+      "mono_ns": 7418933132039
+    },
+    "gap_from_x11_end_ms": 23530.486,
+    "content": "Both show the Trainer/Griffon dialogue page. No traced ar.keyPressed event occurred between these captures."
+  },
+  "after_dialogue": {
+    "x11": {
+      "begin_utc": "2026-10-22T14:21:41.712560+00:00",
+      "end_utc": "2026-10-22T14:21:42.220359+00:00",
+      "begin_mono_ns": 7468135347904,
+      "end_mono_ns": 7468643150251
+    },
+    "frontbuffer": {
+      "log": "frontbuffer-after-dialogue.log",
+      "utc": "2026-10-22T14:21:42.521385166Z",
+      "mono_ns": 7468944196265
+    },
+    "gap_from_x11_end_ms": 301.046,
+    "content": "Both show the overworld after the dialogue, with HUD visible."
+  },
+  "physical_presentation_measured": false
+}

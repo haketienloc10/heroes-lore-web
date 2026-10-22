@@ -1,0 +1,28 @@
+{
+  "run_id": "M15-SCN-0004-E-key-input-physical-R01",
+  "status": "captured",
+  "assessment_status": "inconclusive_under_capture",
+  "trace_events_total": 6,
+  "ar_keyPressed_entries_after_user_ready": 1,
+  "entries_by_raw_key": {
+    "-1": 1
+  },
+  "same_raw_key_intervals_ms": [],
+  "repeat_candidate_observed": false,
+  "repeat_assessment": "inconclusive: one callback is insufficient to assess repeat; false means no repeat interval was observed, not that physical repeat is absent",
+  "multiple_key_assessment": "inconclusive: only one raw callback (-1) was observed, so the reported Right+Up overlap was not confirmed by this trace",
+  "operator_reported_sequence": "Right held, Up pressed while Right remained held, Up released, then Right released",
+  "operator_input_source": "physical keyboard as reported by user; host AWT event timestamps are not captured",
+  "interpretation_limit": "Only one post-ready ar.keyPressed entry (raw -1) was recorded. The trace cannot correlate it with a host key event or verify the full reported sequence. Callbacks show entry into ar.keyPressed, not action consumption or presentation. This probe does not hook inherited Canvas.keyRepeated or keyReleased.",
+  "ready_mono_ns": 17716550120882,
+  "fixture_verified_files": 10,
+  "failures": [],
+  "trace_health": {
+    "events_seen": 6,
+    "retained": 6,
+    "dropped": 0,
+    "capacity": 50000,
+    "exceptional_exit_hooks": false,
+    "reflection": false
+  }
+}

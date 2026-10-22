@@ -1,0 +1,734 @@
+{
+  "purpose": "classify br.a(JJ)V Thread.sleep/Thread.yield callsites by the latest observed m.e:I setter in a controlled house-exit route",
+  "run_count": 3,
+  "independent_fixture_copies": 3,
+  "profile": "FreeJ2ME-Plus 1.52, phone:Motorola, 240x320, limiter 60",
+  "trace_events_total": 6189,
+  "trace_dropped_total": 0,
+  "runs_with_complete_state_attribution": 3,
+  "pacing_by_last_observed_state_setter": {
+    "1": {
+      "br_a_helper_calls": {
+        "per_run": [
+          35,
+          35,
+          35
+        ],
+        "total": 105
+      },
+      "br_b_calls": {
+        "per_run": [
+          35,
+          35,
+          35
+        ],
+        "total": 105
+      },
+      "false_branch_calls": {
+        "per_run": [
+          35,
+          35,
+          35
+        ],
+        "total": 105
+      },
+      "false_branch_without_helper": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_duration_censored": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_without_sleep_or_yield": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "thread_sleep_calls": {
+        "per_run": [
+          35,
+          35,
+          35
+        ],
+        "total": 105
+      },
+      "thread_yield_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "true_bypass_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      }
+    },
+    "2": {
+      "br_a_helper_calls": {
+        "per_run": [
+          128,
+          126,
+          130
+        ],
+        "total": 384
+      },
+      "br_b_calls": {
+        "per_run": [
+          128,
+          126,
+          130
+        ],
+        "total": 384
+      },
+      "false_branch_calls": {
+        "per_run": [
+          128,
+          126,
+          130
+        ],
+        "total": 384
+      },
+      "false_branch_without_helper": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_duration_censored": {
+        "per_run": [
+          1,
+          1,
+          1
+        ],
+        "total": 3
+      },
+      "helper_without_sleep_or_yield": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "thread_sleep_calls": {
+        "per_run": [
+          128,
+          126,
+          130
+        ],
+        "total": 384
+      },
+      "thread_yield_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "true_bypass_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      }
+    },
+    "4": {
+      "br_a_helper_calls": {
+        "per_run": [
+          2,
+          2,
+          2
+        ],
+        "total": 6
+      },
+      "br_b_calls": {
+        "per_run": [
+          4,
+          4,
+          4
+        ],
+        "total": 12
+      },
+      "false_branch_calls": {
+        "per_run": [
+          2,
+          2,
+          2
+        ],
+        "total": 6
+      },
+      "false_branch_without_helper": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_duration_censored": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_without_sleep_or_yield": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "thread_sleep_calls": {
+        "per_run": [
+          2,
+          2,
+          2
+        ],
+        "total": 6
+      },
+      "thread_yield_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "true_bypass_calls": {
+        "per_run": [
+          2,
+          2,
+          2
+        ],
+        "total": 6
+      }
+    },
+    "9": {
+      "br_a_helper_calls": {
+        "per_run": [
+          43,
+          42,
+          40
+        ],
+        "total": 125
+      },
+      "br_b_calls": {
+        "per_run": [
+          43,
+          42,
+          40
+        ],
+        "total": 125
+      },
+      "false_branch_calls": {
+        "per_run": [
+          43,
+          42,
+          40
+        ],
+        "total": 125
+      },
+      "false_branch_without_helper": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_duration_censored": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_without_sleep_or_yield": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "thread_sleep_calls": {
+        "per_run": [
+          42,
+          41,
+          39
+        ],
+        "total": 122
+      },
+      "thread_yield_calls": {
+        "per_run": [
+          1,
+          1,
+          1
+        ],
+        "total": 3
+      },
+      "true_bypass_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      }
+    },
+    "unknown_before_first_m_e_store": {
+      "br_a_helper_calls": {
+        "per_run": [
+          133,
+          132,
+          135
+        ],
+        "total": 400
+      },
+      "br_b_calls": {
+        "per_run": [
+          133,
+          132,
+          135
+        ],
+        "total": 400
+      },
+      "false_branch_calls": {
+        "per_run": [
+          133,
+          132,
+          135
+        ],
+        "total": 400
+      },
+      "false_branch_without_helper": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_duration_censored": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "helper_without_sleep_or_yield": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      },
+      "thread_sleep_calls": {
+        "per_run": [
+          132,
+          131,
+          134
+        ],
+        "total": 397
+      },
+      "thread_yield_calls": {
+        "per_run": [
+          1,
+          1,
+          1
+        ],
+        "total": 3
+      },
+      "true_bypass_calls": {
+        "per_run": [
+          0,
+          0,
+          0
+        ],
+        "total": 0
+      }
+    }
+  },
+  "helper_duration_ms_by_state_and_callsite": {
+    "1": {
+      "sleep": {
+        "n": 105,
+        "min": 168.12372,
+        "median": 200.139947,
+        "p95_nearest_rank": 200.413851,
+        "max": 201.029832,
+        "per_run_median": [
+          200.110823,
+          200.151607,
+          200.138432
+        ],
+        "per_run_p95": [
+          200.369996,
+          200.786212,
+          200.384388
+        ]
+      }
+    },
+    "2": {
+      "sleep": {
+        "n": 381,
+        "min": 63.596883,
+        "median": 70.251518,
+        "p95_nearest_rank": 71.330787,
+        "max": 74.354563,
+        "per_run_median": [
+          70.293409,
+          70.186513,
+          70.259646
+        ],
+        "per_run_p95": [
+          71.365656,
+          71.246222,
+          71.330787
+        ]
+      }
+    },
+    "4": {
+      "sleep": {
+        "n": 6,
+        "min": 65.345735,
+        "median": 70.220299,
+        "p95_nearest_rank": 71.296606,
+        "max": 71.296606,
+        "per_run_median": [
+          69.824675,
+          70.230274,
+          68.304744
+        ],
+        "per_run_p95": [
+          71.296606,
+          71.283702,
+          71.263753
+        ]
+      }
+    },
+    "9": {
+      "sleep": {
+        "n": 122,
+        "min": 46.139354,
+        "median": 49.308085,
+        "p95_nearest_rank": 50.521681,
+        "max": 57.779996,
+        "per_run_median": [
+          50.116636,
+          49.489445,
+          49.241714
+        ],
+        "per_run_p95": [
+          52.5406,
+          50.262699,
+          50.388158
+        ]
+      },
+      "yield": {
+        "n": 3,
+        "min": 1.135589,
+        "median": 1.142406,
+        "p95_nearest_rank": 1.27448,
+        "max": 1.27448,
+        "per_run_median": [
+          1.135589,
+          1.142406,
+          1.27448
+        ],
+        "per_run_p95": [
+          1.135589,
+          1.142406,
+          1.27448
+        ]
+      }
+    },
+    "unknown_before_first_m_e_store": {
+      "sleep": {
+        "n": 397,
+        "min": 34.472907,
+        "median": 65.147195,
+        "p95_nearest_rank": 66.367124,
+        "max": 209.445403,
+        "per_run_median": [
+          65.132267,
+          65.147226,
+          65.154126
+        ],
+        "per_run_p95": [
+          66.348217,
+          66.397981,
+          66.352151
+        ]
+      },
+      "yield": {
+        "n": 3,
+        "min": 1.2248,
+        "median": 1.582368,
+        "p95_nearest_rank": 1.81979,
+        "max": 1.81979,
+        "per_run_median": [
+          1.81979,
+          1.2248,
+          1.582368
+        ],
+        "per_run_p95": [
+          1.81979,
+          1.2248,
+          1.582368
+        ]
+      }
+    }
+  },
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-E-pacing-state-R01",
+      "trace_events": 2069,
+      "state_setters": [
+        9,
+        0,
+        1,
+        1,
+        2,
+        4,
+        1,
+        2
+      ],
+      "state_totals": {
+        "1": {
+          "br_b_calls": 35,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 35,
+          "br_a_helper_calls": 35,
+          "thread_sleep_calls": 35,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "2": {
+          "br_b_calls": 128,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 128,
+          "br_a_helper_calls": 128,
+          "thread_sleep_calls": 128,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 1
+        },
+        "4": {
+          "br_b_calls": 4,
+          "true_bypass_calls": 2,
+          "false_branch_calls": 2,
+          "br_a_helper_calls": 2,
+          "thread_sleep_calls": 2,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "9": {
+          "br_b_calls": 43,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 43,
+          "br_a_helper_calls": 43,
+          "thread_sleep_calls": 42,
+          "thread_yield_calls": 1,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "unknown_before_first_m_e_store": {
+          "br_b_calls": 133,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 133,
+          "br_a_helper_calls": 133,
+          "thread_sleep_calls": 132,
+          "thread_yield_calls": 1,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        }
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-pacing-state-R02",
+      "trace_events": 2045,
+      "state_setters": [
+        9,
+        0,
+        1,
+        1,
+        2,
+        4,
+        1,
+        2
+      ],
+      "state_totals": {
+        "1": {
+          "br_b_calls": 35,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 35,
+          "br_a_helper_calls": 35,
+          "thread_sleep_calls": 35,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "2": {
+          "br_b_calls": 126,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 126,
+          "br_a_helper_calls": 126,
+          "thread_sleep_calls": 126,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 1
+        },
+        "4": {
+          "br_b_calls": 4,
+          "true_bypass_calls": 2,
+          "false_branch_calls": 2,
+          "br_a_helper_calls": 2,
+          "thread_sleep_calls": 2,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "9": {
+          "br_b_calls": 42,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 42,
+          "br_a_helper_calls": 42,
+          "thread_sleep_calls": 41,
+          "thread_yield_calls": 1,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "unknown_before_first_m_e_store": {
+          "br_b_calls": 132,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 132,
+          "br_a_helper_calls": 132,
+          "thread_sleep_calls": 131,
+          "thread_yield_calls": 1,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        }
+      }
+    },
+    {
+      "run_id": "M15-SCN-0004-E-pacing-state-R03",
+      "trace_events": 2075,
+      "state_setters": [
+        9,
+        0,
+        1,
+        1,
+        2,
+        4,
+        1,
+        2
+      ],
+      "state_totals": {
+        "1": {
+          "br_b_calls": 35,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 35,
+          "br_a_helper_calls": 35,
+          "thread_sleep_calls": 35,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "2": {
+          "br_b_calls": 130,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 130,
+          "br_a_helper_calls": 130,
+          "thread_sleep_calls": 130,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 1
+        },
+        "4": {
+          "br_b_calls": 4,
+          "true_bypass_calls": 2,
+          "false_branch_calls": 2,
+          "br_a_helper_calls": 2,
+          "thread_sleep_calls": 2,
+          "thread_yield_calls": 0,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "9": {
+          "br_b_calls": 40,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 40,
+          "br_a_helper_calls": 40,
+          "thread_sleep_calls": 39,
+          "thread_yield_calls": 1,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        },
+        "unknown_before_first_m_e_store": {
+          "br_b_calls": 135,
+          "true_bypass_calls": 0,
+          "false_branch_calls": 135,
+          "br_a_helper_calls": 135,
+          "thread_sleep_calls": 134,
+          "thread_yield_calls": 1,
+          "false_branch_without_helper": 0,
+          "helper_without_sleep_or_yield": 0,
+          "helper_duration_censored": 0
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "the state attribution applies only between instrumented m.a(I)V stores to m.e:I on the observed game thread",
+    "states 1, 2, 4 and 9 occur on this house-exit route; unknown pre-first-store spans are reported separately",
+    "sleep/yield counts are callsite observations immediately before invocation, not measured blocked durations",
+    "helper entry-to-exit duration includes probe overhead and helper computations; it is not pure sleep time",
+    "synthetic AWT input; no physical keyboard-repeat or compositor-presentation claim"
+  ]
+}

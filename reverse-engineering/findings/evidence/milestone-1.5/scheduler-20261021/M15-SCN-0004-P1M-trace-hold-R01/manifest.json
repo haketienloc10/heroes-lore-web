@@ -1,0 +1,182 @@
+{
+  "run_id": "M15-SCN-0004-P1M-trace-hold-R01",
+  "evidence": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/analysis.json",
+      "size": 27885,
+      "sha256": "fecbb189bea45ec51ee2cea674577261ed32e967a752ecd810b1f4b39e757d18"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/clock.json",
+      "size": 157,
+      "sha256": "6010b944ff1a2a4ba98dc9de2756d93a6228d715174494c218904888a6800ade"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/console.log",
+      "size": 6242,
+      "sha256": "ae50fabecbd901f7c0f0ded5a81a77e3e44ca329141ee39a8104cad0eca7d6b6"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/framebuffer.log",
+      "size": 1533,
+      "sha256": "a34da0f843297e8fc89adaef1d189441659c8a4a23d56239633ad0aaccc17861"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/gameplay-process.json",
+      "size": 3489,
+      "sha256": "b498f7311b7b3c0beda3f9abcb0be2e5422a0525ea9ff41652a946b4f9858f71"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/gameplay-window-tree.txt",
+      "size": 1218,
+      "sha256": "ce1090a0cdef05ce33609b3f82f107a4b7733b5134cacb706e6d0eeba5a0a240"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/gameplay-xdamage.json",
+      "size": 40042,
+      "sha256": "ac4809899421265c8170c82558369a0be008ca27e07226f503837c38c953551e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/input.log",
+      "size": 1239,
+      "sha256": "87c6d6bd13722f326adf504a40b8f1314cbbb4c9bead60e617baf9ab1c92f5a7"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/input.plan",
+      "size": 67,
+      "sha256": "4006c21bc689d52412e4df1154363a288b6ab9a06418abf4c1801b532cac8aca"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/launch.json",
+      "size": 1022,
+      "sha256": "2c6fe96e5db9f6dcac3a1ba4f575c025a47ba8faffc536b41211fd630f8cdae8"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/sequence-input.log",
+      "size": 1075,
+      "sha256": "f9c4199609b79bb0d31efc07d22fd45c3ca35041f93e0b96f2492cc63f51f149"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/snapshot-before.json",
+      "size": 1923,
+      "sha256": "7f3bf5932bc06dde8d1b450d2ca9071de0b3d264b788af9f14b0051b7835a8b3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/state-final.log",
+      "size": 8794,
+      "sha256": "8b6cd7f8c3bb22f327111fa06adc74c0d67f5f9f10306530b6e87f47eeb03325"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/state-fixture.log",
+      "size": 8927,
+      "sha256": "f7af44415865d88f824646b7ddc2115750ee9eb52cbc05ef3721cf305608372b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/stop.json",
+      "size": 108,
+      "sha256": "cb62604114b19779744af7fcded3dcb3538d28d8d8d92e5d4e09928f3b855286"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/trace-health.json",
+      "size": 117,
+      "sha256": "cc917b621d5ed351238d2baeb24a242f87fbc6b5f608de76534e34c82063e5d9"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-hold-R01/trace-retention.json",
+      "size": 496,
+      "sha256": "3b6fbd58168e6e7954738d6d7550de72efdf222d47cb21506973d0af1a7dc189"
+    }
+  ],
+  "local_only_artifacts": [
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/freej2me_system/FreeJ2ME.log",
+      "size": 1294,
+      "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/freej2me_system/customFont/Put your ttf font here",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/rms/Heroes Lore/410decd402x28_.1",
+      "size": 22,
+      "sha256": "be2eeed879d2c61d4db1ed70ebee08a59b37ac5d448d082a244f35019c322d0a"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/rms/Heroes Lore/410decd402x28_.rms",
+      "size": 382,
+      "sha256": "7a3815e4b1856a1bfc41dfe8da3ea54b507fbd8c94d1a1124a881d0cebb34c67"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/rms/Heroes Lore/410decd402x2m_.1",
+      "size": 6,
+      "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/rms/Heroes Lore/410decd402x2m_.rms",
+      "size": 382,
+      "sha256": "42fb8742390b1dc9bec451ca1b9e7ab19a72964c82718d84e716c8d677657fc0"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/rms/Heroes Lore/410decd402x2s_.1",
+      "size": 432,
+      "sha256": "76dc0aa8a0a618ad47cdf192cd2e7d524eca7359264d204d523f4108df3405ba"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/rms/Heroes Lore/410decd402x2s_.rms",
+      "size": 382,
+      "sha256": "2d8bf19494b1a9c962d6db984731857fd1c897f992cd3776fddd33c8a342f650"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/trace.jsonl",
+      "size": 13978954,
+      "sha256": "c69c913ac8c8e098b86e822b9712430cf577f4c06cc03e4fc8804fdc021109bd"
+    },
+    {
+      "path": "reference/recordings/M15-SCN-0004-P1M-trace-hold-R01/trace.jsonl.gz",
+      "size": 486933,
+      "sha256": "253efa552d713988974f53e2a3158df8a17d72c882a53afb7f9dcc7fc4b0127d"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/01-startup.png",
+      "size": 7852,
+      "sha256": "695ac3607e60fb9aaa8e17bae4b1aff4f7d8e95f081340f8a051faffc558227a"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/02-menu.png",
+      "size": 5014,
+      "sha256": "8d40e12b462bdae04f458a48e35208ae8387c07074c42d2c93f27d8fd64b4d62"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/03-load-Ronin.png",
+      "size": 7711,
+      "sha256": "8aaf08e67a403ac1a0c526a84c6fed1dc2beb56668f08892898eb5e6b76eb372"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/04-fixture.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/05-before-input.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/06-after-input.png",
+      "size": 16277,
+      "sha256": "11397e9d95521f2defcaf9f75a26b2e2dab8305766fac3df9830067221b11d40"
+    }
+  ]
+}

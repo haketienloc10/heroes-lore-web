@@ -1,0 +1,6481 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R03",
+  "producer": "analyze_bypass_trace.py",
+  "trace_integrity": {
+    "serialized_rows": 3994,
+    "first_seq": 1,
+    "last_seq": 3994,
+    "events_seen": 3994,
+    "retained": 3994,
+    "dropped": 0,
+    "contiguous_prefix": true,
+    "health_matches_serialized_rows": true,
+    "incomplete_method_spans": [
+      {
+        "class": "br",
+        "method": "b()V",
+        "span_id": 1596,
+        "entry_seq": 3992
+      },
+      {
+        "class": "br",
+        "method": "a(JJ)V",
+        "span_id": 1597,
+        "entry_seq": 3994
+      }
+    ]
+  },
+  "event_counts": {
+    "method": 3192,
+    "bypass_value": 795,
+    "game_state_value": 7
+  },
+  "method_counts": {
+    "ar.keyPressed(I)V.entry": 7,
+    "ar.keyPressed(I)V.exit": 7,
+    "br.a(JJ)V.entry": 795,
+    "br.a(JJ)V.exit": 794,
+    "br.b()V.entry": 795,
+    "br.b()V.exit": 794
+  },
+  "key_observations": [
+    {
+      "seq": 1281,
+      "t_mono_ns": 10871297268763,
+      "raw_key_code": -20,
+      "game_state": 9,
+      "span_id": 513
+    },
+    {
+      "seq": 1349,
+      "t_mono_ns": 10871961115551,
+      "raw_key_code": -20,
+      "game_state": 9,
+      "span_id": 540
+    },
+    {
+      "seq": 1557,
+      "t_mono_ns": 10878382483230,
+      "raw_key_code": -6,
+      "game_state": 2,
+      "span_id": 623
+    },
+    {
+      "seq": 1590,
+      "t_mono_ns": 10878812658977,
+      "raw_key_code": -5,
+      "game_state": 2,
+      "span_id": 636
+    },
+    {
+      "seq": 1643,
+      "t_mono_ns": 10879529746057,
+      "raw_key_code": -6,
+      "game_state": 2,
+      "span_id": 657
+    },
+    {
+      "seq": 1706,
+      "t_mono_ns": 10880906832380,
+      "raw_key_code": -22,
+      "game_state": 1,
+      "span_id": 682
+    },
+    {
+      "seq": 1724,
+      "t_mono_ns": 10881509512211,
+      "raw_key_code": -22,
+      "game_state": 1,
+      "span_id": 689
+    }
+  ],
+  "game_state_values": {
+    "9": 2,
+    "2": 3,
+    "1": 2
+  },
+  "ag_a_invocations": [],
+  "bypass_branch_observations": {
+    "true": 0,
+    "false": 795,
+    "br_b_entries": 795,
+    "br_a_entries": 795,
+    "true_branch_scheduler_call_count": 0,
+    "false_branch_scheduler_call_count": 795,
+    "branches": [
+      {
+        "span_id": 1,
+        "entry_seq": 1,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 3,
+        "entry_seq": 6,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 5,
+        "entry_seq": 11,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 7,
+        "entry_seq": 16,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 9,
+        "entry_seq": 21,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 11,
+        "entry_seq": 26,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 13,
+        "entry_seq": 31,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 15,
+        "entry_seq": 36,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 17,
+        "entry_seq": 41,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 19,
+        "entry_seq": 46,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 21,
+        "entry_seq": 51,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 23,
+        "entry_seq": 56,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 25,
+        "entry_seq": 61,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 27,
+        "entry_seq": 66,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 29,
+        "entry_seq": 71,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 31,
+        "entry_seq": 76,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 33,
+        "entry_seq": 81,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 35,
+        "entry_seq": 86,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 37,
+        "entry_seq": 91,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 39,
+        "entry_seq": 96,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 41,
+        "entry_seq": 101,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 43,
+        "entry_seq": 106,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 45,
+        "entry_seq": 111,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 47,
+        "entry_seq": 116,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 49,
+        "entry_seq": 121,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 51,
+        "entry_seq": 126,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 53,
+        "entry_seq": 131,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 55,
+        "entry_seq": 136,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 57,
+        "entry_seq": 141,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 59,
+        "entry_seq": 146,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 61,
+        "entry_seq": 151,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 63,
+        "entry_seq": 156,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 65,
+        "entry_seq": 161,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 67,
+        "entry_seq": 166,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 69,
+        "entry_seq": 171,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 71,
+        "entry_seq": 176,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 73,
+        "entry_seq": 181,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 75,
+        "entry_seq": 186,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 77,
+        "entry_seq": 191,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 79,
+        "entry_seq": 196,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 81,
+        "entry_seq": 201,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 83,
+        "entry_seq": 206,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 85,
+        "entry_seq": 211,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 87,
+        "entry_seq": 216,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 89,
+        "entry_seq": 221,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 91,
+        "entry_seq": 226,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 93,
+        "entry_seq": 231,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 95,
+        "entry_seq": 236,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 97,
+        "entry_seq": 241,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 99,
+        "entry_seq": 246,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 101,
+        "entry_seq": 251,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 103,
+        "entry_seq": 256,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 105,
+        "entry_seq": 261,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 107,
+        "entry_seq": 266,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 109,
+        "entry_seq": 271,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 111,
+        "entry_seq": 276,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 113,
+        "entry_seq": 281,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 115,
+        "entry_seq": 286,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 117,
+        "entry_seq": 291,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 119,
+        "entry_seq": 296,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 121,
+        "entry_seq": 301,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 123,
+        "entry_seq": 306,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 125,
+        "entry_seq": 311,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 127,
+        "entry_seq": 316,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 129,
+        "entry_seq": 321,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 131,
+        "entry_seq": 326,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 133,
+        "entry_seq": 331,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 135,
+        "entry_seq": 336,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 137,
+        "entry_seq": 341,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 139,
+        "entry_seq": 346,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 141,
+        "entry_seq": 351,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 143,
+        "entry_seq": 356,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 145,
+        "entry_seq": 361,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 147,
+        "entry_seq": 366,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 149,
+        "entry_seq": 371,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 151,
+        "entry_seq": 376,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 153,
+        "entry_seq": 381,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 155,
+        "entry_seq": 386,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 157,
+        "entry_seq": 391,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 159,
+        "entry_seq": 396,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 161,
+        "entry_seq": 401,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 163,
+        "entry_seq": 406,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 165,
+        "entry_seq": 411,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 167,
+        "entry_seq": 416,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 169,
+        "entry_seq": 421,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 171,
+        "entry_seq": 426,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 173,
+        "entry_seq": 431,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 175,
+        "entry_seq": 436,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 177,
+        "entry_seq": 441,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 179,
+        "entry_seq": 446,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 181,
+        "entry_seq": 451,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 183,
+        "entry_seq": 456,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 185,
+        "entry_seq": 461,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 187,
+        "entry_seq": 466,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 189,
+        "entry_seq": 471,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 191,
+        "entry_seq": 476,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 193,
+        "entry_seq": 481,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 195,
+        "entry_seq": 486,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 197,
+        "entry_seq": 491,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 199,
+        "entry_seq": 496,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 201,
+        "entry_seq": 501,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 203,
+        "entry_seq": 506,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 205,
+        "entry_seq": 511,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 207,
+        "entry_seq": 516,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 209,
+        "entry_seq": 521,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 211,
+        "entry_seq": 526,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 213,
+        "entry_seq": 531,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 215,
+        "entry_seq": 536,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 217,
+        "entry_seq": 541,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 219,
+        "entry_seq": 546,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 221,
+        "entry_seq": 551,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 223,
+        "entry_seq": 556,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 225,
+        "entry_seq": 561,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 227,
+        "entry_seq": 566,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 229,
+        "entry_seq": 571,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 231,
+        "entry_seq": 576,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 233,
+        "entry_seq": 581,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 235,
+        "entry_seq": 586,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 237,
+        "entry_seq": 591,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 239,
+        "entry_seq": 596,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 241,
+        "entry_seq": 601,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 243,
+        "entry_seq": 606,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 245,
+        "entry_seq": 611,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 247,
+        "entry_seq": 616,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 249,
+        "entry_seq": 621,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 251,
+        "entry_seq": 626,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 253,
+        "entry_seq": 631,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 255,
+        "entry_seq": 636,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 257,
+        "entry_seq": 641,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 259,
+        "entry_seq": 646,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 261,
+        "entry_seq": 651,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 263,
+        "entry_seq": 656,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 265,
+        "entry_seq": 661,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 267,
+        "entry_seq": 666,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 269,
+        "entry_seq": 671,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 271,
+        "entry_seq": 676,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 273,
+        "entry_seq": 681,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 275,
+        "entry_seq": 686,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 277,
+        "entry_seq": 691,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 279,
+        "entry_seq": 696,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 281,
+        "entry_seq": 701,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 283,
+        "entry_seq": 706,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 285,
+        "entry_seq": 711,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 287,
+        "entry_seq": 716,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 289,
+        "entry_seq": 721,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 291,
+        "entry_seq": 726,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 293,
+        "entry_seq": 731,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 295,
+        "entry_seq": 736,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 297,
+        "entry_seq": 741,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 299,
+        "entry_seq": 746,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 301,
+        "entry_seq": 751,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 303,
+        "entry_seq": 756,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 305,
+        "entry_seq": 761,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 307,
+        "entry_seq": 766,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 309,
+        "entry_seq": 771,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 311,
+        "entry_seq": 776,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 313,
+        "entry_seq": 781,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 315,
+        "entry_seq": 786,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 317,
+        "entry_seq": 791,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 319,
+        "entry_seq": 796,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 321,
+        "entry_seq": 801,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 323,
+        "entry_seq": 806,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 325,
+        "entry_seq": 811,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 327,
+        "entry_seq": 816,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 329,
+        "entry_seq": 821,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 331,
+        "entry_seq": 826,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 333,
+        "entry_seq": 831,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 335,
+        "entry_seq": 836,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 337,
+        "entry_seq": 841,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 339,
+        "entry_seq": 846,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 341,
+        "entry_seq": 851,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 343,
+        "entry_seq": 856,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 345,
+        "entry_seq": 861,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 347,
+        "entry_seq": 866,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 349,
+        "entry_seq": 871,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 351,
+        "entry_seq": 876,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 353,
+        "entry_seq": 881,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 355,
+        "entry_seq": 886,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 357,
+        "entry_seq": 891,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 359,
+        "entry_seq": 896,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 361,
+        "entry_seq": 901,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 363,
+        "entry_seq": 906,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 365,
+        "entry_seq": 911,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 367,
+        "entry_seq": 916,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 369,
+        "entry_seq": 921,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 371,
+        "entry_seq": 926,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 373,
+        "entry_seq": 931,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 375,
+        "entry_seq": 936,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 377,
+        "entry_seq": 941,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 379,
+        "entry_seq": 946,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 381,
+        "entry_seq": 951,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 383,
+        "entry_seq": 956,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 385,
+        "entry_seq": 961,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 387,
+        "entry_seq": 966,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 389,
+        "entry_seq": 971,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 391,
+        "entry_seq": 976,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 393,
+        "entry_seq": 981,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 395,
+        "entry_seq": 986,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 397,
+        "entry_seq": 991,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 399,
+        "entry_seq": 996,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 401,
+        "entry_seq": 1001,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 403,
+        "entry_seq": 1006,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 405,
+        "entry_seq": 1011,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 407,
+        "entry_seq": 1016,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 409,
+        "entry_seq": 1021,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 411,
+        "entry_seq": 1026,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 413,
+        "entry_seq": 1031,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 415,
+        "entry_seq": 1036,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 417,
+        "entry_seq": 1041,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 419,
+        "entry_seq": 1046,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 421,
+        "entry_seq": 1051,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 423,
+        "entry_seq": 1056,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 425,
+        "entry_seq": 1061,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 427,
+        "entry_seq": 1066,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 429,
+        "entry_seq": 1071,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 431,
+        "entry_seq": 1076,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 433,
+        "entry_seq": 1081,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 435,
+        "entry_seq": 1086,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 437,
+        "entry_seq": 1091,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 439,
+        "entry_seq": 1096,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 441,
+        "entry_seq": 1101,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 443,
+        "entry_seq": 1106,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 445,
+        "entry_seq": 1111,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 447,
+        "entry_seq": 1116,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 449,
+        "entry_seq": 1121,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 451,
+        "entry_seq": 1126,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 453,
+        "entry_seq": 1131,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 455,
+        "entry_seq": 1136,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 457,
+        "entry_seq": 1141,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 459,
+        "entry_seq": 1146,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 461,
+        "entry_seq": 1151,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 463,
+        "entry_seq": 1156,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 465,
+        "entry_seq": 1161,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 467,
+        "entry_seq": 1166,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 469,
+        "entry_seq": 1171,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 471,
+        "entry_seq": 1176,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 473,
+        "entry_seq": 1181,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 475,
+        "entry_seq": 1186,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 477,
+        "entry_seq": 1191,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 479,
+        "entry_seq": 1196,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 481,
+        "entry_seq": 1201,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 483,
+        "entry_seq": 1206,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 485,
+        "entry_seq": 1211,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 487,
+        "entry_seq": 1216,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 489,
+        "entry_seq": 1221,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 491,
+        "entry_seq": 1226,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 493,
+        "entry_seq": 1231,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 495,
+        "entry_seq": 1236,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 497,
+        "entry_seq": 1241,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 499,
+        "entry_seq": 1246,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 501,
+        "entry_seq": 1251,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 503,
+        "entry_seq": 1256,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 505,
+        "entry_seq": 1261,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 507,
+        "entry_seq": 1266,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 509,
+        "entry_seq": 1271,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 511,
+        "entry_seq": 1276,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 514,
+        "entry_seq": 1284,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 516,
+        "entry_seq": 1289,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 518,
+        "entry_seq": 1294,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 520,
+        "entry_seq": 1299,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 522,
+        "entry_seq": 1304,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 524,
+        "entry_seq": 1309,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 526,
+        "entry_seq": 1314,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 528,
+        "entry_seq": 1319,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 530,
+        "entry_seq": 1324,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 532,
+        "entry_seq": 1329,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 534,
+        "entry_seq": 1334,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 536,
+        "entry_seq": 1339,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 538,
+        "entry_seq": 1344,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 541,
+        "entry_seq": 1352,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 543,
+        "entry_seq": 1357,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 545,
+        "entry_seq": 1362,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 547,
+        "entry_seq": 1367,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 549,
+        "entry_seq": 1372,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 551,
+        "entry_seq": 1377,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 553,
+        "entry_seq": 1382,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 555,
+        "entry_seq": 1387,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 557,
+        "entry_seq": 1392,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 559,
+        "entry_seq": 1397,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 561,
+        "entry_seq": 1402,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 563,
+        "entry_seq": 1407,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 565,
+        "entry_seq": 1412,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 567,
+        "entry_seq": 1417,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 569,
+        "entry_seq": 1422,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 571,
+        "entry_seq": 1427,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 573,
+        "entry_seq": 1432,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 575,
+        "entry_seq": 1437,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 577,
+        "entry_seq": 1442,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 579,
+        "entry_seq": 1447,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 581,
+        "entry_seq": 1452,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 583,
+        "entry_seq": 1457,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 585,
+        "entry_seq": 1462,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 587,
+        "entry_seq": 1467,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 589,
+        "entry_seq": 1472,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 591,
+        "entry_seq": 1477,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 593,
+        "entry_seq": 1482,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 595,
+        "entry_seq": 1487,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 597,
+        "entry_seq": 1492,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 599,
+        "entry_seq": 1497,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 601,
+        "entry_seq": 1502,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 603,
+        "entry_seq": 1507,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 605,
+        "entry_seq": 1512,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 607,
+        "entry_seq": 1517,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 609,
+        "entry_seq": 1522,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 611,
+        "entry_seq": 1527,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 613,
+        "entry_seq": 1532,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 615,
+        "entry_seq": 1537,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 617,
+        "entry_seq": 1542,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 619,
+        "entry_seq": 1547,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 621,
+        "entry_seq": 1552,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 624,
+        "entry_seq": 1560,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 626,
+        "entry_seq": 1565,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 628,
+        "entry_seq": 1570,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 630,
+        "entry_seq": 1575,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 632,
+        "entry_seq": 1580,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 634,
+        "entry_seq": 1585,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 637,
+        "entry_seq": 1593,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 639,
+        "entry_seq": 1598,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 641,
+        "entry_seq": 1603,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 643,
+        "entry_seq": 1608,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 645,
+        "entry_seq": 1613,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 647,
+        "entry_seq": 1618,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 649,
+        "entry_seq": 1623,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 651,
+        "entry_seq": 1628,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 653,
+        "entry_seq": 1633,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 655,
+        "entry_seq": 1638,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 658,
+        "entry_seq": 1646,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 660,
+        "entry_seq": 1651,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 662,
+        "entry_seq": 1656,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 664,
+        "entry_seq": 1661,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 666,
+        "entry_seq": 1666,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 668,
+        "entry_seq": 1671,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 670,
+        "entry_seq": 1676,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 672,
+        "entry_seq": 1681,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 674,
+        "entry_seq": 1686,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 676,
+        "entry_seq": 1691,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 678,
+        "entry_seq": 1696,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 680,
+        "entry_seq": 1701,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 683,
+        "entry_seq": 1709,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 685,
+        "entry_seq": 1714,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 687,
+        "entry_seq": 1719,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 690,
+        "entry_seq": 1727,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 692,
+        "entry_seq": 1732,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 694,
+        "entry_seq": 1737,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 696,
+        "entry_seq": 1742,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 698,
+        "entry_seq": 1747,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 700,
+        "entry_seq": 1752,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 702,
+        "entry_seq": 1757,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 704,
+        "entry_seq": 1762,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 706,
+        "entry_seq": 1767,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 708,
+        "entry_seq": 1772,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 710,
+        "entry_seq": 1777,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 712,
+        "entry_seq": 1782,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 714,
+        "entry_seq": 1787,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 716,
+        "entry_seq": 1792,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 718,
+        "entry_seq": 1797,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 720,
+        "entry_seq": 1802,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 722,
+        "entry_seq": 1807,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 724,
+        "entry_seq": 1812,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 726,
+        "entry_seq": 1817,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 728,
+        "entry_seq": 1822,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 730,
+        "entry_seq": 1827,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 732,
+        "entry_seq": 1832,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 734,
+        "entry_seq": 1837,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 736,
+        "entry_seq": 1842,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 738,
+        "entry_seq": 1847,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 740,
+        "entry_seq": 1852,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 742,
+        "entry_seq": 1857,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 744,
+        "entry_seq": 1862,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 746,
+        "entry_seq": 1867,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 748,
+        "entry_seq": 1872,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 750,
+        "entry_seq": 1877,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 752,
+        "entry_seq": 1882,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 754,
+        "entry_seq": 1887,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 756,
+        "entry_seq": 1892,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 758,
+        "entry_seq": 1897,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 760,
+        "entry_seq": 1902,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 762,
+        "entry_seq": 1907,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 764,
+        "entry_seq": 1912,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 766,
+        "entry_seq": 1917,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 768,
+        "entry_seq": 1922,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 770,
+        "entry_seq": 1927,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 772,
+        "entry_seq": 1932,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 774,
+        "entry_seq": 1937,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 776,
+        "entry_seq": 1942,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 778,
+        "entry_seq": 1947,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 780,
+        "entry_seq": 1952,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 782,
+        "entry_seq": 1957,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 784,
+        "entry_seq": 1962,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 786,
+        "entry_seq": 1967,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 788,
+        "entry_seq": 1972,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 790,
+        "entry_seq": 1977,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 792,
+        "entry_seq": 1982,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 794,
+        "entry_seq": 1987,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 796,
+        "entry_seq": 1992,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 798,
+        "entry_seq": 1997,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 800,
+        "entry_seq": 2002,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 802,
+        "entry_seq": 2007,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 804,
+        "entry_seq": 2012,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 806,
+        "entry_seq": 2017,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 808,
+        "entry_seq": 2022,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 810,
+        "entry_seq": 2027,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 812,
+        "entry_seq": 2032,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 814,
+        "entry_seq": 2037,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 816,
+        "entry_seq": 2042,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 818,
+        "entry_seq": 2047,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 820,
+        "entry_seq": 2052,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 822,
+        "entry_seq": 2057,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 824,
+        "entry_seq": 2062,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 826,
+        "entry_seq": 2067,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 828,
+        "entry_seq": 2072,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 830,
+        "entry_seq": 2077,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 832,
+        "entry_seq": 2082,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 834,
+        "entry_seq": 2087,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 836,
+        "entry_seq": 2092,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 838,
+        "entry_seq": 2097,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 840,
+        "entry_seq": 2102,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 842,
+        "entry_seq": 2107,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 844,
+        "entry_seq": 2112,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 846,
+        "entry_seq": 2117,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 848,
+        "entry_seq": 2122,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 850,
+        "entry_seq": 2127,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 852,
+        "entry_seq": 2132,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 854,
+        "entry_seq": 2137,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 856,
+        "entry_seq": 2142,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 858,
+        "entry_seq": 2147,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 860,
+        "entry_seq": 2152,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 862,
+        "entry_seq": 2157,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 864,
+        "entry_seq": 2162,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 866,
+        "entry_seq": 2167,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 868,
+        "entry_seq": 2172,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 870,
+        "entry_seq": 2177,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 872,
+        "entry_seq": 2182,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 874,
+        "entry_seq": 2187,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 876,
+        "entry_seq": 2192,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 878,
+        "entry_seq": 2197,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 880,
+        "entry_seq": 2202,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 882,
+        "entry_seq": 2207,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 884,
+        "entry_seq": 2212,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 886,
+        "entry_seq": 2217,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 888,
+        "entry_seq": 2222,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 890,
+        "entry_seq": 2227,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 892,
+        "entry_seq": 2232,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 894,
+        "entry_seq": 2237,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 896,
+        "entry_seq": 2242,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 898,
+        "entry_seq": 2247,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 900,
+        "entry_seq": 2252,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 902,
+        "entry_seq": 2257,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 904,
+        "entry_seq": 2262,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 906,
+        "entry_seq": 2267,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 908,
+        "entry_seq": 2272,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 910,
+        "entry_seq": 2277,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 912,
+        "entry_seq": 2282,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 914,
+        "entry_seq": 2287,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 916,
+        "entry_seq": 2292,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 918,
+        "entry_seq": 2297,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 920,
+        "entry_seq": 2302,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 922,
+        "entry_seq": 2307,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 924,
+        "entry_seq": 2312,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 926,
+        "entry_seq": 2317,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 928,
+        "entry_seq": 2322,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 930,
+        "entry_seq": 2327,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 932,
+        "entry_seq": 2332,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 934,
+        "entry_seq": 2337,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 936,
+        "entry_seq": 2342,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 938,
+        "entry_seq": 2347,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 940,
+        "entry_seq": 2352,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 942,
+        "entry_seq": 2357,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 944,
+        "entry_seq": 2362,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 946,
+        "entry_seq": 2367,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 948,
+        "entry_seq": 2372,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 950,
+        "entry_seq": 2377,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 952,
+        "entry_seq": 2382,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 954,
+        "entry_seq": 2387,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 956,
+        "entry_seq": 2392,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 958,
+        "entry_seq": 2397,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 960,
+        "entry_seq": 2402,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 962,
+        "entry_seq": 2407,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 964,
+        "entry_seq": 2412,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 966,
+        "entry_seq": 2417,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 968,
+        "entry_seq": 2422,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 970,
+        "entry_seq": 2427,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 972,
+        "entry_seq": 2432,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 974,
+        "entry_seq": 2437,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 976,
+        "entry_seq": 2442,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 978,
+        "entry_seq": 2447,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 980,
+        "entry_seq": 2452,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 982,
+        "entry_seq": 2457,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 984,
+        "entry_seq": 2462,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 986,
+        "entry_seq": 2467,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 988,
+        "entry_seq": 2472,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 990,
+        "entry_seq": 2477,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 992,
+        "entry_seq": 2482,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 994,
+        "entry_seq": 2487,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 996,
+        "entry_seq": 2492,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 998,
+        "entry_seq": 2497,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1000,
+        "entry_seq": 2502,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1002,
+        "entry_seq": 2507,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1004,
+        "entry_seq": 2512,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1006,
+        "entry_seq": 2517,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1008,
+        "entry_seq": 2522,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1010,
+        "entry_seq": 2527,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1012,
+        "entry_seq": 2532,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1014,
+        "entry_seq": 2537,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1016,
+        "entry_seq": 2542,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1018,
+        "entry_seq": 2547,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1020,
+        "entry_seq": 2552,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1022,
+        "entry_seq": 2557,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1024,
+        "entry_seq": 2562,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1026,
+        "entry_seq": 2567,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1028,
+        "entry_seq": 2572,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1030,
+        "entry_seq": 2577,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1032,
+        "entry_seq": 2582,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1034,
+        "entry_seq": 2587,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1036,
+        "entry_seq": 2592,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1038,
+        "entry_seq": 2597,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1040,
+        "entry_seq": 2602,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1042,
+        "entry_seq": 2607,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1044,
+        "entry_seq": 2612,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1046,
+        "entry_seq": 2617,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1048,
+        "entry_seq": 2622,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1050,
+        "entry_seq": 2627,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1052,
+        "entry_seq": 2632,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1054,
+        "entry_seq": 2637,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1056,
+        "entry_seq": 2642,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1058,
+        "entry_seq": 2647,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1060,
+        "entry_seq": 2652,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1062,
+        "entry_seq": 2657,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1064,
+        "entry_seq": 2662,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1066,
+        "entry_seq": 2667,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1068,
+        "entry_seq": 2672,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1070,
+        "entry_seq": 2677,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1072,
+        "entry_seq": 2682,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1074,
+        "entry_seq": 2687,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1076,
+        "entry_seq": 2692,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1078,
+        "entry_seq": 2697,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1080,
+        "entry_seq": 2702,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1082,
+        "entry_seq": 2707,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1084,
+        "entry_seq": 2712,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1086,
+        "entry_seq": 2717,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1088,
+        "entry_seq": 2722,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1090,
+        "entry_seq": 2727,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1092,
+        "entry_seq": 2732,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1094,
+        "entry_seq": 2737,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1096,
+        "entry_seq": 2742,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1098,
+        "entry_seq": 2747,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1100,
+        "entry_seq": 2752,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1102,
+        "entry_seq": 2757,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1104,
+        "entry_seq": 2762,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1106,
+        "entry_seq": 2767,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1108,
+        "entry_seq": 2772,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1110,
+        "entry_seq": 2777,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1112,
+        "entry_seq": 2782,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1114,
+        "entry_seq": 2787,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1116,
+        "entry_seq": 2792,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1118,
+        "entry_seq": 2797,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1120,
+        "entry_seq": 2802,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1122,
+        "entry_seq": 2807,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1124,
+        "entry_seq": 2812,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1126,
+        "entry_seq": 2817,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1128,
+        "entry_seq": 2822,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1130,
+        "entry_seq": 2827,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1132,
+        "entry_seq": 2832,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1134,
+        "entry_seq": 2837,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1136,
+        "entry_seq": 2842,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1138,
+        "entry_seq": 2847,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1140,
+        "entry_seq": 2852,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1142,
+        "entry_seq": 2857,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1144,
+        "entry_seq": 2862,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1146,
+        "entry_seq": 2867,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1148,
+        "entry_seq": 2872,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1150,
+        "entry_seq": 2877,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1152,
+        "entry_seq": 2882,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1154,
+        "entry_seq": 2887,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1156,
+        "entry_seq": 2892,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1158,
+        "entry_seq": 2897,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1160,
+        "entry_seq": 2902,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1162,
+        "entry_seq": 2907,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1164,
+        "entry_seq": 2912,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1166,
+        "entry_seq": 2917,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1168,
+        "entry_seq": 2922,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1170,
+        "entry_seq": 2927,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1172,
+        "entry_seq": 2932,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1174,
+        "entry_seq": 2937,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1176,
+        "entry_seq": 2942,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1178,
+        "entry_seq": 2947,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1180,
+        "entry_seq": 2952,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1182,
+        "entry_seq": 2957,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1184,
+        "entry_seq": 2962,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1186,
+        "entry_seq": 2967,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1188,
+        "entry_seq": 2972,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1190,
+        "entry_seq": 2977,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1192,
+        "entry_seq": 2982,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1194,
+        "entry_seq": 2987,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1196,
+        "entry_seq": 2992,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1198,
+        "entry_seq": 2997,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1200,
+        "entry_seq": 3002,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1202,
+        "entry_seq": 3007,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1204,
+        "entry_seq": 3012,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1206,
+        "entry_seq": 3017,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1208,
+        "entry_seq": 3022,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1210,
+        "entry_seq": 3027,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1212,
+        "entry_seq": 3032,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1214,
+        "entry_seq": 3037,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1216,
+        "entry_seq": 3042,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1218,
+        "entry_seq": 3047,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1220,
+        "entry_seq": 3052,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1222,
+        "entry_seq": 3057,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1224,
+        "entry_seq": 3062,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1226,
+        "entry_seq": 3067,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1228,
+        "entry_seq": 3072,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1230,
+        "entry_seq": 3077,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1232,
+        "entry_seq": 3082,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1234,
+        "entry_seq": 3087,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1236,
+        "entry_seq": 3092,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1238,
+        "entry_seq": 3097,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1240,
+        "entry_seq": 3102,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1242,
+        "entry_seq": 3107,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1244,
+        "entry_seq": 3112,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1246,
+        "entry_seq": 3117,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1248,
+        "entry_seq": 3122,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1250,
+        "entry_seq": 3127,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1252,
+        "entry_seq": 3132,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1254,
+        "entry_seq": 3137,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1256,
+        "entry_seq": 3142,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1258,
+        "entry_seq": 3147,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1260,
+        "entry_seq": 3152,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1262,
+        "entry_seq": 3157,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1264,
+        "entry_seq": 3162,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1266,
+        "entry_seq": 3167,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1268,
+        "entry_seq": 3172,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1270,
+        "entry_seq": 3177,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1272,
+        "entry_seq": 3182,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1274,
+        "entry_seq": 3187,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1276,
+        "entry_seq": 3192,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1278,
+        "entry_seq": 3197,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1280,
+        "entry_seq": 3202,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1282,
+        "entry_seq": 3207,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1284,
+        "entry_seq": 3212,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1286,
+        "entry_seq": 3217,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1288,
+        "entry_seq": 3222,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1290,
+        "entry_seq": 3227,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1292,
+        "entry_seq": 3232,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1294,
+        "entry_seq": 3237,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1296,
+        "entry_seq": 3242,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1298,
+        "entry_seq": 3247,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1300,
+        "entry_seq": 3252,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1302,
+        "entry_seq": 3257,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1304,
+        "entry_seq": 3262,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1306,
+        "entry_seq": 3267,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1308,
+        "entry_seq": 3272,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1310,
+        "entry_seq": 3277,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1312,
+        "entry_seq": 3282,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1314,
+        "entry_seq": 3287,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1316,
+        "entry_seq": 3292,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1318,
+        "entry_seq": 3297,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1320,
+        "entry_seq": 3302,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1322,
+        "entry_seq": 3307,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1324,
+        "entry_seq": 3312,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1326,
+        "entry_seq": 3317,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1328,
+        "entry_seq": 3322,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1330,
+        "entry_seq": 3327,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1332,
+        "entry_seq": 3332,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1334,
+        "entry_seq": 3337,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1336,
+        "entry_seq": 3342,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1338,
+        "entry_seq": 3347,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1340,
+        "entry_seq": 3352,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1342,
+        "entry_seq": 3357,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1344,
+        "entry_seq": 3362,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1346,
+        "entry_seq": 3367,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1348,
+        "entry_seq": 3372,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1350,
+        "entry_seq": 3377,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1352,
+        "entry_seq": 3382,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1354,
+        "entry_seq": 3387,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1356,
+        "entry_seq": 3392,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1358,
+        "entry_seq": 3397,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1360,
+        "entry_seq": 3402,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1362,
+        "entry_seq": 3407,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1364,
+        "entry_seq": 3412,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1366,
+        "entry_seq": 3417,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1368,
+        "entry_seq": 3422,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1370,
+        "entry_seq": 3427,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1372,
+        "entry_seq": 3432,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1374,
+        "entry_seq": 3437,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1376,
+        "entry_seq": 3442,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1378,
+        "entry_seq": 3447,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1380,
+        "entry_seq": 3452,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1382,
+        "entry_seq": 3457,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1384,
+        "entry_seq": 3462,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1386,
+        "entry_seq": 3467,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1388,
+        "entry_seq": 3472,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1390,
+        "entry_seq": 3477,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1392,
+        "entry_seq": 3482,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1394,
+        "entry_seq": 3487,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1396,
+        "entry_seq": 3492,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1398,
+        "entry_seq": 3497,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1400,
+        "entry_seq": 3502,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1402,
+        "entry_seq": 3507,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1404,
+        "entry_seq": 3512,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1406,
+        "entry_seq": 3517,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1408,
+        "entry_seq": 3522,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1410,
+        "entry_seq": 3527,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1412,
+        "entry_seq": 3532,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1414,
+        "entry_seq": 3537,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1416,
+        "entry_seq": 3542,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1418,
+        "entry_seq": 3547,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1420,
+        "entry_seq": 3552,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1422,
+        "entry_seq": 3557,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1424,
+        "entry_seq": 3562,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1426,
+        "entry_seq": 3567,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1428,
+        "entry_seq": 3572,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1430,
+        "entry_seq": 3577,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1432,
+        "entry_seq": 3582,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1434,
+        "entry_seq": 3587,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1436,
+        "entry_seq": 3592,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1438,
+        "entry_seq": 3597,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1440,
+        "entry_seq": 3602,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1442,
+        "entry_seq": 3607,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1444,
+        "entry_seq": 3612,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1446,
+        "entry_seq": 3617,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1448,
+        "entry_seq": 3622,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1450,
+        "entry_seq": 3627,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1452,
+        "entry_seq": 3632,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1454,
+        "entry_seq": 3637,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1456,
+        "entry_seq": 3642,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1458,
+        "entry_seq": 3647,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1460,
+        "entry_seq": 3652,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1462,
+        "entry_seq": 3657,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1464,
+        "entry_seq": 3662,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1466,
+        "entry_seq": 3667,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1468,
+        "entry_seq": 3672,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1470,
+        "entry_seq": 3677,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1472,
+        "entry_seq": 3682,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1474,
+        "entry_seq": 3687,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1476,
+        "entry_seq": 3692,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1478,
+        "entry_seq": 3697,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1480,
+        "entry_seq": 3702,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1482,
+        "entry_seq": 3707,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1484,
+        "entry_seq": 3712,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1486,
+        "entry_seq": 3717,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1488,
+        "entry_seq": 3722,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1490,
+        "entry_seq": 3727,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1492,
+        "entry_seq": 3732,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1494,
+        "entry_seq": 3737,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1496,
+        "entry_seq": 3742,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1498,
+        "entry_seq": 3747,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1500,
+        "entry_seq": 3752,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1502,
+        "entry_seq": 3757,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1504,
+        "entry_seq": 3762,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1506,
+        "entry_seq": 3767,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1508,
+        "entry_seq": 3772,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1510,
+        "entry_seq": 3777,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1512,
+        "entry_seq": 3782,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1514,
+        "entry_seq": 3787,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1516,
+        "entry_seq": 3792,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1518,
+        "entry_seq": 3797,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1520,
+        "entry_seq": 3802,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1522,
+        "entry_seq": 3807,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1524,
+        "entry_seq": 3812,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1526,
+        "entry_seq": 3817,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1528,
+        "entry_seq": 3822,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1530,
+        "entry_seq": 3827,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1532,
+        "entry_seq": 3832,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1534,
+        "entry_seq": 3837,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1536,
+        "entry_seq": 3842,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1538,
+        "entry_seq": 3847,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1540,
+        "entry_seq": 3852,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1542,
+        "entry_seq": 3857,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1544,
+        "entry_seq": 3862,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1546,
+        "entry_seq": 3867,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1548,
+        "entry_seq": 3872,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1550,
+        "entry_seq": 3877,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1552,
+        "entry_seq": 3882,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1554,
+        "entry_seq": 3887,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1556,
+        "entry_seq": 3892,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1558,
+        "entry_seq": 3897,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1560,
+        "entry_seq": 3902,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1562,
+        "entry_seq": 3907,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1564,
+        "entry_seq": 3912,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1566,
+        "entry_seq": 3917,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1568,
+        "entry_seq": 3922,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1570,
+        "entry_seq": 3927,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1572,
+        "entry_seq": 3932,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1574,
+        "entry_seq": 3937,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1576,
+        "entry_seq": 3942,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1578,
+        "entry_seq": 3947,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1580,
+        "entry_seq": 3952,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1582,
+        "entry_seq": 3957,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1584,
+        "entry_seq": 3962,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1586,
+        "entry_seq": 3967,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1588,
+        "entry_seq": 3972,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1590,
+        "entry_seq": 3977,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1592,
+        "entry_seq": 3982,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1594,
+        "entry_seq": 3987,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      },
+      {
+        "span_id": 1596,
+        "entry_seq": 3992,
+        "bypass_values": [
+          false
+        ],
+        "scheduler_call_count": 1
+      }
+    ]
+  },
+  "trigger_assessment": {
+    "required_game_state": 4,
+    "required_raw_key_codes": [
+      -22,
+      22
+    ],
+    "state4_key_events": [],
+    "candidate_trigger_key_events": [],
+    "ag_a_received_minus8": false,
+    "bypass_true_observed": false,
+    "assessment": "trigger_not_observed",
+    "interpretation": "This run does not exercise the target transition: key callbacks were observed in states [1, 2, 9]; no state-4 key callback or ag.a(II)V invocation was recorded, and the scheduler bypass operand remained false. This is not evidence that the true branch is unreachable under the configured phone profile."
+  }
+}

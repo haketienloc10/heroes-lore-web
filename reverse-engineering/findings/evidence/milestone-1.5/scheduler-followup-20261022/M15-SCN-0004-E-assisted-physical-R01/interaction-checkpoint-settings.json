@@ -1,0 +1,169 @@
+{
+  "utc": "2026-10-22T13:51:20.664775+00:00",
+  "pid_alive": true,
+  "key_events": 2129,
+  "new_key_events_since_last_checkpoint": 179,
+  "last_codes": [
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 38
+    },
+    {
+      "event": "key_pressed",
+      "code": 38
+    },
+    {
+      "event": "key_pressed",
+      "code": 38
+    },
+    {
+      "event": "key_pressed",
+      "code": 38
+    },
+    {
+      "event": "key_pressed",
+      "code": 38
+    },
+    {
+      "event": "key_pressed",
+      "code": 38
+    },
+    {
+      "event": "key_released",
+      "code": 38
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_released",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "event": "key_released",
+      "code": 37
+    },
+    {
+      "event": "key_pressed",
+      "code": 40
+    }
+  ],
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/11-after-user-input.png"
+}

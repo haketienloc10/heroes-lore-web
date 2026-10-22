@@ -1,0 +1,313 @@
+{
+  "purpose": "natural input route scouts; not cadence trials",
+  "valid_scouts": [
+    {
+      "run_id": "M15-SCN-0004-E-state-scout-R01",
+      "valid_for_branch_observation": true,
+      "cadence_trial": false,
+      "trace_events": 32364,
+      "trace_health": {
+        "events": 32364,
+        "retained": 32364,
+        "dropped": 0,
+        "field_read_errors": 0,
+        "capacity": 1000000,
+        "pending_ticket_queue_dropped": 0,
+        "pending_repaints_at_shutdown": 0,
+        "exceptional_exit_hooks": false
+      },
+      "state_event_counts": {
+        "0": 4715,
+        "1": 1083,
+        "2": 21692,
+        "5": 1711,
+        "9": 3141
+      },
+      "state_transitions": [
+        {
+          "seq": 4718,
+          "t_mono_ns": 3160873232463,
+          "state": 9
+        },
+        {
+          "seq": 7859,
+          "t_mono_ns": 3165398294285,
+          "state": 0
+        },
+        {
+          "seq": 7879,
+          "t_mono_ns": 3165414518451,
+          "state": 1
+        },
+        {
+          "seq": 8635,
+          "t_mono_ns": 3169406113376,
+          "state": 1
+        },
+        {
+          "seq": 8962,
+          "t_mono_ns": 3171022260113,
+          "state": 2
+        },
+        {
+          "seq": 29376,
+          "t_mono_ns": 3200326495221,
+          "state": 5
+        },
+        {
+          "seq": 31087,
+          "t_mono_ns": 3202711177038,
+          "state": 2
+        }
+      ],
+      "ag_a_values": [
+        false
+      ],
+      "br_d_values": [
+        true
+      ],
+      "ag_bypass_reads_true": 0,
+      "br_d_false_events": 0,
+      "sleep_request_count": 751,
+      "yield_marker_count": 4,
+      "paint_return_branches": {
+        "original_bci=441;op_index=159": 594
+      },
+      "ag_a_ii_invocations": 0,
+      "state_4_intervals": [],
+      "evidence_dir": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-state-scout-R01"
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R01",
+      "valid_for_branch_observation": true,
+      "cadence_trial": false,
+      "trace_events": 28550,
+      "trace_health": {
+        "events": 28550,
+        "retained": 28550,
+        "dropped": 0,
+        "field_read_errors": 0,
+        "capacity": 1000000,
+        "pending_ticket_queue_dropped": 0,
+        "pending_repaints_at_shutdown": 0,
+        "exceptional_exit_hooks": false
+      },
+      "state_event_counts": {
+        "0": 4900,
+        "1": 1047,
+        "2": 19481,
+        "9": 3105
+      },
+      "state_transitions": [
+        {
+          "seq": 4898,
+          "t_mono_ns": 3282755120110,
+          "state": 9
+        },
+        {
+          "seq": 8003,
+          "t_mono_ns": 3287205528165,
+          "state": 0
+        },
+        {
+          "seq": 8023,
+          "t_mono_ns": 3287219810372,
+          "state": 1
+        },
+        {
+          "seq": 8742,
+          "t_mono_ns": 3291014815955,
+          "state": 1
+        },
+        {
+          "seq": 9070,
+          "t_mono_ns": 3292629219971,
+          "state": 2
+        }
+      ],
+      "ag_a_values": [
+        false
+      ],
+      "br_d_values": [
+        true
+      ],
+      "ag_bypass_reads_true": 0,
+      "br_d_false_events": 0,
+      "sleep_request_count": 664,
+      "yield_marker_count": 4,
+      "paint_return_branches": {
+        "original_bci=441;op_index=159": 501
+      },
+      "ag_a_ii_invocations": 0,
+      "state_4_intervals": [],
+      "evidence_dir": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R01"
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R02",
+      "valid_for_branch_observation": true,
+      "cadence_trial": false,
+      "trace_events": 32689,
+      "trace_health": {
+        "events": 32689,
+        "retained": 32689,
+        "dropped": 0,
+        "field_read_errors": 0,
+        "capacity": 1000000,
+        "pending_ticket_queue_dropped": 0,
+        "pending_repaints_at_shutdown": 0,
+        "exceptional_exit_hooks": false
+      },
+      "state_event_counts": {
+        "0": 4809,
+        "1": 1409,
+        "2": 21511,
+        "4": 163,
+        "5": 1746,
+        "9": 3033
+      },
+      "state_transitions": [
+        {
+          "seq": 4808,
+          "t_mono_ns": 3362739521615,
+          "state": 9
+        },
+        {
+          "seq": 7841,
+          "t_mono_ns": 3367035754604,
+          "state": 0
+        },
+        {
+          "seq": 7861,
+          "t_mono_ns": 3367057253983,
+          "state": 1
+        },
+        {
+          "seq": 8617,
+          "t_mono_ns": 3371050012900,
+          "state": 1
+        },
+        {
+          "seq": 8942,
+          "t_mono_ns": 3372658643406,
+          "state": 2
+        },
+        {
+          "seq": 15625,
+          "t_mono_ns": 3382281771177,
+          "state": 4
+        },
+        {
+          "seq": 15788,
+          "t_mono_ns": 3382567409659,
+          "state": 1
+        },
+        {
+          "seq": 16116,
+          "t_mono_ns": 3384172700257,
+          "state": 2
+        },
+        {
+          "seq": 29516,
+          "t_mono_ns": 3403343109512,
+          "state": 5
+        },
+        {
+          "seq": 31261,
+          "t_mono_ns": 3405791435776,
+          "state": 2
+        }
+      ],
+      "ag_a_values": [
+        false
+      ],
+      "br_d_values": [
+        true
+      ],
+      "ag_bypass_reads_true": 0,
+      "br_d_false_events": 0,
+      "sleep_request_count": 761,
+      "yield_marker_count": 4,
+      "paint_return_branches": {
+        "original_bci=441;op_index=159": 600
+      },
+      "ag_a_ii_invocations": 0,
+      "state_4_intervals": [
+        {
+          "entered_seq": 15625,
+          "entered_t_mono_ns": 3382281771177,
+          "next_state": 1,
+          "left_t_mono_ns": 3382567409659,
+          "duration_ms": 285.638482,
+          "trace_events_with_state_4": 163,
+          "ar_paint_returns_state_4": 4,
+          "sleep_requests_state_4": 4,
+          "preceding_input": {
+            "step": 5,
+            "awt_key_code": 98,
+            "offset_from_input_begin_ms": 934.4
+          }
+        }
+      ],
+      "evidence_dir": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R02"
+    }
+  ],
+  "invalid_attempts": [
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R03",
+      "valid_for_branch_observation": false,
+      "reason": "Aborted before route completion. RuntimeStateProbe stopped after snapshot_begin during a reflective field snapshot in the early UI state; no scenario observations from this run are used.",
+      "process_exit": {
+        "status": "terminated after sidecar stall",
+        "emulator_pid": 41432,
+        "runner_pid": 41431,
+        "runner_proc_absent": true,
+        "emulator_proc_absent": true
+      },
+      "captured_checkpoints": null,
+      "sequence_listener_dispatch_lines": 0,
+      "sidecar_input_log_files": 1,
+      "sidecar_key_down_dispatches": 1,
+      "unique_screenshot_hashes": 1,
+      "trace_exists": false,
+      "evidence_dir": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R03"
+    },
+    {
+      "run_id": "M15-SCN-0004-E-exit-scout-R04",
+      "valid_for_branch_observation": false,
+      "reason": "Invalid for branch analysis. Every X11 checkpoint was the same white canvas, no trace.jsonl or trace-health.json was flushed, and the emulator did not shut down within 20 seconds; it was killed with SIGKILL. The synthetic key dispatch log is retained but does not establish game-state handling.",
+      "process_exit": {
+        "returncode": -9,
+        "proc_absent": true,
+        "mono_ns": 3851575087170
+      },
+      "captured_checkpoints": null,
+      "sequence_listener_dispatch_lines": 8,
+      "sidecar_input_log_files": 10,
+      "sidecar_key_down_dispatches": 10,
+      "unique_screenshot_hashes": 1,
+      "trace_exists": false,
+      "evidence_dir": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-exit-scout-R04"
+    },
+    {
+      "run_id": "M15-SCN-0004-E-order-false-scout-R01",
+      "valid_for_branch_observation": false,
+      "reason": "All 13 captured X11 checkpoints show the emulator window with a blank white LCD; the game menu, settings, and gameplay are not visually verifiable.; The trace probe did not flush trace.jsonl or trace-health.json before the process was forcibly stopped; br.d:Z was not observed at runtime.; The run harness used time.sleep(5000) instead of time.sleep(5) for the final wait, so the planned run did not finish. The exact runner used is preserved as runner-used.py.; No conclusion is drawn about whether the synthetic input reached the game or whether the preference changed.",
+      "process_exit": {
+        "run_id": "M15-SCN-0004-E-order-false-scout-R01",
+        "python_exit_code": 130,
+        "java_pid": 51576,
+        "java_process_absent_after_manual_sigkill": true,
+        "normal_shutdown_confirmed": false,
+        "trace_shutdown_hook_completed": false,
+        "recorded_utc": "2026-10-22"
+      },
+      "captured_checkpoints": 13,
+      "sequence_listener_dispatch_lines": 0,
+      "sidecar_input_log_files": 19,
+      "sidecar_key_down_dispatches": 19,
+      "unique_screenshot_hashes": 1,
+      "trace_exists": false,
+      "evidence_dir": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-order-false-scout-R01"
+    }
+  ]
+}

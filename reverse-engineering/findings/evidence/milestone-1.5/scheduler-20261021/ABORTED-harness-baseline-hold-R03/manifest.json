@@ -1,0 +1,127 @@
+{
+  "run_id": "ABORTED-harness-baseline-hold-R03",
+  "evidence": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/checkpoint-x11.jsonl",
+      "size": 563,
+      "sha256": "5386bdb05103a5ab0f7cccb15995e3490a127ad4aef215fd88a11dec2fabaebf"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/console.log",
+      "size": 5001,
+      "sha256": "39ce6829b48aa428e505ae9764cd10c38298c290d4a2d8ba5a5f1d42b847f401"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/framebuffer.log",
+      "size": 1028,
+      "sha256": "0f399951c90a8dc6a69d2a3233af8d1564649d2258b3a988b87cc2011e48e3e7"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/gameplay-window-tree.txt",
+      "size": 1218,
+      "sha256": "3f62d21d416a7732783563024ef582cc43fd8dd38b597acd1888822c9704b09d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/input.log",
+      "size": 1239,
+      "sha256": "bf364878f81d3f16b7d43d858f6a838c885791d119202808b47b0270b0779961"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/invalid.json",
+      "size": 358,
+      "sha256": "f9a07e463495467e591864aeaae3c0852068d531b9033c9e0a44d141a65272eb"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/launch.json",
+      "size": 700,
+      "sha256": "17680d7b0cd6ff5024843a365b77562296474096cd7d5f13e4fd07679adfb6ec"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/snapshot-before.json",
+      "size": 1923,
+      "sha256": "7f3bf5932bc06dde8d1b450d2ca9071de0b3d264b788af9f14b0051b7835a8b3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/ABORTED-harness-baseline-hold-R03/state-fixture.log",
+      "size": 8929,
+      "sha256": "f6a188bcef912c4a4c3fc5dc50e416123c5618819ca0182566bf08cafdc1b24c"
+    }
+  ],
+  "local_only_artifacts": [
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/config/Heroes Lore/game.conf",
+      "size": 387,
+      "sha256": "4f3582abffb6dac57d1e23f9d0a606a071fe5511ebbf38c12d4c6953888e77d5"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/freej2me_system/FreeJ2ME.log",
+      "size": 1294,
+      "sha256": "8de1cc0d1a594634c7b17c783a28ad1ed01f32a5f46f987f7b1ef93fa98d779b"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/freej2me_system/customFont/Put your ttf font here",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/freej2me_system/freej2me.conf",
+      "size": 512,
+      "sha256": "048fcef45a91282dafe02539e73eee5005de1d9b7e4de0736500d116fbdce4a0"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/rms/Heroes Lore/410decd402x28_.1",
+      "size": 22,
+      "sha256": "be2eeed879d2c61d4db1ed70ebee08a59b37ac5d448d082a244f35019c322d0a"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/rms/Heroes Lore/410decd402x28_.rms",
+      "size": 382,
+      "sha256": "7a3815e4b1856a1bfc41dfe8da3ea54b507fbd8c94d1a1124a881d0cebb34c67"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/rms/Heroes Lore/410decd402x2m_.1",
+      "size": 6,
+      "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/rms/Heroes Lore/410decd402x2m_.rms",
+      "size": 382,
+      "sha256": "42fb8742390b1dc9bec451ca1b9e7ab19a72964c82718d84e716c8d677657fc0"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/rms/Heroes Lore/410decd402x2s_.1",
+      "size": 432,
+      "sha256": "76dc0aa8a0a618ad47cdf192cd2e7d524eca7359264d204d523f4108df3405ba"
+    },
+    {
+      "path": "reference/recordings/SCN0004-ABORTED-harness-baseline-hold-R03/rms/Heroes Lore/410decd402x2s_.rms",
+      "size": 382,
+      "sha256": "2d8bf19494b1a9c962d6db984731857fd1c897f992cd3776fddd33c8a342f650"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-ABORTED-harness-baseline-hold-R03/01-startup.png",
+      "size": 7854,
+      "sha256": "c9a5eb6b9426820a93af348bdbe61d2b801489dc89af2bb61a3f18e345c54a8e"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-ABORTED-harness-baseline-hold-R03/02-menu.png",
+      "size": 5014,
+      "sha256": "8d40e12b462bdae04f458a48e35208ae8387c07074c42d2c93f27d8fd64b4d62"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-ABORTED-harness-baseline-hold-R03/03-load-Ronin.png",
+      "size": 7711,
+      "sha256": "8aaf08e67a403ac1a0c526a84c6fed1dc2beb56668f08892898eb5e6b76eb372"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-ABORTED-harness-baseline-hold-R03/04-fixture-X11.png",
+      "size": 21357,
+      "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb"
+    },
+    {
+      "path": "reference/screenshots/SCN0004-ABORTED-harness-baseline-hold-R03/04-fixture.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "run_id": "M15-SCN-0004-E-hud-diagnosis-R01",
+  "purpose": "read-only visual/state checkpoint after user-operated load, using original uninstrumented game and emulator JARs",
+  "fixture": "HOUSE-INPUT-001",
+  "fixture_verified_files": 10,
+  "checkpoint_tag": "normal-scene",
+  "visual_observation": "X11 before/after and emulator frontbuffer show the fully rendered house interior, player character, and HUD. Black areas surround the rendered room; they are not a HUD-only playfield.",
+  "runtime_snapshot": {
+    "event": "runtime_flag_snapshot",
+    "utc": "2026-10-22T14:32:32.439969762Z",
+    "mono_ns": 8118862768362,
+    "scope": "selected fields only; sequential reads; no game methods invoked",
+    "fields": {
+      "br.d:Z": "true",
+      "br.d:I": "71",
+      "m.e:I": "2",
+      "q.b:Z": "false",
+      "m.c:B": "2",
+      "m.d:B": "1",
+      "ag.a:Z": "false",
+      "m.b:B": "0"
+    }
+  },
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-x11-before.png",
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "size": 21770
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-frontbuffer.png",
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+      "size": 16158
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-x11-after.png",
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "size": 21770
+    }
+  ],
+  "cross_check": "The X11 before/after files are byte-identical to one another and to all six D after-load PNGs, which directly show the house interior and character. The separate frontbuffer image independently shows the same scene. Rechecking P1M baseline hold R03 also found the 04-fixture and 05-before-input frontbuffer files byte-identical to each other, as are their X11 files; direct single-file review shows the house in both pairs.",
+  "interpretation": "This user-operated baseline shows the house, and its X11 capture reproduces the exact bytes of all six accepted D after-load images. Its separate frontbuffer also shows the house. A cross-campaign hash audit found that the 24 P1M 04/05 frontbuffer screenshots and 9 X11/diagnostic screenshots likewise show the full house scene; the prior HUD-only classifications were errors caused by the black map margins around the room. No HUD-only gameplay rendering failure is established by these valid captures.",
+  "limitations": [
+    "Sequential X11/frontbuffer/state captures are not synchronized with paint or compositor presentation.",
+    "No frame-by-frame capture was running during load, so this checkpoint cannot characterize every intervening frame.",
+    "The blank white cold-start A captures and the invalid R02 instrumented dialogue run are separate observations; this run does not explain them."
+  ],
+  "rechecked_p1m_r03": {
+    "frontbuffer_04_05_identical_sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+    "x11_04_05_identical_sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+    "visual": "house interior and character visible in both checkpoint pairs"
+  },
+  "p1m_campaign_reaudit": {
+    "pre_input_runs": 12,
+    "frontbuffer_images": 24,
+    "x11_or_diagnostic_images": 9,
+    "all_show_house_and_character": true,
+    "source_review": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/review.json"
+  }
+}

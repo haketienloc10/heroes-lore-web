@@ -1,0 +1,114 @@
+{
+  "event_count": 8,
+  "events": [
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 1,
+      "t_mono_ns": 11851248299334,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "worker_entry",
+      "q.b:Z": null
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 2,
+      "t_mono_ns": 11853249597406,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "load_success_branch_BCI_146",
+      "q.b:Z": null
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 3,
+      "t_mono_ns": 11853249645651,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "common_join_BCI_150",
+      "q.b:Z": null
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 4,
+      "t_mono_ns": 11853249663204,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "call_j_BCI_151",
+      "q.b:Z": null
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 5,
+      "t_mono_ns": 11854100245790,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "call_k_BCI_155",
+      "q.b:Z": null
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 6,
+      "t_mono_ns": 11854973310117,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "call_m_b_BBBB_BCI_168",
+      "q.b:Z": null
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 7,
+      "t_mono_ns": 11854973482338,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "q_b_store_after_BCI_172",
+      "q.b:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-CF02-branch-R01",
+      "seq": 8,
+      "t_mono_ns": 11854973543782,
+      "thread_id": 46,
+      "thread_name": "Thread-10",
+      "span_id": 1,
+      "mode": 1,
+      "site": "normal_return_BCI_175",
+      "q.b:Z": null
+    }
+  ],
+  "worker_invocations": [
+    {
+      "span_id": 1,
+      "thread_id": 46,
+      "mode": 1,
+      "decision": "success_BCI_146",
+      "sites": [
+        "worker_entry",
+        "load_success_branch_BCI_146",
+        "common_join_BCI_150",
+        "call_j_BCI_151",
+        "call_k_BCI_155",
+        "call_m_b_BBBB_BCI_168",
+        "q_b_store_after_BCI_172",
+        "normal_return_BCI_175"
+      ],
+      "suffix_present": true,
+      "suffix_ordered": true,
+      "q_b_store_value": true
+    }
+  ]
+}

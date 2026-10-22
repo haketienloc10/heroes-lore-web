@@ -1,0 +1,372 @@
+{
+  "run_id": "M15-SCN-0004-E-assisted-physical-R01",
+  "manifest_scope": "Point-in-time capture; mutable live AWT stream excluded in favor of the hashed immutable JSONL snapshot listed in capture-boundary.json.",
+  "capture_boundary": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/capture-boundary.json",
+  "files": [
+    {
+      "path": "original/heroes-lore-v2.1.2.jar",
+      "size": 554715,
+      "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+    },
+    {
+      "path": "reference/recordings/scheduler-sidecars/frame-probe.jar",
+      "size": 1988,
+      "sha256": "6d98ee15d60d9c8b83dcd0009374c6583c88dc01c07c973e4a21804f459dacac"
+    },
+    {
+      "path": "reference/recordings/scheduler-sidecars/manual-input-observer.jar",
+      "size": 3049,
+      "sha256": "7e53a004fd581b52d365d94253532b8b9d6bc50fdfe0e37c6a72331ee6efa911"
+    },
+    {
+      "path": "reference/recordings/scheduler-sidecars/probe-current.jar",
+      "size": 5118,
+      "sha256": "f7c7c3449fdb28db748390a0f39beae5a0b2dbe4d874f100ace3e49bc0bacbc8"
+    },
+    {
+      "path": "reference/recordings/scheduler-sidecars/runtime-flag-snapshot.jar",
+      "size": 3732,
+      "sha256": "bed6696d2659a1349be8dc321663a8c25f059d59dafc5c88350e58adfaa77a50"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/01-startup.png",
+      "size": 11270,
+      "sha256": "0ff2277d0378c05066bf830e65f5c4c085b65bc65be9b706fd1c6b76fdbb247f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/02-current-state.png",
+      "size": 11267,
+      "sha256": "1d1b2ffb9db33f8ab2f6a37ac55d523914fdd1a33418740d8153bf6858f3d91c"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/03-after-user-input.png",
+      "size": 30257,
+      "sha256": "ce0be1215a4f15f865fb0806604916f8e83fd6be483d32a1bfdce5cc0ab3e615"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/04-after-user-input.png",
+      "size": 5078,
+      "sha256": "fbaf09790feb5b0a9716d002d3748bfe122ff0cc275d2db70af67ba22eaacfad"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/05-after-user-input.png",
+      "size": 27314,
+      "sha256": "1bcfee5960e38bf944b0a9863b413a445377aff2f706d6a2bd612a3b01c61d23"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/06-after-user-input.png",
+      "size": 30473,
+      "sha256": "b964f47716573438977a31065db85deb802529f5edc23debf1fb4287aeb616d7"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/07-after-user-input.png",
+      "size": 27491,
+      "sha256": "fa80ea5fe461b593818794327c955dbde3ede939a3d9ae8d4271bfdbebbbbd77"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/08-after-user-input.png",
+      "size": 31155,
+      "sha256": "279f36c49e9f716c79b6777234a42f41edc5f1bffe3d051b4336aff7ff82e808"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/09-dialogue-open.png",
+      "size": 26249,
+      "sha256": "f45db223f30045823a2824040dd3aaf275b1b39b8902d8c3afc7a76fd4b67ce2"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/10-after-dialogue.png",
+      "size": 5967,
+      "sha256": "081c6efcaab88f4c9e8490e2000f24554c6d62982447809d2bd70c259867485a"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/11-after-user-input.png",
+      "size": 28276,
+      "sha256": "d92fd2b11a82ce4be70a1f359e4b72d5a5fd87aee517f636224c2882f79aa346"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/12-current.png",
+      "size": 28913,
+      "sha256": "33ee407706e8788f48c11d5249523489081b39fe41a539942ab43dd9d9560c5a"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/13-current.png",
+      "size": 5912,
+      "sha256": "61a8452b38a0ed3e7ffdc763d5ca20bd9c318cbacfca46ccc831f350373f028e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/14-settings-row.png",
+      "size": 5912,
+      "sha256": "61a8452b38a0ed3e7ffdc763d5ca20bd9c318cbacfca46ccc831f350373f028e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/15-frontbuffer-current.png",
+      "size": 2963,
+      "sha256": "ced63acf3368351fa23b742d3469c99b4e08c005e3a48442f7a20504253f984d"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/16-x11-after-frontbuffer.png",
+      "size": 5921,
+      "sha256": "b6d27bf04dff139251f211ccade1725749a6fa64242782380e3c7a2308e0670c"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/17-settings-after-toggle.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/18-frontbuffer-camera-off.png",
+      "size": 2966,
+      "sha256": "998c10e80fc791803ed46004d7386f09ca845c0c36b62f941da532fafa19af40"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/19-x11-camera-off.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/20-after-back.png",
+      "size": 5926,
+      "sha256": "a7437c3ac1b7f8eac9b53ffecad7671cb5c33db33a4378789309aad72eed7f5f"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/21-frontbuffer-idle.png",
+      "size": 2177,
+      "sha256": "64e82ce5465a23d16ba3466f88bce6343a4cbd631cb637727187fd55e49ca830"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/22-x11-idle.png",
+      "size": 4371,
+      "sha256": "fd0179014d35838814f9fb9d058c28a7e45bfdfc815f36feb9ffbb73c87e5d30"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/23-after-return-attempt.png",
+      "size": 28197,
+      "sha256": "80a24c9ef45d3f2080d9b61b8c5d826469767302b4f175b3fe6ebb0f79632154"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/24-gameplay-frontbuffer.png",
+      "size": 22171,
+      "sha256": "e3a00d399f47c82ac36affe3cfa4f413f909706ffafb9d6adf5828c7b0ef4224"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/25-gameplay-x11.png",
+      "size": 28197,
+      "sha256": "80a24c9ef45d3f2080d9b61b8c5d826469767302b4f175b3fe6ebb0f79632154"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/26-gameplay-after-input-frontbuffer.png",
+      "size": 22562,
+      "sha256": "8af91710d9c9c826ada810db1b1e16b4cca21ba8ad562e27e2a7e7d96941d53a"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/27-gameplay-after-input-x11.png",
+      "size": 28675,
+      "sha256": "18cb191714997efe13c147547f4fd4ca21b311d61845177f4d49015ede7966f6"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/awt-key-events-capture-20261022T140449Z.jsonl",
+      "size": 687367,
+      "sha256": "8a1adf095922226e8ff2d564f66e5263242384376aa2b06df524015c2ac8510d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/camera-off-evidence.json",
+      "size": 1380,
+      "sha256": "eba363cba2fdd3ea86debfab2c5d753b923cdd2a4ca457f6ebab9ae77b8974c2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/capture-boundary.json",
+      "size": 1259,
+      "sha256": "892d0988750bea21c90d9a09f74ed834c0462ce62203201d58801a604d9c553a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/checkpoint-x11.jsonl",
+      "size": 12576,
+      "sha256": "beda0e303e82c23de88c706cea9ee469e30e3ffbc4ea7df0753032fce9870228"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/console.log",
+      "size": 7248,
+      "sha256": "958d214fb2311d800f9e4e54e341a75294de15025a40cd5f490e27bca1df813d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/frontbuffer-camera-off.log",
+      "size": 273,
+      "sha256": "e1500b9d7934994a8157a5f2a04eddce3a36ec96298ebcaa99d956c70b784064"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/frontbuffer-capture.log",
+      "size": 270,
+      "sha256": "3c6611cfab105b867ccf17e3f9344ad53ba401e4b7c73b8b99f61fa5446049d9"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/frontbuffer-idle.log",
+      "size": 267,
+      "sha256": "a395313992ba9f35179408c4925d6bbac6e1531c553658b56294d1d45e0f39b2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/gameplay-after-input-frontbuffer.log",
+      "size": 283,
+      "sha256": "3346e496481739a00e90c76cd5e9ea4b33be93c18f5f745e52aa254d42db34f3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/gameplay-after-input.json",
+      "size": 2402,
+      "sha256": "1edd13f1eb2fe919bdc055f5345f2f00644980e03dbafa90a8819984bacf8211"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/gameplay-frontbuffer.log",
+      "size": 271,
+      "sha256": "762507e1ee1c35a39793be3bb9211c10e4a89fdbe81bec877e5dd575c4dbcd55"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-01.json",
+      "size": 7132,
+      "sha256": "11e5e03c832baf5799b92f7d783c51216d17a803a7fa90cac7325360042d060d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-02.json",
+      "size": 8251,
+      "sha256": "a67743299022a29fc83c52582be6d75c3912fb3240ad23fb25b9808a14f727ad"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-03.json",
+      "size": 1941,
+      "sha256": "949301f7ac6c006b632626f923badd8a5b72a8cdbad563443723989940e3397b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-04.json",
+      "size": 1642,
+      "sha256": "7c42c66ba21fc27378b5ed89c88d9139533fdd655fa0c81a12634101d4a2352c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-05.json",
+      "size": 1658,
+      "sha256": "085faa6241f5eb355750ccef53691d08a0d95bbf9c032294f7c523a17f333d6b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-06.json",
+      "size": 1660,
+      "sha256": "6186a1895131063abb89ae83d596116753fa7a403119199f59568def27aef69f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-07.json",
+      "size": 1706,
+      "sha256": "5f294cf638c1b9ea4d6ad8df021a6cc95c5dacf44d5e6aa7c9c31340e180146a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-08.json",
+      "size": 236,
+      "sha256": "a21fc3740477a4208edc5d2e96aebe5d428fea9e52f5e836b637a13a1d8f363e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-after-back.json",
+      "size": 1287,
+      "sha256": "0f560bb7fd977ce46fdc30deb8414819787a0d97b485835c38cd8a7ea547ee5f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-after-return.json",
+      "size": 2971,
+      "sha256": "4f0671b90b5d75e2ae38b98c547e5ce61095f27090af29da10c06989598e27e3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-camera-row.json",
+      "size": 4526,
+      "sha256": "1fa3cd3c1ff5100896537ebf6f7c94b7827c1a26ee516ebac89bb3bbceb68c0d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-dialogue-end.json",
+      "size": 2817,
+      "sha256": "c935fb42f5c640782aea0652cab41def098fe9bd57bfe798a2e18c8dd4827087"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-dialogue.json",
+      "size": 498,
+      "sha256": "f3b1b961ecf292f363b4d73bd1e8ec7fc90ae8ce9783a131ff733a8a7dd1f85b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-settings.json",
+      "size": 2669,
+      "sha256": "cd99b03e8b0346fd288eef8121a3663488f062c66b7147d9296b8580633e47e6"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/interaction-checkpoint-toggle.json",
+      "size": 2409,
+      "sha256": "7a00a042b4292d749330a9519c17dbbc782db93357634c44e9a4491203ccf421"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/launch.json",
+      "size": 1887,
+      "sha256": "81fb857c5827540b5d872025745afdd8cd90e344a8e0cadbb01f8bd772854baf"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/presentation-pair-01.json",
+      "size": 672,
+      "sha256": "4f52f2cc77436a3cd77a0683f567f39a12c25246a33cb2456fb1c8266ab1ac3d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/presentation-pair-02.json",
+      "size": 629,
+      "sha256": "77dc77a9e6948f1d1b6df6ee664dc88aff3b67bc274de9b80c67e139cccfc32e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/presentation-pair-gameplay.json",
+      "size": 893,
+      "sha256": "3cd55058a37d60a91938e99abb12c452bd5fff8416d8eaa5dbb6b65d2d430de6"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/ready.json",
+      "size": 173,
+      "sha256": "570c4ca0ae7552d34331ee32d5088903a12d745c80e2beddf0ab893c2cd04cb2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot-after-back.json",
+      "size": 294,
+      "sha256": "7d3ddc1cc3b2fecb15035fcf70b33e50ce1059d538088fb05a27f985ba704d77"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot-after-game-input.json",
+      "size": 294,
+      "sha256": "f43a483ca6a364565a80950d3617104d0e58bff79df6ad94eb6ec77d5dc9497e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot-after-return.json",
+      "size": 294,
+      "sha256": "993a896206d104bd11e818464363017c0c90f4144678ce5f805b4810e22e8734"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot-post-toggle.json",
+      "size": 294,
+      "sha256": "5babdf2c70af18aed503ed812c3d663a1ae0de644d29169b4dec7e749b7509c4"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/runtime-flag-snapshot.json",
+      "size": 293,
+      "sha256": "8cbdd849482cc9dced9524576e69e5b68dac86f17b788b8c515f04d6f8c1ed38"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/status-check.json",
+      "size": 1353,
+      "sha256": "cc3263cd9901cbe8845617423defa7a8a333b02a34f28a423883c49a902eac5f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "1657c26a19cc50b243430a5cbd0e5d136d6d3cd0a38957b3ffbfec1c421c2d4d"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeFlagSnapshot.java",
+      "size": 4279,
+      "sha256": "ece69df248b3ee50a5cf3dbae7a6d15014c797a1ca5002aad945a790c3b2d820"
+    },
+    {
+      "path": "reverse-engineering/scripts/RuntimeInputObserver.java",
+      "size": 3903,
+      "sha256": "e4763889532cd55479c3a4939cf27174c77f150da9a5e0d443168752c6767341"
+    }
+  ]
+}

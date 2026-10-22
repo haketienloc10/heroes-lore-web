@@ -1,0 +1,54 @@
+{
+  "run_id": "M15-SCN-0004-E-transition-attribution-R01",
+  "assessment": "state2_to4_attributed_to_m_n_inside_m_i",
+  "trace_events": 2955,
+  "trace_contiguous": true,
+  "trace_health": {
+    "events_seen": 2955,
+    "retained": 2955,
+    "dropped": 0,
+    "capacity": 100000,
+    "synchronized_close": true,
+    "reflection": false,
+    "direct_game_method_calls": false,
+    "game_field_writes": false
+  },
+  "game_thread": [
+    31,
+    "EventProcessing-Thread"
+  ],
+  "state_setters": [
+    9,
+    0,
+    1,
+    1,
+    2,
+    4,
+    1,
+    2
+  ],
+  "transition_method_spans": 262,
+  "state4_attribution": [
+    {
+      "setter_seq": 2709,
+      "previous_state": 2,
+      "state": 4,
+      "setter_thread": "EventProcessing-Thread",
+      "m_n_span_id": 232,
+      "m_i_span_id": 231,
+      "m_n_entry_seq": 2708,
+      "m_n_exit_seq": 2710,
+      "m_i_entry_seq": 2707,
+      "m_i_exit_seq": 2711,
+      "m_n_parent_span_id": 231,
+      "nested_state2_to4_in_m_n_inside_m_i": true
+    }
+  ],
+  "transition_stack_errors": 0,
+  "errors": [],
+  "limitations": [
+    "one controlled HOUSE-INPUT-001 route and Motorola profile; the state transition is natural within that route",
+    "m.i()/m.n() markers cover normal returns; this result applies to the observed normal invocation",
+    "synthetic AWT inputs; no physical keyboard, compositor or input-to-visible measurement"
+  ]
+}

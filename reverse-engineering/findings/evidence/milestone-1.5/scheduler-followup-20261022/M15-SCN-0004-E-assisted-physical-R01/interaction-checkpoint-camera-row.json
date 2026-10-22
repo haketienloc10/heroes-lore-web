@@ -1,0 +1,209 @@
+{
+  "utc": "2026-10-22T13:54:07.416665+00:00",
+  "pid_alive": true,
+  "awt_events": 2275,
+  "new_key_events_since_13": 0,
+  "last_40": [
+    {
+      "utc": "2026-10-22T13:51:26.627019881Z",
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:26.651765375Z",
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:26.678268068Z",
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:26.703342163Z",
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:26.715830260Z",
+      "event": "key_released",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:26.773610046Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.174187115Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.198508304Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.223671893Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.250673881Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.275941569Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.299951959Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.325395247Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.351788835Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.377961323Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.402000813Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.427516301Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:27.447875992Z",
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:49.976098053Z",
+      "event": "key_pressed",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:50.152368865Z",
+      "event": "key_released",
+      "code": 37
+    },
+    {
+      "utc": "2026-10-22T13:51:55.627142081Z",
+      "event": "key_pressed",
+      "code": 87
+    },
+    {
+      "utc": "2026-10-22T13:51:55.628327779Z",
+      "event": "key_typed",
+      "code": 0
+    },
+    {
+      "utc": "2026-10-22T13:51:55.757386701Z",
+      "event": "key_released",
+      "code": 87
+    },
+    {
+      "utc": "2026-10-22T13:51:59.210021759Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:59.296094930Z",
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:59.645113608Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:51:59.699656829Z",
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:00.009605203Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:00.083298605Z",
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:00.432569722Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:00.529414296Z",
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:00.944737559Z",
+      "event": "key_pressed",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:01.048294362Z",
+      "event": "key_released",
+      "code": 39
+    },
+    {
+      "utc": "2026-10-22T13:52:12.810608452Z",
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:52:12.911219047Z",
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:52:13.020315490Z",
+      "event": "key_pressed",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:52:13.115362602Z",
+      "event": "key_released",
+      "code": 40
+    },
+    {
+      "utc": "2026-10-22T13:52:13.550530310Z",
+      "event": "key_pressed",
+      "code": 10
+    },
+    {
+      "utc": "2026-10-22T13:52:13.551017807Z",
+      "event": "key_typed",
+      "code": 0
+    },
+    {
+      "utc": "2026-10-22T13:52:13.670531168Z",
+      "event": "key_released",
+      "code": 10
+    }
+  ],
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/14-settings-row.png"
+}

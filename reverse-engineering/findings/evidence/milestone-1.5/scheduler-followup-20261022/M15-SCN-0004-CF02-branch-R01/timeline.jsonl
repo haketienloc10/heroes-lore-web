@@ -1,0 +1,7 @@
+{"utc": "2026-10-22T15:34:41.864587+00:00", "mono_ns": 11848287354436, "event": "startup_ready", "wait_seconds": 10}
+{"utc": "2026-10-22T15:34:41.864772+00:00", "mono_ns": 11848287534504, "event": "synthetic_key_press_begin", "step": 1, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:34:42.282597+00:00", "mono_ns": 11848705366001, "event": "synthetic_key_press_end", "step": 1, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:34:43.283246+00:00", "mono_ns": 11849706028235, "event": "synthetic_key_press_begin", "step": 2, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:34:43.550943+00:00", "mono_ns": 11849973733205, "event": "synthetic_key_press_end", "step": 2, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:34:44.551724+00:00", "mono_ns": 11850974499678, "event": "synthetic_key_press_begin", "step": 3, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:34:44.819331+00:00", "mono_ns": 11851242102678, "event": "synthetic_key_press_end", "step": 3, "awt_code": 10, "hold_ms": 10, "physical": false}

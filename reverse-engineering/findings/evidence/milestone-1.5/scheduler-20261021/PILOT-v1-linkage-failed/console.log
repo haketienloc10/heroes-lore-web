@@ -1,0 +1,35 @@
+[INFO] Loading MIDlet: Heroes Lore | Main Class: rpg.GameMIDlet
+[ERROR] javax.microedition.media.Manager: Couldn't open Tone Player: Can not open line
+[INFO] javax.microedition.midlet.MIDlet: Create MIDlet
+startApp
+[ERROR] org.recompile.mobile.MIDletLoader: Couldn't find resource 'hlprobe/TraceProbe.class' in jar: file:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v1/game-traced.jar
+[ERROR] org.recompile.mobile.MIDletLoader: Error Adapting Class hlprobe.TraceProbe
+[ERROR] org.recompile.mobile.MIDletLoader: java.io.IOException: Class not found
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:118)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.recompile.mobile.MIDletLoader.start(Unknown Source)
+	at org.recompile.mobile.MobilePlatform.runJar(Unknown Source)
+	at org.recompile.freej2me.FreeJ2ME.<init>(Unknown Source)
+	at org.recompile.freej2me.FreeJ2ME.main(Unknown Source)
+Caused by: java.lang.NoClassDefFoundError: hlprobe/TraceProbe
+	at br.a(Unknown Source)
+	at br.e(Unknown Source)
+	at br.<init>(Unknown Source)
+	at br.a(Unknown Source)
+	at rpg.GameMIDlet.startApp(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	... 5 more
+[ERROR] org.recompile.mobile.MIDletLoader: Can't invoke startApp Method: null
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/probe-current.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+WARNING: A Java agent has been loaded dynamically (/tmp/heroes-lore-runtime-probe/frame-probe.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release

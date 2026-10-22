@@ -1,0 +1,5 @@
+{"run_id":"M15-SCN-0004-E-transition-attribution-R01","event":"probe_ready","utc":"2026-10-22T17:48:17.316631157Z","mono_ns":19856359793081,"reflection":false,"direct_game_method_calls":false,"game_field_writes":false}
+{"run_id":"M15-SCN-0004-E-transition-attribution-R01","event":"natural_state_4_observed","utc":"2026-10-22T17:48:42.890478298Z","mono_ns":19881409532388,"state":4}
+{"run_id":"M15-SCN-0004-E-transition-attribution-R01","event":"auto_key_down_begin","utc":"2026-10-22T17:48:42.892656770Z","mono_ns":19881411625765,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-transition-attribution-R01","event":"auto_key_down_dispatched","utc":"2026-10-22T17:48:42.893426457Z","mono_ns":19881412390048,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-transition-attribution-R01","event":"auto_key_up_dispatched","utc":"2026-10-22T17:48:42.980620356Z","mono_ns":19881499640546,"awt_key_code":87}

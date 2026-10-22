@@ -1,0 +1,23 @@
+[INFO] Loading MIDlet: Heroes Lore | Main Class: rpg.GameMIDlet
+[ERROR] javax.microedition.media.Manager: Couldn't open Tone Player: Can not open line
+[INFO] javax.microedition.midlet.MIDlet: Create MIDlet
+startApp
+MyGameCanvas
+[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MAXMAPTILE
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-Demo
+en-GB
+langChoice 0
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-LangList
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MIDlet-Version
+readySound
+XFile _c
+read _c
+exists _c
+XFile _c
+read _c

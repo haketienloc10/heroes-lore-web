@@ -1,0 +1,110 @@
+{
+  "run_id": "M15-SCN-0004-E-transition-attribution-R01",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-transition-attribution-R01/01-startup.png",
+      "size": 11269,
+      "sha256": "043e157d8efd6072c45f27f578422b2929bc04a6a226884b1bb85ad34bb2644e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-transition-attribution-R01/02-gameplay-before-exit.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-transition-attribution-R01/03-after-exit-transition.png",
+      "size": 29369,
+      "sha256": "96e9212f448a9be0f0d00411368c51ba882334caee5c88daf04b8c17306e32e0"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/analysis.json",
+      "size": 1384,
+      "sha256": "934d8698b0e43d8dfc579f48b4d4f59f5d47a5809cb2573717f277f7b7866d3a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/checkpoint-x11.jsonl",
+      "size": 1761,
+      "sha256": "97667c6236f63840dd154efc2e652e477db977fbcae4d920798d086359955911"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/console.log",
+      "size": 3982,
+      "sha256": "8da0be96d41f05b22e4dc565cf0c877aa201556b7f42048f7fa5a5cc489d7b94"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/emulator-profile-override.json",
+      "size": 449,
+      "sha256": "c82fb4b6f893801007de0288ece24582cb6f9b963603c514bc46e63fad925457"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/fixture-verification.json",
+      "size": 2088,
+      "sha256": "7d434925be0c76516d06d3cec70eef3cef0a0eb8a41fb185fafefd40dbd4541e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/input-01.log",
+      "size": 412,
+      "sha256": "6b26655b4ef3a19cb01a2a59ce0e01c6aac263d13fc4f1f9a2dda57cb2d8836d"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/input-02.log",
+      "size": 412,
+      "sha256": "f9d12333179b152d19d284d68a85d08d795e3c4597c395c80c1683fddfc57d55"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/input-03.log",
+      "size": 412,
+      "sha256": "101adab996bec6f47bb7b5a99b9ce8bbd1efbcf82f60cffe0c7cb8ef13c34318"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/input-04.log",
+      "size": 418,
+      "sha256": "49fab128155822916c8386d85f11d629e7503d49c70e4d74701a955f0b0af346"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/input-05.log",
+      "size": 414,
+      "sha256": "6e9d1db2df8ed82831514f4a141decc428b63ee26284040fd19d644fd564a9f1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/launch.json",
+      "size": 2956,
+      "sha256": "eea01e0230e7698e2756207d05273c2ba8e7d39c3af501eedbcf4278663a6965"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/process-exit.json",
+      "size": 76,
+      "sha256": "1b855fb0e8b0dfb89e81370d93c9610be3365698c4eefb7538a7a9f737280cd8"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/route.json",
+      "size": 845,
+      "sha256": "c95b00ad8e6a802546c5cc42670e7eab62c8e52c660109afbfcaac6ba8d52355"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/timeline.jsonl",
+      "size": 2008,
+      "sha256": "6e616ca522c510d095668ac9c5ec1d7a22e5de0faacf5a9b3f576b1be11a6f34"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/trace-health.json",
+      "size": 171,
+      "sha256": "c8d1e36fbdf70b530b8a983e7433539668ab7261952245ae6b6f5ff778687c7f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/trace.jsonl",
+      "size": 811844,
+      "sha256": "f4ba30b7f13f6d28b7ed376f99bebe9221f9cc563e75f14739fc7100ffaea8b8"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/trigger-actions.jsonl",
+      "size": 892,
+      "sha256": "79fcdf1d9963fadd69f2044888bafdea79fbc5ce425a74e6732c589b84e842ea"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-transition-attribution/M15-SCN-0004-E-transition-attribution-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "8f347b0db658d1f35f57a2fe3e15bb8916955f4413dbbe151f32a1607afdbc0c"
+    }
+  ]
+}

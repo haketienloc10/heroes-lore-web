@@ -1,0 +1,8 @@
+{"utc": "2026-10-22T15:35:53.028459+00:00", "mono_ns": 11919451229769, "event": "startup_ready", "wait_seconds": 10}
+{"utc": "2026-10-22T15:35:53.028674+00:00", "mono_ns": 11919451438989, "event": "synthetic_key_press_begin", "step": 1, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:35:53.498691+00:00", "mono_ns": 11919921479851, "event": "synthetic_key_press_end", "step": 1, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:35:54.499575+00:00", "mono_ns": 11920922376685, "event": "synthetic_key_press_begin", "step": 2, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:35:54.766372+00:00", "mono_ns": 11921189161642, "event": "synthetic_key_press_end", "step": 2, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:35:55.767151+00:00", "mono_ns": 11922189920541, "event": "synthetic_key_press_begin", "step": 3, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:35:56.036920+00:00", "mono_ns": 11922459694158, "event": "synthetic_key_press_end", "step": 3, "awt_code": 10, "hold_ms": 10, "physical": false}
+{"utc": "2026-10-22T15:36:06.442665+00:00", "mono_ns": 11932865433677, "event": "after_load_capture", "path": "reference/screenshots/M15-SCN-0004-CF02-branch-R03/04-after-load.png"}

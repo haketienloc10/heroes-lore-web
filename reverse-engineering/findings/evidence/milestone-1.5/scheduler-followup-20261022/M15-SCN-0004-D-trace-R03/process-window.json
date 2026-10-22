@@ -1,0 +1,14 @@
+{
+  "before": {
+    "mono_ns": 1935815512865,
+    "utime_ticks": 308,
+    "stime_ticks": 49,
+    "clock_ticks_per_second": 100
+  },
+  "after": {
+    "mono_ns": 1965831323845,
+    "utime_ticks": 1230,
+    "stime_ticks": 119,
+    "clock_ticks_per_second": 100
+  }
+}

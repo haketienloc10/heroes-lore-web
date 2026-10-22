@@ -1,0 +1,8 @@
+{
+  "mono_ns": 15617351769967,
+  "fields": {
+    "m.e:I": 2,
+    "br.d:Z": true
+  },
+  "source": "runtime-state-after-load.log; sequential read-only snapshot"
+}

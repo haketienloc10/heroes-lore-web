@@ -1,0 +1,28 @@
+{"utc": "2026-10-22T13:11:55.355438+00:00", "mono_ns": 3281778206560, "event": "x11_checkpoint", "label": "01-startup.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/01-startup.png"}
+{"utc": "2026-10-22T13:11:55.355789+00:00", "mono_ns": 3281778552061, "event": "synthetic_key_begin", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:11:55.833239+00:00", "mono_ns": 3282256145519, "event": "synthetic_key_end", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:11:57.904300+00:00", "mono_ns": 3284327070818, "event": "x11_checkpoint", "label": "step-01-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-01-key-10.png"}
+{"utc": "2026-10-22T13:11:57.904551+00:00", "mono_ns": 3284327314118, "event": "synthetic_key_begin", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:11:58.247408+00:00", "mono_ns": 3284670190972, "event": "synthetic_key_end", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:12:00.454806+00:00", "mono_ns": 3286877576097, "event": "x11_checkpoint", "label": "step-02-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-02-key-10.png"}
+{"utc": "2026-10-22T13:12:00.455025+00:00", "mono_ns": 3286877787594, "event": "synthetic_key_begin", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:12:00.787626+00:00", "mono_ns": 3287210420599, "event": "synthetic_key_end", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:12:11.925356+00:00", "mono_ns": 3298348134232, "event": "x11_checkpoint", "label": "step-03-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-03-key-10.png"}
+{"utc": "2026-10-22T13:12:11.925707+00:00", "mono_ns": 3298348470839, "event": "synthetic_key_begin", "step": 4, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:13.166715+00:00", "mono_ns": 3299589494530, "event": "synthetic_key_end", "step": 4, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:14.582184+00:00", "mono_ns": 3301004960061, "event": "x11_checkpoint", "label": "step-04-key-102.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-04-key-102.png"}
+{"utc": "2026-10-22T13:12:14.582457+00:00", "mono_ns": 3301005221958, "event": "synthetic_key_begin", "step": 5, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:16.100763+00:00", "mono_ns": 3302523552300, "event": "synthetic_key_end", "step": 5, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:17.541051+00:00", "mono_ns": 3303963821074, "event": "x11_checkpoint", "label": "step-05-key-102.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-05-key-102.png"}
+{"utc": "2026-10-22T13:12:17.541328+00:00", "mono_ns": 3303964090979, "event": "synthetic_key_begin", "step": 6, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:18.798015+00:00", "mono_ns": 3305220792945, "event": "synthetic_key_end", "step": 6, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:20.273850+00:00", "mono_ns": 3306696619849, "event": "x11_checkpoint", "label": "step-06-key-102.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-06-key-102.png"}
+{"utc": "2026-10-22T13:12:20.274080+00:00", "mono_ns": 3306696841953, "event": "synthetic_key_begin", "step": 7, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:21.639669+00:00", "mono_ns": 3308062539101, "event": "synthetic_key_end", "step": 7, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:23.711546+00:00", "mono_ns": 3310134313982, "event": "x11_checkpoint", "label": "step-07-key-102.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-07-key-102.png"}
+{"utc": "2026-10-22T13:12:23.711753+00:00", "mono_ns": 3310134515680, "event": "synthetic_key_begin", "step": 8, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:25.016412+00:00", "mono_ns": 3311439183763, "event": "synthetic_key_end", "step": 8, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:27.023529+00:00", "mono_ns": 3313446304495, "event": "x11_checkpoint", "label": "step-08-key-98.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-08-key-98.png"}
+{"utc": "2026-10-22T13:12:27.023845+00:00", "mono_ns": 3313446607709, "event": "synthetic_key_begin", "step": 9, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:28.364895+00:00", "mono_ns": 3314787737579, "event": "synthetic_key_end", "step": 9, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:12:34.234593+00:00", "mono_ns": 3320657360886, "event": "x11_checkpoint", "label": "step-09-key-98.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R01/step-09-key-98.png"}

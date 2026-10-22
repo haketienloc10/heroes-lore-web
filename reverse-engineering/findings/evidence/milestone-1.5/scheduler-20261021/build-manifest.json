@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  {
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "size": 1161902,
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e"
+  },
+  {
+    "path": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/game-traced.jar",
+    "size": 570649,
+    "sha256": "2580e8d9b750f9fe04efd771d36db868a1c98ba557f72cffea28226d0b74b1c3"
+  },
+  {
+    "path": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/emulator-traced.jar",
+    "size": 1187230,
+    "sha256": "5856e96a4be7a81dc68a62f03368f278cdffbc41584522fe6c586991c16d31eb"
+  },
+  {
+    "path": "/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-v3/probe.jar",
+    "size": 4798,
+    "sha256": "2c12ba1e09782ed935e0b42fcb1ce33c8e5a3c24470199c6bcede3727fcdf2ff"
+  },
+  {
+    "path": "/home/locdt/heroes-lore-web/reverse-engineering/scripts/SchedulerInstrumenter.java",
+    "size": 5069,
+    "sha256": "9619e06e4bd426505ea3a40d179ccc0d5fb46cfbef18f281a7e075ce5094c5c2"
+  },
+  {
+    "path": "/home/locdt/heroes-lore-web/reverse-engineering/scripts/TraceProbe.java",
+    "size": 5625,
+    "sha256": "933b16623e60d3c8a409bc4f7705d6558723c059fab151557394df3bde1967a9"
+  }
+]

@@ -1,0 +1,1119 @@
+{
+  "producer": "Standalone Java21/Python on same host after runs",
+  "n": 100,
+  "best_rtt_sample": {
+    "seq": 74,
+    "python_before_ns": 13243691478433,
+    "java_ns": 13243691493949,
+    "python_after_ns": 13243691538023,
+    "rtt_ns": 59590,
+    "java_minus_python_offset_bounds_ns": [
+      -44074,
+      15516
+    ]
+  },
+  "samples": [
+    {
+      "seq": 1,
+      "python_before_ns": 13243682197446,
+      "java_ns": 13243682362415,
+      "python_after_ns": 13243682513771,
+      "rtt_ns": 316325,
+      "java_minus_python_offset_bounds_ns": [
+        -151356,
+        164969
+      ]
+    },
+    {
+      "seq": 2,
+      "python_before_ns": 13243682523957,
+      "java_ns": 13243682620482,
+      "python_after_ns": 13243682676836,
+      "rtt_ns": 152879,
+      "java_minus_python_offset_bounds_ns": [
+        -56354,
+        96525
+      ]
+    },
+    {
+      "seq": 3,
+      "python_before_ns": 13243682680358,
+      "java_ns": 13243682697397,
+      "python_after_ns": 13243682837045,
+      "rtt_ns": 156687,
+      "java_minus_python_offset_bounds_ns": [
+        -139648,
+        17039
+      ]
+    },
+    {
+      "seq": 4,
+      "python_before_ns": 13243682842090,
+      "java_ns": 13243682868744,
+      "python_after_ns": 13243682915769,
+      "rtt_ns": 73679,
+      "java_minus_python_offset_bounds_ns": [
+        -47025,
+        26654
+      ]
+    },
+    {
+      "seq": 5,
+      "python_before_ns": 13243682918815,
+      "java_ns": 13243682950800,
+      "python_after_ns": 13243683012199,
+      "rtt_ns": 93384,
+      "java_minus_python_offset_bounds_ns": [
+        -61399,
+        31985
+      ]
+    },
+    {
+      "seq": 6,
+      "python_before_ns": 13243683016768,
+      "java_ns": 13243683069981,
+      "python_after_ns": 13243683118624,
+      "rtt_ns": 101856,
+      "java_minus_python_offset_bounds_ns": [
+        -48643,
+        53213
+      ]
+    },
+    {
+      "seq": 7,
+      "python_before_ns": 13243683121004,
+      "java_ns": 13243683143374,
+      "python_after_ns": 13243683188876,
+      "rtt_ns": 67872,
+      "java_minus_python_offset_bounds_ns": [
+        -45502,
+        22370
+      ]
+    },
+    {
+      "seq": 8,
+      "python_before_ns": 13243683191161,
+      "java_ns": 13243683213055,
+      "python_after_ns": 13243683268648,
+      "rtt_ns": 77487,
+      "java_minus_python_offset_bounds_ns": [
+        -55593,
+        21894
+      ]
+    },
+    {
+      "seq": 9,
+      "python_before_ns": 13243683274264,
+      "java_ns": 13243683328143,
+      "python_after_ns": 13243683425906,
+      "rtt_ns": 151642,
+      "java_minus_python_offset_bounds_ns": [
+        -97763,
+        53879
+      ]
+    },
+    {
+      "seq": 10,
+      "python_before_ns": 13243683438662,
+      "java_ns": 13243683537186,
+      "python_after_ns": 13243683598300,
+      "rtt_ns": 159638,
+      "java_minus_python_offset_bounds_ns": [
+        -61114,
+        98524
+      ]
+    },
+    {
+      "seq": 11,
+      "python_before_ns": 13243683602964,
+      "java_ns": 13243683692921,
+      "python_after_ns": 13243683826857,
+      "rtt_ns": 223893,
+      "java_minus_python_offset_bounds_ns": [
+        -133936,
+        89957
+      ]
+    },
+    {
+      "seq": 12,
+      "python_before_ns": 13243683830855,
+      "java_ns": 13243683903392,
+      "python_after_ns": 13243683983924,
+      "rtt_ns": 153069,
+      "java_minus_python_offset_bounds_ns": [
+        -80532,
+        72537
+      ]
+    },
+    {
+      "seq": 13,
+      "python_before_ns": 13243683988018,
+      "java_ns": 13243684135852,
+      "python_after_ns": 13243684200297,
+      "rtt_ns": 212279,
+      "java_minus_python_offset_bounds_ns": [
+        -64445,
+        147834
+      ]
+    },
+    {
+      "seq": 14,
+      "python_before_ns": 13243684203819,
+      "java_ns": 13243684306246,
+      "python_after_ns": 13243684360221,
+      "rtt_ns": 156402,
+      "java_minus_python_offset_bounds_ns": [
+        -53975,
+        102427
+      ]
+    },
+    {
+      "seq": 15,
+      "python_before_ns": 13243684364790,
+      "java_ns": 13243684418669,
+      "python_after_ns": 13243684467027,
+      "rtt_ns": 102237,
+      "java_minus_python_offset_bounds_ns": [
+        -48358,
+        53879
+      ]
+    },
+    {
+      "seq": 16,
+      "python_before_ns": 13243684469406,
+      "java_ns": 13243684486636,
+      "python_after_ns": 13243684613813,
+      "rtt_ns": 144407,
+      "java_minus_python_offset_bounds_ns": [
+        -127177,
+        17230
+      ]
+    },
+    {
+      "seq": 17,
+      "python_before_ns": 13243684618288,
+      "java_ns": 13243684737469,
+      "python_after_ns": 13243684806578,
+      "rtt_ns": 188290,
+      "java_minus_python_offset_bounds_ns": [
+        -69109,
+        119181
+      ]
+    },
+    {
+      "seq": 18,
+      "python_before_ns": 13243684811624,
+      "java_ns": 13243684946511,
+      "python_after_ns": 13243685018667,
+      "rtt_ns": 207043,
+      "java_minus_python_offset_bounds_ns": [
+        -72156,
+        134887
+      ]
+    },
+    {
+      "seq": 19,
+      "python_before_ns": 13243685023617,
+      "java_ns": 13243685112242,
+      "python_after_ns": 13243685184207,
+      "rtt_ns": 160590,
+      "java_minus_python_offset_bounds_ns": [
+        -71965,
+        88625
+      ]
+    },
+    {
+      "seq": 20,
+      "python_before_ns": 13243685189443,
+      "java_ns": 13243685254840,
+      "python_after_ns": 13243685322236,
+      "rtt_ns": 132793,
+      "java_minus_python_offset_bounds_ns": [
+        -67396,
+        65397
+      ]
+    },
+    {
+      "seq": 21,
+      "python_before_ns": 13243685332993,
+      "java_ns": 13243685392774,
+      "python_after_ns": 13243685449699,
+      "rtt_ns": 116706,
+      "java_minus_python_offset_bounds_ns": [
+        -56925,
+        59781
+      ]
+    },
+    {
+      "seq": 22,
+      "python_before_ns": 13243685453507,
+      "java_ns": 13243685508814,
+      "python_after_ns": 13243685557552,
+      "rtt_ns": 104045,
+      "java_minus_python_offset_bounds_ns": [
+        -48738,
+        55307
+      ]
+    },
+    {
+      "seq": 23,
+      "python_before_ns": 13243685559932,
+      "java_ns": 13243685581731,
+      "python_after_ns": 13243685627138,
+      "rtt_ns": 67206,
+      "java_minus_python_offset_bounds_ns": [
+        -45407,
+        21799
+      ]
+    },
+    {
+      "seq": 24,
+      "python_before_ns": 13243685629327,
+      "java_ns": 13243685676733,
+      "python_after_ns": 13243685728518,
+      "rtt_ns": 99191,
+      "java_minus_python_offset_bounds_ns": [
+        -51785,
+        47406
+      ]
+    },
+    {
+      "seq": 25,
+      "python_before_ns": 13243685731945,
+      "java_ns": 13243685793154,
+      "python_after_ns": 13243685871307,
+      "rtt_ns": 139362,
+      "java_minus_python_offset_bounds_ns": [
+        -78153,
+        61209
+      ]
+    },
+    {
+      "seq": 26,
+      "python_before_ns": 13243685875971,
+      "java_ns": 13243685932420,
+      "python_after_ns": 13243685988203,
+      "rtt_ns": 112232,
+      "java_minus_python_offset_bounds_ns": [
+        -55783,
+        56449
+      ]
+    },
+    {
+      "seq": 27,
+      "python_before_ns": 13243685991630,
+      "java_ns": 13243686043320,
+      "python_after_ns": 13243686103005,
+      "rtt_ns": 111375,
+      "java_minus_python_offset_bounds_ns": [
+        -59685,
+        51690
+      ]
+    },
+    {
+      "seq": 28,
+      "python_before_ns": 13243686106813,
+      "java_ns": 13243686195342,
+      "python_after_ns": 13243686253505,
+      "rtt_ns": 146692,
+      "java_minus_python_offset_bounds_ns": [
+        -58163,
+        88529
+      ]
+    },
+    {
+      "seq": 29,
+      "python_before_ns": 13243686256932,
+      "java_ns": 13243686381444,
+      "python_after_ns": 13243686465594,
+      "rtt_ns": 208662,
+      "java_minus_python_offset_bounds_ns": [
+        -84150,
+        124512
+      ]
+    },
+    {
+      "seq": 30,
+      "python_before_ns": 13243686478730,
+      "java_ns": 13243686565927,
+      "python_after_ns": 13243686622947,
+      "rtt_ns": 144217,
+      "java_minus_python_offset_bounds_ns": [
+        -57020,
+        87197
+      ]
+    },
+    {
+      "seq": 31,
+      "python_before_ns": 13243686626469,
+      "java_ns": 13243686721471,
+      "python_after_ns": 13243686772114,
+      "rtt_ns": 145645,
+      "java_minus_python_offset_bounds_ns": [
+        -50643,
+        95002
+      ]
+    },
+    {
+      "seq": 32,
+      "python_before_ns": 13243686774398,
+      "java_ns": 13243686819234,
+      "python_after_ns": 13243686866354,
+      "rtt_ns": 91956,
+      "java_minus_python_offset_bounds_ns": [
+        -47120,
+        44836
+      ]
+    },
+    {
+      "seq": 33,
+      "python_before_ns": 13243686868544,
+      "java_ns": 13243686928705,
+      "python_after_ns": 13243686976587,
+      "rtt_ns": 108043,
+      "java_minus_python_offset_bounds_ns": [
+        -47882,
+        60161
+      ]
+    },
+    {
+      "seq": 34,
+      "python_before_ns": 13243686979348,
+      "java_ns": 13243687000290,
+      "python_after_ns": 13243687044745,
+      "rtt_ns": 65397,
+      "java_minus_python_offset_bounds_ns": [
+        -44455,
+        20942
+      ]
+    },
+    {
+      "seq": 35,
+      "python_before_ns": 13243687046839,
+      "java_ns": 13243687068734,
+      "python_after_ns": 13243687113284,
+      "rtt_ns": 66445,
+      "java_minus_python_offset_bounds_ns": [
+        -44550,
+        21895
+      ]
+    },
+    {
+      "seq": 36,
+      "python_before_ns": 13243687115378,
+      "java_ns": 13243687137177,
+      "python_after_ns": 13243687181918,
+      "rtt_ns": 66540,
+      "java_minus_python_offset_bounds_ns": [
+        -44741,
+        21799
+      ]
+    },
+    {
+      "seq": 37,
+      "python_before_ns": 13243687184107,
+      "java_ns": 13243687205906,
+      "python_after_ns": 13243687250456,
+      "rtt_ns": 66349,
+      "java_minus_python_offset_bounds_ns": [
+        -44550,
+        21799
+      ]
+    },
+    {
+      "seq": 38,
+      "python_before_ns": 13243687252550,
+      "java_ns": 13243687340032,
+      "python_after_ns": 13243687387533,
+      "rtt_ns": 134983,
+      "java_minus_python_offset_bounds_ns": [
+        -47501,
+        87482
+      ]
+    },
+    {
+      "seq": 39,
+      "python_before_ns": 13243687397338,
+      "java_ns": 13243687444839,
+      "python_after_ns": 13243687492436,
+      "rtt_ns": 95098,
+      "java_minus_python_offset_bounds_ns": [
+        -47597,
+        47501
+      ]
+    },
+    {
+      "seq": 40,
+      "python_before_ns": 13243687494530,
+      "java_ns": 13243687516139,
+      "python_after_ns": 13243687561260,
+      "rtt_ns": 66730,
+      "java_minus_python_offset_bounds_ns": [
+        -45121,
+        21609
+      ]
+    },
+    {
+      "seq": 41,
+      "python_before_ns": 13243687563449,
+      "java_ns": 13243687585058,
+      "python_after_ns": 13243687630370,
+      "rtt_ns": 66921,
+      "java_minus_python_offset_bounds_ns": [
+        -45312,
+        21609
+      ]
+    },
+    {
+      "seq": 42,
+      "python_before_ns": 13243687637795,
+      "java_ns": 13243687685867,
+      "python_after_ns": 13243687744696,
+      "rtt_ns": 106901,
+      "java_minus_python_offset_bounds_ns": [
+        -58829,
+        48072
+      ]
+    },
+    {
+      "seq": 43,
+      "python_before_ns": 13243687763354,
+      "java_ns": 13243687891388,
+      "python_after_ns": 13243687954691,
+      "rtt_ns": 191337,
+      "java_minus_python_offset_bounds_ns": [
+        -63303,
+        128034
+      ]
+    },
+    {
+      "seq": 44,
+      "python_before_ns": 13243687958974,
+      "java_ns": 13243688044457,
+      "python_after_ns": 13243688110997,
+      "rtt_ns": 152023,
+      "java_minus_python_offset_bounds_ns": [
+        -66540,
+        85483
+      ]
+    },
+    {
+      "seq": 45,
+      "python_before_ns": 13243688114804,
+      "java_ns": 13243688207712,
+      "python_after_ns": 13243688273776,
+      "rtt_ns": 158972,
+      "java_minus_python_offset_bounds_ns": [
+        -66064,
+        92908
+      ]
+    },
+    {
+      "seq": 46,
+      "python_before_ns": 13243688277964,
+      "java_ns": 13243688330796,
+      "python_after_ns": 13243688379059,
+      "rtt_ns": 101095,
+      "java_minus_python_offset_bounds_ns": [
+        -48263,
+        52832
+      ]
+    },
+    {
+      "seq": 47,
+      "python_before_ns": 13243688381534,
+      "java_ns": 13243688403333,
+      "python_after_ns": 13243688448930,
+      "rtt_ns": 67396,
+      "java_minus_python_offset_bounds_ns": [
+        -45597,
+        21799
+      ]
+    },
+    {
+      "seq": 48,
+      "python_before_ns": 13243688451120,
+      "java_ns": 13243688473204,
+      "python_after_ns": 13243688518326,
+      "rtt_ns": 67206,
+      "java_minus_python_offset_bounds_ns": [
+        -45122,
+        22084
+      ]
+    },
+    {
+      "seq": 49,
+      "python_before_ns": 13243688528226,
+      "java_ns": 13243688615232,
+      "python_after_ns": 13243688670443,
+      "rtt_ns": 142217,
+      "java_minus_python_offset_bounds_ns": [
+        -55211,
+        87006
+      ]
+    },
+    {
+      "seq": 50,
+      "python_before_ns": 13243688673680,
+      "java_ns": 13243688729367,
+      "python_after_ns": 13243688777440,
+      "rtt_ns": 103760,
+      "java_minus_python_offset_bounds_ns": [
+        -48073,
+        55687
+      ]
+    },
+    {
+      "seq": 51,
+      "python_before_ns": 13243688779724,
+      "java_ns": 13243688801047,
+      "python_after_ns": 13243688845788,
+      "rtt_ns": 66064,
+      "java_minus_python_offset_bounds_ns": [
+        -44741,
+        21323
+      ]
+    },
+    {
+      "seq": 52,
+      "python_before_ns": 13243688847882,
+      "java_ns": 13243688869300,
+      "python_after_ns": 13243688913851,
+      "rtt_ns": 65969,
+      "java_minus_python_offset_bounds_ns": [
+        -44551,
+        21418
+      ]
+    },
+    {
+      "seq": 53,
+      "python_before_ns": 13243688916040,
+      "java_ns": 13243688937268,
+      "python_after_ns": 13243688985911,
+      "rtt_ns": 69871,
+      "java_minus_python_offset_bounds_ns": [
+        -48643,
+        21228
+      ]
+    },
+    {
+      "seq": 54,
+      "python_before_ns": 13243688989433,
+      "java_ns": 13243689004950,
+      "python_after_ns": 13243689049595,
+      "rtt_ns": 60162,
+      "java_minus_python_offset_bounds_ns": [
+        -44645,
+        15517
+      ]
+    },
+    {
+      "seq": 55,
+      "python_before_ns": 13243689051785,
+      "java_ns": 13243689073393,
+      "python_after_ns": 13243689117943,
+      "rtt_ns": 66158,
+      "java_minus_python_offset_bounds_ns": [
+        -44550,
+        21608
+      ]
+    },
+    {
+      "seq": 56,
+      "python_before_ns": 13243689120133,
+      "java_ns": 13243689215230,
+      "python_after_ns": 13243689310613,
+      "rtt_ns": 190480,
+      "java_minus_python_offset_bounds_ns": [
+        -95383,
+        95097
+      ]
+    },
+    {
+      "seq": 57,
+      "python_before_ns": 13243689312802,
+      "java_ns": 13243689360589,
+      "python_after_ns": 13243689416562,
+      "rtt_ns": 103760,
+      "java_minus_python_offset_bounds_ns": [
+        -55973,
+        47787
+      ]
+    },
+    {
+      "seq": 58,
+      "python_before_ns": 13243689418847,
+      "java_ns": 13243689440170,
+      "python_after_ns": 13243689484911,
+      "rtt_ns": 66064,
+      "java_minus_python_offset_bounds_ns": [
+        -44741,
+        21323
+      ]
+    },
+    {
+      "seq": 59,
+      "python_before_ns": 13243689487100,
+      "java_ns": 13243689508328,
+      "python_after_ns": 13243689552688,
+      "rtt_ns": 65588,
+      "java_minus_python_offset_bounds_ns": [
+        -44360,
+        21228
+      ]
+    },
+    {
+      "seq": 60,
+      "python_before_ns": 13243689554782,
+      "java_ns": 13243689576391,
+      "python_after_ns": 13243689621131,
+      "rtt_ns": 66349,
+      "java_minus_python_offset_bounds_ns": [
+        -44740,
+        21609
+      ]
+    },
+    {
+      "seq": 61,
+      "python_before_ns": 13243689623321,
+      "java_ns": 13243689829412,
+      "python_after_ns": 13243689880626,
+      "rtt_ns": 257305,
+      "java_minus_python_offset_bounds_ns": [
+        -51214,
+        206091
+      ]
+    },
+    {
+      "seq": 62,
+      "python_before_ns": 13243689882720,
+      "java_ns": 13243690016275,
+      "python_after_ns": 13243690068155,
+      "rtt_ns": 185435,
+      "java_minus_python_offset_bounds_ns": [
+        -51880,
+        133555
+      ]
+    },
+    {
+      "seq": 63,
+      "python_before_ns": 13243690076342,
+      "java_ns": 13243690199235,
+      "python_after_ns": 13243690291572,
+      "rtt_ns": 215230,
+      "java_minus_python_offset_bounds_ns": [
+        -92337,
+        122893
+      ]
+    },
+    {
+      "seq": 64,
+      "python_before_ns": 13243690293762,
+      "java_ns": 13243690527935,
+      "python_after_ns": 13243690586479,
+      "rtt_ns": 292717,
+      "java_minus_python_offset_bounds_ns": [
+        -58544,
+        234173
+      ]
+    },
+    {
+      "seq": 65,
+      "python_before_ns": 13243690588573,
+      "java_ns": 13243690667868,
+      "python_after_ns": 13243690728601,
+      "rtt_ns": 140028,
+      "java_minus_python_offset_bounds_ns": [
+        -60733,
+        79295
+      ]
+    },
+    {
+      "seq": 66,
+      "python_before_ns": 13243690734979,
+      "java_ns": 13243690824365,
+      "python_after_ns": 13243690883194,
+      "rtt_ns": 148215,
+      "java_minus_python_offset_bounds_ns": [
+        -58829,
+        89386
+      ]
+    },
+    {
+      "seq": 67,
+      "python_before_ns": 13243690886145,
+      "java_ns": 13243690911656,
+      "python_after_ns": 13243690958967,
+      "rtt_ns": 72822,
+      "java_minus_python_offset_bounds_ns": [
+        -47311,
+        25511
+      ]
+    },
+    {
+      "seq": 68,
+      "python_before_ns": 13243690961347,
+      "java_ns": 13243690982860,
+      "python_after_ns": 13243691027506,
+      "rtt_ns": 66159,
+      "java_minus_python_offset_bounds_ns": [
+        -44646,
+        21513
+      ]
+    },
+    {
+      "seq": 69,
+      "python_before_ns": 13243691036739,
+      "java_ns": 13243691088143,
+      "python_after_ns": 13243691146591,
+      "rtt_ns": 109852,
+      "java_minus_python_offset_bounds_ns": [
+        -58448,
+        51404
+      ]
+    },
+    {
+      "seq": 70,
+      "python_before_ns": 13243691151446,
+      "java_ns": 13243691200470,
+      "python_after_ns": 13243691248162,
+      "rtt_ns": 96716,
+      "java_minus_python_offset_bounds_ns": [
+        -47692,
+        49024
+      ]
+    },
+    {
+      "seq": 71,
+      "python_before_ns": 13243691256920,
+      "java_ns": 13243691304897,
+      "python_after_ns": 13243691351731,
+      "rtt_ns": 94811,
+      "java_minus_python_offset_bounds_ns": [
+        -46834,
+        47977
+      ]
+    },
+    {
+      "seq": 72,
+      "python_before_ns": 13243691353921,
+      "java_ns": 13243691369247,
+      "python_after_ns": 13243691413892,
+      "rtt_ns": 59971,
+      "java_minus_python_offset_bounds_ns": [
+        -44645,
+        15326
+      ]
+    },
+    {
+      "seq": 73,
+      "python_before_ns": 13243691416081,
+      "java_ns": 13243691431693,
+      "python_after_ns": 13243691476243,
+      "rtt_ns": 60162,
+      "java_minus_python_offset_bounds_ns": [
+        -44550,
+        15612
+      ]
+    },
+    {
+      "seq": 74,
+      "python_before_ns": 13243691478433,
+      "java_ns": 13243691493949,
+      "python_after_ns": 13243691538023,
+      "rtt_ns": 59590,
+      "java_minus_python_offset_bounds_ns": [
+        -44074,
+        15516
+      ]
+    },
+    {
+      "seq": 75,
+      "python_before_ns": 13243691540213,
+      "java_ns": 13243691571436,
+      "python_after_ns": 13243691619413,
+      "rtt_ns": 79200,
+      "java_minus_python_offset_bounds_ns": [
+        -47977,
+        31223
+      ]
+    },
+    {
+      "seq": 76,
+      "python_before_ns": 13243691621602,
+      "java_ns": 13243691637023,
+      "python_after_ns": 13243691681573,
+      "rtt_ns": 59971,
+      "java_minus_python_offset_bounds_ns": [
+        -44550,
+        15421
+      ]
+    },
+    {
+      "seq": 77,
+      "python_before_ns": 13243691683763,
+      "java_ns": 13243691699660,
+      "python_after_ns": 13243691744020,
+      "rtt_ns": 60257,
+      "java_minus_python_offset_bounds_ns": [
+        -44360,
+        15897
+      ]
+    },
+    {
+      "seq": 78,
+      "python_before_ns": 13243691748208,
+      "java_ns": 13243691816842,
+      "python_after_ns": 13243691887951,
+      "rtt_ns": 139743,
+      "java_minus_python_offset_bounds_ns": [
+        -71109,
+        68634
+      ]
+    },
+    {
+      "seq": 79,
+      "python_before_ns": 13243691890426,
+      "java_ns": 13243691973339,
+      "python_after_ns": 13243692069959,
+      "rtt_ns": 179533,
+      "java_minus_python_offset_bounds_ns": [
+        -96620,
+        82913
+      ]
+    },
+    {
+      "seq": 80,
+      "python_before_ns": 13243692073576,
+      "java_ns": 13243692156203,
+      "python_after_ns": 13243692204276,
+      "rtt_ns": 130700,
+      "java_minus_python_offset_bounds_ns": [
+        -48073,
+        82627
+      ]
+    },
+    {
+      "seq": 81,
+      "python_before_ns": 13243692206655,
+      "java_ns": 13243692221315,
+      "python_after_ns": 13243692266532,
+      "rtt_ns": 59877,
+      "java_minus_python_offset_bounds_ns": [
+        -45217,
+        14660
+      ]
+    },
+    {
+      "seq": 82,
+      "python_before_ns": 13243692268626,
+      "java_ns": 13243692283761,
+      "python_after_ns": 13243692328692,
+      "rtt_ns": 60066,
+      "java_minus_python_offset_bounds_ns": [
+        -44931,
+        15135
+      ]
+    },
+    {
+      "seq": 83,
+      "python_before_ns": 13243692330882,
+      "java_ns": 13243692346113,
+      "python_after_ns": 13243692390853,
+      "rtt_ns": 59971,
+      "java_minus_python_offset_bounds_ns": [
+        -44740,
+        15231
+      ]
+    },
+    {
+      "seq": 84,
+      "python_before_ns": 13243692393042,
+      "java_ns": 13243692408273,
+      "python_after_ns": 13243692472243,
+      "rtt_ns": 79201,
+      "java_minus_python_offset_bounds_ns": [
+        -63970,
+        15231
+      ]
+    },
+    {
+      "seq": 85,
+      "python_before_ns": 13243692481857,
+      "java_ns": 13243692535260,
+      "python_after_ns": 13243692594184,
+      "rtt_ns": 112327,
+      "java_minus_python_offset_bounds_ns": [
+        -58924,
+        53403
+      ]
+    },
+    {
+      "seq": 86,
+      "python_before_ns": 13243692597326,
+      "java_ns": 13243692623123,
+      "python_after_ns": 13243692677478,
+      "rtt_ns": 80152,
+      "java_minus_python_offset_bounds_ns": [
+        -54355,
+        25797
+      ]
+    },
+    {
+      "seq": 87,
+      "python_before_ns": 13243692680524,
+      "java_ns": 13243692733737,
+      "python_after_ns": 13243692802561,
+      "rtt_ns": 122037,
+      "java_minus_python_offset_bounds_ns": [
+        -68824,
+        53213
+      ]
+    },
+    {
+      "seq": 88,
+      "python_before_ns": 13243692811890,
+      "java_ns": 13243692861294,
+      "python_after_ns": 13243692919267,
+      "rtt_ns": 107377,
+      "java_minus_python_offset_bounds_ns": [
+        -57973,
+        49404
+      ]
+    },
+    {
+      "seq": 89,
+      "python_before_ns": 13243692922789,
+      "java_ns": 13243693019314,
+      "python_after_ns": 13243693138019,
+      "rtt_ns": 215230,
+      "java_minus_python_offset_bounds_ns": [
+        -118705,
+        96525
+      ]
+    },
+    {
+      "seq": 90,
+      "python_before_ns": 13243693141541,
+      "java_ns": 13243693234544,
+      "python_after_ns": 13243693297467,
+      "rtt_ns": 155926,
+      "java_minus_python_offset_bounds_ns": [
+        -62923,
+        93003
+      ]
+    },
+    {
+      "seq": 91,
+      "python_before_ns": 13243693300989,
+      "java_ns": 13243693391898,
+      "python_after_ns": 13243693450060,
+      "rtt_ns": 149071,
+      "java_minus_python_offset_bounds_ns": [
+        -58162,
+        90909
+      ]
+    },
+    {
+      "seq": 92,
+      "python_before_ns": 13243693453487,
+      "java_ns": 13243693533639,
+      "python_after_ns": 13243693590279,
+      "rtt_ns": 136792,
+      "java_minus_python_offset_bounds_ns": [
+        -56640,
+        80152
+      ]
+    },
+    {
+      "seq": 93,
+      "python_before_ns": 13243693593611,
+      "java_ns": 13243693673096,
+      "python_after_ns": 13243693734686,
+      "rtt_ns": 141075,
+      "java_minus_python_offset_bounds_ns": [
+        -61590,
+        79485
+      ]
+    },
+    {
+      "seq": 94,
+      "python_before_ns": 13243693740398,
+      "java_ns": 13243693830830,
+      "python_after_ns": 13243693885566,
+      "rtt_ns": 145168,
+      "java_minus_python_offset_bounds_ns": [
+        -54736,
+        90432
+      ]
+    },
+    {
+      "seq": 95,
+      "python_before_ns": 13243693889659,
+      "java_ns": 13243694084614,
+      "python_after_ns": 13243694182472,
+      "rtt_ns": 292813,
+      "java_minus_python_offset_bounds_ns": [
+        -97858,
+        194955
+      ]
+    },
+    {
+      "seq": 96,
+      "python_before_ns": 13243694186470,
+      "java_ns": 13243694329830,
+      "python_after_ns": 13243694405603,
+      "rtt_ns": 219133,
+      "java_minus_python_offset_bounds_ns": [
+        -75773,
+        143360
+      ]
+    },
+    {
+      "seq": 97,
+      "python_before_ns": 13243694409411,
+      "java_ns": 13243694472143,
+      "python_after_ns": 13243694520405,
+      "rtt_ns": 110994,
+      "java_minus_python_offset_bounds_ns": [
+        -48262,
+        62732
+      ]
+    },
+    {
+      "seq": 98,
+      "python_before_ns": 13243694522690,
+      "java_ns": 13243694577045,
+      "python_after_ns": 13243694637302,
+      "rtt_ns": 114612,
+      "java_minus_python_offset_bounds_ns": [
+        -60257,
+        54355
+      ]
+    },
+    {
+      "seq": 99,
+      "python_before_ns": 13243694641395,
+      "java_ns": 13243694694132,
+      "python_after_ns": 13243694741442,
+      "rtt_ns": 100047,
+      "java_minus_python_offset_bounds_ns": [
+        -47310,
+        52737
+      ]
+    },
+    {
+      "seq": 100,
+      "python_before_ns": 13243694743727,
+      "java_ns": 13243694804650,
+      "python_after_ns": 13243694850914,
+      "rtt_ns": 107187,
+      "java_minus_python_offset_bounds_ns": [
+        -46264,
+        60923
+      ]
+    }
+  ],
+  "drift_over_campaign_measured": false,
+  "absolute_accuracy_ns": null
+}

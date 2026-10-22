@@ -1,0 +1,14 @@
+{
+  "producer": "lossless archival of measured trace",
+  "raw": {
+    "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R03/trace.jsonl",
+    "size": 21755248,
+    "sha256": "514e82f75322e09cb65c178748ac812c3a2591ceee153e8fac3ec7f4b3c912cf"
+  },
+  "gzip": {
+    "path": "reference/recordings/M15-SCN-0004-P1M-trace-tap-R03/trace.jsonl.gz",
+    "size": 755472,
+    "sha256": "6e4e43233c44ab11a9f8f00c86be06fc527a9cfc7a52b3d2e9fc2b879461325b"
+  },
+  "decompressed_sha256_verified": true
+}

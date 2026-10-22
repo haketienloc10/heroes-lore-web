@@ -1,0 +1,4 @@
+{
+  "valid": false,
+  "reason": "Pilot v1 linkage failed: MIDletLoader treats hlprobe as a MIDlet class; no gameplay timing accepted. v2 uses org.recompile.hlprobe parent delegation."
+}

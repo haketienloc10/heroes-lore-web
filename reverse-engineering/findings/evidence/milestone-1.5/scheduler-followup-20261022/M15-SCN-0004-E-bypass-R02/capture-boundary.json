@@ -1,0 +1,40 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R02",
+  "finalized_utc": "2026-10-22T15:20:48.168099+00:00",
+  "pid": 116506,
+  "pid_absent_at_finalization": true,
+  "user_reported_window_closed": false,
+  "shutdown_action": "Assistant sent SIGTERM after the user's reported input attempt to flush the bounded in-memory trace; JVM shutdown hook completed and wrote trace-health.json.",
+  "trace_serialized_rows": 11022,
+  "health_events_seen": 11022,
+  "capacity_dropped": 0,
+  "contiguous_prefix": true,
+  "incomplete_method_spans": [
+    {
+      "class": "br",
+      "method": "b()V",
+      "span_id": 4407,
+      "entry_seq": 11020
+    },
+    {
+      "class": "br",
+      "method": "a(JJ)V",
+      "span_id": 4408,
+      "entry_seq": 11022
+    }
+  ],
+  "trigger_assessment": "trigger_not_observed",
+  "target_state4_key_events": 0,
+  "ag_a_ii_invocations": 0,
+  "bypass_true_observations": 0,
+  "operator_reported_actions": [
+    {
+      "utc": "2026-10-22T15:15:28.773117+00:00",
+      "mono_ns": 10695195889828,
+      "event": "operator_report_w_during_loading",
+      "reported": "W pressed during loading; no visible change",
+      "screenshot": "screenshots/02-after-w-report.png"
+    }
+  ],
+  "interpretation": "The synchronized shutdown retained a contiguous trace prefix with no dropped events. Any method spans still open at shutdown are censored. The target state-4 key route was not observed; this does not establish that the true branch is unreachable."
+}

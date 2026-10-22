@@ -1,0 +1,1 @@
+{"producer":"Standalone JVM21 on same host, after measurement campaign","n":1000000,"elapsed_ns":36330230,"zero_deltas":736001,"min_positive_ns":95,"median_ns":0,"p95_ns":96,"max_ns":2457681,"utc":"2026-10-21T16:18:00.739983942Z","utc_bracket_mono_ns":[13243569839606,13243585374932],"absolute_accuracy_ns":null}

@@ -1,0 +1,4 @@
+{
+  "valid": false,
+  "reason": "Pilot v2 failed VerifyError in m.q: original CLDC class version does not support ldc Class. No gameplay data accepted."
+}

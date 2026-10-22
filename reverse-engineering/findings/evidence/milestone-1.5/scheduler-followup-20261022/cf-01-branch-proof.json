@@ -1,0 +1,135 @@
+{
+  "finding": "CF-01",
+  "date": "2026-10-22",
+  "status": "three_natural_startup_success_routes_observed",
+  "criterion": "Three independent no-input cold starts observe bf.run()V with a=0,b=1 take the resource-load success goto at original BCI 92, avoid the IOException handler at BCI 95, execute cd.y/cd.A/bf.b/q.k, and return normally.",
+  "result": "All three traces record the same ordered success suffix and normal return; no IOException handler marker is present.",
+  "instrumentation": {
+    "instrumenter": "reverse-engineering/scripts/CF01Instrumenter.java",
+    "probe": "reverse-engineering/scripts/CF01TraceProbe.java",
+    "build_manifest": "reference/recordings/scheduler-cf01-startup-20261022/build-manifest.json",
+    "original_bci_sites": {
+      "success_goto": 92,
+      "exception_handler_pop": 95,
+      "cd.y": 96,
+      "cd.A": 99,
+      "bf.b": 208,
+      "q.k": 211,
+      "return": 214
+    },
+    "game_jar_modified": false,
+    "probe_reads": "bf.a:B and bf.b:B are read directly at bf.run entry; no reflection, game method calls, field writes, or input injection."
+  },
+  "methodology_limits": [
+    "Three independent cold starts run in fresh working directories; no input or fixture state is used.",
+    "The instrumented game is a separate copy and adds small execution overhead; the original JAR is unchanged.",
+    "The 12-second checkpoint is an X11 window capture showing the logo; it is not a physical-presentation measurement.",
+    "The exception route was not induced; evidence is limited to natural resource-load success during these starts."
+  ],
+  "excluded_pilot": {
+    "run_id": "M15-SCN-0004-CF01-startup-R01",
+    "reason": "Harness metadata path error occurred before emulator launch; no game process ran and it is excluded.",
+    "record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R01/invalid.json"
+  },
+  "runs": [
+    {
+      "run_id": "M15-SCN-0004-CF01-startup-R02",
+      "valid": true,
+      "trace_event_count": 7,
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R02/trace.jsonl",
+      "analysis": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R02/analysis.json",
+      "invocations": [
+        {
+          "span_id": 1,
+          "thread_id": 35,
+          "bf.a:B": 0,
+          "bf.b:B": 1,
+          "sites": [
+            "bf_run_entry",
+            "resource_load_success_goto_BCI_92",
+            "call_cd_y_BCI_96",
+            "call_cd_A_BCI_99",
+            "call_bf_b_BCI_208",
+            "call_q_k_BCI_211",
+            "bf_run_exit"
+          ],
+          "decision": "success_BCI_92",
+          "ordered_suffix": true,
+          "exception_handler_observed": false,
+          "return_outcome": "normal_return"
+        }
+      ],
+      "launch_record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R02/launch.json",
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-startup-R02/12s-cold-start.png",
+      "screenshot_sha256": "43b1c5e12e06c85e2d3045776026dd1dcd43271260f4f2da02ee00a2f599c172",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R02/manifest.json",
+      "per_run_manifest_files_verified": 10
+    },
+    {
+      "run_id": "M15-SCN-0004-CF01-startup-R03",
+      "valid": true,
+      "trace_event_count": 7,
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R03/trace.jsonl",
+      "analysis": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R03/analysis.json",
+      "invocations": [
+        {
+          "span_id": 1,
+          "thread_id": 35,
+          "bf.a:B": 0,
+          "bf.b:B": 1,
+          "sites": [
+            "bf_run_entry",
+            "resource_load_success_goto_BCI_92",
+            "call_cd_y_BCI_96",
+            "call_cd_A_BCI_99",
+            "call_bf_b_BCI_208",
+            "call_q_k_BCI_211",
+            "bf_run_exit"
+          ],
+          "decision": "success_BCI_92",
+          "ordered_suffix": true,
+          "exception_handler_observed": false,
+          "return_outcome": "normal_return"
+        }
+      ],
+      "launch_record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R03/launch.json",
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-startup-R03/12s-cold-start.png",
+      "screenshot_sha256": "1d1b2ffb9db33f8ab2f6a37ac55d523914fdd1a33418740d8153bf6858f3d91c",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R03/manifest.json",
+      "per_run_manifest_files_verified": 10
+    },
+    {
+      "run_id": "M15-SCN-0004-CF01-startup-R04",
+      "valid": true,
+      "trace_event_count": 7,
+      "trace": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R04/trace.jsonl",
+      "analysis": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R04/analysis.json",
+      "invocations": [
+        {
+          "span_id": 1,
+          "thread_id": 35,
+          "bf.a:B": 0,
+          "bf.b:B": 1,
+          "sites": [
+            "bf_run_entry",
+            "resource_load_success_goto_BCI_92",
+            "call_cd_y_BCI_96",
+            "call_cd_A_BCI_99",
+            "call_bf_b_BCI_208",
+            "call_q_k_BCI_211",
+            "bf_run_exit"
+          ],
+          "decision": "success_BCI_92",
+          "ordered_suffix": true,
+          "exception_handler_observed": false,
+          "return_outcome": "normal_return"
+        }
+      ],
+      "launch_record": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R04/launch.json",
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-startup-R04/12s-cold-start.png",
+      "screenshot_sha256": "990112176967e9cea43f4104bde8e06a9b0509a0a5dea12196b3ef10bc67e51b",
+      "per_run_manifest": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF01-startup-R04/manifest.json",
+      "per_run_manifest_files_verified": 10
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+2026-10-21T15:55:48.990365126Z mono_ns=11976791336549 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/01-startup.png 240x320; not host presentation timing; no synchronization with game paint
+2026-10-21T15:55:50.594328859Z mono_ns=11978395297425 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/02-menu.png 240x320; not host presentation timing; no synchronization with game paint

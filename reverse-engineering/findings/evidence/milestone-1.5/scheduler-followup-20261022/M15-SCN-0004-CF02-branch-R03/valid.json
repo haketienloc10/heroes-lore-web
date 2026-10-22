@@ -1,0 +1,32 @@
+{
+  "run_id": "M15-SCN-0004-CF02-branch-R03",
+  "valid": true,
+  "failures": [],
+  "mode1_invocations": [
+    {
+      "span_id": 1,
+      "thread_id": 46,
+      "mode": 1,
+      "decision": "success_BCI_146",
+      "sites": [
+        "worker_entry",
+        "load_success_branch_BCI_146",
+        "common_join_BCI_150",
+        "call_j_BCI_151",
+        "call_k_BCI_155",
+        "call_m_b_BBBB_BCI_168",
+        "q_b_store_after_BCI_172",
+        "normal_return_BCI_175"
+      ],
+      "suffix_present": true,
+      "suffix_ordered": true,
+      "q_b_store_value": true
+    }
+  ],
+  "process_exit": {
+    "returncode": 143,
+    "proc_absent": true,
+    "mono_ns": 11932980068270
+  },
+  "event_count": 8
+}

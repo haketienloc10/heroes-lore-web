@@ -1,0 +1,20 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R02",
+  "status": "invalid_for_game_behavior_due_to_probe_deadlock",
+  "user_observation": "Repeated key presses including Enter reached the emulator AWT LCD canvas; visible framebuffer remained white.",
+  "thread_dump_file": "console.log",
+  "diagnosis": {
+    "observed_threads": [
+      "EventProcessing-Thread",
+      "Thread-1",
+      "hl-followup-trace-flush",
+      "Attach Listener"
+    ],
+    "lock_cycle": "EventProcessing-Thread holds TraceProbeFollowup.class while reflective Field.get initializes game class m; Thread-1 is initializing m and waits for TraceProbeFollowup.class in an inserted trace callback; shutdown flush waits on TraceProbeFollowup.class.",
+    "consequence": "AWT/game event processing and shutdown flush cannot progress; trace was not flushed.",
+    "classification": "instrumentation-induced deadlock; no conclusion about original game presentation or input behavior is valid from this run."
+  },
+  "trace_output_available": false,
+  "terminated_after_thread_dump": true,
+  "original_game_and_emulator_modified": false
+}

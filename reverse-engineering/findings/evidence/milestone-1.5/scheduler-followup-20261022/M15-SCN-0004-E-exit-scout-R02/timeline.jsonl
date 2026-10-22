@@ -1,0 +1,34 @@
+{"utc": "2026-10-22T13:13:15.399395+00:00", "mono_ns": 3361822166929, "event": "x11_checkpoint", "label": "01-startup.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/01-startup.png"}
+{"utc": "2026-10-22T13:13:15.399699+00:00", "mono_ns": 3361822464133, "event": "synthetic_key_begin", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:13:15.837558+00:00", "mono_ns": 3362260332611, "event": "synthetic_key_end", "step": 1, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:13:18.007612+00:00", "mono_ns": 3364430382558, "event": "x11_checkpoint", "label": "step-01-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-01-key-10.png"}
+{"utc": "2026-10-22T13:13:18.007839+00:00", "mono_ns": 3364430602256, "event": "synthetic_key_begin", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:13:18.288712+00:00", "mono_ns": 3364711486433, "event": "synthetic_key_end", "step": 2, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:13:20.273172+00:00", "mono_ns": 3366695950882, "event": "x11_checkpoint", "label": "step-02-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-02-key-10.png"}
+{"utc": "2026-10-22T13:13:20.273585+00:00", "mono_ns": 3366696348078, "event": "synthetic_key_begin", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:13:20.628566+00:00", "mono_ns": 3367051342444, "event": "synthetic_key_end", "step": 3, "awt_key_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T13:13:31.629258+00:00", "mono_ns": 3378052046475, "event": "x11_checkpoint", "label": "step-03-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-03-key-10.png"}
+{"utc": "2026-10-22T13:13:31.629483+00:00", "mono_ns": 3378052244679, "event": "synthetic_key_begin", "step": 4, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:13:32.879013+00:00", "mono_ns": 3379301785459, "event": "synthetic_key_end", "step": 4, "awt_key_code": 102, "hold_ms": 1000}
+{"utc": "2026-10-22T13:13:34.924382+00:00", "mono_ns": 3381347155650, "event": "x11_checkpoint", "label": "step-04-key-102.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-04-key-102.png"}
+{"utc": "2026-10-22T13:13:34.924608+00:00", "mono_ns": 3381347371548, "event": "synthetic_key_begin", "step": 5, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:13:36.258023+00:00", "mono_ns": 3382680808784, "event": "synthetic_key_end", "step": 5, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:13:38.240688+00:00", "mono_ns": 3384663458497, "event": "x11_checkpoint", "label": "step-05-key-98.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-05-key-98.png"}
+{"utc": "2026-10-22T13:13:38.240961+00:00", "mono_ns": 3384663723201, "event": "synthetic_key_begin", "step": 6, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:13:39.827455+00:00", "mono_ns": 3386250238020, "event": "synthetic_key_end", "step": 6, "awt_key_code": 98, "hold_ms": 1000}
+{"utc": "2026-10-22T13:13:45.743636+00:00", "mono_ns": 3392166404345, "event": "x11_checkpoint", "label": "step-06-key-98.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-06-key-98.png"}
+{"utc": "2026-10-22T13:13:45.743943+00:00", "mono_ns": 3392166704950, "event": "synthetic_key_begin", "step": 7, "awt_key_code": 100, "hold_ms": 1500}
+{"utc": "2026-10-22T13:13:47.493140+00:00", "mono_ns": 3393915919756, "event": "synthetic_key_end", "step": 7, "awt_key_code": 100, "hold_ms": 1500}
+{"utc": "2026-10-22T13:13:50.407316+00:00", "mono_ns": 3396830085757, "event": "x11_checkpoint", "label": "step-07-key-100.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-07-key-100.png"}
+{"utc": "2026-10-22T13:13:50.407508+00:00", "mono_ns": 3396830283755, "event": "synthetic_key_begin", "step": 8, "awt_key_code": 101, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:50.828385+00:00", "mono_ns": 3397251169203, "event": "synthetic_key_end", "step": 8, "awt_key_code": 101, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:53.256612+00:00", "mono_ns": 3399679384357, "event": "x11_checkpoint", "label": "step-08-key-101.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-08-key-101.png"}
+{"utc": "2026-10-22T13:13:53.256840+00:00", "mono_ns": 3399679602855, "event": "synthetic_key_begin", "step": 9, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:53.639187+00:00", "mono_ns": 3400061959234, "event": "synthetic_key_end", "step": 9, "awt_key_code": 10, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:56.549495+00:00", "mono_ns": 3402972265427, "event": "x11_checkpoint", "label": "step-09-key-10.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-09-key-10.png"}
+{"utc": "2026-10-22T13:13:56.549945+00:00", "mono_ns": 3402972708532, "event": "synthetic_key_begin", "step": 10, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:57.022342+00:00", "mono_ns": 3403445129932, "event": "synthetic_key_end", "step": 10, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:59.074906+00:00", "mono_ns": 3405497676841, "event": "x11_checkpoint", "label": "step-10-key-87.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-10-key-87.png"}
+{"utc": "2026-10-22T13:13:59.075154+00:00", "mono_ns": 3405497916439, "event": "synthetic_key_begin", "step": 11, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:13:59.456622+00:00", "mono_ns": 3405879396438, "event": "synthetic_key_end", "step": 11, "awt_key_code": 87, "hold_ms": 100}
+{"utc": "2026-10-22T13:14:01.392255+00:00", "mono_ns": 3407815025385, "event": "x11_checkpoint", "label": "step-11-key-87.png", "output": "reference/screenshots/M15-SCN-0004-E-exit-scout-R02/step-11-key-87.png"}

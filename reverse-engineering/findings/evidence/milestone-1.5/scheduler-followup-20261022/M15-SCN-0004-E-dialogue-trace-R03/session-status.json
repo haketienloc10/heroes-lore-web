@@ -1,0 +1,19 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R03",
+  "captured_utc": "2026-10-22T14:22:46.712838+00:00",
+  "pid": 83005,
+  "pid_alive": false,
+  "status": "dialogue completed; trace flushed cleanly; process stopped",
+  "user_input_started": true,
+  "harness_input_sent": false,
+  "trace_output": "trace.jsonl and trace-health.json written by normal JVM shutdown hook",
+  "trace_targets": [
+    "ar.keyPressed(I)V",
+    "ag.a(II)V"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "trace_rows": 22,
+  "ag_a_II_invocations": 1,
+  "next_checkpoint": "none for direct handler proof; broader SCN-0004 gaps remain"
+}

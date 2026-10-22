@@ -1,0 +1,5 @@
+{"run_id":"M15-SCN-0004-E-bypass-state-triggered-R01","event":"probe_ready","utc":"2026-10-22T17:21:44.063634707Z","mono_ns":18270503829486,"reflection":false,"direct_game_method_calls":false,"game_field_writes":false}
+{"run_id":"M15-SCN-0004-E-bypass-state-triggered-R01","event":"natural_state_4_observed","utc":"2026-10-22T17:22:08.792425203Z","mono_ns":18295215254119,"state":4}
+{"run_id":"M15-SCN-0004-E-bypass-state-triggered-R01","event":"auto_key_down_begin","utc":"2026-10-22T17:22:08.794308467Z","mono_ns":18295217118540,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-bypass-state-triggered-R01","event":"auto_key_down_dispatched","utc":"2026-10-22T17:22:08.795142839Z","mono_ns":18295217943594,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-bypass-state-triggered-R01","event":"auto_key_up_dispatched","utc":"2026-10-22T17:22:08.881254284Z","mono_ns":18295304176586,"awt_key_code":87}

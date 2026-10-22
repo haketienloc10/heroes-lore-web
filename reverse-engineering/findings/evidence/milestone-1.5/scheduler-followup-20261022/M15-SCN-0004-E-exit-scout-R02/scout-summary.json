@@ -1,0 +1,8 @@
+{
+  "run_id": "M15-SCN-0004-E-exit-scout-R02",
+  "steps": 11,
+  "purpose": "route from lower-left house spawn through the central exit and try nearby interaction",
+  "cadence_sample": false,
+  "state_snapshots_are_sequential": true,
+  "synthetic_input_is_not_physical": true
+}

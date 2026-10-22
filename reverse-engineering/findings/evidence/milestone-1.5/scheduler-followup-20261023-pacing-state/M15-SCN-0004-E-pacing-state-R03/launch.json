@@ -1,0 +1,55 @@
+{
+  "run_id": "M15-SCN-0004-E-pacing-state-R03",
+  "pid": 218426,
+  "utc": "2026-10-22T17:35:50.526490+00:00",
+  "mono_ns": 19116948118971,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/probe-state-pacing.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/trace.jsonl|M15-SCN-0004-E-pacing-state-R03|/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-pacing-state/M15-SCN-0004-E-pacing-state-R03/trigger-actions.jsonl",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/game-state-pacing.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "reference/recordings/M15-SCN-0004-E-pacing-state-R03",
+  "fixture": "HOUSE-INPUT-001",
+  "fixture_verified_files": 10,
+  "mode": "controlled route trace; sleep/yield helper calls and m.e state setters are traced",
+  "profile": "FreeJ2ME-Plus 1.52, phone:Motorola, 240x320, limiter 60",
+  "trace_targets": [
+    "m.a(I)V store to m.e:I",
+    "ar.keyPressed(I)V raw and m.e switch operand",
+    "ag.a(II)V args",
+    "br.b()V",
+    "ag.a:Z branch operand",
+    "br.a(JJ)V",
+    "Thread.sleep(J) callsite in br.a(JJ)V",
+    "Thread.yield() callsite in br.a(JJ)V"
+  ],
+  "input_source": "synthetic AWT KeyListener events using the existing RuntimeStateProbe sidecar",
+  "state_triggered_input": "instrumented probe queues one AWT VK_W press after the original m.e=4 store",
+  "probe_reflection": false,
+  "direct_game_method_calls": false,
+  "direct_game_field_writes": false,
+  "build_manifest": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/build-manifest.json",
+  "instrumented_game": {
+    "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/game-state-pacing.jar",
+    "size": 569026,
+    "sha256": "1bfea6e7295d640a72935260377a964730d8050299c62026fcb981d257a6f96b"
+  },
+  "probe_agent": {
+    "path": "reference/recordings/scheduler-probe-followup-20261023-pacing-state-r1/probe-state-pacing.jar",
+    "size": 7363,
+    "sha256": "d50cd7671a07354273959104741daea7798edf29e4c906dcd0d6a63f55c618fb"
+  },
+  "original_game_sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "original_emulator_sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e",
+  "host_display": ":0"
+}

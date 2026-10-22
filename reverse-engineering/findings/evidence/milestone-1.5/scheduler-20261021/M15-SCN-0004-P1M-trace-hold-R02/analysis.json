@@ -1,0 +1,1137 @@
+{
+  "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+  "mode": "trace",
+  "case": "hold",
+  "windows": {
+    "gameplay": {
+      "start_ns": 12749129986367,
+      "end_ns": 12779129986367,
+      "seconds": 30.0,
+      "domains": {
+        "xdamage_receive": {
+          "N": 418,
+          "rate_hz": 13.933333333333334,
+          "interval_ms": {
+            "n": 417,
+            "median": 71.357668,
+            "p95": 91.875642,
+            "max": 142.322853
+          }
+        },
+        "scheduler": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.408089,
+            "p95": 72.242999,
+            "max": 72.757134
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.062291,
+            "p95": 0.183969,
+            "max": 16.15859
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "release_drain": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.400028,
+            "p95": 72.234977,
+            "max": 72.739939
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.002661,
+            "p95": 0.017683,
+            "max": 0.03562
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "repaint_trigger": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.395555,
+            "p95": 72.226007,
+            "max": 72.754105
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.021286,
+            "p95": 0.066338,
+            "max": 0.199488
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "repaint_request": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.39527,
+            "p95": 72.247964,
+            "max": 72.739548
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.0137755,
+            "p95": 0.038201,
+            "max": 0.108779
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "paint": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.385171,
+            "p95": 72.309372,
+            "max": 87.281205
+          },
+          "duration_ms": {
+            "n": 419,
+            "median": 70.965904,
+            "p95": 71.856054,
+            "max": 72.109401
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "transition": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.397871,
+            "p95": 72.29934,
+            "max": 87.254729
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.002861,
+            "p95": 0.028553,
+            "max": 0.293073
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "offset_update": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.378392,
+            "p95": 72.323959,
+            "max": 87.212718
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.002483,
+            "p95": 0.024924,
+            "max": 0.436697
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "update": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.374475,
+            "p95": 72.318106,
+            "max": 87.18116
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.032353,
+            "p95": 0.167115,
+            "max": 0.381713
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "world_render": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.359048,
+            "p95": 72.344891,
+            "max": 87.178718
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.478088,
+            "p95": 1.244111,
+            "max": 2.306004
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "hud_render": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.353496,
+            "p95": 72.638135,
+            "max": 86.909652
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.08475350000000001,
+            "p95": 0.248255,
+            "max": 0.556818
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "pacing": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.349669,
+            "p95": 72.692652,
+            "max": 86.726368
+          },
+          "duration_ms": {
+            "n": 419,
+            "median": 70.164749,
+            "p95": 71.193006,
+            "max": 71.335112
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "frontbuffer_flush": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.419166,
+            "p95": 72.226917,
+            "max": 72.605895
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.1577515,
+            "p95": 0.342041,
+            "max": 0.522482
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "31:EventProcessing-Thread": 420
+          }
+        },
+        "awt_paint_submission": {
+          "N": 420,
+          "rate_hz": 14.0,
+          "interval_ms": {
+            "n": 419,
+            "median": 71.384548,
+            "p95": 72.336316,
+            "max": 87.091765
+          },
+          "duration_ms": {
+            "n": 420,
+            "median": 0.513371,
+            "p95": 1.074308,
+            "max": 4.309297
+          },
+          "states": {
+            "2": 420
+          },
+          "period_ms": {
+            "71": 420
+          },
+          "threads": {
+            "25:AWT-EventQueue-0": 420
+          }
+        }
+      },
+      "cpu_seconds": 1.28,
+      "sleep_calls": 0
+    }
+  },
+  "listener_dispatch": [
+    {
+      "t_mono_ns": 12784618367597,
+      "edge": "begin",
+      "phase": "down",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12784620582891,
+      "edge": "end",
+      "phase": "down",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12785621675417,
+      "edge": "begin",
+      "phase": "up",
+      "code": 102
+    },
+    {
+      "t_mono_ns": 12785622389216,
+      "edge": "end",
+      "phase": "up",
+      "code": 102
+    }
+  ],
+  "listener_hold_bounds_ms": [
+    1001.092526,
+    1004.021619
+  ],
+  "health": {
+    "events": 35315,
+    "retained": 35315,
+    "dropped": 0,
+    "field_read_errors": 0,
+    "capacity": 1000000,
+    "exceptional_exit_hooks": false
+  },
+  "sequence_contiguous": true,
+  "monotonic_non_decreasing": true,
+  "unclosed_entry_ids": [
+    35296,
+    35298,
+    35314
+  ],
+  "exit_without_entry": [],
+  "br_run_threads": {
+    "32:Thread-1": 1,
+    "31:EventProcessing-Thread": 973
+  },
+  "serial_correlations": 973,
+  "cf03_bci6_returns": 808,
+  "cf03_nonzero_resets": 5,
+  "cf03_empty_examples": [
+    [
+      {
+        "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+        "seq": 3798,
+        "t_mono_ns": 12730607800923,
+        "thread_id": 31,
+        "thread_name": "EventProcessing-Thread",
+        "class": "m",
+        "method": "e()V",
+        "phase": "entry",
+        "detail": "",
+        "span_id": 3798,
+        "parent_span_id": 3796,
+        "serial_enqueue_id": 0,
+        "receiver_id": 0,
+        "arg0_int": null,
+        "m.e:I": 9,
+        "m.b:B": 0,
+        "q.a:Z": false,
+        "q.f:I": 0,
+        "br.d:I": 50,
+        "br.d:Z": true
+      },
+      {
+        "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+        "seq": 3799,
+        "t_mono_ns": 12730607818938,
+        "thread_id": 31,
+        "thread_name": "EventProcessing-Thread",
+        "class": "m",
+        "method": "e()V",
+        "phase": "exit",
+        "detail": "original_bci6",
+        "span_id": 3798,
+        "parent_span_id": 3796,
+        "serial_enqueue_id": 0,
+        "receiver_id": 0,
+        "arg0_int": null,
+        "m.e:I": 9,
+        "m.b:B": 0,
+        "q.a:Z": false,
+        "q.f:I": 0,
+        "br.d:I": 50,
+        "br.d:Z": true
+      }
+    ],
+    [
+      {
+        "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+        "seq": 3826,
+        "t_mono_ns": 12730657833995,
+        "thread_id": 31,
+        "thread_name": "EventProcessing-Thread",
+        "class": "m",
+        "method": "e()V",
+        "phase": "entry",
+        "detail": "",
+        "span_id": 3826,
+        "parent_span_id": 3824,
+        "serial_enqueue_id": 0,
+        "receiver_id": 0,
+        "arg0_int": null,
+        "m.e:I": 9,
+        "m.b:B": 0,
+        "q.a:Z": false,
+        "q.f:I": 0,
+        "br.d:I": 50,
+        "br.d:Z": true
+      },
+      {
+        "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+        "seq": 3827,
+        "t_mono_ns": 12730657843293,
+        "thread_id": 31,
+        "thread_name": "EventProcessing-Thread",
+        "class": "m",
+        "method": "e()V",
+        "phase": "exit",
+        "detail": "original_bci6",
+        "span_id": 3826,
+        "parent_span_id": 3824,
+        "serial_enqueue_id": 0,
+        "receiver_id": 0,
+        "arg0_int": null,
+        "m.e:I": 9,
+        "m.b:B": 0,
+        "q.a:Z": false,
+        "q.f:I": 0,
+        "br.d:I": 50,
+        "br.d:Z": true
+      }
+    ]
+  ],
+  "cf03_bad_spans": [],
+  "ordering": {
+    "br:q.i()V,q.j()V,javax/microedition/lcdui/Display.callSerially(Ljava/lang/Runnable;)V": 974,
+    "ar:m.e()V,br.b()V": 84,
+    "ar:m.e()V,m.g()V,m.i()V,ad.a(Ljavax/microedition/lcdui/Graphics;)V,ar.a(Ljavax/microedition/lcdui/Graphics;)V,br.b()V": 729
+  },
+  "input_events": [
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 4465,
+      "t_mono_ns": 12731842165869,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 4465,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 4466,
+      "t_mono_ns": 12731842252457,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "point",
+      "detail": "monitor_acquired",
+      "span_id": 4465,
+      "parent_span_id": 4465,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 4467,
+      "t_mono_ns": 12731842476772,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "exit",
+      "detail": "normal_return_1",
+      "span_id": 4465,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": true,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 4525,
+      "t_mono_ns": 12731943924158,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 4525,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 4526,
+      "t_mono_ns": 12731943935780,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "point",
+      "detail": "monitor_acquired",
+      "span_id": 4525,
+      "parent_span_id": 4525,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 4527,
+      "t_mono_ns": 12731943944497,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "exit",
+      "detail": "normal_return_0",
+      "span_id": 4525,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5368,
+      "t_mono_ns": 12733462749562,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 5368,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5369,
+      "t_mono_ns": 12733462775035,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "point",
+      "detail": "monitor_acquired",
+      "span_id": 5368,
+      "parent_span_id": 5368,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 9,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5375,
+      "t_mono_ns": 12733485112189,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "exit",
+      "detail": "normal_return_1",
+      "span_id": 5368,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 0,
+      "m.b:B": 21,
+      "q.a:Z": true,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5410,
+      "t_mono_ns": 12733662518164,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 5410,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 1,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5411,
+      "t_mono_ns": 12733662525815,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "point",
+      "detail": "monitor_acquired",
+      "span_id": 5410,
+      "parent_span_id": 5410,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 1,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5412,
+      "t_mono_ns": 12733662531626,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "exit",
+      "detail": "normal_return_0",
+      "span_id": 5410,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": -20,
+      "m.e:I": 1,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 31765,
+      "t_mono_ns": 12784622179928,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 31765,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 31766,
+      "t_mono_ns": 12784622185649,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "point",
+      "detail": "monitor_acquired",
+      "span_id": 31765,
+      "parent_span_id": 31765,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 31769,
+      "t_mono_ns": 12784622225983,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "exit",
+      "detail": "normal_return_1",
+      "span_id": 31765,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": true,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 32330,
+      "t_mono_ns": 12785624247325,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 32330,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 32331,
+      "t_mono_ns": 12785624252092,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "point",
+      "detail": "monitor_acquired",
+      "span_id": 32330,
+      "parent_span_id": 32330,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 32335,
+      "t_mono_ns": 12785624295095,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "exit",
+      "detail": "normal_return_2",
+      "span_id": 32330,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    }
+  ],
+  "deferred_release_chains": [],
+  "input54_press_entries": [
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 31765,
+      "t_mono_ns": 12784622179928,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyPressed(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 31765,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    }
+  ],
+  "input54_release_entries": [
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 32330,
+      "t_mono_ns": 12785624247325,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "ar",
+      "method": "keyReleased(I)V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 32330,
+      "parent_span_id": 0,
+      "serial_enqueue_id": 0,
+      "receiver_id": 817534781,
+      "arg0_int": 54,
+      "m.e:I": 2,
+      "m.b:B": 0,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 71,
+      "br.d:Z": true
+    }
+  ],
+  "method_entry_totals": {
+    "org/recompile/freej2me/FreeJ2ME$LCD.paint(Ljava/awt/Graphics;)V": 975,
+    "br.a(I)V": 13,
+    "br.run()V": 974,
+    "javax/microedition/lcdui/Display.setCurrent(Ljavax/microedition/lcdui/Displayable;)V": 2,
+    "javax/microedition/lcdui/Canvas.repaint(IIII)V": 976,
+    "javax/microedition/lcdui/Canvas.repaintRequest(IIII)V": 975,
+    "br.b()V": 975,
+    "bf.run()V": 2,
+    "org/recompile/mobile/MobilePlatform.flushGraphics(Lorg/recompile/mobile/PlatformImage;IIII)V": 974,
+    "q.i()V": 974,
+    "q.j()V": 974,
+    "javax/microedition/lcdui/Canvas.repaint()V": 974,
+    "javax/microedition/lcdui/Display.callSerially(Ljava/lang/Runnable;)V": 974,
+    "ar.showNotify()V": 1,
+    "m.a(BBB)V": 2,
+    "ar.paint(Ljavax/microedition/lcdui/Graphics;)V": 813,
+    "m.e()V": 813,
+    "m.a(I)V": 5,
+    "ar.keyPressed(I)V": 3,
+    "ar.keyReleased(I)V": 3,
+    "m.a(BB)V": 2,
+    "bt.run()V": 2,
+    "m.a(BBBB)V": 1,
+    "m.g()V": 730,
+    "m.i()V": 729,
+    "m.q()V": 729,
+    "m.n()V": 729,
+    "ad.a(Ljavax/microedition/lcdui/Graphics;)V": 729,
+    "ar.a(Ljavax/microedition/lcdui/Graphics;)V": 729,
+    "m.b(B)V": 1,
+    "m.h()V": 1
+  },
+  "input54_summary": [
+    {
+      "press_seq": 31765,
+      "release_seq": 32330,
+      "callback_press_to_original_release_ms": 1002.067397,
+      "press_to_next_m_i_ms": 0.074946,
+      "next_m_i_seq": 31778,
+      "action_calls_inside_press": [
+        {
+          "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+          "seq": 31767,
+          "t_mono_ns": 12784622211680,
+          "thread_id": 31,
+          "thread_name": "EventProcessing-Thread",
+          "class": "m",
+          "method": "b(B)V",
+          "phase": "entry",
+          "detail": "",
+          "span_id": 31767,
+          "parent_span_id": 31765,
+          "serial_enqueue_id": 0,
+          "receiver_id": 0,
+          "arg0_int": 4,
+          "m.e:I": 2,
+          "m.b:B": 0,
+          "q.a:Z": true,
+          "q.f:I": 0,
+          "br.d:I": 71,
+          "br.d:Z": true
+        }
+      ],
+      "latency_is_structural_not_visible_response": true
+    }
+  ],
+  "state_samples": {
+    "0": 2,
+    "9": 56,
+    "1": 27,
+    "2": 728
+  },
+  "pending_nonzero_samples": [
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 3766,
+      "t_mono_ns": 12730605528717,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "m",
+      "method": "e()V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 3766,
+      "parent_span_id": 3764,
+      "serial_enqueue_id": 0,
+      "receiver_id": 0,
+      "arg0_int": null,
+      "m.e:I": 0,
+      "m.b:B": 2,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5380,
+      "t_mono_ns": 12733485252725,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "m",
+      "method": "e()V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 5380,
+      "parent_span_id": 5378,
+      "serial_enqueue_id": 0,
+      "receiver_id": 0,
+      "arg0_int": null,
+      "m.e:I": 0,
+      "m.b:B": 21,
+      "q.a:Z": true,
+      "q.f:I": 0,
+      "br.d:I": 50,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 5925,
+      "t_mono_ns": 12737266429855,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "m",
+      "method": "e()V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 5925,
+      "parent_span_id": 5923,
+      "serial_enqueue_id": 0,
+      "receiver_id": 0,
+      "arg0_int": null,
+      "m.e:I": 1,
+      "m.b:B": 1,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 6131,
+      "t_mono_ns": 12738667798966,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "m",
+      "method": "e()V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 6131,
+      "parent_span_id": 6129,
+      "serial_enqueue_id": 0,
+      "receiver_id": 0,
+      "arg0_int": null,
+      "m.e:I": 1,
+      "m.b:B": 15,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    },
+    {
+      "run_id": "M15-SCN-0004-P1M-trace-hold-R02",
+      "seq": 6165,
+      "t_mono_ns": 12738868121883,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "class": "m",
+      "method": "e()V",
+      "phase": "entry",
+      "detail": "",
+      "span_id": 6165,
+      "parent_span_id": 6163,
+      "serial_enqueue_id": 0,
+      "receiver_id": 0,
+      "arg0_int": null,
+      "m.e:I": 1,
+      "m.b:B": 2,
+      "q.a:Z": false,
+      "q.f:I": 0,
+      "br.d:I": 200,
+      "br.d:Z": true
+    }
+  ],
+  "pacing_points": {}
+}

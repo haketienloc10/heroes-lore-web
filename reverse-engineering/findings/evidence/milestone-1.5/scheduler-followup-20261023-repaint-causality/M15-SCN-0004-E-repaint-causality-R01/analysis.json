@@ -1,0 +1,967 @@
+{
+  "run_id": "M15-SCN-0004-E-repaint-causality-R01",
+  "assessment": "flush_repaint_update_event_lcd_paint_causality_observed",
+  "trace_events": 3693,
+  "trace_health": {
+    "events_seen": 3693,
+    "retained": 3693,
+    "dropped": 0,
+    "capacity": 200000,
+    "span_errors": 0,
+    "active_spans_at_shutdown": 1,
+    "lcd_repaint_requests": 446,
+    "lcd_paint_entries": 447,
+    "update_event_paint_entries": 446,
+    "linked_update_paint_entries": 446,
+    "unmatched_update_paint_entries": 0,
+    "non_paint_context_entries": 0,
+    "unmatched_repaint_requests": 0,
+    "request_queue_overflow": 0,
+    "paint_event_id_overflow": 0,
+    "awt_lookup_errors": 0,
+    "unique_paint_events": 447
+  },
+  "checks": {
+    "trace_sequence_contiguous": true,
+    "run_id_consistent": true,
+    "trace_fully_retained": true,
+    "span_stack_clean": true,
+    "awt_event_lookup_clean": true,
+    "request_queue_clean": true,
+    "paint_event_id_clean": true,
+    "same_lcd_identity_for_links": true,
+    "every_lcd_repaint_request_nested_in_flush_and_painter": true,
+    "awt_update_event_to_lcd_paint_observed": true,
+    "every_request_linked_to_same_source_update_paint": true,
+    "distinct_update_event_per_request_in_this_window": true
+  },
+  "counts": {
+    "ar_paint_entries": 285,
+    "ar_paint_state_2_entries": 216,
+    "flush_graphics_entries": 446,
+    "painter_run_entries": 446,
+    "lcd_repaint_requests": 446,
+    "lcd_paint_entries": 447,
+    "paint_event_update_same_lcd": 446,
+    "linked_update_event_lcd_paints": 446,
+    "request_ids_linked_to_lcd_paint": 446,
+    "request_ids_nested_in_flush_and_painter": 446,
+    "request_ids_with_gameplay_ar_paint_ancestor": 0,
+    "distinct_linked_paint_event_ids": 446,
+    "one_request_per_update_event": true,
+    "unmatched_requests_at_shutdown": 0,
+    "update_paints_without_tracked_requests": 0,
+    "paints_outside_paint_event": 0
+  },
+  "gameplay_capture_window": {
+    "start_mono_ns": 20590800818429,
+    "end_mono_ns": 20601258266166,
+    "duration_seconds": 10.457,
+    "ar_paint_state_2_entries": 146,
+    "flush_graphics_entries": 146,
+    "lcd_repaint_requests": 146,
+    "same_source_update_lcd_paints": 146,
+    "request_ids_linked_to_update_paint": 146,
+    "every_gameplay_window_request_linked": true
+  },
+  "censored_spans_at_shutdown": [
+    {
+      "span_id": 1623,
+      "owner": "ar",
+      "method": "paint(Ljavax/microedition/lcdui/Graphics;)V",
+      "thread_name": "EventProcessing-Thread",
+      "game_state": 2,
+      "entry_seq": 3691
+    }
+  ],
+  "linked_paint_events": [
+    {
+      "paint_event_id": 2,
+      "paint_seq": 8,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        1
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 1,
+          "request_seq": 5,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 3,
+      "paint_seq": 15,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        2
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 2,
+          "request_seq": 12,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 4,
+      "paint_seq": 22,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        3
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 3,
+          "request_seq": 19,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 5,
+      "paint_seq": 29,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        4
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 4,
+          "request_seq": 26,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 6,
+      "paint_seq": 36,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        5
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 5,
+          "request_seq": 33,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 7,
+      "paint_seq": 43,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        6
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 6,
+          "request_seq": 40,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 8,
+      "paint_seq": 50,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        7
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 7,
+          "request_seq": 47,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 9,
+      "paint_seq": 57,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        8
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 8,
+          "request_seq": 54,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 10,
+      "paint_seq": 64,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        9
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 9,
+          "request_seq": 61,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 11,
+      "paint_seq": 71,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        10
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 10,
+          "request_seq": 68,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 12,
+      "paint_seq": 78,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        11
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 11,
+          "request_seq": 75,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 13,
+      "paint_seq": 85,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        12
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 12,
+          "request_seq": 82,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 14,
+      "paint_seq": 92,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        13
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 13,
+          "request_seq": 89,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 15,
+      "paint_seq": 99,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        14
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 14,
+          "request_seq": 96,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 16,
+      "paint_seq": 106,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        15
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 15,
+          "request_seq": 103,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 17,
+      "paint_seq": 113,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        16
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 16,
+          "request_seq": 110,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 18,
+      "paint_seq": 120,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        17
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 17,
+          "request_seq": 117,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 19,
+      "paint_seq": 127,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        18
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 18,
+          "request_seq": 124,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 20,
+      "paint_seq": 134,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        19
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 19,
+          "request_seq": 131,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 21,
+      "paint_seq": 141,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        20
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 20,
+          "request_seq": 138,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 22,
+      "paint_seq": 148,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        21
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 21,
+          "request_seq": 145,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 23,
+      "paint_seq": 155,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        22
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 22,
+          "request_seq": 152,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 24,
+      "paint_seq": 162,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        23
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 23,
+          "request_seq": 159,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 25,
+      "paint_seq": 169,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        24
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 24,
+          "request_seq": 166,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 26,
+      "paint_seq": 176,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        25
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 25,
+          "request_seq": 173,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 27,
+      "paint_seq": 183,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        26
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 26,
+          "request_seq": 180,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 28,
+      "paint_seq": 190,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        27
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 27,
+          "request_seq": 187,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 29,
+      "paint_seq": 197,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        28
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 28,
+          "request_seq": 194,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 30,
+      "paint_seq": 204,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        29
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 29,
+          "request_seq": 201,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 31,
+      "paint_seq": 211,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        30
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 30,
+          "request_seq": 208,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 32,
+      "paint_seq": 218,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        31
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 31,
+          "request_seq": 215,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 33,
+      "paint_seq": 225,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        32
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 32,
+          "request_seq": 222,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 34,
+      "paint_seq": 232,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        33
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 33,
+          "request_seq": 229,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 35,
+      "paint_seq": 239,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        34
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 34,
+          "request_seq": 236,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 36,
+      "paint_seq": 246,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        35
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 35,
+          "request_seq": 243,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 37,
+      "paint_seq": 253,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        36
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 36,
+          "request_seq": 250,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 38,
+      "paint_seq": 260,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        37
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 37,
+          "request_seq": 257,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 39,
+      "paint_seq": 267,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        38
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 38,
+          "request_seq": 264,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 40,
+      "paint_seq": 274,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        39
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 39,
+          "request_seq": 271,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    },
+    {
+      "paint_event_id": 41,
+      "paint_seq": 281,
+      "paint_thread": "AWT-EventQueue-0",
+      "receiver_identity": 798244209,
+      "request_ids": [
+        40
+      ],
+      "request_count": 1,
+      "request_chains": [
+        {
+          "request_id": 40,
+          "request_seq": 278,
+          "request_thread": "EventProcessing-Thread",
+          "painter_run_ancestor": true,
+          "flush_graphics_ancestor": true,
+          "game_ar_paint_ancestor": false,
+          "game_state_2_ar_paint_ancestor": false,
+          "same_lcd_identity": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "One controlled fixture route and emulator profile; the result applies to captured events only.",
+    "One PaintEvent.UPDATE can consume several pending repaint calls; this measures batching/coalescing, not one request per paint.",
+    "PaintEvent.PAINT expose events and presentation by the desktop compositor are outside the request-to-update link.",
+    "The captured ar.paint state-2 entries are not stack ancestors of the emulator flush/repaint call; the evidence links the FreeJ2ME repaint request to its AWT paint, not each game update to a displayed frame.",
+    "Normal method returns are hooked; exceptional exits can leave method spans censored.",
+    "Synthetic AWT menu input is used; physical keyboard and input-to-visible latency are not measured."
+  ]
+}

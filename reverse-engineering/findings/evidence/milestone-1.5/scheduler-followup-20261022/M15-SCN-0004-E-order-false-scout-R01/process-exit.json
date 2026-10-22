@@ -1,0 +1,10 @@
+{
+  "run_id": "M15-SCN-0004-E-order-false-scout-R01",
+  "python_exit_code": 130,
+  "java_pid": 51576,
+  "java_process_absent_after_manual_sigkill": true,
+  "normal_shutdown_confirmed": false,
+  "trace_shutdown_hook_completed": false,
+  "recorded_utc_date": "2026-10-22",
+  "audit_observed_utc": "2026-10-22T13:40:48Z"
+}

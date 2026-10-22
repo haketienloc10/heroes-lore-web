@@ -1,0 +1,10 @@
+2026-10-21T16:11:46.248550849Z mono_ns=12887663176753 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/M15-SCN-0004-P1M-trace-tap-R03/input.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-21T16:11:46.249647977Z mono_ns=12887664212570 wait_requested_ms=5000
+2026-10-21T16:11:51.257066248Z mono_ns=12892671660949 computed_emulator_mapping host_awt=102 internal=16 raw=54
+2026-10-21T16:11:51.259243656Z mono_ns=12892673822306 listener_dispatch_begin phase=down code=102
+2026-10-21T16:11:51.260109594Z mono_ns=12892674908168 listener_dispatch_end phase=down code=102
+2026-10-21T16:11:51.261107328Z mono_ns=12892675674812 wait_requested_ms=20
+2026-10-21T16:11:51.281742505Z mono_ns=12892696370603 listener_dispatch_begin phase=up code=102
+2026-10-21T16:11:51.282505560Z mono_ns=12892697088895 listener_dispatch_end phase=up code=102
+2026-10-21T16:11:51.282924173Z mono_ns=12892697504318 wait_requested_ms=5000
+2026-10-21T16:11:56.293096509Z mono_ns=12897707646436 sequence_end

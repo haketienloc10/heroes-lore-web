@@ -1,0 +1,39 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R04",
+  "finalized_utc": "2026-10-22T15:22:38.508189+00:00",
+  "pid": 121195,
+  "pid_absent_at_finalization": true,
+  "user_reported_window_closed": false,
+  "shutdown_action": "Assistant sent SIGTERM after the user's reported input attempt to flush the bounded in-memory trace; JVM shutdown hook completed and wrote trace-health.json.",
+  "trace_serialized_rows": 6663,
+  "health_events_seen": 6663,
+  "capacity_dropped": 0,
+  "contiguous_prefix": true,
+  "incomplete_method_spans": [
+    {
+      "class": "br",
+      "method": "b()V",
+      "span_id": 2665,
+      "entry_seq": 6661
+    },
+    {
+      "class": "br",
+      "method": "a(JJ)V",
+      "span_id": 2666,
+      "entry_seq": 6663
+    }
+  ],
+  "trigger_assessment": "trigger_not_observed",
+  "target_state4_key_events": 0,
+  "ag_a_ii_invocations": 0,
+  "bypass_true_observations": 0,
+  "operator_reported_actions": [
+    {
+      "utc": "2026-10-22T15:22:24.728088+00:00",
+      "mono_ns": 11111150863717,
+      "event": "operator_requested_skip",
+      "reason": "user cannot reliably time a 0.9-second manual keypress; bypass this case"
+    }
+  ],
+  "interpretation": "The user skipped this timing-sensitive input case before attempting input. The synchronized shutdown retained a contiguous trace prefix with no dropped events; this idle trace is not evidence about target-state reachability or branch behavior."
+}

@@ -1,0 +1,26 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R01",
+  "captured_utc": "2026-10-22T15:00:32.170451+00:00",
+  "pid": 108353,
+  "pid_alive": false,
+  "status": "user completed one attempted interaction; assistant sent SIGTERM to close the still-running trace window; trace and health flushed successfully",
+  "user_input_started": true,
+  "harness_input_sent": false,
+  "trace_targets": [
+    "ar.keyPressed raw key",
+    "m.e:I state operand",
+    "ag.a(II)V",
+    "br.b ag.a:Z operand",
+    "br.a(JJ)V"
+  ],
+  "probe_reflection": false,
+  "game_state_reads": false,
+  "game_state_writes": false,
+  "next_checkpoint": "Run a new trace under the configured Motorola phone profile and send Right Soft (W by this run's input map) during state 4; this R01 used phone:Standard and did not exercise the target branch.",
+  "updated_utc": "2026-10-22T15:13:22.216762+00:00",
+  "trace_serialized_rows": 12138,
+  "trace_capacity_dropped": 0,
+  "target_state4_key_events": 0,
+  "ag_a_ii_invocations": 0,
+  "bypass_true_observations": 0
+}

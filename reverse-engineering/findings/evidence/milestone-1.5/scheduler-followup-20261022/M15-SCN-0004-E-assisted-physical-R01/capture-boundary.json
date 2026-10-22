@@ -1,0 +1,19 @@
+{
+  "run_id": "M15-SCN-0004-E-assisted-physical-R01",
+  "captured_utc": "2026-10-22T14:04:49.988587+00:00",
+  "capture_status": "interactive process remained open; this is a point-in-time event-log snapshot",
+  "pid": 58681,
+  "pid_alive": true,
+  "process_state": "S",
+  "source_stream": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/awt-key-events.jsonl",
+  "source_stream_size_bytes": 687367,
+  "source_stream_sha256_at_capture": "8a1adf095922226e8ff2d564f66e5263242384376aa2b06df524015c2ac8510d",
+  "source_stream_complete_jsonl_bytes_copied": 687367,
+  "immutable_snapshot": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-assisted-physical-R01/awt-key-events-capture-20261022T140449Z.jsonl",
+  "immutable_snapshot_sha256": "8a1adf095922226e8ff2d564f66e5263242384376aa2b06df524015c2ac8510d",
+  "valid_jsonl_rows": 2292,
+  "first_event_utc": "2026-10-22T13:45:44.889588705Z",
+  "last_event_utc": "2026-10-22T13:59:20.398102508Z",
+  "last_event": "key_released",
+  "scope": "Passive AWT key events routed to the FreeJ2ME window; no key injection or game-field writes. AWT alone cannot distinguish physical from synthetic host input."
+}

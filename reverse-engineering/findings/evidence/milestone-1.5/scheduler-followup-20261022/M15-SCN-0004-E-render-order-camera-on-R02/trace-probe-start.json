@@ -1,0 +1,1 @@
+{"event":"probe_started","utc":"2026-10-22T16:37:06.079551150Z","targets":["ar.paint(Graphics)V","m.i()V","m.g()V","br.d:Z branch operand"],"reflection":false,"game_state_reads":false,"game_state_writes":false}

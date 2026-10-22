@@ -1,0 +1,76 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-state-triggered-R01",
+  "assessment": "runtime_true_branch_observed",
+  "input_mode": "controlled AWT W input queued once after the original state setter stored m.e=4",
+  "trace_events": 1693,
+  "trace_contiguous": true,
+  "trace_health": {
+    "events_seen": 1693,
+    "retained": 1693,
+    "dropped": 0,
+    "capacity": 100000,
+    "synchronized_close": true,
+    "reflection": false,
+    "direct_game_method_calls": false,
+    "game_field_writes": false
+  },
+  "natural_state4_setter_count": 1,
+  "state4_intervals": [
+    {
+      "previous_state": 2,
+      "entry_t_mono_ns": 18295215031420,
+      "exit_state": 1,
+      "exit_t_mono_ns": 18295392395858,
+      "duration_ms": 177.364
+    }
+  ],
+  "down_key_to_state4_ms": 645.844,
+  "trigger_action_events": [
+    "probe_ready",
+    "natural_state_4_observed",
+    "auto_key_down_begin",
+    "auto_key_down_dispatched",
+    "auto_key_up_dispatched"
+  ],
+  "state4_right_soft_callbacks": [
+    {
+      "seq": 1580,
+      "t_mono_ns": 18295286416961,
+      "raw_key": -22,
+      "m_e_operand": 4,
+      "thread": "EventProcessing-Thread"
+    }
+  ],
+  "ag_handler_calls": [
+    {
+      "seq": 1582,
+      "t_mono_ns": 18295286489227,
+      "arg0": -8,
+      "arg1": -8,
+      "thread": "EventProcessing-Thread"
+    }
+  ],
+  "ag_handler_calls_after_state4_right_soft": 1,
+  "br_b_calls": 336,
+  "br_b_normal_exits": 335,
+  "br_b_true_operand_observations": 2,
+  "br_b_true_without_br_a_helper": 2,
+  "br_a_helper_calls": 334,
+  "target_true_branch": {
+    "seq": 1584,
+    "t_mono_ns": 18295286607255,
+    "br_b_span_id": 314,
+    "value": true,
+    "thread": "EventProcessing-Thread",
+    "same_thread_as_handler": true,
+    "ms_after_handler": 0.118,
+    "no_br_a_helper_in_span": true
+  },
+  "state4_to_key_ms": 71.386,
+  "limitations": [
+    "synthetic AWT input, not physical keyboard input",
+    "one state-triggered route; does not prove all profiles or routes",
+    "does not measure compositor presentation or input-to-visible latency"
+  ],
+  "failures": []
+}

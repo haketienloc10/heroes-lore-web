@@ -1,0 +1,12 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R01",
+  "valid": false,
+  "reason": "Startup capture was abandoned before user input because xdotool is unavailable; no dialogue/runtime claim is drawn from this run.",
+  "startup_error": {
+    "error": "FileNotFoundError(2, 'No such file or directory')",
+    "mono_ns": 6646811953611
+  },
+  "trace_build_started": true,
+  "user_input_started": false,
+  "process_alive_at_finalize": false
+}

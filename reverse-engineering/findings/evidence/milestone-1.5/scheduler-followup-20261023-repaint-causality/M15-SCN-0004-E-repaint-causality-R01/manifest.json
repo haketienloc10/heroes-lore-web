@@ -1,0 +1,85 @@
+{
+  "run_id": "M15-SCN-0004-E-repaint-causality-R01",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-repaint-causality-R01/01-startup.png",
+      "size": 11304,
+      "sha256": "e8e50c0cc9be052d50dc337eac41c3ecaec39a94970792a2698576678a92d968"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-repaint-causality-R01/02-gameplay-after-load.png",
+      "size": 25486,
+      "sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-repaint-causality-R01/03-gameplay-after-idle.png",
+      "size": 25486,
+      "sha256": "a97036f1667bc62ff50ae3507dff5eda15a30cd67c38573a26f764932593ba2e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/analysis.json",
+      "size": 27028,
+      "sha256": "4e13c450afb7ef3b3cc575f946289e2c8a7a8bb71d5c79e048e5306803b7afef"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/checkpoint-x11.jsonl",
+      "size": 1725,
+      "sha256": "8122b525547f1116e3d376d86763f64a3b8f8311de240f0c4e162b7881297c0a"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/console.log",
+      "size": 3055,
+      "sha256": "738e3f5d764f970d1778c19164ac69b68b300d5772bf13daca573be054743fe2"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/fixture-verification.json",
+      "size": 2065,
+      "sha256": "3a545151717f2a0ad57e6a5e5c5089cf04f93a4b0e5e9df2a974c52af0a8f555"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/input-01.log",
+      "size": 412,
+      "sha256": "fdf2ab48c49388e2c77a32c6d45cf9f6a924fe4990dd7729e9562ea04489473e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/input-02.log",
+      "size": 412,
+      "sha256": "da482d4877cf909a4d54a168c40937dab6c37cf7b24046d876cf3f820103d05e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/input-03.log",
+      "size": 412,
+      "sha256": "85dd804441dc5b9fe58e63d38e4ec2762f8c33d57fd3b9dce772b459f831b849"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/launch.json",
+      "size": 2394,
+      "sha256": "3cf070858222037fcdc0c9473fb4b49d613947927d322a5fd89947910adedbef"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/process-exit.json",
+      "size": 76,
+      "sha256": "e34d85bf83b97df0b0eb3154b503570e52f473dc88502370f1d6c799b5131429"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/timeline.jsonl",
+      "size": 1419,
+      "sha256": "35039d806fefef8e49aecab6941cb0759305879355354b7cde8c412097d20791"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/trace-health.json",
+      "size": 429,
+      "sha256": "3ffe0fc87d39f092192e78dc6b0ee1390d94215621db00e084864a8c2da6540b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/trace.jsonl",
+      "size": 2025016,
+      "sha256": "655cb59545be59aed0d6e4c2380885cfb96b39114fe87f5d34614c215ae4be83"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261023-repaint-causality/M15-SCN-0004-E-repaint-causality-R01/window-tree.txt",
+      "size": 1218,
+      "sha256": "1591b3b1a034aa715c2ebce74f4f846d0d3f56a0603afaee302dda509ff47e50"
+    }
+  ]
+}

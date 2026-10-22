@@ -1,0 +1,70 @@
+{
+  "run_id": "M15-SCN-0004-CF01-paint-R01",
+  "trace_event_count": 1360,
+  "trace_sequence_contiguous": true,
+  "bf_paint_entry_count": 678,
+  "paint_counts_by_bf_a": {
+    "0": 3,
+    "10": 58,
+    "1": 617
+  },
+  "field_writes": [
+    {
+      "run_id": "M15-SCN-0004-CF01-paint-R01",
+      "seq": 1,
+      "t_mono_ns": 13212525810487,
+      "thread_id": 32,
+      "thread_name": "Thread-1",
+      "site": "bf_a_field_write",
+      "bf.a:B": 0,
+      "bf.b:B": null,
+      "method": "a()V",
+      "opcode_index": 27
+    },
+    {
+      "run_id": "M15-SCN-0004-CF01-paint-R01",
+      "seq": 8,
+      "t_mono_ns": 13212880726435,
+      "thread_id": 35,
+      "thread_name": "Thread-2",
+      "site": "bf_a_field_write",
+      "bf.a:B": 10,
+      "bf.b:B": null,
+      "method": "b()V",
+      "opcode_index": 14
+    },
+    {
+      "run_id": "M15-SCN-0004-CF01-paint-R01",
+      "seq": 126,
+      "t_mono_ns": 13215909506922,
+      "thread_id": 31,
+      "thread_name": "EventProcessing-Thread",
+      "site": "bf_a_field_write",
+      "bf.a:B": 1,
+      "bf.b:B": null,
+      "method": "c()V",
+      "opcode_index": 8
+    }
+  ],
+  "checkpoints": [
+    {
+      "elapsed_target_seconds": 12,
+      "mono_ns": 13224138590946,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-R01/12s-cold-start.png",
+      "input": "none"
+    },
+    {
+      "elapsed_target_seconds": 15,
+      "mono_ns": 13227059056078,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-R01/15s-cold-start.png",
+      "input": "none"
+    },
+    {
+      "elapsed_target_seconds": 45,
+      "mono_ns": 13257024533962,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-R01/45s-cold-start.png",
+      "input": "none"
+    }
+  ],
+  "interpretation_limit": "Paint-state events are game-canvas calls; X11 screenshots do not establish compositor or physical presentation."
+}

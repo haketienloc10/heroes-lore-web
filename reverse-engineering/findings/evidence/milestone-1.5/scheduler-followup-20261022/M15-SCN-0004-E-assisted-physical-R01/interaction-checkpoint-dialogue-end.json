@@ -1,0 +1,114 @@
+{
+  "run_id": "M15-SCN-0004-E-assisted-physical-R01",
+  "checkpoint": "after user reported dialogue completion",
+  "utc": "2026-10-22T13:50:41.189924+00:00",
+  "mono_ns": 5607612708443,
+  "pid": 58681,
+  "pid_alive": true,
+  "awt_event_count_at_capture": 1950,
+  "last_key_events": [
+    {
+      "utc": "2026-10-22T13:50:35.904354966Z",
+      "event": "key_typed",
+      "awt_key_code": 0
+    },
+    {
+      "utc": "2026-10-22T13:50:35.991386391Z",
+      "event": "key_released",
+      "awt_key_code": 81
+    },
+    {
+      "utc": "2026-10-22T13:50:36.607145952Z",
+      "event": "key_pressed",
+      "awt_key_code": 39
+    },
+    {
+      "utc": "2026-10-22T13:50:36.738084852Z",
+      "event": "key_released",
+      "awt_key_code": 39
+    },
+    {
+      "utc": "2026-10-22T13:50:37.243477859Z",
+      "event": "key_pressed",
+      "awt_key_code": 37
+    },
+    {
+      "utc": "2026-10-22T13:50:37.369334973Z",
+      "event": "key_released",
+      "awt_key_code": 37
+    },
+    {
+      "utc": "2026-10-22T13:50:37.489658940Z",
+      "event": "key_pressed",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:37.624071173Z",
+      "event": "key_released",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:37.704942311Z",
+      "event": "key_pressed",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:37.806033558Z",
+      "event": "key_released",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:37.879301568Z",
+      "event": "key_pressed",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:37.991304112Z",
+      "event": "key_released",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:38.070995445Z",
+      "event": "key_pressed",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:38.166744017Z",
+      "event": "key_released",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:39.860814863Z",
+      "event": "key_pressed",
+      "awt_key_code": 10
+    },
+    {
+      "utc": "2026-10-22T13:50:39.861532872Z",
+      "event": "key_typed",
+      "awt_key_code": 0
+    },
+    {
+      "utc": "2026-10-22T13:50:39.977837375Z",
+      "event": "key_released",
+      "awt_key_code": 10
+    },
+    {
+      "utc": "2026-10-22T13:50:40.613239883Z",
+      "event": "key_pressed",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:40.722991778Z",
+      "event": "key_released",
+      "awt_key_code": 40
+    },
+    {
+      "utc": "2026-10-22T13:50:41.086680451Z",
+      "event": "key_pressed",
+      "awt_key_code": 38
+    }
+  ],
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-assisted-physical-R01/10-after-dialogue.png",
+  "screenshot_sha256": "081c6efcaab88f4c9e8490e2000f24554c6d62982447809d2bd70c259867485a",
+  "input_sent_by_harness": false
+}

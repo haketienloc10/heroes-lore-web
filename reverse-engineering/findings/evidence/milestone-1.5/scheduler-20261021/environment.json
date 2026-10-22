@@ -1,0 +1,76 @@
+{
+  "utc": "2026-10-21T15:57:48,360117755+00:00",
+  "jvm": "openjdk version \"21.0.12.1\" 2026-08-18\nOpenJDK Runtime Environment (build 21.0.12.1+1-1-24.04.4-Ubuntu)\nOpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-24.04.4-Ubuntu, mixed mode, sharing)\n",
+  "uname": "Linux coltd 6.18.40.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Fri Jul 31 22:12:15 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux\n",
+  "python_monotonic_clock": "namespace(implementation='clock_gettime(CLOCK_MONOTONIC)', monotonic=True, adjustable=False, resolution=1e-09)",
+  "web_files": [
+    {
+      "path": "web/package.json",
+      "sha256": "2f1c2767603f82aafc9df119fb7b719379475158839c6028f8287ccdb85eaa3e"
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "0c14567a434450d15c72cb32732c3637f2bb899dce8050251d3cc1c146abf36e"
+    },
+    {
+      "path": "web/tsconfig.json",
+      "sha256": "b72863f29bcce7ccbbc88ffd809a130626dbb0e19a7311d3f9bb7820ea2af36f"
+    },
+    {
+      "path": "web/vite.config.ts",
+      "sha256": "e81250ce9c30d834f85f87b91dc8cef5197e87230b21b362e9344344aec17df8"
+    },
+    {
+      "path": "web/README.md",
+      "sha256": "3f3de9ae2696db681adc0b0ecef884351ba5abc248c59af887b20e02ec145604"
+    },
+    {
+      "path": "web/src/style.css",
+      "sha256": "e55f7d29d940cddbf2224f2782c5c039220a396999c0d05944aecd7c87269ac9"
+    },
+    {
+      "path": "web/src/main.ts",
+      "sha256": "5293ff9c893634009a833c9eeb55c141254db414e0ad9a4c47269f9c16108040"
+    },
+    {
+      "path": "web/tests/fixed-step.test.ts",
+      "sha256": "dc0af737dad3bb05eaf94be872d0132dbc281de00c83a8ac59d49e3a837e73d4"
+    },
+    {
+      "path": "web/public/assets/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/src/entities/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/src/rendering/BootScene.ts",
+      "sha256": "e22a5c00dc668e1b2fc7928828bbeacddff72a54a8d0cbd5ba8c6ad31a17e4d1"
+    },
+    {
+      "path": "web/src/persistence/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/src/input/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/src/mechanics/README.md",
+      "sha256": "0fe819cf0a67ec4bf1f09eda3aa199a0977510b119fffa52fb8dd663fdc00314"
+    },
+    {
+      "path": "web/src/ui/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/src/world/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/src/core/fixed-step.ts",
+      "sha256": "230726ae75627434ec2adceed6a94a889bdf83ec8157d24245667aa08e6b7b56"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "run_id": "M15-SCN-0004-CF04-natural-R01",
+  "utc": "2026-10-22T16:29:46.153607+00:00",
+  "game": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "size": 554715,
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "emulator": {
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "size": 1161902,
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e"
+  },
+  "seed_snapshot": "reference/recordings/snapshots/HOUSE-INPUT-001",
+  "seed_game_rms_removed": [
+    {
+      "relative_path": "rms/Heroes Lore/410decd402x2m_.rms",
+      "path": "/tmp/heroes-lore-cf04-natural-cdryvqdf/work/rms/Heroes Lore/410decd402x2m_.rms",
+      "size": 382,
+      "sha256": "42fb8742390b1dc9bec451ca1b9e7ab19a72964c82718d84e716c8d677657fc0"
+    },
+    {
+      "relative_path": "rms/Heroes Lore/410decd402x2m_.1",
+      "path": "/tmp/heroes-lore-cf04-natural-cdryvqdf/work/rms/Heroes Lore/410decd402x2m_.1",
+      "size": 6,
+      "sha256": "f236af3beebd230248f6ba2f4afa98f4228a3364c51c87815fdc757972715d76"
+    },
+    {
+      "relative_path": "rms/Heroes Lore/410decd402x28_.rms",
+      "path": "/tmp/heroes-lore-cf04-natural-cdryvqdf/work/rms/Heroes Lore/410decd402x28_.rms",
+      "size": 382,
+      "sha256": "7a3815e4b1856a1bfc41dfe8da3ea54b507fbd8c94d1a1124a881d0cebb34c67"
+    },
+    {
+      "relative_path": "rms/Heroes Lore/410decd402x2s_.1",
+      "path": "/tmp/heroes-lore-cf04-natural-cdryvqdf/work/rms/Heroes Lore/410decd402x2s_.1",
+      "size": 432,
+      "sha256": "76dc0aa8a0a618ad47cdf192cd2e7d524eca7359264d204d523f4108df3405ba"
+    },
+    {
+      "relative_path": "rms/Heroes Lore/410decd402x2s_.rms",
+      "path": "/tmp/heroes-lore-cf04-natural-cdryvqdf/work/rms/Heroes Lore/410decd402x2s_.rms",
+      "size": 382,
+      "sha256": "2d8bf19494b1a9c962d6db984731857fd1c897f992cd3776fddd33c8a342f650"
+    },
+    {
+      "relative_path": "rms/Heroes Lore/410decd402x28_.1",
+      "path": "/tmp/heroes-lore-cf04-natural-cdryvqdf/work/rms/Heroes Lore/410decd402x28_.1",
+      "size": 22,
+      "sha256": "be2eeed879d2c61d4db1ed70ebee08a59b37ac5d448d082a244f35019c322d0a"
+    }
+  ],
+  "work_profile": "FreeJ2ME-Plus 1.52; phone:Motorola; 240x320; limiter 60",
+  "route": "New Game intro via existing SCN-0002/HOUSE-EXIT-001 recipe, then 30 s idle; no 0.9-second timing action",
+  "natural_probe": true,
+  "game_field_writes": false,
+  "injection": false,
+  "physical_input": false,
+  "display": ":0",
+  "source_game_sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "work_config_sha256": "99320679cc134cb0691012ec3ad339a6e526d05e95a209f74dc1d363dc40df5c",
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-javaagent:/home/locdt/heroes-lore-web/reference/recordings/scheduler-cf04-natural-v3-20261022/cf04-probe.jar=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-CF04-natural-R01/trace.jsonl|M15-SCN-0004-CF04-natural-R01",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/reference/recordings/scheduler-cf04-natural-v3-20261022/heroes-lore-cf04-probed.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "mono_ns": 15152583569121,
+  "pid": 165891,
+  "idle_after_intro_start_mono_ns": 15187369103577,
+  "process_exit": {
+    "returncode": 143,
+    "proc_absent": true,
+    "mono_ns": 15217485096471
+  }
+}

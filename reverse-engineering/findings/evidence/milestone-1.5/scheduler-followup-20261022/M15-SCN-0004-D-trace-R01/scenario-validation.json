@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0004-D-trace-R01",
+  "status": "partial_not_counted",
+  "reasons": [
+    "Final X11 image is still the NOW LOADING screen captured about one second after the final Enter; it does not establish a completed load transition.",
+    "Field snapshots for bt.a:B, worker state, and pending command are null because the follow-up probe resolved game classes through the wrong classloader.",
+    "Run retained as a route and worker-discovery pilot; do not count toward three valid D runs."
+  ]
+}

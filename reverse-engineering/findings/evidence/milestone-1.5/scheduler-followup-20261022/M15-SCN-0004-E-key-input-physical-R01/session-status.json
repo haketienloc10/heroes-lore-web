@@ -1,0 +1,10 @@
+{
+  "run_id": "M15-SCN-0004-E-key-input-physical-R01",
+  "status": "waiting for one physical key-input sequence",
+  "pid": 203140,
+  "window": "0x600007",
+  "ready_mono_ns": 17716550120882,
+  "screenshot": "reference/screenshots/M15-SCN-0004-E-key-input-physical-R01/02-gameplay-ready.png",
+  "user_input_started": false,
+  "probe": "ar.keyPressed(I)V and ag.a(II)V only; no field reads or game-field writes"
+}

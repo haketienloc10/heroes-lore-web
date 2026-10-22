@@ -1,0 +1,33 @@
+{
+  "run_id": "M15-SCN-0004-CF01-paint-v2-R02",
+  "trace_event_count": 1362,
+  "trace_sequence_contiguous": true,
+  "bf_paint_entry_count": 680,
+  "paint_counts_by_bf_a": {
+    "0": 3,
+    "10": 58,
+    "1": 619
+  },
+  "field_writes": [],
+  "checkpoints": [
+    {
+      "elapsed_target_seconds": 12,
+      "mono_ns": 13465435423379,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-v2-R02/12s-cold-start.png",
+      "input": "none"
+    },
+    {
+      "elapsed_target_seconds": 15,
+      "mono_ns": 13468382391334,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-v2-R02/15s-cold-start.png",
+      "input": "none"
+    },
+    {
+      "elapsed_target_seconds": 45,
+      "mono_ns": 13498259417543,
+      "screenshot": "reference/screenshots/M15-SCN-0004-CF01-paint-v2-R02/45s-cold-start.png",
+      "input": "none"
+    }
+  ],
+  "interpretation_limit": "Paint-state events are game-canvas calls; X11 screenshots do not establish compositor or physical presentation."
+}

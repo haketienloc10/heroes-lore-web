@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"result\":{\"path\":\"/home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar\",\"format\":\"zip\",\"kind\":\"archive\",\"sha256\":\"7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61\",\"architecture\":null}}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "path": "/home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+      "format": "zip",
+      "kind": "archive",
+      "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+      "architecture": null
+    }
+  }
+}

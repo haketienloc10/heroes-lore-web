@@ -1,0 +1,40 @@
+{
+  "run_id": "M15-SCN-0004-E-render-order-R01",
+  "finalized_utc": "2026-10-22T14:55:56.792802+00:00",
+  "user_reported_window_closed": true,
+  "reported_close_time_exact": false,
+  "pid_absent_at_finalization": true,
+  "pid": 99613,
+  "gameplay_checkpoint_mono_ns": 9112198106476,
+  "gameplay_checkpoint_fields": {
+    "br.d:Z": "false",
+    "br.d:I": "71",
+    "m.e:I": "2",
+    "q.b:Z": "false",
+    "m.c:B": "0",
+    "m.d:B": "0",
+    "ag.a:Z": "false",
+    "m.b:B": "0"
+  },
+  "reclassified_menu_checkpoint": {
+    "tag": "camera-off-gameplay",
+    "observed_state": {
+      "br.d:Z": "false",
+      "br.d:I": "50",
+      "m.e:I": "5",
+      "q.b:Z": "false",
+      "m.c:B": "0",
+      "m.d:B": "0",
+      "ag.a:Z": "false",
+      "m.b:B": "0"
+    },
+    "classification": "Options menu, m.e:I=5; excluded from gameplay analysis"
+  },
+  "trace_serialized_rows": 12413,
+  "health_events_seen": 12421,
+  "health_retained": 12413,
+  "capacity_dropped": 0,
+  "health_minus_serialized": 8,
+  "incomplete_paint_spans_at_trace_end": 1,
+  "interpretation": "The shutdown hook serialized a contiguous trace prefix. Its events_seen counter exceeds serialized rows by eight, and the last paint span has no observed normal exit; the censored tail is excluded from completed branch-to-call segments."
+}

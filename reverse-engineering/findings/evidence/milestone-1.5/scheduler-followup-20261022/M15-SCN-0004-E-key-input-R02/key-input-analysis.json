@@ -1,0 +1,14 @@
+{
+  "repeat_callback_observed": false,
+  "multiple_raw_keys_observed_during_overlap": false,
+  "interpretation_limit": "X11 XTest host-generated events only; not physical keyboard evidence. Callback counts show delivery to ar.keyPressed, not action-state consumption or rendered response. Zero callbacks means the host-input path was not validated and says nothing about game repeat behavior.",
+  "host_input_reached_game_callback": false,
+  "status": "checkpoint_aborted_or_capture_failed",
+  "run_id": "M15-SCN-0004-E-key-input-R02",
+  "trace_event_count": 4,
+  "fixture_verified_files": 10,
+  "failures": [
+    "RuntimeError('X11 focus mismatch: requested=0x600023 actual=0x0')"
+  ],
+  "stimulus_windows_mono_ns": {}
+}

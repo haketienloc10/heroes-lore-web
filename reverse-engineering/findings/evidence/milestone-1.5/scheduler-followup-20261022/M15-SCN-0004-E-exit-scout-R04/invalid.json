@@ -1,0 +1,5 @@
+{
+  "run_id": "M15-SCN-0004-E-exit-scout-R04",
+  "valid_for_branch_analysis": false,
+  "reason": "Invalid for branch analysis. Every X11 checkpoint was the same white canvas, no trace.jsonl or trace-health.json was flushed, and the emulator did not shut down within 20 seconds; it was killed with SIGKILL. The synthetic key dispatch log is retained but does not establish game-state handling."
+}

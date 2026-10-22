@@ -1,0 +1,440 @@
+{
+  "producer": "SHA-256/file-header audit of the six D runs included in aggregate.json",
+  "method": "Read-only bytes/hash/dimension check, followed by visual re-review and direct PNG pixel sampling; screenshots were not rewritten.",
+  "accepted_run_count": 6,
+  "unique_file_hashes": 1,
+  "all_identical": true,
+  "identical_sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+  "visual_review": "The shared image shows the fully rendered house interior and player character, with the HUD; black pixels surround the room as the map/background area.",
+  "rows": [
+    {
+      "run_id": "M15-SCN-0004-D-baseline-R01",
+      "mode": "baseline",
+      "path": "reference/screenshots/M15-SCN-0004-D-baseline-R01/04-after-load.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "width": 480,
+      "height": 665
+    },
+    {
+      "run_id": "M15-SCN-0004-D-baseline-R02",
+      "mode": "baseline",
+      "path": "reference/screenshots/M15-SCN-0004-D-baseline-R02/04-after-load.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "width": 480,
+      "height": 665
+    },
+    {
+      "run_id": "M15-SCN-0004-D-baseline-R03",
+      "mode": "baseline",
+      "path": "reference/screenshots/M15-SCN-0004-D-baseline-R03/04-after-load.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "width": 480,
+      "height": 665
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R03",
+      "mode": "trace",
+      "path": "reference/screenshots/M15-SCN-0004-D-trace-R03/04-after-load.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "width": 480,
+      "height": 665
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R04",
+      "mode": "trace",
+      "path": "reference/screenshots/M15-SCN-0004-D-trace-R04/04-after-load.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "width": 480,
+      "height": 665
+    },
+    {
+      "run_id": "M15-SCN-0004-D-trace-R05",
+      "mode": "trace",
+      "path": "reference/screenshots/M15-SCN-0004-D-trace-R05/04-after-load.png",
+      "size": 21770,
+      "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+      "width": 480,
+      "height": 665
+    }
+  ],
+  "independent_baseline_reproduction": {
+    "run_id": "M15-SCN-0004-E-hud-diagnosis-R01",
+    "path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-x11-before.png",
+    "size": 21770,
+    "sha256": "4cbff7a7b4c0aba5fb17876eb0102cb413323ce12e40bbf683abe1f0bcfd2015",
+    "frontbuffer_path": "reference/screenshots/M15-SCN-0004-E-hud-diagnosis-R01/02-normal-scene-frontbuffer.png",
+    "frontbuffer_sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+    "note": "User-operated, uninstrumented baseline from HOUSE-INPUT-001; X11 image is byte-identical to all six accepted D after-load images, and the separate frontbuffer capture also visibly shows the house and character."
+  },
+  "interpretation": "The six analyzed D after-load PNGs are byte-identical and show the house interior and character with the HUD. A new uninstrumented baseline reproduces the exact X11 bytes, and its separate frontbuffer also shows the house. A hash re-audit of P1M 04/05 checkpoints found 24 frontbuffer images and 9 X11/diagnostic images; the byte groups and direct single-file review show the full house scene throughout. The prior HUD-only and 3/6 visual classifications were errors caused by reading the black map margins as an empty playfield. These captures do not establish a HUD-only rendering failure.",
+  "cross_check_p1m_r03": {
+    "run_id": "M15-SCN-0004-P1M-baseline-hold-R03",
+    "visual_review": "Both checkpoint pairs show the fully rendered house interior and character. The earlier HUD-only reading was incorrect.",
+    "frontbuffer_04_fixture": {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    },
+    "frontbuffer_05_before_input": {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input.png",
+      "size": 16158,
+      "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    },
+    "x11_04_fixture": {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png",
+      "size": 21357,
+      "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb"
+    },
+    "x11_05_before_input": {
+      "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input-X11.png",
+      "size": 21357,
+      "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb"
+    }
+  },
+  "p1m_pre_input_crosscheck": {
+    "source_review": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-20261021/review.json",
+    "valid_run_count": 12,
+    "frontbuffer_file_count": 24,
+    "frontbuffer_unique_sha256": [
+      "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28"
+    ],
+    "x11_file_count": 9,
+    "x11_hash_groups": [
+      {
+        "dimensions": [
+          480,
+          640
+        ],
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "count": 7,
+        "paths": [
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/diagnostic-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/05-before-input-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input-X11.png"
+        ]
+      },
+      {
+        "dimensions": [
+          414,
+          573
+        ],
+        "sha256": "2891c697080c4d9eb64680b4edfb85ff2e7e31c1b7ad52fa4166870916540f55",
+        "count": 2,
+        "paths": [
+          "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture-X11.png",
+          "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input-X11.png"
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R02/diagnostic-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-hold-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/05-before-input-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-baseline-tap-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input-X11.png",
+        "size": 21357,
+        "sha256": "c7188377d31c9f9d4e854be92de832831f09c89c3625c306a7ead6f8c4d5a1cb",
+        "dimensions": [
+          480,
+          640
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-hold-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R01/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R02/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture-X11.png",
+        "size": 25080,
+        "sha256": "2891c697080c4d9eb64680b4edfb85ff2e7e31c1b7ad52fa4166870916540f55",
+        "dimensions": [
+          414,
+          573
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/04-fixture.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input-X11.png",
+        "size": 25080,
+        "sha256": "2891c697080c4d9eb64680b4edfb85ff2e7e31c1b7ad52fa4166870916540f55",
+        "dimensions": [
+          414,
+          573
+        ]
+      },
+      {
+        "path": "reference/screenshots/M15-SCN-0004-P1M-trace-tap-R03/05-before-input.png",
+        "size": 16158,
+        "sha256": "b76655f3a3e18e31e4b0004802fc66726618c1b001dc1650e39b2e1f50360b28",
+        "dimensions": [
+          240,
+          320
+        ]
+      }
+    ],
+    "visual_review": "All unique image byte groups show the full house interior and player character. Black areas surround the room and are not a blank playfield.",
+    "conclusion": "The earlier P1M HUD-only classifications were incorrect. The same house scene is present in both 04 and 05 captures across all reviewed runs."
+  }
+}

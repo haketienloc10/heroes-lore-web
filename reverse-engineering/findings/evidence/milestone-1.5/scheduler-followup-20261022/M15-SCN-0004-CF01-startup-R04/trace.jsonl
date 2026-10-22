@@ -1,0 +1,7 @@
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":1,"t_mono_ns":12611759234955,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"bf_run_entry","original_bci":null,"outcome":null}
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":2,"t_mono_ns":12611828582875,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"resource_load_success_goto_BCI_92","original_bci":92,"outcome":null}
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":3,"t_mono_ns":12611828644323,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"call_cd_y_BCI_96","original_bci":96,"outcome":null}
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":4,"t_mono_ns":12611884982118,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"call_cd_A_BCI_99","original_bci":99,"outcome":null}
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":5,"t_mono_ns":12612092388863,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"call_bf_b_BCI_208","original_bci":208,"outcome":null}
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":6,"t_mono_ns":12612092454182,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"call_q_k_BCI_211","original_bci":211,"outcome":null}
+{"run_id":"M15-SCN-0004-CF01-startup-R04","seq":7,"t_mono_ns":12612092560302,"thread_id":35,"thread_name":"Thread-2","span_id":1,"bf.a:B":0,"bf.b:B":1,"site":"bf_run_exit","original_bci":null,"outcome":"normal_return"}

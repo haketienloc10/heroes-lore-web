@@ -1,0 +1,12 @@
+{"utc": "2026-10-22T12:50:25.338711+00:00", "mono_ns": 1991761485478, "event": "startup_checkpoint", "no_input_seconds": 10}
+{"utc": "2026-10-22T12:50:25.339601+00:00", "mono_ns": 1991762366376, "event": "transition_window_started", "requested_seconds": 30}
+{"utc": "2026-10-22T12:50:25.339997+00:00", "mono_ns": 1991762759576, "event": "synthetic_key_press_begin", "step": 1, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T12:50:25.728937+00:00", "mono_ns": 1992151710816, "event": "synthetic_key_press_end", "step": 1, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T12:50:27.318463+00:00", "mono_ns": 1993741244608, "event": "x11_checkpoint", "step": 1, "label": "02-menu.png"}
+{"utc": "2026-10-22T12:50:27.318778+00:00", "mono_ns": 1993741542607, "event": "synthetic_key_press_begin", "step": 2, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T12:50:27.594355+00:00", "mono_ns": 1994017128404, "event": "synthetic_key_press_end", "step": 2, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T12:50:29.225144+00:00", "mono_ns": 1995647918194, "event": "x11_checkpoint", "step": 2, "label": "03-load-Ronin.png"}
+{"utc": "2026-10-22T12:50:29.225439+00:00", "mono_ns": 1995648204493, "event": "synthetic_key_press_begin", "step": 3, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T12:50:29.603067+00:00", "mono_ns": 1996025854929, "event": "synthetic_key_press_end", "step": 3, "awt_code": 10, "hold_ms": 10}
+{"utc": "2026-10-22T12:50:40.125896+00:00", "mono_ns": 2006548666431, "event": "x11_checkpoint", "step": 3, "label": "04-after-load.png"}
+{"utc": "2026-10-22T12:50:55.352773+00:00", "mono_ns": 2021775553284, "event": "transition_window_finished", "result": 382}

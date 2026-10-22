@@ -1,0 +1,15 @@
+{
+  "captured_utc": "2026-10-22T14:10:44.318182+00:00",
+  "pid": 76536,
+  "no_harness_input_sent": true,
+  "x11": {
+    "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R02/04-paired-x11.png",
+    "begin_utc": "2026-10-22T14:10:33.607260+00:00",
+    "end_utc": "2026-10-22T14:10:34.114878+00:00"
+  },
+  "frontbuffer": {
+    "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R02/05-paired-frontbuffer.png",
+    "capture_utc": "2026-10-22T14:10:34.434158085Z"
+  },
+  "interpretation": "Both images show a blank white canvas; X11 and emulator frontbuffer are distinct capture layers and neither proves physical presentation. This checkpoint was captured before any declared user interaction on this trace run."
+}

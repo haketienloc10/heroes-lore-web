@@ -1,0 +1,111 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R03",
+  "valid_for": "dialogue handler invocation",
+  "files": [
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/01-startup.png",
+      "size": 11271,
+      "sha256": "5b92bee99219b7d3bf3a498c171584a7648c37daa928c4e2d90ce66598ecc771"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/02-dialogue-frontbuffer.png",
+      "size": 23663,
+      "sha256": "a93144630b33af4e353b02daaea30436153a11296138ad7625b1092a71b15fb7"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/02-dialogue-open.png",
+      "size": 29912,
+      "sha256": "93d7e023a544609d2a72c88d7b5c1b946d1847b4eb9b57bbdadce608757f661d"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/03-after-dialogue-frontbuffer.png",
+      "size": 25527,
+      "sha256": "d51adf691133c394fe3aebf3421c52746f43fead5d202ac66ad9284355a24955"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/03-after-dialogue-x11.png",
+      "size": 31941,
+      "sha256": "1eafe604409871d65a2a4e43953e622ac017c71357681ebdf7308eafd8cddeaa"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0004-E-dialogue-trace-R03/window-tree-dialogue-open.txt",
+      "size": 72,
+      "sha256": "409bd5ff625f16d1802e21a5af59452d6831850cc8db43b64e5e92c9cd5278f3"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/checkpoint-x11.jsonl",
+      "size": 1687,
+      "sha256": "5e7ff950824b8854c9ab1b0d212743e6426332a9dd25aa41575de9a254b8d950"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/console.log",
+      "size": 2628,
+      "sha256": "7f8580c78549b9a799f06f2a6b2aff2bec747965c5c9d5588f8e0a0f5b95f9ba"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/dialogue-trace-result.json",
+      "size": 2096,
+      "sha256": "0240bd6ac01ca63bb359761462a4f6df30023c0fd23e3b98a6d2ed571bd2a515"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/fixture-verification.json",
+      "size": 2056,
+      "sha256": "257338c6f06a6da9285d04d63b76563fd1796f2b76d0d1a39705e4a90ab0c342"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/frontbuffer-after-dialogue.log",
+      "size": 274,
+      "sha256": "477432eed9d038dc6a623d5daedbb3a2dbeeb4a4edf3c362a47ddbb0eda610e5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/frontbuffer-dialogue.log",
+      "size": 268,
+      "sha256": "48f961a2e3cafc38206a6220ef666a4dbfd6d33879d13b32128d864be9c25e70"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/launch.json",
+      "size": 1575,
+      "sha256": "59566d220bfb33701ae2227e97d4cc2d22fe1d4a4046f0754b9cae4ed3514f15"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/operator-guide.md",
+      "size": 492,
+      "sha256": "8deb0f419cfeec2685abce117d15f03419b28d2a6a11403a8eab1e344b831cc4"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/presentation-pair-dialogue.json",
+      "size": 1248,
+      "sha256": "bc00de03826e7afced0e57f4c5864ea0c95b690dd3f44cf0e2b7b28a430802c5"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/session-status.json",
+      "size": 627,
+      "sha256": "b33278ce83b9e49bd52358110177346ebdbe063fa422b6b966d492fe034e142b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/timeline.jsonl",
+      "size": 983,
+      "sha256": "39dcfef7a310ca19bb88e65b3291f8b7207d57841365f57700110cc2ad82b48f"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/trace-health.json",
+      "size": 112,
+      "sha256": "67da75835ff7947ba697ad53edcc967ab70e7aab9d5edc3d2ed8c7445822419e"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/trace-probe-start.json",
+      "size": 153,
+      "sha256": "5f51c5da9cb8673856f582db78edca58728ef7e029d64b11f730c7a736ffc99b"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/trace.jsonl",
+      "size": 5502,
+      "sha256": "6febdc1d3605c6d92f87fc5314a66b344fb6ae1cc4e9358cdf1e5ff61c124dfd"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/scheduler-followup-20261022/M15-SCN-0004-E-dialogue-trace-R03/window-tree-startup.txt",
+      "size": 1218,
+      "sha256": "a8831d772a20808fb8e60919ee5a218a5be22221d0b02e2dfeacba6f7f4f068f"
+    }
+  ]
+}

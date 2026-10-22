@@ -1,0 +1,36 @@
+{
+  "route": "load the Ronin save from HOUSE-INPUT-001, move right in the house, then start house exit with Down",
+  "input_steps": [
+    {
+      "step": 1,
+      "key_code": 10,
+      "purpose": "menu progression"
+    },
+    {
+      "step": 2,
+      "key_code": 10,
+      "purpose": "menu progression"
+    },
+    {
+      "step": 3,
+      "key_code": 10,
+      "purpose": "load save"
+    },
+    {
+      "step": 4,
+      "key_code": 102,
+      "hold_ms": 1000,
+      "purpose": "align with documented exit route"
+    },
+    {
+      "step": 5,
+      "key_code": 98,
+      "hold_ms": 1000,
+      "purpose": "natural state 2 to 4 transition"
+    }
+  ],
+  "branch_input": "one W/Right Soft event is queued by the probe only after observed state setter stores 4",
+  "cadence_sample": false,
+  "physical_input": false,
+  "game_state_injected": false
+}

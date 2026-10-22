@@ -1,0 +1,8 @@
+{
+  "valid": false,
+  "reason": "Harness exec session ended with exit 143 before measurement output/stop; JVM remained running. Cause of external harness termination not established. Excluded, rerun from snapshot.",
+  "pid": 101089,
+  "cleanup_signal": "SIGTERM",
+  "post_cleanup_proc_state": "absent",
+  "observed_utc": "2026-10-21T16:16:20.405204+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "run_id": "M15-SCN-0004-A-baseline-R03",
+  "pid": 14553,
+  "utc": "2026-10-22T12:40:07.301185+00:00",
+  "mono_ns": 1373722273226,
+  "argv": [
+    "java",
+    "-Dfile.encoding=ISO_8859_1",
+    "-Dsun.java2d.uiScale=1",
+    "-jar",
+    "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "file:///home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+    "0",
+    "240",
+    "320",
+    "2",
+    "2",
+    "60"
+  ],
+  "cwd": "reference/recordings/M15-SCN-0004-A-baseline-R03",
+  "mode": "baseline",
+  "scenario_variant": "A cold startup, no input; 5 s warm-up then 30 s measurement",
+  "game_field_writes": false,
+  "fixture": null,
+  "rng_controlled": false,
+  "host_display": ":0",
+  "profile": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter 60"
+}

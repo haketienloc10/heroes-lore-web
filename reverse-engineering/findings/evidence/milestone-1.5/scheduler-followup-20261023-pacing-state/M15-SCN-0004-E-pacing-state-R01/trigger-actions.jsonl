@@ -1,0 +1,5 @@
+{"run_id":"M15-SCN-0004-E-pacing-state-R01","event":"probe_ready","utc":"2026-10-22T17:34:47.196791509Z","mono_ns":19053627291596,"reflection":false,"direct_game_method_calls":false,"game_field_writes":false}
+{"run_id":"M15-SCN-0004-E-pacing-state-R01","event":"natural_state_4_observed","utc":"2026-10-22T17:35:12.343733632Z","mono_ns":19078766588293,"state":4}
+{"run_id":"M15-SCN-0004-E-pacing-state-R01","event":"auto_key_down_begin","utc":"2026-10-22T17:35:12.346902757Z","mono_ns":19078769762426,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-pacing-state-R01","event":"auto_key_down_dispatched","utc":"2026-10-22T17:35:12.348463582Z","mono_ns":19078771325855,"awt_key_code":87}
+{"run_id":"M15-SCN-0004-E-pacing-state-R01","event":"auto_key_up_dispatched","utc":"2026-10-22T17:35:12.436813266Z","mono_ns":19078859742348,"awt_key_code":87}

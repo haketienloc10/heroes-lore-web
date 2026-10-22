@@ -1,0 +1,28 @@
+{
+  "run_id": "M15-SCN-0004-E-bypass-R01",
+  "finalized_utc": "2026-10-22T15:13:22.216762+00:00",
+  "pid": 108353,
+  "pid_absent_at_finalization": true,
+  "user_reported_window_closed": false,
+  "shutdown_action": "Assistant sent SIGTERM after the user's reported input attempt and a prior request to close the window; JVM shutdown hook completed and wrote trace-health.json.",
+  "trace_serialized_rows": 12138,
+  "health_events_seen": 12138,
+  "capacity_dropped": 0,
+  "contiguous_prefix": true,
+  "incomplete_method_spans": [
+    {
+      "class": "br",
+      "method": "b()V",
+      "span_id": 4854,
+      "entry_seq": 12136
+    },
+    {
+      "class": "br",
+      "method": "a(JJ)V",
+      "span_id": 4855,
+      "entry_seq": 12138
+    }
+  ],
+  "trigger_assessment": "trigger_not_observed",
+  "interpretation": "One graceful JVM shutdown tail censored br.b and br.a exits; all serialized rows form a contiguous prefix and health matches the file. The target state-4 key route and true bypass were not observed."
+}

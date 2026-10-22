@@ -1,0 +1,6 @@
+{
+  "run_id": "M15-SCN-0004-E-dialogue-trace-R01",
+  "process_absent": true,
+  "observed_utc": "2026-10-22T14:08:53.463495+00:00",
+  "shutdown_cause": "runner startup error after window capture; runner terminated the trace process"
+}
