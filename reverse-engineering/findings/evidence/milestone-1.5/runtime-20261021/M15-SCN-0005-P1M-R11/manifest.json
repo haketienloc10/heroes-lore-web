@@ -1,0 +1,199 @@
+{
+  "runId": "M15-SCN-0005-P1M-R11",
+  "status": "partial source-runtime observation; no enemy attack observed in the capture window",
+  "referenceJarSha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "emulator": {
+    "name": "FreeJ2ME-Plus 1.52",
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e"
+  },
+  "profile": "P1M Motorola, 240x320 portrait, limiter 60",
+  "inputMethod": "Synthetic emulator AWT KeyListener through the local sequence sidecar; no game fields were written.",
+  "route": [
+    "Started a fresh FreeJ2ME process and followed the established skip/house-exit/map-27 route.",
+    "The source runtime placed the Ronin at tile (8,30), facing east, beside enemy ID 24 at (9,30), facing west.",
+    "Captured source frontbuffer screenshots at the start, 2.4 seconds and 3.6 seconds after the facing input; no further input was sent during the wait."
+  ],
+  "stateObservation": {
+    "playerHpField": "an.d:int",
+    "beforeHp": 72,
+    "afterHp": 72,
+    "playerTile": [
+      8,
+      30
+    ],
+    "playerFacing": 4,
+    "target": {
+      "enemyId": 24,
+      "behavior": 1,
+      "tile": [
+        9,
+        30
+      ],
+      "facing": 3,
+      "state": 1,
+      "attackCooldownField": 4
+    },
+    "independentSnapshotGapSeconds": 5.248,
+    "postIdleSnapshot": "The later snapshot also retained player HP 72, enemy state 1 and cooldown 4.",
+    "conclusion": "No source hit registered in this replay. The enemy AI update was not shown to progress: its state and cooldown remained unchanged, so the capture does not establish the source attack timing."
+  },
+  "stateProbe": {
+    "path": "/tmp/heroes-lore-runtime-probe/combat-state-probe-v5.jar",
+    "sha256": "a84f661bf265b96862ef05c8e56639677dcd00066533d0e888b7035341904f42",
+    "method": "Attach-only reflection of primitive player/enemy fields; no game methods invoked and no fields written."
+  },
+  "files": [
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/combat-after-3600ms.log",
+      "size": 32650,
+      "sha256": "22d06ded270dc6647a90871ea623e0c2913f77e97b9f337053103dd811049cce"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/combat-after-idle.log",
+      "size": 32653,
+      "sha256": "b0dc498d516ab88a9a61847cd55de20c93340fcd864ea482a65028b72aa1420c"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/combat-baseline.log",
+      "size": 32650,
+      "sha256": "3b61e664923802072fc8056481c6ffedf40d81a025823ab6670634a81a9b7d17"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/framebuffer.log",
+      "size": 2726,
+      "sha256": "dae6a86e321e48e6af40037136926a0b59d97b02e00c988fd89eb6d4bf256381"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/heroes-lore-r10-combat-route.plan",
+      "size": 1649,
+      "sha256": "f5dc0d88e3a2444c40e6d1fd692f6f4d23acae71f8f76c94185608de912d7aa1"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/heroes-lore-r11-incoming.plan",
+      "size": 120,
+      "sha256": "23b2c48d765a0c2d4922eca47fe725e91966ceba94186c0f4a29224712f33622"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/launch.json",
+      "size": 436,
+      "sha256": "57956f8f35f45c72a0386f9da05be0b7bcbb75cd899fb8dd3fc1883080c65662"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/sequence-input.log",
+      "size": 15644,
+      "sha256": "25b112041d8625738cc0e8b5391eb654e5489ff6166267b71be93182691850ee"
+    },
+    {
+      "path": "reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R11/state-before-facing.log",
+      "size": 8808,
+      "sha256": "64a5f1075329bedf95526d1fe6f91fbf56d2cb31a7199b02e55e61219fa6ee52"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/before-raw53-close.png",
+      "size": 23797,
+      "sha256": "40cbe85d9065225d55223f4bd3b594ad324062a1669b4879da7dbc06a319e513",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/m37-after-2400.png",
+      "size": 23178,
+      "sha256": "24862013621bb96805d055513cee4b90fc3457304ab5390e7b3b3053553ad228",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/m37-after-3600.png",
+      "size": 23209,
+      "sha256": "81eadffbfebcebc359592e90afb6fe788dc40b563a66d8addf8710e4de3509b1",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/m37-before-incoming.png",
+      "size": 23272,
+      "sha256": "912031426109f507d120fc41474295c444f4be7b81288cee084cf71a6b9459ca",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p1.png",
+      "size": 24203,
+      "sha256": "796653bd72d0ab637fe8a7f3597b9982e4ff1d46e20389f0e82f7c9a9a80d3c2",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p2.png",
+      "size": 23302,
+      "sha256": "53b428705437f0c4b921645b6e388c57f027fb136ea53e5bffd838a968621ad4",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p3.png",
+      "size": 21913,
+      "sha256": "681d0378dd26d37889e50121683ebc64d85634d43c3619e6aa1ecae6e1f6f3fb",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p4.png",
+      "size": 22156,
+      "sha256": "4362fd910d08d0cb868fcb2d1be399adbd13b7f9d5b7eebe3848a9b560fd01ec",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p5.png",
+      "size": 22582,
+      "sha256": "569236ff87d85682b2a80a6eb0515769663319ce217808aa4482b08e549c7966",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p6.png",
+      "size": 22095,
+      "sha256": "6f12bc6ea9a6266fc6b550e338ed5cfd8868635c02f65a80abf9fa802b0c8823",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    },
+    {
+      "path": "reference/screenshots/M15-SCN-0005-P1M-R11/map27-route-p7.png",
+      "size": 24837,
+      "sha256": "d2de6f6635e7dcd31f690750c6498f7898dcb6a88992dc6803fbd978113fd2dc",
+      "width": 240,
+      "height": 320,
+      "producer": "FreeJ2ME frontbuffer via read-only local sidecar",
+      "availability": "local, Git ignored"
+    }
+  ],
+  "limits": [
+    "This is a controlled FreeJ2ME-Plus replay, not an original handset run.",
+    "Primitive fields were sampled independently and are not an atomic snapshot.",
+    "No attack, damage, or attack-animation transition was observed, and no source timing comparison can be concluded.",
+    "The capture reproduces a nearby behavior-1 enemy and fresh-Ronin HP, but the world-update stagnation makes the attack observation inconclusive."
+  ]
+}

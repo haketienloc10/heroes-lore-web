@@ -1,6 +1,6 @@
 # SCN-0006 — Save/load và vòng đời tiến trình
 
-**Bản gốc:** đã quan sát Save qua UI và load ở PID mới với hai trạng thái; **chưa đạt toàn bộ**, thiếu 3 chu kỳ save/load độc lập mỗi biến thể và trace RMS. **Web:** chưa chạy. JAR/hash, P1, 3 lượt/biến thể và snapshot theo [quy trình](J2ME-RUNTIME-PROTOCOL.md); dùng [mẫu run](RUN_TEMPLATE.md).
+**Bản gốc:** đã quan sát Save qua UI và load ở PID mới với hai trạng thái; **chưa đạt toàn bộ**, thiếu 3 chu kỳ save/load độc lập mỗi biến thể và trace RMS. **Web:** M24 xác nhận localStorage round-trip qua browser process mới cho trạng thái hiện được mô hình hóa; **chưa tương đương schema RMS hoặc lưu đầy đủ game state**. JAR/hash, P1, 3 lượt/biến thể và snapshot theo [quy trình](J2ME-RUNTIME-PROTOCOL.md); dùng [mẫu run](RUN_TEMPLATE.md).
 
 ## Điều kiện
 
@@ -55,3 +55,9 @@ Snapshot **BED-SAVE-001** giữ local; [manifest](../../reverse-engineering/find
 **C — RMS sạch:** R05 và R02/R03/R04 trước đó đã khởi động từ directory mới; menu có Load Game nhưng Down từ New Game bỏ qua tới Options. Không gọi đó là lỗi load/save. Đợt này không thử sửa/hỏng RMS.
 
 **Kết luận có giới hạn:** đã thấy save qua UI và load đúng các trường/điểm neo nêu trên **sau khi JVM cũ đã dừng**, với cả S0 và S2. Mỗi trạng thái mới được save một chu kỳ; nhiều lần load cùng snapshot cho input không phải ba chu kỳ save/load độc lập. Trace RMS/flush/close, 3 chu kỳ A/B, mọi slot/trang bị và biến thể ngôn ngữ còn thiếu; chưa đạt toàn bộ SCN-0006. FPS/callback ordering vẫn chưa xác minh. Tone/MIDI là giới hạn backend emulator riêng, không quy lỗi save hoặc game gốc.
+
+## Browser run M24 — localStorage cold load
+
+Run `M24-SCN-0006`, Chromium `156.0.8078.4`, canvas capture `240×320`; detailed route, state and screenshot hashes are in [capture.json](../../reference/screenshots/web-render/M24-browser-save-load/capture.json). Starting from the New Game route, the web System menu's Save Game action wrote version-1 JSON to `heroes-lore-web:save:v1` at map 64/tile `(9,8)`, facing value `2`. The saved fields were game flags `[0,54,87]`, no quest flags, Guardian indices `[0,1]`, and the current HUD values. After closing Chromium and reopening a new browser process against the same user-data directory, the main menu selected Load Game; Enter restored the bedroom scene at the saved position. Map, collision, decoration and event resources for map 64 each returned HTTP 200. `cold-process-load.png` captures the restored scene; `saved.png` and `loaded.png` preserve the save notice and same-process reload captures. Inputs were synthetic DOM keyboard events through CDP, not physical keyboard input. No JavaScript page exception or game-data request failure was recorded; Chromium requested absent `/favicon.ico` (404).
+
+This is a web-only save contract for state the scene currently models. It does not reproduce the original RMS format and does not save the original inventory, equipment, currency, complete progression or systems that are not implemented. One save and one cold load were exercised; this does not satisfy the original scenario's repeated A/B runs or source-runtime comparison.

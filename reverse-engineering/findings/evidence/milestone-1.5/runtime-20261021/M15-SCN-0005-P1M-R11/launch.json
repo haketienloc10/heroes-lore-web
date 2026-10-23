@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R11",
+  "pid": 527231,
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R11",
+  "inherited_session": "M15-SCN-0001-P1M-R11",
+  "input_method": "FreeJ2ME in-process AWT KeyListener sequence probe; no game-state forcing",
+  "profile": "P1M Motorola, 240x320, limiter60, scale2 requested",
+  "purpose": "Reach the map-27 enemy 24 encounter, then observe incoming melee damage."
+}

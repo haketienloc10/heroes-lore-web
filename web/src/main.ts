@@ -1,8 +1,14 @@
 import Phaser from 'phaser';
-import { BootScene } from './rendering/BootScene';
+import { EndingScene } from './rendering/EndingScene';
+import { WorldScene } from './rendering/WorldScene';
+import { StartupFlowScene } from './world/startup-flow';
+import { mountTouchControls } from './input/touch-controls';
 import './style.css';
 
-// Kích thước tạm cho màn hình thử nghiệm, chưa xác minh từ JAR v2.1.2.
+const touchControls = document.querySelector<HTMLElement>('#touch-controls');
+if (touchControls !== null) mountTouchControls(touchControls);
+
+// Logical viewport matches the FreeJ2ME-Plus Motorola profile used by HOUSE-EXIT-001.
 new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
@@ -16,5 +22,5 @@ new Phaser.Game({
     width: 240,
     height: 320,
   },
-  scene: [BootScene],
+  scene: [StartupFlowScene, WorldScene, EndingScene],
 });

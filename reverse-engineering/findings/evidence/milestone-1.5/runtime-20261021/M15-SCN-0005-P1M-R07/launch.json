@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R07",
+  "pid": 350953,
+  "inherited_session": "M15-SCN-0001-P1M-R07",
+  "menu_run": "M15-SCN-0002-P1M-R07",
+  "profile": "P1M Motorola",
+  "fixture": "New Game / Ronin / Hestia + guardian thứ hai; intro được tạo từ RMS sạch",
+  "input_method": "in-process emulator KeyListener; không thao tác tay hoặc ép state"
+}

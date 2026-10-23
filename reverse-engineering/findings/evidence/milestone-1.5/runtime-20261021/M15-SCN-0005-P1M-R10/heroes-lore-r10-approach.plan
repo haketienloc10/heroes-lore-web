@@ -1,0 +1,10 @@
+# Approach from the observed map-27 spawn (5,37); preserve before-action frame.
+down 39
+wait 725
+up 39
+wait 500
+down 38
+wait 725
+up 38
+wait 500
+frame before-raw53-close

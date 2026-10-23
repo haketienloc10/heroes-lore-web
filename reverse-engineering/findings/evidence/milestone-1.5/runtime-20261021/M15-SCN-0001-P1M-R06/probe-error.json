@@ -1,0 +1,6 @@
+{
+  "status": "aborted-before-gameplay-input",
+  "reason": "The temporary RuntimeStateProbe sidecar was absent; no player input or gameplay behavior was collected.",
+  "emulatorPid": 350292,
+  "emulatorStopped": true
+}

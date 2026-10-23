@@ -1,0 +1,5 @@
+down 40
+wait 1000
+up 40
+wait 3000
+frame after-extra-down

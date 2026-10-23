@@ -1,0 +1,6 @@
+# approach enemy 24 at the nearby (10,31) spawn
+down 39
+wait 725
+up 39
+wait 500
+frame map27-near-enemy

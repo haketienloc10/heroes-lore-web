@@ -1,0 +1,6 @@
+frame map27-before-keypad5
+down 101
+wait 100
+up 101
+wait 800
+frame map27-after-keypad5

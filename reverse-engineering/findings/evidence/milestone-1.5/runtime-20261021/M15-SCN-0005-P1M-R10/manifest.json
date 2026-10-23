@@ -1,0 +1,79 @@
+{
+  "runId": "M15-SCN-0005-P1M-R10",
+  "status": "two repeated source-runtime hits observed; broader combat behavior remains incomplete",
+  "referenceJarSha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "emulator": "FreeJ2ME-Plus 1.52",
+  "profile": "P1M Motorola, portrait 240x320, limiter 60",
+  "launch": "Fresh R10 working directory; startup/menu run M15-SCN-0001-P1M-R10, gameplay run inherited its PID; stopped by harness SIGTERM after captures.",
+  "inputMethod": "In-process synthetic AWT KeyListener on the emulator EventQueue; no game state forcing. Host AWT 101 maps to emulator internal 18 / raw game key 53. The state probe reads primitive fields independently, invokes no game methods and writes no fields.",
+  "route": [
+    "Replayed opening skip and known map-00 route to map 27. The first combined replay captured a loading frame before input was accepted; a later capture confirmed map-27 spawn at (5,37), then the approach plan was applied from that observed spawn.",
+    "Moved to player tile (9,30). A short Right input changed facing; the player remained at (9,30), adjacent east to the target."
+  ],
+  "target": {
+    "enemyId": 24,
+    "originalPlacementTile": [
+      10,
+      31
+    ],
+    "currentTileAtBaseline": [
+      10,
+      30
+    ],
+    "identityTracking": "The same live object was tracked by enemy id and preserved original spawn fields; its current tile and HP were unchanged across each 700 ms action window."
+  },
+  "results": [
+    {
+      "action": "AWT Numpad5 101 down/up, 100 ms hold; raw key 53",
+      "beforeHp": 43,
+      "afterHp": 32,
+      "damageObserved": 11,
+      "screenshots": [
+        "before-action-east.png",
+        "after-raw53.png"
+      ],
+      "stateSnapshots": [
+        "combat-before-action-east.log",
+        "combat-after-raw53.log"
+      ]
+    },
+    {
+      "action": "Repeat identical AWT Numpad5 101 down/up, 100 ms hold; raw key 53",
+      "beforeHp": 32,
+      "afterHp": 21,
+      "damageObserved": 11,
+      "screenshots": [
+        "after-raw53.png",
+        "after-raw53-repeat.png"
+      ],
+      "stateSnapshots": [
+        "combat-before-raw53-repeat.log",
+        "combat-after-raw53-repeat.log"
+      ]
+    }
+  ],
+  "sourceConsistency": "Enemy table data0 record 24 has defense 5 and max HP 43. The initial Ronin player snapshot maps the source attack-power field to 16; neutral-element source arithmetic gives 16-5=11, matching both observed reductions. This is a consistency check for this starter profile and target, not a general combat validation.",
+  "captures": [
+    "map27-route-p1.png",
+    "map27-route-p2.png",
+    "map27-route-p3.png",
+    "map27-route-p4.png",
+    "map27-route-p5.png",
+    "map27-route-p6.png",
+    "map27-route-p7.png",
+    "after-long-sequence.png",
+    "before-raw53-close.png",
+    "before-action-east.png",
+    "after-raw53.png",
+    "after-raw53-repeat.png"
+  ],
+  "limitations": [
+    "One emulator profile, one fresh game route, one enemy species and two successful repeated hits; no miss, death, drop, status, XP, player damage, other character/gear, elemental, skill or RNG behavior was measured.",
+    "The images show the target/HUD and attack frame but no readable floating damage value; HP changes come from the read-only reflective snapshots.",
+    "The browser port still renders only static enemy placements; this runtime result does not mean combat is implemented in the web loop."
+  ],
+  "stop": "stop.json records the harness SIGTERM and process_stopped=true; this was not a game UI quit/save test.",
+  "screenshotsDirectory": "../../../../../../reference/screenshots/M15-SCN-0005-P1M-R10/",
+  "inputLog": "sequence-input.log",
+  "stopRecord": "../M15-SCN-0001-P1M-R10/stop.json"
+}

@@ -1,0 +1,6 @@
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 4
+down 39
+wait 1305
+up 39
+wait 150
+frame map27-route-p4

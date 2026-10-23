@@ -1,0 +1,7 @@
+{
+  "run_id": "M15-SCN-0002-P1M-R10",
+  "pid": 438199,
+  "inherited_session": "M15-SCN-0001-P1M-R10",
+  "input_method": "in-process emulator AWT KeyListener; không ép state",
+  "profile": "P1M Motorola"
+}

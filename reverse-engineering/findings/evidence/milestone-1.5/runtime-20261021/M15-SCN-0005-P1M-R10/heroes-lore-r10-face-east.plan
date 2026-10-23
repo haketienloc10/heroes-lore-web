@@ -1,0 +1,6 @@
+# Face east toward the adjacent enemy tile; capture before raw key 53.
+down 39
+wait 120
+up 39
+wait 300
+frame before-action-east

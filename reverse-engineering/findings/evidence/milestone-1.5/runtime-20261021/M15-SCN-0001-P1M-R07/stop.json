@@ -1,0 +1,5 @@
+{
+  "utc": "2026-10-22T20:39:20.124683+00:00",
+  "method": "SIGTERM do harness gửi; không kiểm thử thoát/save qua UI",
+  "process_stopped": true
+}

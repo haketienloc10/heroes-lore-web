@@ -1,0 +1,59 @@
+{
+  "runId": "M15-SCN-0005-P1M-R08",
+  "scenario": "SCN-0005 gameplay route and one input follow-up",
+  "gameJar": {
+    "path": "original/heroes-lore-v2.1.2.jar",
+    "sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61"
+  },
+  "emulator": {
+    "version": "FreeJ2ME-Plus 1.52",
+    "path": "/home/locdt/tools/freej2me-plus-v1.52/freej2me.jar",
+    "sha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445d8e92dd0297e12df0e",
+    "profile": "P1M Motorola, 240x320, limiter 60, scale 2 requested"
+  },
+  "fixture": "Fresh working directory created by run_runtime_smoke.py; New Game route was replayed. No RMS snapshot was restored.",
+  "route": [
+    "The harness selected New Game, Ronin, Hestia and Ran, then reached the opening dialogue on map 0.",
+    "Synthetic W (AWT 87) skipped the opening to map 64. Two separate synthetic ArrowDown holds of 1000 ms moved into the south room but did not exit; a third 1000 ms hold reached map 0. Emulator console recorded map 0, map 64, map 0 in order.",
+    "The previously recorded map-00 route segments p1 through p7 replayed to map 27; the emulator console recorded map 27.",
+    "A 725 ms synthetic ArrowRight hold approached the enemy area. One synthetic AWT Numpad5 event (host code 101, emulator internal code 18, raw game code 53) was held for 100 ms, followed by an 800 ms wait."
+  ],
+  "inputMethod": "Synthetic calls to the FreeJ2ME AWT KeyListener through the local sequence probe. This was not physical keyboard input; callback tracing was not enabled.",
+  "result": {
+    "map27Reached": true,
+    "visibleEnemyLabel": "Dust!",
+    "attackConfirmed": false,
+    "reason": "Before/after frames show scene motion, but no attributable hit indicator, damage value, target death, or before/after HP measurement was obtained. A single input cannot establish combat behavior."
+  },
+  "screenshots": [
+    {
+      "filename": "map27-route-p7.png",
+      "sha256": "29077e5263922c0af46b3262c590d8c9bbc8863468bac408e9834c90531a58f8"
+    },
+    {
+      "filename": "map27-near-enemy.png",
+      "sha256": "e4f95bbbcca4bd7b4c9f2fd95c8293ec8397ac58be88612f3aa9f43ec14ad1f4"
+    },
+    {
+      "filename": "map27-before-keypad5.png",
+      "sha256": "ad507ac469fca0c70af01b7d24ffa96d236df1e347c3a6010a57378d4996e8ff"
+    },
+    {
+      "filename": "map27-after-keypad5.png",
+      "sha256": "5cd5e3576763a9cdebfd68125c08cb32a7b6db52d2b008b496f9d4bc54b6b322"
+    }
+  ],
+  "limits": [
+    "The R04 two-hold exit was not reproduced with this run's injected input; three separate holds were needed here. Do not treat the runs as equivalent route repetitions.",
+    "No actor/enemy HP or attack callback trace was measured. Combat remains unverified; this run does not support wiring an attack loop into the web port.",
+    "The FreeJ2ME process was stopped by the harness with SIGTERM after capture; this was not a UI-exit test."
+  ],
+  "process": {
+    "pid": 417772,
+    "stopMethod": "Harness SIGTERM after capture",
+    "stopped": true,
+    "sourceRunDirectory": "reference/recordings/M15-SCN-0001-P1M-R08"
+  },
+  "startedAtUtc": "2026-10-22T23:33:15.932625Z",
+  "stoppedAtUtc": "2026-10-22T23:37:24.531763Z"
+}

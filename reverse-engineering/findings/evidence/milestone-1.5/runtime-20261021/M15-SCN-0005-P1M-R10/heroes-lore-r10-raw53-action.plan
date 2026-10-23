@@ -1,0 +1,6 @@
+# One AWT Numpad5 press: emulator maps this to raw game key 53.
+down 101
+wait 100
+up 101
+wait 700
+frame after-raw53

@@ -1,0 +1,6 @@
+# Move right toward the visible map-27 enemy, then inspect before moving vertically.
+down 39
+wait 725
+up 39
+wait 700
+frame after-right-725

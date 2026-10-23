@@ -1,0 +1,9 @@
+down 39
+wait 120
+up 39
+wait 400
+frame m37-before-incoming
+wait 2400
+frame m37-after-2400
+wait 1200
+frame m37-after-3600

@@ -1,0 +1,9 @@
+down 39
+wait 100
+up 39
+wait 200
+down 10
+wait 100
+up 10
+wait 500
+frame map27-after-dismiss-prompt

@@ -4,13 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#101827" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Heroes Lore — Web Port Research</title>
   </head>
   <body>
     <main class="shell">
-      <h1>Heroes Lore — Web Port</h1>
-      <p class="notice">Research scaffold · Chưa có gameplay gốc</p>
-      <div id="game" aria-label="Phaser placeholder"></div>
+      <h1 class="visually-hidden">Heroes Lore: Wind of Soltia</h1>
+      <div id="game" aria-label="Heroes Lore game"></div>
+      <section id="touch-controls" aria-label="Touch controls">
+        <div class="touch-dpad" aria-label="Movement">
+          <button type="button" data-touch-control="up" aria-label="Move up">▲</button>
+          <button type="button" data-touch-control="left" aria-label="Move left">◀</button>
+          <span class="touch-dpad-center" aria-hidden="true"></span>
+          <button type="button" data-touch-control="right" aria-label="Move right">▶</button>
+          <button type="button" data-touch-control="down" aria-label="Move down">▼</button>
+        </div>
+        <div class="touch-actions" aria-label="Actions">
+          <button type="button" data-touch-control="system" aria-label="Open system menu">System</button>
+          <button type="button" data-touch-control="confirm" aria-label="Confirm or interact">OK</button>
+          <button type="button" data-touch-control="attack" aria-label="Attack">Attack</button>
+          <button type="button" data-touch-control="heavy" aria-label="Heavy attack">Heavy</button>
+          <button type="button" data-touch-control="item" aria-label="Select next item">Item</button>
+          <button type="button" data-touch-control="use" aria-label="Use selected item">Use</button>
+        </div>
+      </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

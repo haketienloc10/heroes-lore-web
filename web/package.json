@@ -4,14 +4,17 @@
   "type": "module",
   "version": "0.0.0",
   "scripts": {
+    "predev": "node ../tools/prepare_synth_worklet.mjs",
     "dev": "vite",
+    "prebuild": "node ../tools/prepare_synth_worklet.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "phaser": "^3.90.0"
+    "phaser": "^3.90.0",
+    "spessasynth_lib": "^4.3.14"
   },
   "devDependencies": {
     "typescript": "^5.8.3",

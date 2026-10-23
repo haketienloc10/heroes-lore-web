@@ -1,0 +1,164 @@
+2026-10-22T23:34:14.572827995Z mono_ns=40081162582207 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R08/heroes-lore-r08-to-outside.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-22T23:34:14.581608774Z mono_ns=40081171363565 computed_emulator_mapping host_awt=87 internal=8 raw=-22
+2026-10-22T23:34:14.583777118Z mono_ns=40081173534417 listener_dispatch_begin phase=down code=87
+2026-10-22T23:34:14.585269290Z mono_ns=40081175027168 listener_dispatch_end phase=down code=87
+2026-10-22T23:34:14.586229170Z mono_ns=40081175981838 wait_requested_ms=100
+2026-10-22T23:34:14.687472102Z mono_ns=40081277281608 listener_dispatch_begin phase=up code=87
+2026-10-22T23:34:14.688818270Z mono_ns=40081278607511 listener_dispatch_end phase=up code=87
+2026-10-22T23:34:14.689385494Z mono_ns=40081279181104 wait_requested_ms=2000
+2026-10-22T23:34:16.691236045Z mono_ns=40083281018627 computed_emulator_mapping host_awt=40 internal=1 raw=-6
+2026-10-22T23:34:16.691698181Z mono_ns=40083281438979 listener_dispatch_begin phase=down code=40
+2026-10-22T23:34:16.692171704Z mono_ns=40083281913757 listener_dispatch_end phase=down code=40
+2026-10-22T23:34:16.692757649Z mono_ns=40083282499509 wait_requested_ms=1000
+2026-10-22T23:34:17.693609923Z mono_ns=40084283405050 listener_dispatch_begin phase=up code=40
+2026-10-22T23:34:17.694816070Z mono_ns=40084284589002 listener_dispatch_end phase=up code=40
+2026-10-22T23:34:17.695366600Z mono_ns=40084285290071 wait_requested_ms=1000
+2026-10-22T23:34:18.699345071Z mono_ns=40085289167411 computed_emulator_mapping host_awt=40 internal=1 raw=-6
+2026-10-22T23:34:18.700616838Z mono_ns=40085290615193 listener_dispatch_begin phase=down code=40
+2026-10-22T23:34:18.702941125Z mono_ns=40085292718786 listener_dispatch_end phase=down code=40
+2026-10-22T23:34:18.703476118Z mono_ns=40085293241716 wait_requested_ms=1000
+2026-10-22T23:34:19.704231313Z mono_ns=40086294008202 listener_dispatch_begin phase=up code=40
+2026-10-22T23:34:19.705559146Z mono_ns=40086295329087 listener_dispatch_end phase=up code=40
+2026-10-22T23:34:19.706082077Z mono_ns=40086295848737 wait_requested_ms=3000
+2026-10-22T23:34:22.713730178Z mono_ns=40089303469613 sequence_end
+2026-10-22T23:35:09.121047470Z mono_ns=40134513208794 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R08/heroes-lore-r08-extra-down.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-22T23:35:09.122682823Z mono_ns=40134514832582 computed_emulator_mapping host_awt=40 internal=1 raw=-6
+2026-10-22T23:35:09.123115827Z mono_ns=40134515276958 listener_dispatch_begin phase=down code=40
+2026-10-22T23:35:09.123702353Z mono_ns=40134515846812 listener_dispatch_end phase=down code=40
+2026-10-22T23:35:09.124074063Z mono_ns=40134516217366 wait_requested_ms=1000
+2026-10-22T23:35:10.124691824Z mono_ns=40135516850363 listener_dispatch_begin phase=up code=40
+2026-10-22T23:35:10.125317163Z mono_ns=40135517480137 listener_dispatch_end phase=up code=40
+2026-10-22T23:35:10.125660150Z mono_ns=40135517801434 wait_requested_ms=3000
+2026-10-22T23:35:13.138667479Z mono_ns=40138530814642 sequence_end
+2026-10-22T23:35:35.112623007Z mono_ns=40159302274604 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R08/heroes-lore-r08-to-map27.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-22T23:35:35.119974663Z mono_ns=40159309568146 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-10-22T23:35:35.120483714Z mono_ns=40159310070644 listener_dispatch_begin phase=down code=37
+2026-10-22T23:35:35.121102151Z mono_ns=40159310659012 listener_dispatch_end phase=down code=37
+2026-10-22T23:35:35.121582097Z mono_ns=40159311500459 wait_requested_ms=290
+2026-10-22T23:35:35.413011832Z mono_ns=40159602649455 listener_dispatch_begin phase=up code=37
+2026-10-22T23:35:35.414700221Z mono_ns=40159604532617 listener_dispatch_end phase=up code=37
+2026-10-22T23:35:35.415718131Z mono_ns=40159605300338 wait_requested_ms=100
+2026-10-22T23:35:35.519248579Z mono_ns=40159708840423 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:35.520221771Z mono_ns=40159709807062 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:35.521536900Z mono_ns=40159711131443 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:35.522230220Z mono_ns=40159711817342 wait_requested_ms=145
+2026-10-22T23:35:35.668252378Z mono_ns=40159857829189 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:35.669265758Z mono_ns=40159858838714 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:35.669743873Z mono_ns=40159859304878 wait_requested_ms=100
+2026-10-22T23:35:35.773138433Z mono_ns=40159962729506 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-10-22T23:35:35.774149404Z mono_ns=40159963734984 listener_dispatch_begin phase=down code=37
+2026-10-22T23:35:35.775211260Z mono_ns=40159964827391 listener_dispatch_end phase=down code=37
+2026-10-22T23:35:35.776239386Z mono_ns=40159965818798 wait_requested_ms=145
+2026-10-22T23:35:35.922988113Z mono_ns=40160112796416 listener_dispatch_begin phase=up code=37
+2026-10-22T23:35:35.924502546Z mono_ns=40160114196644 listener_dispatch_end phase=up code=37
+2026-10-22T23:35:35.926762533Z mono_ns=40160116373171 wait_requested_ms=100
+2026-10-22T23:35:36.029769088Z mono_ns=40160219347054 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:36.030983795Z mono_ns=40160220594047 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:36.032397997Z mono_ns=40160222359246 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:36.033197618Z mono_ns=40160222760743 wait_requested_ms=580
+2026-10-22T23:35:36.613842494Z mono_ns=40160803412366 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:36.614980102Z mono_ns=40160804546793 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:36.615795914Z mono_ns=40160805361544 wait_requested_ms=100
+2026-10-22T23:35:36.731255624Z mono_ns=40160920828483 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-10-22T23:35:36.731782987Z mono_ns=40160921352665 listener_dispatch_begin phase=down code=37
+2026-10-22T23:35:36.733818614Z mono_ns=40160923539408 listener_dispatch_end phase=down code=37
+2026-10-22T23:35:36.735093362Z mono_ns=40160924685592 wait_requested_ms=1015
+2026-10-22T23:35:37.750789534Z mono_ns=40161940369043 listener_dispatch_begin phase=up code=37
+2026-10-22T23:35:37.751790097Z mono_ns=40161941369702 listener_dispatch_end phase=up code=37
+2026-10-22T23:35:37.752167789Z mono_ns=40161941729758 wait_requested_ms=100
+2026-10-22T23:35:37.855387717Z mono_ns=40162044954697 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:37.855944763Z mono_ns=40162045581037 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:37.856670754Z mono_ns=40162046231759 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:37.856970576Z mono_ns=40162046531773 wait_requested_ms=290
+2026-10-22T23:35:38.147631626Z mono_ns=40162337197546 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:38.148434139Z mono_ns=40162338001504 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:38.148756319Z mono_ns=40162338310964 wait_requested_ms=100
+2026-10-22T23:35:38.250592885Z mono_ns=40162440153215 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-10-22T23:35:38.251066567Z mono_ns=40162440626511 listener_dispatch_begin phase=down code=37
+2026-10-22T23:35:38.251652140Z mono_ns=40162441221047 listener_dispatch_end phase=down code=37
+2026-10-22T23:35:38.251959960Z mono_ns=40162441514797 wait_requested_ms=145
+2026-10-22T23:35:38.397658782Z mono_ns=40162587225762 listener_dispatch_begin phase=up code=37
+2026-10-22T23:35:38.398342271Z mono_ns=40162587904722 listener_dispatch_end phase=up code=37
+2026-10-22T23:35:38.398700978Z mono_ns=40162588252442 wait_requested_ms=100
+2026-10-22T23:35:38.500513064Z mono_ns=40162690075515 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:38.500927861Z mono_ns=40162690487517 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:38.501540997Z mono_ns=40162691124264 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:38.501826266Z mono_ns=40162691386596 wait_requested_ms=145
+2026-10-22T23:35:38.647382839Z mono_ns=40162836942301 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:38.648403158Z mono_ns=40162837983919 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:38.649031135Z mono_ns=40162838580575 wait_requested_ms=100
+2026-10-22T23:35:38.751323842Z mono_ns=40162940883305 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-10-22T23:35:38.751709341Z mono_ns=40162941260901 listener_dispatch_begin phase=down code=37
+2026-10-22T23:35:38.752202202Z mono_ns=40162941759544 listener_dispatch_end phase=down code=37
+2026-10-22T23:35:38.752381073Z mono_ns=40162941928586 wait_requested_ms=145
+2026-10-22T23:35:38.897797227Z mono_ns=40163087361316 listener_dispatch_begin phase=up code=37
+2026-10-22T23:35:38.898345407Z mono_ns=40163087899955 listener_dispatch_end phase=up code=37
+2026-10-22T23:35:38.898608799Z mono_ns=40163088162576 wait_requested_ms=100
+2026-10-22T23:35:39.000213872Z mono_ns=40163189796080 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:39.000570363Z mono_ns=40163190123561 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:39.000948826Z mono_ns=40163190497784 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:39.001130396Z mono_ns=40163190679354 wait_requested_ms=145
+2026-10-22T23:35:39.147052228Z mono_ns=40163336643688 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:39.148644532Z mono_ns=40163338220764 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:39.149312216Z mono_ns=40163338891146 wait_requested_ms=100
+2026-10-22T23:35:39.251349819Z mono_ns=40163440906969 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-10-22T23:35:39.251727993Z mono_ns=40163441279361 listener_dispatch_begin phase=down code=37
+2026-10-22T23:35:39.252317807Z mono_ns=40163441871101 listener_dispatch_end phase=down code=37
+2026-10-22T23:35:39.252536770Z mono_ns=40163442097968 wait_requested_ms=725
+2026-10-22T23:35:39.978286414Z mono_ns=40164167981861 listener_dispatch_begin phase=up code=37
+2026-10-22T23:35:39.979931241Z mono_ns=40164169520580 listener_dispatch_end phase=up code=37
+2026-10-22T23:35:39.980490600Z mono_ns=40164170065290 wait_requested_ms=100
+2026-10-22T23:35:40.093676060Z mono_ns=40164283229644 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:40.094418242Z mono_ns=40164283975873 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:40.095021162Z mono_ns=40164284574071 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:40.095314334Z mono_ns=40164284869749 wait_requested_ms=1015
+2026-10-22T23:35:41.111114494Z mono_ns=40165300705472 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:41.112472992Z mono_ns=40165302050863 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:41.113121594Z mono_ns=40165302700525 wait_requested_ms=150
+2026-10-22T23:35:41.283994264Z mono_ns=40165473552377 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-10-22T23:35:41.284819617Z mono_ns=40165474376959 listener_dispatch_begin phase=down code=39
+2026-10-22T23:35:41.285886581Z mono_ns=40165475447875 listener_dispatch_end phase=down code=39
+2026-10-22T23:35:41.286605344Z mono_ns=40165476167794 wait_requested_ms=1305
+2026-10-22T23:35:42.592151188Z mono_ns=40166781711615 listener_dispatch_begin phase=up code=39
+2026-10-22T23:35:42.592833136Z mono_ns=40166782387009 listener_dispatch_end phase=up code=39
+2026-10-22T23:35:42.593521733Z mono_ns=40166783072233 wait_requested_ms=150
+2026-10-22T23:35:42.751713898Z mono_ns=40166941266326 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:42.752060751Z mono_ns=40166941612311 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:42.752551491Z mono_ns=40166942122519 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:42.752782019Z mono_ns=40166942342253 wait_requested_ms=725
+2026-10-22T23:35:43.479571022Z mono_ns=40167669152756 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:43.480841702Z mono_ns=40167670408881 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:43.481262081Z mono_ns=40167670824247 wait_requested_ms=150
+2026-10-22T23:35:43.641181787Z mono_ns=40167830752339 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-10-22T23:35:43.641541823Z mono_ns=40167831090686 listener_dispatch_begin phase=down code=39
+2026-10-22T23:35:43.641980421Z mono_ns=40167831531019 listener_dispatch_end phase=down code=39
+2026-10-22T23:35:43.642102071Z mono_ns=40167831647368 wait_requested_ms=290
+2026-10-22T23:35:43.932560345Z mono_ns=40168122135524 listener_dispatch_begin phase=up code=39
+2026-10-22T23:35:43.933253426Z mono_ns=40168122813857 listener_dispatch_end phase=up code=39
+2026-10-22T23:35:43.933506463Z mono_ns=40168123063616 wait_requested_ms=150
+2026-10-22T23:35:44.092406115Z mono_ns=40168281963751 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-10-22T23:35:44.092668406Z mono_ns=40168282216884 listener_dispatch_begin phase=down code=38
+2026-10-22T23:35:44.092996343Z mono_ns=40168282545302 listener_dispatch_end phase=down code=38
+2026-10-22T23:35:44.093109800Z mono_ns=40168282661844 wait_requested_ms=290
+2026-10-22T23:35:44.383536937Z mono_ns=40168573098622 listener_dispatch_begin phase=up code=38
+2026-10-22T23:35:44.384123020Z mono_ns=40168573677667 listener_dispatch_end phase=up code=38
+2026-10-22T23:35:44.384338367Z mono_ns=40168573889736 wait_requested_ms=3000
+2026-10-22T23:35:47.393578252Z mono_ns=40171583126923 sequence_end
+2026-10-22T23:35:55.334840372Z mono_ns=40178327648010 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R08/map27-near-enemy.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-22T23:35:55.336225157Z mono_ns=40178329015539 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-10-22T23:35:55.336547036Z mono_ns=40178329339635 listener_dispatch_begin phase=down code=39
+2026-10-22T23:35:55.336919140Z mono_ns=40178329707497 listener_dispatch_end phase=down code=39
+2026-10-22T23:35:55.337075308Z mono_ns=40178329863183 wait_requested_ms=725
+2026-10-22T23:35:56.062520407Z mono_ns=40179055324477 listener_dispatch_begin phase=up code=39
+2026-10-22T23:35:56.063074899Z mono_ns=40179055900178 listener_dispatch_end phase=up code=39
+2026-10-22T23:35:56.063347421Z mono_ns=40179056139057 wait_requested_ms=500
+2026-10-22T23:35:56.582976230Z mono_ns=40179575770757 sequence_end
+2026-10-22T23:36:05.367551756Z mono_ns=40188360347157 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R08/map27-keypad5.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-10-22T23:36:05.377186477Z mono_ns=40188369981878 computed_emulator_mapping host_awt=101 internal=18 raw=53
+2026-10-22T23:36:05.378227696Z mono_ns=40188371040263 listener_dispatch_begin phase=down code=101
+2026-10-22T23:36:05.379600269Z mono_ns=40188372461053 listener_dispatch_end phase=down code=101
+2026-10-22T23:36:05.380608795Z mono_ns=40188373409018 wait_requested_ms=100
+2026-10-22T23:36:05.481429666Z mono_ns=40188474251876 listener_dispatch_begin phase=up code=101
+2026-10-22T23:36:05.482746209Z mono_ns=40188475554147 listener_dispatch_end phase=up code=101
+2026-10-22T23:36:05.483596485Z mono_ns=40188476459198 wait_requested_ms=800
+2026-10-22T23:36:06.292838390Z mono_ns=40189285623762 sequence_end

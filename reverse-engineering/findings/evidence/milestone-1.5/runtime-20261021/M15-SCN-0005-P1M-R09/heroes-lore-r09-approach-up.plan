@@ -1,0 +1,6 @@
+# Continue upward toward the same visible Dust, then capture before any action key.
+down 38
+wait 725
+up 38
+wait 1000
+frame before-raw53-close

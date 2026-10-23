@@ -1,6 +1,6 @@
 # FND-0003 — Thực nghiệm FreeJ2ME-Plus trên WSLg
 
-**Ngày:** 2026-10-21. **Phạm vi:** tiếp tục M1.5, SCN-0001/0002/0003/0005/0006. **Trạng thái:** đã chạy game và quan sát một phần; **chưa đánh dấu scenario đạt toàn bộ, milestone chưa hoàn thành**. Không sửa JAR gốc hoặc `web/`.
+**Ngày:** 2026-10-21; updated 2026-10-23. **Phạm vi:** tiếp tục M1.5, SCN-0001/0002/0003/0005/0006. **Trạng thái:** đã chạy game và quan sát một phần; **chưa đánh dấu scenario đạt toàn bộ, milestone chưa hoàn thành**. Không sửa JAR gốc hoặc `web/`.
 
 ## Danh tính emulator và game
 
@@ -52,6 +52,7 @@ Input có kiểm soát dùng sidecar agent gọi **KeyListener của LCD emulato
 | `39` Right | `-4` | Chọn guardian/di chuyển |
 | `10` Enter | `-20` | Xác nhận UI; không mặc định là raw `53` |
 | `87` W | `-22` | Quay lại menu, Skip intro, mở/đóng Status; source/bytecode `ar` có normalize `-22→-8` |
+| `101` Numpad 5 | `53` | R07 did not establish a hit; R10 reported internal key `18` and two adjacent attacks reduced the same enemy-24 HP `43→32→21` |
 
 Ở P1 Standard, W/A không làm quay lại màn Ronin trong ảnh đã thu. Source tag cho W raw `-7`, CLR raw `8`; chưa có callback trace chứng minh toàn bộ đường đó. Hàng số trên bàn phím cũng chưa hiệu chuẩn; config 1.52 dùng keycode numpad, nên bảng KEYMAP trên nhánh devel không đủ để cam kết hàng số hoạt động ở build này.
 
@@ -59,7 +60,7 @@ Input có kiểm soát dùng sidecar agent gọi **KeyListener của LCD emulato
 
 Probe và runner: [harness.json](evidence/milestone-1.5/runtime-20261021/harness.json), [scripts](../scripts/). Các probe không transform class; Java 21 có warning dynamic agent loading, được giữ nguyên trong console. Không gộp warning này với exception của game.
 
-## Kết quả thực nghiệm ban đầu (R02/R03/R04)
+## Kết quả gameplay (R02/R03/R04/R07)
 
 Các session có kiểm soát: **P1M-R02/R03/R04**, cùng JAR và RMS sạch, đều hoàn tất chuỗi startup/menu vào intro. Gameplay R02/R03 lặp chuỗi trong nhà; R04 dùng biến thể cửa ra theo hướng dẫn người dùng. Không mô tả thành ba lần lặp cùng toàn bộ gameplay. Lượt Standard và P1M-R01 có input hỗn hợp, giữ làm chẩn đoán riêng. Log, config, ảnh và hash: [runtime evidence](evidence/milestone-1.5/runtime-20261021/README.md).
 
@@ -67,9 +68,9 @@ Các session có kiểm soát: **P1M-R02/R03/R04**, cùng JAR và RMS sạch, đ
 | --- | --- | --- |
 | SCN-0001 | MIDlet `rpg.GameMIDlet` được tạo; Canvas log 240×320; logo ở checkpoint 10 giây, sau Enter vào menu; snapshot controller hiện tại từ `bf` sang `ar` | Thứ tự chính xác constructor/paint/clip; CF-01 theo BCI; lượt có save bổ sung bên dưới; không có thời gian startup chính xác |
 | SCN-0002 | Menu New Game/Load Game/Options/Help/About/Exit; Down từ New Game tới Options ở dữ liệu sạch, Up trở lại; mở Ronin, W quay về; chọn Ronin, Hestia và Ron, Yes; loading rồi intro Roah/Ronin | Cold load bổ sung bên dưới; chưa phủ hết biên menu; CF-02 chưa có method/BCI trace |
-| SCN-0005 | Skip intro → căn nhà và HUD; snapshot `m.e:int=2`; di chuyển bốn hướng, giữ/thả phím; hai lần Right tại mép phải cho vị trí hiển thị không tiến qua mép trong ảnh; W mở/đóng Status. R04 từ giường Down 1 giây hai lần có release/nghỉ giữa đã ra đường phố qua cửa giữa dưới, console map `64→0`; state sau cửa vẫn `2` | Không suy collision formula/hitbox/tốc độ; Enter có được phát nhưng chưa đủ ảnh diễn tiến để xác nhận combat; hai lần thử gần NPC ngoài phố chưa có hội thoại mới; fixture restore bổ sung bên dưới, chưa đủ 3 lượt mỗi biến thể gameplay |
+| SCN-0005 | Skip intro → căn nhà và HUD; snapshot `m.e:int=2`; di chuyển bốn hướng, giữ/thả phím; hai lần Right tại mép phải cho vị trí hiển thị không tiến qua mép trong ảnh; W mở/đóng Status. R04 từ giường Down 1 giây hai lần có release/nghỉ giữa đã ra đường phố qua cửa giữa dưới, console map `64→0`; state sau cửa vẫn `2`. R07 followed the map-00 script-0 transfer to map 27; R10 used the same route and measured two raw-53 hits against adjacent enemy 24, reducing HP `43→32→21`. | Không suy collision formula/hitbox/tốc độ. R07 did not establish damage; R10 confirms only a basic hit in one fresh-game Ronin encounter, not misses, death, drops, rewards, enemy attacks or other character/gear behavior ([R10 manifest](evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R10/manifest.json)). The key-87 follow-up showed an `Are you Sure?` prompt, so there is no HP/SP comparison for R07. Hai lần thử gần NPC ngoài phố chưa có hội thoại mới; fixture restore bổ sung bên dưới, chưa đủ 3 lượt mỗi biến thể gameplay |
 
-Status đã đọc được: Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 74/74, SP 60/60, tiền 800. Đây là mẫu trạng thái của lượt chơi mới đã quan sát, không phải đặc tả mọi nhân vật/save. Tên map trong nhà chưa được UI xác nhận; không đặt tên chỉ từ hình ảnh.
+Status screenshot R02 was read as Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 74/74, SP 60/60, tiền 800. A later R10 read-only player snapshot at map 27 reports current/max HP 72/72, and the source level-1 formula from the inspected attributes also gives 72. Keep the screenshot observation as captured; the discrepancy is unresolved, and the browser's new-game HUD now uses the source fields/formula value pending a source UI comparison. This is one observed fresh-game profile, not a specification for every character/save. Tên map trong nhà chưa được UI xác nhận; không đặt tên chỉ từ hình ảnh.
 
 ## Lỗi, nguyên nhân và mức ảnh hưởng
 
@@ -88,7 +89,7 @@ Không quan sát thấy fatal exception ngăn vào gameplay ở các lượt có
 
 Kết quả trên do **emulator + GUI/sidecar local**, không phải REA. REA vẫn chỉ có identity/inventory từ M1; JADX/`javap` giải thích nhánh và mapping game tĩnh, không biến thành runtime trace. Thay đổi trạng thái được snapshot ở các mốc không chứng minh thứ tự callback/BCI.
 
-Chưa đánh dấu đạt toàn bộ SCN-0001/0002/0005. Cần hoàn tất biến thể/fixture của từng scenario, trace các nhánh CF, đường input vật lý nếu muốn kết luận về bàn phím, dữ liệu timing có sai số/overhead, bổ sung chu kỳ save/load độc lập (cold load đã quan sát bên dưới) và các scenario còn lại. Xem [checklist milestone](../../reference/scenarios/README.md). Kết quả web: chưa chạy; không có thay đổi gameplay web.
+Chưa đánh dấu đạt toàn bộ SCN-0001/0002/0005. Cần hoàn tất biến thể/fixture của từng scenario, trace các nhánh CF, đường input vật lý nếu muốn kết luận về bàn phím, dữ liệu timing có sai số/overhead, bổ sung chu kỳ save/load độc lập (cold load đã quan sát bên dưới) và các scenario còn lại. Xem [checklist milestone](../../reference/scenarios/README.md). Browser M22 hiện có một route/render capture tới map 27 với static enemy sprites; đây không phải combat comparison và không làm SCN-0005 đạt toàn bộ.
 
 ## Tiếp tục: fixture, input và save/load
 

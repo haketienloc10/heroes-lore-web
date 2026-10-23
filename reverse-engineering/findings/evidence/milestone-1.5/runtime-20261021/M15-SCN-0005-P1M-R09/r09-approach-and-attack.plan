@@ -1,0 +1,12 @@
+# Added after reviewing the captured map-27 route frame; individual axis inputs are released before the next.
+down 39
+wait 725
+up 39
+wait 500
+frame before-raw53
+# Probe one longer press of raw key 53 (keypad 5 mapped to game action).
+down 101
+wait 750
+up 101
+wait 2500
+frame after-raw53

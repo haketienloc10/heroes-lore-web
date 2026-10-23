@@ -11,7 +11,10 @@
     "build": "npm run build --workspace web",
     "test": "npm run test --workspace web",
     "typecheck": "npm run typecheck --workspace web",
-    "hash:original": "node tools/hash-original.mjs"
+    "hash:original": "node tools/hash-original.mjs",
+    "assets:extract": "python3 tools/extract_game_assets.py",
+    "soundfont:fetch": "node tools/fetch_game_soundfont.mjs",
+    "audio:setup": "npm run assets:extract && npm run soundfont:fetch"
   },
   "engines": {
     "node": ">=22.19.0"

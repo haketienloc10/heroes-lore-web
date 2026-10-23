@@ -1,0 +1,5 @@
+down 10
+wait 300
+up 10
+wait 1200
+frame map27-after-confirm-no

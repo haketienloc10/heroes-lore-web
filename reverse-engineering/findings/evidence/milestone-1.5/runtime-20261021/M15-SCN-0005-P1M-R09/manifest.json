@@ -1,0 +1,17 @@
+{
+  "runId": "M15-SCN-0005-P1M-R09",
+  "status": "exploratory; superseded by R10 for the combat input comparison",
+  "referenceJarSha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "profile": "FreeJ2ME-Plus 1.52 P1M Motorola, 240x320, limiter 60; fresh working directory",
+  "method": "synthetic in-process AWT KeyListener inputs and read-only reflective state/framebuffer probes; no game state written",
+  "observations": [
+    "Replayed the opening and preserved route to map 27.",
+    "Captured enemy 24 at its original spawn (10,31), then later a player position (8,35) next to an enemy currently at (8,34).",
+    "The reflective state probe was developed during this run and a later snapshot was taken after the game had already reached Game Over."
+  ],
+  "limits": [
+    "No raw key 53 action was sent in this run; r09-approach-and-attack.plan is an unused plan.",
+    "The delayed Game Over snapshot is not an immediate pre-action baseline.",
+    "Use R10 for the actual attack result."
+  ]
+}

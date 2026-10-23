@@ -1,0 +1,10 @@
+# close status and approach the nearest candidate enemy spawn from (5,37)
+down 87
+wait 100
+up 87
+wait 500
+down 38
+wait 725
+up 38
+wait 150
+frame map27-approach-up
