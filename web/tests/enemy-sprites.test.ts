@@ -5,6 +5,7 @@ import {
   findEnemySpriteAnimation,
   findEnemySpriteTrack,
   parseEnemySpriteAnimationCatalog,
+  sourceEnemySpriteStateForRender,
 } from '../src/world/enemy-sprites';
 
 function catalog(): unknown {
@@ -34,6 +35,20 @@ function catalog(): unknown {
 }
 
 describe('enemy sprite animations', () => {
+  it('renders ordinary source death state 5 with the idle track and retires hidden actors', () => {
+    const animation = findEnemySpriteAnimation(parseEnemySpriteAnimationCatalog(catalog()), 24)!;
+    const deathState = sourceEnemySpriteStateForRender('death-pending', 2, true)!;
+    const deathTrack = findEnemySpriteTrack(animation, deathState, 2);
+    expect(deathState).toBe(0);
+    expect(deathTrack.frameCount).toBe(2);
+    expect(advanceEnemySpriteFrame(-1, deathTrack)).toBe(0);
+    expect(advanceEnemySpriteFrame(0, deathTrack)).toBe(1);
+    expect(sourceEnemySpriteStateForRender('death-pending', 2)).toBeNull();
+    expect(sourceEnemySpriteStateForRender('alive', 2)).toBe(2);
+    expect(sourceEnemySpriteStateForRender('respawn-wait', 0, true)).toBeNull();
+    expect(sourceEnemySpriteStateForRender('removed', 0, true)).toBeNull();
+  });
+
   it('parses source draw entries and selects the matching state and direction', () => {
     const parsed = parseEnemySpriteAnimationCatalog(catalog());
     const animation = findEnemySpriteAnimation(parsed, 24);

@@ -1,23 +1,32 @@
 import { describe, expect, it } from 'vitest';
+import enemyData0Raw from '../public/assets/generated/enemy-data/data0.json';
+import enemyData1Raw from '../public/assets/generated/enemy-data/data1.json';
+import enemyData2Raw from '../public/assets/generated/enemy-data/data2.json';
 import {
   advanceEnemyDamageReaction,
   advanceEnemyDeathTick,
   advanceEnemyRespawnDelay,
+  applySourceSkillDamage,
   beginEnemyDamageReaction,
   calculateEnemyDamage,
   calculateEnemyEvasionThreshold,
   consumeEnemyAttackImpactFrame,
   createEnemyCombatants,
   ELEMENTAL_DAMAGE_TENTHS,
+  enemyDataVariantForPlaythroughMode,
   enemyAttackImpactFrame,
   enemyDamageReactionOffset,
+  enemyFootprintWidth,
   findFacingEnemy,
   parseEnemyDataTable,
   resolveBasicAttack,
   resolveEnemyMeleeDefense,
+  selectWeaponProcCode,
+  removeSourceMap13BossCompanions,
   respawnEnemy,
   STARTER_RONIN_ATTACK,
   starterRoninDefenseForLevel,
+  type EnemyCombatant,
 } from '../src/world/combat';
 
 function enemyTableFixture() {
@@ -54,6 +63,18 @@ function starterEnemy() {
 }
 
 describe('source-derived enemy damage rules', () => {
+  it('selects the source enemy table from the persisted playthrough mode', () => {
+    const tables = [enemyData0Raw, enemyData1Raw, enemyData2Raw].map(parseEnemyDataTable);
+    expect(tables.map(({ variant, records }) => [variant, records.length])).toEqual([
+      [0, 43], [1, 43], [2, 43],
+    ]);
+    expect([0, 1, 2, 3, 127].map((mode) =>
+      tables[enemyDataVariantForPlaythroughMode(mode)].variant,
+    )).toEqual([0, 1, 2, 2, 2]);
+    expect(() => enemyDataVariantForPlaythroughMode(-1)).toThrow(RangeError);
+    expect(() => enemyDataVariantForPlaythroughMode(128)).toThrow(RangeError);
+  });
+
   it('preserves the JAR elemental factor table', () => {
     expect(ELEMENTAL_DAMAGE_TENTHS).toEqual([
       [10, 10, 10, 10],
@@ -101,6 +122,143 @@ describe('source-derived enemy damage rules', () => {
     })).toEqual({ afterDefense: 11, afterElement: 11, damage: 11 });
   });
 
+  it('selects weapon then offhand procs with source short-circuit rolls', () => {
+    const rolls = [20, 9];
+    let draws = 0;
+    expect(selectWeaponProcCode(0, 5, () => rolls[draws++])).toBe(5);
+    expect(draws).toBe(2);
+
+    draws = 0;
+    expect(selectWeaponProcCode(0, 5, () => {
+      draws += 1;
+      return 19;
+    })).toBe(0);
+    expect(draws).toBe(1);
+    expect(selectWeaponProcCode(-1, -1, () => {
+      throw new Error('The source does not roll for a missing proc.');
+    })).toBeNull();
+  });
+
+  it('applies source proc damage, resource, and status effects only after a hit', () => {
+    const enemy = starterEnemy()[0];
+    const profile = { ...STARTER_RONIN_ATTACK, power: 25, criticalChance: 0 };
+    const code2 = resolveBasicAttack([enemy], 1, profile, 99, false, 2);
+    expect(code2.kind).toBe('hit');
+    if (code2.kind === 'hit') expect(code2.damage).toBe(enemy.definition.attack);
+
+    const code3 = resolveBasicAttack([enemy], 1, profile, 99, false, 3);
+    expect(code3.kind).toBe('hit');
+    if (code3.kind === 'hit') {
+      expect(code3.damage).toBe(20);
+      expect(code3.playerSpCost).toBe(16);
+      expect(code3.playerHpCost).toBe(0);
+    }
+
+    const code4 = resolveBasicAttack([enemy], 1, profile, 99, false, 4);
+    expect(code4.kind).toBe('hit');
+    if (code4.kind === 'hit') expect(code4.playerHpCost).toBe(10);
+
+    const code8 = resolveBasicAttack([enemy], 1, profile, 99, false, 8);
+    expect(code8.kind).toBe('hit');
+    if (code8.kind === 'hit') expect(code8.damage).toBe(40);
+
+    const code0 = resolveBasicAttack([enemy], 1, profile, 99, false, 0);
+    expect(code0.kind).toBe('hit');
+    if (code0.kind === 'hit') {
+      expect(code0.target.sourceStatusEffects).toEqual([{ id: 0, ticksElapsed: 0 }]);
+      expect(code0.playerHpCost).toBe(0);
+      expect(code0.playerSpCost).toBe(0);
+    }
+  });
+
+  it('applies defense-down and wakes a sleeping target before the evasion roll', () => {
+    const enemy = starterEnemy()[0];
+    const profile = { ...STARTER_RONIN_ATTACK, criticalChance: 0 };
+    const weakened = resolveBasicAttack([{
+      ...enemy,
+      sourceStatusEffects: [{ id: 4, ticksElapsed: 0 }],
+    }], 1, profile, 99);
+    expect(weakened.kind).toBe('hit');
+    if (weakened.kind === 'hit') expect(weakened.damage).toBe(14);
+
+    const sleeping = {
+      ...enemy,
+      definition: { ...enemy.definition, evasion: 100 },
+      sourceStatusEffects: [{ id: 0 as const, ticksElapsed: 5 }],
+    };
+    const missed = resolveBasicAttack([sleeping], 1, profile, 0);
+    expect(missed.kind).toBe('miss');
+    expect(missed.combatants[0].sourceStatusEffects).toEqual([]);
+  });
+
+  it('uses the special au incoming-hit rules for evasion, damage, and status', () => {
+    const enemy = starterEnemy()[0];
+    const profile = { ...STARTER_RONIN_ATTACK, criticalChance: 0 };
+    const evasiveBoss = {
+      ...enemy,
+      sourceAu: true,
+      definition: { ...enemy.definition, evasion: 30 },
+    };
+    const evaded = resolveBasicAttack([evasiveBoss], 1, profile, 60);
+    expect(evaded.kind).toBe('miss');
+    if (evaded.kind === 'miss') expect(evaded.evasionThreshold).toBe(74);
+
+    const sleepingBoss = {
+      ...enemy,
+      sourceAu: true,
+      sourceStatusEffects: [{ id: 0 as const, ticksElapsed: 5 }],
+    };
+    const proc = resolveBasicAttack([sleepingBoss], 1, profile, 99, false, 0);
+    expect(proc.kind).toBe('hit');
+    if (proc.kind === 'hit') {
+      expect(proc.damage).toBe(11);
+      expect(proc.target.sourceStatusEffects).toEqual([{ id: 0, ticksElapsed: 5 }]);
+    }
+
+    const bossCode3 = resolveBasicAttack([{
+      ...enemy,
+      sourceAu: true,
+    }], 1, profile, 99, false, 3);
+    expect(bossCode3.kind).toBe('hit');
+    if (bossCode3.kind === 'hit') {
+      expect(bossCode3.damage).toBe(11);
+      expect(bossCode3.playerSpCost).toBe(3);
+    }
+
+    const bossCode4 = resolveBasicAttack([{
+      ...enemy,
+      sourceAu: true,
+    }], 1, profile, 99, false, 4);
+    expect(bossCode4.kind).toBe('hit');
+    if (bossCode4.kind === 'hit') {
+      expect(bossCode4.damage).toBe(11);
+      expect(bossCode4.playerHpCost).toBe(5);
+    }
+
+    const bossCode8 = resolveBasicAttack([{
+      ...enemy,
+      sourceAu: true,
+    }], 1, profile, 99, false, 8);
+    expect(bossCode8.kind).toBe('hit');
+    if (bossCode8.kind === 'hit') expect(bossCode8.damage).toBe(22);
+
+    const defenseDownBoss = {
+      ...enemy,
+      sourceAu: true,
+      sourceStatusEffects: [{ id: 4 as const, ticksElapsed: 2 }],
+    };
+    const fullDefense = resolveBasicAttack([defenseDownBoss], 1, profile, 99);
+    expect(fullDefense.kind).toBe('hit');
+    if (fullDefense.kind === 'hit') expect(fullDefense.damage).toBe(11);
+
+    const code2 = resolveBasicAttack([{
+      ...enemy,
+      sourceAu: true,
+    }], 1, profile, 99, false, 2);
+    expect(code2.kind).toBe('hit');
+    if (code2.kind === 'hit') expect(code2.damage).toBe(11);
+  });
+
   it('parses source enemy data and initializes a separate HP state for each placement', () => {
     const enemies = createEnemyCombatants([
       { tileX: 10, tileY: 30, enemyId: 24, sourceOrder: 1 },
@@ -116,6 +274,92 @@ describe('source-derived enemy damage rules', () => {
       { sourceOrder: 1, hp: 43, maxHp: 43, actionDelayTicksRemaining: 7 },
       { sourceOrder: 2, hp: 43, maxHp: 43, actionDelayTicksRemaining: 7 },
     ]);
+  });
+
+  it('uses explicit source footprints and removes map-13 companions on lead defeat', () => {
+    const group = createEnemyCombatants([
+      {
+        tileX: 9,
+        tileY: 5,
+        enemyId: 36,
+        sourceOrder: 10,
+        sourceBehavior: 'map13-af',
+        sourceFootprintWidth: 3,
+        sourceGroupId: 'map13-stage-two',
+      },
+      {
+        tileX: 6,
+        tileY: 5,
+        enemyId: 37,
+        sourceOrder: 11,
+        sourceBehavior: 'map13-bc',
+        sourceFootprintWidth: 2,
+        sourceGroupId: 'map13-stage-two',
+      },
+      {
+        tileX: 13,
+        tileY: 5,
+        enemyId: 38,
+        sourceOrder: 12,
+        sourceBehavior: 'map13-cc',
+        sourceFootprintWidth: 2,
+        sourceGroupId: 'map13-stage-two',
+      },
+    ], parseEnemyDataTable(enemyTableFixture()));
+
+    expect(group.map(enemyFootprintWidth)).toEqual([3, 2, 2]);
+    const leadDefeated = group.map((enemy) => enemy.sourceOrder === 10
+      ? { ...enemy, state: 'death-pending' as const, deathUpdatesRemaining: 24 }
+      : enemy);
+    const afterSourceDeath = removeSourceMap13BossCompanions(
+      leadDefeated,
+      new Set([10]),
+    );
+    expect(afterSourceDeath.map(({ state, deathUpdatesRemaining }) => ({
+      state,
+      deathUpdatesRemaining,
+    }))).toEqual([
+      { state: 'death-pending', deathUpdatesRemaining: 24 },
+      { state: 'removed', deathUpdatesRemaining: 0 },
+      { state: 'removed', deathUpdatesRemaining: 0 },
+    ]);
+    expect(afterSourceDeath.slice(1).every(({ sourceAu }) => sourceAu === true)).toBe(true);
+  });
+
+  it('creates map-82 bu as a stationary source au actor with its source death counter', () => {
+    const data = enemyTableFixture();
+    data.records[42].packedAttributes.classCode = 1;
+    data.records[42].packedAttributes.shapeCode = 2;
+    const bu = createEnemyCombatants([{
+      tileX: 7,
+      tileY: 10,
+      enemyId: 42,
+      sourceOrder: 4,
+      spriteId: 1,
+      sourceBehavior: 'map82-bu',
+      deathUpdatesBeforeRemoval: 16,
+      directTypeZeroMarkerOnRemoval: 1,
+    }], parseEnemyDataTable(data))[0];
+
+    expect(bu).toMatchObject({
+      sourceAu: true,
+      sourceBehavior: 'map82-bu',
+      spriteId: 1,
+      tileX: 7,
+      tileY: 10,
+      deathUpdatesBeforeRemoval: 16,
+      directTypeZeroMarkerOnRemoval: 1,
+    });
+    expect(bu.sourceCbAi).toBeUndefined();
+    expect(bu.sourceAqAi).toBeUndefined();
+    expect(bu.sourceMap13Ai).toBeUndefined();
+
+    let dying: EnemyCombatant = { ...bu, state: 'death-pending', deathUpdatesRemaining: 16 };
+    for (let update = 0; update < 16; update += 1) {
+      dying = advanceEnemyDeathTick([dying])[0];
+    }
+    expect(dying).toMatchObject({ state: 'death-pending', deathUpdatesRemaining: 0 });
+    expect(advanceEnemyDeathTick([dying])[0].state).toBe('removed');
   });
 
   it('selects only a living enemy in the cell directly ahead', () => {
@@ -176,6 +420,11 @@ describe('source-derived enemy damage rules', () => {
     expect(enemyDamageReactionOffset(target)).toEqual({ x: 0, y: 0 });
   });
 
+  it('does not apply the ordinary ak hit reaction to au subclasses', () => {
+    const boss = { ...starterEnemy()[0], sourceAu: true };
+    expect(beginEnemyDamageReaction(boss, 4)).toEqual(boss);
+  });
+
   it('uses the source direction vectors for north and west hit reactions', () => {
     expect(enemyDamageReactionOffset({
       ...starterEnemy()[0],
@@ -196,8 +445,32 @@ describe('source-derived enemy damage rules', () => {
     }
     expect(enemies[0].hp).toBe(0);
     expect(enemies[0].state).toBe('death-pending');
+    expect(enemies[0].animationFrameIndex).toBe(-1);
     expect(findFacingEnemy(enemies, 9, 30, 4)).toBeUndefined();
     expect(resolveBasicAttack(enemies, 1, STARTER_RONIN_ATTACK, 99).kind).toBe('no-target');
+  });
+
+  it('preserves the direct source skill death cursor at frame zero', () => {
+    const enemy = starterEnemy()[0];
+    const result = applySourceSkillDamage([enemy], enemy.sourceOrder, 10_000, 0);
+    expect(result.kind).toBe('hit');
+    if (result.kind === 'hit') {
+      expect(result.target.state).toBe('death-pending');
+      expect(result.target.animationFrameIndex).toBe(0);
+    }
+  });
+
+  it('does not wake an au target when direct source skill damage lands', () => {
+    const enemy = {
+      ...starterEnemy()[0],
+      sourceAu: true,
+      sourceStatusEffects: [{ id: 0 as const, ticksElapsed: 5 }],
+    };
+    const result = applySourceSkillDamage([enemy], enemy.sourceOrder, 10, 0);
+    expect(result.kind).toBe('hit');
+    if (result.kind === 'hit') {
+      expect(result.target.sourceStatusEffects).toEqual([{ id: 0, ticksElapsed: 5 }]);
+    }
   });
 
   it('keeps the death state for three source updates and removes it on the fourth', () => {
@@ -271,6 +544,15 @@ describe('source-derived enemy melee damage', () => {
     expect(result).toEqual({ evaded: false, evasionThreshold: 8, damage: 4 });
     expect(rolls).toEqual([[0, 99], [0, 0]]);
     expect(starterRoninDefenseForLevel(3).defense).toBe(6);
+  });
+
+  it('doubles source defense while the player defense skill is active', () => {
+    const result = resolveEnemyMeleeDefense(
+      starterEnemy()[0],
+      { ...starterRoninDefenseForLevel(1), doubleDefense: true },
+      (minimum, maximum) => minimum === 0 && maximum === 99 ? 99 : 0,
+    );
+    expect(result).toEqual({ evaded: false, evasionThreshold: 8, damage: 0 });
   });
 
   it('stops at the source minimum evasion threshold and skips the damage roll', () => {

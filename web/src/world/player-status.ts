@@ -2,10 +2,28 @@ export const POISON_STATUS_ID = 7;
 export const POISON_STATUS_DURATION_TICKS = 80;
 export const POISON_DAMAGE_INTERVAL_TICKS = 10;
 
+/** Source `n.c()` places the oldest status at the right and newer ones left. */
+export function sourcePlayerStatusMarkerHorizontalOffset(index: number, count: number): number {
+  if (!Number.isInteger(index) || !Number.isInteger(count) || count < 1 || index < 0 || index >= count) {
+    throw new RangeError('Status marker index must be within a positive marker count');
+  }
+  return (6 * (count - 1)) - (12 * index);
+}
+
+/** `ce.a(Graphics)` alternates the source icon between two vertical pixels. */
+export function sourcePlayerStatusMarkerBlinkOffset(ticksElapsed: number): 0 | 1 {
+  if (!Number.isInteger(ticksElapsed) || ticksElapsed < 0) {
+    throw new RangeError('Status marker ticks must be a non-negative integer');
+  }
+  return (ticksElapsed % 2) as 0 | 1;
+}
+
 export interface PlayerStatusState {
   /** Active source `ce` status IDs. Only poison (7) has a modeled timer so far. */
   effects: number[];
   poisonTicksElapsed: number | null;
+  /** Source Antidote sets the effect's removal flag; `an.d()` removes it after one more tick. */
+  poisonRemovalPending: boolean;
 }
 
 export interface PlayerStatusTickResult {
@@ -20,7 +38,7 @@ export interface PlayerStatusTickResult {
 }
 
 export function createPlayerStatusState(): PlayerStatusState {
-  return { effects: [], poisonTicksElapsed: null };
+  return { effects: [], poisonTicksElapsed: null, poisonRemovalPending: false };
 }
 
 /** Source `n.m110a(7)` adds poison or refreshes its 80-update timer. */
@@ -30,6 +48,7 @@ export function applyPlayerPoison(state: PlayerStatusState): PlayerStatusState {
       ? [...state.effects]
       : [...state.effects, POISON_STATUS_ID],
     poisonTicksElapsed: 0,
+    poisonRemovalPending: false,
   };
 }
 
@@ -37,11 +56,19 @@ export function applyPlayerPoison(state: PlayerStatusState): PlayerStatusState {
 export function retainPlayerStatusEffects(
   state: PlayerStatusState,
   effectIds: readonly number[],
+  options: { deferPoisonRemoval?: boolean } = {},
 ): PlayerStatusState {
-  const effects = [...new Set(effectIds)];
+  const retainedIds = [...new Set(effectIds)];
+  const deferPoisonRemoval = options.deferPoisonRemoval === true &&
+    state.effects.includes(POISON_STATUS_ID) && !retainedIds.includes(POISON_STATUS_ID);
+  // The source Antidote only marks its `ce` instance expired. `an.d()` still
+  // advances and checks that instance on the next update before removing it.
+  const effects = deferPoisonRemoval ? [...state.effects] : retainedIds;
+  const poisonActive = effects.includes(POISON_STATUS_ID);
   return {
     effects,
-    poisonTicksElapsed: effects.includes(POISON_STATUS_ID) ? state.poisonTicksElapsed : null,
+    poisonTicksElapsed: poisonActive ? state.poisonTicksElapsed : null,
+    poisonRemovalPending: poisonActive && (deferPoisonRemoval || state.poisonRemovalPending),
   };
 }
 
@@ -65,13 +92,14 @@ export function advancePlayerStatusTick(
   const nominalLoss = poisonPulse ? Math.floor(maxHp / 25) : 0;
   const hpLoss = Math.min(nominalLoss, Math.max(0, hp - 1));
   const hpAfter = hp - hpLoss;
-  const expired = ticksElapsed >= POISON_STATUS_DURATION_TICKS;
+  const expired = state.poisonRemovalPending || ticksElapsed >= POISON_STATUS_DURATION_TICKS;
   return {
     state: {
       effects: expired
         ? state.effects.filter((effectId) => effectId !== POISON_STATUS_ID)
         : [...state.effects],
       poisonTicksElapsed: expired ? null : ticksElapsed,
+      poisonRemovalPending: false,
     },
     hp: hpAfter,
     hpLoss,

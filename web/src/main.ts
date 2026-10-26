@@ -1,6 +1,4 @@
 import Phaser from 'phaser';
-import { EndingScene } from './rendering/EndingScene';
-import { WorldScene } from './rendering/WorldScene';
 import { StartupFlowScene } from './world/startup-flow';
 import { mountTouchControls } from './input/touch-controls';
 import './style.css';
@@ -22,5 +20,5 @@ new Phaser.Game({
     width: 240,
     height: 320,
   },
-  scene: [StartupFlowScene, WorldScene, EndingScene],
+  scene: [StartupFlowScene],
 });

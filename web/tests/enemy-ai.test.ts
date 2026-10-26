@@ -5,6 +5,11 @@ import {
   advanceEnemyBehaviorTick,
   advanceEnemyPursuitTick,
   enemyHasPlayerWithinFacingRange,
+  isEnemyWithinSourceViewport,
+  shouldPauseEnemyBrainOffscreen,
+  shouldPauseSourceEnemyBrainOffscreen,
+  updateEnemySourceViewportOnPaint,
+  usesOrdinarySourceEnemyUpdate,
 } from '../src/world/enemy-ai';
 import type { BaseCollisionData } from '../src/world/map-data';
 
@@ -82,6 +87,86 @@ function behaviorTick(
 }
 
 describe('source-derived enemy pursuit locomotion', () => {
+  it('uses the source sprite origin and viewport margins to mark offscreen enemies', () => {
+    const viewport = { x: 0, y: 0, width: 240, height: 320 };
+    expect(isEnemyWithinSourceViewport(enemyAt(5, 5), viewport)).toBe(true);
+    expect(isEnemyWithinSourceViewport({
+      ...enemyAt(5, 5), pixelX: 264,
+    }, viewport)).toBe(false);
+    expect(isEnemyWithinSourceViewport({
+      ...enemyAt(5, 5), pixelY: 345,
+    }, viewport)).toBe(false);
+  });
+
+  it('refreshes the source pause flag only after a paced paint', () => {
+    const viewport = { x: 0, y: 0, width: 240, height: 320 };
+    const initial = [{ ...enemyAt(), sourceRenderedOnScreen: false }];
+
+    const noPaint = updateEnemySourceViewportOnPaint(initial, viewport, 0);
+    expect(noPaint).toBe(initial);
+    expect(noPaint[0]?.sourceRenderedOnScreen).toBe(false);
+
+    const painted = updateEnemySourceViewportOnPaint(initial, viewport, 1);
+    expect(painted[0]?.sourceRenderedOnScreen).toBe(true);
+    expect(updateEnemySourceViewportOnPaint(painted, viewport, 1)[0]?.sourceRenderedOnScreen)
+      .toBe(true);
+  });
+
+  it('pauses an offscreen source actor outside acquisition range unless it retains a target', () => {
+    const offscreen = { ...enemyAt(), sourceRenderedOnScreen: false };
+    expect(shouldPauseEnemyBrainOffscreen(offscreen, 9, 9)).toBe(true);
+    expect(shouldPauseEnemyBrainOffscreen({ ...offscreen, pursuitTarget: 'player' }, 9, 9)).toBe(false);
+    expect(shouldPauseEnemyBrainOffscreen(offscreen, 7, 5)).toBe(false);
+    expect(behaviorTick(offscreen, 9, 9)).toEqual(offscreen);
+    expect(behaviorTick(offscreen, 7, 5).pixelX).not.toBe(offscreen.pixelX);
+  });
+
+  it('applies the ordinary ak offscreen pause only to ordinary update actors', () => {
+    const offscreen = { ...enemyAt(), sourceRenderedOnScreen: false };
+    expect(usesOrdinarySourceEnemyUpdate(offscreen)).toBe(true);
+    expect(shouldPauseSourceEnemyBrainOffscreen(offscreen, 9, 9)).toBe(true);
+
+    const specialActors: EnemyCombatant[] = [
+      { ...offscreen, sourceAu: true },
+      { ...offscreen, sourceBehavior: 'map15-cf' },
+      { ...offscreen, directTypeZeroMarkerOnRemoval: 1 },
+    ];
+    for (const actor of specialActors) {
+      expect(usesOrdinarySourceEnemyUpdate(actor)).toBe(false);
+      expect(shouldPauseSourceEnemyBrainOffscreen(actor, 9, 9)).toBe(false);
+    }
+  });
+
+  it('keeps special actors out of the ordinary pursuit update helpers', () => {
+    const activeOrdinary = {
+      ...enemyAt(), sourceRenderedOnScreen: true,
+      attackCooldownTicksRemaining: 0, actionDelayTicksRemaining: 0,
+    };
+    expect(tick(activeOrdinary, activeOrdinary.tileX, activeOrdinary.tileY + 1))
+      .not.toEqual(activeOrdinary);
+    expect(behaviorTick(activeOrdinary, activeOrdinary.tileX, activeOrdinary.tileY + 1))
+      .not.toEqual(activeOrdinary);
+
+    const specialActors: EnemyCombatant[] = [
+      {
+        ...enemyAt(), sourceAu: true, sourceRenderedOnScreen: true,
+        attackCooldownTicksRemaining: 0, actionDelayTicksRemaining: 0,
+      },
+      {
+        ...enemyAt(), sourceBehavior: 'map15-cf', sourceRenderedOnScreen: true,
+        attackCooldownTicksRemaining: 0, actionDelayTicksRemaining: 0,
+      },
+      {
+        ...enemyAt(), directTypeZeroMarkerOnRemoval: 1, sourceRenderedOnScreen: true,
+        attackCooldownTicksRemaining: 0, actionDelayTicksRemaining: 0,
+      },
+    ];
+    for (const actor of specialActors) {
+      expect(tick(actor, actor.tileX, actor.tileY + 1)).toEqual(actor);
+      expect(behaviorTick(actor, actor.tileX, actor.tileY + 1)).toEqual(actor);
+    }
+  });
+
   it('uses the definition acquisition range and source state-2 south track while approaching', () => {
     const moved = tick(enemyAt(), 5, 7);
     expect(moved).toMatchObject({
@@ -130,6 +215,99 @@ describe('source-derived enemy pursuit locomotion', () => {
       definition: { ...enemyAt().definition, acquisitionRange: 0, extendedProvokedRange: true },
     };
     expect(tick(enemy, 5, 9)).toMatchObject({ animationStateIndex: 1, animationDirection: 2 });
+  });
+
+  it('selects an in-range state-2 player action on the source 7-in-10 roll', () => {
+    const enemy = enemyAt();
+    const moved = advanceEnemyPursuitTick(enemy, {
+      collision: collision(),
+      occupiedCellIndices: new Set([5 * 12 + 5]),
+      playerTileX: 9,
+      playerTileY: 9,
+      playerAction: { tileX: 5, tileY: 7, phase: 2, needsActorTargetReselection: true },
+      randomInteger: (minimum, maximum) => {
+        expect([minimum, maximum]).toEqual([0, 9]);
+        return 6;
+      },
+      rawRandomInteger: () => -1,
+    });
+    expect(moved).toMatchObject({
+      pixelY: 88,
+      animationDirection: 2,
+      pursuitTarget: 'action',
+    });
+  });
+
+  it('retains the action reference during state 2 without another selector roll', () => {
+    const enemy = { ...enemyAt(), pursuitTarget: 'action' as const };
+    const moved = advanceEnemyPursuitTick(enemy, {
+      collision: collision(),
+      occupiedCellIndices: new Set([5 * 12 + 5]),
+      playerTileX: 9,
+      playerTileY: 9,
+      playerAction: { tileX: 10, tileY: 10, phase: 2, needsActorTargetReselection: true },
+      randomInteger: () => { throw new Error('retained target must not roll'); },
+      rawRandomInteger: () => -1,
+    });
+    expect(moved).toMatchObject({ pursuitTarget: 'action', animationStateIndex: 1 });
+  });
+
+  it('retains the actor reference after the action reports its source ten-tick boundary', () => {
+    const enemy = { ...enemyAt(), pursuitTarget: 'player' as const };
+    const moved = advanceEnemyPursuitTick(enemy, {
+      collision: collision(),
+      occupiedCellIndices: new Set([5 * 12 + 5]),
+      playerTileX: 9,
+      playerTileY: 9,
+      playerAction: { tileX: 5, tileY: 7, phase: 2, needsActorTargetReselection: false },
+      randomInteger: () => { throw new Error('retained actor must not roll'); },
+      rawRandomInteger: () => -1,
+    });
+    expect(moved).toMatchObject({ pursuitTarget: 'player', animationStateIndex: 1 });
+  });
+
+  it('falls back to the actor when the action selector roll is outside its 7-in-10 window', () => {
+    const draws: Array<[number, number]> = [];
+    const moved = advanceEnemyPursuitTick(enemyAt(), {
+      collision: collision(),
+      occupiedCellIndices: new Set([5 * 12 + 5]),
+      playerTileX: 5,
+      playerTileY: 7,
+      playerAction: { tileX: 4, tileY: 5, phase: 2, needsActorTargetReselection: true },
+      randomInteger: (minimum, maximum) => {
+        draws.push([minimum, maximum]);
+        return maximum;
+      },
+      rawRandomInteger: () => -1,
+    });
+    expect(moved).toMatchObject({ pursuitTarget: 'player', pixelY: 88 });
+    expect(draws).toEqual([[0, 9]]);
+  });
+
+  it('takes the no-target path when an in-range moving action misses and its player is out of range', () => {
+    const boundedDraws: Array<[number, number]> = [];
+    const rawValues = [1, 7];
+    const moved = advanceEnemyPursuitTick(enemyAt(), {
+      collision: collision(),
+      occupiedCellIndices: new Set([5 * 12 + 5]),
+      playerTileX: 10,
+      playerTileY: 10,
+      playerAction: { tileX: 5, tileY: 7, phase: 2, needsActorTargetReselection: true },
+      randomInteger: (minimum, maximum) => {
+        boundedDraws.push([minimum, maximum]);
+        return maximum;
+      },
+      rawRandomInteger: () => rawValues.shift() ?? -1,
+    });
+
+    expect(moved).toMatchObject({
+      pursuitTarget: null,
+      pixelX: 88,
+      pixelY: 80,
+      animationStateIndex: 1,
+      animationDirection: 4,
+    });
+    expect(boundedDraws).toEqual([[0, 9]]);
   });
 
   it('stops special behavior types at the source three-cell aligned approach threshold', () => {
@@ -304,6 +482,32 @@ describe('source-derived enemy pursuit locomotion', () => {
 });
 
 describe('source-derived ordinary enemy melee state', () => {
+  it('checks for an attack before aligned-boundary pathfinding consumes raw RNG', () => {
+    const sourceEnemy = {
+      ...enemyAt(),
+      definition: { ...enemyAt().definition, behaviorType: 0 as const },
+      animationStateIndex: 1 as const,
+      attackCooldownTicksRemaining: 0,
+      pursuitRetargetProgress: 0,
+    };
+    let rawDraws = 0;
+
+    const attacking = behaviorTick(sourceEnemy, 5, 6, undefined, undefined, () => {
+      rawDraws += 1;
+      return 1;
+    });
+
+    expect(attacking).toMatchObject({
+      animationStateIndex: 2,
+      animationDirection: 2,
+      attackAnimationTicksRemaining: 5,
+      attackCooldownTicksRemaining: 11,
+    });
+    // The one draw is `ak.h()`'s continuation roll. `ak.i()` attacks before
+    // `n.a(cj, byte)` can consume its path-fallback draw.
+    expect(rawDraws).toBe(1);
+  });
+
   it('waits for the initial cooldown and then enters the five-frame attack track', () => {
     let enemy: EnemyCombatant = enemyAt(5, 6);
     for (let update = 0; update < 10; update += 1) {

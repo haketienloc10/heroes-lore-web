@@ -34,8 +34,6 @@ export const NEW_GAME_RONIN_HUD: GameplayHudState = {
   selectedItemCategory: 7,
 };
 
-const HP_BAR_WIDTH = 95;
-
 export function meterFillWidth(value: number, maximum: number, width: number): number {
   if (![value, maximum, width].every(Number.isFinite) || maximum <= 0 || width <= 0) return 0;
   return Math.floor(width * Math.min(maximum, Math.max(0, value)) / maximum);
@@ -84,18 +82,20 @@ export function drawGameplayHud(
     context.drawImage(assets.guardianSkillIcon, 7, 15);
   }
 
-  const hpWidth = meterFillWidth(state.hp, state.maxHp, HP_BAR_WIDTH);
+  // `ar.a(Graphics)` sets source width `o = q.g - 67`, which is 173 at 240 px.
+  const resourceBarWidth = width - 67;
+  const hpWidth = meterFillWidth(state.hp, state.maxHp, resourceBarWidth);
   context.fillStyle = '#ff0000';
   context.fillRect(47, 20, hpWidth, 4);
   context.fillStyle = '#ff9f3f';
   context.fillRect(47, 21, hpWidth, 2);
   drawSmallNumber(context, assets.digits, state.hp, width - 23, 18);
 
-  const spWidth = meterFillWidth(state.sp, state.maxSp, HP_BAR_WIDTH);
+  const spWidth = meterFillWidth(state.sp, state.maxSp, resourceBarWidth);
   context.fillStyle = '#3fffbf';
   context.fillRect(47, 27, spWidth, 2);
   context.fillStyle = '#000000';
-  context.fillRect(47 + spWidth, 27, HP_BAR_WIDTH - spWidth, 2);
+  context.fillRect(47 + spWidth, 27, resourceBarWidth - spWidth, 2);
 
   const experienceWidth = meterFillWidth(
     state.experience,
@@ -107,7 +107,12 @@ export function drawGameplayHud(
   context.fillStyle = '#3f3f3f';
   context.fillRect(2, 32, width - 4, 3);
   context.fillStyle = '#bfbf7f';
-  if (experienceWidth > 0) context.fillRect(3, 33, experienceWidth, 1);
+  if (experienceWidth > 0) {
+    context.fillRect(3, 33, experienceWidth, 1);
+  } else {
+    // J2ME `drawLine(3, y, 2, y)` paints both endpoints for zero EXP.
+    context.fillRect(2, 33, 2, 1);
+  }
 
   // The source puts the selected item category icon and stack count at the right.
   context.drawImage(assets.itemCategoryIcons[state.selectedItemCategory], width - 10 - 11, 19 - 8);

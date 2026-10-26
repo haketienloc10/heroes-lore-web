@@ -5,6 +5,19 @@
 export const DAMAGE_NUMBER_PAINT_PERIOD_MS = 71;
 export const DAMAGE_NUMBER_FRAME_COUNT = 4;
 
+/**
+ * Source `av(7)` chooses font styles 3/1 for nonnegative values and 4/2 for
+ * negative values. In the pinned archive, the latter's `/img/etcui/008` and
+ * `/img/etcui/006` images are transparent 1x1 placeholders, so negative values
+ * have no visible digit frame.
+ */
+export function sourceDamageNumberHasVisibleGlyphs(signedValue: number): boolean {
+  if (!Number.isFinite(signedValue)) {
+    throw new RangeError('Damage number value must be finite');
+  }
+  return signedValue >= 0;
+}
+
 export interface DamageNumberAnimation {
   frame: number;
   remainderMs: number;

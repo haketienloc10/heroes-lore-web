@@ -47,6 +47,12 @@ export interface DynamicMapTileChange {
   collisionValue: number;
 }
 
+export interface DynamicCollisionChange {
+  tileX: number;
+  tileY: number;
+  collisionValue: number;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -219,6 +225,28 @@ export function applyDynamicMapTileChanges(
     map: { ...world.map, tileIds },
     collision: { ...world.collision, values: collisionValues },
   };
+}
+
+/** Apply source enemy collision writes without changing the rendered tile layer. */
+export function applyDynamicCollisionChanges(
+  collision: BaseCollisionData,
+  changes: readonly DynamicCollisionChange[],
+): BaseCollisionData {
+  if (changes.length === 0) return collision;
+  const values = collision.values.map((row) => [...row]);
+  for (const change of changes) {
+    if (!Number.isInteger(change.tileX) || !Number.isInteger(change.tileY) ||
+      change.tileX < 0 || change.tileY < 0 ||
+      change.tileX >= collision.width || change.tileY >= collision.height) {
+      throw new RangeError('Dynamic collision coordinate is outside the map');
+    }
+    if (!Number.isInteger(change.collisionValue) ||
+      change.collisionValue < -128 || change.collisionValue > 127) {
+      throw new RangeError('Dynamic collision value must be a signed byte');
+    }
+    values[change.tileY][change.tileX] = change.collisionValue;
+  }
+  return { ...collision, values };
 }
 
 /** Tests the signed base-cell rule plus an optional precomputed occupancy flag. */

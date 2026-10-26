@@ -1,14 +1,23 @@
 import Phaser from 'phaser';
 import {
+  actorOccupiedCellIndices,
   advanceActor,
   createPlayerActor,
+  displaceActorFromSourceHit,
   didReachMapEventBoundary,
   requestActorDirection,
-  releaseActorDirection,
+  releaseActorDirectionAndCheckBoundary,
   WORLD_UPDATE_PERIOD_MS,
   type Direction,
   type PlayerActor,
 } from '../world/actor';
+import {
+  advanceSourceCameraScroll,
+  sourceEventCameraFocusAction,
+  sourceCameraFollowAxes,
+  sourceCameraScrollTarget,
+  sourceFixedMapCameraScrollTarget,
+} from '../world/source-camera';
 import {
   findSpriteRecord,
   parseCharacterSpriteLayout,
@@ -17,11 +26,20 @@ import {
 } from '../world/character-sprites';
 import {
   heroArmorAtlas,
+  heroEffectAtlasFolder,
   heroHeadAtlas,
   heroHeadLayout,
+  heroShieldAtlas,
+  hasHeroShieldSpriteResources,
+  heroSpriteAtlasAssetBase,
+  heroSpriteLayoutAssetPath,
+  resolveHeroSpriteResourceClass,
   heroWeaponAtlas,
+  heroWeaponAtlasFolder,
+  type HeroSpriteResourceClass,
 } from '../world/hero-sprite-appearance';
 import {
+  applyDynamicCollisionChanges,
   applyDynamicMapTileChanges,
   createWorldGrid,
   parseBaseMapData,
@@ -32,7 +50,11 @@ import {
   type MapDecorationData,
   type WorldGrid,
 } from '../world/map-data';
-import { getMapAssetPaths } from '../world/map-assets';
+import {
+  parseGeneratedAssetPaths,
+  resolveMapAssetPaths,
+  type MapAssetPaths,
+} from '../world/map-assets';
 import {
   applyEventFlagChanges,
   applyInitialMapEventState,
@@ -42,14 +64,35 @@ import {
   resolveEventScriptEffects,
   resolveInteractionScript,
   resolveMapTransition,
+  sourceMapTransitionDirection,
   resolveTriggerScript,
   type DynamicEnemyPlacement,
+  type DynamicNpcPlacement,
   type EventOperationData,
   type EventFlagChange,
   type EventScriptSelection,
   type MapTransition,
   type PreparedMapTransition,
 } from '../world/event-data';
+import {
+  addSourceConstructedMapEnemies,
+  addSourceMap13SecondWaveEnemies,
+} from '../world/source-map-entities';
+import {
+  advanceMap11CbAiTick,
+  advanceMap13AqAiTick,
+  advanceMap13GroupAiTick,
+  advanceMap15AttackerAiTick,
+  advanceMap15HazardAiTick,
+  advanceMap15HazardDeathTick,
+  enterMap15SourceDeathState,
+  resetMap13AqActionWhileBlocked,
+  resetMap13GroupActionWhileBlocked,
+  resetMap15ActionWhileBlocked,
+  sourceCustomEnemyActionContinuesWhileBlocked,
+  sourceMap15HazardCollisionWrites,
+  sourceMap13AfDeathEffectSpawns,
+} from '../world/source-enemy-ai';
 import { bitmapTextWidth, drawBitmapText, type BitmapFontData } from '../ui/bitmap-font';
 import {
   drawGameplayHud,
@@ -57,9 +100,14 @@ import {
   type GameplayHudAssets,
 } from '../ui/game-hud';
 import {
+  advanceSourceInventorySlotSnapshot,
   parseGameSave,
+  preservedSourceInventorySlotIndices,
+  prepareNextSourceCycle,
+  snapshotSourceInventorySlots,
   writeGameSave,
   type GameSaveState,
+  type SourceInventorySlotSnapshot,
 } from '../world/save-data';
 import {
   DEFAULT_GAME_OPTIONS,
@@ -67,6 +115,14 @@ import {
   readGameOptions,
   type GameOptions,
 } from '../world/game-options';
+import { addSourcePlayTimeSeconds } from '../world/play-time';
+import {
+  advanceSourcePaintClock,
+  sourceActorSimulationDelta,
+  sourceGameplaySimulationDelta,
+  shouldResumeSourceEventBeforeWorldUpdate,
+  sourceWorldUpdateScope,
+} from '../world/source-world-update';
 import {
   formatSourceDialogue,
   formatRoninDialogue,
@@ -103,31 +159,89 @@ import {
   consumeEnemyAttackImpactFrame,
   createEnemyCombatants,
   enemyAttackImpactFrame,
+  enemyDataVariantForPlaythroughMode,
   enemyDamageReactionOffset,
   parseEnemyDataTable,
   respawnEnemy,
+  applySourceCounterDamage,
+  applySourceInstantKillDamage,
+  applySourceSkillDamage,
   resolveEnemyMeleeDefense,
+  enemyFootprintWidth,
+  removeSourceMap13BossCompanions,
+  removeSourceMap15HazardCompanions,
   resolveBasicAttack,
+  selectWeaponProcCode,
   starterRoninDefenseForLevel,
   STARTER_RONIN_ATTACK,
   type EnemyCombatant,
   type EnemyDataTable,
 } from '../world/combat';
 import {
+  advanceSourceEnemyStatuses,
+  resetSourceEnemyActionWhileBlocked,
+  sourceEnemyActionIsBlocked,
+} from '../world/enemy-status';
+import {
+  advanceSourceClassEightProjectileTick,
+  beginSourceClassEightProjectile,
+  type SourceClassEightProjectile,
+} from '../world/player-projectiles';
+import {
   advancePlayerCombo,
   cancelPlayerComboFollowUp,
   EMPTY_PLAYER_COMBO,
   playerAttackPower,
   playerAttackSpCost,
-  playerSpriteAnimationSlot,
+  playerSpritePose,
   queuePlayerAttack,
   type PlayerAttackStyle,
   type PlayerComboImpact,
   type PlayerComboState,
 } from '../world/player-combo';
 import {
+  assignPlayerSkillLevelSlot,
+  advancePlayerSkillAction,
+  awardPlayerSkillExperience,
+  createPlayerSkillActionState,
+  PLAYER_SKILL_LEVEL_UNLOCK_RANKS,
+  playerSkillLevelForActionButton,
+  restoreSkillResource,
+  sourceActionNeedsActorTargetReselection,
+  startPlayerSkillAction,
+  type PlayerSkillActionState,
+  type PlayerSkillActionButton,
+  type PlayerSkillLevelSlot,
+  type PlayerSkillVisualSpawn,
+} from '../world/player-skill-action';
+import {
+  advancePlayerSkillAttachedVisuals,
+  createPlayerSkillAttachedVisual,
+  playerSkillAuraLayers,
+  sourceInstantKillAttachedVisualSpawn,
+  type ActivePlayerSkillAttachedVisual,
+  type PlayerSkillAttachedVisualTarget,
+} from '../world/player-skill-attached-visuals';
+import { advanceSourceEmotionFrame } from '../world/source-emotion';
+import {
+  findPlayerSkillEffect,
+  parsePlayerSkillEffectCatalog,
+  playerSkillEffectFrameComponents,
+  playerSkillEffectFrameCount,
+  type PlayerSkillEffectCatalog,
+  type PlayerSkillEffectType,
+} from '../world/player-skill-effects';
+import {
+  getPlayerSkillActionState,
+  playerSkillDescriptionStringId,
+  playerSkillNameStringId,
+  selectActivePlayerSkill,
+  sourcePlayerSkillElement,
+} from '../world/player-skills';
+import {
   selectPlayerAttackTargets,
-  sourceClassSixLungeDistance,
+  resolveSourceClassSixLungeImpact,
+  findEnemyOccupyingSourceCell,
 } from '../world/player-attack-targeting';
 import {
   advanceEnemySpriteFrame,
@@ -135,14 +249,39 @@ import {
   findEnemySpriteAnimation,
   findEnemySpriteTrack,
   parseEnemySpriteAnimationCatalog,
+  sourceEnemySpriteStateForRender,
   type EnemySpriteAnimation,
 } from '../world/enemy-sprites';
 import {
-  advanceNpcSpriteFrame,
+  advanceBossSpriteFrame,
+  bossSpriteFrameAt,
+  findBossSpriteTrack,
+  MAP13_AF_RENDER_SPRITE_ID,
+  MAP11_CB_RENDER_SPRITE_ID,
+  MAP13_AQ_RENDER_SPRITE_ID,
+  MAP13_BC_RENDER_SPRITE_ID,
+  MAP13_CC_RENDER_SPRITE_ID,
+  MAP15_AJ_RENDER_SPRITE_ID,
+  MAP15_AZ_RENDER_SPRITE_ID,
+  MAP15_CF_RENDER_SPRITE_ID,
+  parseBossSpriteAnimationCatalog,
+  parseBossAttackEffectCatalog,
+  sourceBossDeathSpriteState,
+  type BossAttackEffect,
+  type BossSpriteAnimation,
+  type BossSpriteState,
+} from '../world/boss-sprites';
+import {
+  advanceNpcSpriteFrames,
+  adaptEnemyAnimationForNpc,
   findNpcSpriteAnimation,
   findNpcSpriteTrack,
+  isNpcWithinSourceViewport,
   npcSpriteFrameAt,
   parseNpcSpriteAnimationCatalog,
+  resolveNpcSpriteRenderPlacements,
+  sourceEnemySpriteIdForNpc,
+  sourceNpcTextureSource,
   type NpcSpriteAnimation,
   type NpcSpriteState,
 } from '../world/npc-sprites';
@@ -151,12 +290,25 @@ import {
   advanceEnemyAttackEffect,
   advanceEnemyProjectileTick,
   beginEnemyProjectile,
+  beginEnemyProjectileAtCell,
   parseEnemyAttackEffectCatalog,
   type EnemyAttackEffect,
   type EnemyAttackEffectAnimation,
   type EnemyProjectile,
 } from '../world/enemy-attacks';
-import { awardEnemyExperience, awardSourceExperience } from '../world/progression';
+import { awardSourceExperience, enemyExperienceSourceAmount } from '../world/progression';
+import {
+  SOURCE_PLAYER_LEVEL_UP_ATLAS_FRAME_COUNT,
+  advanceSourcePlayerLevelUpAtlasAnimation,
+  advanceSourcePlayerLevelUpFlash,
+  createSourcePlayerLevelUpAtlasAnimation,
+  createSourcePlayerLevelUpFlash,
+  parsePlayerLevelUpEffectCatalog,
+  sourcePlayerLevelUpFlashIsVisible,
+  type PlayerLevelUpEffect,
+  type SourcePlayerLevelUpAtlasAnimation,
+  type SourcePlayerLevelUpFlash,
+} from '../world/player-level-up-effects';
 import { createRuntimeSourceRandomStreams } from '../world/source-random';
 import {
   createSourceEquipmentInventoryState,
@@ -168,6 +320,9 @@ import {
   calculateEquipmentStats,
   cloneEquipmentLoadout,
   createStartingEquipment,
+  EQUIPMENT_SLOT_LABELS,
+  equipmentInventoryIndicesForSlot,
+  equipmentSlotForCategory,
   equipInventoryItem,
   normalizeEquipmentInventory,
   type EquipmentLoadout,
@@ -191,6 +346,9 @@ import {
   advanceEnemyBehaviorTick,
   enemyFacesPlayer,
   enemyHasPlayerWithinFacingRange,
+  shouldPauseSourceEnemyBrainOffscreen,
+  updateEnemySourceViewportOnPaint,
+  usesOrdinarySourceEnemyUpdate,
 } from '../world/enemy-ai';
 import {
   advanceGroundDropTicks,
@@ -202,6 +360,7 @@ import {
   pickupGroundDrop,
   rollEnemyDrops,
   selectedConsumableCount,
+  useConsumableAtIndex,
   useSelectedConsumable,
   type GroundDrop,
   type InventoryStack,
@@ -217,6 +376,8 @@ import {
   createPlayerStatusState,
   enemyHitAppliesPoison,
   retainPlayerStatusEffects,
+  sourcePlayerStatusMarkerBlinkOffset,
+  sourcePlayerStatusMarkerHorizontalOffset,
   type PlayerStatusState,
 } from '../world/player-status';
 import {
@@ -226,10 +387,23 @@ import {
   type PlayerRecoveryState,
 } from '../world/player-recovery';
 import {
+  consumePlayerHitRenderOffset,
+  EMPTY_PLAYER_HIT_FEEDBACK,
+  recordPlayerHitFeedback,
+  type PlayerHitFeedbackState,
+} from '../world/player-hit-feedback';
+import {
   advanceDamageNumberAnimation,
   INITIAL_DAMAGE_NUMBER_ANIMATION,
+  sourceDamageNumberHasVisibleGlyphs,
   type DamageNumberAnimation,
 } from '../world/combat-feedback';
+import {
+  advanceSourceWeaponProcFeedback as advanceWeaponProcFeedbackAnimation,
+  createSourceWeaponProcFeedbackAnimation,
+  sourceWeaponProcEmotionImageIndex,
+  type SourceWeaponProcFeedbackAnimation,
+} from '../world/weapon-proc-feedback';
 import {
   advanceGameOverSequence,
   beginGameOverSequence,
@@ -237,16 +411,8 @@ import {
 } from '../world/game-over';
 
 const MAP_IDS = [64, 0, 27] as const;
-const BODY_LAYOUT_RESOURCE = '/assets/generated/character-layouts/1/b.json';
-const ARMOR_LAYOUT_RESOURCE = '/assets/generated/character-layouts/1/a.json';
-const EFFECT_LAYOUT_RESOURCE = '/assets/generated/character-layouts/1/e.json';
-const HEAD_LAYOUT_RESOURCE = '/assets/generated/character-layouts/1/hA.json';
-const ALTERNATE_HEAD_LAYOUT_RESOURCE = '/assets/generated/character-layouts/1/hB.json';
-const WEAPON_LAYOUT_RESOURCE = '/assets/generated/character-layouts/1/w.json';
 const HERO_SOURCE_ANIMATION_SLOTS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
-const HERO_IMAGE_BASE = '/assets/generated/atlases/c1/i';
-const CAMERA_FOCUS_X = 112;
-const CAMERA_FOCUS_Y = 139;
+const HERO_LAYOUT_PARTS = ['a', 'b', 'e', 'hA', 'hB', 'w'] as const;
 // Fresh-game setup clears the bitfield and sets flag 0 before loading map 00.
 const OBSERVED_NEW_GAME_FLAGS = new Set([0]);
 const NEW_GAME_START = { mapId: 0, tileX: 22, tileY: 4 };
@@ -254,20 +420,64 @@ const OPENING_SCRIPT_TRIGGER = 10;
 const OPENING_SCRIPT_TRIGGER_TYPE = 0;
 const OPENING_SCRIPT_INDEX = 9;
 const ENEMY_ANIMATION_CATALOG = '/assets/generated/enemy-animations/catalog.json';
+const BOSS_ANIMATION_CATALOG = '/assets/generated/boss-animations/catalog.json';
+const BOSS_ATTACK_EFFECT_CATALOG = '/assets/generated/boss-attack-effects/catalog.json';
 const ENEMY_ATTACK_EFFECT_CATALOG = '/assets/generated/enemy-attack-effects/catalog.json';
+const PLAYER_SKILL_EFFECT_CATALOG = '/assets/generated/player-skill-effects/catalog.json';
 const NPC_ANIMATION_CATALOG = '/assets/generated/npc-animations/catalog.json';
-const EQUIPMENT_CATEGORY_LABELS: Record<number, string> = {
-  0: 'SWORD',
-  1: 'STAFF',
-  2: 'BLADE',
-  3: 'ARMOR',
-  4: 'RING',
-  5: 'SHIELD',
-  6: 'BOOTS',
-};
-
+const PLAYER_SKILL_ATLAS_IMAGE_COUNTS = { fi: 13, wa: 15, gr: 15 } as const;
 type EnemyTextureSet = Map<number, string>;
 type EnemyTextureSets = Map<number, EnemyTextureSet>;
+
+function enemyRenderAnimationState(
+  enemy: EnemyCombatant,
+  bossAnimation?: BossSpriteAnimation,
+): number {
+  if (enemy.sourceAu === true && enemy.state === 'death-pending') {
+    return bossAnimation === undefined
+      ? 0
+      : sourceBossDeathSpriteState(bossAnimation, enemy.animationDirection ?? 2);
+  }
+  if (usesOrdinarySourceEnemyUpdate(enemy)) {
+    return sourceEnemySpriteStateForRender(
+      enemy.state,
+      enemy.animationStateIndex ?? 0,
+      true,
+    ) ?? 0;
+  }
+  const map15State = enemy.sourceMap15Ai;
+  if (map15State !== undefined) {
+    if (enemy.state === 'death-pending' || map15State.state === 5) {
+      return map15State.role === 'cf' ? 2 : 0;
+    }
+    if (map15State.state === 3) return 3;
+    if (map15State.state === 2) return map15State.role === 'cf' ? 1 : 0;
+    return 0;
+  }
+  const aqState = enemy.sourceAqAi?.state;
+  if (aqState !== undefined) return aqState === 2 ? 1 : aqState === 3 ? 3 : 0;
+  const sourceState = enemy.sourceCbAi?.state;
+  if (sourceState === undefined) {
+    if (enemy.sourceBehavior?.startsWith('map13-')) {
+      return enemy.animationStateIndex === 2 ? 3 : enemy.animationStateIndex ?? 0;
+    }
+    return enemy.animationStateIndex ?? 0;
+  }
+  if (sourceState === 2) return 1;
+  if (sourceState === 3) return enemy.sourceCbAi!.attackType + 2;
+  return 0;
+}
+
+function sourceMapSpawnRenderSpriteIds(mapId: number): number[] {
+  if (mapId === 13) {
+    return [MAP13_AF_RENDER_SPRITE_ID, MAP13_BC_RENDER_SPRITE_ID, MAP13_CC_RENDER_SPRITE_ID];
+  }
+  if (mapId === 15) {
+    return [MAP15_CF_RENDER_SPRITE_ID, MAP15_AZ_RENDER_SPRITE_ID, MAP15_AJ_RENDER_SPRITE_ID];
+  }
+  return [];
+}
+
 type NpcTextureKeys = Map<string, string>;
 type RenderedMapObject = Phaser.GameObjects.Image | Phaser.GameObjects.Container;
 
@@ -276,12 +486,27 @@ function getEventTileIds(events: EventOperationData): number[] {
   for (const script of events.scripts) {
     for (let index = 0; index + 1 < script.length; index += 1) {
       if (script[index][0] === 42 && script[index + 1][0] === 43) {
-        tileIds.add(script[index + 1][2]);
+        // Tile 128 is the source event's empty-tile sentinel, not an atlas image.
+        if (script[index + 1][2] !== 128) tileIds.add(script[index + 1][2]);
         index += 1;
       }
     }
   }
   return [...tileIds];
+}
+
+function resolveTextTableStrings(tableValue: unknown, localeValue: unknown): string[] {
+  if (typeof tableValue !== 'object' || tableValue === null ||
+    !('format' in tableValue) || tableValue.format !== 'heroes-lore-text-table-v1' ||
+    !('stringIds' in tableValue) || !Array.isArray(tableValue.stringIds)) return [];
+  const resolved: string[] = [];
+  for (const id of tableValue.stringIds) {
+    if (!Number.isInteger(id)) return [];
+    const text = resolveLanguageString(localeValue, Number(id));
+    if (text === undefined) return [];
+    resolved.push(text);
+  }
+  return resolved;
 }
 
 interface NpcActorSprite {
@@ -300,17 +525,30 @@ interface NpcActorSprite {
 interface RenderedWorld {
   world: WorldGrid;
   tilesetId: number;
+  /** Initial player emotion selected by the map's source action block, if any. */
+  startupHeroEmotion: number | null | undefined;
   events: EventOperationData;
   tileKeys: Map<number, string>;
+  objectTextureKeys: Map<number, string>;
+  decorationObjectCount: number;
+  decorationSprites: Map<number, Phaser.GameObjects.Image>;
   enemies: EnemyCombatant[];
   enemySprites: Map<number, Phaser.GameObjects.Container>;
+  enemyStatusDisplays: Map<number, EnemyStatusSpriteDisplay>;
   npcSprites: Map<number, NpcActorSprite>;
   enemyTextureKeys: EnemyTextureSets;
   enemyProjectiles: EnemyProjectile[];
   enemyProjectileSprites: Map<number, Phaser.GameObjects.Container>;
+  playerProjectiles: SourceClassEightProjectile[];
+  nextPlayerProjectileId: number;
   enemyAttackAnimations: EnemyAttackEffectAnimation[];
   enemyAttackSprites: Map<number, Phaser.GameObjects.Container>;
   nextEnemyAttackVisualId: number;
+  playerSkillVisuals: ActivePlayerSkillVisual[];
+  playerSkillVisualSprites: Map<number, Phaser.GameObjects.Container>;
+  nextPlayerSkillVisualId: number;
+  enemyAttachedSkillVisuals: ActivePlayerSkillAttachedVisual[];
+  enemyAttachedSkillVisualSprites: Map<number, Phaser.GameObjects.Container>;
   groundDrops: GroundDrop[];
   groundDropSprites: Map<number, Phaser.GameObjects.Image>;
   nextGroundDropId: number;
@@ -323,12 +561,40 @@ interface RenderedWorld {
   objects: RenderedMapObject[];
 }
 
+interface EnemyStatusSpriteDisplay {
+  container: Phaser.GameObjects.Container;
+  signature: string;
+  icons: Map<number, Phaser.GameObjects.Image>;
+}
+
+interface ActivePlayerSkillVisual extends PlayerSkillVisualSpawn {
+  id: number;
+  frameIndex: number;
+}
+
 interface DamageNumberPopup {
   mapId: number;
+  effectOwner: 'hero' | 'map';
   frames: Phaser.GameObjects.Image[];
   baseX: number;
   baseY: number;
   animation: DamageNumberAnimation;
+}
+
+interface ActiveSourcePlayerLevelUpFlash {
+  animation: SourcePlayerLevelUpFlash;
+  sprite: Phaser.GameObjects.Image;
+}
+
+interface ActiveSourcePlayerLevelUpAtlasEffect {
+  animation: SourcePlayerLevelUpAtlasAnimation;
+  components: Array<{ frameIndex: number; sprite: Phaser.GameObjects.Image }>;
+}
+
+interface ActiveSourceWeaponProcFeedback {
+  animation: SourceWeaponProcFeedbackAnimation;
+  emotionImageIndex: number;
+  sprite: Phaser.GameObjects.Image;
 }
 
 type CommerceScreen =
@@ -343,6 +609,7 @@ interface CommerceMenuSession {
   selection: number;
   quantity: number;
   item: CommerceItemReference | null;
+  selectedInventoryIndex: number | null;
   target: EquipmentTarget | null;
   pendingAction: CommercePendingAction | null;
   pendingReturn: CommerceScreen;
@@ -357,16 +624,34 @@ export class WorldScene extends Phaser.Scene {
   private readonly randomStreams = createRuntimeSourceRandomStreams();
   private actor: PlayerActor = createPlayerActor();
   private playerCombo: PlayerComboState = { ...EMPTY_PLAYER_COMBO };
+  private playerHitFeedback: PlayerHitFeedbackState = { ...EMPTY_PLAYER_HIT_FEEDBACK };
+  private playerSkillAction: PlayerSkillActionState = createPlayerSkillActionState(0);
+  private playerSkillActionStates = new Map<number, PlayerSkillActionState>();
+  private nextPlayerSkillActionId = 1;
+  private playerAttachedSkillVisuals: ActivePlayerSkillAttachedVisual[] = [];
+  private playerAttachedSkillVisualSprites = new Map<number, Phaser.GameObjects.Container>();
+  private nextPlayerAttachedSkillVisualId = 1;
   private world: WorldGrid | null = null;
   private maps = new Map<number, RenderedWorld>();
   private enemyDataTable: EnemyDataTable | null = null;
   private equipmentDataTable: EquipmentDataTable | null = null;
   private commerceCatalog: CommerceCatalog | null = null;
   private enemyAnimations = new Map<number, EnemySpriteAnimation>();
+  private bossAnimations = new Map<number, BossSpriteAnimation>();
+  private bossAttackEffects = new Map<number, BossAttackEffect>();
   private npcAnimations = new Map<number, NpcSpriteAnimation>();
+  private pendingNpcAnimationPasses = 0;
+  private sourcePaintRemainderMs = 0;
+  private pendingSkillAttachedVisualPasses = 0;
   private enemyAttackEffects = new Map<number, EnemyAttackEffect>();
+  private playerSkillEffects: PlayerSkillEffectCatalog | null = null;
+  private playerLevelUpEffect: PlayerLevelUpEffect | null = null;
   private damageNumberPopups: DamageNumberPopup[] = [];
+  private playerLevelUpFlashes: ActiveSourcePlayerLevelUpFlash[] = [];
+  private playerLevelUpAtlasEffects: ActiveSourcePlayerLevelUpAtlasEffect[] = [];
   private mapIdsToLoad: number[] = [...MAP_IDS];
+  private generatedAssetPaths: ReadonlySet<string> = new Set();
+  private preloadedMapAssetPaths = new Map<number, MapAssetPaths>();
   private currentMapId = 64;
   private loadingMapTransition = false;
   private unavailableMapIds = new Set<number>();
@@ -380,10 +665,18 @@ export class WorldScene extends Phaser.Scene {
   private gameplayHudContext: CanvasRenderingContext2D | null = null;
   private gameplayHudAssets: GameplayHudAssets | null = null;
   private gameplayHudTexture: Phaser.Textures.CanvasTexture | null = null;
+  private pickupNoticeCanvas: HTMLCanvasElement | null = null;
+  private pickupNoticeContext: CanvasRenderingContext2D | null = null;
+  private pickupNoticeTexture: Phaser.Textures.CanvasTexture | null = null;
+  private pickupNoticeOverlay: Phaser.GameObjects.Image | null = null;
+  private pickupNoticeTicksRemaining = 0;
+  private pickupNoticeText = '';
   private playerStatusContainer: Phaser.GameObjects.Container | null = null;
-  private playerStatusPoisonIcon: Phaser.GameObjects.Image | null = null;
+  private playerStatusMarkerOrder: number[] = [];
+  private playerStatusMarkerContainers = new Map<number, Phaser.GameObjects.Container>();
+  private playerStatusMarkerIcons = new Map<number, Phaser.GameObjects.Image>();
   private heroEmotionImage: Phaser.GameObjects.Image | null = null;
-  private eventEmotionFrame = 0;
+  private sourceWeaponProcFeedback: ActiveSourceWeaponProcFeedback[] = [];
   private openingDialogueText = '[Ron] Are you sure you want to quit your job?';
   private dialogueRevealElapsedMs = 0;
   private openingDialoguePages = ['[Ron] Are you sure you want to quit your job?'];
@@ -394,21 +687,38 @@ export class WorldScene extends Phaser.Scene {
   private openingCutsceneAppliedFlagCount = 0;
   private openingCutsceneAppliedPlayerChangeCount = 0;
   private openingCutsceneAppliedTileChangeCount = 0;
+  private openingCutsceneAppliedHeroPositionChangeCount = 0;
   private openingCutsceneUsesRoninFormatting = false;
   private openingCutsceneBlankOverlay: Phaser.GameObjects.Rectangle | null = null;
   private eventCameraBaseScroll: { x: number; y: number } | null = null;
+  private sourceCameraBaseScroll: { x: number; y: number } | null = null;
+  private sourceCameraShakeOffset: { x: number; y: number } | null = null;
   private worldLanguage: unknown = null;
+  private itemCategoryNames: string[] = [];
   private pendingWorldDialogueFlags: EventFlagChange[] = [];
   private pendingWorldDialogueTransition: MapTransition | undefined;
   private initialGuardianIndex = 0;
   private guardianIndices: number[] = [0, 1];
   private heroClassId: EndingHeroClassId = 6;
+  private heroSpriteResourceClass: HeroSpriteResourceClass = 1;
+  private unavailableSourceAssetsMessage: string | null = null;
+  private hasHeroShieldLayout = false;
+  private playthroughMode = 0;
+  private completionPoints = 0;
+  private playTimeSeconds = 0;
+  private playTimeSessionStartedAtMs = 0;
   private characterAttributes: PlayerAttributes = createBasePlayerAttributes(6);
   private skillIds: number[] = [0, 1];
+  private activeSkillId = 0;
   private comboLimit = 1;
   private hudState = { ...NEW_GAME_RONIN_HUD };
   private wallet = NEW_GAME_WALLET;
-  private inventory: InventoryStack[] = [];
+  private inventoryValue: InventoryStack[] = [];
+  private specialInventoryValue: InventoryStack[] = [];
+  private preservedSourceRmsInventorySlots: {
+    regular: SourceInventorySlotSnapshot | null;
+    special: SourceInventorySlotSnapshot | null;
+  } | null = null;
   private equipmentSlots: EquipmentLoadout = [null, null, null, null, null];
   private savedEquipmentLoadoutPresent = false;
   private equipmentStats: EquipmentStats | null = null;
@@ -422,13 +732,21 @@ export class WorldScene extends Phaser.Scene {
   private headLayout: CharacterSpriteLayout | null = null;
   private alternateHeadLayout: CharacterSpriteLayout | null = null;
   private weaponLayout: CharacterSpriteLayout | null = null;
+  private shieldLayout: CharacterSpriteLayout | null = null;
   private heroContainer: Phaser.GameObjects.Container | null = null;
   private heroParts = new Map<number, Phaser.GameObjects.Image>();
   private pressedDirections: Array<{ code: string; direction: Direction }> = [];
   private systemMenuVisible = false;
   private systemMenuSelection = 0;
+  private skillMenuVisible = false;
+  private skillLevelMenuVisible = false;
+  private skillSelection = 0;
+  private skillLevelActionButton: PlayerSkillActionButton = '1';
+  private skillLevelSelection: PlayerSkillLevelSlot = 0;
   private inventoryMenuVisible = false;
   private inventorySelection = 0;
+  private equipmentMenuMode: 'slots' | 'slot-items' | 'bag' = 'slots';
+  private equipmentSlotSelection = 0;
   private attributeMenuVisible = false;
   private attributeConfirmationVisible = false;
   private attributeConfirmationSelection: 0 | 1 = 0;
@@ -455,13 +773,23 @@ export class WorldScene extends Phaser.Scene {
   init(data: unknown): void {
     this.world = null;
     this.maps.clear();
+    this.generatedAssetPaths = new Set();
+    this.preloadedMapAssetPaths.clear();
     this.enemyDataTable = null;
     this.equipmentDataTable = null;
     this.commerceCatalog = null;
     this.enemyAnimations.clear();
+    this.bossAnimations.clear();
+    this.bossAttackEffects.clear();
     this.npcAnimations.clear();
+    this.pendingNpcAnimationPasses = 0;
+    this.sourcePaintRemainderMs = 0;
+    this.pendingSkillAttachedVisualPasses = 0;
     this.enemyAttackEffects.clear();
+    this.playerLevelUpEffect = null;
     this.damageNumberPopups = [];
+    this.playerLevelUpFlashes = [];
+    this.playerLevelUpAtlasEffects = [];
     this.loadingMapTransition = false;
     this.unavailableMapIds.clear();
     this.fontLayout = null;
@@ -473,22 +801,35 @@ export class WorldScene extends Phaser.Scene {
     this.gameplayHudContext = null;
     this.gameplayHudAssets = null;
     this.gameplayHudTexture = null;
+    this.pickupNoticeCanvas = null;
+    this.pickupNoticeContext = null;
+    this.pickupNoticeTexture = null;
+    this.pickupNoticeOverlay = null;
+    this.pickupNoticeTicksRemaining = 0;
+    this.pickupNoticeText = '';
     this.playerStatusContainer = null;
-    this.playerStatusPoisonIcon = null;
+    this.playerStatusMarkerOrder = [];
+    this.playerStatusMarkerContainers.clear();
+    this.playerStatusMarkerIcons.clear();
     this.heroEmotionImage = null;
-    this.eventEmotionFrame = 0;
+    for (const feedback of this.sourceWeaponProcFeedback) feedback.sprite.destroy();
+    this.sourceWeaponProcFeedback = [];
     this.systemMenuCanvas = null;
     this.systemMenuContext = null;
     this.systemMenuTexture = null;
     this.systemMenuOverlay = null;
     this.heroContainer = null;
     this.heroParts.clear();
+    this.heroSpriteResourceClass = 1;
+    this.unavailableSourceAssetsMessage = null;
+    this.hasHeroShieldLayout = false;
     this.bodyLayout = null;
     this.armorLayout = null;
     this.effectLayout = null;
     this.headLayout = null;
     this.alternateHeadLayout = null;
     this.weaponLayout = null;
+    this.shieldLayout = null;
     this.gameOverSequence = null;
     this.gameOverReturnPending = false;
     this.gameOverCanvas = null;
@@ -505,9 +846,11 @@ export class WorldScene extends Phaser.Scene {
     this.openingCutsceneAppliedFlagCount = 0;
     this.openingCutsceneAppliedPlayerChangeCount = 0;
     this.openingCutsceneAppliedTileChangeCount = 0;
+    this.openingCutsceneAppliedHeroPositionChangeCount = 0;
     this.openingCutsceneUsesRoninFormatting = false;
     this.openingCutsceneBlankOverlay = null;
     this.worldLanguage = null;
+    this.itemCategoryNames = [];
     this.pendingWorldDialogueFlags = [];
     this.pendingWorldDialogueTransition = undefined;
     this.pressedDirections = [];
@@ -516,9 +859,14 @@ export class WorldScene extends Phaser.Scene {
     } catch {
       this.gameOptions = { ...DEFAULT_GAME_OPTIONS };
     }
-    for (const key of ['gameplay-hud', 'world-system-menu', 'opening-dialog-overlay', 'world-game-over']) {
+    for (const key of [
+      'gameplay-hud', 'world-system-menu', 'opening-dialog-overlay', 'world-game-over',
+      'world-pickup-notice',
+    ]) {
       if (this.textures.exists(key)) this.textures.remove(key);
     }
+    if (this.cache.json.exists('world-enemy-data')) this.cache.json.remove('world-enemy-data');
+    if (this.cache.json.exists('world-asset-manifest')) this.cache.json.remove('world-asset-manifest');
     const startRoute = typeof data === 'object' && data !== null && 'startRoute' in data
       ? (data as { startRoute?: unknown }).startRoute
       : undefined;
@@ -533,12 +881,24 @@ export class WorldScene extends Phaser.Scene {
       'heroClassId' in data ? (data as { heroClassId?: unknown }).heroClassId : undefined;
     this.heroClassId = restoreState?.heroClassId ??
       (isEndingHeroClassId(requestedHeroClassId) ? requestedHeroClassId : 6);
+    this.playthroughMode = startRoute === 'new-game-plus'
+      ? 1
+      : (restoreState?.playthroughMode ?? 0);
+    this.completionPoints = restoreState?.completionPoints ?? 0;
+    this.playTimeSeconds = restoreState?.playTimeSeconds ?? 0;
     this.characterAttributes = restoreState?.attributes ?? createBasePlayerAttributes(this.heroClassId);
     this.systemMenuVisible = false;
+    this.skillMenuVisible = false;
+    this.skillLevelMenuVisible = false;
+    this.skillSelection = 0;
+    this.skillLevelActionButton = '1';
+    this.skillLevelSelection = 0;
     this.commerceMenu = null;
     this.systemMenuSelection = 0;
     this.inventoryMenuVisible = false;
     this.inventorySelection = 0;
+    this.equipmentMenuMode = 'slots';
+    this.equipmentSlotSelection = 0;
     this.attributeMenuVisible = false;
     this.attributeConfirmationVisible = false;
     this.attributeConfirmationSelection = 0;
@@ -552,14 +912,20 @@ export class WorldScene extends Phaser.Scene {
     this.equipmentStats = null;
     this.comboLimit = 1;
     this.inventory = [];
+    this.specialInventory = [];
     this.playerStatus = createPlayerStatusState();
+    this.playerStatusMarkerOrder = [];
     this.playerRecovery = createPlayerRecoveryState();
     this.playerCombo = { ...EMPTY_PLAYER_COMBO };
+    this.playerHitFeedback = { ...EMPTY_PLAYER_HIT_FEEDBACK };
+    this.playerSkillActionStates.clear();
+    this.nextPlayerSkillActionId = 1;
     this.guardianIndices = [...new Set(guardianIndices.filter((index): index is number =>
       Number.isInteger(index) && Number(index) >= 0 && Number(index) <= 2,
     ))];
     this.skillIds = [...this.guardianIndices];
-    if (startRoute === 'load-game' && restoreState !== null) {
+    this.activeSkillId = this.skillIds[0] ?? 0;
+    if ((startRoute === 'load-game' || startRoute === 'new-game-plus') && restoreState !== null) {
       this.currentMapId = restoreState.mapId;
       this.actor = {
         ...createPlayerActor(restoreState.tileX * 16, restoreState.tileY * 16),
@@ -570,10 +936,26 @@ export class WorldScene extends Phaser.Scene {
       this.questFlags = new Set(restoreState.questFlags);
       this.guardianIndices = [...restoreState.guardianIndices];
       this.skillIds = [...restoreState.skillIds];
+      this.activeSkillId = restoreState.activeSkillId;
+      for (const progress of restoreState.skillProgress) {
+        this.playerSkillActionStates.set(progress.skillId, createPlayerSkillActionState(
+          progress.skillId,
+          this.characterAttributes.will,
+          progress.skillRank,
+          progress.skillExperience,
+          progress.skillLevelSlotOne,
+          progress.skillLevelSlotThree,
+        ));
+      }
       this.comboLimit = restoreState.comboLimit;
       this.hudState = { ...restoreState.hud };
       this.wallet = restoreState.wallet;
       this.inventory = restoreState.inventory.map((stack) => ({ ...stack }));
+      this.specialInventory = restoreState.specialInventory.map((stack) => ({ ...stack }));
+      this.preservedSourceRmsInventorySlots = {
+        regular: snapshotSourceInventorySlots(this.inventory, restoreState.sourceInventorySlotIndices, 30),
+        special: snapshotSourceInventorySlots(this.specialInventory, restoreState.sourceSpecialInventorySlotIndices, 15),
+      };
       this.savedEquipmentLoadoutPresent = restoreState.equipmentSlots !== null;
       this.equipmentSlots = restoreState.equipmentSlots === null
         ? [null, null, null, null, null]
@@ -583,6 +965,8 @@ export class WorldScene extends Phaser.Scene {
         this.hudState.selectedItemCategory,
       );
     } else if (startRoute === 'new-game') {
+      this.preservedSourceRmsInventorySlots = null;
+      this.playthroughMode = 0;
       this.currentMapId = NEW_GAME_START.mapId;
       this.actor = createPlayerActor(NEW_GAME_START.tileX * 16, NEW_GAME_START.tileY * 16);
       this.openingDialogVisible = true;
@@ -598,34 +982,134 @@ export class WorldScene extends Phaser.Scene {
       this.questFlags = new Set();
     }
     this.initialGuardianIndex = this.guardianIndices[0] ?? 0;
+    const activeSkillId = this.activeSkillId;
+    this.playerSkillAction = getPlayerSkillActionState(
+      activeSkillId,
+      this.characterAttributes.will,
+      this.nextPlayerSkillActionId,
+      this.playerSkillActionStates,
+    );
     this.mapIdsToLoad = [...new Set([...MAP_IDS, this.currentMapId])];
   }
 
-  preload(): void {
-    for (const mapId of this.mapIdsToLoad) {
-      const paths = getMapAssetPaths(mapId);
-      this.load.json(`world-map-${mapId}`, paths.map);
-      this.load.json(`world-collision-${mapId}`, paths.collision);
-      this.load.json(`world-decorations-${mapId}`, paths.decorations);
-      this.load.json(`world-events-${mapId}`, paths.events);
+  private get inventory(): InventoryStack[] {
+    return this.inventoryValue;
+  }
+
+  private set inventory(value: InventoryStack[]) {
+    this.updateInventory(value);
+  }
+
+  private updateInventory(value: InventoryStack[], sourceReplacementIndex?: number): void {
+    if (this.preservedSourceRmsInventorySlots !== null) {
+      this.preservedSourceRmsInventorySlots.regular = advanceSourceInventorySlotSnapshot(
+        this.preservedSourceRmsInventorySlots.regular,
+        value,
+        30,
+        sourceReplacementIndex === undefined
+          ? []
+          : [{ oldIndex: sourceReplacementIndex, nextIndex: sourceReplacementIndex }],
+      );
     }
-    this.load.json('hero-body-layout', BODY_LAYOUT_RESOURCE);
-    this.load.json('hero-armor-layout', ARMOR_LAYOUT_RESOURCE);
-    this.load.json('hero-effect-layout', EFFECT_LAYOUT_RESOURCE);
-    this.load.json('hero-head-layout', HEAD_LAYOUT_RESOURCE);
-    this.load.json('hero-alternate-head-layout', ALTERNATE_HEAD_LAYOUT_RESOURCE);
-    this.load.json('hero-weapon-layout', WEAPON_LAYOUT_RESOURCE);
+    this.inventoryValue = value;
+  }
+
+  private get specialInventory(): InventoryStack[] {
+    return this.specialInventoryValue;
+  }
+
+  private set specialInventory(value: InventoryStack[]) {
+    if (this.preservedSourceRmsInventorySlots !== null) {
+      this.preservedSourceRmsInventorySlots.special = advanceSourceInventorySlotSnapshot(
+        this.preservedSourceRmsInventorySlots.special,
+        value,
+        15,
+      );
+    }
+    this.specialInventoryValue = value;
+  }
+
+  preload(): void {
+    this.load.once('filecomplete-json-world-asset-manifest', () => {
+      this.generatedAssetPaths = parseGeneratedAssetPaths(
+        this.cache.json.get('world-asset-manifest') as unknown,
+      );
+      const heroSpriteResourceClass = resolveHeroSpriteResourceClass(
+        this.heroClassId,
+        this.generatedAssetPaths,
+      );
+      if (heroSpriteResourceClass === null) {
+        this.unavailableSourceAssetsMessage =
+          `Hero class ${this.heroClassId} source sprite resources are unavailable.`;
+        return;
+      }
+      let missingMapId: number | undefined;
+      for (const mapId of this.mapIdsToLoad) {
+        const paths = resolveMapAssetPaths(mapId, this.heroClassId, this.generatedAssetPaths);
+        if (paths === null) {
+          missingMapId = mapId;
+          break;
+        }
+        this.preloadedMapAssetPaths.set(mapId, paths);
+      }
+      if (missingMapId !== undefined) {
+        this.unavailableSourceAssetsMessage =
+          `Map ${missingMapId} source resources for hero class ${this.heroClassId} are unavailable.`;
+        return;
+      }
+      if (this.generatedAssetPaths.has('player-level-up-effects/catalog.json')) {
+        this.load.json(
+          'world-player-level-up-effects',
+          '/assets/generated/player-level-up-effects/catalog.json',
+        );
+        for (const assetPath of this.generatedAssetPaths) {
+          const match = /^atlases\/char\/lvup\/(\d{3})\.png$/.exec(assetPath);
+          if (match?.[1] === undefined) continue;
+          this.load.image(
+            `world-player-level-up-atlas-${Number(match[1])}`,
+            `/assets/generated/${assetPath}`,
+          );
+        }
+      }
+      this.heroSpriteResourceClass = heroSpriteResourceClass;
+      for (const part of HERO_LAYOUT_PARTS) {
+        this.load.json(
+          `hero-layout-${part}`,
+          heroSpriteLayoutAssetPath(this.heroSpriteResourceClass, part),
+        );
+      }
+      this.hasHeroShieldLayout = this.heroSpriteResourceClass === 3 && this.heroClassId === 8 &&
+        hasHeroShieldSpriteResources(this.heroSpriteResourceClass, this.generatedAssetPaths);
+      if (this.hasHeroShieldLayout) {
+        this.load.json('hero-layout-s', heroSpriteLayoutAssetPath(3, 's'));
+      }
+      for (const mapId of this.mapIdsToLoad) {
+        const paths = this.preloadedMapAssetPaths.get(mapId)!;
+        this.load.json(`world-map-${mapId}`, paths.map);
+        this.load.json(`world-collision-${mapId}`, paths.collision);
+        this.load.json(`world-decorations-${mapId}`, paths.decorations);
+        this.load.json(`world-events-${mapId}`, paths.events);
+      }
+    });
+    this.load.json('world-asset-manifest', '/assets/generated/asset-manifest.json');
     this.load.json('world-font-layout', '/assets/generated/fonts/small.json');
     this.load.json('world-language-en-GB', '/assets/generated/language/en-GB.json');
-    // R10 confirms data0 for the current fresh-game Ronin route. Other selection
-    // modes remain unresolved and are not collapsed into this starter fixture.
-    this.load.json('world-enemy-data', '/assets/generated/enemy-data/data0.json');
+    this.load.json('world-item-category-texts', '/assets/generated/text-tables/itm/itmtp.json');
+    const enemyDataVariant = enemyDataVariantForPlaythroughMode(this.playthroughMode);
+    this.load.json('world-enemy-data', `/assets/generated/enemy-data/data${enemyDataVariant}.json`);
     this.load.json('world-equipment-data', '/assets/generated/equipment-data/catalog.json');
     this.load.json('world-commerce-data', '/assets/generated/commerce-data/catalog.json');
     this.load.json('world-enemy-animations', ENEMY_ANIMATION_CATALOG);
+    this.load.json('world-boss-animations', BOSS_ANIMATION_CATALOG);
+    this.load.json('world-boss-attack-effects', BOSS_ATTACK_EFFECT_CATALOG);
     this.load.json('world-npc-animations', NPC_ANIMATION_CATALOG);
     this.load.json('world-enemy-attack-effects', ENEMY_ATTACK_EFFECT_CATALOG);
+    this.load.json('world-player-skill-effects', PLAYER_SKILL_EFFECT_CATALOG);
     this.load.image('world-font-atlas', '/assets/generated/fonts/small.png');
+    this.load.image(
+      'world-player-level-up-flash',
+      '/assets/generated/standalone/en-GB/_img_etcui__0.png',
+    );
     for (let index = 0; index < 7; index += 1) {
       this.load.image(
         `world-hud-frame-${index}`,
@@ -634,7 +1118,18 @@ export class WorldScene extends Phaser.Scene {
     }
     this.load.image('world-hud-digits', '/assets/generated/atlases/img/glb/005.png');
     this.load.image('world-player-status-background', '/assets/generated/atlases/img/keepst/000.png');
-    this.load.image('world-player-status-poison', '/assets/generated/atlases/img/keepst/008.png');
+    for (let statusId = 5; statusId <= 7; statusId += 1) {
+      this.load.image(
+        `world-player-status-${statusId}`,
+        `/assets/generated/atlases/img/keepst/${String(statusId + 1).padStart(3, '0')}.png`,
+      );
+    }
+    for (let statusId = 0; statusId <= 4; statusId += 1) {
+      this.load.image(
+        `world-enemy-status-${statusId}`,
+        `/assets/generated/atlases/img/keepst/${String(statusId + 1).padStart(3, '0')}.png`,
+      );
+    }
     for (let index = 0; index < 12; index += 1) {
       this.load.image(
         `world-emotion-${index}`,
@@ -656,23 +1151,50 @@ export class WorldScene extends Phaser.Scene {
     this.load.image('world-ground-currency', '/assets/generated/atlases/img/etcui/010.png');
     this.load.image(
       'world-hud-guardian-skill',
-      `/assets/generated/atlases/grd/grdico/${String(6 + this.initialGuardianIndex * 4).padStart(3, '0')}.png`,
+      `/assets/generated/atlases/grd/grdico/${String(6 + this.activeSkillId * 4).padStart(3, '0')}.png`,
     );
+    for (let skillId = 0; skillId < 6; skillId += 1) {
+      this.load.image(
+        `world-skill-icon-${skillId}`,
+        `/assets/generated/atlases/grd/grdico/${String(skillId).padStart(3, '0')}.png`,
+      );
+      this.load.image(
+        `world-skill-hud-icon-${skillId}`,
+        `/assets/generated/atlases/grd/grdico/${String(6 + skillId * 4).padStart(3, '0')}.png`,
+      );
+    }
+    for (const [atlasFamily, imageCount] of Object.entries(PLAYER_SKILL_ATLAS_IMAGE_COUNTS)) {
+      for (let imageIndex = 0; imageIndex < imageCount; imageIndex += 1) {
+        this.load.image(
+          `world-player-skill-atlas-${atlasFamily}-${imageIndex}`,
+          `/assets/generated/atlases/grd/${atlasFamily}/${String(imageIndex).padStart(3, '0')}.png`,
+        );
+      }
+    }
   }
 
   create(): void {
-    const rawBodyLayout = this.cache.json.get('hero-body-layout') as unknown;
-    const rawArmorLayout = this.cache.json.get('hero-armor-layout') as unknown;
-    const rawEffectLayout = this.cache.json.get('hero-effect-layout') as unknown;
-    const rawHeadLayout = this.cache.json.get('hero-head-layout') as unknown;
-    const rawAlternateHeadLayout = this.cache.json.get('hero-alternate-head-layout') as unknown;
-    const rawWeaponLayout = this.cache.json.get('hero-weapon-layout') as unknown;
+    if (this.unavailableSourceAssetsMessage !== null) {
+      this.showAssetMessage(this.unavailableSourceAssetsMessage);
+      return;
+    }
+    const rawBodyLayout = this.cache.json.get('hero-layout-b') as unknown;
+    const rawArmorLayout = this.cache.json.get('hero-layout-a') as unknown;
+    const rawEffectLayout = this.cache.json.get('hero-layout-e') as unknown;
+    const rawHeadLayout = this.cache.json.get('hero-layout-hA') as unknown;
+    const rawAlternateHeadLayout = this.cache.json.get('hero-layout-hB') as unknown;
+    const rawWeaponLayout = this.cache.json.get('hero-layout-w') as unknown;
+    const rawShieldLayout = this.hasHeroShieldLayout
+      ? this.cache.json.get('hero-layout-s') as unknown
+      : undefined;
     this.fontLayout = this.cache.json.get('world-font-layout') as BitmapFontData;
     const language = this.cache.json.get('world-language-en-GB') as unknown;
+    const itemCategoryTexts = this.cache.json.get('world-item-category-texts') as unknown;
     const rawEnemyData = this.cache.json.get('world-enemy-data') as unknown;
     const rawEquipmentData = this.cache.json.get('world-equipment-data') as unknown;
     const rawCommerceData = this.cache.json.get('world-commerce-data') as unknown;
     this.worldLanguage = language;
+    this.itemCategoryNames = resolveTextTableStrings(itemCategoryTexts, language);
     try {
       this.enemyDataTable = parseEnemyDataTable(rawEnemyData);
     } catch {
@@ -714,12 +1236,64 @@ export class WorldScene extends Phaser.Scene {
       return;
     }
     try {
+      const animationCatalog = parseBossSpriteAnimationCatalog(
+        this.cache.json.get('world-boss-animations') as unknown,
+      );
+      const map11Boss = animationCatalog.sprites.find((animation) =>
+        animation.bossId === 1 && animation.enemyId === 32);
+      const map13Boss = animationCatalog.sprites.find((animation) =>
+        animation.bossId === 2 && animation.enemyId === 35);
+      const map13SecondWave = [36, 37, 38].map((enemyId) =>
+        animationCatalog.sprites.find((animation) =>
+          animation.bossId === 2 && animation.enemyId === enemyId));
+      const map15Actors = [39, 40, 41].map((enemyId) =>
+        animationCatalog.sprites.find((animation) =>
+          animation.bossId === 3 && animation.enemyId === enemyId));
+      if (map11Boss === undefined || map13Boss === undefined ||
+        map13SecondWave.some((animation) => animation === undefined) ||
+        map15Actors.some((animation) => animation === undefined)) {
+        throw new TypeError('Map 11, map 13, or map 15 boss animation is missing');
+      }
+      this.bossAnimations = new Map([
+        [MAP11_CB_RENDER_SPRITE_ID, map11Boss],
+        [MAP13_AQ_RENDER_SPRITE_ID, map13Boss],
+        [MAP13_AF_RENDER_SPRITE_ID, map13SecondWave[0]!],
+        [MAP13_BC_RENDER_SPRITE_ID, map13SecondWave[1]!],
+        [MAP13_CC_RENDER_SPRITE_ID, map13SecondWave[2]!],
+        [MAP15_CF_RENDER_SPRITE_ID, map15Actors[0]!],
+        [MAP15_AZ_RENDER_SPRITE_ID, map15Actors[1]!],
+        [MAP15_AJ_RENDER_SPRITE_ID, map15Actors[2]!],
+      ]);
+    } catch {
+      this.showAssetMessage('Boss animation data is missing or invalid.\nRun npm run assets:extract.');
+      return;
+    }
+    try {
+      const effectCatalog = parseBossAttackEffectCatalog(
+        this.cache.json.get('world-boss-attack-effects') as unknown,
+      );
+      this.bossAttackEffects = new Map(effectCatalog.effects.map((effect) => [effect.enemyId, effect]));
+    } catch {
+      this.showAssetMessage('Boss attack effects are missing or invalid.\nRun npm run assets:extract.');
+      return;
+    }
+    try {
       const npcAnimationCatalog = parseNpcSpriteAnimationCatalog(
         this.cache.json.get('world-npc-animations') as unknown,
       );
       this.npcAnimations = new Map(npcAnimationCatalog.sprites.map((animation) => [
         animation.npcId, animation,
       ]));
+      for (const npcId of [3, 6]) {
+        const enemySpriteId = sourceEnemySpriteIdForNpc(npcId);
+        const enemyAnimation = enemySpriteId === undefined
+          ? undefined
+          : this.enemyAnimations.get(enemySpriteId);
+        if (enemyAnimation === undefined) {
+          throw new TypeError(`NPC ${npcId} enemy-backed animation is missing`);
+        }
+        this.npcAnimations.set(npcId, adaptEnemyAnimationForNpc(npcId, enemyAnimation));
+      }
     } catch {
       this.showAssetMessage('NPC animation data is missing or invalid.\nRun npm run assets:extract.');
       return;
@@ -733,15 +1307,35 @@ export class WorldScene extends Phaser.Scene {
       this.showAssetMessage('Enemy attack effects are missing or invalid.\nRun npm run assets:extract.');
       return;
     }
+    try {
+      this.playerSkillEffects = parsePlayerSkillEffectCatalog(
+        this.cache.json.get('world-player-skill-effects') as unknown,
+      );
+    } catch {
+      this.showAssetMessage('Player skill effects are missing or invalid.\nRun npm run assets:extract.');
+      return;
+    }
+    if (this.cache.json.exists('world-player-level-up-effects')) {
+      try {
+        this.playerLevelUpEffect = parsePlayerLevelUpEffectCatalog(
+          this.cache.json.get('world-player-level-up-effects') as unknown,
+        );
+      } catch {
+        // Effect type 4 is optional for older generated asset sets.
+        this.playerLevelUpEffect = null;
+      }
+    }
     const parsedMaps: Array<{
       id: number;
       map: BaseMapData;
       decorations: MapDecorationData;
+      decorationObjectCount: number;
       world: WorldGrid;
       events: EventOperationData;
       enemies: EnemyCombatant[];
       visibleNpcSourceOrders: ReadonlySet<number>;
       npcEmotions: Readonly<Record<number, number | null>>;
+      startupHeroEmotion: number | null | undefined;
     }> = [];
     try {
       for (const mapId of this.mapIdsToLoad) {
@@ -765,20 +1359,22 @@ export class WorldScene extends Phaser.Scene {
           decorations,
         );
         const effectiveDecorations = initialState.decorations;
-        const effectiveEvents = {
+        const effectiveEvents = addSourceConstructedMapEnemies(mapId, {
           ...events,
           npcPlacements: initialState.npcPlacements,
           enemyPlacements: initialState.enemyPlacements,
-        };
+        });
         parsedMaps.push({
           id: mapId,
           map: initialState.world.map,
           decorations: effectiveDecorations,
+          decorationObjectCount: decorations.objects.length,
           events: effectiveEvents,
           enemies: createEnemyCombatants(effectiveEvents.enemyPlacements, this.enemyDataTable),
           world: initialState.world,
           visibleNpcSourceOrders: initialState.visibleNpcSourceOrders,
           npcEmotions: initialState.npcEmotions,
+          startupHeroEmotion: initialState.heroEmotion,
         });
       }
       this.bodyLayout = parseCharacterSpriteLayout(rawBodyLayout);
@@ -787,6 +1383,9 @@ export class WorldScene extends Phaser.Scene {
       this.headLayout = parseCharacterSpriteLayout(rawHeadLayout);
       this.alternateHeadLayout = parseCharacterSpriteLayout(rawAlternateHeadLayout);
       this.weaponLayout = parseCharacterSpriteLayout(rawWeaponLayout);
+      this.shieldLayout = rawShieldLayout === undefined || rawShieldLayout === null
+        ? null
+        : parseCharacterSpriteLayout(rawShieldLayout);
     } catch {
       this.showAssetMessage('World map or hero data is missing or invalid.\nRun npm run assets:extract.');
       return;
@@ -808,7 +1407,7 @@ export class WorldScene extends Phaser.Scene {
       this.openingCutsceneEvents = openingMapEvents!;
       this.openingCutsceneState = createEventCutscene(
         OPENING_SCRIPT_INDEX, this.actor.direction, this.inventory, this.skillIds, this.comboLimit,
-        this.heroClassId,
+        this.heroClassId, this.questFlags.has(29),
       );
       this.openingCutsceneUsesRoninFormatting = true;
       this.pumpOpeningCutscene(0);
@@ -819,6 +1418,7 @@ export class WorldScene extends Phaser.Scene {
       id: number;
       map: BaseMapData;
       decorations: MapDecorationData;
+      decorationObjectCount: number;
       world: WorldGrid;
       events: EventOperationData;
       enemies: EnemyCombatant[];
@@ -830,7 +1430,8 @@ export class WorldScene extends Phaser.Scene {
       enemyTextureKeys: EnemyTextureSets;
     }> = [];
     for (const {
-      id, map, decorations, world, events, enemies, visibleNpcSourceOrders, npcEmotions,
+      id, map, decorations, decorationObjectCount, world, events, enemies,
+      visibleNpcSourceOrders, npcEmotions, startupHeroEmotion,
     } of parsedMaps) {
       const mapName = String(id).padStart(2, '0');
       const tileKeys = new Map<number, string>();
@@ -843,7 +1444,10 @@ export class WorldScene extends Phaser.Scene {
       }
       const objectKeys = new Map<number, string>();
       const objectAtlasPath = `/assets/generated/atlases/${decorations.objectAtlas}`;
-      for (const atlasIndex of new Set(decorations.objects.map(({ atlasIndex }) => atlasIndex))) {
+      for (const atlasIndex of new Set([
+        ...decorations.loadedImageIds,
+        ...decorations.objects.map(({ atlasIndex }) => atlasIndex),
+      ])) {
         const key = `map-${id}-object-${atlasIndex}`;
         objectKeys.set(atlasIndex, key);
         requiredMapTextures.push(key);
@@ -851,7 +1455,6 @@ export class WorldScene extends Phaser.Scene {
       }
       const npcTextureKeys = this.queueNpcTextures(
         events,
-        visibleNpcSourceOrders,
         (key, path) => {
           if (requiredMapTextures.includes(key) || this.textures.exists(key)) return;
           requiredMapTextures.push(key);
@@ -859,7 +1462,10 @@ export class WorldScene extends Phaser.Scene {
         },
       );
       const enemyTextureKeys = this.queueEnemySpriteTextures(
-        events.enemyPlacements.map(({ enemyId }) => enemyId),
+        [...events.enemyPlacements.flatMap(({ enemyId, spriteId, renderSpriteId }) => [
+          renderSpriteId ?? spriteId ?? enemyId,
+          ...(renderSpriteId === undefined ? [] : [spriteId ?? enemyId]),
+        ]), ...sourceMapSpawnRenderSpriteIds(id)],
         (key, path) => {
           if (requiredMapTextures.includes(key) || this.textures.exists(key)) return;
           requiredMapTextures.push(key);
@@ -869,17 +1475,29 @@ export class WorldScene extends Phaser.Scene {
       this.maps.set(id, {
         world,
         tilesetId: map.tilesetId,
+        startupHeroEmotion,
         events,
         tileKeys,
+        objectTextureKeys: objectKeys,
+        decorationObjectCount,
+        decorationSprites: new Map(),
         enemies,
         enemySprites: new Map(),
+        enemyStatusDisplays: new Map(),
         npcSprites: new Map(),
         enemyTextureKeys,
         enemyProjectiles: [],
         enemyProjectileSprites: new Map(),
+        playerProjectiles: [],
+        nextPlayerProjectileId: 1,
         enemyAttackAnimations: [],
         enemyAttackSprites: new Map(),
         nextEnemyAttackVisualId: 1,
+        playerSkillVisuals: [],
+        playerSkillVisualSprites: new Map(),
+        nextPlayerSkillVisualId: 1,
+        enemyAttachedSkillVisuals: [],
+        enemyAttachedSkillVisualSprites: new Map(),
         groundDrops: [],
         groundDropSprites: new Map(),
         nextGroundDropId: 1,
@@ -902,6 +1520,7 @@ export class WorldScene extends Phaser.Scene {
         id,
         map,
         decorations,
+        decorationObjectCount,
         world,
         events,
         enemies,
@@ -924,7 +1543,7 @@ export class WorldScene extends Phaser.Scene {
         return;
       }
       for (const {
-        id, map, decorations, events, enemies, visibleNpcSourceOrders,
+        id, map, decorations, decorationObjectCount, events, enemies, visibleNpcSourceOrders,
         npcEmotions, tileKeys, objectKeys, npcTextureKeys, enemyTextureKeys,
       } of queuedMaps) {
         const rendered = this.renderStaticMap(
@@ -933,13 +1552,20 @@ export class WorldScene extends Phaser.Scene {
         );
         const renderedWorld = this.maps.get(id)!;
         renderedWorld.objects = rendered.objects;
+        renderedWorld.decorationSprites = rendered.decorationSprites;
+        renderedWorld.decorationObjectCount = decorationObjectCount;
+        renderedWorld.objectTextureKeys = objectKeys;
         renderedWorld.enemySprites = rendered.enemySprites;
         renderedWorld.npcSprites = rendered.npcSprites;
         renderedWorld.enemies = enemies;
-        if (id !== this.currentMapId) rendered.objects.forEach((object) => object.setVisible(false));
+        renderedWorld.occupiedCellIndices = this.mapEntityOccupancy(renderedWorld);
+        if (id !== this.currentMapId) this.setMapObjectsVisible(renderedWorld, false);
       }
       this.world = this.maps.get(this.currentMapId)?.world ?? null;
+      this.playTimeSessionStartedAtMs = Date.now();
       this.createHero();
+      const entryMap = this.maps.get(this.currentMapId);
+      if (entryMap !== undefined) this.centerCameraForMapEntry(entryMap);
       if (this.openingDialogVisible) {
         this.createOpeningCutsceneBlankOverlay();
         this.syncOpeningCutscenePresentation();
@@ -948,6 +1574,10 @@ export class WorldScene extends Phaser.Scene {
       }
       else this.createGameplayHud();
       this.bindMovementKeys();
+      if (!this.openingDialogVisible) {
+        const currentMap = this.maps.get(this.currentMapId);
+        if (currentMap !== undefined) this.tryCurrentCellAutomaticEvent(currentMap);
+      }
     });
     this.load.start();
   }
@@ -955,61 +1585,196 @@ export class WorldScene extends Phaser.Scene {
   update(_time: number, delta: number): void {
     if (this.gameOverReturnPending) {
       this.gameOverReturnPending = false;
-      this.scene.start('StartupFlowScene');
+      this.scene.start('StartupFlowScene', { skipStartupSplash: true });
       return;
     }
     // The source keeps its world tick in gameplay mode beneath the System overlay.
     // Commerce handoffs use a separate source mode and hold the map simulation.
     if (this.loadingMapTransition || this.commerceMenu !== null || this.world === null || this.heroContainer === null) return;
-    const simulationDelta = delta * gameSpeedScale(this.gameOptions);
-    this.advanceDialogueReveal(simulationDelta);
-    this.updateDamageNumberPopups(simulationDelta);
-    const updateMapId = this.currentMapId;
-    if (this.openingDialogVisible && this.openingCutsceneState !== null && (
-      this.openingCutsceneState.status === 'delay' ||
-      this.openingCutsceneState.status === 'flash' ||
-      this.openingCutsceneState.status === 'shake' ||
-      this.openingCutsceneState.cameraMoveSpeed !== 0
-    )) {
-      this.pumpOpeningCutscene(simulationDelta);
-      if (this.loadingMapTransition || this.currentMapId !== updateMapId) return;
+    const frameDelta = delta * gameSpeedScale(this.gameOptions);
+    const sourcePaintClock = advanceSourcePaintClock(frameDelta, this.sourcePaintRemainderMs);
+    this.sourcePaintRemainderMs = sourcePaintClock.remainderMs;
+    if (shouldResumeSourceEventBeforeWorldUpdate(
+      this.openingCutsceneState?.sourceEventResumePending ?? false,
+      this.actor.tickRemainderMs,
+      frameDelta,
+    )) this.pumpOpeningCutscene(0);
+    this.advanceDialogueReveal(frameDelta);
+    const cutsceneStatus = this.openingCutsceneState?.status ?? null;
+    const sourceWorldTickDuringDelay = this.openingCutsceneState?.sourceWorldTickDuringDelay ?? false;
+    const sourceUpdateScope = sourceWorldUpdateScope(
+      this.worldDialogueVisible,
+      this.openingDialogVisible,
+      cutsceneStatus,
+      sourceWorldTickDuringDelay,
+    );
+    // Mode-4 movement calls m.n()/ad.c() for the hero and NPCs, but skips the
+    // ordinary m.i()/ad.b() pass that updates enemies, projectiles, and drops.
+    const pausedForEventDialogue = sourceUpdateScope === 'paused';
+    const sourceActorDelta = sourceActorSimulationDelta(frameDelta, sourceUpdateScope);
+    // Source ag.m11a() text/choice states do not call m.n(). Its camera helper
+    // still runs in mode 4. Back-edge yielding also advances the event script
+    // without a map tick, while flashes/shakes tick their event state only.
+    const cutsceneMovesCamera = (this.openingCutsceneState?.cameraMoveSpeed ?? 0) !== 0;
+    const cutsceneNeedsEventOnlyTick = cutsceneStatus === 'flash' || cutsceneStatus === 'shake' ||
+      (cutsceneStatus === 'delay' && !sourceWorldTickDuringDelay);
+    if (pausedForEventDialogue && this.openingDialogVisible &&
+      (cutsceneMovesCamera || cutsceneNeedsEventOnlyTick)) {
+      this.pumpOpeningCutscene(frameDelta);
     }
-    if (this.gameOverSequence !== null) {
+    const simulationDelta = sourceGameplaySimulationDelta(frameDelta, sourceUpdateScope);
+    const sourceMapVisibleDuringEvent = this.worldDialogueVisible || (
+      this.openingDialogVisible && this.openingCutsceneState !== null &&
+      !this.openingCutsceneState.screenBlank && this.openingCutsceneState.screenFlashColor === null
+    );
+    if (this.openingDialogVisible && sourceMapVisibleDuringEvent) {
+      this.pendingNpcAnimationPasses += sourcePaintClock.passes;
+      this.pendingSkillAttachedVisualPasses += sourcePaintClock.passes;
+    }
+    if (simulationDelta === 0 && !this.openingDialogVisible) return;
+    if (simulationDelta > 0) {
+      this.updateDamageNumberPopups(simulationDelta);
+      this.advanceSourceWeaponProcFeedback(simulationDelta);
+    }
+    const updateMapId = this.currentMapId;
+    if (simulationDelta > 0 && this.gameOverSequence !== null) {
       const advanced = advanceGameOverSequence(this.gameOverSequence, simulationDelta);
       this.gameOverSequence = advanced.sequence;
       for (const revealWidth of advanced.revealWidths) this.renderGameOverScreen(revealWidth);
       if (advanced.completed) this.gameOverReturnPending = true;
       return;
     }
-    if (this.hudState.hp <= 0) {
+    if (simulationDelta > 0 && this.hudState.hp <= 0) {
       this.beginGameOver();
       return;
     }
-    this.advanceEnemyDeathLifecycle(simulationDelta);
-    if (this.hudState.hp <= 0) {
+    if (simulationDelta > 0) this.advanceEnemyDeathLifecycle(simulationDelta);
+    if (simulationDelta > 0 && this.hudState.hp <= 0) {
       this.beginGameOver();
       return;
     }
-    this.advancePlayerCombat(simulationDelta);
-    const npcWorldUpdates = Math.floor((this.actor.tickRemainderMs + simulationDelta) / WORLD_UPDATE_PERIOD_MS);
+    if (sourceActorDelta > 0) this.advancePlayerCombat(sourceActorDelta);
+    const frameStartActor = this.actor;
+    const npcWorldUpdates = Math.floor(
+      (this.actor.tickRemainderMs + sourceActorDelta) / WORLD_UPDATE_PERIOD_MS,
+    );
+    const fullWorldUpdates = Math.floor(
+      (this.actor.tickRemainderMs + simulationDelta) / WORLD_UPDATE_PERIOD_MS,
+    );
+    for (let update = 0; update < fullWorldUpdates; update += 1) this.advancePickupNotice();
     const occupiedCellIndices = this.maps.get(this.currentMapId)?.occupiedCellIndices;
-    const previousActor = this.actor;
-    this.actor = advanceActor(this.world, previousActor, simulationDelta, occupiedCellIndices);
-    if (didReachMapEventBoundary(previousActor, this.actor)) this.tryMapTransition();
+    let remainingActorDelta = sourceActorDelta;
+    while (remainingActorDelta > 0) {
+      const previousActor = this.actor;
+      const timeToWorldUpdate = WORLD_UPDATE_PERIOD_MS - previousActor.tickRemainderMs;
+      const stepDelta = Math.min(remainingActorDelta, timeToWorldUpdate);
+      const completedWorldUpdate = stepDelta >= timeToWorldUpdate;
+      if (completedWorldUpdate) this.advancePlayerStatus();
+      const advanceCutsceneOnThisWorldUpdate = this.openingDialogVisible &&
+        this.openingCutsceneState !== null && (
+          this.openingCutsceneState.status === 'running' ||
+          this.openingCutsceneState.status === 'delay' ||
+          this.openingCutsceneState.status === 'flash' ||
+          this.openingCutsceneState.status === 'shake' ||
+          this.openingCutsceneState.cameraMoveSpeed !== 0
+        );
+      this.actor = advanceActor(this.world, previousActor, stepDelta, occupiedCellIndices);
+      remainingActorDelta -= stepDelta;
+      if (!this.openingDialogVisible && didReachMapEventBoundary(previousActor, this.actor)) {
+        this.tryMapTransition();
+      }
+      if (this.loadingMapTransition || this.currentMapId !== updateMapId) return;
+
+      if (completedWorldUpdate) {
+        const activeMap = this.maps.get(this.currentMapId);
+        if (activeMap !== undefined && this.advancePlayerSkillActionTick(activeMap)) {
+          activeMap.occupiedCellIndices = this.mapEntityOccupancy(activeMap);
+        }
+      }
+      if (completedWorldUpdate && advanceCutsceneOnThisWorldUpdate) {
+        this.pumpOpeningCutscene(WORLD_UPDATE_PERIOD_MS);
+        if (this.loadingMapTransition || this.currentMapId !== updateMapId) return;
+      }
+    }
     if (this.world === null || this.heroContainer === null) return;
     this.updateHeroSprite();
-    this.heroContainer.setPosition(this.actor.x + 8, this.actor.y + 8);
+    const hitFeedback = consumePlayerHitRenderOffset(this.playerHitFeedback);
+    this.playerHitFeedback = hitFeedback.state;
+    this.heroContainer.setPosition(
+      this.actor.x + 8 + hitFeedback.offset.x,
+      this.actor.y + 8 + hitFeedback.offset.y,
+    );
     this.heroContainer.setDepth(this.actor.y + 8);
+    this.syncPlayerAttachedSkillVisualSprites();
     this.syncPlayerStatusDisplay();
     const currentMap = this.maps.get(this.currentMapId);
     if (currentMap === undefined) return;
+    // `ar.paint` renders NPCs once per paced gameplay pass. World-update
+    // boundaries provide that cadence while Phaser may draw several times
+    // between source passes, so apply these cursor steps after the next draw.
+    if (!this.openingDialogVisible) this.pendingNpcAnimationPasses += npcWorldUpdates;
     this.advanceNpcSpriteMotion(currentMap, npcWorldUpdates);
-    this.advanceNpcSpriteAnimations(currentMap);
-    this.advanceEventEmotionAnimation(currentMap);
     const maxScrollX = Math.max(0, currentMap.width - this.scale.width);
     const maxScrollY = Math.max(0, currentMap.height - (this.scale.height - 21));
     const cutsceneCamera = this.openingDialogVisible ? this.openingCutsceneState : null;
-    if (cutsceneCamera?.cameraMode === 'fixed') {
+    const mapShake = this.sourceCameraShakeOffset ?? { x: 0, y: 0 };
+    const sourceMapFixedCamera = this.currentMapId === 13 || this.currentMapId === 15;
+    const eventCameraFocusAction = sourceEventCameraFocusAction(
+      this.gameOptions.camera,
+      cutsceneCamera !== null,
+      cutsceneCamera?.cameraSnapPending ?? false,
+    );
+    if (sourceMapFixedCamera && cutsceneCamera?.cameraMode !== 'fixed') {
+      // ad.f6b is set on maps 13 and 15. Their renderer always reads the live
+      // m.f270a/m.b target and places it 30 pixels lower, regardless of br.d.
+      const mapCameraTargetActor = cutsceneCamera === null && this.gameOptions.camera &&
+        this.currentMapId === updateMapId
+        ? { ...this.actor, x: frameStartActor.x, y: frameStartActor.y }
+        : this.actor;
+      this.eventCameraBaseScroll = null;
+      const fixedMapCameraTarget = sourceFixedMapCameraScrollTarget(
+        mapCameraTargetActor,
+        currentMap.width,
+        currentMap.height,
+        this.scale.width,
+        this.scale.height,
+      );
+      this.sourceCameraBaseScroll = fixedMapCameraTarget;
+      if (cutsceneCamera?.cameraSnapPending) {
+        this.openingCutsceneState = { ...cutsceneCamera, cameraSnapPending: false };
+      }
+      this.cameras.main.setScroll(
+        fixedMapCameraTarget.x + (cutsceneCamera?.screenShakeX ?? 0) + mapShake.x,
+        fixedMapCameraTarget.y + (cutsceneCamera?.screenShakeY ?? 0) + mapShake.y,
+      );
+    } else if (!sourceMapFixedCamera && cutsceneCamera !== null &&
+      (eventCameraFocusAction === 'hold-focus' || eventCameraFocusAction === 'snap-to-target')) {
+      // Mode 4 calls ag.m12b(), which updates m.f270a/m.b. Camera-On map
+      // rendering reads m.c/m.d instead, and mode 4 does not run m.a() to
+      // ease those display coordinates. Opcode 34 is the one source command
+      // that explicitly copies the hero target into m.c/m.d.
+      this.eventCameraBaseScroll = null;
+      if (eventCameraFocusAction === 'snap-to-target') {
+        this.sourceCameraBaseScroll = sourceCameraScrollTarget(
+          this.actor,
+          currentMap.width,
+          currentMap.height,
+          this.scale.width,
+          this.scale.height,
+          false,
+        );
+        this.openingCutsceneState = { ...cutsceneCamera, cameraSnapPending: false };
+      } else if (this.sourceCameraBaseScroll === null) {
+        this.sourceCameraBaseScroll = {
+          x: this.cameras.main.scrollX,
+          y: this.cameras.main.scrollY,
+        };
+      }
+      this.cameras.main.setScroll(
+        this.sourceCameraBaseScroll.x + (cutsceneCamera.screenShakeX ?? 0) + mapShake.x,
+        this.sourceCameraBaseScroll.y + (cutsceneCamera.screenShakeY ?? 0) + mapShake.y,
+      );
+    } else if (cutsceneCamera?.cameraMode === 'fixed') {
       if (this.eventCameraBaseScroll === null) {
         this.eventCameraBaseScroll = {
           x: this.cameras.main.scrollX,
@@ -1017,46 +1782,98 @@ export class WorldScene extends Phaser.Scene {
         };
       }
       const position = cutsceneCamera.cameraPositionTile;
-      const baseScrollX = position === null
-        ? this.eventCameraBaseScroll.x
-        : position.x * 16 - this.scale.width / 2;
-      const baseScrollY = position === null
-        ? this.eventCameraBaseScroll.y
-        : position.y * 16 - this.scale.height / 2;
+      const absoluteTarget = position === null ? null : sourceMapFixedCamera
+        ? sourceFixedMapCameraScrollTarget(
+          { ...this.actor, x: position.x * 16, y: position.y * 16 },
+          currentMap.width,
+          currentMap.height,
+          this.scale.width,
+          this.scale.height,
+        )
+        : sourceCameraScrollTarget(
+          { ...this.actor, x: position.x * 16, y: position.y * 16 },
+          currentMap.width,
+          currentMap.height,
+          this.scale.width,
+          this.scale.height,
+          false,
+        );
+      const baseScrollX = absoluteTarget?.x ?? this.eventCameraBaseScroll.x;
+      const baseScrollY = absoluteTarget?.y ?? this.eventCameraBaseScroll.y;
+      const fixedScrollX = Phaser.Math.Clamp(
+        baseScrollX + cutsceneCamera.cameraPanX + cutsceneCamera.screenShakeX,
+        0,
+        maxScrollX,
+      );
+      const fixedScrollY = Phaser.Math.Clamp(
+        baseScrollY + cutsceneCamera.cameraPanY + cutsceneCamera.screenShakeY,
+        0,
+        maxScrollY,
+      );
+      this.sourceCameraBaseScroll = { x: fixedScrollX, y: fixedScrollY };
       this.cameras.main.setScroll(
-        Phaser.Math.Clamp(
-          baseScrollX + cutsceneCamera.cameraPanX + cutsceneCamera.screenShakeX,
-          0,
-          maxScrollX,
-        ),
-        Phaser.Math.Clamp(
-          baseScrollY + cutsceneCamera.cameraPanY + cutsceneCamera.screenShakeY,
-          0,
-          maxScrollY,
-        ),
+        fixedScrollX + mapShake.x,
+        fixedScrollY + mapShake.y,
       );
     } else {
       this.eventCameraBaseScroll = null;
+      const cameraTargetActor = this.gameOptions.camera && this.currentMapId === updateMapId
+        ? { ...this.actor, x: frameStartActor.x, y: frameStartActor.y }
+        : this.actor;
+      const cameraTarget = sourceCameraScrollTarget(
+        cameraTargetActor,
+        currentMap.width,
+        currentMap.height,
+        this.scale.width,
+        this.scale.height,
+        this.gameOptions.camera,
+      );
       const targetScrollX = Phaser.Math.Clamp(
-        this.actor.x - CAMERA_FOCUS_X + (cutsceneCamera?.screenShakeX ?? 0),
+        cameraTarget.x + (cutsceneCamera?.screenShakeX ?? 0),
         0,
         maxScrollX,
       );
       const targetScrollY = Phaser.Math.Clamp(
-        this.actor.y - CAMERA_FOCUS_Y + (cutsceneCamera?.screenShakeY ?? 0),
+        cameraTarget.y + (cutsceneCamera?.screenShakeY ?? 0),
         0,
         maxScrollY,
       );
       if (this.gameOptions.camera) {
-        const lerp = 1 - Math.pow(0.5, simulationDelta / WORLD_UPDATE_PERIOD_MS);
+        if (this.sourceCameraBaseScroll === null) {
+          this.sourceCameraBaseScroll = {
+            x: this.cameras.main.scrollX,
+            y: this.cameras.main.scrollY,
+          };
+        }
+        const followAxes = sourceCameraFollowAxes(this.actor.direction);
+        // The source runs this integer easing once in each paced gameplay paint;
+        // apply it at the corresponding 71 ms world-update boundaries here.
+        for (let update = 0; update < npcWorldUpdates; update += 1) {
+          if (followAxes.horizontal) {
+            this.sourceCameraBaseScroll.x = Phaser.Math.Clamp(
+              advanceSourceCameraScroll(this.sourceCameraBaseScroll.x, targetScrollX),
+              0,
+              maxScrollX,
+            );
+          }
+          if (followAxes.vertical) {
+            this.sourceCameraBaseScroll.y = Phaser.Math.Clamp(
+              advanceSourceCameraScroll(this.sourceCameraBaseScroll.y, targetScrollY),
+              0,
+              maxScrollY,
+            );
+          }
+        }
         this.cameras.main.setScroll(
-          Phaser.Math.Linear(this.cameras.main.scrollX, targetScrollX, lerp),
-          Phaser.Math.Linear(this.cameras.main.scrollY, targetScrollY, lerp),
+          this.sourceCameraBaseScroll.x + mapShake.x,
+          this.sourceCameraBaseScroll.y + mapShake.y,
         );
       } else {
-        this.cameras.main.setScroll(targetScrollX, targetScrollY);
+        this.sourceCameraBaseScroll = { x: targetScrollX, y: targetScrollY };
+        this.cameras.main.setScroll(targetScrollX + mapShake.x, targetScrollY + mapShake.y);
       }
     }
+    this.sourceCameraShakeOffset = null;
   }
 
   private beginGameOver(): void {
@@ -1110,6 +1927,130 @@ export class WorldScene extends Phaser.Scene {
     this.gameOverTexture.refresh();
   }
 
+  private advancePlayerSkillActionTick(map: RenderedWorld): boolean {
+    map.playerSkillVisuals = map.playerSkillVisuals.flatMap((visual) => {
+      const nextFrame = visual.frameIndex + 1;
+      return nextFrame >= playerSkillEffectFrameCount(visual.effectType)
+        ? []
+        : [{ ...visual, frameIndex: nextFrame }];
+    });
+    const step = advancePlayerSkillAction(
+      this.playerSkillAction,
+      WORLD_UPDATE_PERIOD_MS,
+      (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+      () => this.randomStreams.entity.nextInt(),
+      { tileX: this.actor.x >> 4, tileY: this.actor.y >> 4 },
+    );
+    this.playerSkillAction = step.state;
+    if (step.cameraShakeOffset !== undefined) {
+      this.sourceCameraShakeOffset = step.cameraShakeOffset;
+    }
+    for (const visual of step.visualSpawns) this.addPlayerSkillVisual(map, visual);
+    for (const visual of step.attachedVisualSpawns) {
+      this.addPlayerAttachedSkillVisual(visual, { kind: 'player' });
+    }
+    if (this.playerSkillAction.skillId !== null) {
+      this.playerSkillActionStates.set(this.playerSkillAction.skillId, this.playerSkillAction);
+    }
+    let occupancyChanged = false;
+    if (step.statusEffectsCleared) {
+      this.playerStatus = retainPlayerStatusEffects(this.playerStatus, []);
+      this.syncPlayerStatusDisplay();
+    }
+    this.syncPlayerStatusDisplay();
+    for (const effect of step.restoreEffects) {
+      if (effect.resource === 'hp') {
+        this.hudState.hp = restoreSkillResource(
+          this.hudState.hp, this.hudState.maxHp, effect.percent,
+        );
+      } else {
+        this.hudState.sp = restoreSkillResource(
+          this.hudState.sp, this.hudState.maxSp, effect.percent,
+        );
+      }
+    }
+    if (step.restoreEffects.length > 0) this.refreshGameplayHud();
+    for (const pulse of step.damagePulses) {
+      const target = findEnemyOccupyingSourceCell(map.enemies, pulse.tileX, pulse.tileY);
+      if (target === undefined) continue;
+      const result = applySourceSkillDamage(
+        map.enemies,
+        target.sourceOrder,
+        pulse.power,
+        pulse.elementCode,
+      );
+      map.enemies = result.combatants;
+      if (result.kind !== 'hit') continue;
+      map.enemies = map.enemies.map((enemy) => enemy.sourceOrder === result.target.sourceOrder
+        ? beginEnemyDamageReaction(enemy, this.playerSkillAction.facing)
+        : enemy);
+      this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
+      if (target.state === 'alive' && result.target.state === 'death-pending') {
+        this.rewardDefeatedEnemy(map, result.target);
+        occupancyChanged = true;
+      }
+    }
+    for (const cell of step.instantKillCells) {
+      const target = findEnemyOccupyingSourceCell(map.enemies, cell.tileX, cell.tileY);
+      const skillId = this.playerSkillAction.skillId;
+      const attachedVisual = sourceInstantKillAttachedVisualSpawn(
+        skillId,
+        target === undefined
+          ? undefined
+          : { sourceAu: target.sourceAu, elementCode: target.definition.elementCode },
+      );
+      if (attachedVisual === null) {
+        this.addPlayerSkillVisual(map, {
+          effectType: 10,
+          skillId: skillId ?? 3,
+          levelSlot: 2,
+          tileX: cell.tileX,
+          tileY: cell.tileY,
+        });
+      } else if (target !== undefined) {
+        this.addEnemyAttachedSkillVisual(map, attachedVisual, target.sourceOrder);
+      }
+      if (target === undefined) continue;
+      const result = applySourceInstantKillDamage(
+        map.enemies,
+        target.sourceOrder,
+        cell.elementCode,
+      );
+      map.enemies = result.combatants;
+      if (result.kind !== 'hit') continue;
+      this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
+      if (target.state === 'alive' && result.target.state === 'death-pending') {
+        this.rewardDefeatedEnemy(map, result.target);
+        occupancyChanged = true;
+      }
+    }
+    return occupancyChanged;
+  }
+
+  private applyPlayerSkillCounterattack(
+    map: RenderedWorld,
+    attacker: EnemyCombatant,
+  ): EnemyCombatant {
+    if (this.playerSkillAction.counterattackBoostTicksRemaining <= 0) return attacker;
+    const power = (this.playerSkillAction.skillRank * 2) + 40 + this.playerSkillAction.skillPowerStat;
+    const result = applySourceCounterDamage([attacker], attacker.sourceOrder, power);
+    if (result.kind !== 'hit') return attacker;
+    this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
+    if (attacker.state === 'alive' && result.target.state === 'death-pending') {
+      this.rewardDefeatedEnemy(map, result.target);
+    }
+    return result.target;
+  }
+
+  private recordSourcePlayerHit(direction: Direction | undefined): void {
+    // `n` initializes actors facing south; source `an.a(...)` records the
+    // attacker-facing direction and applies its offset on the next paint.
+    this.playerHitFeedback = recordPlayerHitFeedback(
+      this.playerHitFeedback,
+      direction ?? 2,
+    );
+  }
+
   private advanceEnemyDeathLifecycle(elapsedMs: number): void {
     const currentMap = this.maps.get(this.currentMapId);
     if (currentMap === undefined) return;
@@ -1118,8 +2059,8 @@ export class WorldScene extends Phaser.Scene {
     while (currentMap.enemyUpdateRemainderMs >= WORLD_UPDATE_PERIOD_MS) {
       currentMap.enemyUpdateRemainderMs -= WORLD_UPDATE_PERIOD_MS;
       this.advanceGroundDrops(currentMap);
-      this.advancePlayerStatus();
-      this.advanceEnemyAttackEntities(currentMap);
+      occupancyChanged = this.advanceEnemyAttackEntities(currentMap) || occupancyChanged;
+      this.pendingSkillAttachedVisualPasses += 1;
 
       const cadence = advanceEnemyRespawnCadence(currentMap.respawnCadenceTicks);
       currentMap.respawnCadenceTicks = cadence.ticksRemaining;
@@ -1140,28 +2081,276 @@ export class WorldScene extends Phaser.Scene {
           const revived = respawnEnemy(waitingEnemy, placement.tileX, placement.tileY);
           const sprite = currentMap.enemySprites.get(revived.sourceOrder);
           sprite?.setPosition(
-            revived.tileX * 16 + (revived.definition.classCode === 2 ? 16 : 8),
-            revived.tileY * 16 + 14,
-          ).setDepth(revived.tileY * 16 + 14).setVisible(true);
+            revived.tileX * 16 + enemyFootprintWidth(revived) * 8,
+            revived.tileY * 16 + 14 + (revived.sourceRenderOffsetY ?? 0),
+          ).setDepth(revived.tileY * 16 + 14 + (revived.sourceRenderOffsetY ?? 0)).setVisible(true);
           occupancyChanged = true;
           return revived;
         });
       }
 
-      const previous = currentMap.enemies.map(advanceEnemyDamageReaction);
+      currentMap.enemies = currentMap.enemies.map((enemy) => {
+        const tick = advanceSourceEnemyStatuses(
+          enemy,
+          (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+        );
+        if (tick.poisonDamage > 0) {
+          this.showDamageNumber(tick.enemy.tileX, tick.enemy.tileY, tick.poisonDamage);
+        }
+        if (enemy.state === 'alive' && tick.enemy.state === 'death-pending') {
+          this.rewardDefeatedEnemy(currentMap, tick.enemy);
+          occupancyChanged = true;
+        }
+        return tick.enemy;
+      });
+
+      const previous = currentMap.enemies.map((enemy) =>
+        shouldPauseSourceEnemyBrainOffscreen(
+          enemy,
+          this.actor.x >> 4,
+          this.actor.y >> 4,
+        ) ? enemy : advanceEnemyDamageReaction(enemy));
       let pursuitEnemies = [...previous];
       for (let index = 0; index < pursuitEnemies.length; index += 1) {
         const enemy = pursuitEnemies[index];
         if (enemy.state !== 'alive') continue;
-        const occupiedCellIndices = createEntityOccupancy(
-          currentMap.events,
-          currentMap.world.map.width,
-          currentMap.world.map.height,
-          currentMap.visibleNpcSourceOrders,
-          undefined,
-          this.activeEnemyPlacements(pursuitEnemies),
-        );
-        const animation = this.enemyAnimations.get(enemy.enemyId);
+        if (shouldPauseSourceEnemyBrainOffscreen(
+          enemy,
+          this.actor.x >> 4,
+          this.actor.y >> 4,
+        )) continue;
+        if (sourceEnemyActionIsBlocked(enemy) && !sourceCustomEnemyActionContinuesWhileBlocked(enemy)) {
+          pursuitEnemies[index] = enemy.sourceMap13Ai !== undefined
+            ? resetMap13GroupActionWhileBlocked(enemy)
+            : enemy.sourceAqAi !== undefined
+              ? resetMap13AqActionWhileBlocked(enemy)
+              : enemy.sourceMap15Ai !== undefined
+                ? resetMap15ActionWhileBlocked(enemy)
+                : resetSourceEnemyActionWhileBlocked(enemy);
+          continue;
+        }
+        const occupiedCellIndices = this.mapEntityOccupancy(currentMap, pursuitEnemies);
+        if (enemy.sourceCbAi !== undefined) {
+          const bossTick = advanceMap11CbAiTick(enemy, {
+            collision: currentMap.world.collision,
+            occupiedCellIndices,
+            playerTileX: this.actor.x >> 4,
+            playerTileY: this.actor.y >> 4,
+            randomInteger: (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+          });
+          pursuitEnemies[index] = bossTick.enemy;
+          if (bossTick.enemy.pixelX !== enemy.pixelX || bossTick.enemy.pixelY !== enemy.pixelY) {
+            occupancyChanged = true;
+          }
+          if (bossTick.immediateHitPower !== undefined && this.hudState.hp > 0 &&
+            !this.playerSkillAction.damageImmunityActive) {
+            const counteredBoss = this.applyPlayerSkillCounterattack(currentMap, bossTick.enemy);
+            pursuitEnemies[index] = counteredBoss;
+            if (bossTick.enemy.state === 'alive' && counteredBoss.state === 'death-pending') {
+              occupancyChanged = true;
+            }
+            const attackSource = {
+              ...counteredBoss,
+              definition: { ...counteredBoss.definition, attack: bossTick.immediateHitPower },
+            };
+            const defenseProfile = this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level);
+            const defense = resolveEnemyMeleeDefense(
+              attackSource,
+              {
+                ...defenseProfile,
+                doubleDefense: defenseProfile.doubleDefense ||
+                  this.playerSkillAction.defenseBoostTicksRemaining > 0,
+              },
+              (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+            );
+            if (!defense.evaded) {
+              this.recordSourcePlayerHit(bossTick.enemy.animationDirection);
+              this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
+              this.refreshGameplayHud();
+              this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
+            }
+          }
+          for (const direction of bossTick.projectileDirections ?? []) {
+            currentMap.enemyProjectiles.push(beginEnemyProjectile(
+              currentMap.nextEnemyAttackVisualId++,
+              enemy.sourceOrder,
+              bossTick.enemy.renderSpriteId ?? bossTick.enemy.spriteId ?? enemy.enemyId,
+              bossTick.enemy.tileX,
+              bossTick.enemy.tileY,
+              direction,
+            ));
+          }
+          continue;
+        }
+        if (enemy.sourceAqAi !== undefined) {
+          const bossTick = advanceMap13AqAiTick(enemy, {
+            playerTileX: this.actor.x >> 4,
+            playerTileY: this.actor.y >> 4,
+            rawRandomInteger: () => this.randomStreams.entity.nextInt(),
+          });
+          pursuitEnemies[index] = bossTick.enemy;
+          for (const projectile of bossTick.projectileSpawns ?? []) {
+            currentMap.enemyProjectiles.push(beginEnemyProjectileAtCell(
+              currentMap.nextEnemyAttackVisualId++,
+              enemy.sourceOrder,
+              bossTick.enemy.renderSpriteId ?? bossTick.enemy.spriteId ?? enemy.enemyId,
+              projectile.tileX,
+              projectile.tileY,
+              projectile.direction,
+              projectile.remainingSegments,
+            ));
+          }
+          continue;
+        }
+        if (enemy.sourceMap13Ai !== undefined) {
+          const bossTick = advanceMap13GroupAiTick(enemy, {
+            enemies: pursuitEnemies,
+            playerTileX: this.actor.x >> 4,
+            playerTileY: this.actor.y >> 4,
+          });
+          pursuitEnemies[index] = bossTick.enemy;
+          if (bossTick.companionUpdate !== undefined) {
+            const companionIndex = pursuitEnemies.findIndex(({ sourceOrder }) =>
+              sourceOrder === bossTick.companionUpdate!.sourceOrder);
+            if (companionIndex >= 0) pursuitEnemies[companionIndex] = bossTick.companionUpdate;
+          }
+          for (const projectile of bossTick.projectileSpawns ?? []) {
+            currentMap.enemyProjectiles.push(beginEnemyProjectileAtCell(
+              currentMap.nextEnemyAttackVisualId++,
+              enemy.sourceOrder,
+              bossTick.enemy.renderSpriteId ?? enemy.enemyId,
+              projectile.tileX,
+              projectile.tileY,
+              projectile.direction,
+              projectile.remainingSegments,
+            ));
+          }
+          for (const effect of bossTick.effectSpawns ?? []) {
+            currentMap.enemyAttackAnimations.push({
+              id: currentMap.nextEnemyAttackVisualId++,
+              spriteId: bossTick.enemy.renderSpriteId ?? enemy.enemyId,
+              tileX: effect.tileX,
+              tileY: effect.tileY,
+              frameIndex: 0,
+            });
+          }
+          for (const effect of bossTick.attachedEffectSpawns ?? []) {
+            currentMap.enemyAttackAnimations.push({
+              id: currentMap.nextEnemyAttackVisualId++,
+              spriteId: MAP13_CC_RENDER_SPRITE_ID,
+              tileX: effect.tileX,
+              tileY: effect.tileY,
+              frameIndex: 0,
+              attachedSourceOrder: effect.sourceOrder,
+            });
+          }
+          if (bossTick.immediateHitPower !== undefined && this.hudState.hp > 0 &&
+            !this.playerSkillAction.damageImmunityActive) {
+            const counteredBoss = this.applyPlayerSkillCounterattack(currentMap, bossTick.enemy);
+            pursuitEnemies[index] = counteredBoss;
+            if (bossTick.enemy.state === 'alive' && counteredBoss.state === 'death-pending') {
+              occupancyChanged = true;
+            }
+            const attackSource = {
+              ...counteredBoss,
+              definition: { ...counteredBoss.definition, attack: bossTick.immediateHitPower },
+            };
+            const defenseProfile = this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level);
+            const defense = resolveEnemyMeleeDefense(
+              attackSource,
+              {
+                ...defenseProfile,
+                doubleDefense: defenseProfile.doubleDefense ||
+                  this.playerSkillAction.defenseBoostTicksRemaining > 0,
+              },
+              (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+            );
+            if (!defense.evaded) {
+              this.recordSourcePlayerHit(bossTick.enemy.animationDirection);
+              this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
+              this.refreshGameplayHud();
+              this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
+            }
+          }
+          continue;
+        }
+        if (enemy.sourceMap15Ai !== undefined) {
+          const spriteId = enemy.renderSpriteId ?? enemy.spriteId ?? enemy.enemyId;
+          const animation = this.bossAnimations.get(spriteId);
+          if (animation === undefined) continue;
+          const idleTrack = findBossSpriteTrack(animation, 0, 1);
+          const walkTrack = enemy.sourceMap15Ai.role === 'cf'
+            ? findBossSpriteTrack(animation, 1, 1)
+            : idleTrack;
+          const playerTileX = this.actor.x >> 4;
+          const playerTileY = this.actor.y >> 4;
+          const sourceTick = enemy.sourceMap15Ai.role === 'cf'
+            ? advanceMap15HazardAiTick(enemy, {
+              playerTileX,
+              playerTileY,
+              playerOccupiedCellIndices: actorOccupiedCellIndices(
+                this.actor,
+                currentMap.world.collision.width,
+              ),
+              mapWidth: currentMap.world.collision.width,
+              idleFrameCount: idleTrack.frameCount,
+              walkFrameCount: walkTrack.frameCount,
+              attackFrameCount: findBossSpriteTrack(animation, 3, 2).frameCount,
+            })
+            : advanceMap15AttackerAiTick(enemy, {
+              playerTileX,
+              playerTileY,
+              rawRandomInteger: () => this.randomStreams.entity.nextInt(),
+              idleFrameCount: idleTrack.frameCount,
+              walkFrameCount: walkTrack.frameCount,
+              attackFrameCountForDirection: (direction) =>
+                findBossSpriteTrack(animation, 3, direction).frameCount,
+            });
+          pursuitEnemies[index] = sourceTick.enemy;
+          if (sourceTick.cameraShakeOffset !== undefined) {
+            this.sourceCameraShakeOffset = sourceTick.cameraShakeOffset;
+          }
+          if (sourceTick.occupancyChanged === true ||
+            sourceTick.enemy.pixelY !== enemy.pixelY) occupancyChanged = true;
+          if (sourceTick.immediateHitPower !== undefined && this.hudState.hp > 0 &&
+            !this.playerSkillAction.damageImmunityActive) {
+            if (sourceTick.knockbackDirection !== undefined && sourceTick.knockbackPixels !== undefined) {
+              this.actor = displaceActorFromSourceHit(
+                this.actor,
+                sourceTick.knockbackDirection,
+                sourceTick.knockbackPixels,
+              );
+            }
+            const counteredBoss = this.applyPlayerSkillCounterattack(currentMap, sourceTick.enemy);
+            pursuitEnemies[index] = counteredBoss;
+            if (sourceTick.enemy.state === 'alive' && counteredBoss.state === 'death-pending') {
+              occupancyChanged = true;
+            }
+            const attackSource = {
+              ...counteredBoss,
+              definition: { ...counteredBoss.definition, attack: sourceTick.immediateHitPower },
+            };
+            const defenseProfile = this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level);
+            const defense = resolveEnemyMeleeDefense(
+              attackSource,
+              {
+                ...defenseProfile,
+                doubleDefense: defenseProfile.doubleDefense ||
+                  this.playerSkillAction.defenseBoostTicksRemaining > 0,
+              },
+              (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+            );
+            if (!defense.evaded) {
+              this.recordSourcePlayerHit(sourceTick.enemy.animationDirection);
+              this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
+              this.refreshGameplayHud();
+              this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
+            }
+          }
+          continue;
+        }
+        if (enemy.directTypeZeroMarkerOnRemoval !== undefined) continue;
+        const animation = this.enemyAnimations.get(enemy.spriteId ?? enemy.enemyId);
         const attackTrack = animation === undefined
           ? undefined
           : findEnemySpriteTrack(animation, 2, enemy.animationDirection ?? 2);
@@ -1170,21 +2359,48 @@ export class WorldScene extends Phaser.Scene {
           occupiedCellIndices,
           playerTileX: this.actor.x >> 4,
           playerTileY: this.actor.y >> 4,
+          playerAction: {
+            tileX: this.playerSkillAction.tileX,
+            tileY: this.playerSkillAction.tileY,
+            phase: this.playerSkillAction.phase,
+            needsActorTargetReselection: sourceActionNeedsActorTargetReselection(this.playerSkillAction),
+          },
           randomInteger: (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
           rawRandomInteger: () => this.randomStreams.entity.nextInt(),
         }, attackTrack?.frameCount);
         if (moved.pixelX !== enemy.pixelX || moved.pixelY !== enemy.pixelY) occupancyChanged = true;
         pursuitEnemies[index] = moved;
       }
+      pursuitEnemies = pursuitEnemies.map(enterMap15SourceDeathState);
       const advancedSprites = pursuitEnemies.map((pursued) => {
-        if (pursued.state !== 'alive') return pursued;
-        const animation = this.enemyAnimations.get(pursued.enemyId);
+        const persistentMap15Corpse = pursued.state === 'death-pending' &&
+          pursued.sourceBehavior === 'map15-cf';
+        const ordinaryDeathPose = pursued.state === 'death-pending' &&
+          usesOrdinarySourceEnemyUpdate(pursued);
+        const sourceAuDeathPose = pursued.state === 'death-pending' && pursued.sourceAu === true;
+        if (pursued.state !== 'alive' && !persistentMap15Corpse && !ordinaryDeathPose &&
+          !sourceAuDeathPose) return pursued;
+        const renderSpriteId = pursued.renderSpriteId ?? pursued.spriteId ?? pursued.enemyId;
+        const bossAnimation = this.bossAnimations.get(renderSpriteId);
+        if (bossAnimation !== undefined) {
+          const track = findBossSpriteTrack(
+            bossAnimation,
+            enemyRenderAnimationState(pursued, bossAnimation) as BossSpriteState,
+            pursued.animationDirection ?? 2,
+          );
+          return {
+            ...pursued,
+            animationFrameIndex: persistentMap15Corpse
+              ? Math.min((pursued.animationFrameIndex ?? -1) + 1, track.frameCount - 1)
+              : advanceBossSpriteFrame(pursued.animationFrameIndex ?? -1, track),
+          };
+        }
+        const animation = this.enemyAnimations.get(renderSpriteId);
         if (animation === undefined) return pursued;
-        const track = findEnemySpriteTrack(
-          animation,
-          pursued.animationStateIndex ?? 0,
-          pursued.animationDirection ?? 2,
-        );
+        const renderState = ordinaryDeathPose || sourceAuDeathPose
+          ? 0
+          : pursued.animationStateIndex ?? 0;
+        const track = findEnemySpriteTrack(animation, renderState as 0 | 1 | 2, pursued.animationDirection ?? 2);
         return {
           ...pursued,
           animationFrameIndex: advanceEnemySpriteFrame(pursued.animationFrameIndex ?? -1, track),
@@ -1193,6 +2409,13 @@ export class WorldScene extends Phaser.Scene {
       const playerTileX = this.actor.x >> 4;
       const playerTileY = this.actor.y >> 4;
       const attackChecked = advancedSprites.map((enemy) => {
+        if (enemy.sourceCbAi !== undefined || enemy.sourceAqAi !== undefined ||
+          enemy.sourceMap13Ai !== undefined || enemy.sourceMap15Ai !== undefined) return enemy;
+        if (shouldPauseSourceEnemyBrainOffscreen(
+          enemy,
+          playerTileX,
+          playerTileY,
+        )) return enemy;
         const consumed = consumeEnemyAttackImpactFrame(
           enemy,
           enemyAttackImpactFrame(enemy.enemyId),
@@ -1225,15 +2448,24 @@ export class WorldScene extends Phaser.Scene {
             frameIndex: 0,
           });
         }
+        if (this.playerSkillAction.damageImmunityActive) return consumed;
+        const countered = this.applyPlayerSkillCounterattack(currentMap, consumed);
+        if (consumed.state === 'alive' && countered.state === 'death-pending') occupancyChanged = true;
+        const defenseProfile = this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level);
         const result = resolveEnemyMeleeDefense(
-          consumed,
-          this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level),
+          countered,
+          {
+            ...defenseProfile,
+            doubleDefense: defenseProfile.doubleDefense ||
+              this.playerSkillAction.defenseBoostTicksRemaining > 0,
+          },
           (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
         );
         if (!result.evaded) {
+          this.recordSourcePlayerHit(consumed.animationDirection);
           this.hudState.hp = Math.max(0, this.hudState.hp - result.damage);
           this.refreshGameplayHud();
-          this.showDamageNumber(playerTileX, playerTileY, result.damage);
+          this.showDamageNumber(playerTileX, playerTileY, -result.damage, 'hero');
           if (enemyHitAppliesPoison(
             consumed.definition.behaviorType,
             result.evaded,
@@ -1243,36 +2475,111 @@ export class WorldScene extends Phaser.Scene {
             this.syncPlayerStatusDisplay();
           }
         }
-        return consumed;
+        return countered;
       });
-      const next = advanceEnemyDeathTick(attackChecked);
+      const defeatedSourceOrders = new Set(attackChecked.flatMap((enemy) =>
+        enemy.state === 'death-pending' && enemy.enemyId === 36 &&
+          enemy.sourceGroupId !== undefined
+          ? [enemy.sourceOrder]
+          : []));
+      const withBossGroupDeaths = removeSourceMap13BossCompanions(
+        attackChecked,
+        defeatedSourceOrders,
+      );
+      const defeatedMap15HazardOrders = new Set(withBossGroupDeaths.flatMap((enemy) =>
+        enemy.state === 'death-pending' && enemy.sourceBehavior === 'map15-cf'
+          ? [enemy.sourceOrder]
+          : []));
+      const withMap15CompanionDeaths = removeSourceMap15HazardCompanions(
+        withBossGroupDeaths,
+        defeatedMap15HazardOrders,
+      );
+      if (withMap15CompanionDeaths.some((enemy, index) =>
+        enemy.state !== withBossGroupDeaths[index]?.state)) occupancyChanged = true;
+      const withMap15DeathTicks = withMap15CompanionDeaths.map(advanceMap15HazardDeathTick);
+      for (let index = 0; index < withMap15DeathTicks.length; index += 1) {
+        const prior = withMap15CompanionDeaths[index];
+        const settled = withMap15DeathTicks[index];
+        if (prior.sourceMap15Ai?.role !== 'cf' || settled.sourceMap15Ai?.role !== 'cf' ||
+          prior.sourceMap15Ai.collisionSettled || !settled.sourceMap15Ai.collisionSettled) continue;
+        currentMap.world = {
+          ...currentMap.world,
+          collision: applyDynamicCollisionChanges(
+            currentMap.world.collision,
+            sourceMap15HazardCollisionWrites(settled),
+          ),
+        };
+        this.world = currentMap.world;
+      }
+      const next = withMap15DeathTicks.map((enemy) =>
+        shouldPauseSourceEnemyBrainOffscreen(
+          enemy,
+          playerTileX,
+          playerTileY,
+        ) ? enemy : advanceEnemyDeathTick([enemy])[0] ?? enemy);
+      let automaticEnemyRemovalEventStarted = false;
+      let sourceMap13WaveEvents: EventOperationData | undefined;
       for (let index = 0; index < next.length; index += 1) {
-        if (previous[index].state !== 'death-pending' ||
-          (next[index].state !== 'respawn-wait' && next[index].state !== 'removed')) continue;
+        const prior = previous[index];
         const defeatedEnemy = next[index];
-        currentMap.enemySprites.get(defeatedEnemy.sourceOrder)?.setVisible(false);
+        for (const effect of sourceMap13AfDeathEffectSpawns(
+          defeatedEnemy,
+          defeatedEnemy.deathUpdatesRemaining,
+          (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
+        )) {
+          currentMap.enemyAttackAnimations.push({
+            id: currentMap.nextEnemyAttackVisualId++,
+            spriteId: MAP13_CC_RENDER_SPRITE_ID,
+            tileX: effect.tileX,
+            tileY: effect.tileY,
+            frameIndex: 0,
+          });
+        }
+        if (prior.state !== defeatedEnemy.state && defeatedEnemy.state === 'removed') {
+          currentMap.enemySprites.get(defeatedEnemy.sourceOrder)?.setVisible(false);
+          occupancyChanged = true;
+        }
+        if (prior.state === 'death-pending' &&
+          (defeatedEnemy.state === 'respawn-wait' || defeatedEnemy.state === 'removed')) {
+          currentMap.enemySprites.get(defeatedEnemy.sourceOrder)?.setVisible(false);
+          occupancyChanged = true;
+          if (defeatedEnemy.sourceAqAi !== undefined) {
+            sourceMap13WaveEvents = addSourceMap13SecondWaveEnemies(currentMap.events);
+          }
+          if (defeatedEnemy.directTypeZeroMarkerOnRemoval !== undefined) {
+            automaticEnemyRemovalEventStarted = this.tryTypeZeroMarker(
+              currentMap,
+              defeatedEnemy.directTypeZeroMarkerOnRemoval,
+            ) || automaticEnemyRemovalEventStarted;
+          }
+        }
+      }
+      if (sourceMap13WaveEvents !== undefined && sourceMap13WaveEvents !== currentMap.events) {
+        const previousPlacements = currentMap.events.enemyPlacements.length;
+        const additions = sourceMap13WaveEvents.enemyPlacements.slice(previousPlacements);
+        currentMap.events = sourceMap13WaveEvents;
+        const spawnedEnemies = createEnemyCombatants(additions, this.enemyDataTable!);
+        next.push(...spawnedEnemies);
+        for (const enemy of spawnedEnemies) this.addSourceEnemySprite(currentMap, enemy);
         occupancyChanged = true;
       }
       currentMap.enemies = next;
       this.syncEnemySpritePositions(currentMap);
       this.syncEnemyAttackSprites(currentMap);
-      if (this.hudState.hp <= 0) break;
+      if (this.hudState.hp <= 0 || automaticEnemyRemovalEventStarted) break;
     }
     if (occupancyChanged) {
-      currentMap.occupiedCellIndices = createEntityOccupancy(
-        currentMap.events,
-        currentMap.world.map.width,
-        currentMap.world.map.height,
-        currentMap.visibleNpcSourceOrders,
-        undefined,
-        this.activeEnemyPlacements(currentMap.enemies),
-      );
+      currentMap.occupiedCellIndices = this.mapEntityOccupancy(currentMap);
     }
   }
 
-  private advanceEnemyAttackEntities(map: RenderedWorld): void {
+  private advanceEnemyAttackEntities(map: RenderedWorld): boolean {
+    let occupancyChanged = false;
     map.enemyAttackAnimations = map.enemyAttackAnimations.flatMap((animation) => {
-      const effect = this.enemyAttackEffects.get(animation.spriteId);
+      if (animation.attachedSourceOrder !== undefined && !map.enemies.some((enemy) =>
+        enemy.sourceOrder === animation.attachedSourceOrder &&
+        (enemy.state === 'alive' || enemy.state === 'death-pending'))) return [];
+      const effect = this.attackEffectForSprite(animation.spriteId);
       if (effect === undefined) return [];
       const advanced = advanceEnemyAttackEffect(animation, effect.frameCount);
       return advanced === undefined ? [] : [advanced];
@@ -1281,7 +2588,7 @@ export class WorldScene extends Phaser.Scene {
     const projectiles: EnemyProjectile[] = [];
     const spawned: EnemyProjectile[] = [];
     for (const projectile of map.enemyProjectiles) {
-      const effect = this.enemyAttackEffects.get(projectile.spriteId);
+      const effect = this.attackEffectForSprite(projectile.spriteId);
       if (effect === undefined) continue;
       const result = advanceEnemyProjectileTick(
         projectile,
@@ -1300,19 +2607,78 @@ export class WorldScene extends Phaser.Scene {
       if (!result.hitPlayer || this.hudState.hp <= 0) continue;
       const attacker = map.enemies.find(({ sourceOrder }) => sourceOrder === projectile.sourceOrder);
       if (attacker === undefined) continue;
+      if (this.playerSkillAction.damageImmunityActive) continue;
+      const counteredAttacker = this.applyPlayerSkillCounterattack(map, attacker);
+      if (counteredAttacker !== attacker) {
+        map.enemies = map.enemies.map((enemy) => enemy.sourceOrder === attacker.sourceOrder
+          ? counteredAttacker
+          : enemy);
+      }
+      const defenseProfile = this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level);
       const defense = resolveEnemyMeleeDefense(
-        attacker,
-        this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level),
+        counteredAttacker,
+        {
+          ...defenseProfile,
+          doubleDefense: defenseProfile.doubleDefense ||
+            this.playerSkillAction.defenseBoostTicksRemaining > 0,
+        },
         (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
       );
       if (!defense.evaded) {
+        this.recordSourcePlayerHit(projectile.direction);
         this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
         this.refreshGameplayHud();
-        this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, defense.damage);
+        this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
       }
     }
+    const playerProjectiles: SourceClassEightProjectile[] = [];
+    const spawnedPlayerProjectiles: SourceClassEightProjectile[] = [];
+    for (const projectile of map.playerProjectiles) {
+      const result = advanceSourceClassEightProjectileTick(
+        projectile,
+        map.world.map.width,
+        map.world.map.height,
+        map.nextPlayerProjectileId,
+      );
+      if (result.projectile !== undefined) playerProjectiles.push(result.projectile);
+      if (result.spawned !== undefined) {
+        spawnedPlayerProjectiles.push(result.spawned);
+        map.nextPlayerProjectileId += 1;
+      }
+      if (result.hitCell === undefined) continue;
+      const target = findEnemyOccupyingSourceCell(
+        map.enemies,
+        result.hitCell.tileX,
+        result.hitCell.tileY,
+      );
+      if (target === undefined) continue;
+      const attack = resolveBasicAttack(
+        map.enemies,
+        target.sourceOrder,
+        {
+          ...projectile.attackProfile,
+          attackElement: sourcePlayerSkillElement(this.playerSkillAction.skillId),
+        },
+        this.randomStreams.range.nextSourceRange(0, 99),
+        projectile.critical,
+        projectile.procCode,
+      );
+      map.enemies = attack.combatants;
+      if (attack.kind !== 'hit') continue;
+      map.enemies = attack.combatants.map((enemy) => enemy.sourceOrder === attack.target.sourceOrder
+        ? beginEnemyDamageReaction(enemy, projectile.direction)
+        : enemy);
+      this.applyPlayerWeaponProcCosts(attack.playerHpCost, attack.playerSpCost);
+      this.showDamageNumber(attack.target.tileX, attack.target.tileY, attack.damage);
+      if (target.state === 'alive' && attack.target.state === 'death-pending') {
+        this.rewardDefeatedEnemy(map, attack.target);
+        occupancyChanged = true;
+      }
+    }
+    map.playerProjectiles = [...playerProjectiles, ...spawnedPlayerProjectiles];
     map.enemyProjectiles = [...projectiles, ...spawned];
     this.syncEnemyAttackSprites(map);
+    return occupancyChanged;
   }
 
   private createGroundDropSprite(map: RenderedWorld, drop: GroundDrop): void {
@@ -1362,10 +2728,17 @@ export class WorldScene extends Phaser.Scene {
             'ground-pickup',
           );
       },
+      this.specialInventory,
     );
-    if (result.pickedUp === null) return false;
+    if (result.pickedUp === null) {
+      if (result.status === 'no-space') {
+        this.showPickupNotice(this.commerceText(2375, 'no space'));
+      }
+      return false;
+    }
     currentMap.groundDrops = result.drops;
     this.inventory = result.inventory;
+    this.specialInventory = result.specialInventory;
     this.wallet = result.wallet;
     const sprite = currentMap.groundDropSprites.get(result.pickedUp.id);
     if (sprite !== undefined) {
@@ -1378,7 +2751,82 @@ export class WorldScene extends Phaser.Scene {
       this.hudState.selectedItemCategory,
     );
     this.refreshGameplayHud();
+    if (result.pickedUp.kind === 'currency') {
+      const amount = result.pickedUp.sourceAmount > 0
+        ? result.pickedUp.sourceAmount * 9 : result.pickedUp.sourceAmount;
+      this.showPickupNotice(`${this.commerceText(2330, 'Gain')} ${amount} ${this.commerceText(2376, 'G')}`);
+    } else {
+      const categoryName = this.itemCategoryNames[result.pickedUp.category] ?? 'Item';
+      this.showPickupNotice(`${this.commerceText(2330, 'Gain')} ${categoryName}`);
+    }
     return true;
+  }
+
+  private showPickupNotice(text: string): void {
+    if (this.fontLayout === null) return;
+    if (this.pickupNoticeCanvas === null || this.pickupNoticeContext === null ||
+      this.pickupNoticeTexture === null || this.pickupNoticeOverlay === null) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 240;
+      canvas.height = 320;
+      const context = canvas.getContext('2d');
+      if (context === null) return;
+      context.imageSmoothingEnabled = false;
+      if (this.textures.exists('world-pickup-notice')) this.textures.remove('world-pickup-notice');
+      const texture = this.textures.addCanvas('world-pickup-notice', canvas);
+      if (texture === null) return;
+      this.pickupNoticeCanvas = canvas;
+      this.pickupNoticeContext = context;
+      this.pickupNoticeTexture = texture;
+      this.pickupNoticeOverlay = this.add.image(0, 0, texture)
+        .setOrigin(0, 0)
+        .setScrollFactor(0)
+        .setDepth(50001);
+    }
+    this.pickupNoticeText = text;
+    this.pickupNoticeTicksRemaining = 16;
+    this.renderPickupNotice();
+  }
+
+  private advancePickupNotice(): void {
+    if (this.pickupNoticeTicksRemaining <= 0) return;
+    this.pickupNoticeTicksRemaining -= 1;
+    if (this.pickupNoticeTicksRemaining === 0) {
+      this.pickupNoticeText = '';
+      this.pickupNoticeOverlay?.setVisible(false);
+      this.pickupNoticeContext?.clearRect(0, 0, 240, 320);
+      this.pickupNoticeTexture?.refresh();
+    }
+  }
+
+  private renderPickupNotice(): void {
+    const context = this.pickupNoticeContext;
+    const texture = this.pickupNoticeTexture;
+    if (context === null || texture === null || this.fontLayout === null) return;
+    context.clearRect(0, 0, 240, 320);
+    const x = 70;
+    const y = 274;
+    const width = 100;
+    const height = 23;
+    const color = (value: number): string => `#${value.toString(16).padStart(6, '0')}`;
+    context.fillStyle = color(6233919);
+    context.fillRect(x + 2, y + 2, width - 4, height - 4);
+    context.fillStyle = color(4136767);
+    context.fillRect(x + 1, y, width - 2, 1);
+    context.fillRect(x, y + 1, 1, height - 2);
+    context.fillRect(x + 1, y + height - 1, width - 2, 1);
+    context.fillRect(x + width - 1, y + 1, 1, height - 1);
+    context.fillStyle = color(10452799);
+    context.fillRect(x + 1, y + 1, width - 4, 1);
+    context.fillRect(x + 1, y + 1, 1, height - 4);
+    context.fillStyle = color(4144959);
+    context.fillRect(x + width - 2, y + 1, 1, height - 3);
+    context.fillRect(x + 1, y + height - 2, width - 3, 1);
+    const fontAtlas = this.textures.get('world-font-atlas').getSourceImage() as CanvasImageSource;
+    drawBitmapText(context, fontAtlas, this.fontLayout, this.pickupNoticeText,
+      x + width / 2, y + 3, '#ffffff', 'center');
+    texture.refresh();
+    this.pickupNoticeOverlay?.setVisible(true);
   }
 
   private cycleSelectedItem(): void {
@@ -1391,10 +2839,17 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private useSelectedItem(): void {
-    const result = useSelectedConsumable(this.inventory, this.hudState, this.playerStatus.effects);
+    const result = useSelectedConsumable(
+      this.inventory,
+      this.hudState,
+      this.playerStatus.effects,
+      this.hudState.hp > 0 && this.gameOverSequence === null,
+    );
     if (!result.used) return;
     this.inventory = result.inventory;
-    this.playerStatus = retainPlayerStatusEffects(this.playerStatus, result.statusEffects);
+    this.playerStatus = retainPlayerStatusEffects(this.playerStatus, result.statusEffects, {
+      deferPoisonRemoval: result.state.selectedItemCategory === 10,
+    });
     this.hudState = { ...this.hudState, ...result.state };
     this.refreshGameplayHud();
     this.syncPlayerStatusDisplay();
@@ -1412,18 +2867,42 @@ export class WorldScene extends Phaser.Scene {
       this.refreshGameplayHud();
     }
     if (result.poisonPulse) {
-      this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, result.damageNumber);
+      this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -result.damageNumber, 'hero');
     }
     this.syncPlayerStatusDisplay();
   }
 
   private syncPlayerStatusDisplay(): void {
-    if (this.playerStatusContainer === null || this.playerStatusPoisonIcon === null) return;
-    const active = this.playerStatus.effects.includes(7);
-    this.playerStatusContainer.setPosition(this.actor.x + 8, this.actor.y - 22)
+    const activeIds = new Set<number>();
+    if (this.playerSkillAction.comboPowerBoostTicksRemaining > 0) activeIds.add(5);
+    if (this.playerSkillAction.defenseBoostTicksRemaining > 0) activeIds.add(6);
+    if (this.playerStatus.effects.includes(7)) activeIds.add(7);
+    const ordered = this.playerStatusMarkerOrder.filter((statusId) => activeIds.has(statusId));
+    for (const statusId of [5, 6, 7]) {
+      if (activeIds.has(statusId) && !ordered.includes(statusId)) ordered.push(statusId);
+    }
+    this.playerStatusMarkerOrder = ordered;
+
+    const container = this.playerStatusContainer;
+    if (container === null) return;
+    container.setPosition(this.actor.x + 8, this.actor.y + 1)
       .setDepth(this.actor.y + 9)
-      .setVisible(active);
-    this.playerStatusPoisonIcon.setPosition(0, 1 + ((this.playerStatus.poisonTicksElapsed ?? 0) % 2));
+      .setVisible(ordered.length > 0);
+    for (const [statusId, marker] of this.playerStatusMarkerContainers) {
+      const index = ordered.indexOf(statusId);
+      marker.setVisible(index >= 0);
+      if (index < 0) continue;
+      marker.setX(sourcePlayerStatusMarkerHorizontalOffset(index, ordered.length));
+      const elapsedTicks = statusId === 5
+        ? 140 - this.playerSkillAction.comboPowerBoostTicksRemaining
+        : statusId === 6
+          ? 160 - this.playerSkillAction.defenseBoostTicksRemaining
+          : this.playerStatus.poisonTicksElapsed ?? 0;
+      this.playerStatusMarkerIcons.get(statusId)?.setPosition(
+        0,
+        -29 + sourcePlayerStatusMarkerBlinkOffset(elapsedTicks),
+      );
+    }
   }
 
   private rewardDefeatedEnemy(map: RenderedWorld, enemy: EnemyCombatant): void {
@@ -1443,43 +2922,277 @@ export class WorldScene extends Phaser.Scene {
       map.groundDrops.push(groundDrop);
       this.createGroundDropSprite(map, groundDrop);
     }
-    this.hudState = awardEnemyExperience(this.hudState, enemy.definition.experienceRewardCode);
+    this.awardPlayerExperience(enemyExperienceSourceAmount(
+      this.hudState.level,
+      enemy.definition.experienceRewardCode,
+    ));
     this.recalculateEquipmentStats();
   }
 
+  private applyPlayerWeaponProcCosts(hpCost: number, spCost: number): void {
+    if (hpCost <= 0 && spCost <= 0) return;
+    if (hpCost > 0) this.hudState.hp = Math.max(0, this.hudState.hp - hpCost);
+    if (spCost > 0) this.hudState.sp = Math.max(0, this.hudState.sp - spCost);
+    this.refreshGameplayHud();
+    if (hpCost > 0) this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -hpCost, 'hero');
+  }
+
+  private awardPlayerExperience(sourceAmount: number): void {
+    const previousLevel = this.hudState.level;
+    this.hudState = awardSourceExperience(this.hudState, sourceAmount);
+    for (let level = previousLevel; level < this.hudState.level; level += 1) {
+      this.addPlayerLevelUpFlash();
+    }
+    this.playerSkillAction = awardPlayerSkillExperience(this.playerSkillAction, sourceAmount);
+    const skillId = this.playerSkillAction.skillId;
+    if (skillId !== null) this.playerSkillActionStates.set(skillId, this.playerSkillAction);
+  }
+
+  private addPlayerLevelUpFlash(): void {
+    if (this.heroContainer === null || !this.textures.exists('world-player-level-up-flash')) return;
+    const sprite = this.add.image(0, 5, 'world-player-level-up-flash')
+      .setOrigin(0.5, 1);
+    this.heroContainer.add(sprite);
+    this.playerLevelUpFlashes.push({
+      animation: createSourcePlayerLevelUpFlash(this.pendingNpcAnimationPasses),
+      sprite,
+    });
+    const effect = this.playerLevelUpEffect;
+    if (effect === null) return;
+    const components: ActiveSourcePlayerLevelUpAtlasEffect['components'] = [];
+    for (let frameIndex = 0;
+      frameIndex < Math.min(effect.frameCount, SOURCE_PLAYER_LEVEL_UP_ATLAS_FRAME_COUNT);
+      frameIndex += 1) {
+      for (const component of effect.frames[frameIndex] ?? []) {
+        if (component.sourceAtlasId !== 13) continue;
+        const textureKey = `world-player-level-up-atlas-${component.imageIndex}`;
+        if (!this.textures.exists(textureKey)) continue;
+        const image = this.add.image(component.offsetX, component.offsetY, textureKey)
+          .setOrigin(0, 0)
+          .setVisible(frameIndex === 0);
+        this.heroContainer.add(image);
+        components.push({ frameIndex, sprite: image });
+      }
+    }
+    if (components.length === 0) return;
+    this.playerLevelUpAtlasEffects.push({
+      animation: createSourcePlayerLevelUpAtlasAnimation(this.pendingNpcAnimationPasses),
+      components,
+    });
+  }
+
+  private advancePlayerLevelUpFlashes(sourcePaintPasses: number): void {
+    const hero = this.heroContainer;
+    const playerPainted = hero !== null && hero.visible &&
+      this.cameras.main.worldView.contains(hero.x, hero.y);
+    for (let index = this.playerLevelUpFlashes.length - 1; index >= 0; index -= 1) {
+      const flash = this.playerLevelUpFlashes[index];
+      if (flash === undefined) continue;
+      const next = advanceSourcePlayerLevelUpFlash(
+        flash.animation,
+        sourcePaintPasses,
+        playerPainted,
+      );
+      if (next === null) {
+        flash.sprite.destroy();
+        this.playerLevelUpFlashes.splice(index, 1);
+        continue;
+      }
+      flash.animation = next;
+      flash.sprite.setVisible(sourcePlayerLevelUpFlashIsVisible(next.frameIndex));
+    }
+    for (let index = this.playerLevelUpAtlasEffects.length - 1; index >= 0; index -= 1) {
+      const effect = this.playerLevelUpAtlasEffects[index];
+      if (effect === undefined) continue;
+      const next = advanceSourcePlayerLevelUpAtlasAnimation(
+        effect.animation,
+        sourcePaintPasses,
+        playerPainted,
+      );
+      if (next === null) {
+        for (const component of effect.components) component.sprite.destroy();
+        this.playerLevelUpAtlasEffects.splice(index, 1);
+        continue;
+      }
+      effect.animation = next;
+      for (const component of effect.components) {
+        component.sprite.setVisible(component.frameIndex === next.frameIndex);
+      }
+    }
+  }
+
   private activeEnemyPlacements(enemies: readonly EnemyCombatant[]): DynamicEnemyPlacement[] {
+    // `az`/`aj` constructors clear their `f14a` cells and never reinsert them.
     return enemies
-      .filter((enemy) => enemy.state === 'alive' || enemy.state === 'death-pending')
-      .map((enemy) => ({
-        sourceOrder: enemy.sourceOrder,
-        tileX: enemy.tileX,
-        tileY: enemy.tileY,
-        footprintWidth: enemy.definition.classCode === 2 ? 2 : 1,
-      }));
+      .filter((enemy) => (enemy.state === 'alive' || enemy.state === 'death-pending') &&
+        enemy.sourceBehavior !== 'map15-az' && enemy.sourceBehavior !== 'map15-aj')
+      .flatMap((enemy) => {
+        const footprintWidth = enemyFootprintWidth(enemy);
+        const placements: DynamicEnemyPlacement[] = [{
+          sourceOrder: enemy.sourceOrder,
+          tileX: enemy.tileX,
+          tileY: enemy.tileY,
+          footprintWidth,
+        }];
+        if (enemy.sourceBehavior?.startsWith('map15-') && enemy.pixelY % 16 !== 0) {
+          placements.push({
+            sourceOrder: enemy.sourceOrder,
+            tileX: enemy.tileX,
+            tileY: enemy.tileY + 1,
+            footprintWidth,
+          });
+        }
+        const hazardRow = enemy.sourceMap15Ai?.role === 'cf'
+          ? enemy.sourceMap15Ai.hazardRow
+          : null;
+        if (hazardRow !== null && hazardRow !== undefined) {
+          placements.push({
+            sourceOrder: enemy.sourceOrder,
+            tileX: 6,
+            tileY: hazardRow,
+            footprintWidth: 4,
+          });
+        }
+        return placements;
+      });
+  }
+
+  private activeNpcPlacements(map: RenderedWorld): DynamicNpcPlacement[] {
+    const tileCenter = map.world.map.tileSize / 2;
+    return map.events.npcPlacements.map((placement) => {
+      const sprite = map.npcSprites.get(placement.sourceOrder);
+      return {
+        sourceOrder: placement.sourceOrder,
+        pixelX: sprite === undefined
+          ? placement.tileX * map.world.map.tileSize
+          : Math.round(sprite.container.x - tileCenter),
+        pixelY: sprite === undefined
+          ? placement.tileY * map.world.map.tileSize
+          : Math.round(sprite.container.y - tileCenter),
+        occupiesCells: sprite === undefined || sprite.stateIndex === 0,
+      };
+    });
+  }
+
+  private mapEntityOccupancy(
+    map: RenderedWorld,
+    enemies: readonly EnemyCombatant[] = map.enemies,
+  ): ReadonlySet<number> {
+    return createEntityOccupancy(
+      map.events,
+      map.world.map.width,
+      map.world.map.height,
+      map.visibleNpcSourceOrders,
+      undefined,
+      this.activeEnemyPlacements(enemies),
+      this.activeNpcPlacements(map),
+    );
+  }
+
+  private setMapObjectsVisible(map: RenderedWorld, visible: boolean): void {
+    map.objects.forEach((object) => object.setVisible(visible));
+    for (const [sourceOrder, sprite] of map.npcSprites) {
+      sprite.container.setVisible(visible && map.visibleNpcSourceOrders.has(sourceOrder));
+    }
   }
 
   private syncEnemySpritePositions(map: RenderedWorld): void {
     for (const enemy of map.enemies) {
       const sprite = map.enemySprites.get(enemy.sourceOrder);
       if (sprite === undefined) continue;
-      const widthOffset = enemy.definition.classCode === 2 ? 16 : 8;
+      const widthOffset = enemyFootprintWidth(enemy) * 8;
       const baseY = enemy.pixelY + 14;
       const offset = enemyDamageReactionOffset(enemy);
+      const renderY = baseY + (enemy.sourceRenderOffsetY ?? 0) + offset.y;
       sprite.setPosition(
         enemy.pixelX + widthOffset + offset.x,
-        baseY + offset.y,
-      ).setDepth(baseY + offset.y);
-      if (enemy.state === 'alive') {
+        renderY,
+      ).setDepth(renderY);
+      this.syncEnemyStatusDisplay(
+        map,
+        enemy,
+        enemy.pixelX + widthOffset + offset.x,
+        renderY - 30 - (enemy.definition.classCode * 3),
+        renderY + 1,
+      );
+      const ordinaryDeathPose = enemy.state === 'death-pending' &&
+        usesOrdinarySourceEnemyUpdate(enemy);
+      const sourceAuDeathPose = enemy.state === 'death-pending' && enemy.sourceAu === true;
+      if (enemy.state === 'alive' || ordinaryDeathPose || sourceAuDeathPose ||
+        (enemy.state === 'death-pending' && enemy.sourceBehavior === 'map15-cf')) {
+        const spriteId = enemy.renderSpriteId ?? enemy.spriteId ?? enemy.enemyId;
         this.setEnemySpriteFrame(
           sprite,
-          enemy.enemyId,
-          map.enemyTextureKeys.get(enemy.enemyId),
-          enemy.animationStateIndex ?? 0,
+          spriteId,
+          map.enemyTextureKeys.get(spriteId),
+          enemyRenderAnimationState(enemy, this.bossAnimations.get(spriteId)),
           enemy.animationDirection ?? 2,
           enemy.animationFrameIndex ?? -1,
         );
       }
     }
+    this.syncEnemyAttachedSkillVisualSprites(map);
+  }
+
+  private syncEnemyStatusDisplay(
+    map: RenderedWorld,
+    enemy: EnemyCombatant,
+    x: number,
+    y: number,
+    depth: number,
+  ): void {
+    const effects = enemy.state === 'removed' || enemy.state === 'respawn-wait'
+      ? []
+      : enemy.sourceStatusEffects ?? [];
+    let display = map.enemyStatusDisplays.get(enemy.sourceOrder);
+    if (display === undefined) {
+      if (effects.length === 0) return;
+      const container = this.add.container(x, y).setDepth(depth);
+      display = { container, signature: '', icons: new Map() };
+      map.enemyStatusDisplays.set(enemy.sourceOrder, display);
+      map.objects.push(container);
+    }
+    display.container.setPosition(x, y).setDepth(depth);
+    const signature = effects.map(({ id }) => id).join(',');
+    if (signature !== display.signature) {
+      display.container.removeAll(true);
+      display.icons.clear();
+      for (const [index, effect] of effects.entries()) {
+        const horizontalOffset = (6 * (effects.length - 1)) - (12 * index);
+        const background = this.add.image(horizontalOffset, 0, 'world-player-status-background')
+          .setOrigin(0.5, 0);
+        const icon = this.add.image(horizontalOffset, 1, `world-enemy-status-${effect.id}`)
+          .setOrigin(0.5, 0);
+        display.container.add([background, icon]);
+        display.icons.set(effect.id, icon);
+      }
+      display.signature = signature;
+    }
+    display.container.setVisible(effects.length > 0);
+    for (const effect of effects) {
+      display.icons.get(effect.id)?.setY(1 + (effect.ticksElapsed % 2));
+    }
+  }
+
+  private addSourceEnemySprite(map: RenderedWorld, enemy: EnemyCombatant): void {
+    const spriteId = enemy.renderSpriteId ?? enemy.spriteId ?? enemy.enemyId;
+    const textureSet = map.enemyTextureKeys.get(spriteId);
+    if (textureSet === undefined || !this.bossAnimations.has(spriteId)) {
+      throw new Error(`Source boss animation ${spriteId} was not queued for this map`);
+    }
+    const widthOffset = enemyFootprintWidth(enemy) * 8;
+    const y = enemy.tileY * 16 + 14 + (enemy.sourceRenderOffsetY ?? 0);
+    const sprite = this.add.container(enemy.tileX * 16 + widthOffset, y).setDepth(y);
+    this.setEnemySpriteFrame(
+      sprite,
+      spriteId,
+      textureSet,
+      enemyRenderAnimationState(enemy),
+      enemy.animationDirection ?? 2,
+      enemy.animationFrameIndex ?? 0,
+    );
+    map.enemySprites.set(enemy.sourceOrder, sprite);
+    map.objects.push(sprite);
   }
 
   /** Resolve current/ahead triggers after the actor reaches or stops at a tile boundary. */
@@ -1488,6 +3201,7 @@ export class WorldScene extends Phaser.Scene {
     const currentMap = this.maps.get(this.currentMapId);
     if (currentMap === undefined || this.actor.moving ||
       this.actor.x % 16 !== 0 || this.actor.y % 16 !== 0) return;
+    if (this.tryCurrentCellAutomaticEvent(currentMap)) return;
     const directionDelta: Record<Direction, { x: number; y: number }> = {
       1: { x: 0, y: -1 },
       2: { x: 0, y: 1 },
@@ -1496,33 +3210,6 @@ export class WorldScene extends Phaser.Scene {
     };
     const tileX = this.actor.x >> 4;
     const tileY = this.actor.y >> 4;
-    const currentMarker = currentMap.world.collision.values[tileY]?.[tileX];
-    if (currentMarker !== undefined && currentMarker !== 0 && currentMarker !== -128) {
-      const automaticSelection = resolveTriggerScript(
-        currentMap.events, currentMarker, 0, this.gameFlags, this.questFlags, this.inventory,
-      );
-      if (automaticSelection !== undefined && canRunEventCutscene(
-        automaticSelection.commands,
-        currentMap.events.npcPlacements.length,
-        { width: currentMap.world.map.width, height: currentMap.world.map.height },
-        this.equipmentDataTable ?? undefined,
-      )) {
-        this.startOrderedEventCutscene(automaticSelection, currentMap.events);
-        return;
-      }
-      const automaticDestination = resolveMapTransition(
-        currentMap.events,
-        currentMarker,
-        0,
-        this.gameFlags,
-        this.questFlags,
-        { inventory: this.inventory },
-      );
-      if (automaticDestination !== undefined) {
-        this.transitionToMap(automaticDestination);
-        return;
-      }
-    }
     const delta = directionDelta[this.actor.direction];
     const targetX = (this.actor.x >> 4) + delta.x;
     const targetY = (this.actor.y >> 4) + delta.y;
@@ -1539,6 +3226,7 @@ export class WorldScene extends Phaser.Scene {
       currentMap.events.npcPlacements.length,
       { width: currentMap.world.map.width, height: currentMap.world.map.height },
       this.equipmentDataTable ?? undefined,
+      currentMap.decorationObjectCount,
     )) {
       this.startOrderedEventCutscene(selection, currentMap.events);
       return;
@@ -1552,6 +3240,48 @@ export class WorldScene extends Phaser.Scene {
       { inventory: this.inventory },
     );
     this.transitionToMap(destination);
+  }
+
+  /** Dispatch a type-0 event on the actor's current cell. */
+  private tryCurrentCellAutomaticEvent(currentMap: RenderedWorld): boolean {
+    if (this.openingDialogVisible || this.worldDialogueVisible || this.actor.moving ||
+      this.actor.x % 16 !== 0 || this.actor.y % 16 !== 0) return false;
+    const tileX = this.actor.x >> 4;
+    const tileY = this.actor.y >> 4;
+    const marker = currentMap.world.collision.values[tileY]?.[tileX];
+    if (marker === undefined || marker === 0 || marker === -128) return false;
+
+    return this.tryTypeZeroMarker(currentMap, marker);
+  }
+
+  /** Dispatch source type 0 even when the marker came from an entity callback, not collision. */
+  private tryTypeZeroMarker(currentMap: RenderedWorld, marker: number): boolean {
+    if (this.openingDialogVisible || this.worldDialogueVisible) return false;
+    const selection = resolveTriggerScript(
+      currentMap.events, marker, 0, this.gameFlags, this.questFlags, this.inventory,
+    );
+    if (selection !== undefined && canRunEventCutscene(
+      selection.commands,
+      currentMap.events.npcPlacements.length,
+      { width: currentMap.world.map.width, height: currentMap.world.map.height },
+      this.equipmentDataTable ?? undefined,
+      currentMap.decorationObjectCount,
+    )) {
+      this.startOrderedEventCutscene(selection, currentMap.events);
+      return true;
+    }
+
+    const destination = resolveMapTransition(
+      currentMap.events,
+      marker,
+      0,
+      this.gameFlags,
+      this.questFlags,
+      { inventory: this.inventory },
+    );
+    if (destination === undefined) return false;
+    this.transitionToMap(destination);
+    return true;
   }
 
   private skipOpeningCutscene(): void {
@@ -1590,9 +3320,22 @@ export class WorldScene extends Phaser.Scene {
       (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
       this.equipmentDataTable ?? undefined,
     );
-    this.syncOpeningCutscenePresentation();
     const nextState = this.openingCutsceneState;
     if (nextState === null) return;
+    if (nextState.status === 'dialogue' || nextState.status === 'choice') this.createOpeningDialog();
+    const newHeroPositionChanges = nextState.heroPositionChanges.slice(
+      this.openingCutsceneAppliedHeroPositionChangeCount,
+    );
+    if (newHeroPositionChanges.length > 0) {
+      const position = newHeroPositionChanges[newHeroPositionChanges.length - 1];
+      this.actor = {
+        ...this.actor,
+        x: position.tileX * 16,
+        y: position.tileY * 16,
+      };
+      this.openingCutsceneAppliedHeroPositionChangeCount = nextState.heroPositionChanges.length;
+    }
+    this.syncOpeningCutscenePresentation();
     this.inventory = nextState.inventory.map((stack) => ({ ...stack }));
     this.skillIds = [...nextState.skillIds];
     this.comboLimit = nextState.comboLimit;
@@ -1608,7 +3351,7 @@ export class WorldScene extends Phaser.Scene {
         this.hudState.sp = Math.min(this.hudState.maxSp, Math.max(0, this.hudState.sp + change.amount));
         refreshHud = true;
       } else {
-        this.hudState = awardSourceExperience(this.hudState, change.amount);
+        this.awardPlayerExperience(change.amount);
         this.recalculateEquipmentStats();
         refreshHud = true;
       }
@@ -1630,7 +3373,9 @@ export class WorldScene extends Phaser.Scene {
           const image = currentMap.objects[change.tileY * currentMap.world.map.width + change.tileX];
           const textureKey = currentMap.tileKeys.get(change.tileId);
           if (image instanceof Phaser.GameObjects.Image && textureKey !== undefined) {
-            image.setTexture(textureKey);
+            image.setTexture(textureKey).setVisible(true);
+          } else if (image instanceof Phaser.GameObjects.Image && change.tileId === 128) {
+            image.setVisible(false);
           }
         }
       }
@@ -1654,7 +3399,10 @@ export class WorldScene extends Phaser.Scene {
       this.openCommerceMenu(nextState.serviceRequest);
     } else if (nextState.status === 'ending') {
       this.openingDialogVisible = false;
-      this.scene.start('EndingScene', { heroClassId: this.heroClassId });
+      this.scene.start('EndingScene', {
+        heroClassId: this.heroClassId,
+        newGamePlusState: prepareNextSourceCycle(this.createSaveState()),
+      });
     } else if (nextState.status === 'ended') {
       this.openingDialogVisible = false;
       this.openingDialogOverlay?.setVisible(false);
@@ -1671,12 +3419,13 @@ export class WorldScene extends Phaser.Scene {
     this.openingCutsceneEvents = events;
     this.openingCutsceneState = createEventCutscene(
       selection.scriptIndex, this.actor.direction, this.inventory, this.skillIds, this.comboLimit,
-      this.heroClassId,
+      this.heroClassId, this.questFlags.has(29),
     );
     this.eventCameraBaseScroll = null;
     this.openingCutsceneAppliedFlagCount = 0;
     this.openingCutsceneAppliedPlayerChangeCount = 0;
     this.openingCutsceneAppliedTileChangeCount = 0;
+    this.openingCutsceneAppliedHeroPositionChangeCount = 0;
     this.openingCutsceneUsesRoninFormatting = usesRoninFormatting;
     this.openingDialogVisible = true;
     this.worldDialogueVisible = false;
@@ -1809,6 +3558,7 @@ export class WorldScene extends Phaser.Scene {
       currentMap.events.npcPlacements.length,
       { width: currentMap.world.map.width, height: currentMap.world.map.height },
       this.equipmentDataTable ?? undefined,
+      currentMap.decorationObjectCount,
     )) {
       this.startOrderedEventCutscene(selection, currentMap.events);
       return;
@@ -1928,7 +3678,11 @@ export class WorldScene extends Phaser.Scene {
     mapId: number,
     gameFlags: ReadonlySet<number>,
   ): Promise<RenderedWorld> {
-    const paths = getMapAssetPaths(mapId);
+    const paths = this.preloadedMapAssetPaths.get(mapId) ??
+      resolveMapAssetPaths(mapId, this.heroClassId, this.generatedAssetPaths);
+    if (paths === null) {
+      throw new Error(`Map ${mapId} source resources for hero class ${this.heroClassId} are unavailable`);
+    }
     const readJson = async (url: string): Promise<unknown> => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Map asset request failed: ${url}`);
@@ -1952,11 +3706,11 @@ export class WorldScene extends Phaser.Scene {
     );
     const effectiveMap = initialState.world.map;
     const effectiveDecorations = initialState.decorations;
-    const effectiveEvents = {
+    const effectiveEvents = addSourceConstructedMapEnemies(mapId, {
       ...events,
       npcPlacements: initialState.npcPlacements,
       enemyPlacements: initialState.enemyPlacements,
-    };
+    });
 
     const requiredTextures = new Set<string>();
     const queueImage = (key: string, path: string): void => {
@@ -1976,18 +3730,23 @@ export class WorldScene extends Phaser.Scene {
     }
     const objectKeys = new Map<number, string>();
     const objectAtlasPath = `/assets/generated/atlases/${effectiveDecorations.objectAtlas}`;
-    for (const atlasIndex of new Set(effectiveDecorations.objects.map(({ atlasIndex }) => atlasIndex))) {
+    for (const atlasIndex of new Set([
+      ...effectiveDecorations.loadedImageIds,
+      ...effectiveDecorations.objects.map(({ atlasIndex }) => atlasIndex),
+    ])) {
       const key = `map-${mapId}-object-${atlasIndex}`;
       objectKeys.set(atlasIndex, key);
       queueImage(key, `${objectAtlasPath}/${String(atlasIndex).padStart(3, '0')}.png`);
     }
     const npcTextureKeys = this.queueNpcTextures(
       effectiveEvents,
-      initialState.visibleNpcSourceOrders,
       queueImage,
     );
     const enemyTextureKeys = this.queueEnemySpriteTextures(
-      effectiveEvents.enemyPlacements.map(({ enemyId }) => enemyId),
+      [...effectiveEvents.enemyPlacements.flatMap(({ enemyId, spriteId, renderSpriteId }) => [
+        renderSpriteId ?? spriteId ?? enemyId,
+        ...(renderSpriteId === undefined ? [] : [spriteId ?? enemyId]),
+      ]), ...sourceMapSpawnRenderSpriteIds(mapId)],
       queueImage,
     );
 
@@ -2019,17 +3778,29 @@ export class WorldScene extends Phaser.Scene {
     return {
       world: initialState.world,
       tilesetId: effectiveMap.tilesetId,
+      startupHeroEmotion: initialState.heroEmotion,
       events: effectiveEvents,
       tileKeys,
+      objectTextureKeys: objectKeys,
+      decorationObjectCount: decorations.objects.length,
+      decorationSprites: objects.decorationSprites,
       enemies,
       enemySprites: objects.enemySprites,
+      enemyStatusDisplays: new Map(),
       npcSprites: objects.npcSprites,
       enemyTextureKeys,
       enemyProjectiles: [],
       enemyProjectileSprites: new Map(),
+      playerProjectiles: [],
+      nextPlayerProjectileId: 1,
       enemyAttackAnimations: [],
       enemyAttackSprites: new Map(),
       nextEnemyAttackVisualId: 1,
+      playerSkillVisuals: [],
+      playerSkillVisualSprites: new Map(),
+      nextPlayerSkillVisualId: 1,
+      enemyAttachedSkillVisuals: [],
+      enemyAttachedSkillVisualSprites: new Map(),
       groundDrops: [],
       groundDropSprites: new Map(),
       nextGroundDropId: 1,
@@ -2055,13 +3826,21 @@ export class WorldScene extends Phaser.Scene {
     const nextMap = this.maps.get(destination.mapId);
     if (nextMap === undefined || !this.isValidMapEntry(destination, nextMap)) return false;
 
+    nextMap.occupiedCellIndices = this.mapEntityOccupancy(nextMap);
     this.gameFlags = new Set(flags.gameFlags);
     this.questFlags = new Set(flags.questFlags);
-    this.maps.get(this.currentMapId)?.objects.forEach((object) => object.setVisible(false));
-    nextMap.objects.forEach((object) => object.setVisible(true));
+    const currentMap = this.maps.get(this.currentMapId);
+    if (currentMap !== undefined) this.setMapObjectsVisible(currentMap, false);
+    this.setMapObjectsVisible(nextMap, true);
     this.currentMapId = destination.mapId;
     this.world = nextMap.world;
-    this.actor = createPlayerActor(destination.tileX * 16, destination.tileY * 16);
+    this.actor = createPlayerActor(
+      destination.tileX * 16,
+      destination.tileY * 16,
+      sourceMapTransitionDirection(destination.entryDirectionIndex),
+    );
+    this.applyStartupHeroEmotion(nextMap);
+    this.centerCameraForMapEntry(nextMap);
     this.eventCameraBaseScroll = null;
     this.pressedDirections = [];
     this.openingDialogVisible = false;
@@ -2071,7 +3850,22 @@ export class WorldScene extends Phaser.Scene {
     this.openingDialogOverlay?.setVisible(false);
     this.openingCutsceneBlankOverlay?.setVisible(false);
     this.createGameplayHud();
+    this.tryCurrentCellAutomaticEvent(nextMap);
     return true;
+  }
+
+  /** The source centers both axes immediately when the map manager loads a map. */
+  private centerCameraForMapEntry(map: RenderedWorld): void {
+    const position = sourceCameraScrollTarget(
+      this.actor,
+      map.width,
+      map.height,
+      this.scale.width,
+      this.scale.height,
+      false,
+    );
+    this.cameras.main.setScroll(position.x, position.y);
+    this.sourceCameraBaseScroll = position;
   }
 
   private createGameplayHud(): void {
@@ -2138,6 +3932,8 @@ export class WorldScene extends Phaser.Scene {
   private openInventoryMenu(): void {
     this.inventoryMenuVisible = true;
     this.inventorySelection = Math.min(this.inventorySelection, Math.max(0, this.inventory.length - 1));
+    this.equipmentMenuMode = 'slots';
+    this.equipmentSlotSelection = Math.min(this.equipmentSlotSelection, EQUIPMENT_SLOT_LABELS.length - 1);
     this.systemMenuMessage = '';
     this.renderInventoryMenu();
   }
@@ -2146,6 +3942,37 @@ export class WorldScene extends Phaser.Scene {
     this.inventoryMenuVisible = false;
     this.systemMenuMessage = '';
     this.renderSystemMenu();
+  }
+
+  private backFromInventoryMenu(): void {
+    if (this.equipmentMenuMode !== 'slots') {
+      this.equipmentMenuMode = 'slots';
+      this.systemMenuMessage = '';
+      this.renderInventoryMenu();
+      return;
+    }
+    this.closeInventoryMenu();
+  }
+
+  private openCompatibleEquipmentItems(): void {
+    const indices = equipmentInventoryIndicesForSlot(this.inventory, this.equipmentSlotSelection, this.heroClassId);
+    if (indices.length === 0) {
+      this.systemMenuMessage = `No ${EQUIPMENT_SLOT_LABELS[this.equipmentSlotSelection].toLowerCase()} items in the bag.`;
+      this.renderInventoryMenu();
+      return;
+    }
+    if (!indices.includes(this.inventorySelection)) this.inventorySelection = indices[0];
+    this.equipmentMenuMode = 'slot-items';
+    this.systemMenuMessage = '';
+    this.renderInventoryMenu();
+  }
+
+  private moveCompatibleEquipmentSelection(delta: -1 | 1): void {
+    const indices = equipmentInventoryIndicesForSlot(this.inventory, this.equipmentSlotSelection, this.heroClassId);
+    if (indices.length === 0) return;
+    const selectedIndex = indices.indexOf(this.inventorySelection);
+    const nextPosition = (Math.max(0, selectedIndex) + delta + indices.length) % indices.length;
+    this.inventorySelection = indices[nextPosition];
   }
 
   private openAttributeMenu(): void {
@@ -2266,32 +4093,113 @@ export class WorldScene extends Phaser.Scene {
     this.renderSystemMenu();
   }
 
-  private equipInventorySelection(): void {
+  private equipInventorySelection(expectedSlot: number): void {
+    const selected = this.inventory[this.inventorySelection];
+    if (selected === undefined || equipmentSlotForCategory(selected.category) !== expectedSlot) {
+      this.systemMenuMessage = 'Choose an item that fits this slot.';
+      this.renderInventoryMenu();
+      return;
+    }
+    if (selected.equipmentState?.sourceFlag !== true) {
+      this.equipmentMenuMode = 'slots';
+      this.systemMenuMessage = 'Identify this equipment before equipping it.';
+      this.renderInventoryMenu();
+      return;
+    }
     const result = equipInventoryItem(this.inventory, this.equipmentSlots, this.inventorySelection);
     if (result === null) {
       this.systemMenuMessage = 'Select an equipment item to equip.';
       this.renderInventoryMenu();
       return;
     }
-    this.inventory = result.inventory;
+    this.updateInventory(
+      result.inventory,
+      result.removed === null ? undefined : this.inventorySelection,
+    );
     this.equipmentSlots = result.equipment;
     this.inventorySelection = Math.min(this.inventorySelection, Math.max(0, this.inventory.length - 1));
+    this.equipmentMenuMode = 'slots';
+    this.equipmentSlotSelection = result.slot;
     this.recalculateEquipmentStats();
     this.hudState.selectedItemCount = selectedConsumableCount(
       this.inventory,
       this.hudState.selectedItemCategory,
     );
-    this.systemMenuMessage = `${EQUIPMENT_CATEGORY_LABELS[result.equipped.category]} equipped.`;
+    this.systemMenuMessage = `${this.commerceStackName(result.equipped)} equipped.`;
+    this.renderInventoryMenu();
+  }
+
+  private activateInventorySelection(): void {
+    const selected = this.inventory[this.inventorySelection];
+    if (selected === undefined) return;
+    if (selected.category <= 6) {
+      const slot = equipmentSlotForCategory(selected.category);
+      if (slot !== null) {
+        this.equipmentSlotSelection = slot;
+        this.equipmentMenuMode = 'slots';
+        this.systemMenuMessage = `Choose ${EQUIPMENT_SLOT_LABELS[slot].toLowerCase()}, then select an item.`;
+      } else {
+        this.systemMenuMessage = 'Choose an equipment slot first.';
+      }
+      this.renderInventoryMenu();
+      return;
+    }
+    const result = useConsumableAtIndex(
+      this.inventory,
+      this.hudState,
+      this.playerStatus.effects,
+      this.inventorySelection,
+      this.hudState.hp > 0 && this.gameOverSequence === null,
+    );
+    if (!result.used) {
+      this.systemMenuMessage = 'This item cannot be used here.';
+      this.renderInventoryMenu();
+      return;
+    }
+    this.inventory = result.inventory;
+    this.playerStatus = retainPlayerStatusEffects(this.playerStatus, result.statusEffects, {
+      deferPoisonRemoval: result.state.selectedItemCategory === 10,
+    });
+    this.hudState = { ...this.hudState, ...result.state };
+    this.refreshGameplayHud();
+    this.syncPlayerStatusDisplay();
+    this.systemMenuMessage = `${this.commerceStackName(selected)} used.`;
     this.renderInventoryMenu();
   }
 
   private handleInventoryMenuPointer(y: number): void {
-    if (y < 150 || y >= 246) return;
-    const firstVisible = Math.floor(this.inventorySelection / 8) * 8;
-    const index = firstVisible + Math.floor((y - 150) / 12);
-    if (index >= this.inventory.length) return;
-    this.inventorySelection = index;
-    this.equipInventorySelection();
+    if (y >= 68 && y < 128 && this.equipmentMenuMode === 'slots') {
+      const slot = Math.floor((y - 68) / 11);
+      if (slot < 0 || slot >= EQUIPMENT_SLOT_LABELS.length) return;
+      this.equipmentSlotSelection = slot;
+      this.openCompatibleEquipmentItems();
+      return;
+    }
+    if (y >= 150 && y < 246) {
+      const visibleIndices = this.equipmentMenuMode === 'slot-items'
+        ? equipmentInventoryIndicesForSlot(this.inventory, this.equipmentSlotSelection, this.heroClassId)
+        : this.inventory.map((_, index) => index);
+      const position = this.equipmentMenuMode === 'slot-items'
+        ? visibleIndices.indexOf(this.inventorySelection)
+        : this.inventorySelection;
+      const firstVisible = Math.floor(Math.max(0, position) / 8) * 8;
+      const index = visibleIndices[firstVisible + Math.floor((y - 150) / 12)];
+      if (index === undefined) return;
+      this.inventorySelection = index;
+      if (this.equipmentMenuMode === 'slots') this.equipmentMenuMode = 'bag';
+      this.activateInventorySelection();
+      return;
+    }
+    if (y >= 250 && y <= 282) {
+      if (this.equipmentMenuMode === 'slot-items') {
+        this.equipmentMenuMode = 'slots';
+      } else {
+        this.equipmentMenuMode = this.equipmentMenuMode === 'slots' ? 'bag' : 'slots';
+      }
+      this.systemMenuMessage = '';
+      this.renderInventoryMenu();
+      return;
+    }
   }
 
   private openSystemMenu(): void {
@@ -2299,6 +4207,8 @@ export class WorldScene extends Phaser.Scene {
       this.openingDialogVisible || this.worldDialogueVisible || this.loadingMapTransition) return;
     this.pressedDirections = [];
     this.systemMenuSelection = 0;
+    this.skillMenuVisible = false;
+    this.skillLevelMenuVisible = false;
     this.inventoryMenuVisible = false;
     this.inventorySelection = 0;
     this.attributeMenuVisible = false;
@@ -2339,6 +4249,8 @@ export class WorldScene extends Phaser.Scene {
       return;
     }
     this.systemMenuVisible = false;
+    this.skillMenuVisible = false;
+    this.skillLevelMenuVisible = false;
     this.inventoryMenuVisible = false;
     this.attributeMenuVisible = false;
     this.attributeConfirmationVisible = false;
@@ -2375,6 +4287,7 @@ export class WorldScene extends Phaser.Scene {
       : service === 'refiner' ? 'refiner-main' : 'blacksmith-main';
     this.commerceMenu = {
       service, screen, tab: 0, selection: 0, quantity: 1, item: null, target: null,
+      selectedInventoryIndex: null,
       pendingAction: null, pendingReturn: screen, messageReturn: screen, message: '',
       selectedIngredients: [], confirmationSelection: 0,
     };
@@ -2463,6 +4376,15 @@ export class WorldScene extends Phaser.Scene {
     return 0;
   }
 
+  private commerceQuantityMaximum(session: CommerceMenuSession): number {
+    if (session.item === null || !isCommerceStackable(session.item.category)) return 1;
+    if (session.pendingAction !== 'sell') return 99;
+    const stack = session.selectedInventoryIndex === null
+      ? undefined : this.inventory[session.selectedInventoryIndex];
+    return stack?.category === session.item.category && stack.itemId === session.item.itemId
+      ? stack.count : 1;
+  }
+
   private showCommerceMessage(message: string, returnScreen?: CommerceScreen): void {
     const session = this.commerceMenu;
     if (session === null) return;
@@ -2521,7 +4443,9 @@ export class WorldScene extends Phaser.Scene {
       const result = sellCommerceItem(
         catalog, this.inventory, this.wallet,
         session.item.category, session.item.itemId, session.quantity,
+        session.selectedInventoryIndex ?? undefined,
       );
+      session.selectedInventoryIndex = null;
       this.inventory = result.inventory;
       this.wallet = result.wallet;
       this.refreshCommerceHud();
@@ -2613,8 +4537,12 @@ export class WorldScene extends Phaser.Scene {
       this.startCommerceConfirmation(session.pendingAction ?? 'buy', session.pendingReturn);
       return;
     }
-    const selectQuantity = (action: 'buy' | 'sell', item: CommerceItemReference, back: CommerceScreen): void => {
+    const selectQuantity = (
+      action: 'buy' | 'sell', item: CommerceItemReference, back: CommerceScreen,
+      selectedInventoryIndex: number | null = null,
+    ): void => {
       session.item = item;
+      session.selectedInventoryIndex = selectedInventoryIndex;
       session.pendingAction = action;
       session.pendingReturn = back;
       session.quantity = 1;
@@ -2628,7 +4556,9 @@ export class WorldScene extends Phaser.Scene {
     }
     if (session.screen === 'sell-list') {
       const stack = this.inventory[session.selection];
-      if (stack !== undefined) selectQuantity('sell', { category: stack.category, itemId: stack.itemId }, 'sell-list');
+      if (stack !== undefined) selectQuantity(
+        'sell', { category: stack.category, itemId: stack.itemId }, 'sell-list', session.selection,
+      );
       return;
     }
     if (session.screen === 'refiner-main' || session.screen === 'blacksmith-main') {
@@ -2737,11 +4667,7 @@ export class WorldScene extends Phaser.Scene {
       return;
     }
     if (session.screen === 'quantity') {
-      const stack = session.item === null || session.pendingAction !== 'sell' ? undefined
-        : this.inventory.find((entry) => entry.category === session.item!.category &&
-          entry.itemId === session.item!.itemId);
-      const maximum = session.item !== null && !isCommerceStackable(session.item.category)
-        ? 1 : stack?.count ?? 99;
+      const maximum = this.commerceQuantityMaximum(session);
       const amount = event.key === 'ArrowLeft' ? -10 : event.key === 'ArrowRight' ? 10
         : event.key === 'ArrowUp' ? 1 : event.key === 'ArrowDown' ? -1 : 0;
       if (amount !== 0) {
@@ -2794,6 +4720,19 @@ export class WorldScene extends Phaser.Scene {
     if (session === null) return;
     if (session.screen === 'message' && pointer.y >= 240) {
       session.screen = session.messageReturn;
+      session.selection = 0;
+      this.renderCommerceMenu();
+      return;
+    }
+    if (session.screen === 'quantity' && pointer.y >= 132 && pointer.y < 162 &&
+      pointer.x >= 60 && pointer.x <= 180 && session.item !== null) {
+      const maximum = this.commerceQuantityMaximum(session);
+      session.quantity = Math.max(1, Math.min(maximum, session.quantity + (pointer.x < 120 ? -1 : 1)));
+      this.renderCommerceMenu();
+      return;
+    }
+    if (session.screen === 'shop-list' && pointer.y >= 250 && pointer.y < 270) {
+      session.screen = 'sell-list';
       session.selection = 0;
       this.renderCommerceMenu();
       return;
@@ -2985,32 +4924,90 @@ export class WorldScene extends Phaser.Scene {
     this.systemMenuTexture?.refresh();
   }
 
-  private saveCurrentGame(): void {
-    if (this.actor.moving || this.actor.x % 16 !== 0 || this.actor.y % 16 !== 0 ||
-      this.maps.get(this.currentMapId) === undefined) {
-      this.systemMenuMessage = 'Stop on a tile before saving.';
-      this.renderSystemMenu();
-      return;
+  private createSaveState(): GameSaveState {
+    const savedAt = Date.now();
+    if (this.preservedSourceRmsInventorySlots !== null) {
+      this.preservedSourceRmsInventorySlots.regular = advanceSourceInventorySlotSnapshot(
+        this.preservedSourceRmsInventorySlots.regular,
+        this.inventory,
+        30,
+      );
+      this.preservedSourceRmsInventorySlots.special = advanceSourceInventorySlotSnapshot(
+        this.preservedSourceRmsInventorySlots.special,
+        this.specialInventory,
+        15,
+      );
     }
-    const state: GameSaveState = {
+    const inventorySlotIndices = preservedSourceInventorySlotIndices(
+      this.inventory,
+      this.preservedSourceRmsInventorySlots?.regular ?? null,
+    );
+    const specialInventorySlotIndices = preservedSourceInventorySlotIndices(
+      this.specialInventory,
+      this.preservedSourceRmsInventorySlots?.special ?? null,
+    );
+    return {
       version: 1,
-      savedAt: Date.now(),
+      savedAt,
       mapId: this.currentMapId,
       tileX: this.actor.x / 16,
       tileY: this.actor.y / 16,
       direction: this.actor.direction,
+      playthroughMode: this.playthroughMode,
+      completionPoints: this.completionPoints,
+      playTimeSeconds: addSourcePlayTimeSeconds(
+        this.playTimeSeconds,
+        this.playTimeSessionStartedAtMs,
+        savedAt,
+      ),
       gameFlags: [...this.gameFlags],
       questFlags: [...this.questFlags],
       guardianIndices: [...this.guardianIndices],
       heroClassId: this.heroClassId,
       attributes: { ...this.characterAttributes },
       skillIds: [...this.skillIds],
+      activeSkillId: this.activeSkillId,
+      skillProgress: this.skillIds.map((skillId) => {
+        const action = this.playerSkillAction.skillId === skillId
+          ? this.playerSkillAction
+          : this.playerSkillActionStates.get(skillId) ?? createPlayerSkillActionState(
+            skillId,
+            this.characterAttributes.will,
+          );
+        return {
+          skillId,
+          skillRank: action.skillRank,
+          skillExperience: action.skillExperience,
+          skillLevelSlotOne: action.skillLevelSlotOne,
+          skillLevelSlotThree: action.skillLevelSlotThree,
+        };
+      }),
       comboLimit: this.comboLimit,
       hud: { ...this.hudState },
       wallet: this.wallet,
       inventory: this.inventory.map((stack) => ({ ...stack })),
+      ...(inventorySlotIndices === undefined ? {} : { sourceInventorySlotIndices: inventorySlotIndices }),
+      specialInventory: this.specialInventory.map((stack) => ({ ...stack })),
+      ...(specialInventorySlotIndices === undefined
+        ? {}
+        : { sourceSpecialInventorySlotIndices: specialInventorySlotIndices }),
       equipmentSlots: cloneEquipmentLoadout(this.equipmentSlots),
     };
+  }
+
+  private saveCurrentGame(): void {
+    if (this.hudState.hp <= 0 || this.gameOverSequence !== null) {
+      this.systemMenuMessage = 'Cannot save while defeated.';
+      this.renderSystemMenu();
+      return;
+    }
+    if (this.actor.moving || this.actor.x % 16 !== 0 || this.actor.y % 16 !== 0 ||
+      this.maps.get(this.currentMapId) === undefined) {
+      this.systemMenuMessage = 'Stop on a tile before saving.';
+      this.renderSystemMenu();
+      return;
+    }
+    const state = this.createSaveState();
     try {
       writeGameSave(window.localStorage, state);
       this.systemMenuMessage = 'Game saved.';
@@ -3035,20 +5032,254 @@ export class WorldScene extends Phaser.Scene {
     context.fillStyle = 'rgba(0, 0, 0, 0.68)';
     context.fillRect(0, 0, 240, 320);
     context.fillStyle = '#000000';
-    context.fillRect(34, 95, 172, 142);
+    context.fillRect(34, 87, 172, 166);
     context.strokeStyle = '#5f5f5f';
-    context.strokeRect(35, 96, 170, 140);
+    context.strokeRect(35, 88, 170, 164);
     context.strokeStyle = '#ffffff';
-    context.strokeRect(37, 98, 166, 136);
-    this.drawMenuText(context, 'SYSTEM', 120, 112, '#ffffff', 'center');
-    this.drawMenuText(context, `${this.systemMenuSelection === 0 ? '>' : ' '} Status / Attributes`, 48, 137, '#ffffff', 'left');
-    this.drawMenuText(context, `${this.systemMenuSelection === 1 ? '>' : ' '} Inventory`, 48, 154, '#ffffff', 'left');
-    this.drawMenuText(context, `${this.systemMenuSelection === 2 ? '>' : ' '} Save Game`, 48, 171, '#ffffff', 'left');
-    this.drawMenuText(context, `${this.systemMenuSelection === 3 ? '>' : ' '} Resume`, 48, 188, '#ffffff', 'left');
+    context.strokeRect(37, 90, 166, 160);
+    this.drawMenuText(context, 'SYSTEM', 120, 105, '#ffffff', 'center');
+    const entries = ['Status / Attributes', 'Inventory', 'Skills', 'Save Game', 'Resume'];
+    entries.forEach((entry, index) => {
+      this.drawMenuText(context, `${this.systemMenuSelection === index ? '>' : ' '} ${entry}`,
+        48, 129 + index * 17, '#ffffff', 'left');
+    });
     if (this.systemMenuMessage !== '') {
-      this.drawMenuText(context, this.systemMenuMessage, 120, 205, '#ffffff', 'center');
+      this.drawMenuText(context, this.systemMenuMessage, 120, 218, '#ffffff', 'center');
     }
-    this.drawMenuText(context, 'Arrows Select  Enter OK  Esc Back', 120, 253, '#ffffff', 'center');
+    this.drawMenuText(context, 'Arrows Select  Enter OK  Esc Back', 120, 273, '#ffffff', 'center');
+    this.systemMenuTexture?.refresh();
+  }
+
+  private openSkillMenu(): void {
+    this.skillMenuVisible = true;
+    this.skillLevelMenuVisible = false;
+    this.skillSelection = Math.max(0, this.skillIds.indexOf(this.activeSkillId));
+    this.systemMenuMessage = '';
+    this.renderSkillMenu();
+  }
+
+  private handleSkillMenuPointer(pointerY: number): void {
+    if (pointerY >= 260 && pointerY < 292) {
+      this.openSkillLevelMenu();
+      return;
+    }
+    const firstRowY = 64;
+    const rowHeight = 25;
+    const index = Math.floor((pointerY - firstRowY) / rowHeight);
+    if (pointerY < firstRowY || index < 0 || index >= this.skillIds.length || index >= 5) return;
+    this.skillSelection = index;
+    this.activateSkillSelection();
+  }
+
+  private openSkillLevelMenu(): void {
+    const skillId = this.skillIds[this.skillSelection];
+    if (skillId === undefined) return;
+    const state = this.playerSkillState(skillId);
+    this.skillLevelMenuVisible = true;
+    this.skillLevelActionButton = '1';
+    this.skillLevelSelection = state.skillLevelSlotOne ?? 0;
+    this.systemMenuMessage = '';
+    this.renderSkillLevelMenu();
+  }
+
+  private handleSkillLevelMenuPointer(pointerX: number, pointerY: number): void {
+    if (pointerY >= 68 && pointerY < 100) {
+      this.skillLevelActionButton = pointerX < 120 ? '1' : '3';
+      const skillId = this.skillIds[this.skillSelection];
+      const state = skillId === undefined ? null : this.playerSkillState(skillId);
+      if (state !== null) this.skillLevelSelection =
+        (this.skillLevelActionButton === '1' ? state.skillLevelSlotOne : state.skillLevelSlotThree) ?? 0;
+      this.systemMenuMessage = '';
+      this.renderSkillLevelMenu();
+      return;
+    }
+    if (pointerY >= 105 && pointerY < 204) {
+      this.skillLevelSelection = Math.floor((pointerY - 105) / 33) as PlayerSkillLevelSlot;
+      this.assignSkillLevelSelection();
+    }
+  }
+
+  private assignSkillLevelSelection(): void {
+    const skillId = this.skillIds[this.skillSelection];
+    if (skillId === undefined) {
+      this.systemMenuMessage = 'No learned skill.';
+      this.renderSkillLevelMenu();
+      return;
+    }
+    const source = this.playerSkillState(skillId);
+    if (this.playerSkillAction.skillId === skillId && source.phase !== 0) {
+      this.systemMenuMessage = 'Wait until the current skill finishes.';
+      this.renderSkillLevelMenu();
+      return;
+    }
+    const result = assignPlayerSkillLevelSlot(source, this.skillLevelActionButton, this.skillLevelSelection);
+    if (!result.accepted) {
+      this.systemMenuMessage = result.reason === 'locked'
+        ? `Requires skill rank ${PLAYER_SKILL_LEVEL_UNLOCK_RANKS[this.skillLevelSelection]}.`
+        : 'That level is already assigned to a button.';
+      this.renderSkillLevelMenu();
+      return;
+    }
+    if (this.playerSkillAction.skillId === skillId) this.playerSkillAction = result.state;
+    this.playerSkillActionStates.set(skillId, result.state);
+    this.systemMenuMessage = `Button ${this.skillLevelActionButton} assigned level ${this.skillLevelSelection + 1}.`;
+    this.renderSkillLevelMenu();
+  }
+
+  private playerSkillState(skillId: number): PlayerSkillActionState {
+    if (this.playerSkillAction.skillId === skillId) return this.playerSkillAction;
+    return this.playerSkillActionStates.get(skillId) ?? createPlayerSkillActionState(
+      skillId,
+      this.characterAttributes.will,
+    );
+  }
+
+  private activateSkillSelection(): void {
+    if (this.playerSkillAction.phase !== 0) {
+      this.systemMenuMessage = 'Wait until the current skill finishes.';
+      this.renderSkillMenu();
+      return;
+    }
+    const nextActiveSkillId = selectActivePlayerSkill(this.skillIds, this.skillSelection);
+    if (nextActiveSkillId === null) {
+      this.systemMenuMessage = 'No learned skill in that slot.';
+      this.renderSkillMenu();
+      return;
+    }
+    this.setActivePlayerSkill(nextActiveSkillId);
+    const skillId = this.activeSkillId;
+    if (skillId !== undefined && this.textures.exists(`world-skill-hud-icon-${skillId}`) &&
+      this.gameplayHudAssets !== null) {
+      this.gameplayHudAssets.guardianSkillIcon = this.textures
+        .get(`world-skill-hud-icon-${skillId}`).getSourceImage() as CanvasImageSource;
+      this.refreshGameplayHud();
+    }
+    this.systemMenuMessage = skillId === undefined ? 'No learned skill.' :
+      `${this.playerSkillName(skillId)} selected.`;
+    this.renderSkillMenu();
+  }
+
+  private setActivePlayerSkill(skillId: number): void {
+    this.activeSkillId = skillId;
+    const currentSkillId = this.playerSkillAction.skillId;
+    if (currentSkillId !== null) this.playerSkillActionStates.set(currentSkillId, this.playerSkillAction);
+    this.playerSkillAction = getPlayerSkillActionState(
+      skillId,
+      this.characterAttributes.will,
+      this.nextPlayerSkillActionId,
+      this.playerSkillActionStates,
+    );
+  }
+
+  private playerSkillName(skillId: number): string {
+    return resolveLanguageString(this.worldLanguage, playerSkillNameStringId(skillId)) ?? `Skill ${skillId + 1}`;
+  }
+
+  private renderSkillMenu(): void {
+    const context = this.systemMenuContext;
+    if (context === null || this.fontLayout === null) return;
+    context.clearRect(0, 0, 240, 320);
+    context.fillStyle = 'rgba(0, 0, 0, 0.78)';
+    context.fillRect(0, 0, 240, 320);
+    context.fillStyle = '#000000';
+    context.fillRect(9, 27, 222, 268);
+    context.strokeStyle = '#5f5f5f';
+    context.strokeRect(10, 28, 220, 266);
+    context.strokeStyle = '#ffffff';
+    context.strokeRect(12, 30, 216, 262);
+    this.drawMenuText(context, 'SKILLS', 120, 45, '#ffffff', 'center');
+    this.skillIds.slice(0, 5).forEach((skillId, index) => {
+      const y = 70 + index * 25;
+      const active = skillId === this.activeSkillId;
+      const selected = index === this.skillSelection;
+      if (selected) {
+        context.fillStyle = '#292929';
+        context.fillRect(17, y - 4, 206, 21);
+      }
+      const iconKey = `world-skill-icon-${skillId}`;
+      if (this.textures.exists(iconKey)) {
+        context.drawImage(this.textures.get(iconKey).getSourceImage() as CanvasImageSource, 22, y - 1, 17, 17);
+      }
+      this.drawMenuText(context, `${selected ? '>' : ' '} ${this.playerSkillName(skillId)}${active ? '  [Active]' : ''}`,
+        46, y + 5, '#ffffff', 'left');
+    });
+    if (this.skillIds.length === 0) {
+      this.drawMenuText(context, 'No learned skills.', 120, 136, '#ffffff', 'center');
+    }
+    const selectedSkillId = this.skillIds[this.skillSelection];
+    const description = selectedSkillId === undefined ? undefined :
+      resolveLanguageString(this.worldLanguage, playerSkillDescriptionStringId(selectedSkillId));
+    if (description !== undefined) {
+      const words = description.split(/\s+/);
+      let line = '';
+      let lineY = 215;
+      for (const word of words) {
+        const candidate = line.length === 0 ? word : `${line} ${word}`;
+        if (bitmapTextWidth(candidate, this.fontLayout) > 194) {
+          this.drawMenuText(context, line, 22, lineY, '#bfbf7f', 'left');
+          lineY += 12;
+          line = word;
+        } else line = candidate;
+      }
+      if (line !== '') this.drawMenuText(context, line, 22, lineY, '#bfbf7f', 'left');
+    }
+    if (this.systemMenuMessage !== '') {
+      this.drawMenuText(context, this.systemMenuMessage, 120, 250, '#bfbf7f', 'center');
+    }
+    this.drawMenuText(context, 'Enter Active  Tab / Tap Levels', 120, 270, '#ffffff', 'center');
+    this.drawMenuText(context, 'Esc Back', 120, 286, '#ffffff', 'center');
+    this.systemMenuTexture?.refresh();
+  }
+
+  private renderSkillLevelMenu(): void {
+    const context = this.systemMenuContext;
+    if (context === null) return;
+    const skillId = this.skillIds[this.skillSelection];
+    context.clearRect(0, 0, 240, 320);
+    context.fillStyle = 'rgba(0, 0, 0, 0.78)';
+    context.fillRect(0, 0, 240, 320);
+    context.fillStyle = '#000000';
+    context.fillRect(9, 27, 222, 268);
+    context.strokeStyle = '#5f5f5f';
+    context.strokeRect(10, 28, 220, 266);
+    context.strokeStyle = '#ffffff';
+    context.strokeRect(12, 30, 216, 262);
+    this.drawMenuText(context, 'SKILL LEVELS', 120, 45, '#ffffff', 'center');
+    if (skillId === undefined) {
+      this.drawMenuText(context, 'No learned skill.', 120, 88, '#ffffff', 'center');
+    } else {
+      const state = this.playerSkillState(skillId);
+      this.drawMenuText(context, this.playerSkillName(skillId), 120, 61, '#bfbf7f', 'center');
+      for (const button of ['1', '3'] as const) {
+        const selected = this.skillLevelActionButton === button;
+        const x = button === '1' ? 30 : 130;
+        if (selected) {
+          context.fillStyle = '#292929';
+          context.fillRect(x - 7, 70, 88, 27);
+        }
+        const boundSlot = button === '1' ? state.skillLevelSlotOne : state.skillLevelSlotThree;
+        this.drawMenuText(context, `Button ${button}: ${boundSlot === null ? 'None' : `Level ${boundSlot + 1}`}`,
+          x, 84, '#ffffff', 'left');
+      }
+      for (const slot of [0, 1, 2] as const) {
+        const y = 113 + slot * 33;
+        if (this.skillLevelSelection === slot) {
+          context.fillStyle = '#292929';
+          context.fillRect(22, y - 5, 196, 25);
+        }
+        const requiredRank = PLAYER_SKILL_LEVEL_UNLOCK_RANKS[slot];
+        const locked = state.skillRank < requiredRank;
+        const currentlyBound = state.skillLevelSlotOne === slot || state.skillLevelSlotThree === slot;
+        const label = `Level ${slot + 1}${locked ? `  Rank ${requiredRank}` : currentlyBound ? '  Assigned' : ''}`;
+        this.drawMenuText(context, label, 35, y + 7, locked ? '#7f7f7f' : '#ffffff', 'left');
+      }
+      this.drawMenuText(context, `Skill rank ${state.skillRank}`, 120, 218, '#bfbf7f', 'center');
+    }
+    if (this.systemMenuMessage !== '') {
+      this.drawMenuText(context, this.systemMenuMessage, 120, 248, '#ffffff', 'center');
+    }
+    this.drawMenuText(context, 'Left/Right Button  Up/Down Level  Enter Set', 120, 270, '#ffffff', 'center');
+    this.drawMenuText(context, 'Esc Back', 120, 286, '#ffffff', 'center');
     this.systemMenuTexture?.refresh();
   }
 
@@ -3131,12 +5362,17 @@ export class WorldScene extends Phaser.Scene {
     context.strokeRect(10, 28, 220, 266);
     context.strokeStyle = '#ffffff';
     context.strokeRect(12, 30, 216, 262);
-    this.drawMenuText(context, 'EQUIPMENT / INVENTORY', 120, 43, '#ffffff', 'center');
+    const heading = this.equipmentMenuMode === 'slot-items'
+      ? `CHOOSE ${EQUIPMENT_SLOT_LABELS[this.equipmentSlotSelection]} ITEM`
+      : this.equipmentMenuMode === 'bag' ? 'INVENTORY' : 'EQUIPMENT / INVENTORY';
+    this.drawMenuText(context, heading, 120, 43, '#ffffff', 'center');
     this.drawMenuText(context, 'EQUIPPED', 20, 59, '#bfbf7f', 'left');
     this.equipmentSlots.forEach((stack, slot) => {
-      const label = ['WEAPON', 'ARMOR', 'SHIELD', 'BOOTS', 'RING'][slot];
-      const item = stack === null ? 'EMPTY' : `${EQUIPMENT_CATEGORY_LABELS[stack.category]} ${String(stack.itemId).padStart(2, '0')}`;
-      this.drawMenuText(context, `${label}  ${item}`, 20, 73 + slot * 11, '#ffffff', 'left');
+      const label = EQUIPMENT_SLOT_LABELS[slot];
+      const item = stack === null ? 'EMPTY' : this.commerceStackName(stack);
+      const marker = (this.equipmentMenuMode === 'slots' || this.equipmentMenuMode === 'slot-items') &&
+        slot === this.equipmentSlotSelection ? '>' : ' ';
+      this.drawMenuText(context, `${marker}${label}  ${item}`, 20, 73 + slot * 11, '#ffffff', 'left');
     });
     const stats = this.equipmentStats;
     if (stats !== null) {
@@ -3144,22 +5380,36 @@ export class WorldScene extends Phaser.Scene {
         20, 132, '#bfbf7f', 'left');
     }
     this.drawMenuText(context, `INVENTORY ${this.inventory.length}/${30}`, 20, 146, '#ffffff', 'left');
-    const firstVisible = Math.floor(this.inventorySelection / 8) * 8;
+    const visibleIndices = this.equipmentMenuMode === 'slot-items'
+      ? equipmentInventoryIndicesForSlot(this.inventory, this.equipmentSlotSelection, this.heroClassId)
+      : this.inventory.map((_, index) => index);
+    const selectionPosition = this.equipmentMenuMode === 'slot-items'
+      ? Math.max(0, visibleIndices.indexOf(this.inventorySelection))
+      : this.inventorySelection;
+    const firstVisible = Math.floor(selectionPosition / 8) * 8;
     for (let row = 0; row < 8; row += 1) {
-      const index = firstVisible + row;
+      const index = visibleIndices[firstVisible + row];
+      if (index === undefined) break;
       const stack = this.inventory[index];
-      if (stack === undefined) break;
-      const label = EQUIPMENT_CATEGORY_LABELS[stack.category] ?? `ITEM${stack.category}`;
-      const marker = index === this.inventorySelection ? '>' : ' ';
+      if (stack === undefined) continue;
+      const marker = this.equipmentMenuMode !== 'slots' && index === this.inventorySelection ? '>' : ' ';
       this.drawMenuText(context,
-        `${marker} ${String(index + 1).padStart(2, '0')} ${label} ${String(stack.itemId).padStart(2, '0')} x${stack.count}`,
+        `${marker} ${String(index + 1).padStart(2, '0')} ${this.commerceStackName(stack)} x${stack.count}`,
         20, 160 + row * 12, '#ffffff', 'left');
     }
-    if (this.inventory.length === 0) {
-      this.drawMenuText(context, 'No items carried.', 120, 177, '#ffffff', 'center');
+    if (visibleIndices.length === 0) {
+      const emptyMessage = this.equipmentMenuMode === 'slot-items' ? 'No compatible item in the bag.' : 'No items carried.';
+      this.drawMenuText(context, emptyMessage, 120, 177, '#ffffff', 'center');
     }
-    this.drawMenuText(context, 'Up/Down Select  Enter Equip', 120, 263, '#ffffff', 'center');
-    this.drawMenuText(context, 'Esc Back', 120, 276, '#ffffff', 'center');
+    const controlText = this.equipmentMenuMode === 'slots'
+      ? 'Up/Down Slot  Enter Choose  Tab Bag'
+      : this.equipmentMenuMode === 'slot-items'
+        ? 'Up/Down Item  Enter Equip'
+        : 'Up/Down Select  Enter Use  Tab Slots';
+    this.drawMenuText(context, controlText, 120, 263, '#ffffff', 'center');
+    this.drawMenuText(context,
+      this.equipmentMenuMode === 'slot-items' ? 'Esc Back to Slots' : 'Esc Back',
+      120, 276, '#ffffff', 'center');
     if (this.systemMenuMessage !== '') {
       this.drawMenuText(context, this.systemMenuMessage, 120, 287, '#bfbf7f', 'center');
     }
@@ -3180,14 +5430,25 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private loadHeroTextures(): Array<{ key: string; path: string }> {
+    const texturePrefix = `hero-c${this.heroSpriteResourceClass}`;
+    const imageBase = heroSpriteAtlasAssetBase(this.heroSpriteResourceClass);
+    const weaponFolders = Array.from({ length: 5 }, (_, index) => `w${index + 1}`)
+      .flatMap((folder) => [folder, ...[1, 2, 3].map((element) => `${folder}-element-${element}`)]);
     const resources = [
       { layout: this.bodyLayout!, folders: ['b'], componentSlots: new Set([0]) },
       { layout: this.armorLayout!, folders: ['a1', 'a2', 'a3', 'a4', 'a5', 'a6'], componentSlots: new Set([2, 3, 4, 5]) },
       { layout: this.headLayout!, folders: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7'], componentSlots: new Set([1]) },
       { layout: this.alternateHeadLayout!, folders: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7'], componentSlots: new Set([1]) },
-      { layout: this.weaponLayout!, folders: ['w1', 'w2', 'w3', 'w4', 'w5'], componentSlots: new Set([6]) },
-      { layout: this.effectLayout!, folders: ['e'], componentSlots: new Set([7]) },
+      { layout: this.weaponLayout!, folders: weaponFolders, componentSlots: new Set([6]) },
+      { layout: this.effectLayout!, folders: ['e', 'e-element-1', 'e-element-3'], componentSlots: new Set([7]) },
     ];
+    if (this.shieldLayout !== null) {
+      resources.push({
+        layout: this.shieldLayout,
+        folders: ['s1', 's2', 's3', 's5'],
+        componentSlots: new Set(this.shieldLayout.records.map(({ componentSlot }) => componentSlot)),
+      });
+    }
     const textures: Array<{ key: string; path: string }> = [];
     const queuedKeys = new Set<string>();
     for (const { layout, folders, componentSlots } of resources) {
@@ -3197,9 +5458,9 @@ export class WorldScene extends Phaser.Scene {
         for (const part of record.frames.flat()) {
           if (part.imageIndex === 255) continue;
           for (const folder of folders) {
-            const key = `hero-${folder}-${part.imageIndex}`;
+            const key = `${texturePrefix}-${folder}-${part.imageIndex}`;
             if (queuedKeys.has(key)) continue;
-            const path = `${HERO_IMAGE_BASE}/${folder}/${String(part.imageIndex).padStart(3, '0')}.png`;
+            const path = `${imageBase}/${folder}/${String(part.imageIndex).padStart(3, '0')}.png`;
             this.load.image(key, path);
             textures.push({ key, path });
             queuedKeys.add(key);
@@ -3216,17 +5477,42 @@ export class WorldScene extends Phaser.Scene {
   private createHero(): void {
     this.heroContainer = this.add.container(this.actor.x + 8, this.actor.y + 8).setDepth(this.actor.y + 8);
     this.heroContainer.add(this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 1));
-    const statusBackground = this.add.image(0, 0, 'world-player-status-background').setOrigin(0.5);
-    this.playerStatusPoisonIcon = this.add.image(0, 1, 'world-player-status-poison').setOrigin(0.5);
-    this.playerStatusContainer = this.add.container(this.actor.x + 8, this.actor.y - 22)
-      .add([statusBackground, this.playerStatusPoisonIcon])
-      .setDepth(this.actor.y + 9)
-      .setVisible(false);
+    this.playerStatusContainer = this.add.container(this.actor.x + 8, this.actor.y + 1)
+      .setDepth(this.actor.y + 9);
+    this.playerStatusMarkerContainers.clear();
+    this.playerStatusMarkerIcons.clear();
+    for (const statusId of [5, 6, 7]) {
+      const background = this.add.image(0, -30, 'world-player-status-background')
+        .setOrigin(0.5, 0);
+      const icon = this.add.image(0, -29, `world-player-status-${statusId}`)
+        .setOrigin(0.5, 0);
+      const marker = this.add.container(0, 0).add([background, icon]).setVisible(false);
+      this.playerStatusContainer.add(marker);
+      this.playerStatusMarkerContainers.set(statusId, marker);
+      this.playerStatusMarkerIcons.set(statusId, icon);
+    }
+    this.syncPlayerStatusDisplay();
     this.updateHeroSprite();
     this.heroEmotionImage = this.add.image(0, -39, 'world-emotion-0')
       .setOrigin(0.5, 0)
       .setVisible(false);
     this.heroContainer.add(this.heroEmotionImage);
+    const currentMap = this.maps.get(this.currentMapId);
+    if (currentMap !== undefined) this.applyStartupHeroEmotion(currentMap);
+  }
+
+  private applyStartupHeroEmotion(map: RenderedWorld): void {
+    if (map.startupHeroEmotion === undefined) return;
+    for (const feedback of this.sourceWeaponProcFeedback) feedback.sprite.destroy();
+    this.sourceWeaponProcFeedback = [];
+    this.damageNumberPopups = this.damageNumberPopups.filter((popup) => {
+      if (popup.effectOwner !== 'hero') return true;
+      popup.frames.forEach((frame) => frame.destroy());
+      return false;
+    });
+    if (this.heroEmotionImage !== null) {
+      this.setEventEmotionImage(this.heroEmotionImage, map.startupHeroEmotion);
+    }
   }
 
   private syncEventCutsceneEmotionSprites(state: EventCutsceneState): void {
@@ -3245,6 +5531,7 @@ export class WorldScene extends Phaser.Scene {
     image: Phaser.GameObjects.Image,
     emotionIndex: number | null,
   ): void {
+    image.setData('sourceEmotionFrame', 0).setY(-39);
     if (emotionIndex === null) {
       image.setVisible(false);
       return;
@@ -3252,12 +5539,30 @@ export class WorldScene extends Phaser.Scene {
     image.setTexture(`world-emotion-${emotionIndex}`).setVisible(true);
   }
 
-  private advanceEventEmotionAnimation(map: RenderedWorld): void {
-    this.eventEmotionFrame = (this.eventEmotionFrame + 1) & 1;
-    const yOffset = this.eventEmotionFrame;
-    if (this.heroEmotionImage?.visible) this.heroEmotionImage.setY(-39 + yOffset);
+  private advanceEventEmotionAnimation(map: RenderedWorld, sourcePaintPasses: number): void {
+    const viewport = this.cameras.main.worldView;
+    const isPainted = (x: number, y: number): boolean =>
+      x + 16 >= viewport.x && y >= viewport.y &&
+      x - 16 <= viewport.x + viewport.width &&
+      y <= viewport.y + viewport.height + 32;
+    const advance = (image: Phaser.GameObjects.Image): void => {
+      if (!image.visible) return;
+      const frameIndex = image.getData('sourceEmotionFrame');
+      const nextFrame = advanceSourceEmotionFrame(
+        typeof frameIndex === 'number' ? frameIndex : 0,
+        sourcePaintPasses,
+      );
+      image.setData('sourceEmotionFrame', nextFrame).setY(-39 + nextFrame);
+    };
+    if (this.heroEmotionImage !== null && this.heroContainer !== null &&
+      this.heroContainer.visible &&
+      isPainted(this.heroContainer.x, this.heroContainer.y)) {
+      advance(this.heroEmotionImage);
+    }
     for (const sprite of map.npcSprites.values()) {
-      if (sprite.emotionImage.visible) sprite.emotionImage.setY(-39 + yOffset);
+      if (sprite.container.visible && isPainted(sprite.container.x, sprite.container.y)) {
+        advance(sprite.emotionImage);
+      }
     }
   }
 
@@ -3265,10 +5570,17 @@ export class WorldScene extends Phaser.Scene {
     if (this.heroContainer === null || this.bodyLayout === null || this.armorLayout === null ||
       this.effectLayout === null || this.headLayout === null || this.alternateHeadLayout === null ||
       this.weaponLayout === null) return;
-    const directionSlot = this.actor.direction - 1;
-    const attacking = this.playerCombo.activeStyle !== null;
-    const animationSlot = playerSpriteAnimationSlot(this.playerCombo, this.actor.moving);
-    const frameIndex = attacking ? this.playerCombo.frame : this.actor.moving ? this.actor.animationFrame : 0;
+    const pose = playerSpritePose(
+      this.playerCombo,
+      this.actor.direction,
+      this.actor.moving,
+      this.actor.animationFrame,
+      this.hudState.hp <= 0,
+    );
+    const directionSlot = pose.directionSlot;
+    const animationSlot = pose.animationSlot;
+    const frameIndex = pose.frameIndex;
+    const activeSkillElement = sourcePlayerSkillElement(this.playerSkillAction.skillId);
     const parts: Array<{ layer: number; sourceOrder: number; partOrder: number; folder: string; part: CharacterSpritePart }> = [];
     const appendLayoutParts = (
       layout: CharacterSpriteLayout,
@@ -3302,14 +5614,25 @@ export class WorldScene extends Phaser.Scene {
       appendLayoutParts(layout, [1], `h${headAtlas}`);
     }
 
+    const shield = this.equipmentSlots[2];
+    if (shield !== null && this.shieldLayout !== null) {
+      const shieldAtlas = heroShieldAtlas(this.heroClassId, shield.itemId);
+      if (shieldAtlas !== null) {
+        const componentSlots = [...new Set(this.shieldLayout.records.map(({ componentSlot }) => componentSlot))];
+        appendLayoutParts(this.shieldLayout, componentSlots, `s${shieldAtlas}`);
+      }
+    }
+
     const canDrawWeaponLayers = ![1, 5, 9, 15].includes(this.maps.get(this.currentMapId)?.tilesetId ?? 0);
     if (canDrawWeaponLayers) {
       const weapon = this.equipmentSlots[0];
       if (weapon !== null) {
         const weaponAtlas = heroWeaponAtlas(this.heroClassId, weapon.itemId);
-        if (weaponAtlas !== null) appendLayoutParts(this.weaponLayout, [6], `w${weaponAtlas}`);
+        if (weaponAtlas !== null) {
+          appendLayoutParts(this.weaponLayout, [6], heroWeaponAtlasFolder(weaponAtlas, activeSkillElement));
+        }
       }
-      appendLayoutParts(this.effectLayout, [7], 'e');
+      appendLayoutParts(this.effectLayout, [7], heroEffectAtlasFolder(activeSkillElement));
     }
 
     parts.sort((left, right) => left.layer - right.layer ||
@@ -3326,7 +5649,7 @@ export class WorldScene extends Phaser.Scene {
   private syncHeroParts(parts: Array<{ folder: string; part: CharacterSpritePart }>): void {
     if (this.heroContainer === null) return;
     parts.forEach(({ folder, part }, index) => {
-      const texture = `hero-${folder}-${part.imageIndex}`;
+      const texture = `hero-c${this.heroSpriteResourceClass}-${folder}-${part.imageIndex}`;
       let image = this.heroParts.get(index);
       if (image === undefined) {
         image = this.add.image(part.x, part.y, texture).setOrigin(0, 0);
@@ -3367,30 +5690,85 @@ export class WorldScene extends Phaser.Scene {
           this.handleCommerceMenuKey(event);
           return;
         }
-        if (this.attributeMenuVisible) {
+        if (this.skillMenuVisible) {
+          if (this.skillLevelMenuVisible) {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+              this.skillLevelActionButton = event.key === 'ArrowLeft' ? '1' : '3';
+              const skillId = this.skillIds[this.skillSelection];
+              if (skillId !== undefined) {
+                const state = this.playerSkillState(skillId);
+                this.skillLevelSelection = (this.skillLevelActionButton === '1'
+                  ? state.skillLevelSlotOne
+                  : state.skillLevelSlotThree) ?? 0;
+              }
+              this.systemMenuMessage = '';
+              this.renderSkillLevelMenu();
+            } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+              const delta = event.key === 'ArrowUp' ? -1 : 1;
+              this.skillLevelSelection = (this.skillLevelSelection + delta + 3) % 3 as PlayerSkillLevelSlot;
+              this.systemMenuMessage = '';
+              this.renderSkillLevelMenu();
+            } else if (event.key === 'Enter' || event.key === ' ') {
+              this.assignSkillLevelSelection();
+            } else if (event.key === 'Escape' || event.key.toLowerCase() === 'w' || event.key === 'Tab') {
+              this.skillLevelMenuVisible = false;
+              this.systemMenuMessage = '';
+              this.renderSkillMenu();
+            }
+          } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+            if (this.skillIds.length > 0) {
+              const delta = event.key === 'ArrowUp' ? -1 : 1;
+              this.skillSelection = (this.skillSelection + delta + this.skillIds.length) % this.skillIds.length;
+            }
+            this.systemMenuMessage = '';
+            this.renderSkillMenu();
+          } else if (event.key === 'Enter' || event.key === ' ') {
+            this.activateSkillSelection();
+          } else if (event.key === 'Tab' || event.key === 'ArrowRight') {
+            this.openSkillLevelMenu();
+          } else if (event.key === 'Escape' || event.key.toLowerCase() === 'w') {
+            this.skillMenuVisible = false;
+            this.skillLevelMenuVisible = false;
+            this.systemMenuMessage = '';
+            this.renderSystemMenu();
+          }
+        } else if (this.attributeMenuVisible) {
           this.handleAttributeMenuKey(event);
         } else if (this.inventoryMenuVisible) {
           if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-            if (this.inventory.length > 0) {
-              const delta = event.key === 'ArrowUp' ? -1 : 1;
+            const delta = event.key === 'ArrowUp' ? -1 : 1;
+            if (this.equipmentMenuMode === 'slots') {
+              this.equipmentSlotSelection = (this.equipmentSlotSelection + delta + EQUIPMENT_SLOT_LABELS.length) %
+                EQUIPMENT_SLOT_LABELS.length;
+            } else if (this.equipmentMenuMode === 'slot-items') {
+              this.moveCompatibleEquipmentSelection(delta);
+            } else if (this.inventory.length > 0) {
               this.inventorySelection = (this.inventorySelection + delta + this.inventory.length) % this.inventory.length;
             }
             this.systemMenuMessage = '';
             this.renderInventoryMenu();
           } else if (event.key === 'Enter' || event.key === ' ') {
-            this.equipInventorySelection();
+            if (this.equipmentMenuMode === 'slots') this.openCompatibleEquipmentItems();
+            else if (this.equipmentMenuMode === 'slot-items') {
+              this.equipInventorySelection(this.equipmentSlotSelection);
+            } else this.activateInventorySelection();
+          } else if (event.key === 'Tab') {
+            this.equipmentMenuMode = this.equipmentMenuMode === 'bag' ? 'slots' : 'bag';
+            this.systemMenuMessage = '';
+            this.renderInventoryMenu();
           } else if (event.key === 'Escape' || event.key.toLowerCase() === 'w') {
-            this.closeInventoryMenu();
+            this.backFromInventoryMenu();
           }
         } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
           const delta = event.key === 'ArrowUp' ? -1 : 1;
-          this.systemMenuSelection = (this.systemMenuSelection + delta + 4) % 4;
+          this.systemMenuSelection = (this.systemMenuSelection + delta + 5) % 5;
           this.systemMenuMessage = '';
           this.renderSystemMenu();
         } else if (event.key === 'Enter' || event.key === ' ') {
           if (this.systemMenuSelection === 0) this.openAttributeMenu();
           else if (this.systemMenuSelection === 1) this.openInventoryMenu();
-          else if (this.systemMenuSelection === 2) this.saveCurrentGame();
+          else if (this.systemMenuSelection === 2) this.openSkillMenu();
+          else if (this.systemMenuSelection === 3) this.saveCurrentGame();
           else this.closeSystemMenu();
         } else if (event.key === 'Escape' || event.key.toLowerCase() === 'w') {
           this.closeSystemMenu();
@@ -3436,6 +5814,16 @@ export class WorldScene extends Phaser.Scene {
         this.performBasicAttack('heavy');
         return;
       }
+      if (event.key === '1' || event.code === 'Numpad1') {
+        event.preventDefault();
+        if (!event.repeat) this.performPlayerSkill(0);
+        return;
+      }
+      if (event.key === '3' || event.code === 'Numpad3') {
+        event.preventDefault();
+        if (!event.repeat) this.performPlayerSkill(1);
+        return;
+      }
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         this.dispatchInteractionTrigger();
@@ -3460,9 +5848,13 @@ export class WorldScene extends Phaser.Scene {
       this.pressedDirections = this.pressedDirections.filter(({ code }) => code !== event.code);
       if (this.hudState.hp <= 0) return;
       const next = this.pressedDirections.at(-1);
-      this.actor = next === undefined
-        ? releaseActorDirection(this.actor)
-        : requestActorDirection(this.actor, next.direction);
+      if (next === undefined) {
+        const released = releaseActorDirectionAndCheckBoundary(this.actor);
+        this.actor = released.actor;
+        if (released.reachedMapEventBoundary) this.tryMapTransition();
+      } else {
+        this.actor = requestActorDirection(this.actor, next.direction);
+      }
     };
     keyboard.on('keydown', keydown);
     keyboard.on('keyup', keyup);
@@ -3477,16 +5869,20 @@ export class WorldScene extends Phaser.Scene {
           this.handleCommerceMenuPointer(pointer);
           return;
         }
-        if (this.attributeMenuVisible) {
+        if (this.skillMenuVisible) {
+          if (this.skillLevelMenuVisible) this.handleSkillLevelMenuPointer(pointer.x, pointer.y);
+          else this.handleSkillMenuPointer(pointer.y);
+        } else if (this.attributeMenuVisible) {
           this.handleAttributeMenuPointer(pointer);
         } else if (this.inventoryMenuVisible) {
-          if (pointer.y >= 150 && pointer.y < 246) this.handleInventoryMenuPointer(pointer.y);
-        } else if (pointer.y >= 128 && pointer.y < 199) {
-          const selection = Math.min(3, Math.floor((pointer.y - 128) / 17));
+          this.handleInventoryMenuPointer(pointer.y);
+        } else if (pointer.y >= 128 && pointer.y < 213) {
+          const selection = Math.min(4, Math.floor((pointer.y - 128) / 17));
           this.systemMenuSelection = selection;
           if (selection === 0) this.openAttributeMenu();
           else if (selection === 1) this.openInventoryMenu();
-          else if (selection === 2) this.saveCurrentGame();
+          else if (selection === 2) this.openSkillMenu();
+          else if (selection === 3) this.saveCurrentGame();
           else this.closeSystemMenu();
         }
         return;
@@ -3503,6 +5899,50 @@ export class WorldScene extends Phaser.Scene {
     };
     this.input.on('pointerup', pointerUp);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.input.off('pointerup', pointerUp));
+
+    const advanceSourcePaintAnimationsAfterRender = (): void => {
+      if (!this.scene.isVisible()) {
+        this.pendingNpcAnimationPasses = 0;
+        this.pendingSkillAttachedVisualPasses = 0;
+        return;
+      }
+      const sourcePaintPasses = this.pendingNpcAnimationPasses;
+      this.pendingNpcAnimationPasses = 0;
+      const skillAttachedVisualPasses = this.pendingSkillAttachedVisualPasses;
+      this.pendingSkillAttachedVisualPasses = 0;
+      if (sourcePaintPasses === 0 && skillAttachedVisualPasses === 0) return;
+      const activeMap = this.maps.get(this.currentMapId);
+      if (activeMap === undefined) return;
+      if (sourcePaintPasses > 0) {
+        this.advanceEventEmotionAnimation(activeMap, sourcePaintPasses);
+        this.advancePlayerLevelUpFlashes(sourcePaintPasses);
+        activeMap.enemies = [...updateEnemySourceViewportOnPaint(
+          activeMap.enemies,
+          this.cameras.main.worldView,
+          sourcePaintPasses,
+        )];
+        this.advanceNpcSpriteAnimations(activeMap, sourcePaintPasses);
+      }
+      if (skillAttachedVisualPasses > 0) {
+        // Source `n.b(Graphics,...)` advances each attached `bi` after drawing it.
+        this.playerAttachedSkillVisuals = advancePlayerSkillAttachedVisuals(
+          this.playerAttachedSkillVisuals,
+          skillAttachedVisualPasses,
+        );
+        activeMap.enemyAttachedSkillVisuals = advancePlayerSkillAttachedVisuals(
+          activeMap.enemyAttachedSkillVisuals,
+          skillAttachedVisualPasses,
+        );
+        this.syncPlayerAttachedSkillVisualSprites();
+        this.syncEnemyAttachedSkillVisualSprites(activeMap);
+      }
+    };
+    this.game.events.on(Phaser.Core.Events.POST_RENDER, advanceSourcePaintAnimationsAfterRender);
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.game.events.off(Phaser.Core.Events.POST_RENDER, advanceSourcePaintAnimationsAfterRender);
+      this.pendingNpcAnimationPasses = 0;
+      this.pendingSkillAttachedVisualPasses = 0;
+    });
   }
 
   private createOpeningDialog(): void {
@@ -3617,20 +6057,21 @@ export class WorldScene extends Phaser.Scene {
 
   private queueNpcTextures(
     events: EventOperationData,
-    visibleNpcSourceOrders: ReadonlySet<number>,
     queueImage: (key: string, path: string) => void,
   ): NpcTextureKeys {
     const textureKeys: NpcTextureKeys = new Map();
     const imageIds = new Set([
-      ...events.npcPlacements
-        .filter(({ sourceOrder }) => visibleNpcSourceOrders.has(sourceOrder))
-        .map(({ imageId }) => imageId),
+      ...events.npcPlacements.map(({ imageId }) => imageId),
       ...events.scripts.flatMap((script) => script.flatMap(([opcode, , imageId]) =>
         opcode === 41 ? [imageId] : [])),
     ]);
     for (const imageId of imageIds) {
       const animation = this.npcAnimations.get(imageId);
+      const textureSource = sourceNpcTextureSource(imageId, animation !== undefined);
       if (animation !== undefined) {
+        if (textureSource?.kind !== 'animated') {
+          throw new TypeError(`Animated NPC ${imageId} has no texture source`);
+        }
         const componentImageIndices = new Set(animation.tracks.flatMap((track) =>
           track.frames.flatMap((frame) => frame
             .filter(({ imageIndex }) => imageIndex >= 0)
@@ -3640,17 +6081,13 @@ export class WorldScene extends Phaser.Scene {
           textureKeys.set(`${imageId}:${imageIndex}`, key);
           queueImage(
             key,
-            `/assets/generated/atlases/npc/${String(imageId).padStart(2, '0')}/${String(imageIndex).padStart(3, '0')}.png`,
+            `${textureSource.atlasDirectory}/${String(imageIndex).padStart(3, '0')}.png`,
           );
         }
-      } else if (imageId >= 18) {
+      } else if (textureSource?.kind === 'static') {
         const key = `world-npc-${imageId}`;
         textureKeys.set(String(imageId), key);
-        queueImage(key, `/assets/generated/atlases/npc/all/${String(imageId - 18).padStart(3, '0')}.png`);
-      } else if (imageId === 16) {
-        const key = `world-npc-${imageId}`;
-        textureKeys.set(String(imageId), key);
-        queueImage(key, '/assets/generated/atlases/npc/16/000.png');
+        queueImage(key, textureSource.imagePath);
       }
     }
     return textureKeys;
@@ -3663,19 +6100,30 @@ export class WorldScene extends Phaser.Scene {
     const textureSets: EnemyTextureSets = new Map();
     for (const enemyId of new Set(enemyIds)) {
       const animation = this.enemyAnimations.get(enemyId);
+      const bossAnimation = this.bossAnimations.get(enemyId);
       const effect = this.enemyAttackEffects.get(enemyId);
+      const bossEffect = bossAnimation === undefined
+        ? undefined
+        : this.bossAttackEffects.get(bossAnimation.enemyId);
       const imageIndices = [...new Set([
         ...(animation?.tracks.flatMap((track) => track.frames.flatMap((frame) =>
           frame.map(({ imageIndex }) => imageIndex))) ?? []),
+        ...(bossAnimation?.tracks.flatMap((track) => track.frames.flatMap((frame) =>
+          frame.map(({ imageIndex }) => imageIndex))) ?? []),
         ...(effect?.frames.flatMap((frame) => frame.map(({ imageIndex }) => imageIndex)) ?? []),
+        ...(bossEffect?.frames.flatMap((frame) => frame.map(({ imageIndex }) => imageIndex)) ?? []),
       ].filter((imageIndex) => imageIndex >= 0))];
       const textures: EnemyTextureSet = new Map();
       for (const imageIndex of imageIndices) {
-        const key = `world-enemy-${enemyId}-sprite-${imageIndex}`;
+        const key = bossAnimation === undefined
+          ? `world-enemy-${enemyId}-sprite-${imageIndex}`
+          : `world-boss-${bossAnimation.bossId}-${bossAnimation.enemyId}-sprite-${imageIndex}`;
         textures.set(imageIndex, key);
         queueImage(
           key,
-          `/assets/generated/atlases/enm/${String(enemyId).padStart(2, '0')}/${String(imageIndex).padStart(3, '0')}.png`,
+          bossAnimation === undefined
+            ? `/assets/generated/atlases/enm/${String(enemyId).padStart(2, '0')}/${String(imageIndex).padStart(3, '0')}.png`
+            : `/assets/generated/atlases/boss/${String(bossAnimation.bossId)}/${String(imageIndex).padStart(3, '0')}.png`,
         );
       }
       textureSets.set(enemyId, textures);
@@ -3687,13 +6135,38 @@ export class WorldScene extends Phaser.Scene {
     container: Phaser.GameObjects.Container,
     spriteId: number,
     textureSet: EnemyTextureSet | undefined,
-    stateIndex: 0 | 1 | 2,
+    stateIndex: number,
     direction: Direction,
     frameIndex: number,
   ): void {
+    const bossAnimation = this.bossAnimations.get(spriteId);
+    if (bossAnimation !== undefined) {
+      if (stateIndex < 0 || stateIndex > 5) return;
+      const track = findBossSpriteTrack(bossAnimation, stateIndex as BossSpriteState, direction);
+      const components = bossSpriteFrameAt(track, Math.max(0, frameIndex))
+        .filter((component) => component.imageIndex >= 0 && textureSet?.has(component.imageIndex));
+      while (container.length > components.length) container.removeAt(container.length - 1, true);
+      for (const [index, component] of components.entries()) {
+        const textureKey = textureSet!.get(component.imageIndex)!;
+        let image = container.getAt(index) as Phaser.GameObjects.Image | undefined;
+        if (image === undefined) {
+          image = this.add.image(component.offsetX, component.offsetY, textureKey)
+            .setOrigin(0, 0)
+            .setFlipX(component.mirrored);
+          container.add(image);
+        } else {
+          image.setTexture(textureKey)
+            .setPosition(component.offsetX, component.offsetY)
+            .setOrigin(0, 0)
+            .setFlipX(component.mirrored)
+            .setVisible(true);
+        }
+      }
+      return;
+    }
     const animation = this.enemyAnimations.get(spriteId);
-    if (animation === undefined || textureSet === undefined) return;
-    const track = findEnemySpriteTrack(animation, stateIndex, direction);
+    if (animation === undefined || textureSet === undefined || stateIndex < 0 || stateIndex > 2) return;
+    const track = findEnemySpriteTrack(animation, stateIndex as 0 | 1 | 2, direction);
     const components = enemySpriteFrameAt(track, Math.max(0, frameIndex))
       .filter((component) => component.imageIndex >= 0 && textureSet.has(component.imageIndex));
     while (container.length > components.length) container.removeAt(container.length - 1, true);
@@ -3721,7 +6194,7 @@ export class WorldScene extends Phaser.Scene {
     textureSet: EnemyTextureSet | undefined,
     frameIndex: number,
   ): void {
-    const effect = this.enemyAttackEffects.get(spriteId);
+    const effect = this.attackEffectForSprite(spriteId);
     if (effect === undefined || textureSet === undefined || frameIndex >= effect.frameCount) {
       while (container.length > 0) container.removeAt(container.length - 1, true);
       return;
@@ -3747,6 +6220,206 @@ export class WorldScene extends Phaser.Scene {
     }
   }
 
+  private addPlayerSkillVisual(map: RenderedWorld, visual: PlayerSkillVisualSpawn): void {
+    map.playerSkillVisuals.push({
+      ...visual,
+      id: map.nextPlayerSkillVisualId,
+      frameIndex: 0,
+    });
+    map.nextPlayerSkillVisualId += 1;
+  }
+
+  private addPlayerAttachedSkillVisual(
+    visual: Parameters<typeof createPlayerSkillAttachedVisual>[1],
+    target: PlayerSkillAttachedVisualTarget,
+  ): void {
+    this.playerAttachedSkillVisuals.push(createPlayerSkillAttachedVisual(
+      this.nextPlayerAttachedSkillVisualId++, visual, target,
+      this.pendingSkillAttachedVisualPasses,
+    ));
+  }
+
+  private addEnemyAttachedSkillVisual(
+    map: RenderedWorld,
+    visual: Parameters<typeof createPlayerSkillAttachedVisual>[1],
+    sourceOrder: number,
+  ): void {
+    map.enemyAttachedSkillVisuals.push(createPlayerSkillAttachedVisual(
+      this.nextPlayerAttachedSkillVisualId++, visual, { kind: 'enemy', sourceOrder },
+      this.pendingSkillAttachedVisualPasses,
+    ));
+  }
+
+  private setAttachedSkillEffectFrame(
+    container: Phaser.GameObjects.Container,
+    visual: ActivePlayerSkillAttachedVisual,
+  ): void {
+    while (container.length > 0) container.removeAt(container.length - 1, true);
+    if (visual.frameIndex < 0) return;
+    const elementCode = sourcePlayerSkillElement(visual.skillId);
+    if (elementCode === 0) return;
+    const atlasFamily = elementCode === 1 ? 'fi' : elementCode === 2 ? 'wa' : 'gr';
+    const textureForImage = (imageIndex: number): string =>
+      `world-player-skill-atlas-${atlasFamily}-${imageIndex}`;
+    if (visual.kind === 'skill-0-aura') {
+      for (const layer of playerSkillAuraLayers(visual.frameIndex)) {
+        const textureKey = textureForImage(layer.imageIndex);
+        if (!this.textures.exists(textureKey)) continue;
+        container.add(this.add.image(0, layer.yOffset, textureKey).setOrigin(0.5, 1));
+      }
+      return;
+    }
+    if (visual.sourceStreamSlot === null || this.playerSkillEffects === null) return;
+    const effect = findPlayerSkillEffect(
+      this.playerSkillEffects,
+      visual.skillId,
+      visual.sourceStreamSlot,
+    );
+    const components = effect?.frames[visual.frameIndex] ?? [];
+    for (const component of components) {
+      if (component.sourceAtlasFlag !== 0) continue;
+      const textureKey = textureForImage(component.imageIndex);
+      if (!this.textures.exists(textureKey)) continue;
+      container.add(this.add.image(component.offsetX, component.offsetY, textureKey).setOrigin(1, 0));
+    }
+  }
+
+  private syncPlayerAttachedSkillVisualSprites(): void {
+    const activeIds = new Set(this.playerAttachedSkillVisuals.map(({ id }) => id));
+    for (const [id, sprite] of this.playerAttachedSkillVisualSprites) {
+      if (activeIds.has(id)) continue;
+      sprite.destroy();
+      this.playerAttachedSkillVisualSprites.delete(id);
+    }
+    for (const visual of this.playerAttachedSkillVisuals) {
+      let sprite = this.playerAttachedSkillVisualSprites.get(visual.id);
+      if (sprite === undefined) {
+        sprite = this.add.container(0, 0);
+        this.playerAttachedSkillVisualSprites.set(visual.id, sprite);
+      }
+      sprite.setPosition(this.actor.x + 8, this.actor.y + 9)
+        .setDepth(this.actor.y + 17)
+        .setVisible(visual.frameIndex >= 0);
+      this.setAttachedSkillEffectFrame(sprite, visual);
+    }
+  }
+
+  private syncEnemyAttachedSkillVisualSprites(map: RenderedWorld): void {
+    const attachedEnemies = new Map(map.enemies
+      .filter((enemy) => enemy.state === 'alive' || enemy.state === 'death-pending')
+      .map((enemy) => [enemy.sourceOrder, enemy] as const));
+    const renderableVisuals = map.enemyAttachedSkillVisuals.filter((visual) =>
+      visual.target.kind === 'enemy' && attachedEnemies.has(visual.target.sourceOrder));
+    const activeIds = new Set(renderableVisuals.map(({ id }) => id));
+    for (const [id, sprite] of map.enemyAttachedSkillVisualSprites) {
+      if (activeIds.has(id)) continue;
+      sprite.destroy();
+      map.enemyAttachedSkillVisualSprites.delete(id);
+      map.objects = map.objects.filter((object) => object !== sprite);
+    }
+    for (const visual of renderableVisuals) {
+      if (visual.target.kind !== 'enemy') continue;
+      const enemy = attachedEnemies.get(visual.target.sourceOrder);
+      if (enemy === undefined) continue;
+      let sprite = map.enemyAttachedSkillVisualSprites.get(visual.id);
+      if (sprite === undefined) {
+        sprite = this.add.container(0, 0);
+        map.enemyAttachedSkillVisualSprites.set(visual.id, sprite);
+        map.objects.push(sprite);
+      }
+      sprite.setPosition(enemy.pixelX + 8, enemy.pixelY + 9)
+        .setDepth(enemy.pixelY + 17 + (enemy.sourceRenderOffsetY ?? 0))
+        .setVisible(visual.frameIndex >= 0);
+      this.setAttachedSkillEffectFrame(sprite, visual);
+    }
+  }
+
+  private setPlayerSkillEffectFrame(
+    container: Phaser.GameObjects.Container,
+    visual: ActivePlayerSkillVisual,
+  ): void {
+    while (container.length > 0) container.removeAt(container.length - 1, true);
+    const catalog = this.playerSkillEffects;
+    const elementCode = sourcePlayerSkillElement(visual.skillId);
+    if (catalog === null || elementCode === null) return;
+    const atlasFamily = elementCode === 1 ? 'fi' : elementCode === 2 ? 'wa' : 'gr';
+    const textureForImage = (imageIndex: number): string =>
+      `world-player-skill-atlas-${atlasFamily}-${imageIndex}`;
+    const addAtlasImage = (
+      imageIndex: number,
+      x: number,
+      y: number,
+      originX = 0,
+      originY = 0,
+    ): void => {
+      const textureKey = textureForImage(imageIndex);
+      if (!this.textures.exists(textureKey)) return;
+      container.add(this.add.image(x, y, textureKey).setOrigin(originX, originY));
+    };
+
+    if (visual.effectType === 10) {
+      if (visual.frameIndex === 0) addAtlasImage(0, 0, 0, 0, 0.5);
+      else if (visual.frameIndex === 1) {
+        addAtlasImage(0, 0, 0, 0, 0.5);
+        addAtlasImage(1, 0, 3, 0, 0.5);
+      } else addAtlasImage(1, 0, 3, 0, 0.5);
+      return;
+    }
+
+    const risingEffect = visual.effectType === 4 || visual.effectType === 5 || visual.effectType === 7;
+    if (risingEffect && visual.frameIndex < 3) {
+      const imageIndex = visual.effectType === 4 ? 8 : 11;
+      const textureKey = textureForImage(imageIndex);
+      if (!this.textures.exists(textureKey)) return;
+      const image = this.add.image(0, 0, textureKey).setOrigin(0, 0.5);
+      const verticalOffsets = [0.7, 0.5, 0.3] as const;
+      image.setY(image.height * verticalOffsets[visual.frameIndex]);
+      container.add(image);
+      return;
+    }
+
+    const sourceFrameIndex = visual.frameIndex - (risingEffect ? 3 : 0);
+    const components = playerSkillEffectFrameComponents(
+      catalog,
+      visual.effectType,
+      visual.skillId,
+      visual.levelSlot,
+      sourceFrameIndex,
+    );
+    for (const component of components) {
+      if (component.sourceAtlasFlag !== 0) continue;
+      addAtlasImage(component.imageIndex, component.offsetX, component.offsetY);
+    }
+  }
+
+  private syncPlayerSkillVisualSprites(map: RenderedWorld): void {
+    const activeVisualIds = new Set(map.playerSkillVisuals.map(({ id }) => id));
+    for (const [id, sprite] of map.playerSkillVisualSprites) {
+      if (activeVisualIds.has(id)) continue;
+      sprite.destroy();
+      map.playerSkillVisualSprites.delete(id);
+      map.objects = map.objects.filter((object) => object !== sprite);
+    }
+    for (const visual of map.playerSkillVisuals) {
+      let sprite = map.playerSkillVisualSprites.get(visual.id);
+      if (sprite === undefined) {
+        sprite = this.add.container(0, 0);
+        map.playerSkillVisualSprites.set(visual.id, sprite);
+        map.objects.push(sprite);
+      }
+      const x = visual.tileX * 16;
+      const y = visual.tileY * 16;
+      sprite.setPosition(x, y).setDepth(y + 8);
+      this.setPlayerSkillEffectFrame(sprite, visual);
+    }
+  }
+
+  private attackEffectForSprite(spriteId: number): EnemyAttackEffect | undefined {
+    const bossAnimation = this.bossAnimations.get(spriteId);
+    if (bossAnimation !== undefined) return this.bossAttackEffects.get(bossAnimation.enemyId);
+    return this.enemyAttackEffects.get(spriteId);
+  }
+
   private syncEnemyAttackSprites(map: RenderedWorld): void {
     const activeProjectileIds = new Set(map.enemyProjectiles.map(({ id }) => id));
     for (const [id, sprite] of map.enemyProjectileSprites) {
@@ -3757,7 +6430,7 @@ export class WorldScene extends Phaser.Scene {
       }
     }
     for (const projectile of map.enemyProjectiles) {
-      const effect = this.enemyAttackEffects.get(projectile.spriteId);
+      const effect = this.attackEffectForSprite(projectile.spriteId);
       const textureSet = map.enemyTextureKeys.get(projectile.spriteId);
       if (effect === undefined || textureSet === undefined) continue;
       let sprite = map.enemyProjectileSprites.get(projectile.id);
@@ -3778,7 +6451,13 @@ export class WorldScene extends Phaser.Scene {
       this.setEnemyAttackEffectFrame(sprite, projectile.spriteId, textureSet, displayFrameIndex);
     }
 
-    const activeAttackIds = new Set(map.enemyAttackAnimations.map(({ id }) => id));
+    const attachedEnemies = new Map(map.enemies
+      .filter((enemy) => enemy.state === 'alive' || enemy.state === 'death-pending')
+      .map((enemy) => [enemy.sourceOrder, enemy] as const));
+    const activeAttackIds = new Set(map.enemyAttackAnimations
+      .filter((animation) => animation.attachedSourceOrder === undefined ||
+        attachedEnemies.has(animation.attachedSourceOrder))
+      .map(({ id }) => id));
     for (const [id, sprite] of map.enemyAttackSprites) {
       if (!activeAttackIds.has(id)) {
         sprite.destroy();
@@ -3787,6 +6466,10 @@ export class WorldScene extends Phaser.Scene {
       }
     }
     for (const animation of map.enemyAttackAnimations) {
+      const attachedEnemy = animation.attachedSourceOrder === undefined
+        ? undefined
+        : attachedEnemies.get(animation.attachedSourceOrder);
+      if (animation.attachedSourceOrder !== undefined && attachedEnemy === undefined) continue;
       const textureSet = map.enemyTextureKeys.get(animation.spriteId);
       if (textureSet === undefined) continue;
       let sprite = map.enemyAttackSprites.get(animation.id);
@@ -3795,11 +6478,19 @@ export class WorldScene extends Phaser.Scene {
         map.enemyAttackSprites.set(animation.id, sprite);
         map.objects.push(sprite);
       }
-      const x = animation.tileX * 16 + 8;
-      const y = animation.tileY * 16 + 8;
+      const offset = attachedEnemy === undefined
+        ? { x: 0, y: 0 }
+        : enemyDamageReactionOffset(attachedEnemy);
+      const x = attachedEnemy === undefined
+        ? animation.tileX * 16 + 8
+        : attachedEnemy.pixelX + enemyFootprintWidth(attachedEnemy) * 8 + offset.x;
+      const y = attachedEnemy === undefined
+        ? animation.tileY * 16 + 8
+        : attachedEnemy.pixelY + 14 + offset.y;
       sprite.setPosition(x, y).setDepth(y + 1);
       this.setEnemyAttackEffectFrame(sprite, animation.spriteId, textureSet, animation.frameIndex);
     }
+    this.syncPlayerSkillVisualSprites(map);
   }
 
   private renderStaticMap(
@@ -3814,10 +6505,12 @@ export class WorldScene extends Phaser.Scene {
     enemyTextureKeys: EnemyTextureSets,
   ): {
     objects: RenderedMapObject[];
+    decorationSprites: Map<number, Phaser.GameObjects.Image>;
     enemySprites: Map<number, Phaser.GameObjects.Container>;
     npcSprites: Map<number, NpcActorSprite>;
   } {
     const renderedObjects: RenderedMapObject[] = [];
+    const decorationSprites = new Map<number, Phaser.GameObjects.Image>();
     const enemySprites = new Map<number, Phaser.GameObjects.Container>();
     const npcSprites = new Map<number, NpcActorSprite>();
     for (let y = 0; y < map.height; y += 1) {
@@ -3838,22 +6531,26 @@ export class WorldScene extends Phaser.Scene {
     for (const object of sortedObjects) {
       const key = objectKeys.get(object.atlasIndex);
       if (key === undefined) continue;
-      renderedObjects.push(this.add
+      const sprite = this.add
         .image(
           object.tileX * map.tileSize + object.offsetX,
           object.tileY * map.tileSize + object.offsetY,
           key,
         )
         .setOrigin(0.5, 1)
-        .setDepth(object.tileY * map.tileSize + object.offsetY + 1));
+        .setDepth(object.tileY * map.tileSize + object.offsetY + 1);
+      renderedObjects.push(sprite);
+      decorationSprites.set(object.sourceOrder, sprite);
     }
-    for (const npc of events.npcPlacements) {
-      if (!visibleNpcSourceOrders.has(npc.sourceOrder)) continue;
+    for (const { placement: npc, visible } of resolveNpcSpriteRenderPlacements(
+      events.npcPlacements,
+      visibleNpcSourceOrders,
+    )) {
       const x = npc.tileX * map.tileSize + 8;
       const y = npc.tileY * map.tileSize + 8;
       const animation = this.npcAnimations.get(npc.imageId);
       if (animation !== undefined) {
-        const container = this.add.container(x, y).setDepth(y);
+        const container = this.add.container(x, y).setDepth(y).setVisible(visible);
         container.add(this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 1));
         const emotionImage = this.add.image(0, -39, 'world-emotion-0')
           .setOrigin(0.5, 0)
@@ -3866,7 +6563,9 @@ export class WorldScene extends Phaser.Scene {
           staticImage: null,
           direction: 2,
           stateIndex: 0,
-          frameIndex: 0,
+          // Source n.a() initializes k to -1. The first visible paint draws
+          // frame zero, then the post-render hook advances the cursor to 0.
+          frameIndex: -1,
           container,
           emotionImage,
           componentSprites: [],
@@ -3880,7 +6579,7 @@ export class WorldScene extends Phaser.Scene {
       }
       const key = npcTextureKeys.get(String(npc.imageId));
       if (key === undefined) continue;
-      const container = this.add.container(x, y).setDepth(y);
+      const container = this.add.container(x, y).setDepth(y).setVisible(visible);
       const emotionImage = this.add.image(0, -39, 'world-emotion-0')
         .setOrigin(0.5, 0)
         .setVisible(false);
@@ -3907,17 +6606,27 @@ export class WorldScene extends Phaser.Scene {
       });
     }
     for (const enemy of events.enemyPlacements) {
-      const textureSet = enemyTextureKeys.get(enemy.enemyId);
-      if (textureSet === undefined || !this.enemyAnimations.has(enemy.enemyId)) continue;
-      const enemyWidth = this.enemyDataTable?.records[enemy.enemyId]?.classCode === 2 ? 2 : 1;
-      const x = enemy.tileX * map.tileSize + (enemyWidth === 2 ? 16 : 8);
-      const y = enemy.tileY * map.tileSize + 14;
+      const spriteId = enemy.renderSpriteId ?? enemy.spriteId ?? enemy.enemyId;
+      const textureSet = enemyTextureKeys.get(spriteId);
+      if (textureSet === undefined ||
+        (!this.enemyAnimations.has(spriteId) && !this.bossAnimations.has(spriteId))) continue;
+      const sourceFootprintWidth = enemy.sourceFootprintWidth ??
+        (this.enemyDataTable?.records[enemy.enemyId]?.classCode === 2 ? 2 : 1);
+      const x = enemy.tileX * map.tileSize + sourceFootprintWidth * 8;
+      const y = enemy.tileY * map.tileSize + 14 + (enemy.sourceRenderOffsetY ?? 0);
       const sprite = this.add.container(x, y).setDepth(y);
-      this.setEnemySpriteFrame(sprite, enemy.enemyId, textureSet, 0, 2, 0);
+      this.setEnemySpriteFrame(
+        sprite,
+        spriteId,
+        textureSet,
+        enemy.sourceBehavior === 'map15-cf' ? 1 : 0,
+        enemy.sourceBehavior?.startsWith('map15-') ? 1 : 2,
+        0,
+      );
       renderedObjects.push(sprite);
       enemySprites.set(enemy.sourceOrder, sprite);
     }
-    return { objects: renderedObjects, enemySprites, npcSprites };
+    return { objects: renderedObjects, decorationSprites, enemySprites, npcSprites };
   }
 
   private setNpcSpriteFrame(sprite: NpcActorSprite): void {
@@ -3979,31 +6688,21 @@ export class WorldScene extends Phaser.Scene {
   private syncEventCutsceneNpcSprites(state: EventCutsceneState): void {
     const activeMap = this.maps.get(this.currentMapId);
     if (activeMap === undefined) return;
-    let visibilityChanged = false;
+    let occupancyChanged = false;
     const visibleNpcSourceOrders = new Set(activeMap.visibleNpcSourceOrders);
     for (const [sourceOrderText, visible] of Object.entries(state.npcVisibility)) {
       const sourceOrder = Number(sourceOrderText);
       if (visible) {
         if (!visibleNpcSourceOrders.has(sourceOrder)) {
           visibleNpcSourceOrders.add(sourceOrder);
-          visibilityChanged = true;
+          occupancyChanged = true;
         }
       } else if (visibleNpcSourceOrders.delete(sourceOrder)) {
-        visibilityChanged = true;
+        occupancyChanged = true;
       }
       activeMap.npcSprites.get(sourceOrder)?.container.setVisible(visible);
     }
-    if (visibilityChanged) {
-      activeMap.visibleNpcSourceOrders = visibleNpcSourceOrders;
-      activeMap.occupiedCellIndices = createEntityOccupancy(
-        activeMap.events,
-        activeMap.width,
-        activeMap.height,
-        visibleNpcSourceOrders,
-        undefined,
-        this.activeEnemyPlacements(activeMap.enemies),
-      );
-    }
+    activeMap.visibleNpcSourceOrders = visibleNpcSourceOrders;
     for (const [sourceOrderText, imageId] of Object.entries(state.npcImages)) {
       const sourceOrder = Number(sourceOrderText);
       const placement = activeMap.events.npcPlacements.find((candidate) =>
@@ -4012,6 +6711,16 @@ export class WorldScene extends Phaser.Scene {
       if (placement !== undefined) placement.imageId = imageId;
       const sprite = activeMap.npcSprites.get(sourceOrder);
       if (sprite !== undefined && sprite.npcId !== imageId) this.setNpcSpriteImage(sprite, imageId);
+    }
+    for (const [sourceOrderText, imageId] of Object.entries(state.objectImages)) {
+      const sprite = activeMap.decorationSprites.get(Number(sourceOrderText));
+      if (sprite === undefined) continue;
+      const textureKey = activeMap.objectTextureKeys.get(imageId);
+      if (textureKey === undefined) {
+        sprite.setVisible(false);
+      } else {
+        sprite.setTexture(textureKey).setVisible(true);
+      }
     }
     const visualStates = resolveNpcCutsceneVisualStates(
       [...activeMap.npcSprites.values()].map((sprite) => ({
@@ -4034,27 +6743,35 @@ export class WorldScene extends Phaser.Scene {
       if (stateIndex !== sprite.stateIndex) {
         sprite.stateIndex = stateIndex;
         changed = true;
+        occupancyChanged = true;
       }
       if (changed) {
         sprite.frameIndex = 0;
         this.setNpcSpriteFrame(sprite);
       }
     }
+    if (occupancyChanged) activeMap.occupiedCellIndices = this.mapEntityOccupancy(activeMap);
   }
 
-  private advanceNpcSpriteAnimations(map: RenderedWorld): void {
+  private advanceNpcSpriteAnimations(map: RenderedWorld, sourcePaintPasses: number): void {
+    if (sourcePaintPasses <= 0) return;
+    const viewport = this.cameras.main.worldView;
     for (const sprite of map.npcSprites.values()) {
+      if (!sprite.container.visible || !isNpcWithinSourceViewport(sprite.container, viewport)) continue;
       const animation = this.npcAnimations.get(sprite.npcId);
       if (animation === undefined) continue;
       const track = findNpcSpriteTrack(animation, sprite.stateIndex, sprite.direction);
-      if (track.frameCount <= 1) continue;
-      sprite.frameIndex = advanceNpcSpriteFrame(sprite.frameIndex, track);
+      // Source `ab.a(Graphics,...)` advances the cursor once for every visible
+      // source gameplay paint. Batch elapsed source passes after this Phaser
+      // draw so browser RAF frequency does not set the NPC animation rate.
+      sprite.frameIndex = advanceNpcSpriteFrames(sprite.frameIndex, track, sourcePaintPasses);
       this.setNpcSpriteFrame(sprite);
     }
   }
 
   private advanceNpcSpriteMotion(map: RenderedWorld, worldUpdates: number): void {
     if (worldUpdates === 0) return;
+    let occupancyChanged = false;
     for (const sprite of map.npcSprites.values()) {
       const next = advanceNpcMotion({
         x: sprite.container.x,
@@ -4064,8 +6781,10 @@ export class WorldScene extends Phaser.Scene {
       }, worldUpdates);
       if (next.x !== sprite.container.x || next.y !== sprite.container.y) {
         sprite.container.setPosition(next.x, next.y).setDepth(next.y);
+        occupancyChanged = true;
       }
     }
+    if (occupancyChanged) map.occupiedCellIndices = this.mapEntityOccupancy(map);
   }
 
   private performBasicAttack(style: PlayerAttackStyle): void {
@@ -4077,6 +6796,29 @@ export class WorldScene extends Phaser.Scene {
     if (!queued.accepted) return;
     this.playerCombo = queued.state;
     this.updateHeroSprite();
+  }
+
+  private performPlayerSkill(actionButton: 0 | 1): void {
+    if (this.loadingMapTransition || this.systemMenuVisible || this.openingDialogVisible ||
+      this.worldDialogueVisible || this.world === null || this.hudState.hp <= 0) return;
+    const activeSkillId = this.activeSkillId;
+    if (this.playerSkillAction.skillId !== activeSkillId) this.setActivePlayerSkill(activeSkillId);
+    const button = actionButton === 0 ? '1' : '3';
+    const levelSlot = playerSkillLevelForActionButton(this.playerSkillAction, button);
+    if (levelSlot === null) return;
+    const started = startPlayerSkillAction(
+      { ...this.playerSkillAction, nextActionId: this.nextPlayerSkillActionId },
+      levelSlot,
+      this.actor.x >> 4,
+      this.actor.y >> 4,
+      this.actor.direction,
+      this.characterAttributes.will,
+    );
+    if (started.accepted) {
+      this.playerSkillAction = started.state;
+      this.nextPlayerSkillActionId = started.state.nextActionId;
+      this.playerSkillActionStates.set(activeSkillId, started.state);
+    }
   }
 
   private advancePlayerCombat(elapsedMs: number): void {
@@ -4130,7 +6872,7 @@ export class WorldScene extends Phaser.Scene {
       maxHp: this.hudState.maxHp,
       sp: this.hudState.sp,
       maxSp: this.hudState.maxSp,
-    });
+    }, true, this.playerSkillAction.recoveryBoostTicksRemaining > 0 ? 2 : 1);
     this.playerRecovery = result.state;
     if (result.hpChange === 0 && result.spChange === 0) return;
     this.hudState.hp = result.hp;
@@ -4147,10 +6889,56 @@ export class WorldScene extends Phaser.Scene {
 
   private resolvePlayerComboImpact(currentMap: RenderedWorld, impact: PlayerComboImpact): void {
     const baseProfile = this.equipmentStats?.attack ?? STARTER_RONIN_ATTACK;
-    const profile = { ...baseProfile, power: playerAttackPower(baseProfile.power, impact) };
+    const basePower = this.playerSkillAction.comboPowerBoostTicksRemaining > 0
+      ? Math.floor((baseProfile.power * 3) / 2)
+      : baseProfile.power;
+    const profile = {
+      ...baseProfile,
+      attackElement: sourcePlayerSkillElement(this.playerSkillAction.skillId),
+      power: playerAttackPower(basePower, impact),
+    };
     const variationWidth = Math.trunc(profile.power / 10);
     if (variationWidth > 0) profile.power += this.randomStreams.entity.nextInt() % variationWidth;
+    const weapon = this.equipmentSlots[0];
+    const offhand = this.equipmentSlots[1];
+    const procCode = selectWeaponProcCode(
+      weapon?.equipmentState?.subtypeBytes[2],
+      offhand?.equipmentState?.subtypeBytes[0],
+      () => this.randomStreams.range.nextSourceRange(0, 99),
+    );
     const critical = Math.abs(this.randomStreams.entity.nextInt() % 100) < (profile.criticalChance ?? 0);
+    const directionDelta: Record<Direction, { x: number; y: number }> = {
+      1: { x: 0, y: -1 },
+      2: { x: 0, y: 1 },
+      3: { x: -1, y: 0 },
+      4: { x: 1, y: 0 },
+    };
+    const forward = directionDelta[this.actor.direction];
+    const sourceFrontTarget = findEnemyOccupyingSourceCell(
+      currentMap.enemies,
+      (this.actor.x >> 4) + forward.x,
+      (this.actor.y >> 4) + forward.y,
+    );
+    if (sourceFrontTarget !== undefined && procCode !== null) {
+      this.showSourceWeaponProcFeedback(procCode);
+    }
+    if (procCode === 8 && sourceFrontTarget !== undefined) {
+      this.applyPlayerWeaponProcCosts(Math.trunc(this.hudState.maxHp / 25), 0);
+    }
+    if (this.heroClassId === 8 && impact.style === 'heavy' &&
+      (impact.stage === 2 || impact.stage === 3 || impact.stage === 4)) {
+      currentMap.playerProjectiles.push(beginSourceClassEightProjectile(
+        currentMap.nextPlayerProjectileId++,
+        this.actor.x >> 4,
+        this.actor.y >> 4,
+        this.actor.direction,
+        impact.stage,
+        profile,
+        critical,
+        procCode,
+      ));
+      return;
+    }
     const resolveTargets = (targets: readonly EnemyCombatant[]): void => {
       for (const target of targets) {
         const currentTarget = currentMap.enemies.find((enemy) => enemy.sourceOrder === target.sourceOrder);
@@ -4162,12 +6950,14 @@ export class WorldScene extends Phaser.Scene {
           profile,
           this.randomStreams.range.nextSourceRange(0, 99),
           critical,
+          procCode,
         );
         currentMap.enemies = result.combatants;
         if (result.kind !== 'hit') continue;
         currentMap.enemies = currentMap.enemies.map((enemy) => enemy.sourceOrder === result.target.sourceOrder
           ? beginEnemyDamageReaction(enemy, this.actor.direction)
           : enemy);
+        this.applyPlayerWeaponProcCosts(result.playerHpCost, result.playerSpCost);
         this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
         if (previousTargetState === 'alive' && result.target.state === 'death-pending') {
           this.rewardDefeatedEnemy(currentMap, result.target);
@@ -4187,50 +6977,36 @@ export class WorldScene extends Phaser.Scene {
     if (this.heroClassId !== 6 || impact.style !== 'heavy' || (impact.stage !== 2 && impact.stage !== 3)) return;
     const playerTileX = this.actor.x >> 4;
     const playerTileY = this.actor.y >> 4;
-    const distance = sourceClassSixLungeDistance(
+    const lunge = resolveSourceClassSixLungeImpact(
+      currentMap.enemies,
       currentMap.world.collision,
-      createEntityOccupancy(
-        currentMap.events,
-        currentMap.world.map.width,
-        currentMap.world.map.height,
-        currentMap.visibleNpcSourceOrders,
-        undefined,
-        this.activeEnemyPlacements(currentMap.enemies),
-      ),
+      this.mapEntityOccupancy(currentMap),
       playerTileX,
       playerTileY,
       this.actor.direction,
+      impact.stage,
     );
-    if (distance === 0) return;
-    const directionDeltas: Record<Direction, { x: number; y: number }> = {
-      1: { x: 0, y: -1 },
-      2: { x: 0, y: 1 },
-      3: { x: -1, y: 0 },
-      4: { x: 1, y: 0 },
-    };
-    const delta = directionDeltas[this.actor.direction];
+    if (lunge.distance === 0) return;
     this.actor = {
       ...this.actor,
-      x: this.actor.x + delta.x * distance * 16,
-      y: this.actor.y + delta.y * distance * 16,
+      x: this.actor.x + (lunge.destinationTileX - playerTileX) * 16,
+      y: this.actor.y + (lunge.destinationTileY - playerTileY) * 16,
       moving: false,
       stopAfterTile: false,
       queuedDirection: null,
     };
-    if (impact.stage === 3) {
-      resolveTargets(selectPlayerAttackTargets(
-        currentMap.enemies,
-        this.actor.x >> 4,
-        this.actor.y >> 4,
-        this.actor.direction,
-        this.heroClassId,
-        impact,
-      ));
-    }
+    resolveTargets(lunge.followUpTargets);
   }
 
-  private showDamageNumber(tileX: number, tileY: number, damage: number): void {
-    const digits = String(Math.abs(damage)).split('').map(Number);
+  /** `signedValue` follows the source `av(7)` font-style polarity. */
+  private showDamageNumber(
+    tileX: number,
+    tileY: number,
+    signedValue: number,
+    effectOwner: DamageNumberPopup['effectOwner'] = 'map',
+  ): void {
+    if (!sourceDamageNumberHasVisibleGlyphs(signedValue)) return;
+    const digits = String(Math.abs(signedValue)).split('').map(Number);
     const baseX = tileX * 16 + 9;
     const baseY = tileY * 16 + 8;
     const left = baseX - (digits.length * 6) / 2;
@@ -4242,11 +7018,44 @@ export class WorldScene extends Phaser.Scene {
       .setVisible(false));
     this.damageNumberPopups.push({
       mapId: this.currentMapId,
+      effectOwner,
       frames,
       baseX: left,
       baseY,
       animation: INITIAL_DAMAGE_NUMBER_ANIMATION,
     });
+  }
+
+  private showSourceWeaponProcFeedback(procCode: number): void {
+    const imageIndex = sourceWeaponProcEmotionImageIndex(procCode);
+    if (imageIndex === null || this.heroContainer === null) return;
+    const sprite = this.add.image(-8, -47, `world-emotion-${imageIndex}`)
+      .setOrigin(0, 0);
+    this.heroContainer.add(sprite);
+    this.sourceWeaponProcFeedback.push({
+      animation: createSourceWeaponProcFeedbackAnimation(),
+      emotionImageIndex: imageIndex,
+      sprite,
+    });
+  }
+
+  private advanceSourceWeaponProcFeedback(elapsedMs: number): void {
+    for (let index = this.sourceWeaponProcFeedback.length - 1; index >= 0; index -= 1) {
+      const feedback = this.sourceWeaponProcFeedback[index];
+      if (feedback === undefined) continue;
+      const step = advanceWeaponProcFeedbackAnimation(
+        feedback.animation,
+        feedback.emotionImageIndex,
+        elapsedMs,
+      );
+      if (step.finished) {
+        feedback.sprite.destroy();
+        this.sourceWeaponProcFeedback.splice(index, 1);
+        continue;
+      }
+      feedback.animation = step.animation;
+      feedback.sprite.setY(-47 + step.verticalOffset);
+    }
   }
 
   private updateDamageNumberPopups(elapsedMs: number): void {

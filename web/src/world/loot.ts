@@ -5,6 +5,8 @@ import {
 } from './equipment-data';
 
 export const INVENTORY_SLOT_COUNT = 30;
+/** Source `an.f73b`: the separate category-22 inventory has fifteen slots. */
+export const SPECIAL_INVENTORY_SLOT_COUNT = 15;
 export const GROUND_DROP_LIFETIME_TICKS = 120;
 export const NEW_GAME_WALLET = 300;
 export const CONSUMABLE_CATEGORIES = [7, 8, 9, 10] as const;
@@ -50,39 +52,88 @@ export interface ConsumableUseResult {
   used: boolean;
 }
 
+function unchangedConsumableUse(
+  inventory: readonly InventoryStack[],
+  state: ConsumablePlayerState,
+  statusEffects: readonly number[],
+): ConsumableUseResult {
+  return {
+    inventory: inventory.map((stack) => ({ ...stack })),
+    state,
+    statusEffects: [...statusEffects],
+    used: false,
+  };
+}
+
+function useConsumableAtInventoryIndex(
+  inventory: readonly InventoryStack[],
+  state: ConsumablePlayerState,
+  statusEffects: readonly number[],
+  index: number,
+  playerCanUseItems: boolean,
+): ConsumableUseResult {
+  const selected = inventory[index];
+  if (!playerCanUseItems || selected === undefined ||
+    !CONSUMABLE_CATEGORIES.includes(selected.category as ConsumableCategory)) {
+    return unchangedConsumableUse(inventory, state, statusEffects);
+  }
+  const category = selected.category as ConsumableCategory;
+  const nextState = { ...state, selectedItemCategory: category };
+  if (category === 7) {
+    nextState.hp = Math.min(state.maxHp, state.hp + Math.trunc((state.maxHp * 20) / 100));
+  } else if (category === 8) {
+    nextState.hp = Math.min(state.maxHp, state.hp + Math.trunc((state.maxHp * 40) / 100));
+  } else if (category === 9) {
+    nextState.sp = Math.min(state.maxSp, state.sp + Math.trunc((state.maxSp * 30) / 100));
+  }
+  const nextStatusEffects = category === 10
+    ? statusEffects.filter((status) => status !== 7)
+    : [...statusEffects];
+  const nextInventory = inventory.map((stack) => ({ ...stack }));
+  if (selected.count === 1) nextInventory.splice(index, 1);
+  else nextInventory[index].count -= 1;
+  nextState.selectedItemCount = selectedConsumableCount(nextInventory, category);
+  return {
+    inventory: nextInventory,
+    state: nextState,
+    statusEffects: nextStatusEffects,
+    used: true,
+  };
+}
+
 /** Apply the four source consumable-category effects from `an.m22a()`. */
 export function useSelectedConsumable(
   inventory: readonly InventoryStack[],
   state: ConsumablePlayerState,
   statusEffects: readonly number[] = [],
+  playerCanUseItems = true,
 ): ConsumableUseResult {
+  if (!playerCanUseItems) return unchangedConsumableUse(inventory, state, statusEffects);
   const index = inventory.findIndex((stack) => stack.category === state.selectedItemCategory);
-  if (index === -1) {
-    return {
-      inventory: inventory.map((stack) => ({ ...stack })),
-      state,
-      statusEffects: [...statusEffects],
-      used: false,
-    };
-  }
-  const selected = inventory[index];
-  const nextState = { ...state };
-  if (selected.category === 7) {
-    nextState.hp = Math.min(state.maxHp, state.hp + Math.trunc((state.maxHp * 20) / 100));
-  } else if (selected.category === 8) {
-    nextState.hp = Math.min(state.maxHp, state.hp + Math.trunc((state.maxHp * 40) / 100));
-  } else if (selected.category === 9) {
-    nextState.sp = Math.min(state.maxSp, state.sp + Math.trunc((state.maxSp * 30) / 100));
-  }
-  const nextStatusEffects = selected.category === 10
-    ? statusEffects.filter((status) => status !== 7)
-    : [...statusEffects];
+  return index < 0
+    ? unchangedConsumableUse(inventory, state, statusEffects)
+    : useConsumableAtInventoryIndex(inventory, state, statusEffects, index, true);
+}
 
-  const nextInventory = inventory.map((stack) => ({ ...stack }));
-  if (selected.count === 1) nextInventory.splice(index, 1);
-  else nextInventory[index].count -= 1;
-  nextState.selectedItemCount = selectedConsumableCount(nextInventory, state.selectedItemCategory);
-  return { inventory: nextInventory, state: nextState, statusEffects: nextStatusEffects, used: true };
+/** Use the selected bag row, while preserving the source category-7–10 effects. */
+export function useConsumableAtIndex(
+  inventory: readonly InventoryStack[],
+  state: ConsumablePlayerState,
+  statusEffects: readonly number[],
+  index: number,
+  playerCanUseItems = true,
+): ConsumableUseResult {
+  const selected = Number.isInteger(index) ? inventory[index] : undefined;
+  if (!playerCanUseItems || selected === undefined ||
+    !CONSUMABLE_CATEGORIES.includes(selected.category as ConsumableCategory)) {
+    return unchangedConsumableUse(inventory, state, statusEffects);
+  }
+  const category = selected.category as ConsumableCategory;
+  return useConsumableAtInventoryIndex(inventory, {
+    ...state,
+    selectedItemCategory: category,
+    selectedItemCount: selectedConsumableCount(inventory, category),
+  }, statusEffects, index, true);
 }
 
 interface GroundDropBase {
@@ -171,6 +222,22 @@ export function canStoreItem(
     stack.category === category && stack.itemId === itemId && stack.count + count <= 99);
 }
 
+/** Check source `f73b` capacity for the special category-22 item list. */
+export function canStoreSpecialItem(
+  inventory: readonly InventoryStack[],
+  category: number,
+  itemId: number,
+  count: number,
+): boolean {
+  if (category !== 22 || !Number.isInteger(itemId) || itemId < 0 || itemId > 255 ||
+    !Number.isInteger(count) || count < 1 || count > 99 ||
+    inventory.length > SPECIAL_INVENTORY_SLOT_COUNT) return false;
+  if (inventory.some((stack) => stack.category !== 22)) return false;
+  const compacted = compactSpecialInventory(inventory);
+  if (compacted.length < SPECIAL_INVENTORY_SLOT_COUNT) return true;
+  return compacted.some((stack) => stack.itemId === itemId && stack.count + count <= 99);
+}
+
 export function storeItem(
   inventory: readonly InventoryStack[],
   category: number,
@@ -198,6 +265,41 @@ export function storeItem(
       : {}),
   });
   return next;
+}
+
+/** Insert one source category-22 item into the separate 15-slot special inventory. */
+export function storeSpecialItem(
+  inventory: readonly InventoryStack[],
+  category: number,
+  itemId: number,
+  count: number,
+): InventoryStack[] | null {
+  if (!canStoreSpecialItem(inventory, category, itemId, count)) return null;
+  const next = compactSpecialInventory(inventory);
+  const stack = next.find((entry) => entry.itemId === itemId && entry.count + count <= 99);
+  if (stack !== undefined) stack.count += count;
+  else next.push({ category: 22, itemId, count });
+  return compactSpecialInventory(next);
+}
+
+function compactSpecialInventory(inventory: readonly InventoryStack[]): InventoryStack[] {
+  const compacted = inventory.map((stack) => ({ ...stack }));
+  for (let index = 0; index < compacted.length; index += 1) {
+    const stack = compacted[index];
+    if (stack.category !== 22 || stack.count >= 99) continue;
+    for (let nextIndex = index + 1; nextIndex < compacted.length; nextIndex += 1) {
+      const next = compacted[nextIndex];
+      if (next.category !== 22 || next.itemId !== stack.itemId) continue;
+      const moved = Math.min(99 - stack.count, next.count);
+      stack.count += moved;
+      next.count -= moved;
+      if (next.count === 0) {
+        compacted.splice(nextIndex, 1);
+        nextIndex -= 1;
+      }
+    }
+  }
+  return compacted;
 }
 
 function cloneEquipmentState(state: SourceEquipmentInventoryState): SourceEquipmentInventoryState {
@@ -274,8 +376,10 @@ export function changeInventoryQuantity(
 }
 
 export interface PickupResult {
+  status: 'picked-up' | 'no-space' | 'no-drop';
   pickedUp: GroundDrop | null;
   inventory: InventoryStack[];
+  specialInventory: InventoryStack[];
   wallet: number;
   drops: GroundDrop[];
 }
@@ -291,14 +395,34 @@ export function pickupGroundDrop(
     category: number,
     itemId: number,
   ) => SourceEquipmentInventoryState | undefined,
+  specialInventory: readonly InventoryStack[] = [],
 ): PickupResult {
   for (const drop of drops) {
     if (drop.tileX !== tileX || drop.tileY !== tileY) continue;
     if (drop.kind === 'currency') {
       return {
+        status: 'picked-up',
         pickedUp: drop,
         inventory: inventory.map((stack) => ({ ...stack })),
+        specialInventory: specialInventory.map((stack) => ({ ...stack })),
         wallet: wallet + (drop.sourceAmount > 0 ? drop.sourceAmount * 9 : 0),
+        drops: drops.filter((candidate) => candidate.id !== drop.id),
+      };
+    }
+    if (drop.category === 22) {
+      const nextSpecialInventory = storeSpecialItem(
+        specialInventory,
+        drop.category,
+        drop.itemId,
+        drop.count,
+      );
+      if (nextSpecialInventory === null) continue;
+      return {
+        status: 'picked-up',
+        pickedUp: drop,
+        inventory: inventory.map((stack) => ({ ...stack })),
+        specialInventory: nextSpecialInventory,
+        wallet,
         drops: drops.filter((candidate) => candidate.id !== drop.id),
       };
     }
@@ -308,15 +432,20 @@ export function pickupGroundDrop(
     const nextInventory = storeItem(inventory, drop.category, drop.itemId, drop.count, equipmentState);
     if (nextInventory === null) continue;
     return {
+      status: 'picked-up',
       pickedUp: drop,
       inventory: nextInventory,
+      specialInventory: specialInventory.map((stack) => ({ ...stack })),
       wallet,
       drops: drops.filter((candidate) => candidate.id !== drop.id),
     };
   }
   return {
+    status: drops.some((drop) => drop.kind === 'item' &&
+      drop.tileX === tileX && drop.tileY === tileY) ? 'no-space' : 'no-drop',
     pickedUp: null,
     inventory: inventory.map((stack) => ({ ...stack })),
+    specialInventory: specialInventory.map((stack) => ({ ...stack })),
     wallet,
     drops: [...drops],
   };
@@ -359,4 +488,13 @@ export function parseInventory(value: unknown): InventoryStack[] | null {
     });
   }
   return inventory;
+}
+
+/** Parse the separate source save stream, whose supported acquisition type is category 22. */
+export function parseSpecialInventory(value: unknown): InventoryStack[] | null {
+  if (!Array.isArray(value) || value.length > SPECIAL_INVENTORY_SLOT_COUNT) return null;
+  const inventory = parseInventory(value);
+  return inventory !== null && inventory.every((stack) => stack.category === 22)
+    ? inventory
+    : null;
 }

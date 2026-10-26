@@ -25,11 +25,22 @@ export interface EventCutsceneState {
   choiceSelection: 0 | 1;
   choiceSkipCount: number;
   delayRemainingMs: number;
+  /** True only for opcode 4's source movement-mode delay, which updates the hero and NPCs. */
+  sourceWorldTickDuringDelay: boolean;
+  /** The first world update after opcode 4 runs before its delay counter decrements. */
+  sourceWorldTickPending: boolean;
+  sourceWorldTickPendingElapsedMs: number;
+  /** Resume the command stream on the next source update after a movement wait. */
+  sourceEventResumePending: boolean;
   heroDirection: Direction;
   heroMoving: boolean;
+  /** Source opcode 8 repositions the hero on the current map. */
+  heroPositionChanges: Array<{ tileX: number; tileY: number }>;
   heroEmotion: number | null;
   heroEmotionChanged: boolean;
   cameraMode: 'hero' | 'fixed';
+  /** Source opcode 34 copies the hero target into the Camera-On display focus once. */
+  cameraSnapPending: boolean;
   cameraMoveDirection: number;
   cameraMoveSpeed: number;
   cameraTickRemainderMs: number;
@@ -42,6 +53,8 @@ export interface EventCutsceneState {
   npcDirections: Record<number, Direction>;
   npcMoving: Record<number, boolean>;
   npcImages: Record<number, number>;
+  /** Source opcode 40 changes an `ai` map object to an image from `cd.f198f`. */
+  objectImages: Record<number, number>;
   npcEmotions: Record<number, number | null>;
   npcVisibility: Record<number, boolean>;
   screenBlank: boolean;
@@ -58,6 +71,8 @@ export interface EventCutsceneState {
   /** Source `an.z`, the maximum attack-chain step unlocked by event opcode 19. */
   comboLimit: number;
   heroClassId: EndingHeroClassId;
+  /** Initial/mutated quest flag 29 state used by the source combo unlock handler. */
+  questFlag29Set: boolean;
   serviceRequest: EventServiceRequest | null;
   flagChanges: EventFlagChange[];
   transition: Omit<MapTransition, 'flagChanges'> | null;
@@ -85,9 +100,9 @@ export const EVENT_CAMERA_DIRECTION_VECTORS = [
 ] as const;
 
 const RENDERED_CUTSCENE_OPCODES = new Set([
-  1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 21, 22, 23, 24, 26, 29, 30,
-  2, 13, 14, 19, 20, 25, 31, 34, 35, 36, 37, 38, 39, 41, 42, 43, 46, 49, 50, 99,
-  44, 45, 48,
+  1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 21, 22, 23, 24, 26, 27, 29, 30,
+  2, 13, 14, 19, 20, 25, 31, 32, 34, 35, 36, 37, 38, 39, 41, 42, 43, 46, 47, 49, 50, 99,
+  40, 44, 45, 48,
 ]);
 
 export function createEventCutscene(
@@ -97,6 +112,7 @@ export function createEventCutscene(
   skillIds: readonly number[] = [],
   comboLimit = 1,
   heroClassId: EndingHeroClassId = 6,
+  questFlag29Set = false,
 ): EventCutsceneState {
   if (!Number.isInteger(comboLimit) || comboLimit < 1 || comboLimit > 127) {
     throw new RangeError('comboLimit must be a signed positive byte');
@@ -113,11 +129,17 @@ export function createEventCutscene(
     choiceSelection: 0,
     choiceSkipCount: 0,
     delayRemainingMs: 0,
+    sourceWorldTickDuringDelay: false,
+    sourceWorldTickPending: false,
+    sourceWorldTickPendingElapsedMs: 0,
+    sourceEventResumePending: false,
     heroDirection: direction,
     heroMoving: false,
+    heroPositionChanges: [],
     heroEmotion: null,
     heroEmotionChanged: false,
     cameraMode: 'hero',
+    cameraSnapPending: false,
     cameraMoveDirection: 0,
     cameraMoveSpeed: 0,
     cameraTickRemainderMs: 0,
@@ -128,6 +150,7 @@ export function createEventCutscene(
     npcDirections: {},
     npcMoving: {},
     npcImages: {},
+    objectImages: {},
     npcEmotions: {},
     npcVisibility: {},
     screenBlank: false,
@@ -143,6 +166,7 @@ export function createEventCutscene(
     skillIds: [...skillIds],
     comboLimit,
     heroClassId,
+    questFlag29Set,
     serviceRequest: null,
     flagChanges: [],
     transition: null,
@@ -156,6 +180,7 @@ export function canRunEventCutscene(
   npcPlacementCount?: number,
   mapSize?: { width: number; height: number },
   equipmentDataTable?: EquipmentDataTable,
+  decorationObjectCount?: number,
 ): boolean {
   if (commands.length === 0 || commands.some(([opcode]) => !RENDERED_CUTSCENE_OPCODES.has(opcode))) {
     return false;
@@ -163,13 +188,19 @@ export function canRunEventCutscene(
   for (let index = 0; index < commands.length; index += 1) {
     const [opcode, first = 0] = commands[index];
     const [, , second = 0] = commands[index];
+    const jumpOffset = opcode === 31 ? signedEventByte(first) : -signedEventByte(first);
     if (opcode === 11) {
       const quantityCommand = commands[index + 1];
       const rawQuantity = quantityCommand?.[1] ?? 0;
       const quantity = rawQuantity > 127 ? rawQuantity - 256 : rawQuantity;
-      if (first < 0 || first > 23 || !Number.isInteger(second) || second < 0 || second > 255 ||
+      const sourceCategory = signedEventByte(first);
+      const sourceItemId = signedEventByte(second);
+      if (!Number.isInteger(first) || first < 0 || first > 255 ||
+        sourceCategory < 0 || sourceCategory > 23 ||
+        !Number.isInteger(second) || second < 0 || second > 255 || sourceItemId < 0 ||
         quantityCommand?.[0] !== 21 || quantity === -128) return false;
-      if (first < 7 && quantity > 0 && findEquipmentItem(equipmentDataTable ?? { categories: [] }, first, second) === undefined) {
+      if (sourceCategory < 7 && quantity > 0 &&
+        findEquipmentItem(equipmentDataTable ?? { categories: [] }, sourceCategory, sourceItemId) === undefined) {
         return false;
       }
       index += 1;
@@ -178,8 +209,17 @@ export function canRunEventCutscene(
       !Number.isInteger(second) || second <= 0 || index + second > commands.length
     )) {
       return false;
-    } else if (opcode === 31 && (
-      !Number.isInteger(first) || first <= 0 || index + first > commands.length
+    } else if (opcode === 7) {
+      const position = commands[index + 1];
+      if (!Number.isInteger(first) || first < 0 || first > 255 ||
+        !Number.isInteger(second) || second < 0 || second > 3 ||
+        position?.[0] !== 8 || !Number.isInteger(position[1]) ||
+        position[1] < 0 || position[1] > 255 || !Number.isInteger(position[2]) ||
+        position[2] < 0 || position[2] > 255) return false;
+      index += 1;
+    } else if ((opcode === 31 || opcode === 32) && (
+      !Number.isInteger(first) || first < 0 || first > 255 ||
+      index + jumpOffset < 0 || index + jumpOffset > commands.length
     )) {
       return false;
     } else if (opcode === 21) {
@@ -204,6 +244,19 @@ export function canRunEventCutscene(
       !Number.isInteger(second) || second < 0 || second > 255
     )) {
       return false;
+    } else if (opcode === 40 && (
+      !Number.isInteger(first) || first < 0 || first > 127 ||
+      !Number.isInteger(second) || second < 0 || second > 127 ||
+      decorationObjectCount !== undefined && first >= decorationObjectCount
+    )) {
+      return false;
+    } else if (opcode === 8 && commands[index - 1]?.[0] !== 7) {
+      if (!Number.isInteger(first) || first < 0 || first > 255 ||
+        !Number.isInteger(second) || second < 0 || second > 255) return false;
+      const tileX = first > 127 ? first - 256 : first;
+      const tileY = second > 127 ? second - 256 : second;
+      if (mapSize !== undefined && (tileX < 0 || tileY < 0 ||
+        tileX >= mapSize.width || tileY >= mapSize.height)) return false;
     } else if (opcode === 42) {
       const propertyCommand = commands[index + 1];
       if (!Number.isInteger(first) || first < 0 || first > 255 ||
@@ -220,22 +273,23 @@ export function canRunEventCutscene(
     )) {
       return false;
     }
-    if (npcPlacementCount !== undefined && [15, 16, 17, 41, 46, 50].includes(opcode) &&
+    if (npcPlacementCount !== undefined && [15, 16, 17, 41, 46, 47, 50].includes(opcode) &&
       (first < 0 || first >= npcPlacementCount)) return false;
   }
-  if (commands.some(([opcode, first = 0, second = 0]) =>
-    opcode === 30 && (first | ((second << 2) & 768)) === 29 && (second & 3) === 2,
-  )) return false;
   const result = advanceEventCutscene(
     createEventCutscene(0, 2), commands, () => [], 0, true,
     undefined, undefined, equipmentDataTable, false,
   );
   return result.status === 'ended' || result.status === 'transfer' ||
-    result.status === 'service' || result.status === 'ending';
+    result.status === 'service' || result.status === 'ending' || result.status === 'delay';
 }
 
 function isDirection(value: number): value is Direction {
   return Number.isInteger(value) && value >= 1 && value <= 4;
+}
+
+function signedEventByte(value: number): number {
+  return value > 127 ? value - 256 : value;
 }
 
 /** Run source event commands in order until dialogue, a timed wait, transfer, or end. */
@@ -255,8 +309,10 @@ export function advanceEventCutscene(
     npcDirections: { ...source.npcDirections },
     npcMoving: { ...source.npcMoving },
     npcImages: { ...source.npcImages },
+    objectImages: { ...source.objectImages },
     npcEmotions: { ...source.npcEmotions },
     npcVisibility: { ...source.npcVisibility },
+    heroPositionChanges: [...source.heroPositionChanges],
     flagChanges: [...source.flagChanges],
     inventory: source.inventory.map((stack) => ({ ...stack })),
     playerChanges: [...source.playerChanges],
@@ -268,6 +324,9 @@ export function advanceEventCutscene(
     tileChanges: [...source.tileChanges],
   };
   if (!Number.isFinite(elapsedMs) || elapsedMs < 0) throw new RangeError('elapsedMs must be non-negative');
+  if (state.status === 'running' && state.sourceEventResumePending) {
+    state.sourceEventResumePending = false;
+  }
   if (state.status === 'transfer' || state.status === 'service' ||
     state.status === 'ending' || state.status === 'ended' ||
     state.status === 'unsupported') return state;
@@ -293,6 +352,7 @@ export function advanceEventCutscene(
         dialoguePageIndex: 0,
         dialogueEndsCutscene: false,
         cameraMode: 'hero',
+        cameraSnapPending: false,
         cameraMoveDirection: 0,
         cameraMoveSpeed: 0,
         cameraTickRemainderMs: 0,
@@ -316,11 +376,33 @@ export function advanceEventCutscene(
   if (state.status === 'delay') {
     if (skipWaits) {
       state.delayRemainingMs = 0;
+      state.sourceWorldTickPending = false;
+      state.sourceWorldTickPendingElapsedMs = 0;
     } else {
-      state.delayRemainingMs = Math.max(0, state.delayRemainingMs - elapsedMs);
+      let delayElapsedMs = elapsedMs;
+      if (state.sourceWorldTickDuringDelay && state.sourceWorldTickPending) {
+        const pendingTickElapsedMs = state.sourceWorldTickPendingElapsedMs + delayElapsedMs;
+        if (pendingTickElapsedMs < EVENT_CUTSCENE_TICK_MS) {
+          state.sourceWorldTickPendingElapsedMs = pendingTickElapsedMs;
+          return state;
+        }
+        delayElapsedMs = pendingTickElapsedMs - EVENT_CUTSCENE_TICK_MS;
+        state.sourceWorldTickPending = false;
+        state.sourceWorldTickPendingElapsedMs = 0;
+        if (delayElapsedMs === 0 && state.delayRemainingMs > 0) return state;
+      }
+      state.delayRemainingMs = Math.max(0, state.delayRemainingMs - delayElapsedMs);
       if (state.delayRemainingMs > 0) return state;
     }
+    const completedSourceMovementDelay = !skipWaits && state.sourceWorldTickDuringDelay;
     state.status = 'running';
+    state.sourceWorldTickDuringDelay = false;
+    state.sourceWorldTickPending = false;
+    state.sourceWorldTickPendingElapsedMs = 0;
+    if (completedSourceMovementDelay) {
+      state.sourceEventResumePending = true;
+      return state;
+    }
   }
   if (state.status === 'flash') {
     if (skipWaits) {
@@ -398,8 +480,21 @@ export function advanceEventCutscene(
       state.choiceSkipCount = second;
       return state;
     }
-    if (opcode === 31) {
-      state.commandIndex += first;
+    if (opcode === 31 || opcode === 32) {
+      const jumpOffset = opcode === 31 ? signedEventByte(first) : -signedEventByte(first);
+      const targetCommandIndex = state.commandIndex + jumpOffset;
+      if (targetCommandIndex < 0 || targetCommandIndex > commands.length) {
+        return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
+      }
+      state.commandIndex = targetCommandIndex;
+      if (jumpOffset <= 0) {
+        // Source dispatches one jump command per game update. Yield on a
+        // backward/self jump so a loop cannot spin inside this interpreter call.
+        state.status = 'delay';
+        state.delayRemainingMs = EVENT_CUTSCENE_TICK_MS;
+        state.sourceWorldTickDuringDelay = false;
+        return state;
+      }
       continue;
     }
     if (opcode === 20) {
@@ -418,16 +513,20 @@ export function advanceEventCutscene(
       }
       const rawQuantity = quantityCommand[1] ?? 0;
       const quantity = rawQuantity > 127 ? rawQuantity - 256 : rawQuantity;
-      const equipmentItem = first < 7 && quantity > 0
-        ? findEquipmentItem(equipmentDataTable ?? { categories: [] }, first, second)
+      const sourceCategory = signedEventByte(first);
+      const sourceItemId = signedEventByte(second);
+      const equipmentItem = sourceCategory >= 0 && sourceCategory < 7 && quantity > 0
+        ? findEquipmentItem(equipmentDataTable ?? { categories: [] }, sourceCategory, sourceItemId)
         : undefined;
-      if (first < 7 && quantity > 0 && equipmentItem === undefined) {
+      if (sourceCategory >= 0 && sourceCategory < 7 && quantity > 0 && equipmentItem === undefined) {
         return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
       }
       const equipmentState = equipmentItem === undefined
         ? undefined
         : createSourceEquipmentInventoryState(equipmentItem, randomInteger, 'event', rollEquipmentBonuses);
-      const result = changeInventoryQuantity(state.inventory, first, second, quantity, equipmentState);
+      const result = changeInventoryQuantity(
+        state.inventory, sourceCategory, sourceItemId, quantity, equipmentState,
+      );
       if (result.status === 'unsupported-item') {
         return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
       }
@@ -490,9 +589,13 @@ export function advanceEventCutscene(
     } else if (opcode === 4) {
       const ticks = Math.max(0, first - 1);
       state.commandIndex += 1;
-      if (!skipWaits && ticks > 0) {
+      if (!skipWaits) {
         state.status = 'delay';
         state.delayRemainingMs = ticks * EVENT_CUTSCENE_TICK_MS;
+        state.sourceWorldTickDuringDelay = true;
+        state.sourceWorldTickPending = true;
+        state.sourceWorldTickPendingElapsedMs = 0;
+        state.sourceEventResumePending = false;
         return state;
       }
       continue;
@@ -502,13 +605,16 @@ export function advanceEventCutscene(
       if (!isDirection(first)) return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
       state.heroDirection = first;
     } else if (opcode === 7) {
+      if (!Number.isInteger(second) || second < 0 || second > 3) {
+        return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
+      }
       const position = commands[state.commandIndex + 1];
       if (position?.[0] !== 8) return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
       state.transition = {
-        mapId: first,
-        regionId: second,
-        tileX: position[1],
-        tileY: position[2],
+        mapId: signedEventByte(first),
+        entryDirectionIndex: second,
+        tileX: signedEventByte(position[1]),
+        tileY: signedEventByte(position[2]),
         scriptIndex: state.scriptIndex,
       };
       state.commandIndex += 2;
@@ -519,7 +625,10 @@ export function advanceEventCutscene(
       state.cameraTickRemainderMs = 0;
       return state;
     } else if (opcode === 8) {
-      return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
+      state.heroPositionChanges.push({
+        tileX: first > 127 ? first - 256 : first,
+        tileY: second > 127 ? second - 256 : second,
+      });
     } else if (opcode === 9 || opcode === 30) {
       const operation = second & 3;
       if (operation <= 2) {
@@ -529,8 +638,15 @@ export function advanceEventCutscene(
           operation: operation === 0 ? 'set' : operation === 1 ? 'clear' : 'toggle',
           flagIndex,
         }];
+        if (opcode === 30 && flagIndex === 29) {
+          state.questFlag29Set = operation === 0
+            ? true
+            : operation === 1 ? false : !state.questFlag29Set;
+        }
         // m.e(29) raises the Ronin's source combo limit when gameplay state is 6.
-        if (opcode === 30 && flagIndex === 29 && operation === 0 && state.heroClassId === 6) {
+        // Toggle opcode 30 calls the same source set handler when flag 29 is
+        // currently clear; clearing the flag does not lower the saved limit.
+        if (opcode === 30 && flagIndex === 29 && state.questFlag29Set && state.heroClassId === 6) {
           state.comboLimit = Math.max(state.comboLimit, 2);
         }
       }
@@ -551,6 +667,8 @@ export function advanceEventCutscene(
       state.npcDirections[first] = second;
     } else if (opcode === 41) {
       state.npcImages[first] = second;
+    } else if (opcode === 40) {
+      state.objectImages[first] = second;
     } else if (opcode === 18) {
       const skillId = [4, 3, 5][first];
       if (skillId === undefined) return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
@@ -575,6 +693,7 @@ export function advanceEventCutscene(
       }
     } else if (opcode === 34) {
       state.cameraMode = 'hero';
+      state.cameraSnapPending = true;
       state.cameraMoveDirection = 0;
       state.cameraMoveSpeed = 0;
       state.cameraTickRemainderMs = 0;
@@ -584,6 +703,7 @@ export function advanceEventCutscene(
       state.cameraPositionTile = null;
     } else if (opcode === 35) {
       state.cameraMode = 'fixed';
+      state.cameraSnapPending = false;
       state.cameraMoveDirection = 0;
       state.cameraMoveSpeed = 0;
       state.cameraTickRemainderMs = 0;
@@ -592,6 +712,7 @@ export function advanceEventCutscene(
       // Source ag.w() disables hero tracking and camera motion, then stores
       // this byte. ag.m12b() returns while it is set, leaving the camera fixed.
       state.cameraMode = 'fixed';
+      state.cameraSnapPending = false;
       state.cameraMoveDirection = 0;
       state.cameraMoveSpeed = 0;
       state.cameraTickRemainderMs = 0;
@@ -601,18 +722,21 @@ export function advanceEventCutscene(
         return { ...state, status: 'unsupported', unsupportedOpcode: opcode };
       }
       state.cameraMode = 'fixed';
+      state.cameraSnapPending = false;
       state.cameraMoveDirection = first;
       state.cameraMoveSpeed = second > 127 ? second - 256 : second;
       state.cameraTickRemainderMs = 0;
       state.cameraFollowNpcIndex = null;
     } else if (opcode === 38) {
       state.cameraMode = 'fixed';
+      state.cameraSnapPending = false;
       state.cameraMoveDirection = 0;
       state.cameraMoveSpeed = 0;
       state.cameraTickRemainderMs = 0;
       state.cameraFollowNpcIndex = null;
     } else if (opcode === 39) {
       state.cameraMode = 'fixed';
+      state.cameraSnapPending = false;
       state.cameraMoveDirection = 0;
       state.cameraMoveSpeed = 0;
       state.cameraTickRemainderMs = 0;
@@ -623,10 +747,12 @@ export function advanceEventCutscene(
         x: first > 127 ? first - 256 : first,
         y: second > 127 ? second - 256 : second,
       };
-    } else if (opcode === 46) {
-      state.npcVisibility[first] = false;
+    } else if (opcode === 46 || opcode === 47) {
+      state.npcVisibility[first] = opcode === 47;
     } else if (opcode === 26 || opcode === 29) {
       // The pinned source handler only logs these event markers.
+    } else if (opcode === 27) {
+      // Source opcode 27 advances the command index without another effect.
     } else if (opcode === 49) {
       state.heroEmotion = first > 0 ? first - 1 : null;
       state.heroEmotionChanged = true;
@@ -637,6 +763,7 @@ export function advanceEventCutscene(
       state.serviceRequest = opcode === 45 ? 'shop' : opcode === 48 ? 'refiner' : 'blacksmith';
       state.status = 'service';
       state.cameraMode = 'hero';
+      state.cameraSnapPending = false;
       state.cameraMoveDirection = 0;
       state.cameraMoveSpeed = 0;
       state.cameraTickRemainderMs = 0;
@@ -663,6 +790,7 @@ export function advanceEventCutscene(
     ...state,
     status: 'ended',
     cameraMode: 'hero',
+    cameraSnapPending: false,
     cameraMoveDirection: 0,
     cameraMoveSpeed: 0,
     cameraTickRemainderMs: 0,
@@ -684,6 +812,7 @@ export function advanceEventCutsceneDialogue(state: EventCutsceneState): EventCu
       dialoguePageIndex: 0,
       dialogueEndsCutscene: false,
       cameraMode: 'hero',
+      cameraSnapPending: false,
       cameraMoveDirection: 0,
       cameraMoveSpeed: 0,
       cameraTickRemainderMs: 0,

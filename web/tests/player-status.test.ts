@@ -6,14 +6,20 @@ import {
   enemyHitAppliesPoison,
   POISON_STATUS_DURATION_TICKS,
   retainPlayerStatusEffects,
+  sourcePlayerStatusMarkerBlinkOffset,
+  sourcePlayerStatusMarkerHorizontalOffset,
 } from '../src/world/player-status';
 
 describe('source player poison status', () => {
   it('applies and refreshes status 7 with a fresh timer', () => {
     const applied = applyPlayerPoison(createPlayerStatusState());
-    expect(applied).toEqual({ effects: [7], poisonTicksElapsed: 0 });
-    const refreshed = applyPlayerPoison({ effects: [2, 7], poisonTicksElapsed: 39 });
-    expect(refreshed).toEqual({ effects: [2, 7], poisonTicksElapsed: 0 });
+    expect(applied).toEqual({ effects: [7], poisonTicksElapsed: 0, poisonRemovalPending: false });
+    const refreshed = applyPlayerPoison({
+      effects: [2, 7], poisonTicksElapsed: 39, poisonRemovalPending: false,
+    });
+    expect(refreshed).toEqual({
+      effects: [2, 7], poisonTicksElapsed: 0, poisonRemovalPending: false,
+    });
   });
 
   it('ticks every ten updates, uses source damage values, and expires at update 80', () => {
@@ -30,10 +36,10 @@ describe('source player poison status', () => {
     expect(pulses).toHaveLength(8);
     expect(pulses).toEqual(Array.from({ length: 8 }, () => ({ hpLoss: 2, damageNumber: 6 })));
     expect(hp).toBe(56);
-    expect(state).toEqual({ effects: [], poisonTicksElapsed: null });
+    expect(state).toEqual({ effects: [], poisonTicksElapsed: null, poisonRemovalPending: false });
   });
 
-  it('never lowers HP below one and clears the timer when Antidote removes status 7', () => {
+  it('never lowers HP below one and supports an immediate status clear', () => {
     let state = applyPlayerPoison(createPlayerStatusState());
     for (let tick = 0; tick < 9; tick += 1) {
       state = advancePlayerStatusTick(state, 2, 72).state;
@@ -41,8 +47,45 @@ describe('source player poison status', () => {
     const pulse = advancePlayerStatusTick(state, 2, 72);
     expect(pulse).toMatchObject({ hp: 1, hpLoss: 1, poisonPulse: true, damageNumber: 6 });
     state = retainPlayerStatusEffects(pulse.state, [3]);
-    expect(state).toEqual({ effects: [3], poisonTicksElapsed: null });
+    expect(state).toEqual({ effects: [3], poisonTicksElapsed: null, poisonRemovalPending: false });
     expect(advancePlayerStatusTick(state, 1, 72)).toMatchObject({ hp: 1, hpLoss: 0 });
+
+    expect(retainPlayerStatusEffects(applyPlayerPoison(createPlayerStatusState()), [])).toEqual({
+      effects: [],
+      poisonTicksElapsed: null,
+      poisonRemovalPending: false,
+    });
+  });
+
+  it('lets Antidote-marked poison run its final source update before removal', () => {
+    let state = applyPlayerPoison({
+      ...createPlayerStatusState(),
+      effects: [3],
+    });
+    for (let tick = 0; tick < 9; tick += 1) {
+      state = advancePlayerStatusTick(state, 2, 72).state;
+    }
+
+    state = retainPlayerStatusEffects(state, [3], { deferPoisonRemoval: true });
+    expect(state).toEqual({
+      effects: [3, 7],
+      poisonTicksElapsed: 9,
+      poisonRemovalPending: true,
+    });
+
+    const finalUpdate = advancePlayerStatusTick(state, 2, 72);
+    expect(finalUpdate).toMatchObject({
+      hp: 1,
+      hpLoss: 1,
+      poisonPulse: true,
+      damageNumber: 6,
+      state: { effects: [3], poisonTicksElapsed: null, poisonRemovalPending: false },
+    });
+    expect(advancePlayerStatusTick(finalUpdate.state, 1, 72)).toMatchObject({
+      hp: 1,
+      hpLoss: 0,
+      poisonPulse: false,
+    });
   });
 
   it('uses the 15-percent source roll only for a non-evaded behavior-1 hit', () => {
@@ -56,5 +99,11 @@ describe('source player poison status', () => {
 
   it('resists the 15-percent status roll when it returns 15 or higher', () => {
     expect(enemyHitAppliesPoison(1, false, () => 15)).toBe(false);
+  });
+
+  it('places source status icons right-to-left and alternates their vertical pixel', () => {
+    expect([0, 1, 2].map((index) => sourcePlayerStatusMarkerHorizontalOffset(index, 3)))
+      .toEqual([12, 0, -12]);
+    expect([0, 1, 2, 3].map(sourcePlayerStatusMarkerBlinkOffset)).toEqual([0, 1, 0, 1]);
   });
 });

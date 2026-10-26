@@ -28,11 +28,14 @@ const EMPTY_OCCUPIED_CELL_INDICES: ReadonlySet<number> = new Set();
 
 // The BED checkpoint places the source entity on cell (9, 8); the pixel
 // position is inferred by aligning its rendered center to the map grid.
-export function createPlayerActor(x = 9 * 16, y = 8 * 16): PlayerActor {
+export function createPlayerActor(x = 9 * 16, y = 8 * 16, direction: Direction = 2): PlayerActor {
+  if (!Number.isInteger(direction) || direction < 1 || direction > 4) {
+    throw new RangeError('Player direction must be a source direction from 1 through 4');
+  }
   return {
     x,
     y,
-    direction: 2,
+    direction,
     moving: false,
     stopAfterTile: false,
     queuedDirection: null,
@@ -52,6 +55,44 @@ export function requestActorDirection(actor: PlayerActor, direction: Direction):
     };
   }
   return { ...actor, queuedDirection: direction, stopAfterTile: false };
+}
+
+/** Reproduce source `an.a(direction, pixels)`, which relocates the player without collision checks. */
+export function displaceActorFromSourceHit(
+  actor: PlayerActor,
+  direction: Direction,
+  pixels: number,
+): PlayerActor {
+  if (!Number.isInteger(pixels) || pixels < 0) {
+    throw new RangeError('Source displacement must be a non-negative integer');
+  }
+  const vector = DIRECTION_VECTOR[direction];
+  return {
+    ...actor,
+    x: actor.x + vector.x * pixels,
+    y: actor.y + vector.y * pixels,
+  };
+}
+
+/** Rebuild the source `cj` occupancy cells for a one-tile actor mid-step. */
+export function actorOccupiedCellIndices(
+  actor: PlayerActor,
+  gridWidth: number,
+): ReadonlySet<number> {
+  if (!Number.isInteger(gridWidth) || gridWidth <= 0) {
+    throw new RangeError('Grid width must be a positive integer');
+  }
+  const tileX = actor.x >> 4;
+  const tileY = actor.y >> 4;
+  const columns = actor.x % 16 === 0 ? 1 : 2;
+  const rows = actor.y % 16 === 0 ? 1 : 2;
+  const occupied = new Set<number>();
+  for (let row = 0; row < rows; row += 1) {
+    for (let column = 0; column < columns; column += 1) {
+      occupied.add((tileY + row) * gridWidth + tileX + column);
+    }
+  }
+  return occupied;
 }
 
 export function releaseActorDirection(actor: PlayerActor): PlayerActor {
@@ -86,6 +127,10 @@ function canAdvance(
   return true;
 }
 
+function stopActor(actor: PlayerActor): PlayerActor {
+  return { ...actor, moving: false, stopAfterTile: false, queuedDirection: null };
+}
+
 function advanceOneUpdate(
   world: WorldGrid,
   actor: PlayerActor,
@@ -96,7 +141,7 @@ function advanceOneUpdate(
   let next = actor;
   if (aligned) {
     if (next.stopAfterTile) {
-      return { ...next, moving: false, stopAfterTile: false, queuedDirection: null };
+      return stopActor(next);
     }
     if (next.queuedDirection !== null) {
       next = { ...next, direction: next.queuedDirection, queuedDirection: null };
@@ -114,7 +159,7 @@ function advanceOneUpdate(
     animationFrame: (next.animationFrame + 1) % 4,
   };
   if (next.stopAfterTile && next.x % 16 === 0 && next.y % 16 === 0) {
-    return { ...next, moving: false, stopAfterTile: false, queuedDirection: null };
+    return stopActor(next);
   }
   return next;
 }
@@ -140,7 +185,18 @@ export function advanceActor(
 /** Check map triggers only when a moving actor reaches or stops on a tile boundary. */
 export function didReachMapEventBoundary(previous: PlayerActor, next: PlayerActor): boolean {
   if (!previous.moving) return false;
-  if (!next.moving) return true;
+  if (!next.moving) return next.x % 16 === 0 && next.y % 16 === 0;
   return next.x % 16 === 0 && next.y % 16 === 0 &&
     ((previous.x >> 4) !== (next.x >> 4) || (previous.y >> 4) !== (next.y >> 4));
+}
+
+/** A key release can stop an actor on a tile boundary outside the world update. */
+export function releaseActorDirectionAndCheckBoundary(
+  actor: PlayerActor,
+): { actor: PlayerActor; reachedMapEventBoundary: boolean } {
+  const released = releaseActorDirection(actor);
+  return {
+    actor: released,
+    reachedMapEventBoundary: didReachMapEventBoundary(actor, released),
+  };
 }

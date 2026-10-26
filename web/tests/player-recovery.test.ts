@@ -64,6 +64,23 @@ describe('source player HP/SP recovery', () => {
     });
   });
 
+  it('doubles HP and SP recovery amounts without changing the source intervals', () => {
+    const boosted = advancePlayerRecoveryTick(
+      { hpTimer: 1, spTimer: 1 },
+      'idle',
+      vitals,
+      true,
+      2,
+    );
+    expect(boosted).toMatchObject({
+      hp: 50,
+      sp: 18,
+      hpChange: 10,
+      spChange: 8,
+      state: { hpTimer: 68, spTimer: 21 },
+    });
+  });
+
   it('does not count recovery timers during other action states and clamps gains to maxima', () => {
     const paused = advance(createPlayerRecoveryState(), 'other', 100);
     expect(paused).toMatchObject({ hp: 40, sp: 10, state: { hpTimer: 67, spTimer: 21 } });

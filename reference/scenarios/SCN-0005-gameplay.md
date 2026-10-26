@@ -36,7 +36,7 @@ Game hash/emulator release 1.52/commit/SHA-256 và P1M Motorola như [SCN-0001](
 
 Biến thể cửa ra bổ sung theo hướng dẫn người dùng, đã đối chiếu bằng ảnh/log; lời hướng dẫn không được dùng thay bằng chứng. Hai lần Down là **hai khoảng giữ 1 giây có release/nghỉ giữa**, không mô tả thành giữ liên tục 2 giây.
 
-Trong R02/R03, Status hiển thị Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 74/74, SP 60/60, tiền 800. W đã mở/đóng UI. Enter có trong log nhưng ảnh sau thao tác chưa đủ xác nhận animation/cơ chế combat; chưa có số đo damage, AI, quest, EXP hoặc audio.
+Trong R02/R03, Status hiển thị Ronin, Rookie Swordsman, LV 1, EXP 0, NEXT 80, HP 72/72, SP 60/60, tiền 800 ([R02 frame](../screenshots/M15-SCN-0005-P1M-R02/14-status-final.png)); bản ghi 74/74 trước đây là đọc nhầm ảnh. W đã mở/đóng UI. Enter có trong log nhưng ảnh sau thao tác chưa đủ xác nhận animation/cơ chế combat; chưa có số đo damage, AI, quest, EXP hoặc audio.
 
 ## Browser route M22 — map 27
 

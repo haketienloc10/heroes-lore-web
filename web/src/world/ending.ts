@@ -104,6 +104,12 @@ export function advanceEndingStoryPage(source: EndingSequenceState): EndingSeque
   };
 }
 
+/** The source confirm key starts the next cycle immediately during shared credits. */
+export function confirmEndingCredits(source: EndingSequenceState): EndingSequenceState {
+  if (source.phase !== 'credits') return source;
+  return { ...source, phase: 'complete', creditRoll: [] };
+}
+
 /** Advance the ending at the source 20-frame-per-second screen cadence. */
 export function advanceEndingSequence(
   source: EndingSequenceState,

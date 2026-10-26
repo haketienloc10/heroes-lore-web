@@ -10,6 +10,10 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "audit:event-cutscenes": "node ../tools/audit_event_cutscene_coverage.mjs",
+    "audit:enemy-render-coverage": "node ../tools/audit_enemy_render_coverage.mjs",
+    "audit:hero-render-coverage": "node ../tools/audit_hero_render_coverage.mjs",
+    "audit:npc-render-coverage": "node ../tools/audit_npc_render_coverage.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -4,6 +4,7 @@ import {
   createPlayerActor,
   didReachMapEventBoundary,
   releaseActorDirection,
+  releaseActorDirectionAndCheckBoundary,
   requestActorDirection,
   WORLD_UPDATE_PERIOD_MS,
 } from '../src/world/actor';
@@ -31,6 +32,12 @@ function worldWithCollision(values: number[][] = Array.from({ length: 4 }, () =>
 }
 
 describe('source-shaped player movement', () => {
+  it('creates a player with the source-selected map-entry facing', () => {
+    expect(createPlayerActor(16, 32, 1).direction).toBe(1);
+    expect(createPlayerActor(16, 32, 4).direction).toBe(4);
+    expect(() => createPlayerActor(16, 32, 5 as 1)).toThrow(RangeError);
+  });
+
   it('requests map-trigger checks at movement boundaries, but not on an idle map arrival', () => {
     const world = worldWithCollision();
     const idle = createPlayerActor(16, 16);
@@ -83,6 +90,18 @@ describe('source-shaped player movement', () => {
     expect(actor).toMatchObject({ x: 16, y: 24, moving: true, stopAfterTile: true });
     actor = advanceActor(world, actor, WORLD_UPDATE_PERIOD_MS);
     expect(actor).toMatchObject({ x: 16, y: 32, moving: false, stopAfterTile: false });
+  });
+
+  it('checks a map event when key release stops on an aligned tile', () => {
+    const moving = requestActorDirection(createPlayerActor(16, 16), 4);
+    const released = releaseActorDirectionAndCheckBoundary(moving);
+    expect(released.actor).toMatchObject({ x: 16, y: 16, moving: false });
+    expect(released.reachedMapEventBoundary).toBe(true);
+
+    const midTile = advanceActor(worldWithCollision(), moving, WORLD_UPDATE_PERIOD_MS);
+    const stoppedAfterTile = releaseActorDirectionAndCheckBoundary(midTile);
+    expect(stoppedAfterTile.actor).toMatchObject({ x: 24, y: 16, moving: true, stopAfterTile: true });
+    expect(stoppedAfterTile.reachedMapEventBoundary).toBe(false);
   });
 
   it('applies a queued direction at the next tile boundary', () => {

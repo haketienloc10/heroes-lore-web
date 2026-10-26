@@ -16,14 +16,15 @@ What status does a behavior-1 enemy apply, how long does it last, and how does i
 - In `an.a(ak, short, byte)`, the player first resolves evasion. On a non-evaded hit, it applies damage and then, only when `ak.f49a.d == 1`, rolls `g.a(0, 99) < 15`; success inserts status ID 7 through `n.m110a(7)`.
 - `ce` stores a counter and uses duration table `{40, 40, 40, 40, 40, 140, 160, 80}`. `n.m110a()` resets an existing effect with the same ID instead of stacking another one.
 - In `an.d()`, status ID 7 advances once per player update. Every tenth counter update, while HP exceeds 1, it subtracts `maxHP / 25`, limited to `HP - 1`. It also emits the source floating number `maxHP / 12`. The effect is removed at update 80, after that update's poison check, so the full duration can produce eight pulses.
+- `ce` status IDs 5 and 6 are applied by skill 0 level 1 and skill 2 level 1. Their source timers are 140 and 160 updates, matching the skill flags. `ce.a(Graphics)` draws the shared `/img/keepst/000` background and the ID-indexed icon at one-pixel alternating vertical offsets; `n.c(Graphics)` spaces multiple active markers 12 pixels apart, with the oldest at the right (`ce.java:10–38`; `o.java:224–229, 270–281`; `n.java:350–360`).
 - `cd.i()` loads the `/img/keepst` background and eight status icons. `ce.a()` draws the icon indexed by the status ID; poison 7 uses the eighth icon (`keepst/008`). Antidote category 10 removes active status 7; see [FND-0011](FND-0011-quick-items.md).
 - `an.m26a()` serializes player stats and equipment but does not serialize the active status-effect vector. The source save therefore does not restore this timed status.
 
 ## Browser implementation
 
 - `web/src/world/player-status.ts` models poison application/refresh, the 80-update duration, ten-update pulse, HP floor, source damage-number amount and Antidote removal synchronization.
-- `WorldScene` applies the source 15-percent roll only after a non-evaded behavior-1 hit, advances poison on the 71 ms world-update cadence, updates HP/HUD and renders the original `/img/keepst` background/icon frames above Ronin.
-- Tests cover the chance branch, timer refresh, all eight poison pulses, HP clamping, expiration and cure. Timed status state remains transient, matching the inspected source save serializer.
+- `WorldScene` applies the source 15-percent roll only after a non-evaded behavior-1 hit, advances poison on the 71 ms world-update cadence, updates HP/HUD, and renders source status IDs 5–7 with the original `/img/keepst` background/icons, vertical blink and horizontal spacing.
+- Tests cover the chance branch, timer refresh, all eight poison pulses, HP clamping, expiration, cure, status-icon blink and source marker spacing. Timed status state remains transient, matching the inspected source save serializer.
 
 ## Controlled browser observation
 
@@ -33,4 +34,4 @@ What status does a behavior-1 enemy apply, how long does it last, and how does i
 
 ## Limits
 
-The deterministic replay exercises the 15-percent branch and does not estimate natural trigger frequency. The saved HP change is cumulative across melee and poison; individual hit amounts and poison-pulse timestamps were not isolated. This is not a J2ME comparison, and source attack/poison timing and pixels remain unverified at runtime. Other player status effects and broader status resistance/application rules remain incomplete.
+The deterministic replay exercises the 15-percent branch and does not estimate natural trigger frequency. The saved HP change is cumulative across melee and poison; individual hit amounts and poison-pulse timestamps were not isolated. This is not a J2ME comparison, and source attack/poison timing and pixels remain unverified at runtime. Broader status resistance/application rules remain incomplete.

@@ -29,6 +29,15 @@ PNG_CHUNKS = (
     "iTXt", "pHYs", "sPLT", "tIME", "PLTE", "tRNS", "hIST", "bKGD",
     "IDAT", "IEND",
 )
+HERO_WEAPON_ELEMENT_PALETTES = {
+    1: {0x0000FF: 0xFF7F3F},
+    2: {0x0000FF: 0x5F7FBF},
+    3: {0x0000FF: 0x7FFF7F},
+}
+HERO_EFFECT_ELEMENT_PALETTES = {
+    1: {0xBFDFFF: 0xFFFFC0, 0x9FBFFF: 0xFFBF7F, 0x5F7FBF: 0xFF7F3F},
+    3: {0xBFDFFF: 0xDFFFBF, 0x9FBFFF: 0xBFDFBF, 0x5F7FBF: 0x9FBF7F},
+}
 
 
 class AssetFormatError(ValueError):
@@ -491,6 +500,8 @@ def decode_enemy_sprite_animations(data: bytes, sprite_id: int) -> dict[str, obj
             raise AssetFormatError(f"enemy animation at offset {source_offset} has no frame count")
 
         frame_count = data[offset]
+        if frame_count < 1:
+            raise AssetFormatError(f"enemy animation at offset {source_offset} has no frames")
         cursor = offset + 1
         frames: list[list[dict[str, object]]] = []
         for frame_index in range(frame_count):
@@ -541,6 +552,90 @@ def decode_enemy_sprite_animations(data: bytes, sprite_id: int) -> dict[str, obj
         "format": "heroes-lore-enemy-animation-v1",
         "spriteId": sprite_id,
         "sourceResource": f"enm/spr/{sprite_id:02d}",
+        "trackCount": len(tracks),
+        "tracks": tracks,
+    }
+
+
+def decode_boss_sprite_animations(data: bytes, boss_id: int, enemy_id: int) -> dict[str, object]:
+    """Decode `/boss/spr/BOSS_ENEMY` tracks used by the source boss subclass.
+
+    Boss tracks preserve source states 0/1/3/4/5: idle, walking, and the
+    three attack patterns. In this map-11 resource `cb.d(byte)` selects one
+    of states 3/4/5 for its current attack; state 2 is absent.
+    """
+    if not 1 <= boss_id <= 4 or not 0 <= enemy_id <= 255:
+        raise AssetFormatError("boss and enemy IDs must fit their source resource range")
+    if not data:
+        raise AssetFormatError("boss sprite animation resource is empty")
+
+    source_states = range(6)
+    tracks: list[dict[str, object]] = []
+    seen: set[tuple[int, int]] = set()
+    offset = 0
+    while offset < len(data):
+        if offset + 3 > len(data):
+            raise AssetFormatError(f"truncated boss animation header at offset {offset}")
+        state_index, direction_index, payload_length = data[offset : offset + 3]
+        source_offset = offset
+        offset += 3
+        payload_end = offset + payload_length
+        if payload_end > len(data):
+            raise AssetFormatError(f"boss animation payload at offset {source_offset} is truncated")
+        if state_index not in source_states or direction_index > 3:
+            raise AssetFormatError(f"boss animation at offset {source_offset} has an invalid state or direction")
+        track_key = (state_index, direction_index)
+        if track_key in seen:
+            raise AssetFormatError(f"duplicate boss animation state/direction {track_key}")
+        seen.add(track_key)
+        if payload_length < 1:
+            raise AssetFormatError(f"boss animation at offset {source_offset} has no frame count")
+
+        frame_count = data[offset]
+        if frame_count < 1:
+            raise AssetFormatError(f"boss animation at offset {source_offset} has no frames")
+        cursor = offset + 1
+        frames: list[list[dict[str, object]]] = []
+        for frame_index in range(frame_count):
+            if cursor >= payload_end:
+                raise AssetFormatError(f"boss animation frame {frame_index} has no component count")
+            component_count = data[cursor]
+            cursor += 1
+            frame_end = cursor + component_count * 4
+            if frame_end > payload_end:
+                raise AssetFormatError(f"boss animation frame {frame_index} has truncated draw entries")
+            components: list[dict[str, object]] = []
+            for component_offset in range(cursor, frame_end, 4):
+                image_index = data[component_offset + 3]
+                components.append({
+                    "offsetX": data[component_offset] - 256 if data[component_offset] >= 128 else data[component_offset],
+                    "offsetY": data[component_offset + 1] - 256 if data[component_offset + 1] >= 128 else data[component_offset + 1],
+                    "mirrored": data[component_offset + 2] != 0,
+                    "imageIndex": -1 if image_index == 255 else image_index,
+                })
+            cursor = frame_end
+            frames.append(components)
+        if cursor != payload_end:
+            raise AssetFormatError(
+                f"boss animation at offset {source_offset} has {payload_end - cursor} trailing payload bytes"
+            )
+        tracks.append({
+            "stateIndex": state_index,
+            "directionIndex": direction_index,
+            "sourceOffset": source_offset,
+            "frameCount": frame_count,
+            "frames": frames,
+        })
+        offset = payload_end
+
+    if not tracks:
+        raise AssetFormatError(f"boss sprite {boss_id}/{enemy_id} has no animation tracks")
+    tracks.sort(key=lambda track: (int(track["stateIndex"]), int(track["directionIndex"])))
+    return {
+        "format": "heroes-lore-boss-animation-v1",
+        "bossId": boss_id,
+        "enemyId": enemy_id,
+        "sourceResource": f"boss/spr/{boss_id}_{enemy_id}",
         "trackCount": len(tracks),
         "tracks": tracks,
     }
@@ -675,6 +770,217 @@ def decode_enemy_attack_effect(data: bytes, sprite_id: int) -> dict[str, object]
         "frames": frames,
     }
 
+
+def decode_boss_attack_effect(data: bytes, boss_id: int, enemy_id: int) -> dict[str, object]:
+    """Decode the frame/component stream used by `/boss/atef/ENEMY_ID`."""
+    boss_enemies = {
+        1: {32},
+        2: {35, 36, 37, 38},
+        3: {39, 40, 41},
+        4: {42},
+    }
+    if boss_id not in boss_enemies or enemy_id not in boss_enemies[boss_id]:
+        raise AssetFormatError(f"boss attack effect {boss_id}/{enemy_id} has an unknown source owner")
+    decoded = decode_enemy_attack_effect(data, enemy_id)
+    return {
+        **decoded,
+        "format": "heroes-lore-boss-attack-effect-v1",
+        "bossId": boss_id,
+        "enemyId": enemy_id,
+        "sourceResource": f"boss/atef/{enemy_id}",
+    }
+
+
+def decode_player_skill_effect(
+    data: bytes,
+    skill_id: int,
+    level_slot: int,
+    source_resource: str,
+) -> dict[str, object]:
+    """Decode one `/grd/spr` stream used by `x` while drawing player skills.
+
+    The stream has the same frame/component shape as enemy effects, but each
+    component's third byte selects whether the source renderer uses atlas 12
+    or suppresses that component. Its fourth byte is the image index in the
+    skill's element atlas (`fi`, `wa`, or `gr`).
+    """
+    if not 0 <= skill_id <= 5:
+        raise AssetFormatError("player skill ID must be from 0 through 5")
+    if level_slot not in (0, 1, 2):
+        raise AssetFormatError("player skill level slot must be from 0 through 2")
+    if skill_id == 0:
+        expected_resource = "grd/spr/0_01.eif" if level_slot == 0 else "grd/spr/0_1.eif"
+    elif skill_id == 1:
+        expected_resource = f"grd/spr/1_{level_slot}.eif" if level_slot <= 1 else None
+    else:
+        expected_resource = f"grd/spr/{skill_id}_{level_slot}.eif"
+    if not source_resource.startswith("grd/spr/") or not source_resource.endswith(".eif"):
+        raise AssetFormatError("player skill effect resource must be a grd/spr EIF")
+    special_type_two_resource = (
+        skill_id == 0 and level_slot == 0 and source_resource == "grd/spr/0_02.eif"
+    )
+    if source_resource != expected_resource and not special_type_two_resource:
+        raise AssetFormatError("player skill effect resource does not match its skill level")
+    if not data:
+        raise AssetFormatError("player skill effect resource is empty")
+    frame_count = data[0]
+    if frame_count < 1:
+        raise AssetFormatError("player skill effect has no animation frames")
+
+    cursor = 1
+    frames: list[list[dict[str, object]]] = []
+    for frame_index in range(frame_count):
+        if cursor >= len(data):
+            raise AssetFormatError(f"player skill effect frame {frame_index} has no component count")
+        component_count = data[cursor]
+        cursor += 1
+        frame_end = cursor + component_count * 4
+        if frame_end > len(data):
+            raise AssetFormatError(f"player skill effect frame {frame_index} has truncated components")
+        components: list[dict[str, object]] = []
+        for component_offset in range(cursor, frame_end, 4):
+            raw_x, raw_y, source_atlas_flag, image_index = data[component_offset : component_offset + 4]
+            components.append({
+                "offsetX": raw_x - 256 if raw_x >= 128 else raw_x,
+                "offsetY": raw_y - 256 if raw_y >= 128 else raw_y,
+                "sourceAtlasFlag": source_atlas_flag,
+                "imageIndex": image_index,
+            })
+        cursor = frame_end
+        frames.append(components)
+    if cursor != len(data):
+        raise AssetFormatError(f"player skill effect has {len(data) - cursor} trailing bytes")
+    return {
+        "format": "heroes-lore-player-skill-effect-v1",
+        "skillId": skill_id,
+        "levelSlot": level_slot,
+        "sourceResource": source_resource,
+        "frameCount": frame_count,
+        "frames": frames,
+    }
+
+
+def decode_player_skill_special_effect(data: bytes, effect_type: int, source_resource: str) -> dict[str, object]:
+    """Decode an effect stream used by a special `x` renderer branch."""
+    if effect_type != 2:
+        raise AssetFormatError("unknown special player skill effect type")
+    if source_resource != "grd/spr/0_02.eif":
+        raise AssetFormatError("effect type 2 must use the pinned 0_02 resource")
+    decoded = decode_player_skill_effect(data, 0, 0, source_resource)
+    return {
+        **decoded,
+        "format": "heroes-lore-player-skill-special-effect-v1",
+        "effectType": effect_type,
+    }
+
+
+def decode_player_level_up_effect(data: bytes) -> dict[str, object]:
+    """Decode `/char/lvup.eif`, whose components reference `/char/lvup`.
+
+    `cd.a(true, ..., 13, -1, atlas)` reads one frame count followed by a
+    component count and four-byte entries per frame. It rewrites the third
+    byte to atlas 13 or -1 according to the source flag. Offsets are signed
+    bytes and image indices are unsigned.
+    """
+    if not data:
+        raise AssetFormatError("player level-up effect resource is empty")
+    frame_count = data[0]
+    if frame_count < 1:
+        raise AssetFormatError("player level-up effect has no animation frames")
+
+    cursor = 1
+    frames: list[list[dict[str, object]]] = []
+    for frame_index in range(frame_count):
+        if cursor >= len(data):
+            raise AssetFormatError(f"player level-up effect frame {frame_index} has no component count")
+        component_count = data[cursor]
+        cursor += 1
+        frame_end = cursor + component_count * 4
+        if frame_end > len(data):
+            raise AssetFormatError(f"player level-up effect frame {frame_index} has truncated components")
+        components: list[dict[str, object]] = []
+        for component_offset in range(cursor, frame_end, 4):
+            raw_x, raw_y, source_atlas_flag, image_index = data[component_offset : component_offset + 4]
+            components.append({
+                "offsetX": raw_x - 256 if raw_x >= 128 else raw_x,
+                "offsetY": raw_y - 256 if raw_y >= 128 else raw_y,
+                "sourceAtlasFlag": source_atlas_flag != 0,
+                "sourceAtlasId": -1 if source_atlas_flag != 0 else 13,
+                "imageIndex": image_index,
+            })
+        cursor = frame_end
+        frames.append(components)
+    if cursor != len(data):
+        raise AssetFormatError(f"player level-up effect has {len(data) - cursor} trailing bytes")
+    return {
+        "format": "heroes-lore-player-level-up-effect-v1",
+        "effectType": 4,
+        "sourceResource": "char/lvup.eif",
+        "sourceAtlas": "char/lvup",
+        "sourceAtlasId": 13,
+        "frameCount": frame_count,
+        "frames": frames,
+    }
+
+
+def refresh_player_level_up_effect(resource_path: Path, output_dir: Path) -> dict[str, object]:
+    """Regenerate the level-up catalog from an already-decompiled local resource.
+
+    This partial refresh avoids reopening the source JAR when only this generated
+    catalog is missing. The existing asset manifest must still identify the
+    pinned build, and every referenced local atlas page must be present.
+    """
+    manifest_path = output_dir / "asset-manifest.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise AssetFormatError(f"cannot read generated asset manifest: {exc}") from exc
+    if not isinstance(manifest, dict) or manifest.get("sourceJarSha256") != EXPECTED_JAR_SHA256:
+        raise AssetFormatError("generated asset manifest does not identify the pinned v2.1.2 build")
+    if not isinstance(manifest.get("files"), list):
+        raise AssetFormatError("generated asset manifest has no file list")
+
+    effect = decode_player_level_up_effect(resource_path.read_bytes())
+    required_images = {
+        component["imageIndex"]
+        for frame in effect["frames"]
+        for component in frame
+        if component["sourceAtlasId"] == 13
+    }
+    for image_index in sorted(required_images):
+        image_path = output_dir / "atlases" / "char" / "lvup" / f"{image_index:03d}.png"
+        if not image_path.is_file():
+            raise AssetFormatError(f"missing level-up atlas image: {image_path}")
+
+    encoded = (json.dumps({
+        "format": "heroes-lore-player-level-up-effect-catalog-v1",
+        "effectCount": 1,
+        "effects": [effect],
+    }, separators=(",", ":")) + "\n").encode()
+    catalog_path = output_dir / "player-level-up-effects" / "catalog.json"
+    catalog_path.parent.mkdir(parents=True, exist_ok=True)
+    catalog_path.write_bytes(encoded)
+    catalog_entry = {
+        "path": catalog_path.relative_to(output_dir).as_posix(),
+        "sha256": sha256(encoded),
+        "bytes": len(encoded),
+    }
+    files = [
+        entry for entry in manifest["files"]
+        if not isinstance(entry, dict) or entry.get("path") != catalog_entry["path"]
+    ]
+    files.append(catalog_entry)
+    manifest["files"] = files
+    manifest["playerLevelUpEffectCount"] = 1
+    manifest["generatedFileCount"] = len(files)
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    return {
+        "frameCount": effect["frameCount"],
+        "componentCount": sum(map(len, effect["frames"])),
+        "catalogPath": catalog_path,
+    }
+
+
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -744,6 +1050,44 @@ def _validate_png(data: bytes, index: int) -> None:
     height = _u32(data, chunks[0][1] + 12)
     if width == 0 or height == 0:
         raise AssetFormatError(f"decoded image {index} has empty dimensions")
+
+
+def replace_png_palette_colors(data: bytes, replacements: dict[int, int]) -> bytes:
+    """Replace exact RGB entries in an indexed PNG's PLTE chunk."""
+    _validate_png(data, 0)
+    for old, new in replacements.items():
+        if (type(old) is not int or type(new) is not int or
+                not (0 <= old <= 0xFFFFFF) or not (0 <= new <= 0xFFFFFF)):
+            raise AssetFormatError("palette replacement colors must be 24-bit RGB integers")
+
+    palette_chunk = next(
+        ((offset, total) for name, offset, total in iter_png_chunks(data, len(PNG_SIGNATURE)) if name == "PLTE"),
+        None,
+    )
+    if palette_chunk is None:
+        raise AssetFormatError("indexed PNG is missing its PLTE palette")
+    offset, total = palette_chunk
+    palette_length = _u32(data, offset)
+    palette = data[offset + 8 : offset + 8 + palette_length]
+    if palette_length == 0 or palette_length % 3 != 0:
+        raise AssetFormatError("PNG PLTE length must contain complete RGB entries")
+
+    changed_palette = bytearray(palette)
+    for palette_offset in range(0, len(palette), 3):
+        color = int.from_bytes(palette[palette_offset : palette_offset + 3], "big")
+        replacement = replacements.get(color)
+        if replacement is not None:
+            changed_palette[palette_offset : palette_offset + 3] = replacement.to_bytes(3, "big")
+
+    chunk_body = b"PLTE" + bytes(changed_palette)
+    rewritten_chunk = (
+        struct.pack(">I", len(changed_palette))
+        + chunk_body
+        + struct.pack(">I", zlib.crc32(chunk_body) & 0xFFFFFFFF)
+    )
+    result = data[:offset] + rewritten_chunk + data[offset + total :]
+    _validate_png(result, 0)
+    return result
 
 
 def decode_atlas(mph: bytes, mpd_files: dict[int, bytes]) -> list[bytes]:
@@ -1187,6 +1531,19 @@ def _safe_output_path(base: Path, member_name: str) -> Path:
     return base.joinpath(*path.parts)
 
 
+def _hero_palette_variants_for_atlas(stem: str) -> dict[int, dict[int, int]]:
+    """Return source element recolors for weapon/effect atlases in each hero class."""
+    path = PurePosixPath(stem)
+    if len(path.parts) != 3 or path.parts[0] not in {"c1", "c2", "c3"} or path.parts[1] != "i":
+        return {}
+    atlas_name = path.name
+    if atlas_name == "e":
+        return HERO_EFFECT_ELEMENT_PALETTES
+    if atlas_name.startswith("w") and atlas_name[1:].isdigit() and 1 <= int(atlas_name[1:]) <= 5:
+        return HERO_WEAPON_ELEMENT_PALETTES
+    return {}
+
+
 def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
     jar_bytes = jar_path.read_bytes()
     jar_hash = sha256(jar_bytes)
@@ -1203,6 +1560,7 @@ def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
             and PurePosixPath(name).parts[1] == "s"
         )
         generated: list[dict[str, object]] = []
+        hero_element_palette_variant_count = 0
 
         for manifest_name in image_manifests:
             stem = manifest_name[:-4]
@@ -1220,11 +1578,25 @@ def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
 
             images = decode_atlas(mph, mpd_files)
             atlas_dir = output_dir / "atlases" / stem
+            atlas_name = PurePosixPath(stem).name
+            palette_variants = _hero_palette_variants_for_atlas(stem)
             for image_index, image in enumerate(images):
                 output_path = atlas_dir / f"{image_index:03d}.png"
                 output_path.parent.mkdir(parents=True, exist_ok=True)
                 output_path.write_bytes(image)
                 generated.append({"path": output_path.relative_to(output_dir).as_posix(), "sha256": sha256(image), "bytes": len(image)})
+                for element, replacements in palette_variants.items():
+                    variant = replace_png_palette_colors(image, replacements)
+                    variant_dir = atlas_dir.parent / f"{atlas_name}-element-{element}"
+                    variant_path = variant_dir / f"{image_index:03d}.png"
+                    variant_dir.mkdir(parents=True, exist_ok=True)
+                    variant_path.write_bytes(variant)
+                    generated.append({
+                        "path": variant_path.relative_to(output_dir).as_posix(),
+                        "sha256": sha256(variant),
+                        "bytes": len(variant),
+                    })
+                    hero_element_palette_variant_count += 1
 
         for member in character_layout_names:
             path = PurePosixPath(member)
@@ -1348,6 +1720,67 @@ def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
             "bytes": len(enemy_animation_bytes),
         })
 
+        boss_sprite_resources = sorted(
+            (name for name in members if name.startswith("boss/spr/") and "_" in name.rsplit("/", 1)[-1]),
+            key=lambda name: tuple(int(value) for value in name.rsplit("/", 1)[-1].split("_")),
+        )
+        boss_sprites = []
+        for member in boss_sprite_resources:
+            boss_id, enemy_id = (int(value) for value in member.rsplit("/", 1)[-1].split("_"))
+            boss_sprites.append(decode_boss_sprite_animations(jar.read(member), boss_id, enemy_id))
+        boss_animation_catalog = {
+            "format": "heroes-lore-boss-animation-catalog-v1",
+            "spriteCount": len(boss_sprites),
+            "sprites": boss_sprites,
+        }
+        boss_animation_bytes = (json.dumps(boss_animation_catalog, separators=(",", ":")) + "\n").encode()
+        boss_animation_path = output_dir / "boss-animations" / "catalog.json"
+        boss_animation_path.parent.mkdir(parents=True, exist_ok=True)
+        boss_animation_path.write_bytes(boss_animation_bytes)
+        generated.append({
+            "path": boss_animation_path.relative_to(output_dir).as_posix(),
+            "sha256": sha256(boss_animation_bytes),
+            "bytes": len(boss_animation_bytes),
+        })
+
+        boss_enemy_groups = {
+            32: 1,
+            35: 2,
+            36: 2,
+            37: 2,
+            38: 2,
+            39: 3,
+            40: 3,
+            41: 3,
+            42: 4,
+        }
+        boss_attack_effect_resources = sorted(
+            (name for name in members if name.startswith("boss/atef/") and name.rsplit("/", 1)[-1].isdigit()),
+            key=lambda name: int(name.rsplit("/", 1)[-1]),
+        )
+        boss_attack_effects = [
+            decode_boss_attack_effect(
+                jar.read(member),
+                boss_enemy_groups[int(member.rsplit("/", 1)[-1])],
+                int(member.rsplit("/", 1)[-1]),
+            )
+            for member in boss_attack_effect_resources
+        ]
+        boss_attack_effect_catalog = {
+            "format": "heroes-lore-boss-attack-effect-catalog-v1",
+            "effectCount": len(boss_attack_effects),
+            "effects": boss_attack_effects,
+        }
+        boss_attack_effect_bytes = (json.dumps(boss_attack_effect_catalog, separators=(",", ":")) + "\n").encode()
+        boss_attack_effect_path = output_dir / "boss-attack-effects" / "catalog.json"
+        boss_attack_effect_path.parent.mkdir(parents=True, exist_ok=True)
+        boss_attack_effect_path.write_bytes(boss_attack_effect_bytes)
+        generated.append({
+            "path": boss_attack_effect_path.relative_to(output_dir).as_posix(),
+            "sha256": sha256(boss_attack_effect_bytes),
+            "bytes": len(boss_attack_effect_bytes),
+        })
+
         npc_sprite_resources = sorted(
             (name for name in members if name.startswith("npc/spr/") and name.rsplit("/", 1)[-1].isdigit()),
             key=lambda name: int(name.rsplit("/", 1)[-1]),
@@ -1392,6 +1825,86 @@ def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
             "path": enemy_attack_effect_path.relative_to(output_dir).as_posix(),
             "sha256": sha256(enemy_attack_effect_bytes),
             "bytes": len(enemy_attack_effect_bytes),
+        })
+
+        player_skill_atlas_families = {
+            0: "fi",
+            1: "wa",
+            2: "gr",
+            3: "fi",
+            4: "wa",
+            5: "gr",
+        }
+        player_skill_effect_resources: list[tuple[int, int, str]] = [
+            (0, 0, "grd/spr/0_01.eif"),
+            (0, 1, "grd/spr/0_1.eif"),
+        ]
+        player_skill_effect_resources.extend(
+            (skill_id, level_slot, f"grd/spr/{skill_id}_{level_slot}.eif")
+            for skill_id in range(1, 2)
+            for level_slot in range(2)
+        )
+        player_skill_effect_resources.extend(
+            (skill_id, level_slot, f"grd/spr/{skill_id}_{level_slot}.eif")
+            for skill_id in range(2, 6)
+            for level_slot in range(3)
+        )
+        missing_player_skill_effects = [
+            resource for _, _, resource in player_skill_effect_resources if resource not in members
+        ]
+        if missing_player_skill_effects:
+            raise AssetFormatError(
+                "missing pinned player skill effect resources: " + ", ".join(missing_player_skill_effects)
+            )
+        player_skill_effects = [
+            {
+                **decode_player_skill_effect(jar.read(resource), skill_id, level_slot, resource),
+                "atlasFamily": player_skill_atlas_families[skill_id],
+            }
+            for skill_id, level_slot, resource in player_skill_effect_resources
+        ]
+        special_effect_resource = "grd/spr/0_02.eif"
+        if special_effect_resource not in members:
+            raise AssetFormatError(f"missing pinned player skill effect resource: {special_effect_resource}")
+        player_skill_effect_catalog = {
+            "format": "heroes-lore-player-skill-effect-catalog-v1",
+            "effectCount": len(player_skill_effects),
+            "effects": player_skill_effects,
+            "specialEffects": [
+                decode_player_skill_special_effect(jar.read(special_effect_resource), 2, special_effect_resource),
+            ],
+        }
+        player_skill_effect_bytes = (
+            json.dumps(player_skill_effect_catalog, separators=(",", ":")) + "\n"
+        ).encode()
+        player_skill_effect_path = output_dir / "player-skill-effects" / "catalog.json"
+        player_skill_effect_path.parent.mkdir(parents=True, exist_ok=True)
+        player_skill_effect_path.write_bytes(player_skill_effect_bytes)
+        generated.append({
+            "path": player_skill_effect_path.relative_to(output_dir).as_posix(),
+            "sha256": sha256(player_skill_effect_bytes),
+            "bytes": len(player_skill_effect_bytes),
+        })
+
+        player_level_up_resource = "char/lvup.eif"
+        if player_level_up_resource not in members:
+            raise AssetFormatError(f"missing pinned player level-up effect resource: {player_level_up_resource}")
+        player_level_up_effect = decode_player_level_up_effect(jar.read(player_level_up_resource))
+        player_level_up_catalog = {
+            "format": "heroes-lore-player-level-up-effect-catalog-v1",
+            "effectCount": 1,
+            "effects": [player_level_up_effect],
+        }
+        player_level_up_bytes = (
+            json.dumps(player_level_up_catalog, separators=(",", ":")) + "\n"
+        ).encode()
+        player_level_up_path = output_dir / "player-level-up-effects" / "catalog.json"
+        player_level_up_path.parent.mkdir(parents=True, exist_ok=True)
+        player_level_up_path.write_bytes(player_level_up_bytes)
+        generated.append({
+            "path": player_level_up_path.relative_to(output_dir).as_posix(),
+            "sha256": sha256(player_level_up_bytes),
+            "bytes": len(player_level_up_bytes),
         })
 
         text_table_names = sorted(name for name in members if name.endswith(".tdf"))
@@ -1469,6 +1982,7 @@ def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
         "sourceJarSha256": jar_hash,
         "sourceJar": jar_path.name,
         "atlasCount": len(image_manifests),
+        "heroElementPaletteVariantCount": hero_element_palette_variant_count,
         "characterSpriteLayoutCount": len(character_layout_names),
         "languageLocaleCount": 1,
         "languageStringCount": int(language["stringCount"]),
@@ -1476,8 +1990,13 @@ def extract(jar_path: Path, output_dir: Path) -> dict[str, object]:
         "enemyDefinitionCountPerVariant": enemy_definition_count,
         "equipmentDataCategoryCount": len(equipment_categories),
         "enemySpriteAnimationCount": len(enemy_sprite_resources),
+        "bossSpriteAnimationCount": len(boss_sprite_resources),
+        "bossAttackEffectCount": len(boss_attack_effect_resources),
         "npcSpriteAnimationCount": len(npc_sprite_resources),
         "enemyAttackEffectCount": len(enemy_attack_effect_resources),
+        "playerSkillEffectCount": len(player_skill_effect_resources),
+        "playerSkillSpecialEffectCount": len(player_skill_effect_catalog["specialEffects"]),
+        "playerLevelUpEffectCount": 1,
         "textTableCount": len(text_table_names),
         "mapCount": len(map_names),
         "eventCollisionGridCount": len(event_names),
@@ -1499,7 +2018,23 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--jar", type=Path, default=DEFAULT_JAR, help="local v2.1.2 JAR (read-only)")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="ignored local output directory")
+    parser.add_argument(
+        "--player-level-up-resource",
+        type=Path,
+        help="refresh only the level-up catalog from an already-decompiled char/lvup.eif",
+    )
     args = parser.parse_args()
+    if args.player_level_up_resource is not None:
+        try:
+            result = refresh_player_level_up_effect(args.player_level_up_resource, args.output)
+        except (OSError, AssetFormatError) as exc:
+            print(f"player level-up asset refresh failed: {exc}", file=sys.stderr)
+            return 1
+        print(
+            f"Refreshed {result['frameCount']} level-up frames / {result['componentCount']} components "
+            f"from {args.player_level_up_resource} to {result['catalogPath']}"
+        )
+        return 0
     try:
         result = extract(args.jar, args.output)
     except (OSError, zipfile.BadZipFile, AssetFormatError) as exc:
@@ -1509,13 +2044,18 @@ def main() -> int:
         "Extracted "
         f"{result['atlasCount']} atlases, {result['mapCount']} maps, "
         f"{result['characterSpriteLayoutCount']} character sprite layouts, "
+        f"{result['heroElementPaletteVariantCount']} hero element palette variants, "
         f"{result['languageStringCount']} localized strings, "
         f"{result['enemyDataVariantCount']} enemy data variants "
         f"({result['enemyDefinitionCountPerVariant']} records each), "
         f"{result['equipmentDataCategoryCount']} equipment item categories, "
         f"{result['enemySpriteAnimationCount']} enemy sprite animation sets, "
+        f"{result['bossSpriteAnimationCount']} boss sprite animation sets, "
+        f"{result['bossAttackEffectCount']} boss attack effect sets, "
         f"{result['npcSpriteAnimationCount']} NPC sprite animation sets, "
         f"{result['enemyAttackEffectCount']} enemy attack effect sets, "
+        f"{result['playerSkillEffectCount']} player skill effect sets plus "
+        f"{result['playerSkillSpecialEffectCount']} special effect stream, "
         f"{result['textTableCount']} localized text tables, "
         f"{result['eventCollisionGridCount']} base collision layers, "
         f"{result['eventDecorationSetCount']} base decoration sets, "

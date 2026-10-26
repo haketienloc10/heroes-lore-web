@@ -9,6 +9,7 @@ import {
   resolveInteractionScript,
   resolveMapTransition,
   resolveTriggerScript,
+  sourceMapTransitionDirection,
 } from '../src/world/event-data';
 import { createWorldGrid } from '../src/world/map-data';
 import {
@@ -46,6 +47,12 @@ const emptyDecorations: MapDecorationData = {
 };
 
 describe('raw map event trigger data', () => {
+  it('converts the opcode-7 facing index to the source direction and rejects invalid values', () => {
+    expect([0, 1, 2, 3].map(sourceMapTransitionDirection)).toEqual([1, 2, 3, 4]);
+    expect(() => sourceMapTransitionDirection(-1)).toThrow(RangeError);
+    expect(() => sourceMapTransitionDirection(4)).toThrow(RangeError);
+  });
+
   it('resolves the active type-3 trigger script and its destination', () => {
     const events = parseEventOperationData(rawEvents);
     expect(events.npcPlacements).toEqual(rawEvents.npcPlacements);
@@ -53,7 +60,7 @@ describe('raw map event trigger data', () => {
     expect(events.enemyPlacements).toEqual(rawEvents.enemyPlacements);
     expect(resolveMapTransition(events, -1, 3, new Set([0]))).toEqual({
       mapId: 0,
-      regionId: 1,
+      entryDirectionIndex: 1,
       tileX: 26,
       tileY: 24,
       scriptIndex: 0,
@@ -86,7 +93,7 @@ describe('raw map event trigger data', () => {
     });
     expect(resolveMapTransition(events, 1, 0, new Set([0]))).toEqual({
       mapId: 27,
-      regionId: 0,
+      entryDirectionIndex: 0,
       tileX: 5,
       tileY: 37,
       scriptIndex: 0,
@@ -130,7 +137,20 @@ describe('raw map event trigger data', () => {
         { flagSet: 'game', operation: 'set', flagIndex: 3 },
         { flagSet: 'quest', operation: 'toggle', flagIndex: 2 },
       ],
-      destination: { mapId: 0, regionId: 1, tileX: 21, tileY: 2 },
+      destination: { mapId: 0, entryDirectionIndex: 1, tileX: 21, tileY: 2 },
+    });
+  });
+
+  it('sign-extends the opcode-7 map and tile coordinates in fallback event resolution', () => {
+    const events = parseEventOperationData({
+      ...rawEvents,
+      scripts: [[[7, 64, 1], [8, 255, 128], [99, 0, 0]]],
+    });
+    expect(resolveEventScriptEffects(events, 0)?.destination).toEqual({
+      mapId: 64,
+      entryDirectionIndex: 1,
+      tileX: -1,
+      tileY: -128,
     });
   });
 
@@ -145,7 +165,7 @@ describe('raw map event trigger data', () => {
       scriptIndex: 0,
       dialogueStringIndices: [4],
       flagChanges: [],
-      destination: { mapId: 0, regionId: 1, tileX: 21, tileY: 2 },
+      destination: { mapId: 0, entryDirectionIndex: 1, tileX: 21, tileY: 2 },
     });
   });
 
@@ -168,7 +188,7 @@ describe('raw map event trigger data', () => {
     const original = { gameFlags: new Set([0]), questFlags: new Set([2]) };
     const prepared = prepareMapTransition(original, {
       mapId: 62,
-      regionId: 0,
+      entryDirectionIndex: 0,
       tileX: 16,
       tileY: 6,
       scriptIndex: 2,
@@ -233,7 +253,7 @@ describe('raw map event trigger data', () => {
       allowSkippedCommands: true,
     })).toEqual({
       mapId: 64,
-      regionId: 1,
+      entryDirectionIndex: 1,
       tileX: 9,
       tileY: 8,
       scriptIndex: 0,
@@ -279,7 +299,7 @@ describe('raw map event trigger data', () => {
       scripts: [[], [[7, 53, 0], [8, 19, 38], [99, 0, 0]]],
     });
     expect(resolveMapTransition(map62, -2, 3, new Set([0]))).toMatchObject({
-      mapId: 53, regionId: 0, tileX: 19, tileY: 38, scriptIndex: 1,
+      mapId: 53, entryDirectionIndex: 0, tileX: 19, tileY: 38, scriptIndex: 1,
     });
 
     const map53Scripts = Array.from({ length: 11 }, () => [] as number[][]);
@@ -401,7 +421,7 @@ describe('raw map event trigger data', () => {
     expect(handoff.scriptIndex).toBe(10);
     const transfer = handoff.result;
     expect(transfer.status).toBe('transfer');
-    expect(transfer.transition).toMatchObject({ mapId: 54, regionId: 0, tileX: 17, tileY: 14 });
+    expect(transfer.transition).toMatchObject({ mapId: 54, entryDirectionIndex: 0, tileX: 17, tileY: 14 });
   });
 
   it('uses source item trigger predicates for category, item ID, and minimum stack count', () => {
@@ -431,6 +451,50 @@ describe('raw map event trigger data', () => {
     expect(resolveMapTransition(events, 1, 2, flags, new Set(), {
       inventory: [{ category: 19, itemId: 9, count: 2 }],
     })).toMatchObject({ mapId: 54, tileX: 17, tileY: 14, scriptIndex: 0 });
+  });
+
+  it('uses the regular inventory for every trigger item category, including category 22', () => {
+    const events = parseEventOperationData({
+      ...rawEvents,
+      triggerGroups: [[
+        [128, 0, 0, 22, 5, 2, 0],
+        [128, 0, 0, 255, 0, 0, 1],
+      ]],
+      scripts: [
+        [[7, 54, 0], [8, 17, 14], [99, 0, 0]],
+        [[1, 11, 0], [99, 0, 0]],
+      ],
+    });
+    const flags = new Set([0]);
+    const category22Item = { category: 22, itemId: 5, count: 2 };
+
+    expect(resolveTriggerScript(events, 1, 2, flags)?.scriptIndex).toBe(1);
+    expect(resolveTriggerScript(events, 1, 2, flags, new Set(), [
+      { category: 22, itemId: 5, count: 1 },
+    ])?.scriptIndex).toBe(1);
+    expect(resolveTriggerScript(events, 1, 2, flags, new Set(), [category22Item])?.scriptIndex).toBe(0);
+    expect(resolveInteractionScript(events, undefined, 1, flags, new Set(), [category22Item])?.scriptIndex).toBe(0);
+    expect(resolveMapTransition(events, 1, 2, flags, new Set(), {
+      inventory: [category22Item],
+    })).toMatchObject({ mapId: 54, tileX: 17, tileY: 14, scriptIndex: 0 });
+  });
+
+  it('interprets item-trigger fields as signed source bytes', () => {
+    const events = parseEventOperationData({
+      ...rawEvents,
+      triggerGroups: [[
+        [128, 0, 0, 22, 5, 255, 0],
+        [128, 0, 0, 255, 0, 0, 1],
+      ]],
+      scripts: [
+        [[1, 10, 0], [99, 0, 0]],
+        [[1, 11, 0], [99, 0, 0]],
+      ],
+    });
+
+    expect(resolveTriggerScript(events, 1, 2, new Set([0]), new Set(), [
+      { category: 22, itemId: 5, count: 1 },
+    ])?.scriptIndex).toBe(0);
   });
 
   it('checks the actor cell before the tile ahead, matching source interaction order', () => {
@@ -477,6 +541,53 @@ describe('raw map event trigger data', () => {
     expect(world.collision.values).toEqual([[0, 0]]);
   });
 
+  it('selects the first matching descriptor with a non-sentinel signed action-block marker', () => {
+    const events = parseEventOperationData({
+      ...rawEvents,
+      descriptors: [
+        { cellIndex: 7, rawMarkerByte: 0 },
+        { cellIndex: 0, rawMarkerByte: 255 },
+        { cellIndex: 1, rawMarkerByte: 2 },
+        { cellIndex: 2, rawMarkerByte: 1 },
+      ],
+      actionBlocks: [10, 11, 12, 13].map((tileId) => ({ actions: [
+        { opcode: 100, arguments: [0, 0, tileId] },
+      ] })),
+    });
+    const world = createWorldGrid({
+      format: 'heroes-lore-map-v1', tilesetId: 1, width: 2, height: 1,
+      tileSize: 16, tileIds: [[0, 0]],
+    }, {
+      format: 'heroes-lore-base-collision-v1', width: 2, height: 1,
+      tileSize: 16, values: [[0, 0]], passabilityRule: 'base value >= 0',
+    });
+
+    const state = applyInitialMapEventState(world, events, new Set([0, 1, 2]), emptyDecorations);
+
+    expect(state.actionBlockIndex).toBe(2);
+    expect(state.world.map.tileIds).toEqual([[12, 0]]);
+  });
+
+  it('applies no startup block when none of the descriptor flags match', () => {
+    const events = parseEventOperationData({
+      ...rawEvents,
+      descriptors: [{ cellIndex: 7, rawMarkerByte: 0 }],
+      actionBlocks: [{ actions: [{ opcode: 100, arguments: [0, 0, 12] }] }],
+    });
+    const world = createWorldGrid({
+      format: 'heroes-lore-map-v1', tilesetId: 1, width: 1, height: 1,
+      tileSize: 16, tileIds: [[0]],
+    }, {
+      format: 'heroes-lore-base-collision-v1', width: 1, height: 1,
+      tileSize: 16, values: [[0]], passabilityRule: 'base value >= 0',
+    });
+
+    const state = applyInitialMapEventState(world, events, new Set(), emptyDecorations);
+
+    expect(state.actionBlockIndex).toBeUndefined();
+    expect(state.world.map.tileIds).toEqual([[0]]);
+  });
+
   it('applies opcode 112 NPC emotion selection and clearing in action order', () => {
     const events = parseEventOperationData({
       ...rawEvents,
@@ -505,6 +616,33 @@ describe('raw map event trigger data', () => {
     expect(state.npcEmotions).toEqual({ 0: 9, 1: null });
   });
 
+  it('applies opcode 111 player emotion selection and clearing in action order', () => {
+    const makeState = (emotionIds: number[]) => {
+      const events = parseEventOperationData({
+        ...rawEvents,
+        descriptors: [{ cellIndex: 0, rawMarkerByte: 0 }],
+        actionBlocks: [{ actions: emotionIds.map((emotionId) => ({
+          opcode: 111,
+          arguments: [emotionId, 0, 0],
+        })) }],
+      });
+      const world = createWorldGrid({
+        format: 'heroes-lore-map-v1', tilesetId: 1, width: 1, height: 1,
+        tileSize: 16, tileIds: [[0]],
+      }, {
+        format: 'heroes-lore-base-collision-v1', width: 1, height: 1,
+        tileSize: 16, values: [[0]], passabilityRule: 'base value >= 0',
+      });
+      return applyInitialMapEventState(world, events, new Set([0]), emptyDecorations);
+    };
+
+    expect(makeState([9]).heroEmotion).toBe(8);
+    expect(makeState([9, 10]).heroEmotion).toBe(9);
+    expect(makeState([9, 0]).heroEmotion).toBeNull();
+    expect(makeState([255]).heroEmotion).toBe(-2);
+    expect(makeState([]).heroEmotion).toBeUndefined();
+  });
+
   it('occupies visible NPC and enemy placement cells while omitting hidden and out-of-bounds NPCs', () => {
     const events = parseEventOperationData({
       ...rawEvents,
@@ -524,6 +662,24 @@ describe('raw map event trigger data', () => {
     expect([...createEntityOccupancy(events, 4, 4, new Set([1, 2]), undefined, [
       { sourceOrder: 0, tileX: 2, tileY: 2, footprintWidth: 2 },
     ])].sort((a, b) => a - b)).toEqual([6, 10, 11]);
+    expect([...createEntityOccupancy(events, 4, 4, new Set([0]), new Set(), undefined, [
+      { sourceOrder: 0, pixelX: 24, pixelY: 16, occupiesCells: true },
+    ])].sort((a, b) => a - b)).toEqual([5, 6]);
+    expect([...createEntityOccupancy(events, 4, 4, new Set([0]), new Set(), undefined, [
+      { sourceOrder: 0, pixelX: 16, pixelY: 24, occupiesCells: true },
+    ])].sort((a, b) => a - b)).toEqual([5, 9]);
+    expect([...createEntityOccupancy(events, 4, 4, new Set([0]), new Set(), undefined, [
+      { sourceOrder: 0, pixelX: 24, pixelY: 24, occupiesCells: true },
+    ])].sort((a, b) => a - b)).toEqual([5, 9]);
+    expect([...createEntityOccupancy(events, 4, 4, new Set(), new Set(), undefined, [
+      { sourceOrder: 0, pixelX: 24, pixelY: 16, occupiesCells: true },
+    ])]).toEqual([]);
+    expect([...createEntityOccupancy(events, 4, 4, new Set([0]), new Set(), undefined, [
+      { sourceOrder: 0, pixelX: 24, pixelY: 16, occupiesCells: false },
+    ])]).toEqual([]);
+    expect(() => createEntityOccupancy(events, 4, 4, new Set([0]), new Set(), undefined, [
+      { sourceOrder: 0, pixelX: 24.5, pixelY: 16, occupiesCells: true },
+    ])).toThrow(RangeError);
     expect(() => createEntityOccupancy(events, 0, 4, new Set())).toThrow(RangeError);
   });
 

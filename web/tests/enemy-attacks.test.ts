@@ -3,6 +3,7 @@ import {
   advanceEnemyAttackEffect,
   advanceEnemyProjectileTick,
   beginEnemyProjectile,
+  beginEnemyProjectileAtCell,
   findEnemyAttackEffect,
   parseEnemyAttackEffectCatalog,
 } from '../src/world/enemy-attacks';
@@ -58,6 +59,20 @@ describe('source enemy projectile segments', () => {
     projectile = result.projectile!;
     result = advanceEnemyProjectileTick(projectile, 2, 5, 6, 12, 12);
     expect(result).toMatchObject({ projectile: undefined, spawned: undefined, hitPlayer: true });
+  });
+
+  it('keeps the two-segment default and accepts source boss segment counts', () => {
+    expect(beginEnemyProjectile(1, 0, 0, 4, 4, 2).remainingSegments).toBe(2);
+    expect(beginEnemyProjectile(2, 0, 0, 4, 4, 2, 12).remainingSegments).toBe(12);
+    expect(() => beginEnemyProjectile(3, 0, 0, 4, 4, 2, -1)).toThrow(RangeError);
+  });
+
+  it('preserves an explicit source projectile spawn cell', () => {
+    expect(beginEnemyProjectileAtCell(4, 6, 292, 8, 4, 2, 12)).toMatchObject({
+      tileX: 8,
+      tileY: 4,
+      remainingSegments: 12,
+    });
   });
 
   it('resolves one hit and keeps longer effect streams alive without repeat damage', () => {

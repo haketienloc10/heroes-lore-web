@@ -1,5 +1,5 @@
 import type { Direction } from './actor';
-import type { EnemyCombatant } from './combat';
+import { enemyFootprintWidth, type EnemyCombatant } from './combat';
 import type { HeroCombatClass, PlayerComboImpact } from './player-combo';
 import type { BaseCollisionData } from './map-data';
 
@@ -26,14 +26,23 @@ const SOURCE_FAN_CELLS: readonly (readonly [number, number])[] = [
   [6, 8],
 ];
 
-function enemyOccupiesCell(enemy: EnemyCombatant, x: number, y: number): boolean {
+export function sourceEnemyOccupiesCell(enemy: EnemyCombatant, x: number, y: number): boolean {
   if (enemy.state !== 'alive' || enemy.hp <= 0) return false;
   const tileX = Math.floor(enemy.pixelX / 16);
   const tileY = Math.floor(enemy.pixelY / 16);
-  const width = enemy.definition.classCode === 2 ? 2 : 1;
+  const width = enemyFootprintWidth(enemy);
   if (y === tileY && x >= tileX && x < tileX + width) return true;
   if (enemy.pixelY % 16 !== 0 && y === tileY + 1 && x >= tileX && x < tileX + width) return true;
   return enemy.pixelX % 16 !== 0 && y === tileY && x === tileX + width;
+}
+
+/** Resolve a source entity-grid cell query against the browser's enemy records. */
+export function findEnemyOccupyingSourceCell(
+  combatants: readonly EnemyCombatant[],
+  x: number,
+  y: number,
+): EnemyCombatant | undefined {
+  return combatants.find((enemy) => sourceEnemyOccupiesCell(enemy, x, y));
 }
 
 function querySourceCell(
@@ -46,7 +55,7 @@ function querySourceCell(
   const [dx, dy] = SOURCE_DIRECTION_OFFSETS[direction] ?? [0, 0];
   const x = playerTileX + dx * distance;
   const y = playerTileY + dy * distance;
-  return combatants.find((enemy) => enemyOccupiesCell(enemy, x, y));
+  return findEnemyOccupyingSourceCell(combatants, x, y);
 }
 
 /** Port the passability branch in the class-6 heavy stage-2/3 source lunge. */
@@ -135,4 +144,44 @@ export function selectPlayerAttackTargets(
   // collision is not represented by this immediate-cell selector yet.
   const target = querySourceCell(combatants, playerTileX, playerTileY, direction);
   return target === undefined ? [] : [target];
+}
+
+export interface SourceClassSixLungeImpactResolution {
+  distance: 0 | 1 | 2;
+  destinationTileX: number;
+  destinationTileY: number;
+  followUpTargets: EnemyCombatant[];
+}
+
+/** Resolve the source class-6 heavy lunge and stage-3 post-move attack query. */
+export function resolveSourceClassSixLungeImpact(
+  combatantsAfterInitialHit: readonly EnemyCombatant[],
+  collision: BaseCollisionData,
+  occupiedCellIndices: ReadonlySet<number>,
+  playerTileX: number,
+  playerTileY: number,
+  direction: Direction,
+  stage: 2 | 3,
+): SourceClassSixLungeImpactResolution {
+  const distance = sourceClassSixLungeDistance(
+    collision,
+    occupiedCellIndices,
+    playerTileX,
+    playerTileY,
+    direction,
+  );
+  const [dx, dy] = SOURCE_DIRECTION_OFFSETS[direction];
+  const destinationTileX = playerTileX + dx * distance;
+  const destinationTileY = playerTileY + dy * distance;
+  const followUpTargets = distance > 0 && stage === 3
+    ? selectPlayerAttackTargets(
+      combatantsAfterInitialHit,
+      destinationTileX,
+      destinationTileY,
+      direction,
+      6,
+      { stage, style: 'heavy', frame: 0 },
+    )
+    : [];
+  return { distance, destinationTileX, destinationTileY, followUpTargets };
 }

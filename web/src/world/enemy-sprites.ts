@@ -1,6 +1,7 @@
 import type { Direction } from './actor';
 
 export type EnemySpriteState = 0 | 1 | 2;
+export type EnemySpriteLifecycle = 'alive' | 'death-pending' | 'respawn-wait' | 'removed';
 
 export interface EnemySpriteComponent {
   offsetX: number;
@@ -119,6 +120,22 @@ export function findEnemySpriteTrack(
     throw new TypeError(`Enemy sprite ${animation.spriteId} is missing the selected track`);
   }
   return track;
+}
+
+/**
+ * Select the `/enm/spr` track used by the source actor lifecycle. `ak` state 5
+ * falls through to the standing track while its death counter runs; the web
+ * passes `idleDeathPose` only for ordinary `ak` actors.
+ */
+export function sourceEnemySpriteStateForRender(
+  lifecycle: EnemySpriteLifecycle,
+  animationStateIndex: number,
+  idleDeathPose = false,
+): EnemySpriteState | null {
+  if (lifecycle === 'death-pending') return idleDeathPose ? 0 : null;
+  if (lifecycle !== 'alive' || !Number.isInteger(animationStateIndex) ||
+    animationStateIndex < 0 || animationStateIndex > 2) return null;
+  return animationStateIndex as EnemySpriteState;
 }
 
 /** Source `ar.b` selects a frame directly from the current enemy update count. */

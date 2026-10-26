@@ -17,9 +17,9 @@ How does the pinned game raise the player's combo-chain limit from map events, a
 ## Web port
 
 - The ordered event state now tracks the source combo limit and hero class. Opcode 19 treats its first argument as a signed byte and applies the source max-only update.
-- Opcode 30's set operation for quest flag 29 applies the class-6 bonus. The event capability gate still rejects toggling flag 29 because that operation depends on its prior value, which is not part of the gate's current inputs.
+- Opcode 30 tracks the initial quest-29 state through the ordered command stream. Set raises the class-6 combo limit to at least 2; toggle does so only when it changes the flag from clear to set; clear and toggle-off never lower the already-saved combo limit. This follows `ag.k()` calling `m.g()`, which delegates to `m.e()` when the bit is clear and `m.f()` when it is set. The capability gate now accepts this toggle form.
 - The world carries the limit across event scripts and stores it in browser saves. Older version-1 saves without the field default to 1.
-- Unit tests cover the max-only/signed-byte behavior, class-specific quest-29 bonus, save/load validation and the four extracted script command streams. The category-6 gate is addressed in M71 code, but the updated complete stream has not yet been verified in the browser or against J2ME; M72 automated verification does not establish that runtime behavior.
+- Unit tests cover the max-only/signed-byte behavior, both quest-29 toggle directions, the class-specific bonus, save/load validation and the four extracted script command streams. The category-6 gate is addressed in M71 code, but the updated complete stream has not yet been verified in the browser or against J2ME.
 - M73 implements the player-side queued attack stages and uses this saved limit to gate follow-ups. See [FND-0031](FND-0031-player-combo-actions.md) for the source timing, input, hit frames, and remaining differences.
 
 ## Limits

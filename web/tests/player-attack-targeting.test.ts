@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createEnemyCombatants, parseEnemyDataTable } from '../src/world/combat';
 import {
+  resolveSourceClassSixLungeImpact,
   selectPlayerAttackTargets,
   sourceClassSixLungeDistance,
 } from '../src/world/player-attack-targeting';
@@ -94,5 +95,112 @@ describe('source player combo target patterns', () => {
     expect(sourceClassSixLungeDistance(collision, new Set([3 * 8 + 4]), 2, 3, 4)).toBe(1);
     collision.values[3][3] = -1;
     expect(sourceClassSixLungeDistance(collision, new Set(), 2, 3, 4)).toBe(0);
+  });
+
+  it('moves through an occupied first cell on a two-cell lunge, then queries stage-3 targets from the destination', () => {
+    const collision = {
+      format: 'heroes-lore-base-collision-v1' as const,
+      width: 8,
+      height: 8,
+      tileSize: 16 as const,
+      values: Array.from({ length: 8 }, () => Array(8).fill(1)),
+      passabilityRule: 'non-negative is passable',
+    };
+    collision.values[3][3] = 0;
+    const enemies = targets([[3, 3, 24], [5, 3, 24]]);
+    const initialTargets = selectPlayerAttackTargets(
+      enemies, 2, 3, 4, 6, { stage: 3, style: 'heavy', frame: 2 },
+    );
+
+    const resolution = resolveSourceClassSixLungeImpact(
+      enemies,
+      collision,
+      new Set([3 * collision.width + 3]),
+      2,
+      3,
+      4,
+      3,
+    );
+
+    expect(initialTargets.map(({ tileX, tileY }) => [tileX, tileY])).toEqual([[3, 3]]);
+    expect(resolution).toMatchObject({ distance: 2, destinationTileX: 4, destinationTileY: 3 });
+    expect(resolution.followUpTargets.map(({ tileX, tileY }) => [tileX, tileY])).toEqual([[5, 3]]);
+  });
+
+  it('falls back one cell and still performs the stage-3 follow-up from that destination', () => {
+    const collision = {
+      format: 'heroes-lore-base-collision-v1' as const,
+      width: 8,
+      height: 8,
+      tileSize: 16 as const,
+      values: Array.from({ length: 8 }, () => Array(8).fill(1)),
+      passabilityRule: 'non-negative is passable',
+    };
+    collision.values[3][3] = 0;
+    const occupiedDestination = 3 * collision.width + 4;
+    const enemies = targets([[4, 3, 24]]);
+
+    const resolution = resolveSourceClassSixLungeImpact(
+      enemies,
+      collision,
+      new Set([occupiedDestination]),
+      2,
+      3,
+      4,
+      3,
+    );
+
+    expect(resolution).toMatchObject({ distance: 1, destinationTileX: 3, destinationTileY: 3 });
+    expect(resolution.followUpTargets.map(({ tileX, tileY }) => [tileX, tileY])).toEqual([[4, 3]]);
+  });
+
+  it('does not issue a post-lunge follow-up query on class-6 heavy stage two', () => {
+    const collision = {
+      format: 'heroes-lore-base-collision-v1' as const,
+      width: 8,
+      height: 8,
+      tileSize: 16 as const,
+      values: Array.from({ length: 8 }, () => Array(8).fill(1)),
+      passabilityRule: 'non-negative is passable',
+    };
+    collision.values[3][3] = 0;
+
+    const resolution = resolveSourceClassSixLungeImpact(
+      targets([[5, 3, 24]]),
+      collision,
+      new Set(),
+      2,
+      3,
+      4,
+      2,
+    );
+
+    expect(resolution).toMatchObject({ distance: 2, destinationTileX: 4, destinationTileY: 3 });
+    expect(resolution.followUpTargets).toEqual([]);
+  });
+
+  it('does not issue the stage-3 follow-up when the source lunge is blocked', () => {
+    const collision = {
+      format: 'heroes-lore-base-collision-v1' as const,
+      width: 8,
+      height: 8,
+      tileSize: 16 as const,
+      values: Array.from({ length: 8 }, () => Array(8).fill(1)),
+      passabilityRule: 'non-negative is passable',
+    };
+    collision.values[3][3] = -1;
+
+    const resolution = resolveSourceClassSixLungeImpact(
+      targets([[3, 3, 24]]),
+      collision,
+      new Set(),
+      2,
+      3,
+      4,
+      3,
+    );
+
+    expect(resolution).toMatchObject({ distance: 0, destinationTileX: 2, destinationTileY: 3 });
+    expect(resolution.followUpTargets).toEqual([]);
   });
 });

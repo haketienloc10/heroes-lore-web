@@ -7,6 +7,8 @@ export const TOUCH_CONTROL_KEYS = {
   system: { key: 'Escape', code: 'Escape', keyCode: 27 },
   attack: { key: '5', code: 'Numpad5', keyCode: 101 },
   heavy: { key: '7', code: 'Numpad7', keyCode: 103 },
+  skill1: { key: '1', code: 'Digit1', keyCode: 49 },
+  skill3: { key: '3', code: 'Digit3', keyCode: 51 },
   item: { key: '#', code: 'Digit3', keyCode: 35 },
   use: { key: '9', code: 'Digit9', keyCode: 57 },
 } as const;
@@ -34,8 +36,9 @@ function dispatchKey(control: TouchControl, type: 'keydown' | 'keyup'): void {
 
 /** Route touch holds through the same keyboard input handlers used on desktop. */
 export function mountTouchControls(container: HTMLElement): () => void {
-  const pointers = new Map<number, TouchControl>();
-  const activePointers = new Map<TouchControl, Set<number>>();
+  const activeInputs = new Map<string, { control: TouchControl; element: HTMLButtonElement }>();
+  const activeControls = new Map<TouchControl, Set<string>>();
+  const inputsByButton = new Map<HTMLButtonElement, Set<string>>();
   const buttons: Array<{ element: HTMLButtonElement; control: TouchControl }> = [];
 
   for (const element of container.querySelectorAll<HTMLButtonElement>('[data-touch-control]')) {
@@ -46,32 +49,47 @@ export function mountTouchControls(container: HTMLElement): () => void {
     buttons.push({ element, control: controlValue });
   }
 
-  const releasePointer = (pointerId: number): void => {
-    const control = pointers.get(pointerId);
-    if (control === undefined) return;
-    pointers.delete(pointerId);
-    const controlPointers = activePointers.get(control);
-    controlPointers?.delete(pointerId);
-    if (controlPointers?.size === 0) {
-      activePointers.delete(control);
+  const releaseInput = (inputId: string): void => {
+    const input = activeInputs.get(inputId);
+    if (input === undefined) return;
+    activeInputs.delete(inputId);
+    const { control, element } = input;
+    const inputs = activeControls.get(control);
+    inputs?.delete(inputId);
+    const buttonInputs = inputsByButton.get(element);
+    buttonInputs?.delete(inputId);
+    if (buttonInputs?.size === 0) {
+      inputsByButton.delete(element);
+      element.classList.remove('touch-active');
+    }
+    if (inputs?.size === 0) {
+      activeControls.delete(control);
       dispatchKey(control, 'keyup');
     }
   };
 
+  const startInput = (inputId: string, control: TouchControl, element: HTMLButtonElement): void => {
+    releaseInput(inputId);
+    activeInputs.set(inputId, { control, element });
+    const inputs = activeControls.get(control) ?? new Set<string>();
+    const firstInput = inputs.size === 0;
+    inputs.add(inputId);
+    activeControls.set(control, inputs);
+    const buttonInputs = inputsByButton.get(element) ?? new Set<string>();
+    buttonInputs.add(inputId);
+    inputsByButton.set(element, buttonInputs);
+    element.classList.add('touch-active');
+    if (firstInput) dispatchKey(control, 'keydown');
+  };
+
   const releaseAll = (): void => {
-    for (const pointerId of [...pointers.keys()]) releasePointer(pointerId);
+    for (const inputId of [...activeInputs.keys()]) releaseInput(inputId);
   };
 
   const handlers = buttons.map(({ element, control }) => {
     const pointerdown = (event: PointerEvent): void => {
       event.preventDefault();
-      releasePointer(event.pointerId);
-      pointers.set(event.pointerId, control);
-      const controlPointers = activePointers.get(control) ?? new Set<number>();
-      const firstPointer = controlPointers.size === 0;
-      controlPointers.add(event.pointerId);
-      activePointers.set(control, controlPointers);
-      if (firstPointer) dispatchKey(control, 'keydown');
+      startInput(`pointer:${event.pointerId}`, control, element);
       try {
         element.setPointerCapture(event.pointerId);
       } catch {
@@ -80,13 +98,28 @@ export function mountTouchControls(container: HTMLElement): () => void {
     };
     const pointerup = (event: PointerEvent): void => {
       event.preventDefault();
-      releasePointer(event.pointerId);
+      releaseInput(`pointer:${event.pointerId}`);
+    };
+    const touchstart = (event: TouchEvent): void => {
+      event.preventDefault();
+      for (const touch of Array.from(event.changedTouches)) {
+        startInput(`touch:${touch.identifier}`, control, element);
+      }
+    };
+    const touchend = (event: TouchEvent): void => {
+      event.preventDefault();
+      for (const touch of Array.from(event.changedTouches)) {
+        releaseInput(`touch:${touch.identifier}`);
+      }
     };
     element.addEventListener('pointerdown', pointerdown);
     element.addEventListener('pointerup', pointerup);
     element.addEventListener('pointercancel', pointerup);
     element.addEventListener('lostpointercapture', pointerup);
-    return { element, pointerdown, pointerup };
+    element.addEventListener('touchstart', touchstart, { passive: false });
+    element.addEventListener('touchend', touchend, { passive: false });
+    element.addEventListener('touchcancel', touchend, { passive: false });
+    return { element, pointerdown, pointerup, touchstart, touchend };
   });
 
   const visibilitychange = (): void => {
@@ -99,11 +132,14 @@ export function mountTouchControls(container: HTMLElement): () => void {
     releaseAll();
     window.removeEventListener('blur', releaseAll);
     document.removeEventListener('visibilitychange', visibilitychange);
-    for (const { element, pointerdown, pointerup } of handlers) {
+    for (const { element, pointerdown, pointerup, touchstart, touchend } of handlers) {
       element.removeEventListener('pointerdown', pointerdown);
       element.removeEventListener('pointerup', pointerup);
       element.removeEventListener('pointercancel', pointerup);
       element.removeEventListener('lostpointercapture', pointerup);
+      element.removeEventListener('touchstart', touchstart);
+      element.removeEventListener('touchend', touchend);
+      element.removeEventListener('touchcancel', touchend);
     }
   };
 }

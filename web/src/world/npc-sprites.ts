@@ -1,4 +1,6 @@
 import type { Direction } from './actor';
+import type { EventNpcPlacement } from './event-data';
+import type { EnemySpriteAnimation } from './enemy-sprites';
 
 export type NpcSpriteState = 0 | 1;
 
@@ -23,6 +25,92 @@ export interface NpcSpriteAnimation {
 
 export interface NpcSpriteAnimationCatalog {
   sprites: NpcSpriteAnimation[];
+}
+
+/** Source map NPC image codes 3 and 6 reuse enemy animation resources 17 and 20. */
+export function sourceEnemySpriteIdForNpc(npcId: number): number | undefined {
+  if (npcId === 3) return 17;
+  if (npcId === 6) return 20;
+  return undefined;
+}
+
+export type SourceNpcTextureSource =
+  | { kind: 'animated'; atlasDirectory: string }
+  | { kind: 'static'; imagePath: string };
+
+/** Resolve the atlas path used by `queueNpcTextures` for a source image code. */
+export function sourceNpcTextureSource(
+  npcId: number,
+  hasAnimation: boolean,
+): SourceNpcTextureSource | undefined {
+  if (!Number.isInteger(npcId) || npcId < 0 || npcId > 255) return undefined;
+  if (hasAnimation) {
+    const enemySpriteId = sourceEnemySpriteIdForNpc(npcId);
+    const atlasGroup = enemySpriteId === undefined ? 'npc' : 'enm';
+    const atlasId = enemySpriteId ?? npcId;
+    return {
+      kind: 'animated',
+      atlasDirectory: `/assets/generated/atlases/${atlasGroup}/${String(atlasId).padStart(2, '0')}`,
+    };
+  }
+  if (npcId >= 18) {
+    return {
+      kind: 'static',
+      imagePath: `/assets/generated/atlases/npc/all/${String(npcId - 18).padStart(3, '0')}.png`,
+    };
+  }
+  if (npcId === 16) {
+    return { kind: 'static', imagePath: '/assets/generated/atlases/npc/16/000.png' };
+  }
+  return undefined;
+}
+
+/** Keep the idle/walk tracks that `ab.a(Graphics,...)` selects from `/enm/spr/N`. */
+export function adaptEnemyAnimationForNpc(
+  npcId: number,
+  animation: EnemySpriteAnimation,
+): NpcSpriteAnimation {
+  const tracks = animation.tracks
+    .filter(({ stateIndex }) => stateIndex === 0 || stateIndex === 1)
+    .map((track) => ({ ...track, stateIndex: track.stateIndex as NpcSpriteState }));
+  if (tracks.length !== 8) {
+    throw new TypeError(`Source NPC ${npcId} needs eight idle/walk tracks from enemy sprite ${animation.spriteId}`);
+  }
+  return { npcId, tracks };
+}
+
+export interface NpcSpriteViewport {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface NpcSpriteRenderPlacement {
+  placement: EventNpcPlacement;
+  visible: boolean;
+}
+
+/** Keep hidden source actors available so a later SHOW_NPC command can reveal them. */
+export function resolveNpcSpriteRenderPlacements(
+  placements: readonly EventNpcPlacement[],
+  visibleNpcSourceOrders: ReadonlySet<number>,
+): NpcSpriteRenderPlacement[] {
+  return placements.map((placement) => ({
+    placement,
+    visible: visibleNpcSourceOrders.has(placement.sourceOrder),
+  }));
+}
+
+/** Match the visibility bounds in `ab.a(Graphics, ...)` before it advances the NPC frame. */
+export function isNpcWithinSourceViewport(
+  npc: { x: number; y: number },
+  viewport: NpcSpriteViewport,
+): boolean {
+  const screenX = npc.x - viewport.x;
+  const screenY = npc.y - viewport.y;
+  return screenX + 16 >= 0 && screenY >= 0 && screenX - 16 <= viewport.width &&
+    screenY <= viewport.height + 32;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -121,9 +209,12 @@ export function findNpcSpriteTrack(
 }
 
 export function npcSpriteFrameAt(track: NpcSpriteTrack, frameIndex: number): NpcSpriteComponent[] {
-  if (!Number.isInteger(frameIndex) || frameIndex < 0) {
-    throw new RangeError('NPC sprite frame index must be a non-negative integer');
+  if (!Number.isInteger(frameIndex) || frameIndex < -1) {
+    throw new RangeError('NPC sprite frame index must be at least -1');
   }
+  // Source actors start with k=-1; ar.b treats it as the first frame before
+  // ab.a(Graphics,...) increments the cursor after drawing.
+  if (frameIndex === -1) return track.frames[0];
   return track.frames[frameIndex % track.frameCount];
 }
 
@@ -133,4 +224,25 @@ export function advanceNpcSpriteFrame(frameIndex: number, track: NpcSpriteTrack)
   }
   const nextFrame = frameIndex + 1;
   return nextFrame >= track.frameCount ? 0 : nextFrame;
+}
+
+/** Advance the source NPC draw cursor once for each paced gameplay paint. */
+export function advanceNpcSpriteFrames(
+  frameIndex: number,
+  track: NpcSpriteTrack,
+  sourcePaintPasses: number,
+): number {
+  if (!Number.isInteger(frameIndex) || frameIndex < -1) {
+    throw new RangeError('NPC sprite frame index must be at least -1');
+  }
+  if (!Number.isSafeInteger(sourcePaintPasses) || sourcePaintPasses < 0) {
+    throw new RangeError('NPC source paint pass count must be a non-negative integer');
+  }
+  if (sourcePaintPasses === 0) return frameIndex;
+  if (!Number.isInteger(track.frameCount) || track.frameCount < 1) {
+    throw new RangeError('NPC animation frame count must be a positive integer');
+  }
+  const currentPosition = ((frameIndex % track.frameCount) + track.frameCount) % track.frameCount;
+  const passOffset = sourcePaintPasses % track.frameCount;
+  return (currentPosition + passOffset) % track.frameCount;
 }

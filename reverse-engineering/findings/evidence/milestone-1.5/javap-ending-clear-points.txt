@@ -1,0 +1,102 @@
+# Ending clear-point bytecode from the pinned JAR
+
+Source: `original/heroes-lore-v2.1.2.jar`
+SHA-256: `7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61`
+Command: `javap -classpath original/heroes-lore-v2.1.2.jar -c -p m an`
+
+JADX maps the first persisted `an` byte field (`an.f`) below to source field `an.f55f`.
+The serializer writes it as a byte and the restore path reads it as a signed byte:
+
+```text
+an.a():
+  22: aload_0
+  23: getfield      #108  // Field f:B
+  26: invokevirtual #262  // Method java/io/DataOutputStream.writeByte:(I)V
+
+an.a(byte[]):
+  22: aload_0
+  23: aload_3
+  24: invokevirtual #255  // Method java/io/DataInputStream.readByte:()B
+  27: putfield      #108  // Field f:B
+```
+
+`m.a(byte)` returns the clear-point award. It returns zero for modes 3 and above,
+counts the 20 quest flags `2 + 3*i`, counts game flags 100 through 105, then
+applies the mode weight and hero divisor. Integer division truncates toward zero:
+
+```text
+  0: getstatic     #90   // Field g:B
+  3: iconst_3
+  4: if_icmplt     9
+  7: iconst_0
+  8: ireturn
+  ...
+ 19: iconst_1
+  20: iload_2
+  21: iconst_3
+  22: imul
+  23: iadd
+  24: iconst_1
+  25: iadd
+  26: invokestatic  #170  // Method b:(I)Z
+  ...
+  43: bipush        100
+  45: istore_2
+  ...
+  52: iload_2
+  53: invokestatic  #138  // Method a:(I)Z
+  ...
+  70: iload_0
+  71: tableswitch   { // 6 to 8
+  ...
+  96: iload_1
+  97: getstatic     #94   // Field h:[B
+  100: getstatic     #90  // Field g:B
+  103: baload
+  104: imul
+  105: bipush        19
+  107: idiv
+  108: i2b
+  109: ireturn
+  110: iload_1
+  111: getstatic     #94  // Field h:[B
+  114: getstatic     #90  // Field g:B
+  117: baload
+  118: imul
+  119: bipush        21
+  121: idiv
+  122: i2b
+  123: ireturn
+  124: iload_1
+  125: getstatic     #94  // Field h:[B
+  128: getstatic     #90  // Field g:B
+  131: baload
+  132: imul
+  133: bipush        16
+  135: idiv
+  136: i2b
+  137: ireturn
+```
+
+The `m` static initializer sets `h` to `{60, 30, 10}`. The post-credits `m.c()`
+adds the award to the persisted byte, narrows with `i2b`, then applies only an
+upper cap of 100. The order matters because signed-byte overflow can make the
+stored value negative before the cap check:
+
+```text
+  0: getstatic     #44  // Field a:Lan;
+  3: dup
+  4: getfield      #89  // Field an.f:B
+  7: getstatic     #45  // Field a:B
+  10: invokestatic #117 // Method a:(B)B
+  13: iadd
+  14: i2b
+  15: putfield     #89  // Field an.f:B
+  18: getstatic     #44  // Field a:Lan;
+  21: getfield      #89 // Field an.f:B
+  24: bipush        100
+  26: if_icmple     37
+  29: getstatic     #44 // Field a:Lan;
+  32: bipush        100
+  34: putfield     #89 // Field an.f:B
+```

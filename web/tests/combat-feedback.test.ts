@@ -3,9 +3,18 @@ import {
   advanceDamageNumberAnimation,
   DAMAGE_NUMBER_PAINT_PERIOD_MS,
   INITIAL_DAMAGE_NUMBER_ANIMATION,
+  sourceDamageNumberHasVisibleGlyphs,
 } from '../src/world/combat-feedback';
 
 describe('source damage number timing', () => {
+  it('shows the pinned positive digit sheet and leaves negative source styles blank', () => {
+    expect(sourceDamageNumberHasVisibleGlyphs(11)).toBe(true);
+    expect(sourceDamageNumberHasVisibleGlyphs(0)).toBe(true);
+    expect(sourceDamageNumberHasVisibleGlyphs(-1)).toBe(false);
+    expect(sourceDamageNumberHasVisibleGlyphs(-12)).toBe(false);
+    expect(() => sourceDamageNumberHasVisibleGlyphs(Number.NaN)).toThrow(RangeError);
+  });
+
   it('keeps the first two source frames blank and shows digits in frames two and three', () => {
     const first = advanceDamageNumberAnimation(INITIAL_DAMAGE_NUMBER_ANIMATION, 2 * DAMAGE_NUMBER_PAINT_PERIOD_MS);
     expect(first).toEqual({

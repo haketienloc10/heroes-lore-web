@@ -3,9 +3,12 @@ import type { EquipmentDataTable, EquipmentItemDefinition } from '../src/world/e
 import {
   calculateEquipmentStats,
   createStartingEquipment,
+  equipmentInventoryIndicesForSlot,
+  EQUIPMENT_SLOT_LABELS,
   equipInventoryItem,
   normalizeEquipmentInventory,
   parseEquipmentLoadout,
+  sourceEquipmentCategoryForSlot,
 } from '../src/world/equipment';
 import type { InventoryStack } from '../src/world/loot';
 
@@ -49,6 +52,38 @@ function state(category: number, itemId: number, bonuses: [number, number, numbe
 }
 
 describe('source equipment loadout and player stats', () => {
+  it('labels the five source equipment slots in their stored category order', () => {
+    expect(EQUIPMENT_SLOT_LABELS).toEqual(['WEAPON', 'ARMOR', 'SHIELD', 'HELMET', 'SHOES']);
+  });
+
+  it('filters slot-first choices by class-specific category and source bag order', () => {
+    const inventory: InventoryStack[] = [
+      { category: 7, itemId: 0, count: 1 },
+      state(0, 0),
+      state(2, 0),
+      state(1, 0),
+      state(3, 0),
+      state(5, 0),
+      state(6, 0),
+      state(4, 0),
+      { ...state(0, 1), equipmentState: { ...state(0, 1).equipmentState!, sourceFlag: false } },
+      { category: 0, itemId: 1, count: 1 },
+    ];
+    expect([6, 7, 8].map((heroClassId) => sourceEquipmentCategoryForSlot(0, heroClassId as 6 | 7 | 8)))
+      .toEqual([0, 2, 1]);
+    expect(sourceEquipmentCategoryForSlot(1, 6)).toBeNull();
+    expect(sourceEquipmentCategoryForSlot(1, 8)).toBe(3);
+    expect(equipmentInventoryIndicesForSlot(inventory, 0, 6)).toEqual([1, 8]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 0, 7)).toEqual([2]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 0, 8)).toEqual([3]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 1, 6)).toEqual([]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 1, 8)).toEqual([4]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 2, 6)).toEqual([5]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 3, 6)).toEqual([6]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 4, 6)).toEqual([7]);
+    expect(equipmentInventoryIndicesForSlot(inventory, 5, 6)).toEqual([]);
+  });
+
   it('creates the source Ronin starter loadout and reproduces its level-one stats', () => {
     const catalog = catalogFixture();
     const equipment = createStartingEquipment(6, catalog);
@@ -115,6 +150,15 @@ describe('source equipment loadout and player stats', () => {
     const invalid = [...equipment];
     invalid[1] = state(6, 12);
     expect(parseEquipmentLoadout(invalid)).toBeNull();
+  });
+
+  it('does not equip an equipment record until its source identification flag is set', () => {
+    const inventory = [{
+      ...state(0, 1),
+      equipmentState: { ...state(0, 1).equipmentState!, sourceFlag: false },
+    }];
+    const equipment = createStartingEquipment(6, catalogFixture());
+    expect(equipInventoryItem(inventory, equipment, 0)).toBeNull();
   });
 
   it('fills an empty armor slot and removes that inventory entry', () => {

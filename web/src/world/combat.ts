@@ -10,7 +10,31 @@ export const ELEMENTAL_DAMAGE_TENTHS = [
 ] as const;
 
 export type ElementCode = 0 | 1 | 2 | 3;
+export type WeaponProcCode = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+export type SourceEnemyStatusId = 0 | 1 | 2 | 3 | 4;
 export const ENEMY_RESPAWN_DELAY_STEP = 16;
+
+/** Source selects /enm/data{min(playthroughMode, 2)} for its saved mode byte. */
+export function enemyDataVariantForPlaythroughMode(playthroughMode: number): 0 | 1 | 2 {
+  if (!Number.isInteger(playthroughMode) || playthroughMode < 0 || playthroughMode > 127) {
+    throw new RangeError('Playthrough mode must be a non-negative source byte');
+  }
+  return playthroughMode >= 2 ? 2 : playthroughMode as 0 | 1;
+}
+
+export interface SourceEnemyStatusEffect {
+  id: SourceEnemyStatusId;
+  /** Source `ce.b`, advanced once for each enemy update. */
+  ticksElapsed: number;
+}
+
+/** Source `s.i`: weapon subtype proc chance in percent, indexed by `s.c`. */
+export const WEAPON_PROC_CHANCE_PERCENT = [20, 16, 6, 13, 13, 10, 10, 10, 10] as const;
+
+/** Source `s.h`: proc code to enemy `ce` status ID; -1 means no status. */
+export const WEAPON_PROC_ENEMY_STATUS: readonly (SourceEnemyStatusId | null)[] = [
+  0, 1, null, null, null, 4, 3, 2, null,
+];
 
 export interface EnemyDamageInput {
   /** Damage value calculated by the attack or skill before enemy defense. */
@@ -66,6 +90,89 @@ export interface EnemyDataTable {
 export interface EnemyCombatant {
   sourceOrder: number;
   enemyId: number;
+  /** Source `instanceof au`: it overrides ordinary hit response and is immune to skill-ID 3/5 level-2 sweeps. */
+  sourceAu?: boolean;
+  /** Source sprite-set value retained separately from its render texture key. */
+  spriteId?: number;
+  /** Render-only key for a boss animation set, separate from its combat sprite ID. */
+  renderSpriteId?: number;
+  sourceBehavior?: EventEnemyPlacement['sourceBehavior'];
+  sourceRenderOffsetY?: number;
+  /** Source `cj.e` footprint for special `au` subclasses. */
+  sourceFootprintWidth?: 1 | 2 | 3;
+  /** Shared lifecycle key for a constructed source boss group. */
+  sourceGroupId?: string;
+  /** Special subclass update state. Not persisted; recreated with each map. */
+  sourceCbAi?: {
+    state: 1 | 2 | 3 | 4;
+    tick: number;
+    patternIndex: number;
+    attackType: 1 | 2 | 3;
+    attackDuration: number;
+    attackCooldown: number;
+    movementCooldown: number;
+    stunTicksRemaining: number;
+  };
+  /** Source `aq` actor state on map 13; it does not move from its spawn tile. */
+  sourceAqAi?: {
+    state: 1 | 2 | 3;
+    tick: number;
+    /** Source `ak.p`, initialized from enemy record `i.i`. */
+    attackDelay: number;
+    /** Source `ak.o`, initialized from enemy record `i.h`. */
+    actionDelay: number;
+    /** Source `ak.r`, accumulated while the actor is in state 2. */
+    turnAccumulation: number;
+    facing: Direction;
+    idleFrameCount: number;
+    walkFrameCount: number;
+    attackFrameCount: number;
+  };
+  /** Source `af`/`bc`/`cc` update state for the linked map-13 second wave. */
+  sourceMap13Ai?: {
+    state: 1 | 2 | 3;
+    tick: number;
+    /** Source `ak.p`, decremented only while the actor is idle. */
+    attackCooldown: number;
+    facing: Direction;
+    idleFrameCount: number;
+    attackFrameCount: number;
+    /** `cc.v`, the fallback heal rotation through af, bc, and cc. */
+    supportCycle: 0 | 1 | 2;
+    /** `bc.v/w`, the player cell sampled at attack frame 4. */
+    sampledPlayerTileX: number | null;
+    sampledPlayerTileY: number | null;
+  };
+  /** Source `az`/`aj` attacker or `cf` hazard loop on map 15. */
+  sourceMap15Ai?:
+    | {
+      role: 'az' | 'aj';
+      state: 1 | 2 | 3 | 5;
+      tick: number;
+      attackDelay: number;
+      actionDelay: number;
+      turnAccumulation: number;
+      facing: Direction;
+      lifetimeTicks: number;
+      /** `aj.w`, which alternates the paired strikes between directions 1 and 2. */
+      attackPhase: 1 | 2;
+    }
+    | {
+      role: 'cf';
+      state: 1 | 2 | 3 | 5;
+      tick: number;
+      attackDelay: number;
+      actionDelay: number;
+      facing: Direction;
+      attacksSinceRest: number;
+      /** Moving four-cell occupancy row in the source `f14a` grid. */
+      hazardRow: number | null;
+      collisionSettled: boolean;
+    };
+  /** Source death updates before `l()` removes the entity. */
+  deathUpdatesBeforeRemoval?: number;
+  /** Marker passed directly to the type-0 dispatcher when the source removes this enemy. */
+  directTypeZeroMarkerOnRemoval?: number;
   tileX: number;
   tileY: number;
   /** Source entity pixel origin; movement advances this by 8 pixels per update. */
@@ -75,6 +182,8 @@ export interface EnemyCombatant {
   provoked: boolean;
   definition: EnemyDefinition;
   hp: number;
+  /** Transient `ce` statuses held by the source `ak` actor; not serialized. */
+  sourceStatusEffects?: SourceEnemyStatusEffect[];
   state: 'alive' | 'death-pending' | 'respawn-wait' | 'removed';
   /** Three source updates return early; removal occurs on the following update. */
   deathUpdatesRemaining: number;
@@ -96,10 +205,63 @@ export interface EnemyCombatant {
   actionDelayTicksRemaining?: number;
   /** Source `ak.r`, accumulated by `ak.h()` while movement continues. */
   pursuitRetargetProgress?: number;
+  /** Source `ak.c`: retained reference to the player actor or active action. */
+  pursuitTarget?: 'player' | 'action' | null;
+  /** Source `ak.f`, set by the last paint according to the enemy's viewport bounds. */
+  sourceRenderedOnScreen?: boolean;
   /** Remaining source attack-animation updates after the strike begins. */
   attackAnimationTicksRemaining?: number;
   /** The source impact frame can damage the player at most once per attack. */
   attackHitResolved?: boolean;
+}
+
+export function enemyFootprintWidth(enemy: Pick<EnemyCombatant, 'definition' | 'sourceFootprintWidth'>): number {
+  return enemy.sourceFootprintWidth ?? (enemy.definition.classCode === 2 ? 2 : 1);
+}
+
+/** Apply `af.m()` when the map-13 lead boss enters its source death state. */
+export function removeSourceMap13BossCompanions(
+  combatants: readonly EnemyCombatant[],
+  newlyDefeatedSourceOrders: ReadonlySet<number>,
+): EnemyCombatant[] {
+  const defeatedGroupIds = new Set(combatants
+    .filter((enemy) => newlyDefeatedSourceOrders.has(enemy.sourceOrder) &&
+      enemy.enemyId === 36 && enemy.sourceGroupId !== undefined)
+    .map(({ sourceGroupId }) => sourceGroupId!));
+  if (defeatedGroupIds.size === 0) return [...combatants];
+  return combatants.map((enemy) => {
+    if (enemy.enemyId === 36 || enemy.state === 'removed' || enemy.sourceGroupId === undefined ||
+      !defeatedGroupIds.has(enemy.sourceGroupId)) return enemy;
+    return {
+      ...enemy,
+      state: 'removed',
+      deathUpdatesRemaining: 0,
+      respawnDelayRemaining: null,
+    };
+  });
+}
+
+/** Apply `cf.m()` immediately when the map-15 hazard enters its source death state. */
+export function removeSourceMap15HazardCompanions(
+  combatants: readonly EnemyCombatant[],
+  newlyDefeatedSourceOrders: ReadonlySet<number>,
+): EnemyCombatant[] {
+  const defeatedGroups = new Set(combatants
+    .filter((enemy) => newlyDefeatedSourceOrders.has(enemy.sourceOrder) &&
+      enemy.sourceBehavior === 'map15-cf' && enemy.sourceGroupId !== undefined)
+    .map(({ sourceGroupId }) => sourceGroupId!));
+  if (defeatedGroups.size === 0) return [...combatants];
+  return combatants.map((enemy) => {
+    if ((enemy.sourceBehavior !== 'map15-az' && enemy.sourceBehavior !== 'map15-aj') ||
+      enemy.state === 'removed' || enemy.sourceGroupId === undefined ||
+      !defeatedGroups.has(enemy.sourceGroupId)) return enemy;
+    return {
+      ...enemy,
+      state: 'removed',
+      deathUpdatesRemaining: 0,
+      respawnDelayRemaining: null,
+    };
+  });
 }
 
 export const ENEMY_DAMAGE_REACTION_TICKS = 4;
@@ -129,10 +291,7 @@ export const STARTER_RONIN_ATTACK: BasicAttackProfile = {
   criticalDamageBonusTenths: 10,
 };
 
-/**
- * Fresh-game Ronin defense fields, derived from the class-6 starter equipment
- * and `an.n()`; equipment menus and stat allocation are not modeled yet.
- */
+/** Fixed fresh-game Ronin baseline; live defense derives from saved stats and gear. */
 export const STARTER_RONIN_DEFENSE: PlayerDefenseProfile = {
   dexterity: 3,
   evasionBonus: 0,
@@ -176,7 +335,16 @@ export type BasicAttackResult =
     target: EnemyCombatant;
     damage: number;
     evasionThreshold: number;
+    /** Source proc 4 drains HP by half of the calculated enemy damage. */
+    playerHpCost: number;
+    /** Source proc 3 drains SP by 80% of the calculated enemy damage. */
+    playerSpCost: number;
+    procCode: WeaponProcCode | null;
   };
+
+export type SourceSkillDamageResult =
+  | { kind: 'no-target'; combatants: EnemyCombatant[] }
+  | { kind: 'hit'; combatants: EnemyCombatant[]; target: EnemyCombatant; damage: number };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -256,6 +424,97 @@ export function createEnemyCombatants(
     return {
       sourceOrder: placement.sourceOrder,
       enemyId: placement.enemyId,
+      ...(placement.spriteId === undefined ? {} : { spriteId: placement.spriteId }),
+      ...(placement.renderSpriteId === undefined ? {} : { renderSpriteId: placement.renderSpriteId }),
+      ...(placement.sourceBehavior === undefined ? {} : { sourceBehavior: placement.sourceBehavior }),
+      ...(placement.sourceRenderOffsetY === undefined
+        ? {}
+        : { sourceRenderOffsetY: placement.sourceRenderOffsetY }),
+      ...(placement.sourceBehavior === undefined ? {} : { sourceAu: true }),
+      ...(placement.sourceFootprintWidth === undefined
+        ? {}
+        : { sourceFootprintWidth: placement.sourceFootprintWidth }),
+      ...(placement.sourceGroupId === undefined
+        ? {}
+        : { sourceGroupId: placement.sourceGroupId }),
+      ...(placement.sourceBehavior !== 'map11-cb' ? {} : {
+        sourceCbAi: {
+          state: 1 as const,
+          tick: -1,
+          patternIndex: 0,
+          attackType: 1 as const,
+          // `/boss/spr/1_32` source state 3 has 15 frames (pattern 1).
+          attackDuration: 15,
+          attackCooldown: definition.behaviorTiming[1],
+          movementCooldown: definition.behaviorTiming[0],
+          stunTicksRemaining: 0,
+        },
+      }),
+      ...(placement.sourceBehavior !== 'map13-aq' ? {} : {
+        sourceAqAi: {
+          state: 1 as const,
+          tick: -1,
+          attackDelay: definition.behaviorTiming[1],
+          actionDelay: definition.behaviorTiming[0],
+          turnAccumulation: 0,
+          facing: 2 as const,
+          // Tracks in /boss/spr/2_35 resolve the `i.j/k/l` animation bounds.
+          idleFrameCount: 6,
+          walkFrameCount: 4,
+          attackFrameCount: 5,
+        },
+      }),
+      ...(!['map13-af', 'map13-bc', 'map13-cc'].includes(placement.sourceBehavior ?? '') ? {} : {
+        sourceMap13Ai: {
+          state: 1 as const,
+          tick: -1,
+          attackCooldown: definition.behaviorTiming[1],
+          facing: 2 as const,
+          idleFrameCount: placement.sourceBehavior === 'map13-af' ? 6 : 4,
+          attackFrameCount: placement.sourceBehavior === 'map13-af'
+            ? 5
+            : placement.sourceBehavior === 'map13-bc' ? 14 : 8,
+          supportCycle: 0 as const,
+          sampledPlayerTileX: null,
+          sampledPlayerTileY: null,
+        },
+        animationStateIndex: 0 as const,
+        animationDirection: 2 as const,
+      }),
+      ...(placement.sourceBehavior !== 'map15-az' && placement.sourceBehavior !== 'map15-aj'
+        ? {}
+        : {
+          sourceMap15Ai: {
+            role: placement.sourceBehavior === 'map15-az' ? 'az' as const : 'aj' as const,
+            state: 1 as const,
+            tick: -1,
+            attackDelay: definition.behaviorTiming[1],
+            actionDelay: definition.behaviorTiming[0],
+            turnAccumulation: 0,
+            facing: 1 as const,
+            lifetimeTicks: 0,
+            attackPhase: 2 as const,
+          },
+        }),
+      ...(placement.sourceBehavior !== 'map15-cf' ? {} : {
+        sourceMap15Ai: {
+          role: 'cf' as const,
+          state: 2 as const,
+          tick: -1,
+          attackDelay: definition.behaviorTiming[1],
+          actionDelay: definition.behaviorTiming[0],
+          facing: 1 as const,
+          attacksSinceRest: 0,
+          hazardRow: null,
+          collisionSettled: false,
+        },
+      }),
+      ...(placement.deathUpdatesBeforeRemoval === undefined
+        ? {}
+        : { deathUpdatesBeforeRemoval: placement.deathUpdatesBeforeRemoval }),
+      ...(placement.directTypeZeroMarkerOnRemoval === undefined
+        ? {}
+        : { directTypeZeroMarkerOnRemoval: placement.directTypeZeroMarkerOnRemoval }),
       tileX: placement.tileX,
       tileY: placement.tileY,
       pixelX: placement.tileX * 16,
@@ -271,8 +530,10 @@ export function createEnemyCombatants(
       pursuitRetargetProgress: 0,
       attackAnimationTicksRemaining: 0,
       attackHitResolved: false,
-      animationStateIndex: 0,
-      animationDirection: 2,
+      // `ak` starts visible until its first paint updates the source `f` flag.
+      sourceRenderedOnScreen: true,
+      animationStateIndex: placement.sourceBehavior === 'map15-cf' ? 1 : 0,
+      animationDirection: placement.sourceBehavior?.startsWith('map15-') ? 1 : 2,
       animationFrameIndex: -1,
     };
   });
@@ -282,6 +543,8 @@ export function createEnemyCombatants(
 export function advanceEnemyDeathTick(combatants: EnemyCombatant[]): EnemyCombatant[] {
   return combatants.map((enemy) => {
     if (enemy.state !== 'death-pending') return enemy;
+    // `cf.l()` writes the hazard collision and intentionally never calls `au.l()`.
+    if (enemy.sourceBehavior === 'map15-cf') return enemy;
     if (enemy.deathUpdatesRemaining > 0) {
       return { ...enemy, deathUpdatesRemaining: enemy.deathUpdatesRemaining - 1 };
     }
@@ -320,6 +583,7 @@ export function respawnEnemy(
     pixelX: tileX * 16,
     pixelY: tileY * 16,
     hp: enemy.definition.maxHp,
+    sourceStatusEffects: [],
     state: 'alive',
     deathUpdatesRemaining: 0,
     respawnDelayRemaining: null,
@@ -329,8 +593,11 @@ export function respawnEnemy(
     attackCooldownTicksRemaining: enemy.definition.behaviorTiming[1],
     actionDelayTicksRemaining: enemy.definition.behaviorTiming[0],
     pursuitRetargetProgress: 0,
+    pursuitTarget: null,
     attackAnimationTicksRemaining: 0,
     attackHitResolved: false,
+    // Respawn creates a fresh `ak` instance, whose source `f` starts true.
+    sourceRenderedOnScreen: true,
     animationStateIndex: 0,
     animationDirection: 2,
     animationFrameIndex: -1,
@@ -356,11 +623,12 @@ export function findFacingEnemy(
     enemy.tileX === targetX && enemy.tileY === targetY);
 }
 
-/** Start the source directional reaction after a successful `ak.a(...)` hit. */
+/** Start the ordinary `ak` hit response; `au` overrides the source damage handler. */
 export function beginEnemyDamageReaction(
   enemy: EnemyCombatant,
   direction: Direction,
 ): EnemyCombatant {
+  if (enemy.sourceAu === true) return enemy;
   return {
     ...enemy,
     provoked: true,
@@ -409,6 +677,16 @@ export function calculateEnemyEvasionThreshold(
   return Math.min(50, threshold);
 }
 
+/** The special `au` incoming-hit path doubles the evasion threshold without a cap. */
+function calculateSourceAuEvasionThreshold(
+  enemy: Pick<EnemyDefinition, 'evasion'>,
+  attacker: Pick<BasicAttackProfile, 'dexterity' | 'evasionBonus' | 'skillAdjustment'>,
+): number {
+  const threshold = enemy.evasion - (attacker.dexterity + attacker.evasionBonus) -
+    Math.trunc(attacker.skillAdjustment / 5) + 10;
+  return threshold * 2;
+}
+
 /** Apply one ordinary, neutral or elemental player hit using the source ordering. */
 export function resolveBasicAttack(
   combatants: EnemyCombatant[],
@@ -416,6 +694,7 @@ export function resolveBasicAttack(
   profile: BasicAttackProfile,
   roll0to99: number,
   critical = false,
+  procCode: WeaponProcCode | null = null,
 ): BasicAttackResult {
   if (!Number.isInteger(roll0to99) || roll0to99 < 0 || roll0to99 > 99) {
     throw new RangeError('Attack roll must be an integer from 0 through 99');
@@ -426,25 +705,79 @@ export function resolveBasicAttack(
       enemy.state === 'alive' && enemy.hp > 0);
   if (index < 0) return { kind: 'no-target', combatants };
 
-  const target = combatants[index];
-  const evasionThreshold = calculateEnemyEvasionThreshold(target.definition, profile);
+  const originalTarget = combatants[index];
+  // Ordinary `ak` targets call `t()` before resolving damage. Special `au`
+  // targets override that hit path and retain sleep status.
+  const target = originalTarget.sourceAu === true
+    ? originalTarget
+    : clearSourceEnemySleepOnHit(originalTarget);
+  const evasionThreshold = target.sourceAu === true
+    ? calculateSourceAuEvasionThreshold(target.definition, profile)
+    : calculateEnemyEvasionThreshold(target.definition, profile);
   if (roll0to99 < evasionThreshold) {
+    if (target !== originalTarget) {
+      const awakenedCombatants = [...combatants];
+      awakenedCombatants[index] = target;
+      return { kind: 'miss', combatants: awakenedCombatants, target, evasionThreshold };
+    }
     return { kind: 'miss', combatants, target, evasionThreshold };
   }
-  const damage = calculateEnemyDamage({
+  const defense = target.sourceAu !== true &&
+    target.sourceStatusEffects?.some(({ id }) => id === 4)
+    ? Math.trunc(target.definition.defense / 2)
+    : target.definition.defense;
+  const calculatedDamage = calculateEnemyDamage({
     power: profile.power,
-    defense: target.definition.defense,
+    defense,
     attackElement: profile.attackElement,
     targetElement: target.definition.elementCode,
     applyDamageBonus: critical,
     bonusTenths: profile.criticalDamageBonusTenths,
   }).damage;
+  let damage = calculatedDamage;
+  let playerHpCost = 0;
+  let playerSpCost = 0;
+  switch (procCode) {
+    case 2:
+      if (target.sourceAu !== true) damage = target.definition.attack;
+      break;
+    case 3:
+      playerSpCost = Math.trunc((calculatedDamage * (target.sourceAu === true ? 30 : 80)) / 100);
+      break;
+    case 4:
+      playerHpCost = Math.trunc(calculatedDamage / 2);
+      break;
+    case 8:
+      damage *= 2;
+      break;
+  }
+  const procStatusId = target.sourceAu === true || procCode === null
+    ? null
+    : WEAPON_PROC_ENEMY_STATUS[procCode];
+  let sourceStatusEffects = target.sourceStatusEffects;
+  if (procStatusId !== null) {
+    const previous = sourceStatusEffects ?? [];
+    const existingIndex = previous.findIndex(({ id }) => id === procStatusId);
+    if (existingIndex >= 0) {
+      sourceStatusEffects = previous.map((effect, effectIndex) => effectIndex === existingIndex
+        ? { ...effect, ticksElapsed: 0 }
+        : effect);
+    } else {
+      sourceStatusEffects = [...previous, { id: procStatusId, ticksElapsed: 0 }];
+    }
+  }
   const nextTarget: EnemyCombatant = {
     ...target,
+    ...(sourceStatusEffects === undefined ? {} : { sourceStatusEffects }),
     hp: Math.max(0, target.hp - damage),
     state: target.hp - damage <= 0 ? 'death-pending' : 'alive',
-    deathUpdatesRemaining: target.hp - damage <= 0 ? 3 : 0,
+    deathUpdatesRemaining: target.hp - damage <= 0
+      ? target.deathUpdatesBeforeRemoval ?? 3
+      : 0,
     respawnDelayRemaining: target.hp - damage <= 0 ? null : target.respawnDelayRemaining,
+    // Source `ak.a(...)` resets `n.k` when it enters state 5. The browser's
+    // -1 cursor selects source frame 0 when the idle death track next advances.
+    animationFrameIndex: target.hp - damage <= 0 ? -1 : target.animationFrameIndex,
   };
   const nextCombatants = [...combatants];
   nextCombatants[index] = nextTarget;
@@ -454,7 +787,146 @@ export function resolveBasicAttack(
     target: nextTarget,
     damage,
     evasionThreshold,
+    playerHpCost,
+    playerSpCost,
+    procCode,
   };
+}
+
+/** Select the source weapon proc, then offhand proc, with source short-circuit rolls. */
+export function selectWeaponProcCode(
+  weaponCode: number | undefined | null,
+  offhandCode: number | undefined | null,
+  roll0to99: () => number,
+): WeaponProcCode | null {
+  const isProcCode = (value: number | undefined | null): value is WeaponProcCode =>
+    Number.isInteger(value) && value !== null && value !== undefined && value >= 0 && value <= 8;
+  const rollFor = (code: WeaponProcCode): boolean => {
+    const roll = roll0to99();
+    if (!Number.isInteger(roll) || roll < 0 || roll > 99) {
+      throw new RangeError('Weapon proc roll must be an integer from 0 through 99');
+    }
+    return roll < WEAPON_PROC_CHANCE_PERCENT[code];
+  };
+  if (isProcCode(weaponCode) && rollFor(weaponCode)) return weaponCode;
+  if (isProcCode(offhandCode) && rollFor(offhandCode)) return offhandCode;
+  return null;
+}
+
+/**
+ * Apply the direct `ak.a(int, byte)` damage path used by player skills.
+ * Unlike ordinary player attacks this path has no evasion or defense roll;
+ * only the source elemental multiplier is applied.
+ */
+export function applySourceSkillDamage(
+  combatants: EnemyCombatant[],
+  targetSourceOrder: number | undefined,
+  power: number,
+  attackElement: ElementCode,
+): SourceSkillDamageResult {
+  const index = targetSourceOrder === undefined
+    ? -1
+    : combatants.findIndex((enemy) => enemy.sourceOrder === targetSourceOrder &&
+      enemy.state === 'alive' && enemy.hp > 0);
+  if (index < 0) return { kind: 'no-target', combatants };
+
+  // Ordinary `ak.a(int, byte)` clears status 0. Special `au` subclasses
+  // override that method and take direct skill damage without waking.
+  const target = combatants[index].sourceAu === true
+    ? combatants[index]
+    : clearSourceEnemySleepOnHit(combatants[index]);
+  const damage = calculateEnemyDamage({
+    power: Math.max(0, power),
+    defense: 0,
+    attackElement,
+    targetElement: target.definition.elementCode,
+  }).damage;
+  const hp = Math.max(0, target.hp - damage);
+  const nextTarget: EnemyCombatant = {
+    ...target,
+    hp,
+    state: hp === 0 ? 'death-pending' : 'alive',
+    deathUpdatesRemaining: hp === 0 ? target.deathUpdatesBeforeRemoval ?? 3 : 0,
+    respawnDelayRemaining: hp === 0 ? null : target.respawnDelayRemaining,
+    // The direct `ak.a(int, byte)` path sets source `k` to 0 on death. The
+    // ordinary `ak.b(int)` combat path instead uses the -1 first-frame cursor.
+    animationFrameIndex: hp === 0 ? 0 : target.animationFrameIndex,
+  };
+  const nextCombatants = [...combatants];
+  nextCombatants[index] = nextTarget;
+  return { kind: 'hit', combatants: nextCombatants, target: nextTarget, damage };
+}
+
+function clearSourceEnemySleepOnHit(target: EnemyCombatant): EnemyCombatant {
+  const statuses = target.sourceStatusEffects;
+  if (statuses === undefined || !statuses.some(({ id }) => id === 0)) return target;
+  return {
+    ...target,
+    sourceStatusEffects: statuses.filter(({ id }) => id !== 0),
+  };
+}
+
+/**
+ * Apply `ak.b(int)`'s flat counterattack damage from skill ID 0 level 2.
+ * The source subtracts this amount directly, without defense or element rolls.
+ */
+export function applySourceCounterDamage(
+  combatants: EnemyCombatant[],
+  targetSourceOrder: number | undefined,
+  power: number,
+): SourceSkillDamageResult {
+  const index = targetSourceOrder === undefined
+    ? -1
+    : combatants.findIndex((enemy) => enemy.sourceOrder === targetSourceOrder &&
+      enemy.state === 'alive' && enemy.hp > 0);
+  if (index < 0) return { kind: 'no-target', combatants };
+
+  const target = combatants[index];
+  const damage = Math.max(0, Math.trunc(power));
+  const hp = Math.max(0, target.hp - damage);
+  const nextTarget: EnemyCombatant = {
+    ...target,
+    hp,
+    state: hp === 0 ? 'death-pending' : 'alive',
+    deathUpdatesRemaining: hp === 0 ? target.deathUpdatesBeforeRemoval ?? 3 : 0,
+    respawnDelayRemaining: hp === 0 ? null : target.respawnDelayRemaining,
+    animationFrameIndex: hp === 0 ? -1 : target.animationFrameIndex,
+  };
+  const nextCombatants = [...combatants];
+  nextCombatants[index] = nextTarget;
+  return { kind: 'hit', combatants: nextCombatants, target: nextTarget, damage };
+}
+
+/**
+ * Apply `ak.c(byte)` from skill IDs 3/5 level 2. The call subtracts the
+ * target's maximum HP directly, and the source helper excludes `au` bosses.
+ */
+export function applySourceInstantKillDamage(
+  combatants: EnemyCombatant[],
+  targetSourceOrder: number | undefined,
+  matchingElement: 1 | 3,
+): SourceSkillDamageResult {
+  const index = targetSourceOrder === undefined
+    ? -1
+    : combatants.findIndex((enemy) => enemy.sourceOrder === targetSourceOrder &&
+      enemy.state === 'alive' && enemy.hp > 0 && enemy.sourceAu !== true &&
+      enemy.definition.elementCode === matchingElement);
+  if (index < 0) return { kind: 'no-target', combatants };
+
+  const target = combatants[index];
+  const damage = target.definition.maxHp;
+  const hp = Math.max(0, target.hp - damage);
+  const nextTarget: EnemyCombatant = {
+    ...target,
+    hp,
+    state: hp === 0 ? 'death-pending' : 'alive',
+    deathUpdatesRemaining: hp === 0 ? target.deathUpdatesBeforeRemoval ?? 3 : 0,
+    respawnDelayRemaining: hp === 0 ? null : target.respawnDelayRemaining,
+    animationFrameIndex: hp === 0 ? -1 : target.animationFrameIndex,
+  };
+  const nextCombatants = [...combatants];
+  nextCombatants[index] = nextTarget;
+  return { kind: 'hit', combatants: nextCombatants, target: nextTarget, damage };
 }
 
 /**

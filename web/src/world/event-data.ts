@@ -1,5 +1,6 @@
 import type { MapDecorationData, WorldGrid } from './map-data';
 import type { InventoryStack } from './loot';
+import type { Direction } from './actor';
 
 export interface EventOperationData {
   format: 'heroes-lore-event-operations-raw-v1';
@@ -40,11 +41,29 @@ export interface EventEnemyPlacement {
   tileY: number;
   enemyId: number;
   sourceOrder: number;
+  /** Source sprite set when the map loader constructs a special enemy. */
+  spriteId?: number;
+  /** Render-only animation key; source-created bosses can use `/boss/spr` assets. */
+  renderSpriteId?: number;
+  /** Concrete source subclass behavior used by an enemy placement. */
+  sourceBehavior?: 'map11-cb' | 'map13-aq' | 'map13-af' | 'map13-bc' | 'map13-cc' |
+    'map15-az' | 'map15-aj' | 'map15-cf' | 'map82-bu';
+  /** Width in source map cells for special `au` subclasses. */
+  sourceFootprintWidth?: 1 | 2 | 3;
+  /** Related special entities share a lifecycle group. */
+  sourceGroupId?: string;
+  /** Enemy updates spent in the source death state before its removal callback. */
+  deathUpdatesBeforeRemoval?: number;
+  /** Source-specific vertical draw displacement applied by the subclass. */
+  sourceRenderOffsetY?: number;
+  /** Direct `ag.a(marker)` type-0 dispatch made by this entity's source removal callback. */
+  directTypeZeroMarkerOnRemoval?: number;
 }
 
 export interface MapTransition {
   mapId: number;
-  regionId: number;
+  /** Raw opcode-7 value; source `m.f()` adds one before setting the hero direction. */
+  entryDirectionIndex: number;
   tileX: number;
   tileY: number;
   scriptIndex: number;
@@ -62,7 +81,8 @@ export interface EventScriptEffects {
   flagChanges: EventFlagChange[];
   destination?: {
     mapId: number;
-    regionId: number;
+    /** Raw opcode-7 value; source `m.f()` adds one before setting the hero direction. */
+    entryDirectionIndex: number;
     tileX: number;
     tileY: number;
   };
@@ -82,6 +102,14 @@ export interface EventFlagState {
 export interface PreparedMapTransition {
   destination: MapTransition;
   flags: EventFlagState;
+}
+
+/** Convert the opcode-7 destination-facing index to the source's 1-based direction. */
+export function sourceMapTransitionDirection(entryDirectionIndex: number): Direction {
+  if (!Number.isInteger(entryDirectionIndex) || entryDirectionIndex < 0 || entryDirectionIndex > 3) {
+    throw new RangeError('Map transition facing index must be from 0 through 3');
+  }
+  return (entryDirectionIndex + 1) as Direction;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -204,6 +232,8 @@ export interface InitialMapEventState {
   decorations: MapDecorationData;
   visibleNpcSourceOrders: ReadonlySet<number>;
   npcEmotions: Readonly<Record<number, number | null>>;
+  /** Source opcode 111 clears the player's transient effects and selects an emotion sprite. */
+  heroEmotion: number | null | undefined;
   npcPlacements: EventNpcPlacement[];
   enemyPlacements: EventEnemyPlacement[];
   actionBlockIndex: number | undefined;
@@ -216,7 +246,16 @@ export interface DynamicEnemyPlacement {
   footprintWidth: number;
 }
 
-/** Build occupied map-cell indices from visible static NPC and enemy placements. */
+export interface DynamicNpcPlacement {
+  sourceOrder: number;
+  /** Source actor pixel coordinates before the render container's 8-pixel center offset. */
+  pixelX: number;
+  pixelY: number;
+  /** Source `n.g()` only registers standing actors; moving actors release their cells. */
+  occupiesCells: boolean;
+}
+
+/** Build occupied map-cell indices from visible NPC actors and enemy placements. */
 export function createEntityOccupancy(
   events: EventOperationData,
   mapWidth: number,
@@ -226,6 +265,7 @@ export function createEntityOccupancy(
     events.enemyPlacements.map(({ sourceOrder }) => sourceOrder),
   ),
   activeEnemyPlacements?: readonly DynamicEnemyPlacement[],
+  activeNpcPlacements?: readonly DynamicNpcPlacement[],
 ): ReadonlySet<number> {
   if (!Number.isInteger(mapWidth) || mapWidth <= 0 || !Number.isInteger(mapHeight) || mapHeight <= 0) {
     throw new RangeError('Map dimensions must be positive integers');
@@ -236,8 +276,27 @@ export function createEntityOccupancy(
       occupied.add(tileY * mapWidth + tileX);
     }
   };
+  const activeNpcPlacementsByOrder = activeNpcPlacements === undefined
+    ? undefined
+    : new Map(activeNpcPlacements.map((placement) => [placement.sourceOrder, placement]));
   for (const npc of events.npcPlacements) {
-    if (visibleNpcSourceOrders.has(npc.sourceOrder)) addCell(npc.tileX, npc.tileY);
+    if (!visibleNpcSourceOrders.has(npc.sourceOrder)) continue;
+    const active = activeNpcPlacementsByOrder?.get(npc.sourceOrder);
+    if (active !== undefined && !active.occupiesCells) continue;
+    const pixelX = active?.pixelX ?? npc.tileX * 16;
+    const pixelY = active?.pixelY ?? npc.tileY * 16;
+    if (!Number.isInteger(pixelX) || !Number.isInteger(pixelY)) {
+      throw new RangeError('NPC source pixel positions must be integers');
+    }
+    const tileX = Math.floor(pixelX / 16);
+    const tileY = Math.floor(pixelY / 16);
+    const offsetX = pixelX - tileX * 16;
+    const offsetY = pixelY - tileY * 16;
+    addCell(tileX, tileY);
+    // `n.g()` stores a half-tile actor in its base cell and one adjacent cell.
+    // Its vertical-offset branch takes precedence when both offsets are set.
+    if (offsetY !== 0) addCell(tileX, tileY + 1);
+    else if (offsetX !== 0) addCell(tileX + 1, tileY);
   }
   const enemyPlacements = activeEnemyPlacements ?? events.enemyPlacements
     .filter(({ sourceOrder }) => visibleEnemySourceOrders.has(sourceOrder))
@@ -260,8 +319,16 @@ export function applyInitialMapEventState(
   gameFlags: ReadonlySet<number>,
   decorations: MapDecorationData,
 ): InitialMapEventState {
-  const selected = events.descriptors.find((descriptor) => gameFlags.has(descriptor.cellIndex));
-  const actionBlockIndex = selected?.rawMarkerByte;
+  let actionBlockIndex: number | undefined;
+  for (const descriptor of events.descriptors) {
+    if (actionBlockIndex !== undefined || !gameFlags.has(descriptor.cellIndex)) continue;
+    const marker = descriptor.rawMarkerByte > 127
+      ? descriptor.rawMarkerByte - 256
+      : descriptor.rawMarkerByte;
+    // The source uses -1 as its "no action block selected" sentinel, so a
+    // matching 0xff descriptor does not prevent a later match from winning.
+    if (marker !== -1) actionBlockIndex = marker;
+  }
   const actions = actionBlockIndex === undefined ? undefined : events.actionBlocks[actionBlockIndex]?.actions;
   const tileIds = world.map.tileIds.map((row) => [...row]);
   const collisionValues = world.collision.values.map((row) => [...row]);
@@ -270,6 +337,7 @@ export function applyInitialMapEventState(
   const enemyPlacements = events.enemyPlacements.map((placement) => ({ ...placement }));
   const visibleNpcSourceOrders = new Set(events.npcPlacements.map(({ sourceOrder }) => sourceOrder));
   const npcEmotions: Record<number, number | null> = {};
+  let heroEmotion: number | null | undefined;
 
   for (const action of actions ?? []) {
     const [first, second, third] = action.arguments;
@@ -301,7 +369,13 @@ export function applyInitialMapEventState(
       visibleNpcSourceOrders.delete(first);
     } else if (action.opcode === 112) {
       const placement = npcPlacements.find(({ sourceOrder }) => sourceOrder === first);
-      if (placement !== undefined) npcEmotions[first] = second > 0 ? second - 1 : null;
+      if (placement !== undefined) {
+        const emotionId = second > 127 ? second - 256 : second;
+        npcEmotions[first] = emotionId === 0 ? null : emotionId - 1;
+      }
+    } else if (action.opcode === 111) {
+      const emotionId = first > 127 ? first - 256 : first;
+      heroEmotion = emotionId === 0 ? null : emotionId - 1;
     }
   }
 
@@ -313,6 +387,7 @@ export function applyInitialMapEventState(
     decorations: { ...decorations, objects: decorationObjects },
     visibleNpcSourceOrders,
     npcEmotions,
+    heroEmotion,
     npcPlacements,
     enemyPlacements,
     actionBlockIndex,
@@ -321,6 +396,10 @@ export function applyInitialMapEventState(
 
 function hasFlag(flags: ReadonlySet<number>, index: number): boolean {
   return flags.has(index);
+}
+
+function signedEventByte(value: number): number {
+  return value > 0x7f ? value - 0x100 : value;
 }
 
 /** Select a flag- and trigger-type-qualified script using the source packed predicate. */
@@ -349,9 +428,13 @@ export function resolveTriggerScript(
     const firstFlags = firstUsesGameFlags ? gameFlags : questFlags;
     const secondFlags = secondUsesGameFlags ? gameFlags : questFlags;
     if (!hasFlag(firstFlags, firstFlag) || !hasFlag(secondFlags, secondFlag)) continue;
-    if (itemCategory !== 255 && !inventory.some((stack) =>
-      stack.category === itemCategory && stack.itemId === itemId && stack.count >= itemCount,
-    )) continue;
+    if (itemCategory !== 255) {
+      const sourceCategory = signedEventByte(itemCategory);
+      const sourceItemId = signedEventByte(itemId);
+      const sourceItemCount = signedEventByte(itemCount);
+      if (!inventory.some((stack) => stack.category === sourceCategory &&
+        stack.itemId === sourceItemId && stack.count >= sourceItemCount)) continue;
+    }
     if (scriptIndex === 255) continue;
 
     const commands = data.scripts[scriptIndex];
@@ -404,16 +487,17 @@ export function resolveEventScriptEffects(
     }
     if (opcode === 7) {
       const position = commands[commandIndex + 1];
-      if (position === undefined || position[0] !== 8) return undefined;
+      if (position === undefined || position[0] !== 8 || !Number.isInteger(second) ||
+        second < 0 || second > 3) return undefined;
       return {
         scriptIndex,
         dialogueStringIndices,
         flagChanges,
         destination: {
-          mapId: first,
-          regionId: second,
-          tileX: position[1],
-          tileY: position[2],
+          mapId: signedEventByte(first),
+          entryDirectionIndex: second,
+          tileX: signedEventByte(position[1]),
+          tileY: signedEventByte(position[2]),
         },
       };
     }
@@ -429,7 +513,7 @@ export function resolveEventScriptEffects(
       }
       continue;
     }
-    if (opcode === 26 || opcode === 29) continue;
+    if (opcode === 26 || opcode === 27 || opcode === 29) continue;
     if (opcode === 99) {
       return { scriptIndex, dialogueStringIndices, flagChanges };
     }
@@ -471,7 +555,7 @@ export function prepareMapTransition(
  * Resolve a source type-0..3 trigger and its map-change command.
  * Event condition bits and script opcodes 7/8/9/30 follow ag and m in the pinned JAR.
  * Inventory trigger rows check category, item ID, and minimum quantity against
- * the current stack list. Script prefixes other than flag mutations and the
+ * the regular inventory stack list for all item categories. Script prefixes other than flag mutations and the
  * source's logging-only BGM markers are unresolved during normal play; explicit
  * skip input may fast-forward them to the script's map change.
  */

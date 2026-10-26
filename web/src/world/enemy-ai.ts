@@ -1,6 +1,7 @@
 import type { Direction } from './actor';
 import type { BaseCollisionData } from './map-data';
-import type { EnemyCombatant } from './combat';
+import { enemyFootprintWidth, type EnemyCombatant } from './combat';
+import { hasSourceEnemyStatus, resetSourceEnemyActionWhileBlocked, sourceEnemyActionIsBlocked } from './enemy-status';
 
 const DIRECTION_VECTOR: Record<Direction, { x: number; y: number }> = {
   1: { x: 0, y: -1 },
@@ -23,10 +24,94 @@ export interface EnemyPursuitContext {
   occupiedCellIndices: ReadonlySet<number>;
   playerTileX: number;
   playerTileY: number;
+  playerAction?: {
+    tileX: number;
+    tileY: number;
+    phase: 0 | 1 | 2 | 3;
+    /** Exact `o.m113a()` result: `false` makes `ak.i()` retain an actor target. */
+    needsActorTargetReselection: boolean;
+  };
   /** Source `g.a(min, max)` stream used for bounded rolls. */
   randomInteger: (minimum: number, maximum: number) => number;
   /** Raw `cj.f245a.nextInt()` stream used for signs, direction bytes and ties. */
   rawRandomInteger: () => number;
+  /** Source `ak.i()` attack check, run before path selection at an aligned tile. */
+  tryStartAttack?: (enemy: EnemyCombatant) => EnemyCombatant | undefined;
+}
+
+export interface SourceEnemyViewport {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+/** Match the viewport test in `ak.a(Graphics, ...)` for an ordinary enemy. */
+export function isEnemyWithinSourceViewport(
+  enemy: EnemyCombatant,
+  viewport: SourceEnemyViewport,
+): boolean {
+  const sourceCenterX = enemy.pixelX + footprintWidth(enemy) * 8;
+  const sourceOriginY = enemy.pixelY + 8;
+  return sourceCenterX + 16 >= viewport.x &&
+    sourceOriginY >= viewport.y &&
+    sourceCenterX - 16 <= viewport.x + viewport.width &&
+    sourceOriginY <= viewport.y + viewport.height + 32;
+}
+
+/** Record `ak.a(Graphics,...)`'s visibility flag only after a source-paced paint. */
+export function updateEnemySourceViewportOnPaint(
+  enemies: readonly EnemyCombatant[],
+  viewport: SourceEnemyViewport,
+  sourcePaintPasses: number,
+): readonly EnemyCombatant[] {
+  if (!Number.isInteger(sourcePaintPasses) || sourcePaintPasses < 0) {
+    throw new RangeError('Source paint pass count must be a non-negative integer');
+  }
+  if (sourcePaintPasses === 0) return enemies;
+  return enemies.map((enemy) => ({
+    ...enemy,
+    sourceRenderedOnScreen: isEnemyWithinSourceViewport(enemy, viewport),
+  }));
+}
+
+/**
+ * `ak.d()` still ticks attached statuses offscreen, then returns before actor
+ * state, reactions, movement, attack callbacks, and death timers when `f` is
+ * false, the player is outside `i.g`, and there is no retained target.
+ */
+export function shouldPauseEnemyBrainOffscreen(
+  enemy: EnemyCombatant,
+  playerTileX: number,
+  playerTileY: number,
+): boolean {
+  const range = enemy.definition.acquisitionRange;
+  const playerOutsideSourceRange =
+    Math.abs(playerTileX - enemy.tileX) > range ||
+    Math.abs(playerTileY - enemy.tileY) > range;
+  return enemy.sourceRenderedOnScreen === false && playerOutsideSourceRange &&
+    enemy.pursuitTarget == null;
+}
+
+/** True when the actor uses the ordinary source `ak.d()` update path. */
+export function usesOrdinarySourceEnemyUpdate(enemy: EnemyCombatant): boolean {
+  return enemy.sourceAu !== true && enemy.sourceBehavior === undefined &&
+    enemy.sourceCbAi === undefined && enemy.sourceAqAi === undefined &&
+    enemy.sourceMap13Ai === undefined && enemy.sourceMap15Ai === undefined &&
+    enemy.directTypeZeroMarkerOnRemoval === undefined;
+}
+
+/**
+ * The source `au.d()` override runs its AI and attack update without `ak.d()`'s
+ * offscreen return. Keep that subclass distinction at every scene tick phase.
+ */
+export function shouldPauseSourceEnemyBrainOffscreen(
+  enemy: EnemyCombatant,
+  playerTileX: number,
+  playerTileY: number,
+): boolean {
+  return usesOrdinarySourceEnemyUpdate(enemy) &&
+    shouldPauseEnemyBrainOffscreen(enemy, playerTileX, playerTileY);
 }
 
 interface DirectionChoice {
@@ -35,7 +120,7 @@ interface DirectionChoice {
 }
 
 function footprintWidth(enemy: EnemyCombatant): number {
-  return enemy.definition.classCode === 2 ? 2 : 1;
+  return enemyFootprintWidth(enemy);
 }
 
 function occupiedCells(enemy: EnemyCombatant, mapWidth: number): Set<number> {
@@ -57,9 +142,9 @@ function isOpen(
   enemy: EnemyCombatant,
   context: EnemyPursuitContext,
   occupied: ReadonlySet<number>,
-  targetCellAllowed = false,
+  targetCellAllowed?: { tileX: number; tileY: number },
 ): boolean {
-  const { collision, playerTileX, playerTileY } = context;
+  const { collision } = context;
   if (x < 0 || y < 0 || x + footprintWidth(enemy) > collision.width || y >= collision.height) {
     return false;
   }
@@ -67,7 +152,8 @@ function isOpen(
     const cellX = x + offset;
     const cellIndex = y * collision.width + cellX;
     if ((collision.values[y]?.[cellX] ?? -1) < 0) return false;
-    if (occupied.has(cellIndex) && !(targetCellAllowed && cellX === playerTileX && y === playerTileY)) {
+    if (occupied.has(cellIndex) && !(targetCellAllowed !== undefined &&
+      cellX === targetCellAllowed.tileX && y === targetCellAllowed.tileY)) {
       return false;
     }
   }
@@ -116,7 +202,7 @@ function diagonalFallback(
       enemy,
       context,
       occupied,
-      secondX === targetX && secondY === targetY,
+      secondX === targetX && secondY === targetY ? { tileX: targetX, tileY: targetY } : undefined,
     );
     if (firstOpen && secondOpen) return first as Direction;
   }
@@ -243,15 +329,48 @@ function withAnimationState(
   };
 }
 
-function hasAcquiredPlayerTarget(enemy: EnemyCombatant, context: EnemyPursuitContext): boolean {
-  const closestHorizontal = Math.min(
-    ...Array.from({ length: footprintWidth(enemy) }, (_, offset) =>
-      Math.abs(context.playerTileX - (enemy.tileX + offset))),
-  );
+function isWithinAcquisitionBounds(
+  enemy: EnemyCombatant,
+  tileX: number,
+  tileY: number,
+): boolean {
   const provokedRange = enemy.definition.extendedProvokedRange ? 100 : 8;
   const acquisitionRange = enemy.provoked ? provokedRange : enemy.definition.acquisitionRange;
-  return closestHorizontal <= acquisitionRange &&
-    Math.abs(context.playerTileY - enemy.tileY) <= acquisitionRange;
+  return Math.abs(tileX - enemy.tileX) <= acquisitionRange &&
+    Math.abs(tileY - enemy.tileY) <= acquisitionRange;
+}
+
+interface PursuitTarget {
+  kind: 'player' | 'action';
+  tileX: number;
+  tileY: number;
+}
+
+function selectPursuitTarget(
+  enemy: EnemyCombatant,
+  context: EnemyPursuitContext,
+): PursuitTarget | null {
+  const action = context.playerAction;
+  if (enemy.pursuitTarget === 'action' && action?.phase === 2) {
+    return { kind: 'action', tileX: action.tileX, tileY: action.tileY };
+  }
+  if (enemy.pursuitTarget === 'player' && action?.needsActorTargetReselection === false) {
+    return { kind: 'player', tileX: context.playerTileX, tileY: context.playerTileY };
+  }
+
+  const range = enemy.provoked
+    ? enemy.definition.extendedProvokedRange ? 100 : 8
+    : enemy.definition.acquisitionRange;
+  const actionInBounds = action !== undefined && action.phase === 2 &&
+    Math.abs(action.tileX - enemy.tileX) <= range &&
+    Math.abs(action.tileY - enemy.tileY) <= range;
+  if (actionInBounds && context.randomInteger(0, 9) < 7) {
+    return { kind: 'action', tileX: action.tileX, tileY: action.tileY };
+  }
+  if (isWithinAcquisitionBounds(enemy, context.playerTileX, context.playerTileY)) {
+    return { kind: 'player', tileX: context.playerTileX, tileY: context.playerTileY };
+  }
+  return null;
 }
 
 /** Source `ak.r()`: positive values start a cardinal step; non-positive values idle. */
@@ -269,7 +388,8 @@ function advanceIdleWanderTick(
   const retargetProgress = enemy.pursuitRetargetProgress ?? 0;
   if (!startsMoving) {
     const attackCooldownTicksRemaining = Math.floor(
-      ((enemy.definition.behaviorTiming[1] + 1) * (actionRoll ?? 0)) / 10,
+      (((enemy.definition.behaviorTiming[1] * (hasSourceEnemyStatus(enemy, 1) ? 2 : 1)) + 1) *
+        (actionRoll ?? 0)) / 10,
     );
     return withAnimationState({
       ...enemy,
@@ -341,7 +461,7 @@ export function advanceEnemyPursuitTick(
   enemy: EnemyCombatant,
   context: EnemyPursuitContext,
 ): EnemyCombatant {
-  if (enemy.state !== 'alive') return enemy;
+  if (enemy.state !== 'alive' || !usesOrdinarySourceEnemyUpdate(enemy)) return enemy;
 
   // Source `n.e()` finishes the second 8-pixel half-step without replanning.
   if (enemy.pixelX % 16 !== 0 || enemy.pixelY % 16 !== 0) {
@@ -365,7 +485,8 @@ export function advanceEnemyPursuitTick(
         animationFrameIndex: -1,
       };
       if ((decisionEnemy.actionDelayTicksRemaining ?? 0) > 0) {
-        return decrementIdleTimers(decisionEnemy);
+        const attack = context.tryStartAttack?.(decisionEnemy);
+        return attack ?? decrementIdleTimers(decisionEnemy);
       }
     } else {
       decisionEnemy = {
@@ -375,6 +496,11 @@ export function advanceEnemyPursuitTick(
       };
     }
   }
+
+  // `ak.h()` calls `ak.i()` at this aligned boundary. Its attack check runs
+  // before `n.a(cj, byte)` chooses a path and consumes that method's raw RNG.
+  const attack = context.tryStartAttack?.(decisionEnemy);
+  if (attack !== undefined) return attack;
 
   // `ak.i()` checks targets while idle, but only chooses a new path after `o`
   // reaches zero. `ak.o()` decrements this timer at the end of the same tick.
@@ -386,20 +512,29 @@ export function advanceEnemyPursuitTick(
   const occupied = new Set(context.occupiedCellIndices);
   for (const cell of occupiedCells(decisionEnemy, context.collision.width)) occupied.delete(cell);
   occupied.add(context.playerTileY * context.collision.width + context.playerTileX);
-
-  if (!hasAcquiredPlayerTarget(decisionEnemy, context)) {
-    return decrementIdleTimers(advanceIdleWanderTick(decisionEnemy, context, occupied));
+  const action = context.playerAction;
+  if (action !== undefined && action.phase !== 0 &&
+    action.tileX >= 0 && action.tileY >= 0 &&
+    action.tileX < context.collision.width && action.tileY < context.collision.height) {
+    occupied.add(action.tileY * context.collision.width + action.tileX);
   }
 
-  const choice = chooseDirection(decisionEnemy, context.playerTileX, context.playerTileY, context, occupied);
+  const target = selectPursuitTarget(decisionEnemy, context);
+  if (target === null) {
+    const idleEnemy = { ...decisionEnemy, pursuitTarget: null };
+    return decrementIdleTimers(advanceIdleWanderTick(idleEnemy, context, occupied));
+  }
+
+  const targetedEnemy = { ...decisionEnemy, pursuitTarget: target.kind };
+  const choice = chooseDirection(targetedEnemy, target.tileX, target.tileY, context, occupied);
   if (!choice.move) {
-    return decrementIdleTimers(withAnimationState(decisionEnemy, 0, choice.direction));
+    return decrementIdleTimers(withAnimationState(targetedEnemy, 0, choice.direction));
   }
 
-  if (!canMove(decisionEnemy, choice.direction, context, occupied)) {
-    return decrementIdleTimers(withAnimationState(decisionEnemy, 0, choice.direction));
+  if (!canMove(targetedEnemy, choice.direction, context, occupied)) {
+    return decrementIdleTimers(withAnimationState(targetedEnemy, 0, choice.direction));
   }
-  return moveHalfTile(decisionEnemy, choice.direction);
+  return moveHalfTile(targetedEnemy, choice.direction);
 }
 
 /** Advance pursuit, attack cooldown, type-0/1 melee, and type-2/3 lane attacks. */
@@ -408,7 +543,9 @@ export function advanceEnemyBehaviorTick(
   context: EnemyPursuitContext,
   attackTrackFrameCount: number | undefined,
 ): EnemyCombatant {
-  if (enemy.state !== 'alive') return enemy;
+  if (enemy.state !== 'alive' || !usesOrdinarySourceEnemyUpdate(enemy)) return enemy;
+  if (shouldPauseEnemyBrainOffscreen(enemy, context.playerTileX, context.playerTileY)) return enemy;
+  if (sourceEnemyActionIsBlocked(enemy)) return resetSourceEnemyActionWhileBlocked(enemy);
 
   const attackTicksRemaining = enemy.attackAnimationTicksRemaining ?? 0;
   if (enemy.animationStateIndex === 2 && attackTicksRemaining > 0) {
@@ -417,7 +554,8 @@ export function advanceEnemyBehaviorTick(
       return withAnimationState({
         ...enemy,
         attackAnimationTicksRemaining: 0,
-        attackCooldownTicksRemaining: Math.max(0, enemy.definition.behaviorTiming[1]),
+        attackCooldownTicksRemaining: Math.max(0,
+          enemy.definition.behaviorTiming[1] * (hasSourceEnemyStatus(enemy, 1) ? 2 : 1)),
         actionDelayTicksRemaining: Math.max(0, enemy.definition.behaviorTiming[0] - 1),
         pursuitRetargetProgress: 0,
       }, 0);
@@ -436,12 +574,21 @@ export function advanceEnemyBehaviorTick(
     : behaviorType <= 1 && enemyFacesPlayer(candidate, context.playerTileX, context.playerTileY);
   const startAttack = (candidate: EnemyCombatant) => withAnimationState({
     ...candidate,
-    attackCooldownTicksRemaining: candidate.definition.behaviorTiming[1] + 1,
+    attackCooldownTicksRemaining: (candidate.definition.behaviorTiming[1] *
+      (hasSourceEnemyStatus(candidate, 1) ? 2 : 1)) + 1,
     actionDelayTicksRemaining: candidate.definition.behaviorTiming[0],
     pursuitRetargetProgress: 0,
     attackAnimationTicksRemaining: attackTrackFrameCount,
     attackHitResolved: false,
   }, 2);
+  const tryStartAttack = (candidate: EnemyCombatant) => {
+    const candidateCooldown = candidate.attackCooldownTicksRemaining ?? cooldown;
+    if (canUseAttackAnimation && candidateCooldown <= 0 && canAttack(candidate) &&
+      attackTrackFrameCount !== undefined && attackTrackFrameCount > 0) {
+      return startAttack(candidate);
+    }
+    return undefined;
+  };
   if (canUseAttackAnimation && !wasMoving && cooldown <= 0 && canAttack(enemy) &&
     attackTrackFrameCount !== undefined && attackTrackFrameCount > 0) {
     return startAttack(enemy);
@@ -452,13 +599,11 @@ export function advanceEnemyBehaviorTick(
     return { ...pursued, attackCooldownTicksRemaining: cooldown };
   }
 
-  const pursued = advanceEnemyPursuitTick(enemy, context);
+  const pursued = advanceEnemyPursuitTick(enemy, {
+    ...context,
+    tryStartAttack: wasMoving ? tryStartAttack : undefined,
+  });
   const pursuedCooldown = pursued.attackCooldownTicksRemaining ?? cooldown;
-  if (canUseAttackAnimation && wasMoving && pursued.animationStateIndex === 0 &&
-    pursuedCooldown <= 0 && canAttack(pursued) &&
-    attackTrackFrameCount !== undefined && attackTrackFrameCount > 0) {
-    return startAttack(pursued);
-  }
   return {
     ...pursued,
     attackCooldownTicksRemaining: pursued.animationStateIndex === 0

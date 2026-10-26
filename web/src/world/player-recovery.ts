@@ -47,9 +47,13 @@ export function advancePlayerRecoveryTick(
   activity: PlayerRecoveryActivity,
   vitals: PlayerRecoveryVitals,
   gameplayActive = true,
+  regenerationMultiplier: 1 | 2 = 1,
 ): PlayerRecoveryTickResult {
   validateState(state);
   validateVitals(vitals);
+  if (regenerationMultiplier !== 1 && regenerationMultiplier !== 2) {
+    throw new RangeError('Player recovery multiplier must be 1 or 2');
+  }
   if (!gameplayActive) return { state, hp: vitals.hp, sp: vitals.sp, hpChange: 0, spChange: 0 };
 
   let hpTimer = state.hpTimer;
@@ -65,11 +69,11 @@ export function advancePlayerRecoveryTick(
   let hp = vitals.hp;
   let sp = vitals.sp;
   if (hpTimer <= 0) {
-    hp = clamp(hp + vitals.attributes.hp, vitals.maxHp);
+    hp = clamp(hp + (vitals.attributes.hp * regenerationMultiplier), vitals.maxHp);
     hpTimer = Math.min(67 + vitals.level, 100);
   }
   if (spTimer <= 0) {
-    sp = clamp(sp + vitals.attributes.will, vitals.maxSp);
+    sp = clamp(sp + (vitals.attributes.will * regenerationMultiplier), vitals.maxSp);
     spTimer = SOURCE_SP_RECOVERY_INTERVAL;
   }
 

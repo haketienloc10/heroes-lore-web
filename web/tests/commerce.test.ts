@@ -120,6 +120,37 @@ describe('source shop, refiner, and blacksmith transactions', () => {
     expect(sellCommerceItem(commerce, sold.inventory, sold.wallet, 18, 0, 1).status).toBe('not-sellable');
   });
 
+  it('sells from the selected inventory row when item types appear more than once', () => {
+    const equipment = [
+      equipmentStack(0, 0, { upgradeByte: 1 }),
+      equipmentStack(0, 0, { upgradeByte: 2 }),
+    ];
+    const soldEquipment = sellCommerceItem(commerce, equipment, 0, 0, 0, 1, 1);
+    expect(soldEquipment).toMatchObject({
+      status: 'sold', wallet: 20, inventory: [equipment[0]],
+    });
+
+    const potions = [
+      { category: 7, itemId: 0, count: 99 },
+      { category: 7, itemId: 0, count: 4 },
+    ];
+    const soldPotions = sellCommerceItem(commerce, potions, 0, 7, 0, 3, 1);
+    expect(soldPotions).toMatchObject({
+      status: 'sold', wallet: 60,
+      inventory: [potions[0], { category: 7, itemId: 0, count: 1 }],
+    });
+  });
+
+  it('rejects a selected sell row that no longer matches the requested item or quantity', () => {
+    const inventory = [{ category: 7, itemId: 0, count: 2 }];
+    expect(sellCommerceItem(commerce, inventory, 100, 7, 0, 1, 2)).toMatchObject({
+      status: 'invalid-item', wallet: 100, inventory,
+    });
+    expect(sellCommerceItem(commerce, inventory, 100, 7, 0, 3, 0)).toMatchObject({
+      status: 'invalid-item', wallet: 100, inventory,
+    });
+  });
+
   it('mixes duplicate ingredients from one stack and retains the source 500 wallet amount', () => {
     const mixed = mixCommerceItems(
       commerce, [{ category: 7, itemId: 0, count: 2 }], 500, [0, 0],
@@ -134,6 +165,20 @@ describe('source shop, refiner, and blacksmith transactions', () => {
       commerce, [{ category: 7, itemId: 0, count: 1 }, { category: 7, itemId: 1, count: 1 }],
       500, [0, 1],
     )).toMatchObject({ status: 'failed', inventory: [], wallet: 500 });
+  });
+
+  it('consumes mixture ingredients from the selected rows in capped duplicate stacks', () => {
+    const inventory = [
+      { category: 7, itemId: 0, count: 99 },
+      { category: 7, itemId: 0, count: 2 },
+    ];
+    expect(mixCommerceItems(commerce, inventory, 500, [1, 1])).toMatchObject({
+      status: 'mixed', wallet: 500,
+      inventory: [inventory[0], { category: 8, itemId: 0, count: 1 }],
+    });
+    expect(mixCommerceItems(commerce, inventory, 500, [1, 1, 1])).toMatchObject({
+      status: 'not-enough-materials', inventory,
+    });
   });
 
   it('identifies equipment for 100 and assigns an orb to a shield for 500', () => {

@@ -54,6 +54,7 @@ body {
 @media (max-width: 600px), (pointer: coarse), (hover: none) {
   .shell {
     grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
     padding: 8px 8px max(8px, env(safe-area-inset-bottom));
   }
@@ -91,7 +92,7 @@ body {
 
   .touch-actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(64px, 1fr));
+    grid-template-columns: repeat(3, minmax(52px, 1fr));
     gap: 8px;
   }
 
@@ -114,9 +115,63 @@ body {
     font-size: 14px !important;
   }
 
-  #touch-controls button:active {
+  #touch-controls button:active,
+  #touch-controls button.touch-active {
     transform: translateY(2px);
     box-shadow: none;
     background: #3c526e;
+  }
+}
+
+@media (max-height: 480px) and (max-width: 600px),
+       (max-height: 480px) and (pointer: coarse),
+       (max-height: 480px) and (hover: none) {
+  .shell {
+    gap: 4px;
+    padding: 4px;
+  }
+
+  #game {
+    width: min(100%, calc((100dvh - 80px) * 0.75));
+    max-height: calc(100dvh - 80px);
+  }
+
+  #touch-controls {
+    min-height: 68px;
+    gap: 8px;
+  }
+
+  .touch-dpad {
+    grid-template-columns: repeat(4, 32px);
+    grid-template-rows: 32px;
+    gap: 2px;
+  }
+
+  .touch-dpad [data-touch-control="up"],
+  .touch-dpad [data-touch-control="left"],
+  .touch-dpad [data-touch-control="right"],
+  .touch-dpad [data-touch-control="down"] {
+    grid-area: auto;
+  }
+
+  .touch-dpad-center {
+    display: none;
+  }
+
+  .touch-actions {
+    grid-template-columns: repeat(4, minmax(48px, 1fr));
+    gap: 4px;
+  }
+
+  #touch-controls button {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  .touch-actions button {
+    min-width: 48px;
+    font-size: 11px !important;
   }
 }

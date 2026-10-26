@@ -7,6 +7,7 @@ import {
   playerAttackPower,
   playerAttackSpCost,
   playerSpriteAnimationSlot,
+  playerSpritePose,
   queuePlayerAttack,
 } from '../src/world/player-combo';
 
@@ -68,6 +69,33 @@ describe('source-shaped player attack chains', () => {
     const queued = queuePlayerAttack(EMPTY_PLAYER_COMBO, 'heavy', 1).state;
     const attack = advancePlayerCombo(queued, 71, 6, 1).state;
     expect(playerSpriteAnimationSlot(attack, false)).toBe(7);
+  });
+
+  it('uses the fixed source state-6 death pose regardless of facing or active combo', () => {
+    const activeAttack = {
+      ...EMPTY_PLAYER_COMBO,
+      stage: 2,
+      frame: 5,
+      activeStyle: 'heavy' as const,
+    };
+    expect(playerSpritePose(activeAttack, 4, true, 3, true)).toEqual({
+      animationSlot: 2,
+      directionSlot: 0,
+      frameIndex: 0,
+    });
+  });
+
+  it('keeps source facing and movement frames for living player states', () => {
+    expect(playerSpritePose(EMPTY_PLAYER_COMBO, 3, true, 2, false)).toEqual({
+      animationSlot: 1,
+      directionSlot: 2,
+      frameIndex: 2,
+    });
+    expect(playerSpritePose(EMPTY_PLAYER_COMBO, 4, false, 3, false)).toEqual({
+      animationSlot: 0,
+      directionSlot: 3,
+      frameIndex: 0,
+    });
   });
 
   it('applies the source light-stage and heavy-stage power factors', () => {

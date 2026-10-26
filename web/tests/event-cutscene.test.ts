@@ -55,7 +55,7 @@ describe('ordered event cutscenes', () => {
     expect(yes.status).toBe('transfer');
     expect(yes.inventory).toEqual([]);
     expect(yes.transition).toEqual({
-      mapId: 12, regionId: 0, tileX: 13, tileY: 13, scriptIndex: 1,
+      mapId: 12, entryDirectionIndex: 0, tileX: 13, tileY: 13, scriptIndex: 1,
     });
 
     let no = advanceEventCutscene(createEventCutscene(1, 2, inventory), commands, (id) => [`text-${id}`]);
@@ -76,6 +76,51 @@ describe('ordered event cutscenes', () => {
     const result = advanceEventCutscene(createEventCutscene(0, 2), commands, () => []);
     expect(result.status).toBe('ended');
     expect(result.playerChanges).toEqual([]);
+  });
+
+  it('executes source opcode 27 as a no-op', () => {
+    const commands = [[27, 0, 0], [99, 0, 0]];
+    expect(canRunEventCutscene(commands)).toBe(true);
+
+    const result = advanceEventCutscene(createEventCutscene(0, 2), commands, () => []);
+    expect(result.status).toBe('ended');
+    expect(result.commandIndex).toBe(2);
+    expect(result.flagChanges).toEqual([]);
+    expect(result.playerChanges).toEqual([]);
+  });
+
+  it('executes signed opcode-31/32 relative jumps and yields on backedges', () => {
+    for (const [opcode, operand] of [[31, 255], [32, 1]]) {
+      const commands = [[13, 0, 5], [opcode, operand, 0], [99, 0, 0]];
+      expect(canRunEventCutscene(commands)).toBe(true);
+
+      const first = advanceEventCutscene(createEventCutscene(0, 2), commands, () => []);
+      expect(first).toMatchObject({
+        status: 'delay',
+        commandIndex: 0,
+        delayRemainingMs: EVENT_CUTSCENE_TICK_MS,
+        sourceWorldTickDuringDelay: false,
+        playerChanges: [{ kind: 'hp', amount: 5 }],
+      });
+
+      const next = advanceEventCutscene(first, commands, () => [], EVENT_CUTSCENE_TICK_MS);
+      expect(next).toMatchObject({
+        status: 'delay',
+        commandIndex: 0,
+        delayRemainingMs: EVENT_CUTSCENE_TICK_MS,
+        sourceWorldTickDuringDelay: false,
+        playerChanges: [{ kind: 'hp', amount: 5 }, { kind: 'hp', amount: 5 }],
+      });
+    }
+
+    const signedForward = [[32, 255, 0], [13, 0, 5], [99, 0, 0]];
+    expect(canRunEventCutscene(signedForward)).toBe(true);
+    expect(advanceEventCutscene(
+      createEventCutscene(0, 2), signedForward, () => [], 0, true,
+    )).toMatchObject({ status: 'ended', playerChanges: [{ kind: 'hp', amount: 5 }] });
+
+    expect(canRunEventCutscene([[31, 255, 0], [99, 0, 0]])).toBe(false);
+    expect(canRunEventCutscene([[32, 1, 0], [99, 0, 0]])).toBe(false);
   });
 
   it('raises the signed-byte combo limit from opcode 19 without lowering saved progress', () => {
@@ -99,7 +144,28 @@ describe('ordered event cutscenes', () => {
     expect(advanceEventCutscene(
       createEventCutscene(79, 2, [], [], 1, 7), setRoninQuest, () => [], 0, true,
     ).comboLimit).toBe(1);
-    expect(canRunEventCutscene([[30, 29, 2], [99, 0, 0]])).toBe(false);
+  });
+
+  it('runs quest-29 toggles from the current flag state and keeps the Ronin bonus max-only', () => {
+    const toggleRoninQuest = [[30, 29, 2], [99, 0, 0]];
+    expect(canRunEventCutscene(toggleRoninQuest)).toBe(true);
+    const enabled = advanceEventCutscene(
+      createEventCutscene(79, 2, [], [], 1, 6, false), toggleRoninQuest, () => [], 0, true,
+    );
+    expect(enabled).toMatchObject({
+      questFlag29Set: true,
+      comboLimit: 2,
+      flagChanges: [{ flagSet: 'quest', operation: 'toggle', flagIndex: 29 }],
+    });
+
+    const disabled = advanceEventCutscene(
+      createEventCutscene(79, 2, [], [], 2, 6, true), toggleRoninQuest, () => [], 0, true,
+    );
+    expect(disabled).toMatchObject({ questFlag29Set: false, comboLimit: 2 });
+    const nonRonin = advanceEventCutscene(
+      createEventCutscene(79, 2, [], [], 1, 7, false), toggleRoninQuest, () => [], 0, true,
+    );
+    expect(nonRonin).toMatchObject({ questFlag29Set: true, comboLimit: 1 });
   });
 
   it('preserves combo limits from the four extracted event streams', () => {
@@ -181,11 +247,32 @@ describe('ordered event cutscenes', () => {
     expect(result.npcImages).toEqual({ 1: 44 });
   });
 
+  it('applies map object image changes only to valid placements', () => {
+    const commands = [[40, 1, 7], [99, 0, 0]];
+    expect(canRunEventCutscene(commands, undefined, undefined, undefined, 2)).toBe(true);
+    expect(canRunEventCutscene(commands, undefined, undefined, undefined, 1)).toBe(false);
+    expect(canRunEventCutscene([[40, 0, 128], [99, 0, 0]])).toBe(false);
+
+    const result = advanceEventCutscene(createEventCutscene(0, 2), commands, () => []);
+    expect(result.status).toBe('ended');
+    expect(result.objectImages).toEqual({ 1: 7 });
+  });
+
+  it('rejects map-60 emotion scripts that address NPC index 8 past the eight placements', () => {
+    for (const emotion of [6, 5]) {
+      expect(canRunEventCutscene([
+        [50, 8, emotion], [9, 3, 1], [99, 0, 0],
+      ], 8)).toBe(false);
+    }
+  });
+
   it('routes complete rendered command streams and rejects streams with unimplemented opcodes', () => {
     expect(canRunEventCutscene([
       [15, 1, 4], [4, 2, 0], [16, 1, 0], [17, 1, 2], [1, 3, 0], [99, 0, 0],
     ])).toBe(true);
     expect(canRunEventCutscene([[46, 1, 0], [99, 0, 0]])).toBe(true);
+    expect(canRunEventCutscene([[47, 1, 0], [99, 0, 0]], 2)).toBe(true);
+    expect(canRunEventCutscene([[47, 1, 0], [99, 0, 0]], 1)).toBe(false);
     expect(canRunEventCutscene([[49, 13, 0], [99, 0, 0]])).toBe(false);
     expect(canRunEventCutscene([[50, 0, 13], [99, 0, 0]])).toBe(false);
     expect(canRunEventCutscene([[50, 1, 4], [99, 0, 0]], 1)).toBe(false);
@@ -194,17 +281,34 @@ describe('ordered event cutscenes', () => {
     expect(canRunEventCutscene([[39, 12, 13], [99, 0, 0]])).toBe(true);
     expect(canRunEventCutscene([[39, 256, 13], [99, 0, 0]])).toBe(false);
     expect(canRunEventCutscene([[37, 9, 4], [99, 0, 0]])).toBe(false);
-    expect(canRunEventCutscene([[47, 1, 0], [99, 0, 0]])).toBe(false);
     expect(canRunEventCutscene([[15, 1, 0], [99, 0, 0]])).toBe(false);
     expect(canRunEventCutscene([])).toBe(false);
+    for (const entryDirectionIndex of [0, 1, 2, 3]) {
+      expect(canRunEventCutscene([
+        [7, 12, entryDirectionIndex], [8, 5, 6], [99, 0, 0],
+      ])).toBe(true);
+    }
+    const invalidFacingCommands = [[7, 12, 4], [8, 5, 6], [99, 0, 0]];
+    expect(canRunEventCutscene(invalidFacingCommands)).toBe(false);
+    expect(advanceEventCutscene(
+      createEventCutscene(0, 2), invalidFacingCommands, () => [],
+    )).toMatchObject({ status: 'unsupported', unsupportedOpcode: 7 });
   });
 
-  it('hides the selected NPC while keeping visibility restoration unsupported', () => {
-    const commands = [[46, 2, 0], [99, 0, 0]];
-    const result = advanceEventCutscene(createEventCutscene(0, 2), commands, () => []);
+  it('hides and restores the selected NPC through the source visibility commands', () => {
+    const commands = [[46, 2, 0], [47, 2, 0], [99, 0, 0]];
+    expect(canRunEventCutscene(commands, 3)).toBe(true);
+    expect(canRunEventCutscene(commands, 2)).toBe(false);
 
-    expect(result.status).toBe('ended');
-    expect(result.npcVisibility).toEqual({ 2: false });
+    const hidden = advanceEventCutscene(
+      createEventCutscene(0, 2), [[46, 2, 0], [99, 0, 0]], () => [],
+    );
+    expect(hidden).toMatchObject({ status: 'ended', npcVisibility: { 2: false } });
+
+    const restored = advanceEventCutscene(
+      createEventCutscene(0, 2), [[47, 2, 0], [99, 0, 0]], () => [],
+    );
+    expect(restored).toMatchObject({ status: 'ended', npcVisibility: { 2: true } });
   });
 
   it('runs the extracted map-12 prerequisite script with source emotion and hide commands', () => {
@@ -237,7 +341,7 @@ describe('ordered event cutscenes', () => {
       { flagSet: 'game', operation: 'set', flagIndex: 48 },
     ]);
     expect(result.transition).toEqual({
-      mapId: 13, regionId: 0, tileX: 10, tileY: 10, scriptIndex: 0,
+      mapId: 13, entryDirectionIndex: 0, tileX: 10, tileY: 10, scriptIndex: 0,
     });
   });
 
@@ -260,7 +364,7 @@ describe('ordered event cutscenes', () => {
     expect(result.experienceAwards).toEqual([5000]);
     expect(result.skillIds).toEqual([0, 1, 4]);
     expect(result.transition).toEqual({
-      mapId: 62, regionId: 1, tileX: 16, tileY: 2, scriptIndex: 1,
+      mapId: 62, entryDirectionIndex: 1, tileX: 16, tileY: 2, scriptIndex: 1,
     });
   });
 
@@ -284,6 +388,14 @@ describe('ordered event cutscenes', () => {
     expect(result.flagChanges).toEqual([
       { flagSet: 'game', operation: 'set', flagIndex: 48 },
     ]);
+
+    const signedItemId = [[11, 7, 200], [21, 1, 0], [99, 0, 0]];
+    expect(canRunEventCutscene(signedItemId)).toBe(false);
+    const unsupportedItem = advanceEventCutscene(
+      createEventCutscene(0, 2), signedItemId, () => [],
+    );
+    expect(unsupportedItem.status).toBe('unsupported');
+    expect(unsupportedItem.inventory).toEqual([]);
   });
 
   it('shows source-localized item failure messages and ends the event after confirmation', () => {
@@ -377,6 +489,79 @@ describe('ordered event cutscenes', () => {
     expect(randomIndex).toBe(6);
   });
 
+  it('repositions the hero for standalone opcode 8 and bounds-checks its map-local tile', () => {
+    const commands = [[8, 10, 12], [6, 3, 0], [1, 4, 0], [99, 0, 0]];
+    expect(canRunEventCutscene(commands, 3, { width: 11, height: 13 })).toBe(true);
+    expect(canRunEventCutscene(commands, 3, { width: 10, height: 13 })).toBe(false);
+    expect(canRunEventCutscene(commands, 3, { width: 11, height: 12 })).toBe(false);
+
+    let state = advanceEventCutscene(createEventCutscene(1, 2), commands, () => ['pause']);
+    expect(state).toMatchObject({
+      status: 'dialogue',
+      heroDirection: 3,
+      heroPositionChanges: [{ tileX: 10, tileY: 12 }],
+    });
+    state = advanceEventCutsceneDialogue(state);
+    state = advanceEventCutscene(state, commands, () => [], 0, true);
+    expect(state.status).toBe('ended');
+    expect(state.heroPositionChanges).toEqual([{ tileX: 10, tileY: 12 }]);
+
+    const signedPosition = advanceEventCutscene(
+      createEventCutscene(2, 2), [[8, 255, 128], [99, 0, 0]], () => [], 0, true,
+    );
+    expect(signedPosition.heroPositionChanges).toEqual([{ tileX: -1, tileY: -128 }]);
+    expect(canRunEventCutscene([[8, 255, 128], [99, 0, 0]])).toBe(true);
+    expect(canRunEventCutscene([[8, 255, 128], [99, 0, 0]], undefined, {
+      width: 20,
+      height: 20,
+    })).toBe(false);
+  });
+
+  it('sign-extends opcode-7 transfer map and tile bytes like the source', () => {
+    const commands = [[7, 64, 1], [8, 255, 128], [99, 0, 0]];
+    expect(canRunEventCutscene(commands)).toBe(true);
+    expect(advanceEventCutscene(
+      createEventCutscene(3, 2), commands, () => [], 0, true,
+    )).toMatchObject({
+      status: 'transfer',
+      transition: {
+        mapId: 64,
+        entryDirectionIndex: 1,
+        tileX: -1,
+        tileY: -128,
+      },
+    });
+  });
+
+  it('passes the extracted map-71 script 1 through the full-stream interpreter gate', () => {
+    const commands = [
+      [3, 1, 0], [26, 6, 0], [4, 4, 0], [5, 0, 0], [1, 0, 253], [9, 27, 0],
+      [30, 8, 0], [50, 0, 6], [50, 1, 6], [50, 2, 6], [1, 1, 0], [1, 2, 0],
+      [50, 0, 0], [50, 1, 0], [50, 2, 0], [1, 3, 253], [1, 4, 0], [1, 5, 253],
+      [8, 10, 12], [6, 1, 0], [24, 0, 0], [22, 0, 0], [1, 6, 0],
+      [41, 0, 44], [41, 1, 44], [41, 2, 44], [23, 0, 0], [4, 6, 0], [1, 7, 253],
+      [6, 2, 0], [1, 8, 252], [1, 9, 252], [4, 6, 0], [1, 10, 253],
+      [1, 11, 253], [9, 25, 1], [9, 77, 0], [9, 84, 0], [99, 0, 0],
+    ];
+    expect(commands).toHaveLength(39);
+    expect(canRunEventCutscene(commands, 3, { width: 20, height: 20 })).toBe(true);
+
+    const result = advanceEventCutscene(createEventCutscene(1, 2), commands, () => [], 0, true);
+    expect(result).toMatchObject({
+      status: 'ended',
+      commandIndex: 39,
+      heroDirection: 2,
+      heroPositionChanges: [{ tileX: 10, tileY: 12 }],
+    });
+    expect(result.flagChanges).toEqual([
+      { flagSet: 'game', operation: 'set', flagIndex: 27 },
+      { flagSet: 'quest', operation: 'set', flagIndex: 8 },
+      { flagSet: 'game', operation: 'clear', flagIndex: 25 },
+      { flagSet: 'game', operation: 'set', flagIndex: 77 },
+      { flagSet: 'game', operation: 'set', flagIndex: 84 },
+    ]);
+  });
+
   it('runs the extracted map-53 quest script with its screen and map changes', () => {
     const commands = [
       [1, 5, 0], [24, 0, 0], [9, 34, 0], [11, 21, 2], [21, 255, 0],
@@ -412,7 +597,7 @@ describe('ordered event cutscenes', () => {
       () => [],
     );
     expect(handoff.status).toBe('transfer');
-    expect(handoff.transition).toMatchObject({ mapId: 54, regionId: 0, tileX: 17, tileY: 14 });
+    expect(handoff.transition).toMatchObject({ mapId: 54, entryDirectionIndex: 0, tileX: 17, tileY: 14 });
   });
 
   it('moves the fixed camera by source direction and speed for each event tick', () => {
@@ -421,12 +606,14 @@ describe('ordered event cutscenes', () => {
     let state = advanceEventCutscene(createEventCutscene(5, 2), commands, () => []);
     expect(state).toMatchObject({
       status: 'delay',
+      sourceWorldTickDuringDelay: true,
       cameraMode: 'fixed',
       cameraMoveDirection: 2,
       cameraMoveSpeed: 4,
       cameraPanX: 0,
       cameraPanY: 0,
       delayRemainingMs: 16 * EVENT_CUTSCENE_TICK_MS,
+      sourceWorldTickPending: true,
     });
 
     state = advanceEventCutscene(state, commands, () => [], 7 * EVENT_CUTSCENE_TICK_MS);
@@ -435,16 +622,89 @@ describe('ordered event cutscenes', () => {
       cameraMoveSpeed: 4,
       cameraPanX: 0,
       cameraPanY: 28,
-      delayRemainingMs: 9 * EVENT_CUTSCENE_TICK_MS,
+      delayRemainingMs: 10 * EVENT_CUTSCENE_TICK_MS,
+      sourceWorldTickPending: false,
     });
 
-    state = advanceEventCutscene(state, commands, () => [], 9 * EVENT_CUTSCENE_TICK_MS);
+    state = advanceEventCutscene(state, commands, () => [], 10 * EVENT_CUTSCENE_TICK_MS);
+    expect(state).toMatchObject({
+      status: 'running',
+      sourceEventResumePending: true,
+      cameraPanY: 68,
+    });
+    state = advanceEventCutscene(state, commands, () => []);
     expect(state).toMatchObject({
       status: 'ended',
+      sourceWorldTickDuringDelay: false,
+      sourceEventResumePending: false,
       cameraMode: 'hero',
       cameraMoveSpeed: 0,
-      cameraPanY: 64,
+      cameraPanY: 68,
     });
+  });
+
+  it('marks opcode 34 for a one-time Camera-On focus snap', () => {
+    const state = advanceEventCutscene(
+      createEventCutscene(5, 2),
+      [[34, 0, 0], [4, 3, 0]],
+      () => [],
+    );
+    expect(state).toMatchObject({
+      status: 'delay',
+      cameraMode: 'hero',
+      cameraSnapPending: true,
+      sourceWorldTickPending: true,
+    });
+  });
+
+  it('runs the first source world update before counting an opcode-4 movement wait', () => {
+    const commands = [[15, 0, 4], [4, 3, 0], [16, 0, 0]];
+    let state = advanceEventCutscene(createEventCutscene(7, 2), commands, () => []);
+    expect(state).toMatchObject({
+      status: 'delay',
+      npcDirections: { 0: 4 },
+      npcMoving: { 0: true },
+      sourceWorldTickDuringDelay: true,
+      sourceWorldTickPending: true,
+      delayRemainingMs: 2 * EVENT_CUTSCENE_TICK_MS,
+    });
+
+    state = advanceEventCutscene(state, commands, () => [], EVENT_CUTSCENE_TICK_MS);
+    expect(state).toMatchObject({
+      status: 'delay',
+      sourceWorldTickPending: false,
+      delayRemainingMs: 2 * EVENT_CUTSCENE_TICK_MS,
+      npcMoving: { 0: true },
+    });
+    state = advanceEventCutscene(state, commands, () => [], EVENT_CUTSCENE_TICK_MS);
+    expect(state).toMatchObject({ status: 'delay', delayRemainingMs: EVENT_CUTSCENE_TICK_MS });
+    state = advanceEventCutscene(state, commands, () => [], EVENT_CUTSCENE_TICK_MS);
+    expect(state).toMatchObject({
+      status: 'running',
+      sourceEventResumePending: true,
+      npcMoving: { 0: true },
+    });
+
+    state = advanceEventCutscene(state, commands, () => []);
+    expect(state).toMatchObject({ status: 'ended', npcMoving: { 0: false } });
+  });
+
+  it('keeps a zero-count opcode-4 wait on the source movement update boundary', () => {
+    const commands = [[15, 0, 4], [4, 1, 0], [16, 0, 0], [99, 0, 0]];
+    let state = advanceEventCutscene(createEventCutscene(7, 2), commands, () => []);
+    expect(state).toMatchObject({
+      status: 'delay',
+      delayRemainingMs: 0,
+      sourceWorldTickDuringDelay: true,
+      sourceWorldTickPending: true,
+      npcMoving: { 0: true },
+    });
+
+    state = advanceEventCutscene(state, commands, () => [], EVENT_CUTSCENE_TICK_MS);
+    expect(state).toMatchObject({ status: 'running', sourceEventResumePending: true });
+    expect(state.npcMoving).toEqual({ 0: true });
+    state = advanceEventCutscene(state, commands, () => []);
+    expect(state).toMatchObject({ status: 'ended', npcMoving: { 0: false } });
   });
 
   it('holds the camera when source opcode 36 selects an NPC target', () => {
@@ -499,7 +759,7 @@ describe('ordered event cutscenes', () => {
       { flagSet: 'quest', operation: 'set', flagIndex: 13 },
     ]);
     expect(result.transition).toEqual({
-      mapId: 1, regionId: 3, tileX: 2, tileY: 17, scriptIndex: 7,
+      mapId: 1, entryDirectionIndex: 3, tileX: 2, tileY: 17, scriptIndex: 7,
     });
 
     const extractedMap62Script = [
@@ -517,12 +777,13 @@ describe('ordered event cutscenes', () => {
     expect(extractedResult.status).toBe('transfer');
     expect(extractedResult.npcDirections[0]).toBe(2);
     expect(extractedResult.npcMoving[0]).toBe(false);
+    expect(extractedResult.heroPositionChanges).toEqual([]);
     expect(extractedResult.flagChanges).toEqual([
       { flagSet: 'quest', operation: 'set', flagIndex: 11 },
       { flagSet: 'quest', operation: 'set', flagIndex: 13 },
     ]);
     expect(extractedResult.transition).toEqual({
-      mapId: 1, regionId: 3, tileX: 2, tileY: 17, scriptIndex: 7,
+      mapId: 1, entryDirectionIndex: 3, tileX: 2, tileY: 17, scriptIndex: 7,
     });
   });
 
@@ -583,13 +844,20 @@ describe('ordered event cutscenes', () => {
     state = advanceEventCutscene(state, commands, dialogue, EVENT_CUTSCENE_TICK_MS);
     expect(state.status).toBe('delay');
     state = advanceEventCutscene(state, commands, dialogue, EVENT_CUTSCENE_TICK_MS);
+    expect(state.status).toBe('delay');
+    state = advanceEventCutscene(state, commands, dialogue, EVENT_CUTSCENE_TICK_MS);
+    expect(state).toMatchObject({
+      status: 'running',
+      sourceEventResumePending: true,
+    });
+    state = advanceEventCutscene(state, commands, dialogue);
     expect(state.status).toBe('transfer');
     expect(state.screenBlank).toBe(true);
     expect(state.heroEmotion).toBe(0);
     expect(state.npcEmotions[1]).toBe(4);
     expect(state.transition).toEqual({
       mapId: 64,
-      regionId: 1,
+      entryDirectionIndex: 1,
       tileX: 9,
       tileY: 8,
       scriptIndex: 9,
@@ -666,7 +934,7 @@ describe('ordered event cutscenes', () => {
     expect(state.screenBlank).toBe(true);
     expect(state.transition).toEqual({
       mapId: 64,
-      regionId: 1,
+      entryDirectionIndex: 1,
       tileX: 9,
       tileY: 8,
       scriptIndex: 9,

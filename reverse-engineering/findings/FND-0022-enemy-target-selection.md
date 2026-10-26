@@ -19,12 +19,12 @@ Record how an enemy retains or selects the player actor versus the active player
 - `o.m113a()` returns `k - l < 10`; `ak.i()` uses that predicate when deciding whether a retained actor target continues directly (`o.java:98–100`, `ak.java:231–233`).
 - `an.m24a(boolean)` starts one of these actions only when source guard `m.f269a.f7c` is true, a current action object exists, and that action is idle (`an.java:1032–1036`).
 
-## Browser gap
+## Browser port (M100)
 
-- `PlayerActor` stores one pixel position and facing/movement state. `EnemyPursuitContext` receives only `playerTileX` and `playerTileY`, and pursuit always chooses that coordinate. There is no player action timeline or enemy target-reference field in the current model (`web/src/world/actor.ts`, `web/src/world/enemy-ai.ts`).
-- M44 supplies the Java-compatible bounded RNG helper needed for the selector roll, but that alone does not reproduce the selector's call conditions or target lifetime.
-- The current project does not yet implement the source skill/action lifecycle, so no browser runtime claim is made for this selector path.
+- `PlayerSkillActionState` now carries the action phase, source tile, facing, level slot, duration, effect age, cooldown counters, and the `o.m113a()` comparison. `EnemyCombatant.pursuitTarget` records `player`, `action`, or no target. Pursuit keeps an action target through source state 2, keeps an actor target when `o.m113a()` is false, and otherwise runs the source 7-in-10 action selector before falling back to the actor (`web/src/world/player-skill-action.ts`, `web/src/world/enemy-ai.ts`).
+- The action selector and retained-reference branches have unit coverage. M100's two skill-0 levels have zero action duration. M101 adds skill ID 1's rank-1 effects with four-update state-2 durations; M102 adds the same active duration for skill ID 2 level 1; M104 adds skill ID 3 level 0 with a four-update state-2 duration; M105 adds skill ID 3 level 1 with a ten-update duration. The web model can present an active action during the source selection window, but no successful browser capture observes an enemy choosing that action reference.
+- A controlled Chromium replay loaded map 19 at `(10,9)`, waited for the level-0 charge, and sent key `1`. It ended without page exceptions or console errors ([M100 capture manifest](../../reference/screenshots/web-render/M100-player-skill-action/capture.json), screenshot SHA-256 `16b48e3731ad291bf508c81c52093e0dacb99b30c4848a6c61416a56404ba341`). The capture does not expose enemy HP, action phase, hit count, or which target reference an enemy chose.
 
-## Conclusion and limits
+## Remaining gaps and limits
 
-The source selection rules and action-object timing are identified, but behavior remains unported. Implement the source action state and stored action coordinate alongside skill activation, then carry enemy target identity through pursuit before claiming parity when the player moves or uses an action. This finding is static source analysis only; it contains no new browser capture, emulator comparison, or runtime observation. Full-game completion remains governed by the [ROADMAP](../../ROADMAP.md).
+Rank-1 effects for skill IDs 0 and 1, both rank-1 levels of skill ID 2, and levels 0 and 1 of skill ID 3 have implementations. The remaining source skill levels, active-action visuals/status icons, and runtime confirmation of an enemy choosing a state-2 action remain open. The controlled replay is browser-only; it does not compare the web implementation with J2ME timing, damage, rendering, or target selection. Full-game completion remains governed by the [ROADMAP](../../ROADMAP.md).

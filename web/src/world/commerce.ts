@@ -173,6 +173,7 @@ export function sellCommerceItem(
   category: number,
   itemId: number,
   quantity: number,
+  selectedInventoryIndex?: number,
 ): SaleResult {
   const item = findCommerceItem(catalog, category, itemId);
   const copy = inventory.map((stack) => ({ ...stack }));
@@ -184,6 +185,17 @@ export function sellCommerceItem(
     return { status: 'not-sellable', wallet, inventory: copy, price: 0 };
   }
   const price = Math.trunc((item.sourceValue * quantity) / 5);
+  if (selectedInventoryIndex !== undefined) {
+    const selected = inventory[selectedInventoryIndex];
+    if (!Number.isInteger(selectedInventoryIndex) || selected === undefined ||
+      selected.category !== category || selected.itemId !== itemId || selected.count < quantity) {
+      return { status: 'invalid-item', wallet, inventory: copy, price: 0 };
+    }
+    const next = copy;
+    if (selected.count === quantity) next.splice(selectedInventoryIndex, 1);
+    else next[selectedInventoryIndex].count -= quantity;
+    return { status: 'sold', wallet: wallet + price, inventory: next, price };
+  }
   const changed = changeInventoryQuantity(inventory, category, itemId, -quantity);
   if (changed.status === 'missing-item') return { status: 'missing-item', wallet, inventory: changed.inventory, price };
   if (changed.status !== 'changed') return { status: 'invalid-item', wallet, inventory: changed.inventory, price };
@@ -358,6 +370,7 @@ export function mixCommerceItems(
   if (selectedInventoryIndices.length < 2 || selectedInventoryIndices.length > 3) return empty('invalid-selection');
   const ingredients: CommerceItemReference[] = [];
   const requiredCounts = new Map<string, number>();
+  const selectedRowCounts = new Map<number, number>();
   for (const index of selectedInventoryIndices) {
     const stack = working[index];
     if (stack === undefined || !MIXTURE_ITEM_CATEGORIES.includes(
@@ -366,6 +379,10 @@ export function mixCommerceItems(
     ingredients.push({ category: stack.category, itemId: stack.itemId });
     const key = stack.category + ':' + stack.itemId;
     requiredCounts.set(key, (requiredCounts.get(key) ?? 0) + 1);
+    selectedRowCounts.set(index, (selectedRowCounts.get(index) ?? 0) + 1);
+  }
+  for (const [index, count] of selectedRowCounts) {
+    if (working[index].count < count) return empty('not-enough-materials');
   }
   for (const [key, count] of requiredCounts) {
     const [category, itemId] = key.split(':').map(Number);
@@ -374,10 +391,10 @@ export function mixCommerceItems(
     if (available < count) return empty('not-enough-materials');
   }
   const recipe = catalog.recipes.find(({ ingredients: expected }) => referencesMatch(ingredients, expected));
-  for (const ingredient of ingredients) {
-    const changed = changeInventoryQuantity(working, ingredient.category, ingredient.itemId, -1);
-    if (changed.status !== 'changed') return empty('not-enough-materials');
-    working = changed.inventory;
+  for (const [index, count] of [...selectedRowCounts].sort(([left], [right]) => right - left)) {
+    const stack = working[index];
+    if (stack.count === count) working.splice(index, 1);
+    else stack.count -= count;
   }
   if (recipe === undefined) return { status: 'failed', inventory: working, wallet, result: null, cost: 500 };
   const result = storeItem(working, recipe.result.category, recipe.result.itemId, 1);

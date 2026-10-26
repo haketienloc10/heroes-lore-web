@@ -11,6 +11,9 @@ import { createBasePlayerAttributes, type PlayerAttributes } from './attributes'
 
 export const EQUIPMENT_SLOT_COUNT = 5;
 
+/** Source slot order: weapon, armor, shield, helmet, shoes. */
+export const EQUIPMENT_SLOT_LABELS = ['WEAPON', 'ARMOR', 'SHIELD', 'HELMET', 'SHOES'] as const;
+
 /** Source slot order: weapon, category 3, category 5, category 6, category 4. */
 export type EquipmentLoadout = [
   InventoryStack | null,
@@ -84,6 +87,28 @@ export function isEquipmentCompatible(category: number, slot: number): boolean {
     SLOT_CATEGORIES[slot].includes(category);
 }
 
+/** Source `by.a(...)` maps each visible slot to a class-specific item category. */
+export function sourceEquipmentCategoryForSlot(slot: number, heroClassId: EndingHeroClassId): number | null {
+  const classCategories: readonly (number | null)[] = heroClassId === 6
+    ? [0, null, 5, 6, 4]
+    : heroClassId === 7 ? [2, null, 5, 6, 4] : [1, 3, 5, 6, 4];
+  return Number.isInteger(slot) && slot >= 0 && slot < classCategories.length
+    ? classCategories[slot] ?? null
+    : null;
+}
+
+/** Return bag indices in source order for the class-compatible category offered by a slot. */
+export function equipmentInventoryIndicesForSlot(
+  inventory: readonly InventoryStack[],
+  slot: number,
+  heroClassId: EndingHeroClassId,
+): number[] {
+  const category = sourceEquipmentCategoryForSlot(slot, heroClassId);
+  if (category === null) return [];
+  return inventory.flatMap((stack, index) =>
+    stack.category === category && stack.equipmentState !== undefined ? [index] : []);
+}
+
 /** Source `an.c(byte)` initial gear, created without enhancement rolls. */
 export function createStartingEquipment(
   heroClassId: EndingHeroClassId,
@@ -134,7 +159,8 @@ export function equipInventoryItem(
   if (equipment.length !== EQUIPMENT_SLOT_COUNT || !Number.isInteger(inventoryIndex) ||
     inventoryIndex < 0 || inventoryIndex >= inventory.length) return null;
   const selected = inventory[inventoryIndex];
-  if (selected === undefined || selected.category > 6 || selected.equipmentState === undefined) return null;
+  if (selected === undefined || selected.category > 6 || selected.equipmentState === undefined ||
+    !selected.equipmentState.sourceFlag) return null;
   const slot = equipmentSlotForCategory(selected.category);
   if (slot === null) return null;
 

@@ -1,8 +1,11 @@
 import Phaser from 'phaser';
 import { drawBitmapText, type BitmapFontData } from '../ui/bitmap-font';
+import { parseGameSave, writeGameSave, type GameSaveState } from '../world/save-data';
+import { addSourcePlayTimeSeconds } from '../world/play-time';
 import {
   advanceEndingSequence,
   advanceEndingStoryPage,
+  confirmEndingCredits,
   createEndingSequence,
   isEndingHeroClassId,
   resolveEndingTextTable,
@@ -18,7 +21,8 @@ export class EndingScene extends Phaser.Scene {
   private canvas: HTMLCanvasElement | null = null;
   private context: CanvasRenderingContext2D | null = null;
   private texture: Phaser.Textures.CanvasTexture | null = null;
-  private startedTitle = false;
+  private startedNextScene = false;
+  private newGamePlusState: GameSaveState | null = null;
 
   constructor() {
     super({ key: 'EndingScene' });
@@ -29,12 +33,17 @@ export class EndingScene extends Phaser.Scene {
       ? (data as { heroClassId?: unknown }).heroClassId
       : undefined;
     this.heroClassId = isEndingHeroClassId(requestedClassId) ? requestedClassId : 6;
+    const requestedNewGamePlusState = typeof data === 'object' && data !== null &&
+      'newGamePlusState' in data
+      ? (data as { newGamePlusState?: unknown }).newGamePlusState
+      : undefined;
+    this.newGamePlusState = parseGameSave(requestedNewGamePlusState);
     this.fontLayout = null;
     this.sequence = null;
     this.canvas = null;
     this.context = null;
     this.texture = null;
-    this.startedTitle = false;
+    this.startedNextScene = false;
     for (const key of ['ending-font-layout', 'ending-language', 'ending-story-table', 'ending-credit-table']) {
       if (this.cache.json.exists(key)) this.cache.json.remove(key);
     }
@@ -108,20 +117,53 @@ export class EndingScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
-    if (this.sequence === null || this.startedTitle) return;
+    if (this.sequence === null || this.startedNextScene) return;
     this.sequence = advanceEndingSequence(this.sequence, delta);
     if (this.sequence.phase === 'complete') {
-      this.startedTitle = true;
-      this.scene.start('StartupFlowScene');
+      this.startNextScene();
       return;
     }
     this.renderSequence();
   }
 
   private handleKeyDown(event: KeyboardEvent): void {
-    if (this.sequence?.phase !== 'story') return;
-    event.preventDefault();
-    this.advanceStory();
+    if (this.sequence?.phase === 'story') {
+      event.preventDefault();
+      this.advanceStory();
+    } else if (this.sequence?.phase === 'credits' &&
+      (event.key === 'Enter' || event.key === ' ')) {
+      // The source accepts its confirm key during state 14 and queues cycle start.
+      event.preventDefault();
+      this.sequence = confirmEndingCredits(this.sequence);
+    }
+  }
+
+  private startNextScene(): void {
+    if (this.startedNextScene) return;
+    this.startedNextScene = true;
+    if (this.newGamePlusState !== null) {
+      const savedAt = Date.now();
+      this.newGamePlusState = {
+        ...this.newGamePlusState,
+        savedAt,
+        playTimeSeconds: addSourcePlayTimeSeconds(
+          this.newGamePlusState.playTimeSeconds,
+          this.newGamePlusState.savedAt,
+          savedAt,
+        ),
+      };
+      try {
+        writeGameSave(window.localStorage, this.newGamePlusState);
+      } catch {
+        // Keep the active cycle alive in memory when browser storage is unavailable.
+      }
+      this.scene.start('WorldScene', {
+        startRoute: 'new-game-plus',
+        saveState: this.newGamePlusState,
+      });
+    } else {
+      this.scene.start('StartupFlowScene', { skipStartupSplash: true });
+    }
   }
 
   private advanceStory(): void {

@@ -3,6 +3,7 @@ import type { EnemyDefinition } from '../src/world/combat';
 import {
   advanceGroundDropTicks,
   canStoreItem,
+  canStoreSpecialItem,
   changeInventoryQuantity,
   isGroundDropVisible,
   nextConsumableCategory,
@@ -10,6 +11,8 @@ import {
   rollEnemyDrops,
   selectedConsumableCount,
   storeItem,
+  storeSpecialItem,
+  useConsumableAtIndex,
   useSelectedConsumable,
   type GroundDrop,
   type LootRoller,
@@ -135,10 +138,110 @@ describe('source enemy drops and tile pickup', () => {
       tileY: 2,
       ticksRemaining: 120,
     };
-    expect(pickupGroundDrop([drop], 1, 2, fullStack, 300).pickedUp).toBeNull();
+    expect(pickupGroundDrop([drop], 1, 2, fullStack, 300)).toMatchObject({
+      status: 'no-space',
+      pickedUp: null,
+      drops: [drop],
+    });
     expect(storeItem([{ category: 7, itemId: 2, count: 98 }], 7, 2, 1)).toEqual([
       { category: 7, itemId: 2, count: 99 },
     ]);
+  });
+
+  it('keeps source category-22 pickups in the separate 15-slot inventory', () => {
+    const drop: GroundDrop = {
+      id: 4,
+      kind: 'item',
+      category: 22,
+      itemId: 6,
+      count: 2,
+      tileX: 1,
+      tileY: 2,
+      ticksRemaining: 120,
+    };
+    const result = pickupGroundDrop([drop], 1, 2, [], 300);
+    expect(result).toMatchObject({
+      pickedUp: drop,
+      inventory: [],
+      specialInventory: [{ category: 22, itemId: 6, count: 2 }],
+      drops: [],
+    });
+    expect(canStoreSpecialItem([], 21, 6, 1)).toBe(false);
+    expect(storeSpecialItem([], 22, 6, 98)).toEqual([
+      { category: 22, itemId: 6, count: 98 },
+    ]);
+    expect(storeSpecialItem([
+      { category: 22, itemId: 6, count: 50 },
+      { category: 22, itemId: 6, count: 60 },
+    ], 22, 6, 1)).toEqual([
+      { category: 22, itemId: 6, count: 99 },
+      { category: 22, itemId: 6, count: 12 },
+    ]);
+  });
+
+  it('retains category-22 ground items when the separate source inventory is full', () => {
+    const specialInventory = Array.from({ length: 15 }, (_, itemId) => ({
+      category: 22,
+      itemId,
+      count: 99,
+    }));
+    const drop: GroundDrop = {
+      id: 5,
+      kind: 'item',
+      category: 22,
+      itemId: 20,
+      count: 1,
+      tileX: 3,
+      tileY: 4,
+      ticksRemaining: 120,
+    };
+    expect(canStoreSpecialItem(specialInventory, 22, 20, 1)).toBe(false);
+    expect(pickupGroundDrop([drop], 3, 4, [], 300, undefined, specialInventory)).toMatchObject({
+      status: 'no-space',
+      pickedUp: null,
+      inventory: [],
+      specialInventory,
+      drops: [drop],
+    });
+  });
+
+  it('reports no drop separately from an item that cannot fit', () => {
+    expect(pickupGroundDrop([], 1, 2, [], 300).status).toBe('no-drop');
+    const elsewhere: GroundDrop = {
+      id: 7,
+      kind: 'item',
+      category: 7,
+      itemId: 2,
+      count: 1,
+      tileX: 2,
+      tileY: 2,
+      ticksRemaining: 120,
+    };
+    expect(pickupGroundDrop([elsewhere], 1, 2, [], 300).status).toBe('no-drop');
+  });
+
+  it('stacks category-22 items into a matching slot when the special inventory has no free slot', () => {
+    const specialInventory = Array.from({ length: 15 }, (_, itemId) => ({
+      category: 22,
+      itemId,
+      count: itemId === 7 ? 98 : 99,
+    }));
+    const drop: GroundDrop = {
+      id: 6,
+      kind: 'item',
+      category: 22,
+      itemId: 7,
+      count: 1,
+      tileX: 3,
+      tileY: 4,
+      ticksRemaining: 120,
+    };
+    expect(pickupGroundDrop([drop], 3, 4, [], 300, undefined, specialInventory)).toMatchObject({
+      pickedUp: drop,
+      specialInventory: specialInventory.map((stack) =>
+        stack.itemId === 7 ? { ...stack, count: 99 } : stack),
+      drops: [],
+    });
   });
 
   it('cycles the source quick-item categories and uses potion/wine percentages', () => {
@@ -197,6 +300,76 @@ describe('source enemy drops and tile pickup', () => {
       inventory: [],
       state: { selectedItemCount: 0 },
       statusEffects: [3],
+    });
+  });
+
+  it('uses the selected inventory row and rejects non-consumable rows', () => {
+    const inventory = [
+      { category: 7, itemId: 0, count: 2 },
+      { category: 9, itemId: 0, count: 1 },
+      { category: 11, itemId: 0, count: 1 },
+    ];
+    const state = {
+      hp: 50,
+      maxHp: 72,
+      sp: 20,
+      maxSp: 60,
+      selectedItemCategory: 7 as const,
+      selectedItemCount: 2,
+    };
+    const wine = useConsumableAtIndex(inventory, state, [], 1);
+    expect(wine).toMatchObject({
+      used: true,
+      state: { selectedItemCategory: 9, selectedItemCount: 0, sp: 38 },
+      inventory: [inventory[0], inventory[2]],
+    });
+    expect(useConsumableAtIndex(inventory, state, [], 2)).toMatchObject({ used: false });
+    expect(useConsumableAtIndex(inventory, state, [], -1)).toMatchObject({ used: false });
+  });
+
+  it('consumes the chosen row when multiple item IDs share a consumable category', () => {
+    const inventory = [
+      { category: 7, itemId: 0, count: 2 },
+      { category: 7, itemId: 1, count: 3 },
+    ];
+    const result = useConsumableAtIndex(inventory, {
+      hp: 50,
+      maxHp: 72,
+      sp: 20,
+      maxSp: 60,
+      selectedItemCategory: 7,
+      selectedItemCount: 2,
+    }, [], 1);
+
+    expect(result).toMatchObject({
+      used: true,
+      state: { hp: 64, selectedItemCategory: 7 },
+      inventory: [inventory[0], { category: 7, itemId: 1, count: 2 }],
+    });
+  });
+
+  it('blocks quick and inventory consumable use while the player is defeated', () => {
+    const inventory = [{ category: 7, itemId: 0, count: 2 }];
+    const state = {
+      hp: 0,
+      maxHp: 72,
+      sp: 20,
+      maxSp: 60,
+      selectedItemCategory: 7 as const,
+      selectedItemCount: 2,
+    };
+
+    expect(useSelectedConsumable(inventory, state, [], false)).toEqual({
+      inventory,
+      state,
+      statusEffects: [],
+      used: false,
+    });
+    expect(useConsumableAtIndex(inventory, state, [], 0, false)).toEqual({
+      inventory,
+      state,
+      statusEffects: [],
+      used: false,
     });
   });
 

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   advanceEndingSequence,
   advanceEndingStoryPage,
+  confirmEndingCredits,
   createEndingSequence,
   ENDING_FADE_FRAMES,
   ENDING_FRAME_MS,
@@ -50,6 +51,14 @@ describe('source ending sequence', () => {
       storyPage: ['Second line'],
       storyDelayFramesRemaining: 0,
     });
+  });
+
+  it('starts the next source cycle when confirm is pressed during credits', () => {
+    let state = createEndingSequence([], ['First credit', 'Second credit']);
+    state = advanceEndingSequence(state, ENDING_FADE_FRAMES * ENDING_FRAME_MS);
+    expect(state.phase).toBe('credits');
+    expect(confirmEndingCredits(state)).toMatchObject({ phase: 'complete', creditRoll: [] });
+    expect(confirmEndingCredits(createEndingSequence([], [])).phase).toBe('fade');
   });
 
   it('scrolls source credits and completes only after the final line leaves the screen', () => {

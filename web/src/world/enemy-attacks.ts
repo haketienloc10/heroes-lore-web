@@ -81,7 +81,7 @@ export interface EnemyProjectile {
   tileY: number;
   /** Source `x.b`, advanced at the paint cadence and consumed by `h.a()`. */
   frameIndex: number;
-  /** Source `h.g`; two further tile segments follow the initial segment. */
+  /** Source `h.g`; this many further tile segments follow the initial segment. */
   remainingSegments: number;
   /** Source `h.e`; a projectile can damage the player only once. */
   hitResolved: boolean;
@@ -102,7 +102,11 @@ export function beginEnemyProjectile(
   tileX: number,
   tileY: number,
   direction: Direction,
+  remainingSegments = 2,
 ): EnemyProjectile {
+  if (!Number.isInteger(remainingSegments) || remainingSegments < 0) {
+    throw new RangeError('Enemy projectile segment count must be a non-negative integer');
+  }
   const delta = DIRECTION_VECTOR[direction];
   return {
     id,
@@ -112,9 +116,31 @@ export function beginEnemyProjectile(
     tileX: tileX + delta.x,
     tileY: tileY + delta.y,
     frameIndex: 0,
-    remainingSegments: 2,
+    remainingSegments,
     hitResolved: false,
   };
+}
+
+/** Construct an `h` projectile at the source class's explicit initial cell. */
+export function beginEnemyProjectileAtCell(
+  id: number,
+  sourceOrder: number,
+  spriteId: number,
+  tileX: number,
+  tileY: number,
+  direction: Direction,
+  remainingSegments = 2,
+): EnemyProjectile {
+  const delta = DIRECTION_VECTOR[direction];
+  return beginEnemyProjectile(
+    id,
+    sourceOrder,
+    spriteId,
+    tileX - delta.x,
+    tileY - delta.y,
+    direction,
+    remainingSegments,
+  );
 }
 
 export interface EnemyProjectileTickResult {
@@ -183,6 +209,8 @@ export interface EnemyAttackEffectAnimation {
   tileX: number;
   tileY: number;
   frameIndex: number;
+  /** Source status effects attached to `n` follow this enemy until its removal. */
+  attachedSourceOrder?: number;
 }
 
 export function advanceEnemyAttackEffect(

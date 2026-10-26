@@ -1,5 +1,5 @@
 import type { BaseCollisionData } from './map-data';
-import { ENEMY_RESPAWN_DELAY_STEP, type EnemyCombatant } from './combat';
+import { ENEMY_RESPAWN_DELAY_STEP, enemyFootprintWidth, type EnemyCombatant } from './combat';
 
 export const ENEMY_RESPAWN_CADENCE_TICKS = 17;
 export const ENEMY_RESPAWN_RADIUS = 3;
@@ -65,7 +65,7 @@ export function findEnemyRespawnPlacement(
   context: EnemyRespawnContext,
   randomInteger: InclusiveIntegerRandom,
 ): { tileX: number; tileY: number } | undefined {
-  const footprintWidth = enemy.definition.classCode === 2 ? 2 : 1;
+  const footprintWidth = enemyFootprintWidth(enemy);
   if (footprintWidth === 2 && enemy.tileX >= context.collision.width - 1) {
     return { tileX: enemy.tileX - 1, tileY: enemy.tileY };
   }

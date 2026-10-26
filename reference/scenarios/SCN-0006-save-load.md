@@ -42,7 +42,7 @@ Snapshot **BED-SAVE-001** giữ local; [manifest](../../reverse-engineering/find
 | --- | --- | --- | --- |
 | Nhân vật/chức danh | Ronin / Rookie Swordsman | Khớp | Status R05 `04-W-status`, R05L `09-loaded-Status` |
 | LV / EXP / NEXT | 1 / 0 / 80 | Khớp | Cùng ảnh Status |
-| HP / SP | 74/74 / 60/60 | Khớp | SP theo UI, không đổi tên thành MP |
+| HP / SP | 72/72 / 60/60 | Khớp | Ảnh Status sau tải lại ([frame](../screenshots/M15-SCN-0006-P1M-R05L/09-loaded-Status.png)) khớp HP ban đầu của Ronin theo source; SP theo UI, không đổi tên thành MP |
 | Tiền | 800 | Khớp | Cùng ảnh Status |
 | Items | Empty | Khớp màn Items | R05 `01-tab-Right`, R05L `10-1-loaded-tab` |
 | Trang bị đang xem | Dull two hands sword, Attacking 10, Refining 0/22 | Khớp màn Equipment | R05 `02-tab-Right`, R05L `10-2-loaded-tab`; chưa so mọi mục/slot |

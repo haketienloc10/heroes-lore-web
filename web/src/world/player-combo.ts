@@ -1,4 +1,4 @@
-import { WORLD_UPDATE_PERIOD_MS } from './actor';
+import { WORLD_UPDATE_PERIOD_MS, type Direction } from './actor';
 
 export type HeroCombatClass = 6 | 7 | 8;
 export type PlayerAttackStyle = 'light' | 'heavy';
@@ -30,6 +30,12 @@ export interface PlayerComboStep {
   state: PlayerComboState;
   impacts: PlayerComboImpact[];
   followUps: PlayerComboFollowUp[];
+}
+
+export interface PlayerSpritePose {
+  animationSlot: number;
+  directionSlot: number;
+  frameIndex: number;
 }
 
 export const EMPTY_PLAYER_COMBO: PlayerComboState = {
@@ -193,6 +199,25 @@ export function playerAttackAnimationSlot(state: PlayerComboState): number {
 export function playerSpriteAnimationSlot(state: PlayerComboState, moving: boolean): number {
   if (state.activeStyle !== null) return playerAttackAnimationSlot(state);
   return moving ? 1 : 0;
+}
+
+/** Map player state to the source sprite track and directional frame. */
+export function playerSpritePose(
+  state: PlayerComboState,
+  direction: Direction,
+  moving: boolean,
+  movementFrame: number,
+  dead: boolean,
+): PlayerSpritePose {
+  if (dead) {
+    // Source an.a(Graphics,...) draws state 6 with slot 2, direction 1, frame 0.
+    return { animationSlot: 2, directionSlot: 0, frameIndex: 0 };
+  }
+  return {
+    animationSlot: playerSpriteAnimationSlot(state, moving),
+    directionSlot: direction - 1,
+    frameIndex: state.activeStyle !== null ? state.frame : moving ? movementFrame : 0,
+  };
 }
 
 export function playerAttackPower(basePower: number, impact: PlayerComboImpact): number {

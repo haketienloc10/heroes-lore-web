@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import struct
 import tempfile
 import unittest
@@ -210,6 +211,47 @@ class AssetDecoderTests(unittest.TestCase):
         with self.assertRaises(assets.AssetFormatError):
             assets.decode_enemy_sprite_animations(b"".join(inconsistent), 24)
 
+    def test_boss_sprite_animation_decoder_preserves_source_attack_tracks(self):
+        tracks = []
+        for state in (0, 1, 3, 4, 5):
+            for direction in range(4):
+                if state == 4 and direction == 2:
+                    payload = bytes([1, 1, 0xF9, 0xF4, 1, 7])
+                else:
+                    payload = bytes([1, 0])
+                tracks.append(bytes([state, direction, len(payload)]) + payload)
+
+        decoded = assets.decode_boss_sprite_animations(b"".join(reversed(tracks)), 1, 32)
+
+        self.assertEqual(decoded["format"], "heroes-lore-boss-animation-v1")
+        self.assertEqual(decoded["sourceResource"], "boss/spr/1_32")
+        self.assertEqual(decoded["trackCount"], 20)
+        attack_two = next(
+            track for track in decoded["tracks"]
+            if track["stateIndex"] == 4 and track["directionIndex"] == 2
+        )
+        self.assertEqual(attack_two["frames"], [[{
+            "offsetX": -7,
+            "offsetY": -12,
+            "mirrored": True,
+            "imageIndex": 7,
+        }]])
+
+    def test_boss_sprite_animation_decoder_preserves_sparse_sets_and_rejects_bad_records(self):
+        header = lambda state, direction, payload: bytes([state, direction, len(payload)]) + payload
+        states = (0, 1, 3, 4, 5)
+        tracks = [header(state, direction, bytes([1, 0])) for state in states for direction in range(4)]
+        sparse = assets.decode_boss_sprite_animations(tracks[0], 3, 40)
+        self.assertEqual(sparse["trackCount"], 1)
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_boss_sprite_animations(b"".join(tracks) + tracks[0], 1, 32)
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_boss_sprite_animations(b"\x06\x00\x02\x01\x01", 1, 32)
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_boss_sprite_animations(b"\x00\x00\x05\x01\x01", 1, 32)
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_boss_sprite_animations(b"\x00\x00\x01\x00", 1, 32)
+
     def test_npc_sprite_animation_decoder_preserves_standing_and_walking_components(self):
         tracks = []
         for state in range(2):
@@ -285,6 +327,168 @@ class AssetDecoderTests(unittest.TestCase):
             assets.decode_enemy_attack_effect(bytes([1, 1, 0, 0, 0]), 3)
         with self.assertRaises(assets.AssetFormatError):
             assets.decode_enemy_attack_effect(bytes([1, 0, 255]), 3)
+
+    def test_boss_attack_effect_decoder_preserves_owner_and_resource(self):
+        decoded = assets.decode_boss_attack_effect(bytes([1, 1, 0xFE, 0xF8, 1, 4]), 2, 36)
+
+        self.assertEqual(decoded, {
+            "format": "heroes-lore-boss-attack-effect-v1",
+            "spriteId": 36,
+            "sourceResource": "boss/atef/36",
+            "frameCount": 1,
+            "frames": [[{
+                "offsetX": -2,
+                "offsetY": -8,
+                "mirrored": True,
+                "imageIndex": 4,
+            }]],
+            "bossId": 2,
+            "enemyId": 36,
+        })
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_boss_attack_effect(bytes([1, 0]), 1, 36)
+
+    def test_player_skill_effect_decoder_preserves_source_atlas_selection(self):
+        data = bytes([
+            2,  # frame count
+            1, 0xF9, 0xF4, 0, 3,  # atlas 12 image 3 at (-7,-12)
+            1, 5, 0xFE, 1, 7,  # suppressed alternate-atlas component
+        ])
+
+        decoded = assets.decode_player_skill_effect(data, 3, 1, "grd/spr/3_1.eif")
+
+        self.assertEqual(decoded, {
+            "format": "heroes-lore-player-skill-effect-v1",
+            "skillId": 3,
+            "levelSlot": 1,
+            "sourceResource": "grd/spr/3_1.eif",
+            "frameCount": 2,
+            "frames": [
+                [{"offsetX": -7, "offsetY": -12, "sourceAtlasFlag": 0, "imageIndex": 3}],
+                [{"offsetX": 5, "offsetY": -2, "sourceAtlasFlag": 1, "imageIndex": 7}],
+            ],
+        })
+
+    def test_player_skill_effect_decoder_rejects_invalid_streams(self):
+        for data, skill_id, level_slot, resource in [
+            (b"", 0, 0, "grd/spr/0_01.eif"),
+            (bytes([1, 1, 0, 0, 0]), 0, 0, "grd/spr/0_01.eif"),
+            (bytes([1, 0, 255]), 0, 0, "grd/spr/0_01.eif"),
+        ]:
+            with self.subTest(data=data):
+                with self.assertRaises(assets.AssetFormatError):
+                    assets.decode_player_skill_effect(data, skill_id, level_slot, resource)
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_player_skill_effect(bytes([1, 0]), 6, 0, "grd/spr/6_0.eif")
+
+    def test_player_skill_special_effect_requires_source_type_two(self):
+        with self.assertRaises(assets.AssetFormatError):
+            assets.decode_player_skill_special_effect(bytes([1, 0]), 3, "grd/spr/0_02.eif")
+
+    def test_player_level_up_effect_decoder_preserves_frames_offsets_and_suppressed_components(self):
+        decoded = assets.decode_player_level_up_effect(bytes([
+            2,
+            2, 0xF9, 0xF4, 0, 3, 5, 0xFE, 1, 7,
+            1, 4, 9, 0, 2,
+        ]))
+
+        self.assertEqual(decoded, {
+            "format": "heroes-lore-player-level-up-effect-v1",
+            "effectType": 4,
+            "sourceResource": "char/lvup.eif",
+            "sourceAtlas": "char/lvup",
+            "sourceAtlasId": 13,
+            "frameCount": 2,
+            "frames": [
+                [
+                    {"offsetX": -7, "offsetY": -12, "sourceAtlasFlag": False, "sourceAtlasId": 13, "imageIndex": 3},
+                    {"offsetX": 5, "offsetY": -2, "sourceAtlasFlag": True, "sourceAtlasId": -1, "imageIndex": 7},
+                ],
+                [{"offsetX": 4, "offsetY": 9, "sourceAtlasFlag": False, "sourceAtlasId": 13, "imageIndex": 2}],
+            ],
+        })
+
+    def test_player_level_up_effect_decoder_rejects_invalid_streams(self):
+        for data in (b"", bytes([0]), bytes([1, 1, 0, 0, 0]), bytes([1, 0, 255])):
+            with self.subTest(data=data):
+                with self.assertRaises(assets.AssetFormatError):
+                    assets.decode_player_level_up_effect(data)
+
+    def test_player_level_up_refresh_updates_catalog_and_manifest_idempotently(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            output = root / "generated"
+            atlas_dir = output / "atlases" / "char" / "lvup"
+            atlas_dir.mkdir(parents=True)
+            for image_index in (2, 3):
+                (atlas_dir / f"{image_index:03d}.png").write_bytes(b"png")
+            manifest_path = output / "asset-manifest.json"
+            manifest_path.write_text(json.dumps({
+                "sourceJarSha256": assets.EXPECTED_JAR_SHA256,
+                "generatedFileCount": 1,
+                "files": [{"path": "existing.json", "sha256": "old", "bytes": 3}],
+            }))
+            resource = root / "lvup.eif"
+            resource.write_bytes(bytes([
+                2,
+                2, 0xF9, 0xF4, 0, 3, 5, 0xFE, 1, 7,
+                1, 4, 9, 0, 2,
+            ]))
+
+            result = assets.refresh_player_level_up_effect(resource, output)
+            catalog_path = output / "player-level-up-effects" / "catalog.json"
+            catalog = json.loads(catalog_path.read_text())
+            manifest = json.loads(manifest_path.read_text())
+            entry = next(item for item in manifest["files"]
+                         if item["path"] == "player-level-up-effects/catalog.json")
+            catalog_bytes = catalog_path.read_bytes()
+
+            self.assertEqual(result["frameCount"], 2)
+            self.assertEqual(result["componentCount"], 3)
+            self.assertEqual(catalog["effects"][0]["frames"][0][1]["sourceAtlasId"], -1)
+            self.assertEqual(manifest["generatedFileCount"], 2)
+            self.assertEqual(len([item for item in manifest["files"]
+                                  if item["path"] == "player-level-up-effects/catalog.json"]), 1)
+            self.assertEqual(entry["sha256"], assets.sha256(catalog_bytes))
+            self.assertEqual(entry["bytes"], len(catalog_bytes))
+
+            assets.refresh_player_level_up_effect(resource, output)
+            repeated_manifest = json.loads(manifest_path.read_text())
+            self.assertEqual(repeated_manifest["generatedFileCount"], 2)
+            self.assertEqual(len([item for item in repeated_manifest["files"]
+                                  if item["path"] == "player-level-up-effects/catalog.json"]), 1)
+
+    def test_player_level_up_refresh_rejects_wrong_asset_manifest_identity(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            output = root / "generated"
+            output.mkdir()
+            (output / "asset-manifest.json").write_text(json.dumps({
+                "sourceJarSha256": "0" * 64,
+                "files": [],
+            }))
+            resource = root / "lvup.eif"
+            resource.write_bytes(bytes([1, 0]))
+
+            with self.assertRaises(assets.AssetFormatError):
+                assets.refresh_player_level_up_effect(resource, output)
+            self.assertFalse((output / "player-level-up-effects" / "catalog.json").exists())
+
+    def test_player_level_up_refresh_rejects_missing_atlas_page(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            output = root / "generated"
+            output.mkdir()
+            (output / "asset-manifest.json").write_text(json.dumps({
+                "sourceJarSha256": assets.EXPECTED_JAR_SHA256,
+                "files": [],
+            }))
+            resource = root / "lvup.eif"
+            resource.write_bytes(bytes([1, 1, 0, 0, 0, 3]))
+
+            with self.assertRaisesRegex(assets.AssetFormatError, "missing level-up atlas image"):
+                assets.refresh_player_level_up_effect(resource, output)
+            self.assertFalse((output / "player-level-up-effects" / "catalog.json").exists())
 
     def test_text_table_decoder_reads_source_string_id_records(self):
         data = b"\x02\x00\x04 685\x00\x04 686"
@@ -396,6 +600,47 @@ class AssetDecoderTests(unittest.TestCase):
         self.assertEqual(len(decoded), 1)
         assets._validate_png(decoded[0], 0)
         self.assertEqual([name for name, _, _ in assets.iter_png_chunks(decoded[0], 8)], ["IHDR", "PLTE", "IDAT", "IEND"])
+
+    def test_hero_palette_variant_replaces_only_matching_rgb_entries(self):
+        ihdr = png_chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 3, 0, 0, 0))
+        palette = png_chunk(b"PLTE", bytes.fromhex("0000ff 9fbfff 123456"))
+        transparency = png_chunk(b"tRNS", b"\x00\xff\xff")
+        image_data = png_chunk(b"IDAT", zlib.compress(b"\x00\x00"))
+        source = assets.PNG_SIGNATURE + ihdr + palette + transparency + image_data + assets.PNG_IEND
+
+        recolored = assets.replace_png_palette_colors(source, {0x0000FF: 0xFF7F3F})
+        assets._validate_png(recolored, 0)
+        chunks = {name: recolored[offset + 8 : offset + size - 4]
+                  for name, offset, size in assets.iter_png_chunks(recolored, len(assets.PNG_SIGNATURE))}
+        self.assertEqual(chunks["PLTE"], bytes.fromhex("ff7f3f 9fbfff 123456"))
+        self.assertEqual(chunks["tRNS"], b"\x00\xff\xff")
+        self.assertEqual(chunks["IDAT"], image_data[8:-4])
+
+    def test_hero_palette_variant_selection_covers_all_source_class_atlases(self):
+        for class_dir in ("c1", "c2", "c3"):
+            self.assertEqual(
+                assets._hero_palette_variants_for_atlas(f"{class_dir}/i/e"),
+                assets.HERO_EFFECT_ELEMENT_PALETTES,
+            )
+            self.assertEqual(
+                assets._hero_palette_variants_for_atlas(f"{class_dir}/i/w5"),
+                assets.HERO_WEAPON_ELEMENT_PALETTES,
+            )
+            self.assertEqual(assets._hero_palette_variants_for_atlas(f"{class_dir}/i/a1"), {})
+        self.assertEqual(assets._hero_palette_variants_for_atlas("sgui/mm/etc"), {})
+
+    def test_hero_palette_variant_rejects_truecolor_png_and_invalid_rgb(self):
+        ihdr = png_chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
+        image_data = png_chunk(b"IDAT", zlib.compress(b"\x00\x00\x00\x00"))
+        truecolor = assets.PNG_SIGNATURE + ihdr + image_data + assets.PNG_IEND
+        with self.assertRaisesRegex(assets.AssetFormatError, "PLTE"):
+            assets.replace_png_palette_colors(truecolor, {0x0000FF: 0xFF7F3F})
+
+        indexed = assets.PNG_SIGNATURE + png_chunk(
+            b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 3, 0, 0, 0)
+        ) + png_chunk(b"PLTE", b"\x00\x00\x00") + image_data + assets.PNG_IEND
+        with self.assertRaisesRegex(assets.AssetFormatError, "24-bit"):
+            assets.replace_png_palette_colors(indexed, {-1: 0xFFFFFF})
 
     def test_bitmap_font_decoder_extracts_ascii_offsets_and_embedded_png(self):
         ihdr = png_chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 3, 0, 0, 0))
