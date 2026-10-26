@@ -23,5 +23,4 @@ reference/recordings/**
 !reference/recordings/.gitkeep
 reference/screenshots/**
 !reference/screenshots/.gitkeep
-web/public/assets/**
 !web/public/assets/.gitkeep
