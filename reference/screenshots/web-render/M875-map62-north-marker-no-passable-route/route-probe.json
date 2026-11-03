@@ -1,0 +1,67 @@
+{
+  "success": false,
+  "reason": "no-path-to-north-exit",
+  "start": {
+    "mapId": 62,
+    "tile": [
+      37,
+      21
+    ],
+    "hp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "final": {
+    "mapId": 62,
+    "tile": [
+      37,
+      21
+    ],
+    "hp": 394392,
+    "maxHp": 394392,
+    "level": 99,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ],
+    "dialogue": false,
+    "text": "|[Village chief] Welcome, Ronin."
+  },
+  "actions": [],
+  "attackCount": 0,
+  "blockedCellCount": 0
+}

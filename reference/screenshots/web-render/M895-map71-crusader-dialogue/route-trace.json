@@ -1,0 +1,47 @@
+{
+  "id": "M895",
+  "source": "Visible Chromium gameplay route; checkpoints transcribed from live WorldScene observations and screenshots.",
+  "milestones": [
+    {
+      "step": 1,
+      "route": "Visible max-level New Game -> Map63/Reah and Temple of Fire prerequisites -> Map63 Chief follow-up -> Map2 -> Map60 -> Map69 -> Map70 -> Map71",
+      "result": "The Map69 interactions set flag 25 and quest 9. Map70's center gate reached Map71; the entry event set flags 27/77/84 and quest 8. The level-99 profile had full HP/SP."
+    },
+    {
+      "step": 2,
+      "route": "Map71 clue NPC before the order",
+      "interaction": { "tile": [8, 13], "facing": "right", "npcTile": [9, 13] },
+      "result": "Visible dialogue: Hmmm.. there must be some clues..; flag 81 and quest 10 were absent.",
+      "screenshot": "before-crusader-order.png"
+    },
+    {
+      "step": 3,
+      "route": "Map71 Crusader Order event",
+      "interaction": { "tile": [14, 11], "facing": "up", "markerAhead": -3 },
+      "result": "The visible event ended with Temple of Water Quest acquired!, set flag 81 and quest 10, and granted category 18/item 7. HP/SP remained 394392/394392."
+    },
+    {
+      "step": 4,
+      "route": "Map71 clue NPC after the order",
+      "interaction": { "tile": [8, 13], "facing": "right", "npcTile": [9, 13] },
+      "result": "Visible dialogue changed to Let's get out of here.; flag 81, quest 10, and category 18/item 7 were present.",
+      "screenshot": "after-crusader-order.png"
+    }
+  ],
+  "finalState": {
+    "mapId": 71,
+    "tile": [8, 13],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameFlag81Present": true,
+    "questFlagsPresent": [8, 10],
+    "inventory": [
+      { "category": 9, "itemId": 0, "count": 5 },
+      { "category": 18, "itemId": 7, "count": 1 }
+    ],
+    "visibleDialogue": "|[Ronin] Let's get out of here."
+  }
+}

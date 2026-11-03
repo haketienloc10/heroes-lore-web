@@ -44,9 +44,9 @@ describe('source event dialogue', () => {
       .toBeUndefined();
   });
 
-  it('uses the speaker substitution recorded for the selected Ronin route', () => {
-    expect(formatRoninDialogue('$[Reah] Are you sure?')).toBe('[Ron] Are you sure?');
-    expect(formatRoninDialogue('|[Ronin] Yes, I am.')).toBe('[Ron] Yes, I am.');
+  it('retains source speaker labels in the selected Ronin route', () => {
+    expect(formatRoninDialogue('$[Reah] Are you sure?')).toBe('[Reah] Are you sure?');
+    expect(formatRoninDialogue('|[Ronin] Yes, I am.')).toBe('[Ronin] Yes, I am.');
   });
 
   it('accepts only text and flag commands in the limited interaction runner', () => {
@@ -71,5 +71,23 @@ describe('source event dialogue', () => {
     expect(pages.join(' ').replaceAll('\n', ' ')).toContain('one two three');
     expect(pages.join(' ').replaceAll('\n', ' ')).toContain('eleven twelve thirteen');
     expect(bitmapTextWidth('one', testFont)).toBeLessThan(34);
+  });
+
+  it('uses the source short-text width before suppressing control characters', () => {
+    const text = '$abcd';
+    expect(bitmapTextWidth(text, testFont)).toBe(20);
+    expect(bitmapTextWidth(formatRoninDialogue(text), testFont)).toBe(16);
+    const [page] = paginateBitmapDialogue(text, testFont, 18, 3, true);
+    expect(page).toBe('$abcd');
+    expect(formatRoninDialogue(page)).toBe('abcd');
+  });
+
+  it('keeps raw control widths when short text actually needs wrapping', () => {
+    expect(paginateBitmapDialogue('$abcd', testFont, 14, 3, true)).toEqual(['$ab\ncd']);
+  });
+
+  it('does not create an empty page for empty text or a trailing newline', () => {
+    expect(paginateBitmapDialogue('', testFont, 34)).toEqual([]);
+    expect(paginateBitmapDialogue('one\n', testFont, 34)).toEqual(['one']);
   });
 });

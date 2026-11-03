@@ -1,0 +1,80 @@
+{
+  "id": "M873",
+  "title": "Map61 south marker returns to Map60",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "routeProbe": {
+    "from": 61,
+    "startTile": [
+      4,
+      37
+    ],
+    "approachTile": [
+      4,
+      38
+    ],
+    "marker": -1,
+    "expectedMap": 62,
+    "observedMap": 60,
+    "arrivalTile": [
+      1,
+      2
+    ],
+    "rawTrace": "route-01-map61-south-marker-raw.json",
+    "screenshot": "01-map61-south-marker.png",
+    "helperResult": "unexpected-map-60"
+  },
+  "finalState": {
+    "file": "final-live-state.json",
+    "mapId": 60,
+    "tile": [
+      1,
+      2
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This capture records the observed Map61 south return and corrects the expected destination.",
+    "It does not verify Map61's other exits, the campaign ending, ordinary-level balance or J2ME parity."
+  ]
+}

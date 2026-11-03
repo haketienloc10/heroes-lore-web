@@ -1,0 +1,161 @@
+{
+  "observations": [
+    {
+      "phase": "map0-arrival",
+      "mapId": 0,
+      "tile": [
+        18,
+        20
+      ],
+      "dialogue": false,
+      "text": "An absent friend Quest acquired!",
+      "cutscene": {
+        "status": "transfer",
+        "scriptIndex": 0,
+        "commandIndex": 4,
+        "dialogueStringIndex": null
+      },
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "quests": [
+        1
+      ]
+    },
+    {
+      "phase": "map27-target",
+      "mapId": 0,
+      "start": [
+        18,
+        20
+      ],
+      "target": {
+        "marker": [
+          20,
+          1
+        ],
+        "approach": [
+          20,
+          2
+        ],
+        "direction": "ArrowUp",
+        "distance": 38
+      }
+    },
+    {
+      "phase": "at-marker-approach",
+      "mapId": 63,
+      "tile": [
+        10,
+        18
+      ],
+      "expected": [
+        20,
+        2
+      ],
+      "direction": "ArrowUp",
+      "dialogue": false,
+      "text": "An absent friend Quest acquired!",
+      "cutscene": {
+        "status": "transfer",
+        "scriptIndex": 3,
+        "commandIndex": 3,
+        "dialogueStringIndex": null
+      }
+    },
+    {
+      "phase": "after-marker-input",
+      "mapId": 63,
+      "tile": [
+        10,
+        17
+      ],
+      "direction": 1,
+      "dialogue": false,
+      "text": "An absent friend Quest acquired!",
+      "cutscene": {
+        "status": "transfer",
+        "scriptIndex": 3,
+        "commandIndex": 3,
+        "dialogueStringIndex": null
+      },
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "quests": [
+        1
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "type": "move",
+      "label": "debug-map63-to-map0-approach",
+      "from": [
+        10,
+        16
+      ],
+      "to": [
+        10,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "debug-map63-to-map0-approach",
+      "from": [
+        10,
+        17
+      ],
+      "to": [
+        9,
+        17
+      ]
+    },
+    {
+      "type": "marker-entry",
+      "label": "debug-map63-to-map0",
+      "markerCode": -1,
+      "marker": [
+        9,
+        19
+      ],
+      "approach": [
+        9,
+        18
+      ],
+      "key": "ArrowDown",
+      "mapId": 0,
+      "tile": [
+        18,
+        20
+      ],
+      "text": "An absent friend Quest acquired!",
+      "dialogue": false,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ]
+    }
+  ]
+}

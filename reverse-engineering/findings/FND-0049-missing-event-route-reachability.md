@@ -63,6 +63,16 @@ The graph now reports the event-equipped maps that remain outside its deliberate
 
 These results identify missing links in the extracted class-6 New Game graph; they do not establish that the maps are intended to be entered during a normal playthrough, nor exclude a source callback or unextracted class variant. No route, trigger marker, or map event data was fabricated.
 
+## Live Map73 runtime follow-ups (M844, M846)
+
+The visible max-level New Game run reached Map73 from Map48 by moving to the live negative marker `-1` at `(5,8)`; the transition landed at Map73 `(10,18)`. This verifies that Map48's marker-1 transfer is reachable in the current browser build without a direct map start or state seed.
+
+The loaded Map73 collision grid contained positive marker 3 at `(18,7)` and `(18,17)`, negative marker `-4` at `(8,15)`, and negative marker `-1` at `(9..11,19)`. It contained no marker 2, although Map73 script 1 still encodes a type-3 marker-2 transfer to Map30. The run opened the Librarian dialogue through marker `-4`; HP stayed full and the recorded game/quest flags stayed unchanged. See [M844 capture](../../reference/screenshots/web-render/M844-map48-map73-followup/capture.json).
+
+M846 independently follows a fresh visible max-level New Game through Map51, Map49 and Map48 into Map73 `(10,18)`, then opens the Librarian dialogue and a Guard refusal with ordinary Enter input. The loaded grid again contains markers 3, `-4`, and `-1`, with no marker 2. At the Guard interaction, the actor is at `(17,7)` and game flags `[0,54,87,1,75,5,6,3]` and quest flags `[1,2,4]` remain unchanged. The boosted stats therefore do not bypass this selector/data gap. See [M846 capture](../../reference/screenshots/web-render/M846-max-level-natural-progression/capture.json).
+
+This is live web evidence confirming the missing selector in the loaded map state; it does not prove the intended J2ME route or behavior for other map variants. No original JAR or browser storage was accessed.
+
 ## Conclusion and limits
 
 Within the extracted class-6 spatial trigger data, three of the five transfers into missing event maps have no matching collision marker: map 27→28, map 73→30, and map 75→29. Map 50→28 has an exit marker but no established incoming route to map 50. Map 3→43 has an exit marker, but no possible map-3 arrival reaches it even when all decoded startup/script writes are unioned into the possible passability and marker grids. This supports “no active route found in the extracted class-6 route graph”; it does not prove behavior for unextracted class variants or external runtime callbacks.

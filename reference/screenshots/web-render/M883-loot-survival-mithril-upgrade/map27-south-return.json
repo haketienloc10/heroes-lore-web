@@ -1,0 +1,53 @@
+{
+  "from": [
+    27,
+    10,
+    2
+  ],
+  "to": [
+    0,
+    21,
+    2
+  ],
+  "visibleActions": 73,
+  "final": {
+    "level": 2,
+    "hp": 393228,
+    "maxHp": 393228,
+    "wallet": 300,
+    "inventory": [
+      {
+        "category": 2,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": [
+            8,
+            10,
+            -1
+          ]
+        }
+      },
+      {
+        "category": 11,
+        "itemId": 0,
+        "count": 1
+      }
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3
+    ],
+    "questFlags": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "from": {
+    "mapId": 60,
+    "tile": [
+      25,
+      29
+    ]
+  },
+  "visibleInput": "ArrowUp",
+  "map60Marker": -5,
+  "to": {
+    "mapId": 80,
+    "tile": [
+      10,
+      18
+    ]
+  },
+  "hp": 394392,
+  "maxHp": 394392,
+  "level": 99,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    3,
+    1,
+    75,
+    5,
+    6
+  ],
+  "questFlags": [
+    1,
+    2,
+    4
+  ],
+  "screenshot": "14-map60-to-map80-return.png"
+}

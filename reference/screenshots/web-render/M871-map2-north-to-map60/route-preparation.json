@@ -1,0 +1,38 @@
+{
+  "success": false,
+  "reason": "route-helper-stopped-on-its-map-guard-before-testing-the-exit",
+  "visibleInput": {
+    "key": "ArrowUp",
+    "from": [
+      4,
+      47
+    ],
+    "to": [
+      4,
+      46
+    ]
+  },
+  "mapId": 2,
+  "hp": 394392,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    1,
+    75,
+    5,
+    6,
+    86,
+    8,
+    3
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    19,
+    21,
+    20
+  ],
+  "transferAttempted": false
+}

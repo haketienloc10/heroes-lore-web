@@ -1,0 +1,276 @@
+{
+  "id": "M865",
+  "title": "Visible max-level New Game through Map63, Reah rescue and Map79",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [
+        32767,
+        32767,
+        32767,
+        32767
+      ],
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "newGameStart": {
+    "mapId": 0,
+    "tile": [
+      22,
+      4
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87
+    ],
+    "questFlags": [],
+    "openingDialogue": "$[Reah] Are you sure you want to quit your job?",
+    "visibleEnterInputsToMap64": 56,
+    "map64Arrival": [
+      64,
+      9,
+      8
+    ]
+  },
+  "routeSegments": [
+    {
+      "from": [
+        64,
+        9,
+        8
+      ],
+      "to": [
+        0,
+        26,
+        24
+      ],
+      "actions": 11,
+      "attacks": 0,
+      "trace": "01-map64-to-map0-route-trace.json"
+    },
+    {
+      "from": [
+        0,
+        26,
+        24
+      ],
+      "marker": -4,
+      "to": [
+        63,
+        10,
+        18
+      ],
+      "actions": 14,
+      "attacks": 0,
+      "trace": "02-map0-to-map63-route-trace.json"
+    },
+    {
+      "from": [
+        63,
+        10,
+        18
+      ],
+      "to": [
+        63,
+        9,
+        13
+      ],
+      "actions": 26,
+      "attacks": 0,
+      "result": "NPC interaction sets game flags 1, 4, 75 and quest flag 1.",
+      "trace": "03-map63-npc-flag4-route-trace.json"
+    },
+    {
+      "from": [
+        63,
+        9,
+        13
+      ],
+      "marker": -1,
+      "to": [
+        0,
+        18,
+        19
+      ],
+      "actions": 6,
+      "attacks": 0,
+      "trace": "04-map63-to-map0-route-trace.json"
+    },
+    {
+      "from": [
+        0,
+        18,
+        19
+      ],
+      "marker": 1,
+      "to": [
+        27,
+        5,
+        37
+      ],
+      "actions": 38,
+      "attacks": 0,
+      "result": "Map27 entry opens its story event and sets game flag 2.",
+      "trace": "05-map0-to-map27-route-trace.json"
+    },
+    {
+      "from": [
+        27,
+        5,
+        36
+      ],
+      "marker": -6,
+      "approach": [
+        7,
+        8
+      ],
+      "visibleRouteActions": 70,
+      "attacks": 2,
+      "result": "Visible Reah dialogue begins. Five visible confirms complete the rescue and transfer to Map64 (11,6).",
+      "trace": "06-map27-reah-approach-trace.json"
+    },
+    {
+      "from": [
+        64,
+        11,
+        6
+      ],
+      "to": [
+        64,
+        11,
+        7
+      ],
+      "result": "Visible village dialogue completes; \u201cTemple of Fire Quest acquired!\u201d is shown. Game flags 5 and 6 and quest flag 4 are present afterward."
+    },
+    {
+      "from": [
+        64,
+        11,
+        7
+      ],
+      "marker": 2,
+      "to": [
+        0,
+        26,
+        24
+      ],
+      "actions": 14,
+      "attacks": 0,
+      "trace": "07-map64-to-map0-after-quest-route-trace.json"
+    },
+    {
+      "from": [
+        0,
+        26,
+        24
+      ],
+      "marker": -2,
+      "to": [
+        79,
+        10,
+        18
+      ],
+      "actions": 39,
+      "attacks": 0,
+      "trace": "08-map0-to-map79-route-trace.json"
+    },
+    {
+      "from": [
+        79,
+        10,
+        18
+      ],
+      "to": [
+        79,
+        13,
+        13
+      ],
+      "actions": 12,
+      "attacks": 0,
+      "result": "Map79 NPC dialogue gives Blacksmith/Refiner directions; no flags change.",
+      "trace": "09-map79-npc6-dialogue-route-trace.json"
+    }
+  ],
+  "finalState": {
+    "mapId": 79,
+    "tile": [
+      13,
+      13
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ],
+    "dialogueVisible": false
+  },
+  "screenshots": [
+    {
+      "file": "01-map63-arrival.png",
+      "observation": "Arrival in Map63 at full HP."
+    },
+    {
+      "file": "02-map63-flag4.png",
+      "observation": "Map63 NPC interaction recorded with the new flags."
+    },
+    {
+      "file": "03-map27-entry.png",
+      "observation": "Map27 story event after the Map63 flag branch."
+    },
+    {
+      "file": "04-map27-reah-trigger.png",
+      "observation": "Reah dialogue starts at Map27 marker -6."
+    },
+    {
+      "file": "05-map64-to-map0-after-quest.png",
+      "observation": "Map64 lower exit after Temple of Fire quest dialogue."
+    },
+    {
+      "file": "06-map79-arrival.png",
+      "observation": "Map79 arrival from Map0 with quest flags 1, 2, 4."
+    },
+    {
+      "file": "07-map79-npc-dialogue.png",
+      "observation": "Map79 NPC dialogue has closed; profile remains full HP."
+    }
+  ],
+  "stateFiles": [
+    "event-observations.json",
+    "01-map64-to-map0-route-trace.json",
+    "02-map0-to-map63-route-trace.json",
+    "03-map63-npc-flag4-route-trace.json",
+    "04-map63-to-map0-route-trace.json",
+    "05-map0-to-map27-route-trace.json",
+    "06-map27-reah-approach-trace.json",
+    "07-map64-to-map0-after-quest-route-trace.json",
+    "08-map0-to-map79-route-trace.json",
+    "09-map79-npc6-dialogue-route-trace.json"
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "originalLocalSaveReadOrWritten": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

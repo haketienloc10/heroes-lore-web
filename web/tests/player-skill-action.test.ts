@@ -4,6 +4,7 @@ import {
   assignPlayerSkillLevelSlot,
   awardPlayerSkillExperience,
   createPlayerSkillActionState,
+  playerSkillChargeMaximum,
   playerSkillLevelForActionButton,
   restoreSkillResource,
   sourceActionNeedsActorTargetReselection,
@@ -40,6 +41,13 @@ function skillEnemy(elementCode = 0) {
 }
 
 describe('source player skill action lifecycle', () => {
+  it('exposes the source cooldown maximum for each HUD skill level', () => {
+    expect(playerSkillChargeMaximum(0, 0)).toBe(56);
+    expect(playerSkillChargeMaximum(1, 1)).toBe(160);
+    expect(playerSkillChargeMaximum(5, 2)).toBe(270);
+    expect(() => playerSkillChargeMaximum(6, 0)).toThrow(RangeError);
+  });
+
   it('levels only the active skill from the source x4 experience award', () => {
     const levelTwo = awardPlayerSkillExperience(createPlayerSkillActionState(0), 20);
     expect(levelTwo).toMatchObject({ skillRank: 2, skillExperience: 0 });

@@ -1,0 +1,31 @@
+{
+  "source": "live WorldScene runtime read after visible transfer; no storage access",
+  "mapId": 2,
+  "tile": [
+    4,
+    47
+  ],
+  "level": 99,
+  "hp": 394392,
+  "maxHp": 394392,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    1,
+    75,
+    5,
+    6,
+    86,
+    8,
+    3
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    19,
+    21,
+    20
+  ]
+}

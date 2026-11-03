@@ -10,7 +10,7 @@ const generatedRoot = path.join(webRoot, 'public', 'assets', 'generated');
 const vite = await createServer({
   root: webRoot,
   configFile: path.join(webRoot, 'vite.config.ts'),
-  server: { middlewareMode: true },
+  server: { middlewareMode: true, ws: false },
   appType: 'custom',
 });
 

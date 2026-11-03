@@ -1,0 +1,719 @@
+{
+  "success": false,
+  "reason": "no-path-to-map60-marker5-to-map80-approach",
+  "start": {
+    "mapId": 61,
+    "tile": [
+      2,
+      5
+    ],
+    "hp": 394392,
+    "level": 99,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "legs": [
+    {
+      "map": 61,
+      "goal": [
+        4,
+        38
+      ],
+      "entryKey": "ArrowDown",
+      "destination": 60,
+      "name": "map61-south-to-map60"
+    },
+    {
+      "map": 60,
+      "goal": [
+        24,
+        27
+      ],
+      "entryKey": "ArrowDown",
+      "destination": 80,
+      "name": "map60-marker5-to-map80"
+    }
+  ],
+  "final": {
+    "mapId": 60,
+    "tile": [
+      1,
+      2
+    ],
+    "hp": 394392,
+    "maxHp": 394392,
+    "level": 99,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ],
+    "dialogue": false,
+    "text": "|[Village chief] Welcome, Ronin."
+  },
+  "actions": [
+    {
+      "leg": "map61-south-to-map60",
+      "type": "attack-blocker",
+      "enemy": 9,
+      "tile": [
+        3,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        2,
+        5
+      ],
+      "to": [
+        3,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        3,
+        5
+      ],
+      "to": [
+        4,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "attack-blocker",
+      "enemy": 2,
+      "tile": [
+        5,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        4,
+        5
+      ],
+      "to": [
+        5,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        5,
+        5
+      ],
+      "to": [
+        6,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        6,
+        5
+      ],
+      "to": [
+        7,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        7,
+        5
+      ],
+      "to": [
+        8,
+        5
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        8,
+        5
+      ],
+      "to": [
+        8,
+        6
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        8,
+        6
+      ],
+      "to": [
+        8,
+        7
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        8,
+        7
+      ],
+      "to": [
+        8,
+        8
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        8,
+        8
+      ],
+      "to": [
+        8,
+        9
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        8,
+        9
+      ],
+      "to": [
+        9,
+        9
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        9
+      ],
+      "to": [
+        9,
+        10
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        10
+      ],
+      "to": [
+        9,
+        11
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        11
+      ],
+      "to": [
+        9,
+        12
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        12
+      ],
+      "to": [
+        9,
+        13
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        13
+      ],
+      "to": [
+        9,
+        14
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        14
+      ],
+      "to": [
+        9,
+        15
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        15
+      ],
+      "to": [
+        9,
+        16
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        16
+      ],
+      "to": [
+        9,
+        17
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        17
+      ],
+      "to": [
+        9,
+        18
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        18
+      ],
+      "to": [
+        9,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        19
+      ],
+      "to": [
+        9,
+        20
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        20
+      ],
+      "to": [
+        9,
+        21
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "attack-blocker",
+      "enemy": 15,
+      "tile": [
+        9,
+        22
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        21
+      ],
+      "to": [
+        9,
+        22
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        22
+      ],
+      "to": [
+        9,
+        23
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        23
+      ],
+      "to": [
+        9,
+        24
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        24
+      ],
+      "to": [
+        9,
+        25
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        25
+      ],
+      "to": [
+        9,
+        26
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        26
+      ],
+      "to": [
+        9,
+        27
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        27
+      ],
+      "to": [
+        9,
+        28
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        28
+      ],
+      "to": [
+        9,
+        29
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        29
+      ],
+      "to": [
+        9,
+        30
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        30
+      ],
+      "to": [
+        9,
+        31
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        31
+      ],
+      "to": [
+        9,
+        32
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        32
+      ],
+      "to": [
+        9,
+        33
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "attack-blocker",
+      "enemy": 19,
+      "tile": [
+        9,
+        34
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        33
+      ],
+      "to": [
+        9,
+        34
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        34
+      ],
+      "to": [
+        9,
+        35
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        9,
+        35
+      ],
+      "to": [
+        8,
+        35
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        8,
+        35
+      ],
+      "to": [
+        7,
+        35
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        7,
+        35
+      ],
+      "to": [
+        6,
+        35
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        6,
+        35
+      ],
+      "to": [
+        6,
+        36
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        6,
+        36
+      ],
+      "to": [
+        5,
+        36
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        5,
+        36
+      ],
+      "to": [
+        5,
+        37
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "move",
+      "from": [
+        5,
+        37
+      ],
+      "to": [
+        4,
+        37
+      ],
+      "hp": 394392
+    },
+    {
+      "leg": "map61-south-to-map60",
+      "type": "transfer",
+      "from": [
+        4,
+        37
+      ],
+      "to": [
+        1,
+        2
+      ],
+      "mapId": 60,
+      "hp": 394392
+    }
+  ],
+  "attackCount": 4,
+  "screenshots": [
+    "/tmp/m877-map61-south-to-map60.png"
+  ]
+}

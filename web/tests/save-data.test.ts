@@ -450,6 +450,22 @@ describe('browser game save data', () => {
       { category: 8, itemId: 2, count: 5 },
     ], 30)).toBeNull();
 
+    const duplicateAndUnique = [
+      ...duplicateStacks,
+      { category: 7, itemId: 4, count: 1 },
+    ];
+    const duplicateAndUniqueSnapshot = snapshotSourceInventorySlots(duplicateAndUnique, [2, 5, 9], 30);
+    const unrelatedCountChange = advanceSourceInventorySlotSnapshot(duplicateAndUniqueSnapshot, [
+      ...duplicateStacks,
+      { category: 7, itemId: 4, count: 2 },
+    ], 30);
+    expect(unrelatedCountChange?.indices).toEqual([2, 5, 9]);
+    const unrelatedInsertion = advanceSourceInventorySlotSnapshot(duplicateAndUniqueSnapshot, [
+      ...duplicateAndUnique,
+      { category: 12, itemId: 1, count: 1 },
+    ], 30);
+    expect(unrelatedInsertion?.indices).toEqual([2, 5, 9, 0]);
+
     // Source f.a(ac) clears the removed slot, then f.d() shifts once from the
     // first hole; with imported holes before slot 4, these later entries move
     // by one even when the removed entry itself was farther into the array.

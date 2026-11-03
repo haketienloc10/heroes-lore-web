@@ -1,0 +1,54 @@
+{
+  "id": "M887",
+  "source": "M887d visible Chromium run; checkpoints transcribed from live WorldScene observations and screenshots",
+  "note": "This is a milestone trace rather than a per-key movement log. Interactions and standalone inputs are summarized in manual-interactions.json.",
+  "milestones": [
+    {
+      "step": 1,
+      "route": "New Game -> Map64 -> Map0 -> Map27 -> Map0 -> Map63",
+      "result": "The visible route reaches the Village Chief at [9,13]; the Chief event sets game flags 1, 4, and 75 and quest flag 1."
+    },
+    {
+      "step": 2,
+      "route": "Map63 -> Map0 -> Map27 -> Reah rescue -> Map64 -> Map0 -> Map27 -> Map17 -> Map18 -> Map21 -> Map18 -> Map19",
+      "result": "Reah rescue reaches Map64 [11,7] and sets flags 5/6 and quest flags 2/4. Map17 entry sets flag 76. Map19 event at [7,14] sets flag 11 and grants category 20/item 3."
+    },
+    {
+      "step": 3,
+      "route": "Map19 -> Map18 -> Map21 -> Map22 -> Map23 -> Map24",
+      "result": "Map22 NPC interaction at [12,8] sets flag 12 and grants category 19/item 3. Map24 marker -3 grants category 19/item 4 and sets flag 13."
+    },
+    {
+      "step": 4,
+      "route": "Map24 -> Map23 -> Map25 -> Map23 -> Map10 -> Map11",
+      "result": "Map25 exchange sets flag 14, grants category 19/item 0, and consumes the category 19 items 3 and 4. Map23 marker -6 transfers to Map10 [8,6] and sets flag 91. Map10 marker 2 transfers to Map11 [10,10] and sets flag 15; the category 19/item 0 gate item is consumed."
+    },
+    {
+      "step": 5,
+      "route": "Map11 encounter -> Map10 -> Map27 -> Map0 -> Map63 -> Map0 -> Map64 -> Map0 -> Map63",
+      "result": "The Map11 encounter at [10,9] is defeated with a basic attack. The event returns to Map10 [9,2]; seven visible Space advances transfer to Map27 [27,5]. Map63 quest route sets flags 16/17; Map64 marker -5 event clears flag 17, sets flag 18 and quest flag 6."
+    },
+    {
+      "step": 6,
+      "route": "Map63 chief follow-up -> Map0 -> Map27 -> Map2 -> Map60",
+      "result": "With flag 18, the Chief interactions set flags 19/20 then flag 21, and grant category 18/item 0 (quest flags 5/7/25). Visible exits transfer Map27 -> Map2 -> Map60."
+    },
+    {
+      "step": 7,
+      "route": "Map60 marker -3 -> Map69 NPC interactions -> Map70 -> Map71",
+      "result": "Map69 first NPC interaction sets flag 24 and quest flag 26, consumes category 18/item 0, and grants five category 9/item 0. The repeat interaction sets flag 25, clears flag 24, and sets quest flag 9. The north marker -2 reaches Map70 [4,13]. Map70 marker -4 reaches Map71 [10,12], where flags 27/77/84 and quest flag 8 are present and flag 25 is cleared."
+    }
+  ],
+  "finalState": {
+    "mapId": 71,
+    "tile": [10, 12],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameFlags": [0, 54, 87, 1, 75, 76, 11, 13, 14, 91, 16, 3, 27, 77, 84],
+    "questFlags": [1, 2, 4, 6, 7, 5, 25, 26, 9, 8],
+    "inventory": [{ "category": 9, "itemId": 0, "count": 5 }]
+  }
+}

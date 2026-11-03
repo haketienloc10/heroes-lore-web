@@ -46,6 +46,24 @@ const emptyDecorations: MapDecorationData = {
   objects: [],
 };
 
+function createOneCellStartupTestWorld() {
+  return createWorldGrid({
+    format: 'heroes-lore-map-v1', tilesetId: 1, width: 1, height: 1,
+    tileSize: 16, tileIds: [[0]],
+  }, {
+    format: 'heroes-lore-base-collision-v1', width: 1, height: 1,
+    tileSize: 16, values: [[0]], passabilityRule: 'base value >= 0',
+  });
+}
+
+function parseOneCellStartupActions(actions: { opcode: number; arguments: number[] }[]) {
+  return parseEventOperationData({
+    ...rawEvents,
+    descriptors: [{ cellIndex: 0, rawMarkerByte: 0 }],
+    actionBlocks: [{ actions }],
+  });
+}
+
 describe('raw map event trigger data', () => {
   it('converts the opcode-7 facing index to the source direction and rejects invalid values', () => {
     expect([0, 1, 2, 3].map(sourceMapTransitionDirection)).toEqual([1, 2, 3, 4]);
@@ -290,6 +308,22 @@ describe('raw map event trigger data', () => {
     });
     expect(resolveTriggerScript(events, 1, 2, new Set())).toBeUndefined();
     expect(resolveTriggerScript(events, 1, 3, new Set([0]))).toBeUndefined();
+  });
+
+  it('stops on a matching no-script row instead of running the fallback row', () => {
+    const events = parseEventOperationData({
+      ...rawEvents,
+      triggerGroups: [[], [
+        [0, 67, 0, 255, 0, 0, 255],
+        [0, 0, 0, 255, 0, 0, 1],
+      ]],
+      scripts: [[], [[1, 0, 0], [99, 0, 0]]],
+    });
+
+    // Map 74 uses this row pair: before flag 67 the dialogue fallback runs;
+    // afterward the matched 0xff row suppresses it so the hero can leave.
+    expect(resolveTriggerScript(events, 2, 0, new Set([0]))?.scriptIndex).toBe(1);
+    expect(resolveTriggerScript(events, 2, 0, new Set([0, 67]))).toBeUndefined();
   });
 
   it('runs the map-53 material and key route from its extracted interaction events', () => {
@@ -724,6 +758,38 @@ describe('raw map event trigger data', () => {
     expect(state.actionBlockIndex).toBe(2);
     expect(state.visibleNpcSourceOrders).toEqual(new Set([1, 3]));
     expect(state.world.collision.values[4][22]).toBe(0);
+  });
+
+  it('treats startup opcode 108 as the source no-op', () => {
+    const world = createOneCellStartupTestWorld();
+    const state = applyInitialMapEventState(
+      world,
+      parseOneCellStartupActions([{ opcode: 108, arguments: [0, 0, 0] }]),
+      new Set([0]),
+      emptyDecorations,
+    );
+
+    expect(state.world.map.tileIds).toEqual(world.map.tileIds);
+    expect(state.world.collision.values).toEqual(world.collision.values);
+    expect(state.actionBlockIndex).toBe(0);
+  });
+
+  it.each([106, 107])('surfaces startup opcode %i source assertion failures', (opcode) => {
+    expect(() => applyInitialMapEventState(
+      createOneCellStartupTestWorld(),
+      parseOneCellStartupActions([{ opcode, arguments: [0, 0, 0] }]),
+      new Set([0]),
+      emptyDecorations,
+    )).toThrow(`Source map startup opcode ${opcode} reaches an assertion failure`);
+  });
+
+  it('rejects unknown startup opcodes instead of silently skipping them', () => {
+    expect(() => applyInitialMapEventState(
+      createOneCellStartupTestWorld(),
+      parseOneCellStartupActions([{ opcode: 113, arguments: [0, 0, 0] }]),
+      new Set([0]),
+      emptyDecorations,
+    )).toThrow('Unsupported map startup opcode 113');
   });
 
   it('applies source startup map, decoration, enemy, and NPC operations in order', () => {

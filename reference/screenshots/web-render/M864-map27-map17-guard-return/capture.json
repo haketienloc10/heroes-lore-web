@@ -1,0 +1,131 @@
+{
+  "id": "M864",
+  "title": "Map27 north branch to Map17 Guard refusal and Map0 return",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [
+        32767,
+        32767,
+        32767,
+        32767
+      ],
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "start": {
+    "mapId": 27,
+    "tile": [
+      5,
+      37
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3
+    ],
+    "questFlags": [],
+    "context": "Same visible New Game as M863."
+  },
+  "routeSegments": [
+    {
+      "from": [
+        27,
+        5,
+        36
+      ],
+      "marker": -4,
+      "to": [
+        17,
+        12,
+        17
+      ],
+      "actions": 53,
+      "movementSteps": 52,
+      "attacks": 0,
+      "result": "Map17 loads a Guard refusal dialogue."
+    },
+    {
+      "from": [
+        17,
+        12,
+        17
+      ],
+      "confirm": "Enter",
+      "to": [
+        27,
+        27,
+        5
+      ],
+      "result": "Guard dialogue confirmation returns to Map27; flags stay unchanged."
+    },
+    {
+      "from": [
+        27,
+        27,
+        5
+      ],
+      "marker": -2,
+      "to": [
+        0,
+        21,
+        2
+      ],
+      "actions": 54,
+      "movementSteps": 52,
+      "attacks": 1,
+      "result": "Map27 bottom exit returns to Map0."
+    }
+  ],
+  "finalState": {
+    "mapId": 0,
+    "tile": [
+      21,
+      2
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3
+    ],
+    "questFlags": []
+  },
+  "screenshots": [
+    {
+      "file": "01-map27-arrival.png",
+      "observation": "Map27 arrival before visible blocker attack."
+    },
+    {
+      "file": "02-map17-guard-arrival.png",
+      "observation": "Map17 Guard refusal branch reached at full HP."
+    },
+    {
+      "file": "03-map0-return.png",
+      "observation": "Return to Map0 after Map17 refusal."
+    }
+  ],
+  "stateFiles": [
+    "map27-to-map17-route-trace.json",
+    "manual-interactions.json",
+    "map27-to-map0-route-trace.json"
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "originalLocalSaveReadOrWritten": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

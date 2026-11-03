@@ -1,0 +1,70 @@
+{
+  "id": "M887",
+  "directInputsNotRecordedAsRouteMilestones": [
+    {
+      "phase": "new-game",
+      "actions": ["Select Ronin", "select Guardians 0 and 1", "choose Yes", "advance the opening through the visible UI"]
+    },
+    {
+      "phase": "Map63 Village Chief initial event",
+      "tile": [9, 13],
+      "actions": ["face the NPC", "interact and advance the event with Space"]
+    },
+    {
+      "phase": "Map27 Reah rescue",
+      "tile": [7, 9],
+      "actions": ["approach the trigger", "face it and interact/advance with Space"]
+    },
+    {
+      "phase": "Map19 reward event",
+      "tile": [7, 14],
+      "actions": ["interact with the visible event and advance its dialogue"]
+    },
+    {
+      "phase": "Map22 NPC item event",
+      "tile": [12, 8],
+      "approach": [12, 9],
+      "actions": ["face up", "interact and advance the dialogue with Space"]
+    },
+    {
+      "phase": "Map24 reward marker",
+      "marker": -3,
+      "approach": [5, 5],
+      "actions": ["face up", "interact and advance the event with Space"]
+    },
+    {
+      "phase": "Map25 exchange event",
+      "tile": [17, 3],
+      "approach": [17, 4],
+      "actions": ["face up", "interact and advance the exchange dialogue"]
+    },
+    {
+      "phase": "Map11 encounter",
+      "enemy": [10, 9],
+      "actions": ["face up", "use the basic attack input"]
+    },
+    {
+      "phase": "Map63 Chief follow-up after flag 18",
+      "tile": [9, 13],
+      "actions": ["interact and advance the first event", "interact again and advance the second event"]
+    },
+    {
+      "phase": "Map69 first NPC interaction",
+      "tile": [14, 8],
+      "approach": [14, 9],
+      "actions": ["face up", "interact and advance the event with Space"]
+    },
+    {
+      "phase": "Map69 repeated NPC interaction",
+      "tile": [14, 8],
+      "approach": [14, 9],
+      "actions": ["interact again and advance the event until flag 25 is set"]
+    },
+    {
+      "phase": "Map70 to Map71 transfer",
+      "marker": -4,
+      "approach": [9, 5],
+      "actions": ["face up", "interact and advance the transfer event"]
+    }
+  ]
+}

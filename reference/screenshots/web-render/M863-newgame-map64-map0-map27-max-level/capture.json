@@ -1,0 +1,116 @@
+{
+  "id": "M863",
+  "title": "Fresh New Game route from Map64 through Map0 to Map27 on max-level profile",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [
+        32767,
+        32767,
+        32767,
+        32767
+      ],
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "start": {
+    "mapId": 64,
+    "tile": [
+      11,
+      6
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87
+    ],
+    "questFlags": [],
+    "context": "Visible New Game opening sequence completed naturally; no map start or gameplay state was seeded."
+  },
+  "routeSegments": [
+    {
+      "from": [
+        64,
+        11,
+        6
+      ],
+      "to": [
+        0,
+        26,
+        24
+      ],
+      "marker": 2,
+      "actions": 13,
+      "movementSteps": 12,
+      "attacks": 0,
+      "result": "Transferred through Map64 lower exit; HP stayed full."
+    },
+    {
+      "from": [
+        0,
+        26,
+        24
+      ],
+      "to": [
+        27,
+        5,
+        37
+      ],
+      "marker": 1,
+      "approach": [
+        20,
+        2
+      ],
+      "entryInput": "ArrowUp",
+      "actions": 51,
+      "movementSteps": 50,
+      "attacks": 0,
+      "result": "Transferred through Map0 north exit; HP stayed full."
+    }
+  ],
+  "finalState": {
+    "mapId": 27,
+    "tile": [
+      5,
+      37
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3
+    ],
+    "questFlags": []
+  },
+  "screenshots": [
+    {
+      "file": "01-map0-arrival.png",
+      "observation": "Hero arrives from Map64 at Map0 (26,24), level 99 and full HP."
+    },
+    {
+      "file": "02-map27-arrival.png",
+      "observation": "Hero arrives from Map0 at Map27 (5,37), level 99 and full HP."
+    }
+  ],
+  "stateFiles": [
+    "map64-to-map0-route-trace.json",
+    "map0-to-map27-route-trace.json"
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "originalLocalSaveReadOrWritten": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

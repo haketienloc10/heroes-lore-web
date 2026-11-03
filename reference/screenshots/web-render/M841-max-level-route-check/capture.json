@@ -1,0 +1,76 @@
+{
+  "id": "M841",
+  "title": "Max-level visible New Game route and service screens",
+  "date": "2026-11-02",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "viewport": [780, 380],
+    "startup": "Started through the visible title and New Game controls",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [32767, 32767, 32767, 32767],
+      "sampledHp": 394392,
+      "sampledMaxHp": 394392
+    }
+  },
+  "mapTransitions": [
+    [64, 0],
+    [0, 63],
+    [63, 0],
+    [0, 27],
+    [27, 64],
+    [64, 0],
+    [0, 27],
+    [27, 2],
+    [2, 60],
+    [60, 72],
+    [72, 60],
+    [60, 80],
+    [80, 60],
+    [60, 61],
+    [61, 1],
+    [1, 61],
+    [61, 1],
+    [1, 51],
+    [51, 1],
+    [1, 3]
+  ],
+  "verified": [
+    "Completed the Map63 chief event and Reah rescue; quest flags 1, 2, and 4 were present afterward.",
+    "Entered Map80 and opened the Shop, Refiner, and Blacksmith screens. No purchase, sale, refinement, or equipment-identification action was taken.",
+    "Traversed Maps 60, 61, 1, 51, and 3 using visible keyboard input. Normal attacks cleared blocking enemies on Map51; sampled HP remained 394392/394392 and no Game Over occurred.",
+    "At Map51 (27,3), the Temple of Earth guard said 'You are not allowed to enter the Temple of Earth.' The event did not change the sampled game or quest flags.",
+    "At Map3 (7,19), the guard said 'This area is forbidden to civilians.' The event did not change the sampled game flags; Map4 was not reached in this run."
+  ],
+  "finalState": {
+    "mapId": 3,
+    "tile": [7, 19],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [0, 54, 87, 1, 75, 5, 6, 3],
+    "questFlags": [1, 2, 4],
+    "dialogueVisible": false
+  },
+  "screenshots": [
+    { "file": "shop.png", "observation": "Shop list opened; no row purchased." },
+    { "file": "refiner.png", "observation": "Refiner main screen opened; no action taken." },
+    { "file": "blacksmith.png", "observation": "Blacksmith main screen opened; no action taken." },
+    { "file": "map51-temple-gate.png", "observation": "Temple of Earth refusal dialogue." },
+    { "file": "map3-guard-gate.png", "observation": "Civilian access refusal dialogue." }
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "originalLocalSaveReadOrWritten": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This is a development-only boosted profile; it does not verify ordinary-level balance or J2ME parity.",
+    "This is a partial route, not a full-campaign completion. Map4 and later content were not verified by this run.",
+    "The previously exhausted natural full-campaign replay subtask remains blocked; this boosted route does not reset its attempt count."
+  ]
+}

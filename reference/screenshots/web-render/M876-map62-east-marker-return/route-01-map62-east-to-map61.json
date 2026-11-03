@@ -1,0 +1,79 @@
+{
+  "success": true,
+  "reason": "reached-map61",
+  "start": {
+    "mapId": 62,
+    "tile": [
+      37,
+      21
+    ],
+    "hp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "actions": [
+    {
+      "key": "ArrowRight",
+      "type": "transfer",
+      "from": [
+        37,
+        21
+      ],
+      "to": [
+        2,
+        5
+      ],
+      "mapId": 61,
+      "hp": 394392
+    }
+  ],
+  "final": {
+    "source": "live WorldScene runtime read after visible ArrowRight input; no storage access",
+    "mapId": 61,
+    "tile": [
+      2,
+      5
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  }
+}

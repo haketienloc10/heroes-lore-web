@@ -1,0 +1,2291 @@
+{
+  "observations": [
+    {
+      "phase": "continuation-start",
+      "mapId": 0,
+      "tile": [
+        18,
+        19
+      ],
+      "level": 3,
+      "hp": 393240,
+      "maxHp": 393240,
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "equipment": [
+        {
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        null,
+        {
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ],
+      "dialogue": false,
+      "text": "An absent friend Quest acquired!",
+      "service": null,
+      "cutscene": {
+        "status": "transfer",
+        "scriptIndex": 0,
+        "commandIndex": 4,
+        "dialogueStringIndex": null
+      }
+    },
+    {
+      "phase": "map0-step-left-from-exit",
+      "mapId": 0,
+      "tile": [
+        17,
+        19
+      ],
+      "level": 3,
+      "hp": 393240,
+      "maxHp": 393240,
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "equipment": [
+        {
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        null,
+        {
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ],
+      "dialogue": false,
+      "text": "An absent friend Quest acquired!",
+      "service": null,
+      "cutscene": {
+        "status": "transfer",
+        "scriptIndex": 0,
+        "commandIndex": 4,
+        "dialogueStringIndex": null
+      }
+    },
+    {
+      "phase": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        36
+      ],
+      "level": 3,
+      "hp": 393240,
+      "maxHp": 393240,
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "equipment": [
+        {
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        null,
+        {
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ],
+      "dialogue": false,
+      "text": "|[Ronin] That is...",
+      "service": null,
+      "cutscene": {
+        "status": "ended",
+        "scriptIndex": 4,
+        "commandIndex": 17,
+        "dialogueStringIndex": null
+      }
+    },
+    {
+      "phase": "reah-event-start",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "level": 3,
+      "hp": 393240,
+      "maxHp": 393240,
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "equipment": [
+        {
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        null,
+        {
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ],
+      "dialogue": true,
+      "text": "|[Ronin] Oh, Reah! ",
+      "service": null,
+      "cutscene": {
+        "status": "dialogue",
+        "scriptIndex": 8,
+        "commandIndex": 1,
+        "dialogueStringIndex": 4
+      }
+    },
+    {
+      "phase": "failure",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276,
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "equipment": [
+        {
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        null,
+        {
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ],
+      "dialogue": true,
+      "text": "|[Ronin]...You still look funny when you sleep.",
+      "service": null,
+      "cutscene": {
+        "status": "dialogue",
+        "scriptIndex": 2,
+        "commandIndex": 16,
+        "dialogueStringIndex": 5
+      }
+    }
+  ],
+  "trace": [
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        17,
+        19
+      ],
+      "to": [
+        16,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        16,
+        19
+      ],
+      "to": [
+        16,
+        18
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        16,
+        18
+      ],
+      "to": [
+        16,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        16,
+        17
+      ],
+      "to": [
+        15,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        15,
+        17
+      ],
+      "to": [
+        15,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        15,
+        16
+      ],
+      "to": [
+        14,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        14,
+        16
+      ],
+      "to": [
+        14,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        14,
+        15
+      ],
+      "to": [
+        13,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        13,
+        15
+      ],
+      "to": [
+        12,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        12,
+        15
+      ],
+      "to": [
+        11,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        11,
+        15
+      ],
+      "to": [
+        10,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        9,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        15
+      ],
+      "to": [
+        9,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        14
+      ],
+      "to": [
+        9,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        13
+      ],
+      "to": [
+        9,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        12
+      ],
+      "to": [
+        9,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        11
+      ],
+      "to": [
+        9,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        10
+      ],
+      "to": [
+        9,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        9
+      ],
+      "to": [
+        9,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        9,
+        8
+      ],
+      "to": [
+        10,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        10,
+        8
+      ],
+      "to": [
+        11,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        11,
+        8
+      ],
+      "to": [
+        12,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        12,
+        8
+      ],
+      "to": [
+        13,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        13,
+        8
+      ],
+      "to": [
+        14,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        14,
+        8
+      ],
+      "to": [
+        15,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        15,
+        8
+      ],
+      "to": [
+        16,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        16,
+        8
+      ],
+      "to": [
+        17,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        17,
+        8
+      ],
+      "to": [
+        18,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        18,
+        8
+      ],
+      "to": [
+        18,
+        7
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        18,
+        7
+      ],
+      "to": [
+        18,
+        6
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        18,
+        6
+      ],
+      "to": [
+        18,
+        5
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        18,
+        5
+      ],
+      "to": [
+        18,
+        4
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        18,
+        4
+      ],
+      "to": [
+        18,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        18,
+        3
+      ],
+      "to": [
+        19,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        19,
+        3
+      ],
+      "to": [
+        20,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "safe-map0-to-map27-approach",
+      "from": [
+        20,
+        3
+      ],
+      "to": [
+        20,
+        2
+      ]
+    },
+    {
+      "type": "marker-entry",
+      "label": "safe-map0-to-map27",
+      "markerCode": 1,
+      "marker": [
+        20,
+        1
+      ],
+      "approach": [
+        20,
+        2
+      ],
+      "key": "ArrowUp",
+      "mapId": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "text": "An absent friend Quest acquired!",
+      "dialogue": true,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "text": "An absent friend Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "text": "An absent friend Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "text": "An absent friend Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        36
+      ],
+      "text": "An absent friend Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        36
+      ],
+      "text": "|[Ronin] That is...",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "map27-story-entry",
+      "mapId": 27,
+      "tile": [
+        5,
+        36
+      ],
+      "text": "|[Ronin] That is...",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        5,
+        36
+      ],
+      "to": [
+        5,
+        35
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        5,
+        35
+      ],
+      "to": [
+        5,
+        34
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        5,
+        34
+      ],
+      "to": [
+        5,
+        33
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        5,
+        33
+      ],
+      "to": [
+        5,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        5,
+        32
+      ],
+      "to": [
+        6,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        6,
+        32
+      ],
+      "to": [
+        6,
+        31
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        6,
+        31
+      ],
+      "to": [
+        7,
+        31
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        7,
+        31
+      ],
+      "to": [
+        7,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        7,
+        30
+      ],
+      "to": [
+        8,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        8,
+        30
+      ],
+      "to": [
+        9,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        9,
+        30
+      ],
+      "to": [
+        10,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        10,
+        30
+      ],
+      "to": [
+        11,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        11,
+        30
+      ],
+      "to": [
+        12,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        12,
+        30
+      ],
+      "to": [
+        13,
+        30
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        13,
+        30
+      ],
+      "to": [
+        13,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        13,
+        29
+      ],
+      "to": [
+        14,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        14,
+        29
+      ],
+      "to": [
+        15,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        15,
+        29
+      ],
+      "to": [
+        16,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        16,
+        29
+      ],
+      "to": [
+        17,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        17,
+        29
+      ],
+      "to": [
+        18,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        18,
+        29
+      ],
+      "to": [
+        19,
+        29
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        19,
+        29
+      ],
+      "to": [
+        19,
+        28
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        19,
+        28
+      ],
+      "to": [
+        19,
+        27
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        19,
+        27
+      ],
+      "to": [
+        19,
+        26
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        19,
+        26
+      ],
+      "to": [
+        19,
+        25
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        19,
+        25
+      ],
+      "to": [
+        20,
+        25
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        20,
+        25
+      ],
+      "to": [
+        21,
+        25
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        21,
+        25
+      ],
+      "to": [
+        21,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        21,
+        24
+      ],
+      "to": [
+        22,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        22,
+        24
+      ],
+      "to": [
+        23,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        23,
+        24
+      ],
+      "to": [
+        24,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        24
+      ],
+      "to": [
+        24,
+        23
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        23
+      ],
+      "to": [
+        24,
+        22
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        22
+      ],
+      "to": [
+        24,
+        21
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        21
+      ],
+      "to": [
+        24,
+        20
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        20
+      ],
+      "to": [
+        24,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        19
+      ],
+      "to": [
+        24,
+        18
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        18
+      ],
+      "to": [
+        24,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        17
+      ],
+      "to": [
+        24,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        16
+      ],
+      "to": [
+        25,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        16
+      ],
+      "to": [
+        25,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        15
+      ],
+      "to": [
+        25,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        14
+      ],
+      "to": [
+        25,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        13
+      ],
+      "to": [
+        25,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        12
+      ],
+      "to": [
+        25,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        11
+      ],
+      "to": [
+        25,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        25,
+        10
+      ],
+      "to": [
+        24,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        24,
+        10
+      ],
+      "to": [
+        23,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        23,
+        10
+      ],
+      "to": [
+        23,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        23,
+        9
+      ],
+      "to": [
+        22,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        22,
+        9
+      ],
+      "to": [
+        21,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        21,
+        9
+      ],
+      "to": [
+        20,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        20,
+        9
+      ],
+      "to": [
+        19,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        19,
+        9
+      ],
+      "to": [
+        18,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        18,
+        9
+      ],
+      "to": [
+        17,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        17,
+        9
+      ],
+      "to": [
+        16,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        16,
+        9
+      ],
+      "to": [
+        15,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        15,
+        9
+      ],
+      "to": [
+        14,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        14,
+        9
+      ],
+      "to": [
+        13,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        13,
+        9
+      ],
+      "to": [
+        12,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        12,
+        9
+      ],
+      "to": [
+        11,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        11,
+        9
+      ],
+      "to": [
+        10,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        10,
+        9
+      ],
+      "to": [
+        9,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        9,
+        9
+      ],
+      "to": [
+        8,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        8,
+        9
+      ],
+      "to": [
+        8,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "reah-event-approach",
+      "from": [
+        8,
+        8
+      ],
+      "to": [
+        7,
+        8
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Oh, Reah! ",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Oh, Reah! ",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Reah, Reah!! Wake up!!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Reah, Reah!! Wake up!!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Reah, Reah!! Wake up!!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Not good, I have to move her to the\nvillage first.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "|[Ronin] Not good, I have to move her to the\nvillage first.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "An absent friend Quest completed!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "An absent friend Quest completed!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "Received 300 EXP",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 27,
+      "tile": [
+        7,
+        8
+      ],
+      "text": "Received 300 EXP",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2
+      ],
+      "questFlags": [
+        1
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Lesley] The injury is not serious. I think she\njust passed out because she's so exhausted.\nShe'll get better soon.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Lesley] The injury is not serious. I think she\njust passed out because she's so exhausted.\nShe'll get better soon.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Ah, nice.. thank you..",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Ah, nice.. thank you..",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Lesley] Let me know if she wakes up. I've got\nto go back now.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Lesley] Let me know if she wakes up. I've got\nto go back now.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] It's been 3 years... I didn't expect to\nmeet you again like this.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "reah-rescue-event",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] It's been 3 years... I didn't expect to\nmeet you again like this.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    }
+  ]
+}

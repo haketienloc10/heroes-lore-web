@@ -1,0 +1,141 @@
+{
+  "id": "M888",
+  "title": "Map71 Crusader order event and Map70 return gate using visible max-level New Game",
+  "date": "2026-11-03",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "session": "Fresh temporary browser profile. New Game and all gameplay actions used the visible UI and keyboard input.",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392
+    }
+  },
+  "setup": {
+    "character": "Ronin",
+    "guardians": [0, 1],
+    "confirmation": "Yes",
+    "route": "Visible New Game from Map64, replaying the Map63/Reah, Map19/22/24, Map25, Map10/11, Map63 follow-up, and Map69 flag-25 route documented in M887, then continuing through Map71.",
+    "startingState": {
+      "mapId": 64,
+      "tile": [9, 8],
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392
+    }
+  },
+  "observations": [
+    {
+      "route": "Map71 Crusader order interaction",
+      "interaction": {
+        "actorTile": [14, 11],
+        "facing": "up",
+        "markerAhead": -3,
+        "action": "Interact, then advance the visible event until it closes"
+      },
+      "result": {
+        "scene": "WorldScene",
+        "mapId": 71,
+        "tile": [14, 11],
+        "gameFlag81Present": true,
+        "questFlag10Present": true,
+        "questFlag8Present": true,
+        "reward": { "category": 18, "itemId": 7, "count": 1 },
+        "level": 99,
+        "hp": 394392,
+        "maxHp": 394392,
+        "sp": 394392,
+        "maxSp": 394392
+      },
+      "screenshots": ["01-map71-after-order-and-return-arrival.png"]
+    },
+    {
+      "route": "Map71 south marker return to Map70",
+      "from": { "mapId": 71, "tile": [10, 18] },
+      "input": "Press Down into the south marker after flag 81 is set",
+      "to": { "mapId": 70, "tile": [9, 5] },
+      "retainedGameFlag81": true,
+      "retainedQuestFlag10": true,
+      "screenshots": ["02-map70-return.png"]
+    },
+    {
+      "route": "Map70 north-side door check",
+      "interaction": {
+        "actorTile": [3, 5],
+        "facing": "up",
+        "markerAhead": -3,
+        "visibleText": "Door is locked."
+      },
+      "result": {
+        "mapId": 70,
+        "gameFlag81Present": true,
+        "questFlag10Present": true,
+        "rewardStillPresent": { "category": 18, "itemId": 7, "count": 1 },
+        "level": 99,
+        "hp": 394392,
+        "maxHp": 394392
+      },
+      "screenshots": ["03-map70-locked-door.png"]
+    },
+    {
+      "route": "Generated Map70 exit data check",
+      "result": {
+        "Map69TransferScriptMarker": -1,
+        "baseNegativeMarkers": [-4, -3],
+        "positiveMarker1Cells": [[3, 15], [4, 15], [5, 15]],
+        "marker1TriggerType": 0,
+        "marker1TransferDestination": { "mapId": 69, "tile": [16, 1] },
+        "startupDescriptors": 0,
+        "startupActionBlocks": 0
+      },
+      "interpretation": "Map70 has positive marker-1 cells on its south-side floor. Since event resolution uses the absolute marker value, these cells can select the type-0 Map69 transfer script. This candidate exit was not live-tested in M888."
+    },
+    {
+      "route": "Map70 marker -4 re-entry to Map71 and Map71 return repeat",
+      "result": "Visible movement reached Map71 [10,18] through the Map70 north marker; pressing Down returned to Map70 [9,5]. The event flags and order item remained present.",
+      "screenshots": ["01-map71-after-order-and-return-arrival.png", "02-map70-return.png"]
+    }
+  ],
+  "finalState": {
+    "scene": "WorldScene",
+    "mapId": 70,
+    "tile": [9, 5],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameFlags": [0, 54, 87, 1, 75, 76, 11, 13, 14, 91, 16, 3, 27, 77, 84, 81],
+    "questFlags": [1, 2, 4, 6, 7, 5, 25, 26, 9, 8, 10],
+    "inventory": [
+      { "category": 9, "itemId": 0, "count": 5 },
+      { "category": 18, "itemId": 7, "count": 1 }
+    ],
+    "opening": false,
+    "dialogue": false,
+    "commerce": null
+  },
+  "method": {
+    "inputs": "Visible keyboard movement, interaction, and dialogue advancement only; New Game was chosen from the title screen.",
+    "observation": "Transient WorldScene state was read at visible route checkpoints. Screenshots show browser-rendered Map71/Map70 states and the Map70 door message.",
+    "restrictions": "No in-game Save/Load, browser-storage read, local-save access, original-JAR access, direct map start, or gameplay-state seeding was used."
+  },
+  "limits": [
+    "This verifies the captured current-build Chromium route with the developer-only max-level profile; it does not establish ordinary-level survivability or J2ME parity.",
+    "The Map70 north-side door reports that it is locked. The positive marker-1 south exit is a candidate route to Map69, but M888 did not live-test it.",
+    "The run reaches the Map71 order event and repeats the Map71/Map70 return; it does not establish natural full-campaign completion or verify every map, event, ending, and Save/Load path."
+  ],
+  "screenshots": [
+    "01-map71-after-order-and-return-arrival.png",
+    "02-map70-return.png",
+    "03-map70-locked-door.png"
+  ],
+  "routeTrace": "route-trace.json",
+  "manualInteractions": "manual-interactions.json"
+}

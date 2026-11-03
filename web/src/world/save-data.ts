@@ -74,6 +74,10 @@ function sourceInventoryItemIdentity(stack: InventoryStack): string {
   ]);
 }
 
+function sourceInventoryStackState(stack: InventoryStack): string {
+  return JSON.stringify([sourceInventoryItemIdentity(stack), stack.count]);
+}
+
 function sourceInventoryItemType(stack: InventoryStack): string {
   return `${stack.category}:${stack.itemId}`;
 }
@@ -117,14 +121,24 @@ export function advanceSourceInventorySlotSnapshot(
     };
   }
 
-  // Duplicate category/item pairs can be merged by source `e()` without
-  // compacting the slot vector. A compact web-array diff cannot distinguish
-  // that from removal, so discard provenance when a changed array is ambiguous.
-  const hasDuplicateItemTypes = (items: readonly InventoryStack[]): boolean => {
-    const types = items.map(sourceInventoryItemType);
-    return new Set(types).size !== types.length;
-  };
-  if (hasDuplicateItemTypes(snapshot.inventory) || hasDuplicateItemTypes(nextInventory)) return null;
+  // A changed duplicate type is ambiguous in the compact web array: source
+  // `e()` can merge a stack without compacting slots, while `d()` removes and
+  // shifts a slot. Keep provenance if duplicate groups themselves are
+  // byte-equivalent before and after an unrelated inventory change.
+  const duplicateTypes = new Set([
+    ...snapshot.inventory.map(sourceInventoryItemType),
+    ...nextInventory.map(sourceInventoryItemType),
+  ].filter((type) => snapshot.inventory.filter((item) => sourceInventoryItemType(item) === type).length > 1 ||
+    nextInventory.filter((item) => sourceInventoryItemType(item) === type).length > 1));
+  for (const type of duplicateTypes) {
+    const stackStates = (items: readonly InventoryStack[]): string[] => items
+      .filter((item) => sourceInventoryItemType(item) === type)
+      .map(sourceInventoryStackState)
+      .sort();
+    if (JSON.stringify(stackStates(snapshot.inventory)) !== JSON.stringify(stackStates(nextInventory))) {
+      return null;
+    }
+  }
 
   interface SlotOwner {
     oldIndex: number;
@@ -161,6 +175,7 @@ export function advanceSourceInventorySlotSnapshot(
       slots[snapshot.indices[oldIndex]] = { oldIndex, nextIndex };
     }
   };
+  match(sourceInventoryStackState);
   match(sourceInventoryItemIdentity);
   match(sourceInventoryItemType);
 

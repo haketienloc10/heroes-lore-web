@@ -7,7 +7,7 @@ const touchControls = document.querySelector<HTMLElement>('#touch-controls');
 if (touchControls !== null) mountTouchControls(touchControls);
 
 // Logical viewport matches the FreeJ2ME-Plus Motorola profile used by HOUSE-EXIT-001.
-new Phaser.Game({
+const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
   backgroundColor: '#111b2b',
@@ -22,3 +22,8 @@ new Phaser.Game({
   },
   scene: [StartupFlowScene],
 });
+
+// Temporary dev-only runtime probe for the disposable M714 browser capture.
+if (import.meta.env.DEV) {
+  (window as unknown as { __heroesLoreDebugGame?: typeof game }).__heroesLoreDebugGame = game;
+}

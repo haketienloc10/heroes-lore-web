@@ -1,0 +1,5603 @@
+{
+  "start": {
+    "mapId": 27,
+    "tile": [
+      9,
+      6
+    ],
+    "level": 3,
+    "exp": 196,
+    "hp": 393240,
+    "maxHp": 393240,
+    "inventory": []
+  },
+  "kills": 27,
+  "steps": 202,
+  "final": {
+    "mapId": 27,
+    "tile": [
+      10,
+      4
+    ],
+    "level": 7,
+    "exp": 418,
+    "hp": 393288,
+    "maxHp": 393288,
+    "inventory": []
+  },
+  "trace": [
+    {
+      "type": "face",
+      "enemy": 0,
+      "key": "ArrowLeft",
+      "from": [
+        9,
+        6
+      ],
+      "to": [
+        9,
+        6
+      ],
+      "target": [
+        8,
+        6
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 0,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        8,
+        6
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 58,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 8,
+          "tileY": 6,
+          "id": 14,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowLeft",
+      "tile": [
+        8,
+        6
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 8,
+          "tileY": 6,
+          "id": 14,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 1,
+      "enemy": 0,
+      "tile": [
+        8,
+        6
+      ],
+      "level": 4,
+      "exp": 58,
+      "hp": 393252,
+      "maxHp": 393252,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 8,
+          "tileY": 6,
+          "id": 14,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "face",
+      "enemy": 1,
+      "key": "ArrowRight",
+      "from": [
+        8,
+        6
+      ],
+      "to": [
+        8,
+        6
+      ],
+      "target": [
+        9,
+        6
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 1,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        9,
+        6
+      ],
+      "hp": 43,
+      "state": "alive",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 58,
+      "drops": []
+    },
+    {
+      "type": "face",
+      "enemy": 1,
+      "key": "ArrowRight",
+      "from": [
+        8,
+        6
+      ],
+      "to": [
+        8,
+        6
+      ],
+      "target": [
+        9,
+        6
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 1,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        9,
+        6
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 90,
+      "drops": []
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        9,
+        6
+      ],
+      "drops": [],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 2,
+      "enemy": 1,
+      "tile": [
+        9,
+        6
+      ],
+      "level": 4,
+      "exp": 90,
+      "hp": 393252,
+      "maxHp": 393252,
+      "drops": [],
+      "inventory": []
+    },
+    {
+      "type": "face",
+      "enemy": 6,
+      "key": "ArrowDown",
+      "from": [
+        9,
+        6
+      ],
+      "to": [
+        9,
+        6
+      ],
+      "target": [
+        9,
+        7
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 6,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        9,
+        7
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 122,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 7,
+          "id": 15,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowDown",
+      "tile": [
+        9,
+        7
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 7,
+          "id": 15,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 3,
+      "enemy": 6,
+      "tile": [
+        9,
+        7
+      ],
+      "level": 4,
+      "exp": 122,
+      "hp": 393252,
+      "maxHp": 393252,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 7,
+          "id": 15,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "face",
+      "enemy": 3,
+      "key": "ArrowUp",
+      "from": [
+        9,
+        7
+      ],
+      "to": [
+        9,
+        7
+      ],
+      "target": [
+        9,
+        6
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 3,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        9,
+        6
+      ],
+      "hp": 43,
+      "state": "alive",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 122,
+      "drops": []
+    },
+    {
+      "type": "face",
+      "enemy": 3,
+      "key": "ArrowUp",
+      "from": [
+        9,
+        7
+      ],
+      "to": [
+        9,
+        7
+      ],
+      "target": [
+        9,
+        6
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 3,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        9,
+        6
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 154,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 16,
+          "ticksRemaining": 115
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 17,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        9,
+        6
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 16,
+          "ticksRemaining": 106
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 17,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 4,
+      "enemy": 3,
+      "tile": [
+        9,
+        6
+      ],
+      "level": 4,
+      "exp": 154,
+      "hp": 393252,
+      "maxHp": 393252,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 16,
+          "ticksRemaining": 106
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 17,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        9,
+        6
+      ],
+      "to": [
+        10,
+        6
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        10,
+        6
+      ],
+      "to": [
+        11,
+        6
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        11,
+        6
+      ],
+      "to": [
+        11,
+        7
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        11,
+        7
+      ],
+      "to": [
+        11,
+        8
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        11,
+        8
+      ],
+      "to": [
+        11,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        11,
+        9
+      ],
+      "to": [
+        12,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        12,
+        9
+      ],
+      "to": [
+        13,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        13,
+        9
+      ],
+      "to": [
+        14,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        14,
+        9
+      ],
+      "to": [
+        15,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        15,
+        9
+      ],
+      "to": [
+        16,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        16,
+        9
+      ],
+      "to": [
+        17,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        17,
+        9
+      ],
+      "to": [
+        18,
+        9
+      ],
+      "target": 4,
+      "hp": 393252
+    },
+    {
+      "type": "face",
+      "enemy": 4,
+      "key": "ArrowRight",
+      "from": [
+        18,
+        9
+      ],
+      "to": [
+        18,
+        9
+      ],
+      "target": [
+        19,
+        9
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 4,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        19,
+        9
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 186,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 16,
+          "ticksRemaining": 36
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 17,
+          "ticksRemaining": 36
+        },
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        19,
+        9
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 16,
+          "ticksRemaining": 27
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 17,
+          "ticksRemaining": 27
+        },
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 5,
+      "enemy": 4,
+      "tile": [
+        19,
+        9
+      ],
+      "level": 4,
+      "exp": 186,
+      "hp": 393252,
+      "maxHp": 393252,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 16,
+          "ticksRemaining": 27
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 9,
+          "tileY": 6,
+          "id": 17,
+          "ticksRemaining": 27
+        },
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        19,
+        9
+      ],
+      "to": [
+        20,
+        9
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        20,
+        9
+      ],
+      "to": [
+        21,
+        9
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        21,
+        9
+      ],
+      "to": [
+        22,
+        9
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        22,
+        9
+      ],
+      "to": [
+        23,
+        9
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        23,
+        9
+      ],
+      "to": [
+        23,
+        10
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        23,
+        10
+      ],
+      "to": [
+        24,
+        10
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        24,
+        10
+      ],
+      "to": [
+        25,
+        10
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        25,
+        10
+      ],
+      "to": [
+        26,
+        10
+      ],
+      "target": 5,
+      "hp": 393252
+    },
+    {
+      "type": "face",
+      "enemy": 5,
+      "key": "ArrowUp",
+      "from": [
+        26,
+        10
+      ],
+      "to": [
+        26,
+        10
+      ],
+      "target": [
+        26,
+        9
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 5,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        26,
+        9
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393252,
+      "level": 4,
+      "exp": 298,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 54
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        26,
+        9
+      ],
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 45
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 6,
+      "enemy": 5,
+      "tile": [
+        26,
+        9
+      ],
+      "level": 4,
+      "exp": 298,
+      "hp": 393252,
+      "maxHp": 393252,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 45
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        26,
+        9
+      ],
+      "to": [
+        26,
+        8
+      ],
+      "target": 2,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        26,
+        8
+      ],
+      "to": [
+        27,
+        8
+      ],
+      "target": 2,
+      "hp": 393252
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        27,
+        8
+      ],
+      "to": [
+        28,
+        8
+      ],
+      "target": 2,
+      "hp": 393252
+    },
+    {
+      "type": "face",
+      "enemy": 2,
+      "key": "ArrowUp",
+      "from": [
+        28,
+        8
+      ],
+      "to": [
+        28,
+        8
+      ],
+      "target": [
+        28,
+        7
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 2,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        28,
+        7
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 42,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 18
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 79
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        28,
+        7
+      ],
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 10
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 71
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 7,
+      "enemy": 2,
+      "tile": [
+        28,
+        7
+      ],
+      "level": 5,
+      "exp": 42,
+      "hp": 393264,
+      "maxHp": 393264,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 19,
+          "tileY": 9,
+          "id": 18,
+          "ticksRemaining": 10
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 71
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        7
+      ],
+      "to": [
+        28,
+        8
+      ],
+      "target": 7,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        8
+      ],
+      "to": [
+        28,
+        9
+      ],
+      "target": 7,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        9
+      ],
+      "to": [
+        28,
+        10
+      ],
+      "target": 7,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        10
+      ],
+      "to": [
+        28,
+        11
+      ],
+      "target": 7,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        11
+      ],
+      "to": [
+        28,
+        12
+      ],
+      "target": 7,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        12
+      ],
+      "to": [
+        28,
+        13
+      ],
+      "target": 7,
+      "hp": 393264
+    },
+    {
+      "type": "face",
+      "enemy": 7,
+      "key": "ArrowRight",
+      "from": [
+        28,
+        13
+      ],
+      "to": [
+        28,
+        13
+      ],
+      "target": [
+        29,
+        13
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 7,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        29,
+        13
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 74,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 29
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 66
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        29,
+        13
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 20
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 57
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 8,
+      "enemy": 7,
+      "tile": [
+        29,
+        13
+      ],
+      "level": 5,
+      "exp": 74,
+      "hp": 393264,
+      "maxHp": 393264,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 26,
+          "tileY": 9,
+          "id": 19,
+          "ticksRemaining": 20
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 57
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        29,
+        13
+      ],
+      "to": [
+        30,
+        13
+      ],
+      "target": 11,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        30,
+        13
+      ],
+      "to": [
+        30,
+        14
+      ],
+      "target": 11,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        30,
+        14
+      ],
+      "to": [
+        31,
+        14
+      ],
+      "target": 11,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        31,
+        14
+      ],
+      "to": [
+        31,
+        15
+      ],
+      "target": 11,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        31,
+        15
+      ],
+      "to": [
+        32,
+        15
+      ],
+      "target": 8,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        32,
+        15
+      ],
+      "to": [
+        32,
+        16
+      ],
+      "target": 8,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        32,
+        16
+      ],
+      "to": [
+        32,
+        17
+      ],
+      "target": 8,
+      "hp": 393264
+    },
+    {
+      "type": "face",
+      "enemy": 8,
+      "key": "ArrowRight",
+      "from": [
+        32,
+        17
+      ],
+      "to": [
+        32,
+        17
+      ],
+      "target": [
+        33,
+        17
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 8,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        33,
+        17
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 182,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 11
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 60
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 22,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        33,
+        17
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 3
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 52
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 22,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 9,
+      "enemy": 8,
+      "tile": [
+        33,
+        17
+      ],
+      "level": 5,
+      "exp": 182,
+      "hp": 393264,
+      "maxHp": 393264,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 7,
+          "id": 20,
+          "ticksRemaining": 3
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 52
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 22,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "face",
+      "enemy": 11,
+      "key": "ArrowLeft",
+      "from": [
+        33,
+        17
+      ],
+      "to": [
+        33,
+        17
+      ],
+      "target": [
+        32,
+        17
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 11,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        32,
+        17
+      ],
+      "hp": 90,
+      "state": "alive",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 182,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 40
+        }
+      ]
+    },
+    {
+      "type": "face",
+      "enemy": 11,
+      "key": "ArrowLeft",
+      "from": [
+        33,
+        17
+      ],
+      "to": [
+        33,
+        17
+      ],
+      "target": [
+        32,
+        17
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 11,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        32,
+        17
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 290,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 29
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowLeft",
+      "tile": [
+        32,
+        17
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 20
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 10,
+      "enemy": 11,
+      "tile": [
+        32,
+        17
+      ],
+      "level": 5,
+      "exp": 290,
+      "hp": 393264,
+      "maxHp": 393264,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 29,
+          "tileY": 13,
+          "id": 21,
+          "ticksRemaining": 20
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        32,
+        17
+      ],
+      "to": [
+        31,
+        17
+      ],
+      "target": 9,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        31,
+        17
+      ],
+      "to": [
+        30,
+        17
+      ],
+      "target": 9,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        30,
+        17
+      ],
+      "to": [
+        29,
+        17
+      ],
+      "target": 9,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        29,
+        17
+      ],
+      "to": [
+        28,
+        17
+      ],
+      "target": 9,
+      "hp": 393264
+    },
+    {
+      "type": "face",
+      "enemy": 9,
+      "key": "ArrowDown",
+      "from": [
+        28,
+        17
+      ],
+      "to": [
+        28,
+        17
+      ],
+      "target": [
+        28,
+        18
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 9,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        28,
+        18
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 398,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 75
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 18,
+          "id": 24,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowDown",
+      "tile": [
+        28,
+        18
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 66
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 18,
+          "id": 24,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 11,
+      "enemy": 9,
+      "tile": [
+        28,
+        18
+      ],
+      "level": 5,
+      "exp": 398,
+      "hp": 393264,
+      "maxHp": 393264,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 66
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 18,
+          "id": 24,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        18
+      ],
+      "to": [
+        28,
+        19
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        19
+      ],
+      "to": [
+        28,
+        20
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        20
+      ],
+      "to": [
+        28,
+        21
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        21
+      ],
+      "to": [
+        28,
+        22
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        22
+      ],
+      "to": [
+        28,
+        23
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        28,
+        23
+      ],
+      "to": [
+        28,
+        24
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        28,
+        24
+      ],
+      "to": [
+        27,
+        24
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        27,
+        24
+      ],
+      "to": [
+        26,
+        24
+      ],
+      "target": 10,
+      "hp": 393264
+    },
+    {
+      "type": "face",
+      "enemy": 10,
+      "key": "ArrowLeft",
+      "from": [
+        26,
+        24
+      ],
+      "to": [
+        26,
+        24
+      ],
+      "target": [
+        25,
+        24
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 10,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        25,
+        24
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393264,
+      "level": 5,
+      "exp": 430,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 15
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 18,
+          "id": 24,
+          "ticksRemaining": 55
+        },
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 25,
+          "tileY": 24,
+          "id": 25,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowLeft",
+      "tile": [
+        25,
+        24
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 6
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 18,
+          "id": 24,
+          "ticksRemaining": 46
+        },
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 25,
+          "tileY": 24,
+          "id": 25,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 12,
+      "enemy": 10,
+      "tile": [
+        25,
+        24
+      ],
+      "level": 5,
+      "exp": 430,
+      "hp": 393264,
+      "maxHp": 393264,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 17,
+          "id": 23,
+          "ticksRemaining": 6
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 28,
+          "tileY": 18,
+          "id": 24,
+          "ticksRemaining": 46
+        },
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 25,
+          "tileY": 24,
+          "id": 25,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        25,
+        24
+      ],
+      "to": [
+        25,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        25,
+        23
+      ],
+      "to": [
+        26,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        26,
+        23
+      ],
+      "to": [
+        27,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        27,
+        23
+      ],
+      "to": [
+        28,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        28,
+        23
+      ],
+      "to": [
+        29,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        29,
+        23
+      ],
+      "to": [
+        30,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        30,
+        23
+      ],
+      "to": [
+        31,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        31,
+        23
+      ],
+      "to": [
+        32,
+        23
+      ],
+      "target": 13,
+      "hp": 393264
+    },
+    {
+      "type": "face",
+      "enemy": 13,
+      "key": "ArrowRight",
+      "from": [
+        32,
+        23
+      ],
+      "to": [
+        32,
+        23
+      ],
+      "target": [
+        33,
+        23
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 13,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        33,
+        23
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 38,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 25,
+          "tileY": 24,
+          "id": 25,
+          "ticksRemaining": 56
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 23,
+          "id": 26,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        33,
+        23
+      ],
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 25,
+          "tileY": 24,
+          "id": 25,
+          "ticksRemaining": 47
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 23,
+          "id": 26,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 13,
+      "enemy": 13,
+      "tile": [
+        33,
+        23
+      ],
+      "level": 6,
+      "exp": 38,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 25,
+          "tileY": 24,
+          "id": 25,
+          "ticksRemaining": 47
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 23,
+          "id": 26,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        33,
+        23
+      ],
+      "to": [
+        34,
+        23
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        34,
+        23
+      ],
+      "to": [
+        35,
+        23
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        35,
+        23
+      ],
+      "to": [
+        36,
+        23
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        23
+      ],
+      "to": [
+        36,
+        24
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        24
+      ],
+      "to": [
+        36,
+        25
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        25
+      ],
+      "to": [
+        36,
+        26
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        26
+      ],
+      "to": [
+        36,
+        27
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        27
+      ],
+      "to": [
+        36,
+        28
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        28
+      ],
+      "to": [
+        36,
+        29
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        36,
+        29
+      ],
+      "to": [
+        36,
+        30
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        36,
+        30
+      ],
+      "to": [
+        35,
+        30
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        35,
+        30
+      ],
+      "to": [
+        35,
+        31
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        35,
+        31
+      ],
+      "to": [
+        35,
+        32
+      ],
+      "target": 15,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 15,
+      "key": "ArrowUp",
+      "from": [
+        35,
+        32
+      ],
+      "to": [
+        35,
+        32
+      ],
+      "target": [
+        35,
+        31
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 15,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        35,
+        31
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 138,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 23,
+          "id": 26,
+          "ticksRemaining": 32
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        35,
+        31
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 23,
+          "id": 26,
+          "ticksRemaining": 23
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 14,
+      "enemy": 15,
+      "tile": [
+        35,
+        31
+      ],
+      "level": 6,
+      "exp": 138,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 33,
+          "tileY": 23,
+          "id": 26,
+          "ticksRemaining": 23
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        35,
+        31
+      ],
+      "to": [
+        34,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        34,
+        31
+      ],
+      "to": [
+        33,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        33,
+        31
+      ],
+      "to": [
+        32,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        32,
+        31
+      ],
+      "to": [
+        31,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        31,
+        31
+      ],
+      "to": [
+        30,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        30,
+        31
+      ],
+      "to": [
+        29,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        29,
+        31
+      ],
+      "to": [
+        28,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        28,
+        31
+      ],
+      "to": [
+        27,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        27,
+        31
+      ],
+      "to": [
+        26,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        26,
+        31
+      ],
+      "to": [
+        25,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        25,
+        31
+      ],
+      "to": [
+        24,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        24,
+        31
+      ],
+      "to": [
+        23,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        23,
+        31
+      ],
+      "to": [
+        22,
+        31
+      ],
+      "target": 16,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 16,
+      "key": "ArrowLeft",
+      "from": [
+        22,
+        31
+      ],
+      "to": [
+        22,
+        31
+      ],
+      "target": [
+        21,
+        31
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 16,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        21,
+        31
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 166,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 27,
+          "ticksRemaining": 116
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 28,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowLeft",
+      "tile": [
+        21,
+        31
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 27,
+          "ticksRemaining": 107
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 28,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 15,
+      "enemy": 16,
+      "tile": [
+        21,
+        31
+      ],
+      "level": 6,
+      "exp": 166,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 27,
+          "ticksRemaining": 107
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 28,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        21,
+        31
+      ],
+      "to": [
+        21,
+        32
+      ],
+      "target": 17,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        21,
+        32
+      ],
+      "to": [
+        21,
+        33
+      ],
+      "target": 17,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        21,
+        33
+      ],
+      "to": [
+        21,
+        34
+      ],
+      "target": 17,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        21,
+        34
+      ],
+      "to": [
+        20,
+        34
+      ],
+      "target": 17,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        20,
+        34
+      ],
+      "to": [
+        19,
+        34
+      ],
+      "target": 17,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 17,
+      "key": "ArrowDown",
+      "from": [
+        19,
+        34
+      ],
+      "to": [
+        19,
+        34
+      ],
+      "target": [
+        19,
+        35
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 17,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        19,
+        35
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 194,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 27,
+          "ticksRemaining": 71
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 28,
+          "ticksRemaining": 71
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 19,
+          "tileY": 35,
+          "id": 29,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowDown",
+      "tile": [
+        19,
+        35
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 27,
+          "ticksRemaining": 63
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 28,
+          "ticksRemaining": 63
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 19,
+          "tileY": 35,
+          "id": 29,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 16,
+      "enemy": 17,
+      "tile": [
+        19,
+        35
+      ],
+      "level": 6,
+      "exp": 194,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 27,
+          "ticksRemaining": 63
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 21,
+          "tileY": 31,
+          "id": 28,
+          "ticksRemaining": 63
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 19,
+          "tileY": 35,
+          "id": 29,
+          "ticksRemaining": 108
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        19,
+        35
+      ],
+      "to": [
+        18,
+        35
+      ],
+      "target": 14,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        18,
+        35
+      ],
+      "to": [
+        17,
+        35
+      ],
+      "target": 14,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        17,
+        35
+      ],
+      "to": [
+        16,
+        35
+      ],
+      "target": 14,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        16,
+        35
+      ],
+      "to": [
+        16,
+        35
+      ],
+      "target": 14,
+      "hp": 393276
+    },
+    {
+      "type": "attack-blocked",
+      "enemy": 14,
+      "hp": 0
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        16,
+        35
+      ],
+      "to": [
+        16,
+        34
+      ],
+      "target": 12,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        16,
+        34
+      ],
+      "to": [
+        16,
+        33
+      ],
+      "target": 12,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        16,
+        33
+      ],
+      "to": [
+        17,
+        33
+      ],
+      "target": 12,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        17,
+        33
+      ],
+      "to": [
+        17,
+        32
+      ],
+      "target": 12,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        17,
+        32
+      ],
+      "to": [
+        17,
+        31
+      ],
+      "target": 12,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        17,
+        31
+      ],
+      "to": [
+        17,
+        30
+      ],
+      "target": 12,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        17,
+        30
+      ],
+      "to": [
+        17,
+        29
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        17,
+        29
+      ],
+      "to": [
+        18,
+        29
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        18,
+        29
+      ],
+      "to": [
+        19,
+        29
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        19,
+        29
+      ],
+      "to": [
+        19,
+        28
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        19,
+        28
+      ],
+      "to": [
+        19,
+        27
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        19,
+        27
+      ],
+      "to": [
+        19,
+        26
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        19,
+        26
+      ],
+      "to": [
+        20,
+        26
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        20,
+        26
+      ],
+      "to": [
+        21,
+        26
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        21,
+        26
+      ],
+      "to": [
+        22,
+        26
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        22,
+        26
+      ],
+      "to": [
+        23,
+        26
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        23,
+        26
+      ],
+      "to": [
+        23,
+        25
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        23,
+        25
+      ],
+      "to": [
+        24,
+        25
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        24,
+        25
+      ],
+      "to": [
+        25,
+        25
+      ],
+      "target": 10,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 10,
+      "key": "ArrowRight",
+      "from": [
+        25,
+        25
+      ],
+      "to": [
+        25,
+        25
+      ],
+      "target": [
+        26,
+        25
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 10,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        26,
+        25
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 250,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 15,
+          "tileY": 35,
+          "id": 30,
+          "ticksRemaining": 15
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 15,
+          "tileY": 35,
+          "id": 31,
+          "ticksRemaining": 15
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        26,
+        25
+      ],
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 15,
+          "tileY": 35,
+          "id": 30,
+          "ticksRemaining": 7
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 15,
+          "tileY": 35,
+          "id": 31,
+          "ticksRemaining": 7
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 17,
+      "enemy": 10,
+      "tile": [
+        26,
+        25
+      ],
+      "level": 6,
+      "exp": 250,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "item",
+          "category": 7,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 15,
+          "tileY": 35,
+          "id": 30,
+          "ticksRemaining": 7
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 15,
+          "tileY": 35,
+          "id": 31,
+          "ticksRemaining": 7
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        26,
+        25
+      ],
+      "to": [
+        26,
+        24
+      ],
+      "target": 13,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        26,
+        24
+      ],
+      "to": [
+        26,
+        23
+      ],
+      "target": 13,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 13,
+      "key": "ArrowRight",
+      "from": [
+        26,
+        23
+      ],
+      "to": [
+        26,
+        23
+      ],
+      "target": [
+        27,
+        23
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 13,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        27,
+        23
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 350,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        27,
+        23
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 18,
+      "enemy": 13,
+      "tile": [
+        27,
+        23
+      ],
+      "level": 6,
+      "exp": 350,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        27,
+        23
+      ],
+      "to": [
+        27,
+        22
+      ],
+      "target": 11,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        27,
+        22
+      ],
+      "to": [
+        27,
+        21
+      ],
+      "target": 9,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        27,
+        21
+      ],
+      "to": [
+        28,
+        21
+      ],
+      "target": 11,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        28,
+        21
+      ],
+      "to": [
+        29,
+        21
+      ],
+      "target": 11,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        29,
+        21
+      ],
+      "to": [
+        30,
+        21
+      ],
+      "target": 11,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 11,
+      "key": "ArrowRight",
+      "from": [
+        30,
+        21
+      ],
+      "to": [
+        30,
+        21
+      ],
+      "target": [
+        31,
+        21
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 11,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        31,
+        21
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 450,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 69
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        31,
+        21
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 60
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 19,
+      "enemy": 11,
+      "tile": [
+        31,
+        21
+      ],
+      "level": 6,
+      "exp": 450,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 60
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        31,
+        21
+      ],
+      "to": [
+        31,
+        20
+      ],
+      "target": 8,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        31,
+        20
+      ],
+      "to": [
+        31,
+        19
+      ],
+      "target": 8,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        31,
+        19
+      ],
+      "to": [
+        31,
+        18
+      ],
+      "target": 8,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        31,
+        18
+      ],
+      "to": [
+        31,
+        17
+      ],
+      "target": 8,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        31,
+        17
+      ],
+      "to": [
+        32,
+        17
+      ],
+      "target": 8,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 8,
+      "key": "ArrowUp",
+      "from": [
+        32,
+        17
+      ],
+      "to": [
+        32,
+        17
+      ],
+      "target": [
+        32,
+        16
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 8,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        32,
+        16
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 550,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 23
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        32,
+        16
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 14
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 20,
+      "enemy": 8,
+      "tile": [
+        32,
+        16
+      ],
+      "level": 6,
+      "exp": 550,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 23,
+          "id": 32,
+          "ticksRemaining": 14
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        32,
+        16
+      ],
+      "to": [
+        32,
+        17
+      ],
+      "target": 7,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 7,
+      "key": "ArrowRight",
+      "from": [
+        32,
+        17
+      ],
+      "to": [
+        32,
+        17
+      ],
+      "target": [
+        33,
+        17
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 7,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        33,
+        17
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393276,
+      "level": 6,
+      "exp": 578,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 90
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 116
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowRight",
+      "tile": [
+        33,
+        17
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 81
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 107
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 21,
+      "enemy": 7,
+      "tile": [
+        33,
+        17
+      ],
+      "level": 6,
+      "exp": 578,
+      "hp": 393276,
+      "maxHp": 393276,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 81
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 107
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        33,
+        17
+      ],
+      "to": [
+        33,
+        16
+      ],
+      "target": 2,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        33,
+        16
+      ],
+      "to": [
+        33,
+        15
+      ],
+      "target": 2,
+      "hp": 393276
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        33,
+        15
+      ],
+      "to": [
+        32,
+        15
+      ],
+      "target": 2,
+      "hp": 393276
+    },
+    {
+      "type": "face",
+      "enemy": 2,
+      "key": "ArrowLeft",
+      "from": [
+        32,
+        15
+      ],
+      "to": [
+        32,
+        15
+      ],
+      "target": [
+        31,
+        15
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 2,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        31,
+        15
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393288,
+      "level": 7,
+      "exp": 18,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 55
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 81
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 81
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowLeft",
+      "tile": [
+        31,
+        15
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 47
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 73
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 73
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 22,
+      "enemy": 2,
+      "tile": [
+        31,
+        15
+      ],
+      "level": 7,
+      "exp": 18,
+      "hp": 393288,
+      "maxHp": 393288,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 47
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 73
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 73
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        31,
+        15
+      ],
+      "to": [
+        31,
+        14
+      ],
+      "target": 9,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        31,
+        14
+      ],
+      "to": [
+        30,
+        14
+      ],
+      "target": 9,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        30,
+        14
+      ],
+      "to": [
+        29,
+        14
+      ],
+      "target": 9,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        29,
+        14
+      ],
+      "to": [
+        29,
+        15
+      ],
+      "target": 9,
+      "hp": 393288
+    },
+    {
+      "type": "face",
+      "enemy": 9,
+      "key": "ArrowUp",
+      "from": [
+        29,
+        15
+      ],
+      "to": [
+        29,
+        15
+      ],
+      "target": [
+        29,
+        14
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 9,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        29,
+        14
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393288,
+      "level": 7,
+      "exp": 114,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 16
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 42
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 42
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        29,
+        14
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 7
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 33
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 33
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 23,
+      "enemy": 9,
+      "tile": [
+        29,
+        14
+      ],
+      "level": 7,
+      "exp": 114,
+      "hp": 393288,
+      "maxHp": 393288,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 32,
+          "tileY": 16,
+          "id": 33,
+          "ticksRemaining": 7
+        },
+        {
+          "kind": "item",
+          "category": 1,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 34,
+          "ticksRemaining": 33
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 33,
+          "tileY": 17,
+          "id": 35,
+          "ticksRemaining": 33
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        29,
+        14
+      ],
+      "to": [
+        28,
+        14
+      ],
+      "target": 5,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        28,
+        14
+      ],
+      "to": [
+        28,
+        14
+      ],
+      "target": 5,
+      "hp": 393288
+    },
+    {
+      "type": "attack-blocked",
+      "enemy": 5,
+      "hp": 0
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        28,
+        14
+      ],
+      "to": [
+        28,
+        13
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        28,
+        13
+      ],
+      "to": [
+        28,
+        12
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        28,
+        12
+      ],
+      "to": [
+        28,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        28,
+        11
+      ],
+      "to": [
+        27,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        27,
+        11
+      ],
+      "to": [
+        26,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        26,
+        11
+      ],
+      "to": [
+        25,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        25,
+        11
+      ],
+      "to": [
+        24,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        24,
+        11
+      ],
+      "to": [
+        23,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        23,
+        11
+      ],
+      "to": [
+        23,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        23,
+        11
+      ],
+      "to": [
+        22,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        22,
+        11
+      ],
+      "to": [
+        21,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        21,
+        11
+      ],
+      "to": [
+        20,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        20,
+        11
+      ],
+      "to": [
+        19,
+        11
+      ],
+      "target": 4,
+      "hp": 393288
+    },
+    {
+      "type": "face",
+      "enemy": 4,
+      "key": "ArrowLeft",
+      "from": [
+        19,
+        11
+      ],
+      "to": [
+        19,
+        11
+      ],
+      "target": [
+        18,
+        11
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 4,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        18,
+        11
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393288,
+      "level": 7,
+      "exp": 238,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 14,
+          "id": 36,
+          "ticksRemaining": 44
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 18,
+          "tileY": 11,
+          "id": 37,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowLeft",
+      "tile": [
+        18,
+        11
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 14,
+          "id": 36,
+          "ticksRemaining": 35
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 18,
+          "tileY": 11,
+          "id": 37,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 24,
+      "enemy": 4,
+      "tile": [
+        18,
+        11
+      ],
+      "level": 7,
+      "exp": 238,
+      "hp": 393288,
+      "maxHp": 393288,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 27,
+          "tileY": 14,
+          "id": 36,
+          "ticksRemaining": 35
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 18,
+          "tileY": 11,
+          "id": 37,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        18,
+        11
+      ],
+      "to": [
+        18,
+        10
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        18,
+        10
+      ],
+      "to": [
+        18,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        18,
+        9
+      ],
+      "to": [
+        17,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        17,
+        9
+      ],
+      "to": [
+        16,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        16,
+        9
+      ],
+      "to": [
+        15,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        15,
+        9
+      ],
+      "to": [
+        14,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        14,
+        9
+      ],
+      "to": [
+        13,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        13,
+        9
+      ],
+      "to": [
+        12,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        12,
+        9
+      ],
+      "to": [
+        11,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        11,
+        9
+      ],
+      "to": [
+        10,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        10,
+        9
+      ],
+      "to": [
+        10,
+        9
+      ],
+      "target": 3,
+      "hp": 393288
+    },
+    {
+      "type": "attack-blocked",
+      "enemy": 3,
+      "hp": 0
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        10,
+        9
+      ],
+      "to": [
+        9,
+        9
+      ],
+      "target": 0,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        9,
+        9
+      ],
+      "to": [
+        8,
+        9
+      ],
+      "target": 0,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        8,
+        9
+      ],
+      "to": [
+        7,
+        9
+      ],
+      "target": 0,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        7,
+        9
+      ],
+      "to": [
+        6,
+        9
+      ],
+      "target": 0,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowLeft",
+      "from": [
+        6,
+        9
+      ],
+      "to": [
+        5,
+        9
+      ],
+      "target": 0,
+      "hp": 393288
+    },
+    {
+      "type": "face",
+      "enemy": 0,
+      "key": "ArrowUp",
+      "from": [
+        5,
+        9
+      ],
+      "to": [
+        5,
+        9
+      ],
+      "target": [
+        5,
+        8
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 0,
+      "enemyId": 21,
+      "rewardCode": 3,
+      "tile": [
+        5,
+        8
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393288,
+      "level": 7,
+      "exp": 362,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 18,
+          "tileY": 11,
+          "id": 37,
+          "ticksRemaining": 11
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 115
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        5,
+        8
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 18,
+          "tileY": 11,
+          "id": 37,
+          "ticksRemaining": 2
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 25,
+      "enemy": 0,
+      "tile": [
+        5,
+        8
+      ],
+      "level": 7,
+      "exp": 362,
+      "hp": 393288,
+      "maxHp": 393288,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 18,
+          "tileY": 11,
+          "id": 37,
+          "ticksRemaining": 2
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 106
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        5,
+        8
+      ],
+      "to": [
+        6,
+        8
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        6,
+        8
+      ],
+      "to": [
+        7,
+        8
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        7,
+        8
+      ],
+      "to": [
+        8,
+        8
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        8,
+        8
+      ],
+      "to": [
+        8,
+        7
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        8,
+        7
+      ],
+      "to": [
+        8,
+        6
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        8,
+        6
+      ],
+      "to": [
+        8,
+        5
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        8,
+        5
+      ],
+      "to": [
+        9,
+        5
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        9,
+        5
+      ],
+      "to": [
+        10,
+        5
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        5
+      ],
+      "to": [
+        10,
+        4
+      ],
+      "target": 1,
+      "hp": 393288
+    },
+    {
+      "type": "face",
+      "enemy": 1,
+      "key": "ArrowUp",
+      "from": [
+        10,
+        4
+      ],
+      "to": [
+        10,
+        4
+      ],
+      "target": [
+        10,
+        3
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 1,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        10,
+        3
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393288,
+      "level": 7,
+      "exp": 390,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 51
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        10,
+        3
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 43
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 26,
+      "enemy": 1,
+      "tile": [
+        10,
+        3
+      ],
+      "level": 7,
+      "exp": 390,
+      "hp": 393288,
+      "maxHp": 393288,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 43
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        10,
+        3
+      ],
+      "to": [
+        10,
+        4
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "move",
+      "key": "ArrowDown",
+      "from": [
+        10,
+        4
+      ],
+      "to": [
+        10,
+        5
+      ],
+      "target": 6,
+      "hp": 393288
+    },
+    {
+      "type": "face",
+      "enemy": 6,
+      "key": "ArrowUp",
+      "from": [
+        10,
+        5
+      ],
+      "to": [
+        10,
+        5
+      ],
+      "target": [
+        10,
+        4
+      ]
+    },
+    {
+      "type": "attack",
+      "enemy": 6,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "tile": [
+        10,
+        4
+      ],
+      "hp": 0,
+      "state": "respawn-wait",
+      "playerHp": 393288,
+      "level": 7,
+      "exp": 418,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 21
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 10,
+          "tileY": 4,
+          "id": 39,
+          "ticksRemaining": 116
+        }
+      ]
+    },
+    {
+      "type": "pickup",
+      "key": "ArrowUp",
+      "tile": [
+        10,
+        4
+      ],
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 12
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 10,
+          "tileY": 4,
+          "id": 39,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    },
+    {
+      "type": "kill-result",
+      "kill": 27,
+      "enemy": 6,
+      "tile": [
+        10,
+        4
+      ],
+      "level": 7,
+      "exp": 418,
+      "hp": 393288,
+      "maxHp": 393288,
+      "drops": [
+        {
+          "kind": "currency",
+          "sourceAmount": 9,
+          "tileX": 5,
+          "tileY": 8,
+          "id": 38,
+          "ticksRemaining": 12
+        },
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 10,
+          "tileY": 4,
+          "id": 39,
+          "ticksRemaining": 107
+        }
+      ],
+      "inventory": []
+    }
+  ]
+}

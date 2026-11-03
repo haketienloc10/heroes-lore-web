@@ -1,0 +1,74 @@
+{
+  "id": "M877",
+  "title": "Map60 to Map80 route using the max-level profile",
+  "date": "2026-11-02",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "result": "Map60 reached from Map61, then the route helper stopped before trying the Map80 gate because it targeted the inaccessible north approach [24,27]. The live hero remained on Map60 at [1,2] with full HP.",
+      "trace": "attempt-01-wrong-approach.json",
+      "screenshot": "attempt-01-map60-entry.png"
+    },
+    {
+      "attempt": 2,
+      "result": "Starting on Map60 at [1,2], the corrected route walks to the south approach [24,29] and enters the Map80 marker with ArrowUp. Map80 is reached at [10,18].",
+      "trace": "attempt-02-map60-to-map80-route.json",
+      "arrivalScreenshot": "attempt-02-map80-arrival.png",
+      "finalScreenshot": "attempt-02-final.png",
+      "actions": 65,
+      "attacks": 0
+    }
+  ],
+  "final": {
+    "mapId": 80,
+    "tile": [
+      10,
+      18
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarRead": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This verifies a max-level route to Map80 from the observed Map60 arrival only.",
+    "The ordinary-level M840 Map80 attempt limit remains unchanged.",
+    "No service transaction or J2ME comparison was made; see M878 for Map80 menu handoffs."
+  ]
+}

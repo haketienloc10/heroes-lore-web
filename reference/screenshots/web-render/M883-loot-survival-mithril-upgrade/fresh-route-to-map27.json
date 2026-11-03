@@ -1,0 +1,785 @@
+{
+  "id": "M883",
+  "start": {
+    "mapId": 64,
+    "tile": [
+      9,
+      8
+    ],
+    "level": 1,
+    "hp": 393216,
+    "maxHp": 393216,
+    "gameFlags": [
+      0,
+      54,
+      87
+    ],
+    "questFlags": []
+  },
+  "final": {
+    "mapId": 27,
+    "tile": [
+      5,
+      37
+    ],
+    "level": 1,
+    "hp": 393216,
+    "maxHp": 393216,
+    "wallet": 300,
+    "inventory": [],
+    "equipment": [
+      {
+        "category": 0,
+        "itemId": 0,
+        "upgrade": 0
+      },
+      null,
+      {
+        "category": 5,
+        "itemId": 0,
+        "upgrade": 0
+      },
+      {
+        "category": 6,
+        "itemId": 0,
+        "upgrade": 0
+      },
+      {
+        "category": 4,
+        "itemId": 0,
+        "upgrade": 0
+      }
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3
+    ],
+    "questFlags": [],
+    "dialogue": false
+  },
+  "trace": [
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        9,
+        8
+      ],
+      "to": [
+        10,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        8
+      ],
+      "to": [
+        10,
+        9
+      ]
+    },
+    {
+      "type": "overshoot",
+      "from": [
+        10,
+        9
+      ],
+      "to": [
+        10,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        11
+      ],
+      "to": [
+        10,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        12
+      ],
+      "to": [
+        10,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        13
+      ],
+      "to": [
+        10,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        14
+      ],
+      "to": [
+        10,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        10,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        16
+      ],
+      "to": [
+        10,
+        17
+      ]
+    },
+    {
+      "type": "map64-exit",
+      "mapId": 0,
+      "tile": [
+        26,
+        24
+      ],
+      "key": "ArrowDown",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        26,
+        24
+      ],
+      "to": [
+        25,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        25,
+        24
+      ],
+      "to": [
+        24,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        24,
+        24
+      ],
+      "to": [
+        24,
+        23
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        24,
+        23
+      ],
+      "to": [
+        23,
+        23
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        23
+      ],
+      "to": [
+        23,
+        22
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        22
+      ],
+      "to": [
+        23,
+        21
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        21
+      ],
+      "to": [
+        23,
+        20
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        20
+      ],
+      "to": [
+        23,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        19
+      ],
+      "to": [
+        22,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        22,
+        19
+      ],
+      "to": [
+        21,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        21,
+        19
+      ],
+      "to": [
+        20,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        20,
+        19
+      ],
+      "to": [
+        19,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        19,
+        19
+      ],
+      "to": [
+        18,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        19
+      ],
+      "to": [
+        17,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        17,
+        19
+      ],
+      "to": [
+        16,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        19
+      ],
+      "to": [
+        16,
+        18
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        18
+      ],
+      "to": [
+        16,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        17
+      ],
+      "to": [
+        15,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        15,
+        17
+      ],
+      "to": [
+        15,
+        16
+      ]
+    },
+    {
+      "type": "overshoot",
+      "from": [
+        15,
+        16
+      ],
+      "to": [
+        13,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        13,
+        16
+      ],
+      "to": [
+        13,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        13,
+        15
+      ],
+      "to": [
+        12,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        12,
+        15
+      ],
+      "to": [
+        11,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        11,
+        15
+      ],
+      "to": [
+        10,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        9,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        15
+      ],
+      "to": [
+        9,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        14
+      ],
+      "to": [
+        9,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        13
+      ],
+      "to": [
+        9,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        12
+      ],
+      "to": [
+        9,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        11
+      ],
+      "to": [
+        9,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        10
+      ],
+      "to": [
+        9,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        9
+      ],
+      "to": [
+        9,
+        8
+      ]
+    },
+    {
+      "type": "overshoot",
+      "from": [
+        9,
+        8
+      ],
+      "to": [
+        11,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        11,
+        8
+      ],
+      "to": [
+        12,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        12,
+        8
+      ],
+      "to": [
+        13,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        13,
+        8
+      ],
+      "to": [
+        14,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        14,
+        8
+      ],
+      "to": [
+        15,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        15,
+        8
+      ],
+      "to": [
+        16,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        8
+      ],
+      "to": [
+        17,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        17,
+        8
+      ],
+      "to": [
+        18,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        8
+      ],
+      "to": [
+        18,
+        7
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        7
+      ],
+      "to": [
+        18,
+        6
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        6
+      ],
+      "to": [
+        18,
+        5
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        5
+      ],
+      "to": [
+        18,
+        4
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        4
+      ],
+      "to": [
+        18,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        3
+      ],
+      "to": [
+        19,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        19,
+        3
+      ],
+      "to": [
+        20,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        20,
+        3
+      ],
+      "to": [
+        20,
+        2
+      ]
+    },
+    {
+      "type": "map0-exit",
+      "mapId": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "key": "ArrowUp",
+      "dialogue": false,
+      "text": "$[Reah] Are you sure you want to quit your job?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ]
+    }
+  ],
+  "input": "visible keyboard via CDP; no save/load or gameplay-state seeding",
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarRead": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

@@ -55,14 +55,14 @@ export function resolveScriptDialogue(
   return lines;
 }
 
-/** The selected Ronin route displays event speaker markers as [Ron] in the reference. */
+/** Opening dialogue keeps the source speaker label while removing its control marker. */
 export function formatRoninDialogue(text: string): string {
-  return text.replace(/^[$|]\[[^\]]+\]\s*/, '[Ron] ');
+  return formatSourceDialogue(text);
 }
 
-/** Keep the speaker label from an event string while removing its control marker. */
+/** Source bitmap text suppresses the $, @ and | event control characters. */
 export function formatSourceDialogue(text: string): string {
-  return text.replace(/^[$|](?=\[[^\]]+\])/, '');
+  return text.replace(/[$@|]/g, '');
 }
 
 /** Text-only scripts can be displayed without pretending to run other commands. */
@@ -72,7 +72,7 @@ export function isDialogueOnlyScript(
 ): boolean {
   const commands = events.scripts[scriptIndex];
   return commands !== undefined && commands.some(([opcode]) => opcode === 1) &&
-    commands.every(([opcode]) => [1, 9, 10, 26, 29, 99].includes(opcode));
+    commands.every(([opcode]) => [1, 9, 26, 29, 99].includes(opcode));
 }
 
 /** Extract only the source game/quest flag mutations from a selected script. */
@@ -82,7 +82,7 @@ export function getScriptFlagChanges(
 ): EventFlagChange[] {
   const changes: EventFlagChange[] = [];
   for (const [opcode, low, high] of events.scripts[scriptIndex] ?? []) {
-    if (opcode !== 9 && opcode !== 10) continue;
+    if (opcode !== 9 && opcode !== 30) continue;
     const operation = high & 3;
     if (operation <= 2) {
       changes.push({
@@ -101,28 +101,52 @@ export function paginateBitmapDialogue(
   font: BitmapFontData,
   maximumWidth: number,
   maximumLines = 3,
+  sourceControls = false,
 ): string[] {
   if (!Number.isFinite(maximumWidth) || maximumWidth <= 0 ||
     !Number.isInteger(maximumLines) || maximumLines <= 0) return [];
+  if (text.length === 0) return [];
+
+  const shortTextWidth = sourceControls
+    ? bitmapTextWidth(formatSourceDialogue(text), font)
+    : bitmapTextWidth(text, font);
+  if (text.length > 0 && text.length < 64 && !text.includes('\n') &&
+    shortTextWidth <= maximumWidth) return [text];
 
   const rows: string[] = [];
-  for (const paragraph of text.split('\n')) {
-    const words = paragraph.split(/\s+/).filter(Boolean);
-    if (words.length === 0) {
+  const paragraphs = text.split('\n');
+  // The source wrapper emits a row for each newline but no trailing empty row.
+  if (text.endsWith('\n')) paragraphs.pop();
+  for (let paragraphIndex = 0; paragraphIndex < paragraphs.length; paragraphIndex += 1) {
+    // Source wrapping skips spaces immediately following an explicit newline.
+    const paragraph = paragraphIndex === 0 ? paragraphs[paragraphIndex] : paragraphs[paragraphIndex].replace(/^ +/, '');
+    if (paragraph.length === 0) {
       rows.push('');
       continue;
     }
-    let row = '';
-    for (const word of words) {
-      const candidate = row.length === 0 ? word : `${row} ${word}`;
-      if (row.length > 0 && bitmapTextWidth(candidate, font) > maximumWidth) {
-        rows.push(row);
-        row = word;
+    let start = 0;
+    while (start < paragraph.length) {
+      let width = 0;
+      let cursor = start;
+      for (; cursor < paragraph.length; cursor += 1) {
+        width += bitmapTextWidth(paragraph[cursor], font);
+        if (width >= maximumWidth) break;
+      }
+      if (cursor === paragraph.length) {
+        rows.push(paragraph.slice(start));
+        break;
+      }
+      const space = paragraph.lastIndexOf(' ', cursor);
+      if (space >= start) {
+        rows.push(paragraph.slice(start, space));
+        start = space + 1;
       } else {
-        row = candidate;
+        // Progress even if one glyph is wider than the available line.
+        const end = cursor > start ? cursor : cursor + 1;
+        rows.push(paragraph.slice(start, end));
+        start = end;
       }
     }
-    rows.push(row);
   }
 
   const pages: string[] = [];

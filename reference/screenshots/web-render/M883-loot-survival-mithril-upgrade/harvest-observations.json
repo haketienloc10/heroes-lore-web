@@ -1,0 +1,53 @@
+{
+  "firstKill": {
+    "sourceOrder": 14,
+    "enemyId": 24,
+    "result": "No drop observed"
+  },
+  "secondKill": {
+    "sourceOrder": 17,
+    "enemyId": 24,
+    "result": "No drop observed"
+  },
+  "thirdKill": {
+    "target": {
+      "order": 17,
+      "id": 24,
+      "tile": [
+        16,
+        35
+      ],
+      "state": "alive",
+      "hp": 43,
+      "reward": 1
+    },
+    "result": {
+      "order": 17,
+      "id": 24,
+      "tile": [
+        16,
+        35
+      ],
+      "state": "respawn-wait",
+      "hp": 0,
+      "reward": 1
+    },
+    "drops": [
+      {
+        "kind": "currency",
+        "sourceAmount": 3,
+        "tileX": 16,
+        "tileY": 35,
+        "id": 1,
+        "ticksRemaining": 105
+      }
+    ],
+    "profileLevel": 2,
+    "hp": 393228,
+    "inventory": [],
+    "actor": [
+      16,
+      35
+    ]
+  }
+}

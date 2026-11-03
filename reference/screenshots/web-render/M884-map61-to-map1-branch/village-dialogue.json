@@ -1,0 +1,72 @@
+{
+  "inputs": 41,
+  "checkpoints": [
+    "|[Lesley] The injury is not serious. I think she\njust passed out because she's so exhausted.\nShe'll get better soon.",
+    "|[Ronin] Ah, nice.. thank you..",
+    "|[Ronin] Ah, nice.. thank you..",
+    "|[Lesley] Let me know if she wakes up. I've got\nto go back now.",
+    "|[Lesley] Let me know if she wakes up. I've got\nto go back now.",
+    "|[Ronin] Yes, I will.",
+    "|[Ronin] Yes, I will.",
+    "|[Ronin] Yes, I will.",
+    "|[Ronin] Yes, I will.",
+    "|[Ronin] Yes, I will.",
+    "|[Ronin] It's been 3 years... I didn't expect to\nmeet you again like this.",
+    "|[Ronin] It's been 3 years... I didn't expect to\nmeet you again like this.",
+    "|[Ronin]...You still look funny when you sleep.",
+    "|[Ronin]...You still look funny when you sleep.",
+    "|[Reah] I can hear everything you're saying, fool.",
+    "|[Reah] I can hear everything you're saying, fool.",
+    "|[Ronin] Ack! When did you wake up!?",
+    "|[Ronin] Ack! When did you wake up!?",
+    "|[Reah] A while ago.",
+    "|[Reah] A while ago.",
+    "|[Reah] A while ago.",
+    "|[Ronin] You'd better get some more rest.",
+    "|[Ronin] You'd better get some more rest.",
+    "|[Reah] I don't have time to lie down and rest..\nMmmph!!",
+    "|[Reah] I don't have time to lie down and rest..\nMmmph!!",
+    "|[Ronin] I told you so! Are you OK?",
+    "|[Ronin] I told you so! Are you OK?",
+    "|[Ronin] Stop struggling, get back to bed!",
+    "|[Ronin] Stop struggling, get back to bed!",
+    "|[Reah] It's none of your business.",
+    "|[Reah] It's none of your business.",
+    "|[Ronin] Yes it is. What if you're injured more? I\ncan't let you go.",
+    "|[Ronin] Yes it is. What if you're injured more? I\ncan't let you go.",
+    "|[Reah] ...you've become quite impudent.",
+    "|[Reah] ...you've become quite impudent.",
+    "|[Ronin] No way, that's because you won't listen.",
+    "|[Ronin] No way, that's because you won't listen.",
+    "|[Ronin] Explain to me what's going on. If I can\nhelp, I will.",
+    "|[Ronin] Explain to me what's going on. If I can\nhelp, I will.",
+    "|[Reah] I was attacked near the temple. Maybe, a\nGuardian got out of control."
+  ],
+  "final": {
+    "mapId": 64,
+    "tile": [
+      11,
+      6
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "dialogue": true,
+    "text": "|[Reah] I was attacked near the temple. Maybe, a\nGuardian got out of control.",
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      4,
+      75,
+      2,
+      5
+    ],
+    "questFlags": [
+      1,
+      2
+    ]
+  }
+}

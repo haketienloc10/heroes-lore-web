@@ -1,0 +1,396 @@
+{
+  "active": true,
+  "mapId": 62,
+  "mapDiagnostics": {
+    "mapKeys": [
+      "world",
+      "tilesetId",
+      "startupHeroEmotion",
+      "events",
+      "tileKeys",
+      "objectTextureKeys",
+      "decorationObjectCount",
+      "decorationSprites",
+      "enemies",
+      "enemySprites",
+      "enemyStatusDisplays",
+      "npcSprites",
+      "enemyTextureKeys",
+      "enemyProjectiles",
+      "enemyProjectileSprites",
+      "playerProjectiles",
+      "nextPlayerProjectileId",
+      "enemyAttackAnimations",
+      "enemyAttackSprites",
+      "nextEnemyAttackVisualId",
+      "playerSkillVisuals",
+      "playerSkillVisualSprites",
+      "nextPlayerSkillVisualId",
+      "enemyAttachedSkillVisuals",
+      "enemyAttachedSkillVisualSprites",
+      "groundDrops",
+      "groundDropSprites",
+      "nextGroundDropId",
+      "enemyUpdateRemainderMs",
+      "respawnCadenceTicks",
+      "visibleNpcSourceOrders",
+      "occupiedCellIndices",
+      "width",
+      "height",
+      "objects"
+    ],
+    "worldKeys": [
+      "map",
+      "collision"
+    ],
+    "markerCells": [
+      {
+        "x": 15,
+        "y": 0,
+        "value": -2
+      },
+      {
+        "x": 16,
+        "y": 0,
+        "value": -2
+      },
+      {
+        "x": 16,
+        "y": 2,
+        "value": 5
+      },
+      {
+        "x": 17,
+        "y": 2,
+        "value": 6
+      },
+      {
+        "x": 16,
+        "y": 6,
+        "value": 8
+      },
+      {
+        "x": 16,
+        "y": 7,
+        "value": -4
+      },
+      {
+        "x": 39,
+        "y": 20,
+        "value": -1
+      },
+      {
+        "x": 39,
+        "y": 21,
+        "value": -1
+      },
+      {
+        "x": 39,
+        "y": 22,
+        "value": -1
+      },
+      {
+        "x": 39,
+        "y": 23,
+        "value": -1
+      },
+      {
+        "x": 39,
+        "y": 24,
+        "value": -1
+      }
+    ],
+    "markerApproaches": [
+      {
+        "marker": {
+          "x": 15,
+          "y": 0,
+          "value": -2
+        },
+        "approaches": [
+          {
+            "tile": [
+              15,
+              1
+            ],
+            "collision": 0,
+            "distance": null
+          }
+        ]
+      },
+      {
+        "marker": {
+          "x": 16,
+          "y": 0,
+          "value": -2
+        },
+        "approaches": [
+          {
+            "tile": [
+              16,
+              1
+            ],
+            "collision": 0,
+            "distance": null
+          }
+        ]
+      },
+      {
+        "marker": {
+          "x": 16,
+          "y": 7,
+          "value": -4
+        },
+        "approaches": []
+      },
+      {
+        "marker": {
+          "x": 39,
+          "y": 20,
+          "value": -1
+        },
+        "approaches": [
+          {
+            "tile": [
+              38,
+              20
+            ],
+            "collision": 0,
+            "distance": 2
+          }
+        ]
+      },
+      {
+        "marker": {
+          "x": 39,
+          "y": 21,
+          "value": -1
+        },
+        "approaches": [
+          {
+            "tile": [
+              38,
+              21
+            ],
+            "collision": 0,
+            "distance": 1
+          }
+        ]
+      },
+      {
+        "marker": {
+          "x": 39,
+          "y": 22,
+          "value": -1
+        },
+        "approaches": [
+          {
+            "tile": [
+              38,
+              22
+            ],
+            "collision": 0,
+            "distance": 2
+          }
+        ]
+      },
+      {
+        "marker": {
+          "x": 39,
+          "y": 23,
+          "value": -1
+        },
+        "approaches": [
+          {
+            "tile": [
+              38,
+              23
+            ],
+            "collision": 0,
+            "distance": 3
+          }
+        ]
+      },
+      {
+        "marker": {
+          "x": 39,
+          "y": 24,
+          "value": -1
+        },
+        "approaches": [
+          {
+            "tile": [
+              38,
+              24
+            ],
+            "collision": 0,
+            "distance": 4
+          }
+        ]
+      }
+    ],
+    "reachableCellCount": 619,
+    "npcs": null,
+    "npcPlacements": null
+  },
+  "tile": [
+    37,
+    21
+  ],
+  "actorPixels": [
+    592,
+    336
+  ],
+  "actorMoving": false,
+  "nearby": {
+    "collision": {
+      "north": 0,
+      "east": 0,
+      "south": 0,
+      "west": -128
+    },
+    "enemies": [
+      {
+        "sourceOrder": 9,
+        "tile": [
+          35,
+          21
+        ],
+        "state": "alive",
+        "hp": 510
+      },
+      {
+        "sourceOrder": 13,
+        "tile": [
+          35,
+          20
+        ],
+        "state": "alive",
+        "hp": 510
+      }
+    ]
+  },
+  "combo": {
+    "stage": -1,
+    "frame": 0,
+    "activeStyle": null,
+    "queuedStyle": null,
+    "recoveryTicks": 0,
+    "tickRemainderMs": 50.059999999983674
+  },
+  "direction": 3,
+  "hp": 394392,
+  "maxHp": 394392,
+  "level": 99,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    1,
+    75,
+    5,
+    6,
+    86,
+    8,
+    3
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    19,
+    21,
+    20
+  ],
+  "openingCutsceneStatus": "transfer",
+  "openingCutsceneState": {
+    "commandIndex": 2,
+    "scriptIndex": 1,
+    "status": "transfer",
+    "dialogueStringIndex": null,
+    "dialogueEndsCutscene": false,
+    "dialoguePages": [],
+    "dialoguePageIndex": 0,
+    "choiceSelection": 0,
+    "choiceSkipCount": 0,
+    "delayRemainingMs": 0,
+    "sourceWorldTickDuringDelay": false,
+    "sourceWorldTickPending": false,
+    "sourceWorldTickPendingElapsedMs": 0,
+    "sourceEventResumePending": false,
+    "heroDirection": 3,
+    "heroMoving": false,
+    "heroPositionChanges": [],
+    "heroEmotion": null,
+    "heroEmotionChanged": false,
+    "cameraMode": "hero",
+    "cameraSnapPending": false,
+    "cameraMoveDirection": 0,
+    "cameraMoveSpeed": 0,
+    "cameraTickRemainderMs": 0,
+    "cameraPanX": 0,
+    "cameraPanY": 0,
+    "cameraFollowNpcIndex": null,
+    "cameraPositionTile": null,
+    "npcDirections": {},
+    "npcMoving": {},
+    "npcImages": {},
+    "objectImages": {},
+    "npcEmotions": {},
+    "npcVisibility": {},
+    "screenBlank": false,
+    "screenFlashColor": null,
+    "screenFlashStepsRemaining": 0,
+    "screenShakeX": 0,
+    "screenShakeY": 0,
+    "screenShakeValues": [],
+    "tileChanges": [],
+    "inventory": [
+      {
+        "category": 4,
+        "itemId": 1,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            0,
+            0,
+            2,
+            0
+          ],
+          "subtypeBytes": []
+        }
+      }
+    ],
+    "playerChanges": [],
+    "experienceAwards": [],
+    "skillIds": [
+      0,
+      1
+    ],
+    "comboLimit": 1,
+    "heroClassId": 6,
+    "questFlag29Set": false,
+    "serviceRequest": null,
+    "flagChanges": [],
+    "transition": {
+      "mapId": 62,
+      "entryDirectionIndex": 2,
+      "tileX": 37,
+      "tileY": 21,
+      "scriptIndex": 1
+    },
+    "unsupportedOpcode": null
+  },
+  "openingDialogueText": "|[Village chief] Welcome, Ronin.",
+  "openingDialoguePages": [
+    "|[Village chief] Welcome, Ronin."
+  ],
+  "openingDialogVisible": false,
+  "worldDialogueVisible": false,
+  "systemMenuVisible": false,
+  "serviceRequest": null,
+  "serviceScreen": null,
+  "gameOver": null
+}

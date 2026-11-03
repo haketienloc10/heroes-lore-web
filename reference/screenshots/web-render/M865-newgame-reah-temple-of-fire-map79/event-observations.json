@@ -1,0 +1,128 @@
+{
+  "map63Npc": {
+    "approach": [
+      9,
+      13
+    ],
+    "resultingGameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      4,
+      75
+    ],
+    "resultingQuestFlags": [
+      1
+    ],
+    "hp": 394392,
+    "maxHp": 394392,
+    "note": "Visible interaction sets flags 1, 4 and 75 and quest flag 1; no enemies are placed on Map63."
+  },
+  "map27EntryAfterMap63": {
+    "mapId": 27,
+    "tile": [
+      5,
+      36
+    ],
+    "dialogue": "|[Ronin] That is...",
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      4,
+      75,
+      2
+    ],
+    "questFlags": [
+      1
+    ],
+    "note": "The Map27 event becomes available after the Map63 flags are acquired."
+  },
+  "map27ReahEvent": {
+    "marker": -6,
+    "approach": [
+      7,
+      8
+    ],
+    "dialogueCheckpoints": [
+      "|[Ronin] Oh, Reah!",
+      "|[Ronin] Reah, Reah!! Wake up!!",
+      "|[Ronin] Not good, I have to move her to the village first.",
+      "An absent friend Quest completed!",
+      "Received 300 EXP"
+    ],
+    "confirmationsBeforeMap64Transfer": 5,
+    "destination": [
+      64,
+      11,
+      6
+    ],
+    "hp": 394392
+  },
+  "map64VillageDialogue": {
+    "dialogueCheckpoints": [
+      "|[Lesley] The injury is not serious. I think she just passed out because she's so exhausted. She'll get better soon.",
+      "|[Ronin] Ah, nice.. thank you..",
+      "|[Reah] A while ago.",
+      "|[Ronin] You'd better get some more rest.",
+      "|[Reah] I don't have time to lie down and rest.. Mmmph!!",
+      "|[Ronin] I told you so! Are you OK?",
+      "|[Ronin] Stop struggling, get back to bed!",
+      "|[Reah] It's none of your business.",
+      "|[Ronin] Yes it is. What if you're injured more? I can't let you go.",
+      "|[Reah] I was attacked near the temple. Maybe, a Guardian got out of control.",
+      "|[Ronin] You mean you just want it checked out, right? Then I'll do it.",
+      "Temple of Fire Quest acquired!"
+    ],
+    "finalMap": [
+      64,
+      11,
+      7
+    ],
+    "finalGameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      75,
+      5,
+      6
+    ],
+    "finalQuestFlags": [
+      1,
+      2,
+      4
+    ],
+    "hp": 394392,
+    "maxHp": 394392
+  },
+  "map79Npc6": {
+    "approach": [
+      13,
+      13
+    ],
+    "observedDialogue": "$[Villager] If the weapon is unidentified, take it to the blacksmith. If you want something to be combined, go to the Refiner.",
+    "finalGameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6
+    ],
+    "finalQuestFlags": [
+      1,
+      2,
+      4
+    ],
+    "flagChanges": false,
+    "hp": 394392,
+    "maxHp": 394392
+  }
+}

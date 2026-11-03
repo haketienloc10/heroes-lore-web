@@ -1,0 +1,77 @@
+{
+  "id": "M872",
+  "title": "Map60 west marker to Map61 on the max-level New Game route",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "route": {
+    "from": 60,
+    "startTile": [
+      17,
+      38
+    ],
+    "marker": -1,
+    "to": 61,
+    "arrivalTile": [
+      4,
+      37
+    ],
+    "trace": "route-01-map60-west-to-map61.json",
+    "screenshot": "01-map60-west-to-map61.png",
+    "success": true,
+    "actions": 63,
+    "attacks": 0
+  },
+  "finalState": {
+    "file": "final-live-state.json",
+    "mapId": 61,
+    "tile": [
+      4,
+      37
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This capture verifies Map60's west branch only.",
+    "It does not verify Map60's other routes, the campaign ending, ordinary-level balance or J2ME parity."
+  ]
+}

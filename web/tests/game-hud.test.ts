@@ -66,4 +66,66 @@ describe('source gameplay HUD meters', () => {
     expect(rectangles).toContainEqual({ color: '#3fffbf', rect: [47, 27, 86, 2] });
     expect(rectangles).toContainEqual({ color: '#000000', rect: [133, 27, 87, 2] });
   });
+
+  it('draws assigned skill levels with source cooldown masks and centers the quick-item icon', () => {
+    const slotOneIcon = {} as CanvasImageSource;
+    const slotThreeIcon = {} as CanvasImageSource;
+    const chargeOverlay = {} as CanvasImageSource;
+    const quickItemIcon = { width: 11, height: 16 } as unknown as CanvasImageSource;
+    const directImages: Array<{ image: CanvasImageSource; x: number; y: number }> = [];
+    const clippedRects: Array<[number, number, number, number]> = [];
+    const fills: Array<{ color: string; rect: [number, number, number, number] }> = [];
+    let fillStyle = '';
+    const context = {
+      imageSmoothingEnabled: false,
+      drawImage: (...args: unknown[]) => {
+        if (args.length === 3) directImages.push({
+          image: args[0] as CanvasImageSource,
+          x: args[1] as number,
+          y: args[2] as number,
+        });
+      },
+      fillRect: (x: number, y: number, width: number, height: number) => {
+        fills.push({ color: fillStyle, rect: [x, y, width, height] });
+      },
+      strokeRect: () => undefined,
+      save: () => undefined,
+      restore: () => undefined,
+      beginPath: () => undefined,
+      rect: (x: number, y: number, width: number, height: number) => {
+        clippedRects.push([x, y, width, height]);
+      },
+      clip: () => undefined,
+      set fillStyle(value: string) { fillStyle = value; },
+      set strokeStyle(_value: string) { /* skill outlines use integer fills */ },
+    } as unknown as CanvasRenderingContext2D;
+    const assets = {
+      frame: Array.from({ length: 7 }, () => ({} as CanvasImageSource)),
+      digits: {} as CanvasImageSource,
+      itemCategoryIcons: {
+        7: quickItemIcon,
+        8: quickItemIcon,
+        9: quickItemIcon,
+        10: quickItemIcon,
+      },
+      skillIcons: [[slotOneIcon, {} as CanvasImageSource, slotThreeIcon]],
+      skillChargeOverlay: chargeOverlay,
+    } as GameplayHudAssets;
+
+    drawGameplayHud(context, assets, NEW_GAME_RONIN_HUD, 240, {
+      skillId: 0,
+      slotOne: { levelSlot: 0, chargeTicksRemaining: 28, chargeTicksMaximum: 56 },
+      slotThree: { levelSlot: 2, chargeTicksRemaining: 0, chargeTicksMaximum: 280 },
+    });
+
+    expect(directImages).toContainEqual({ image: slotOneIcon, x: 7, y: 15 });
+    expect(directImages).toContainEqual({ image: slotThreeIcon, x: 29, y: 15 });
+    expect(directImages).toContainEqual({ image: chargeOverlay, x: 7, y: 15 });
+    expect(clippedRects).toEqual([[8, 16, 13, 6]]);
+    expect(fills).toContainEqual({ color: '#bf1f3f', rect: [7, 15, 15, 1] });
+    expect(fills).toContainEqual({ color: '#bf1f3f', rect: [7, 29, 15, 1] });
+    expect(fills).toContainEqual({ color: '#000000', rect: [29, 15, 15, 1] });
+    expect(fills).toContainEqual({ color: '#000000', rect: [43, 16, 1, 13] });
+    expect(directImages).toContainEqual({ image: quickItemIcon, x: 225, y: 11 });
+  });
 });

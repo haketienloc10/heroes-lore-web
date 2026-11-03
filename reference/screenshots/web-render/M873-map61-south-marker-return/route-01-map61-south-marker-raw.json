@@ -1,0 +1,81 @@
+{
+  "success": false,
+  "reason": "unexpected-map-60",
+  "start": {
+    "mapId": 61,
+    "tile": [
+      4,
+      37
+    ],
+    "hp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "final": {
+    "mapId": 60,
+    "tile": [
+      1,
+      2
+    ],
+    "hp": 394392,
+    "maxHp": 394392,
+    "level": 99,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ],
+    "dialogue": false,
+    "text": "|[Village chief] Welcome, Ronin."
+  },
+  "actions": [
+    {
+      "action": 0,
+      "type": "move",
+      "from": [
+        4,
+        37
+      ],
+      "to": [
+        1,
+        2
+      ],
+      "hp": 394392
+    }
+  ],
+  "attackCount": 0,
+  "blockedCellCount": 0
+}

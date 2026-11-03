@@ -1,0 +1,305 @@
+{
+  "map": 63,
+  "tile": [
+    9,
+    13
+  ],
+  "visibleInputs": [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowLeft",
+    "ArrowUp",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Enter"
+  ],
+  "dialogueConfirmations": 19,
+  "final": {
+    "level": 2,
+    "hp": 393228,
+    "maxHp": 393228,
+    "inventory": [
+      {
+        "category": 2,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": [
+            8,
+            10,
+            -1
+          ]
+        }
+      },
+      {
+        "category": 11,
+        "itemId": 0,
+        "count": 1
+      }
+    ],
+    "wallet": 300,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      4,
+      75
+    ],
+    "questFlags": [
+      1
+    ]
+  },
+  "states": [
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] Welcome, Ronin.",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] Welcome, Ronin.",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] Good day, village chief. Any news about\nReah?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] Good day, village chief. Any news about\nReah?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] No news yet, I'm afraid.",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] No news yet, I'm afraid.",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] It's been too long.......",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] It's been too long.......",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] Maybe something happened?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] Maybe something happened?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] News is often delayed when\nincidents happen.",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] News is often delayed when\nincidents happen.",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] If you are so worried, why not\nwait for her at the gates?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Village chief] If you are so worried, why not\nwait for her at the gates?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] Hmmm, maybe I should?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "quests": [],
+      "text": "|[Ronin] Hmmm, maybe I should?",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "quests": [
+        1
+      ],
+      "text": "An absent friend Quest acquired!",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "quests": [
+        1
+      ],
+      "text": "An absent friend Quest acquired!",
+      "cut": "dialogue"
+    },
+    {
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "quests": [
+        1
+      ],
+      "cut": "ended"
+    }
+  ]
+}

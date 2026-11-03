@@ -1,0 +1,66 @@
+{
+  "id": "M843",
+  "title": "Max-level route from Map51 through Map49 into Map48",
+  "date": "2026-11-02",
+  "continuedFrom": "M842 in the same Chromium page and visible New Game state",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [32767, 32767, 32767, 32767],
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "route": [
+    { "from": [51, 27, 4], "via": [51, 29, 38], "to": [49, 2, 9], "input": "visible arrow keys" },
+    { "from": [49, 2, 9], "via": [49, 13, 1], "to": [48, 4, 17], "marker": 3, "input": "visible arrow keys" }
+  ],
+  "map48Interactions": [
+    {
+      "npc": "Villager",
+      "actorTile": [12, 15],
+      "facing": "east",
+      "marker": 6,
+      "dialogue": "If you don't have a place to sleep... there is a camp on the east side of Morionis forest for hunters and woodcutters.",
+      "screenshot": "map48-villager-dialogue.png"
+    },
+    {
+      "npc": "Guard",
+      "actorTile": [6, 10],
+      "facing": "north",
+      "marker": 5,
+      "dialogue": "Maybe I should quit and return to my hometown..this job is too dangerous these days...",
+      "screenshot": "map48-guard-dialogue.png"
+    }
+  ],
+  "finalState": {
+    "mapId": 48,
+    "tile": [6, 10],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [0, 1, 3, 5, 6, 54, 75, 87],
+    "questFlags": [1, 2, 4],
+    "dialogueDismissed": true
+  },
+  "screenshots": [
+    { "file": "map48-arrival.png", "observation": "Map48 arrival at tile (4,17), full HP." },
+    { "file": "map48-villager-dialogue.png", "observation": "Full revealed Villager dialogue at marker 6." },
+    { "file": "map48-guard-dialogue.png", "observation": "Full revealed Guard dialogue at marker 5." }
+  ],
+  "limits": [
+    "The Map51 Temple gate was not approached again; the separate gate check remains blocked at three attempts.",
+    "Map48-to-Map73, Map4, and full campaign completion remain unverified.",
+    "The boosted profile does not verify ordinary-level balance or J2ME parity."
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "originalLocalSaveReadOrWritten": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

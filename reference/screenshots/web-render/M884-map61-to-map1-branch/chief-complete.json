@@ -1,0 +1,490 @@
+{
+  "mapId": 63,
+  "tile": [
+    9,
+    13
+  ],
+  "level": 99,
+  "hp": 394392,
+  "maxHp": 394392,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    3,
+    1,
+    4,
+    75
+  ],
+  "questFlags": [
+    1
+  ],
+  "talkInputs": 17,
+  "trail": [
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        26,
+        24
+      ],
+      "to": [
+        25,
+        24
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        25,
+        24
+      ],
+      "to": [
+        24,
+        24
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        24,
+        24
+      ],
+      "to": [
+        24,
+        23
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        24,
+        23
+      ],
+      "to": [
+        23,
+        23
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        23,
+        23
+      ],
+      "to": [
+        23,
+        22
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        23,
+        22
+      ],
+      "to": [
+        23,
+        21
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        23,
+        21
+      ],
+      "to": [
+        23,
+        20
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        23,
+        20
+      ],
+      "to": [
+        23,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        23,
+        19
+      ],
+      "to": [
+        22,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        22,
+        19
+      ],
+      "to": [
+        21,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        21,
+        19
+      ],
+      "to": [
+        20,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        20,
+        19
+      ],
+      "to": [
+        19,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map63-approach",
+      "from": [
+        19,
+        19
+      ],
+      "to": [
+        18,
+        19
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "map0-marker--4",
+      "toMap": 63,
+      "tile": [
+        10,
+        18
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map63-chief-approach",
+      "from": [
+        10,
+        18
+      ],
+      "to": [
+        10,
+        17
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map63-chief-approach",
+      "from": [
+        10,
+        17
+      ],
+      "to": [
+        10,
+        16
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map63-chief-approach",
+      "from": [
+        10,
+        16
+      ],
+      "to": [
+        10,
+        15
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map63-chief-approach",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        10,
+        14
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map63-chief-approach",
+      "from": [
+        10,
+        14
+      ],
+      "to": [
+        9,
+        14
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "move",
+      "label": "map63-chief-approach",
+      "from": [
+        9,
+        14
+      ],
+      "to": [
+        9,
+        13
+      ],
+      "hp": 394392
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] Welcome, Ronin.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] Welcome, Ronin.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] Good day, village chief. Any news about\nReah?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] Good day, village chief. Any news about\nReah?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] No news yet, I'm afraid.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] No news yet, I'm afraid.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] It's been too long.......",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] It's been too long.......",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] Maybe something happened?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] Maybe something happened?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] News is often delayed when\nincidents happen.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] News is often delayed when\nincidents happen.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] If you are so worried, why not\nwait for her at the gates?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Village chief] If you are so worried, why not\nwait for her at the gates?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] Hmmm, maybe I should?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "|[Ronin] Hmmm, maybe I should?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": []
+    },
+    {
+      "type": "chief-interaction",
+      "dialogue": true,
+      "text": "An absent friend Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ]
+    }
+  ]
+}

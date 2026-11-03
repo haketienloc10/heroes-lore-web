@@ -1,0 +1,83 @@
+{
+  "id": "M871",
+  "title": "Map2 north marker to Map60 on the max-level New Game route",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "routePreparation": {
+    "file": "route-preparation.json",
+    "visibleInput": "ArrowUp from Map2 (4,47) to (4,46)",
+    "helperResult": "stopped on an incorrect expected-map guard before testing the exit",
+    "transferAttempted": false
+  },
+  "route": {
+    "from": 2,
+    "startTile": [
+      4,
+      46
+    ],
+    "marker": -1,
+    "to": 60,
+    "arrivalTile": [
+      17,
+      38
+    ],
+    "trace": "route-01-map2-north-to-map60.json",
+    "screenshot": "01-map2-north-to-map60.png",
+    "success": true,
+    "actions": 107,
+    "attacks": 5
+  },
+  "finalState": {
+    "file": "final-live-state.json",
+    "mapId": 60,
+    "tile": [
+      17,
+      38
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This capture verifies the Map2 north branch and five route-blocker attacks only.",
+    "It does not verify Map60's remaining branches, the campaign ending, ordinary-level balance or J2ME parity."
+  ]
+}

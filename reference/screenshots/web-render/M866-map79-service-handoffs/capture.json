@@ -1,0 +1,142 @@
+{
+  "id": "M866",
+  "title": "Map79 Blacksmith, Shop and Refiner handoffs on max-level quest route",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [
+        32767,
+        32767,
+        32767,
+        32767
+      ],
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "start": {
+    "mapId": 79,
+    "tile": [
+      13,
+      13
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ]
+  },
+  "serviceHandoffs": [
+    {
+      "from": [
+        79,
+        13,
+        13
+      ],
+      "marker": -5,
+      "to": [
+        79,
+        12,
+        9
+      ],
+      "actions": 9,
+      "screen": "blacksmith-main",
+      "trace": "blacksmith-marker5-route-trace.json",
+      "screenshot": "01-blacksmith-main.png"
+    },
+    {
+      "from": [
+        79,
+        12,
+        9
+      ],
+      "marker": -4,
+      "to": [
+        79,
+        10,
+        9
+      ],
+      "actions": 6,
+      "screen": "shop-list",
+      "trace": "shop-marker4-route-trace.json",
+      "screenshot": "02-shop-list.png"
+    },
+    {
+      "from": [
+        79,
+        10,
+        9
+      ],
+      "marker": -8,
+      "to": [
+        79,
+        8,
+        9
+      ],
+      "actions": 6,
+      "screen": "refiner-main",
+      "trace": "refiner-marker8-route-trace.json",
+      "screenshot": "03-refiner-main.png"
+    }
+  ],
+  "closeBehavior": "Escape returns from each service screen to Map79; no transaction was committed.",
+  "finalState": {
+    "mapId": 79,
+    "tile": [
+      8,
+      9
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ],
+    "systemMenuVisible": false
+  },
+  "screenshots": [
+    {
+      "file": "04-world-after-services.png",
+      "observation": "Map79 world screen after closing Refiner."
+    }
+  ],
+  "stateFiles": [
+    "service-states.json",
+    "blacksmith-marker5-route-trace.json",
+    "shop-marker4-route-trace.json",
+    "refiner-marker8-route-trace.json"
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "originalLocalSaveReadOrWritten": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

@@ -1,0 +1,1140 @@
+{
+  "checkpoints": [
+    {
+      "round": 0,
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "dialogue": true,
+      "text": "|[Ronin]...You still look funny when you sleep.",
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "quests": [
+        1,
+        2
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276
+    },
+    {
+      "round": 1,
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "dialogue": false,
+      "text": "Temple of Fire Quest acquired!",
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "quests": [
+        1,
+        2,
+        4
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276
+    },
+    {
+      "round": "final",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "dialogue": false,
+      "text": "Temple of Fire Quest acquired!",
+      "flags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "quests": [
+        1,
+        2,
+        4
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276
+    }
+  ],
+  "trace": [
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin]...You still look funny when you sleep.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] I can hear everything you're saying, fool.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] I can hear everything you're saying, fool.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Ack! When did you wake up!?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Ack! When did you wake up!?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] A while ago.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] A while ago.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] A while ago.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Ronin] You'd better get some more rest.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Ronin] You'd better get some more rest.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Reah] I don't have time to lie down and rest..\nMmmph!!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Reah] I don't have time to lie down and rest..\nMmmph!!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Ronin] I told you so! Are you OK?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Ronin] I told you so! Are you OK?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Ronin] Stop struggling, get back to bed!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Ronin] Stop struggling, get back to bed!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Reah] It's none of your business.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        12,
+        6
+      ],
+      "text": "|[Reah] It's none of your business.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes it is. What if you're injured more? I\ncan't let you go.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Yes it is. What if you're injured more? I\ncan't let you go.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] ...you've become quite impudent.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] ...you've become quite impudent.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] No way, that's because you won't listen.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] No way, that's because you won't listen.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Explain to me what's going on. If I can\nhelp, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Explain to me what's going on. If I can\nhelp, I will.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] I was attacked near the temple. Maybe, a\nGuardian got out of control.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] I was attacked near the temple. Maybe, a\nGuardian got out of control.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] I have to check it out..",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] I have to check it out..",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Aren't you going to tell this to another\nRefiner?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] Aren't you going to tell this to another\nRefiner?",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] If nothing happened, it's OK.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Reah] If nothing happened, it's OK.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] You mean you just want it checked out,\nright? Then I'll do it.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "text": "|[Ronin] You mean you just want it checked out,\nright? Then I'll do it.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "text": "|[Reah] Be careful....",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "text": "|[Reah] Be careful....",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "text": "|[Ronin] Don't worry about me, get some rest.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "text": "|[Ronin] Don't worry about me, get some rest.",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75,
+        2,
+        5
+      ],
+      "questFlags": [
+        1,
+        2
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "text": "Temple of Fire Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "type": "dialogue-confirm",
+      "label": "resume-village-dialogue-1",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "text": "Temple of Fire Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    }
+  ]
+}

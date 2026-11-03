@@ -1,0 +1,586 @@
+{
+  "id": "M880",
+  "title": "Map80 Refiner and Blacksmith empty-state preconditions",
+  "date": "2026-11-02",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "profile": "same visible New Game max-level session as M879"
+  },
+  "start": {
+    "mapId": 80,
+    "tile": [
+      10,
+      9
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "wallet": 180,
+    "inventory": [],
+    "equipmentSlots": [
+      {
+        "category": 0,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      null,
+      {
+        "category": 5,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 6,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 4,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      }
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ]
+  },
+  "route": {
+    "refinerApproach": [
+      8,
+      9
+    ],
+    "fromTile": [
+      10,
+      9
+    ],
+    "visibleInputs": [
+      "ArrowLeft",
+      "ArrowLeft",
+      "ArrowUp",
+      "Enter",
+      "w"
+    ],
+    "blacksmithApproach": [
+      12,
+      9
+    ],
+    "visibleInputsFromRefiner": [
+      "ArrowRight",
+      "ArrowRight",
+      "ArrowRight",
+      "ArrowRight",
+      "ArrowUp",
+      "Enter",
+      "w"
+    ]
+  },
+  "refiner": {
+    "orbTargets": [],
+    "orbEmptyTargetResult": {
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "message",
+      "service": "refiner",
+      "message": "Choose your item",
+      "targets": [],
+      "selectedIngredients": []
+    },
+    "mixState": {
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "mix-select",
+      "service": "refiner",
+      "message": "Choose your item",
+      "targets": [],
+      "selectedIngredients": []
+    },
+    "mixMinimumResult": {
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "message",
+      "service": "refiner",
+      "message": "You must select 2 or more materials",
+      "targets": [],
+      "selectedIngredients": []
+    }
+  },
+  "blacksmith": {
+    "upgradeTargets": [
+      {
+        "target": {
+          "location": "equipment",
+          "slot": 0
+        },
+        "label": "Equipped: Dull two hands sword +0"
+      },
+      {
+        "target": {
+          "location": "equipment",
+          "slot": 2
+        },
+        "label": "Equipped: Basic suit +0"
+      },
+      {
+        "target": {
+          "location": "equipment",
+          "slot": 3
+        },
+        "label": "Equipped: Hair band +0"
+      },
+      {
+        "target": {
+          "location": "equipment",
+          "slot": 4
+        },
+        "label": "Equipped: Cloth shoes +0"
+      }
+    ],
+    "identifyTargets": [],
+    "identifyEmptyTargetResult": {
+      "mapId": 80,
+      "tile": [
+        12,
+        9
+      ],
+      "screen": "message",
+      "service": "blacksmith",
+      "message": "Not identified",
+      "targets": [],
+      "selectedIngredients": []
+    }
+  },
+  "final": {
+    "mapId": 80,
+    "tile": [
+      12,
+      9
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "wallet": 180,
+    "inventory": [],
+    "equipmentSlots": [
+      {
+        "category": 0,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      null,
+      {
+        "category": 5,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 6,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 4,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      }
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ],
+    "serviceScreen": null
+  },
+  "transactionsCommitted": false,
+  "runnerNote": "All service screens were exercised and the menus closed. The recorder then reported an assertion error because it expected Blacksmith main after the Escape that had already closed the menu. The captured final runtime state confirms the close completed; this is a recorder check error, not a game failure.",
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarRead": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "Current-build browser behavior only; no J2ME comparison.",
+    "Empty-state screens do not verify successful Refiner or Blacksmith transactions."
+  ],
+  "screenshots": [
+    "00-map80-start.png",
+    "01-refiner-main.png",
+    "02-refiner-orb-targets.png",
+    "03-refiner-orb-guard.png",
+    "04-refiner-mix-empty.png",
+    "05-refiner-mix-guard.png",
+    "06-blacksmith-main.png",
+    "07-blacksmith-upgrade-targets.png",
+    "09-blacksmith-identify-targets.png",
+    "10-blacksmith-identify-guard.png",
+    "11-map80-final.png"
+  ],
+  "runtimeTrace": [
+    {
+      "name": "refiner-main",
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "refiner-main",
+      "service": "refiner",
+      "message": "",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "refiner-orb-targets",
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "orb-target",
+      "service": "refiner",
+      "message": "",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "refiner-orb-guard",
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "message",
+      "service": "refiner",
+      "message": "Choose your item",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "refiner-mix-empty",
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "mix-select",
+      "service": "refiner",
+      "message": "Choose your item",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "refiner-mix-guard",
+      "mapId": 80,
+      "tile": [
+        8,
+        9
+      ],
+      "screen": "message",
+      "service": "refiner",
+      "message": "You must select 2 or more materials",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "blacksmith-main",
+      "mapId": 80,
+      "tile": [
+        12,
+        9
+      ],
+      "screen": "blacksmith-main",
+      "service": "blacksmith",
+      "message": "",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "blacksmith-upgrade-targets",
+      "mapId": 80,
+      "tile": [
+        12,
+        9
+      ],
+      "screen": "upgrade-target",
+      "service": "blacksmith",
+      "message": "",
+      "targets": [
+        {
+          "target": {
+            "location": "equipment",
+            "slot": 0
+          },
+          "label": "Equipped: Dull two hands sword +0"
+        },
+        {
+          "target": {
+            "location": "equipment",
+            "slot": 2
+          },
+          "label": "Equipped: Basic suit +0"
+        },
+        {
+          "target": {
+            "location": "equipment",
+            "slot": 3
+          },
+          "label": "Equipped: Hair band +0"
+        },
+        {
+          "target": {
+            "location": "equipment",
+            "slot": 4
+          },
+          "label": "Equipped: Cloth shoes +0"
+        }
+      ],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "blacksmith-identify-targets",
+      "mapId": 80,
+      "tile": [
+        12,
+        9
+      ],
+      "screen": "identify-target",
+      "service": "blacksmith",
+      "message": "",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "blacksmith-identify-guard",
+      "mapId": 80,
+      "tile": [
+        12,
+        9
+      ],
+      "screen": "message",
+      "service": "blacksmith",
+      "message": "Not identified",
+      "targets": [],
+      "selectedIngredients": [],
+      "wallet": 180,
+      "inventory": [],
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    }
+  ]
+}

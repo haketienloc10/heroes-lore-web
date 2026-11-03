@@ -98,6 +98,7 @@ import {
   drawGameplayHud,
   NEW_GAME_RONIN_HUD,
   type GameplayHudAssets,
+  type GameplayHudSkillState,
 } from '../ui/game-hud';
 import {
   advanceSourceInventorySlotSnapshot,
@@ -125,7 +126,6 @@ import {
 } from '../world/source-world-update';
 import {
   formatSourceDialogue,
-  formatRoninDialogue,
   paginateBitmapDialogue,
   resolveLanguageString,
   resolveScriptDialogue,
@@ -205,6 +205,7 @@ import {
   awardPlayerSkillExperience,
   createPlayerSkillActionState,
   PLAYER_SKILL_LEVEL_UNLOCK_RANKS,
+  playerSkillChargeMaximum,
   playerSkillLevelForActionButton,
   restoreSkillResource,
   sourceActionNeedsActorTargetReselection,
@@ -297,6 +298,13 @@ import {
   type EnemyProjectile,
 } from '../world/enemy-attacks';
 import { awardSourceExperience, enemyExperienceSourceAmount } from '../world/progression';
+import {
+  applyCampaignTestHud,
+  createBoostedCampaignTestAttributes,
+  isCampaignTestProfile,
+  serializeCampaignTestRuntimeSnapshot,
+  type CampaignTestProfile,
+} from '../world/campaign-test-profile';
 import {
   SOURCE_PLAYER_LEVEL_UP_ATLAS_FRAME_COUNT,
   advanceSourcePlayerLevelUpAtlasAnimation,
@@ -620,6 +628,13 @@ interface CommerceMenuSession {
 }
 
 /** Renders the starting house and follows its data-driven map-change event. */
+class MapResourcesMissingError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'MapResourcesMissingError';
+  }
+}
+
 export class WorldScene extends Phaser.Scene {
   private readonly randomStreams = createRuntimeSourceRandomStreams();
   private actor: PlayerActor = createPlayerActor();
@@ -688,8 +703,8 @@ export class WorldScene extends Phaser.Scene {
   private openingCutsceneAppliedPlayerChangeCount = 0;
   private openingCutsceneAppliedTileChangeCount = 0;
   private openingCutsceneAppliedHeroPositionChangeCount = 0;
-  private openingCutsceneUsesRoninFormatting = false;
   private openingCutsceneBlankOverlay: Phaser.GameObjects.Rectangle | null = null;
+  private assetMessageText: Phaser.GameObjects.Text | null = null;
   private eventCameraBaseScroll: { x: number; y: number } | null = null;
   private sourceCameraBaseScroll: { x: number; y: number } | null = null;
   private sourceCameraShakeOffset: { x: number; y: number } | null = null;
@@ -765,6 +780,7 @@ export class WorldScene extends Phaser.Scene {
   private gameOverTexture: Phaser.Textures.CanvasTexture | null = null;
   private gameOverOverlay: Phaser.GameObjects.Image | null = null;
   private gameOptions: GameOptions = { ...DEFAULT_GAME_OPTIONS };
+  private campaignTestProfile: CampaignTestProfile | null = null;
 
   constructor() {
     super({ key: 'WorldScene' });
@@ -847,8 +863,8 @@ export class WorldScene extends Phaser.Scene {
     this.openingCutsceneAppliedPlayerChangeCount = 0;
     this.openingCutsceneAppliedTileChangeCount = 0;
     this.openingCutsceneAppliedHeroPositionChangeCount = 0;
-    this.openingCutsceneUsesRoninFormatting = false;
     this.openingCutsceneBlankOverlay = null;
+    this.assetMessageText = null;
     this.worldLanguage = null;
     this.itemCategoryNames = [];
     this.pendingWorldDialogueFlags = [];
@@ -870,6 +886,23 @@ export class WorldScene extends Phaser.Scene {
     const startRoute = typeof data === 'object' && data !== null && 'startRoute' in data
       ? (data as { startRoute?: unknown }).startRoute
       : undefined;
+    const requestedTestProfile = typeof data === 'object' && data !== null && 'testProfile' in data
+      ? (data as { testProfile?: unknown }).testProfile
+      : undefined;
+    this.campaignTestProfile = import.meta.env.DEV && startRoute === 'new-game' &&
+      isCampaignTestProfile(requestedTestProfile) ? requestedTestProfile : null;
+    if (import.meta.env.DEV) {
+      this.game.registry.set(
+        'heroesLoreTestProfile',
+        this.campaignTestProfile,
+      );
+      this.clearCampaignTestRuntimeTelemetry();
+      const gameHost = this.game.canvas?.parentElement;
+      if (gameHost !== null && gameHost !== undefined) {
+        if (this.campaignTestProfile !== null) gameHost.dataset.testProfile = this.campaignTestProfile;
+      }
+      this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.clearCampaignTestRuntimeTelemetry());
+    }
     const guardianIndices = typeof data === 'object' && data !== null &&
       'guardianIndices' in data && Array.isArray((data as { guardianIndices?: unknown }).guardianIndices)
       ? (data as { guardianIndices: unknown[] }).guardianIndices
@@ -886,7 +919,9 @@ export class WorldScene extends Phaser.Scene {
       : (restoreState?.playthroughMode ?? 0);
     this.completionPoints = restoreState?.completionPoints ?? 0;
     this.playTimeSeconds = restoreState?.playTimeSeconds ?? 0;
-    this.characterAttributes = restoreState?.attributes ?? createBasePlayerAttributes(this.heroClassId);
+    this.characterAttributes = restoreState?.attributes ?? (this.campaignTestProfile !== null
+      ? createBoostedCampaignTestAttributes()
+      : createBasePlayerAttributes(this.heroClassId));
     this.systemMenuVisible = false;
     this.skillMenuVisible = false;
     this.skillLevelMenuVisible = false;
@@ -906,6 +941,9 @@ export class WorldScene extends Phaser.Scene {
     this.attributeDraft = createAttributeDraft(0);
     this.systemMenuMessage = '';
     this.hudState = { ...NEW_GAME_RONIN_HUD };
+    if (this.campaignTestProfile !== null) {
+      this.hudState = applyCampaignTestHud(this.hudState, this.campaignTestProfile);
+    }
     this.wallet = NEW_GAME_WALLET;
     this.equipmentSlots = [null, null, null, null, null];
     this.savedEquipmentLoadoutPresent = false;
@@ -1110,6 +1148,10 @@ export class WorldScene extends Phaser.Scene {
       'world-player-level-up-flash',
       '/assets/generated/standalone/en-GB/_img_etcui__0.png',
     );
+    this.load.image(
+      'world-hud-skill-charge-overlay',
+      '/assets/generated/atlases/img/etcui/011.png',
+    );
     for (let index = 0; index < 7; index += 1) {
       this.load.image(
         `world-hud-frame-${index}`,
@@ -1149,19 +1191,17 @@ export class WorldScene extends Phaser.Scene {
     }
     this.load.image('world-ground-item', '/assets/generated/atlases/img/etcui/009.png');
     this.load.image('world-ground-currency', '/assets/generated/atlases/img/etcui/010.png');
-    this.load.image(
-      'world-hud-guardian-skill',
-      `/assets/generated/atlases/grd/grdico/${String(6 + this.activeSkillId * 4).padStart(3, '0')}.png`,
-    );
     for (let skillId = 0; skillId < 6; skillId += 1) {
       this.load.image(
         `world-skill-icon-${skillId}`,
         `/assets/generated/atlases/grd/grdico/${String(skillId).padStart(3, '0')}.png`,
       );
-      this.load.image(
-        `world-skill-hud-icon-${skillId}`,
-        `/assets/generated/atlases/grd/grdico/${String(6 + skillId * 4).padStart(3, '0')}.png`,
-      );
+      for (let levelSlot = 0; levelSlot < 3; levelSlot += 1) {
+        this.load.image(
+          `world-skill-hud-icon-${skillId}-${levelSlot}`,
+          `/assets/generated/atlases/grd/grdico/${String(6 + skillId * 4 + levelSlot).padStart(3, '0')}.png`,
+        );
+      }
     }
     for (const [atlasFamily, imageCount] of Object.entries(PLAYER_SKILL_ATLAS_IMAGE_COUNTS)) {
       for (let imageIndex = 0; imageIndex < imageCount; imageIndex += 1) {
@@ -1219,6 +1259,10 @@ export class WorldScene extends Phaser.Scene {
         : createStartingEquipment(this.heroClassId, this.equipmentDataTable);
       this.inventory = normalizeEquipmentInventory(this.inventory, this.equipmentDataTable);
       this.recalculateEquipmentStats();
+      if (this.campaignTestProfile !== null) {
+        this.hudState.hp = this.hudState.maxHp;
+        this.hudState.sp = this.hudState.maxSp;
+      }
     } catch {
       this.showAssetMessage('Player equipment state is invalid. Start a new game or load a valid save.');
       return;
@@ -1409,7 +1453,6 @@ export class WorldScene extends Phaser.Scene {
         OPENING_SCRIPT_INDEX, this.actor.direction, this.inventory, this.skillIds, this.comboLimit,
         this.heroClassId, this.questFlags.has(29),
       );
-      this.openingCutsceneUsesRoninFormatting = true;
       this.pumpOpeningCutscene(0);
     }
 
@@ -1572,7 +1615,7 @@ export class WorldScene extends Phaser.Scene {
         if (this.openingCutsceneState?.status === 'dialogue' ||
           this.openingCutsceneState?.status === 'choice') this.createOpeningDialog();
       }
-      else this.createGameplayHud();
+      this.createGameplayHud();
       this.bindMovementKeys();
       if (!this.openingDialogVisible) {
         const currentMap = this.maps.get(this.currentMapId);
@@ -1583,6 +1626,7 @@ export class WorldScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
+    if (import.meta.env.DEV) this.syncCampaignTestRuntimeTelemetry();
     if (this.gameOverReturnPending) {
       this.gameOverReturnPending = false;
       this.scene.start('StartupFlowScene', { skipStartupSplash: true });
@@ -1876,7 +1920,76 @@ export class WorldScene extends Phaser.Scene {
     this.sourceCameraShakeOffset = null;
   }
 
+  private syncCampaignTestRuntimeTelemetry(): void {
+    if (this.campaignTestProfile === null) return;
+    const gameHost = this.game.canvas?.parentElement;
+    if (gameHost === null || gameHost === undefined) return;
+    const activeMap = this.maps.get(this.currentMapId);
+    const tileX = this.actor.x >> 4;
+    const tileY = this.actor.y >> 4;
+    gameHost.dataset.testProfile = this.campaignTestProfile;
+    gameHost.dataset.testMapId = String(this.currentMapId);
+    gameHost.dataset.testPlayerTileX = String(tileX);
+    gameHost.dataset.testPlayerTileY = String(tileY);
+    gameHost.dataset.testHp = String(this.hudState.hp);
+    gameHost.dataset.testLevel = String(this.hudState.level);
+    gameHost.dataset.testRuntime = serializeCampaignTestRuntimeSnapshot({
+      profile: this.campaignTestProfile,
+      mapId: this.currentMapId,
+      player: {
+        tileX,
+        tileY,
+        direction: this.actor.direction,
+      },
+      hp: this.hudState.hp,
+      maxHp: this.hudState.maxHp,
+      sp: this.hudState.sp,
+      maxSp: this.hudState.maxSp,
+      level: this.hudState.level,
+      gameFlags: this.gameFlags,
+      questFlags: this.questFlags,
+      skillAction: {
+        skillId: this.playerSkillAction.skillId,
+        skillRank: this.playerSkillAction.skillRank,
+        phase: this.playerSkillAction.phase,
+        levelSlot: this.playerSkillAction.levelSlot,
+        tileX: this.playerSkillAction.tileX,
+        tileY: this.playerSkillAction.tileY,
+        effectAge: this.playerSkillAction.effectAge,
+        chargeTicksRemaining: this.playerSkillAction.chargeTicksRemaining,
+      },
+      dialogueOpen: this.openingDialogVisible || this.worldDialogueVisible,
+      transitionPending: this.loadingMapTransition,
+      enemies: (activeMap?.enemies ?? []).map((enemy) => ({
+        sourceOrder: enemy.sourceOrder,
+        enemyId: enemy.enemyId,
+        tileX: enemy.tileX,
+        tileY: enemy.tileY,
+        hp: enemy.hp,
+        state: enemy.state,
+      })),
+    });
+  }
+
+  private clearCampaignTestRuntimeTelemetry(): void {
+    const gameHost = this.game.canvas?.parentElement;
+    if (gameHost === null || gameHost === undefined) return;
+    delete gameHost.dataset.testProfile;
+    delete gameHost.dataset.testMapId;
+    delete gameHost.dataset.testPlayerTileX;
+    delete gameHost.dataset.testPlayerTileY;
+    delete gameHost.dataset.testHp;
+    delete gameHost.dataset.testLevel;
+    delete gameHost.dataset.testRuntime;
+  }
+
   private beginGameOver(): void {
+    if (this.campaignTestProfile !== null) {
+      this.hudState.hp = this.hudState.maxHp;
+      this.hudState.sp = this.hudState.maxSp;
+      this.refreshGameplayHud();
+      return;
+    }
     this.gameOverSequence = beginGameOverSequence();
     this.pressedDirections = [];
     this.actor = {
@@ -1969,7 +2082,7 @@ export class WorldScene extends Phaser.Scene {
         );
       }
     }
-    if (step.restoreEffects.length > 0) this.refreshGameplayHud();
+    this.refreshGameplayHud();
     for (const pulse of step.damagePulses) {
       const target = findEnemyOccupyingSourceCell(map.enemies, pulse.tileX, pulse.tileY);
       if (target === undefined) continue;
@@ -3302,10 +3415,11 @@ export class WorldScene extends Phaser.Scene {
         const line = resolveScriptDialogueString(events, stringIndex, this.worldLanguage);
         if (line === undefined || this.fontLayout === null) return [];
         return paginateBitmapDialogue(
-          this.openingCutsceneUsesRoninFormatting ? formatRoninDialogue(line) : formatSourceDialogue(line),
+          line,
           this.fontLayout,
           this.scale.width - 28,
           3,
+          true,
         );
       },
       elapsedMs,
@@ -3314,7 +3428,7 @@ export class WorldScene extends Phaser.Scene {
         const line = resolveLanguageString(this.worldLanguage, languageStringId);
         if (line === undefined || this.fontLayout === null) return [];
         return paginateBitmapDialogue(
-          formatSourceDialogue(line), this.fontLayout, this.scale.width - 28, 3,
+          line, this.fontLayout, this.scale.width - 28, 3, true,
         );
       },
       (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
@@ -3413,7 +3527,6 @@ export class WorldScene extends Phaser.Scene {
   private startOrderedEventCutscene(
     selection: EventScriptSelection,
     events: EventOperationData,
-    usesRoninFormatting = false,
   ): void {
     this.openingCutsceneCommands = selection.commands;
     this.openingCutsceneEvents = events;
@@ -3426,7 +3539,6 @@ export class WorldScene extends Phaser.Scene {
     this.openingCutsceneAppliedPlayerChangeCount = 0;
     this.openingCutsceneAppliedTileChangeCount = 0;
     this.openingCutsceneAppliedHeroPositionChangeCount = 0;
-    this.openingCutsceneUsesRoninFormatting = usesRoninFormatting;
     this.openingDialogVisible = true;
     this.worldDialogueVisible = false;
     this.pendingWorldDialogueFlags = [];
@@ -3586,7 +3698,7 @@ export class WorldScene extends Phaser.Scene {
     }
     if (this.fontLayout === null) return;
     const pages = sourceLines.flatMap((line) => paginateBitmapDialogue(
-      formatSourceDialogue(line), this.fontLayout!, this.scale.width - 28, 3,
+      line, this.fontLayout!, this.scale.width - 28, 3, true,
     ));
     if (pages.length === 0) return;
     this.pendingWorldDialogueFlags = effects.flagChanges;
@@ -3627,6 +3739,7 @@ export class WorldScene extends Phaser.Scene {
     if (this.unavailableMapIds.has(destination.mapId)) return false;
     if (this.loadingMapTransition) return true;
 
+    this.clearAssetMessage();
     this.loadingMapTransition = true;
     const prepared = prepareMapTransition(
       { gameFlags: this.gameFlags, questFlags: this.questFlags },
@@ -3645,7 +3758,19 @@ export class WorldScene extends Phaser.Scene {
       this.applyMapTransition(prepared);
     }).catch((error: unknown) => {
       this.loadingMapTransition = false;
-      this.unavailableMapIds.add(destination.mapId);
+      if (error instanceof MapResourcesMissingError) {
+        this.unavailableMapIds.add(destination.mapId);
+        if (this.openingCutsceneState?.status === 'transfer') {
+          this.openingCutsceneState = null;
+          this.openingCutsceneCommands = null;
+          this.openingCutsceneEvents = null;
+          this.openingDialogVisible = false;
+          this.openingDialogOverlay?.setVisible(false);
+          this.openingCutsceneBlankOverlay?.setVisible(false);
+          this.eventCameraBaseScroll = null;
+          this.sourceCameraBaseScroll = null;
+        }
+      }
       this.gameFlags = new Set(prepared.flags.gameFlags);
       this.questFlags = new Set(prepared.flags.questFlags);
       this.worldDialogueVisible = false;
@@ -3681,11 +3806,16 @@ export class WorldScene extends Phaser.Scene {
     const paths = this.preloadedMapAssetPaths.get(mapId) ??
       resolveMapAssetPaths(mapId, this.heroClassId, this.generatedAssetPaths);
     if (paths === null) {
-      throw new Error(`Map ${mapId} source resources for hero class ${this.heroClassId} are unavailable`);
+      throw new MapResourcesMissingError(
+        `Map ${mapId} source resources for hero class ${this.heroClassId} are unavailable`,
+      );
     }
     const readJson = async (url: string): Promise<unknown> => {
       const response = await fetch(url);
-      if (!response.ok) throw new Error(`Map asset request failed: ${url}`);
+      if (response.status === 404) {
+        throw new MapResourcesMissingError(`Map asset request returned 404: ${url}`);
+      }
+      if (!response.ok) throw new Error(`Map asset request failed (${response.status}): ${url}`);
       return response.json() as Promise<unknown>;
     };
     const [mapValue, collisionValue, decorationValue, eventValue] = await Promise.all([
@@ -3849,6 +3979,7 @@ export class WorldScene extends Phaser.Scene {
     this.pendingWorldDialogueTransition = undefined;
     this.openingDialogOverlay?.setVisible(false);
     this.openingCutsceneBlankOverlay?.setVisible(false);
+    this.clearAssetMessage();
     this.createGameplayHud();
     this.tryCurrentCellAutomaticEvent(nextMap);
     return true;
@@ -3885,11 +4016,15 @@ export class WorldScene extends Phaser.Scene {
         category,
         this.textures.get(`world-hud-item-category-${category}`).getSourceImage() as CanvasImageSource,
       ])) as GameplayHudAssets['itemCategoryIcons'],
-      guardianSkillIcon: this.textures.get('world-hud-guardian-skill').getSourceImage() as CanvasImageSource,
+      skillIcons: Array.from({ length: 6 }, (_, skillId) =>
+        Array.from({ length: 3 }, (_, levelSlot) => this.textures
+          .get(`world-skill-hud-icon-${skillId}-${levelSlot}`).getSourceImage() as CanvasImageSource)),
+      skillChargeOverlay: this.textures
+        .get('world-hud-skill-charge-overlay').getSourceImage() as CanvasImageSource,
     };
     this.gameplayHudContext = context;
     this.gameplayHudAssets = assets;
-    drawGameplayHud(context, assets, this.hudState, this.scale.width);
+    drawGameplayHud(context, assets, this.hudState, this.scale.width, this.gameplayHudSkillState());
     if (this.textures.exists('gameplay-hud')) this.textures.remove('gameplay-hud');
     const texture = this.textures.addCanvas('gameplay-hud', canvas);
     if (texture === null) return;
@@ -3909,8 +4044,26 @@ export class WorldScene extends Phaser.Scene {
       this.gameplayHudAssets,
       this.hudState,
       this.scale.width,
+      this.gameplayHudSkillState(),
     );
     this.gameplayHudTexture.refresh();
+  }
+
+  private gameplayHudSkillState(): GameplayHudSkillState | undefined {
+    const action = this.playerSkillAction;
+    if (action.skillId === null) return undefined;
+    const binding = (levelSlot: PlayerSkillLevelSlot | null) => levelSlot === null
+      ? null
+      : {
+        levelSlot,
+        chargeTicksRemaining: action.chargeTicksRemaining[levelSlot],
+        chargeTicksMaximum: playerSkillChargeMaximum(action.skillId!, levelSlot),
+      };
+    return {
+      skillId: action.skillId,
+      slotOne: binding(action.skillLevelSlotOne),
+      slotThree: binding(action.skillLevelSlotThree),
+    };
   }
 
   private recalculateEquipmentStats(): void {
@@ -4576,8 +4729,9 @@ export class WorldScene extends Phaser.Scene {
         : session.screen === 'upgrade-target' ? 'upgrade' : 'identify';
       const target = this.commerceTargetOptions(kind)[session.selection];
       if (target === undefined) {
-        const messageId = kind === 'orb' ? 1559 : kind === 'upgrade' ? 894 : 902;
-        this.showCommerceMessage(this.commerceText(messageId, 'Choose your item'), session.service === 'refiner'
+        const messageId = kind === 'orb' ? 1559 : kind === 'upgrade' ? 894 : 2363;
+        const fallback = kind === 'identify' ? 'There is no device to identify' : 'Choose your item';
+        this.showCommerceMessage(this.commerceText(messageId, fallback), session.service === 'refiner'
           ? 'refiner-main' : 'blacksmith-main');
         return;
       }
@@ -5148,12 +5302,7 @@ export class WorldScene extends Phaser.Scene {
     }
     this.setActivePlayerSkill(nextActiveSkillId);
     const skillId = this.activeSkillId;
-    if (skillId !== undefined && this.textures.exists(`world-skill-hud-icon-${skillId}`) &&
-      this.gameplayHudAssets !== null) {
-      this.gameplayHudAssets.guardianSkillIcon = this.textures
-        .get(`world-skill-hud-icon-${skillId}`).getSourceImage() as CanvasImageSource;
-      this.refreshGameplayHud();
-    }
+    this.refreshGameplayHud();
     this.systemMenuMessage = skillId === undefined ? 'No learned skill.' :
       `${this.playerSkillName(skillId)} selected.`;
     this.renderSkillMenu();
@@ -5476,7 +5625,7 @@ export class WorldScene extends Phaser.Scene {
 
   private createHero(): void {
     this.heroContainer = this.add.container(this.actor.x + 8, this.actor.y + 8).setDepth(this.actor.y + 8);
-    this.heroContainer.add(this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 1));
+    this.heroContainer.add(this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 0));
     this.playerStatusContainer = this.add.container(this.actor.x + 8, this.actor.y + 1)
       .setDepth(this.actor.y + 9);
     this.playerStatusMarkerContainers.clear();
@@ -6009,6 +6158,14 @@ export class WorldScene extends Phaser.Scene {
     if (context === null || fontLayout === null) return;
     context.clearRect(0, 0, 240, 320);
     const state = this.openingCutsceneState;
+    const fontAtlas = this.textures.get('world-font-atlas').getSourceImage() as CanvasImageSource;
+    const drawDialogueSoftKeys = (left: string, right = ''): void => {
+      context.fillStyle = '#000000';
+      if (left.length > 0) context.fillRect(0, 310, bitmapTextWidth(left, fontLayout) + 2, fontLayout.height + 2);
+      if (right.length > 0) context.fillRect(238 - bitmapTextWidth(right, fontLayout), 310, bitmapTextWidth(right, fontLayout) + 2, fontLayout.height + 2);
+      if (left.length > 0) drawBitmapText(context, fontAtlas, fontLayout, left, 1, 312, '#ffffff', 'left');
+      if (right.length > 0) drawBitmapText(context, fontAtlas, fontLayout, right, 239, 312, '#ffffff', 'right');
+    };
     if (this.openingDialogVisible && state?.status === 'choice') {
       context.strokeStyle = '#1f1f3f';
       context.strokeRect(60, 116, 120, 72);
@@ -6016,8 +6173,7 @@ export class WorldScene extends Phaser.Scene {
       context.strokeRect(61, 117, 118, 70);
       context.fillStyle = '#000000';
       context.fillRect(62, 118, 116, 68);
-      const fontAtlas = this.textures.get('world-font-atlas').getSourceImage() as CanvasImageSource;
-      const question = this.visibleDialogueText(this.openingDialogueText).split('\n').slice(0, 2);
+      const question = formatSourceDialogue(this.visibleDialogueText(this.openingDialogueText)).split('\n').slice(0, 2);
       for (const [index, line] of question.entries()) {
         drawBitmapText(context, fontAtlas, fontLayout, line, 66, 123 + index * 8, '#ffffff', 'left');
       }
@@ -6031,27 +6187,29 @@ export class WorldScene extends Phaser.Scene {
         }
         drawBitmapText(context, fontAtlas, fontLayout, option, 77, y, '#ffffff', 'left');
       });
+      drawDialogueSoftKeys(resolveLanguageString(this.worldLanguage, 2336) ?? 'Ok');
       this.openingDialogTexture?.refresh();
       return;
     }
-    context.strokeStyle = '#1f1f3f';
-    context.strokeRect(4, 269, 231, 40);
-    context.strokeStyle = '#5f5f5f';
-    context.strokeRect(5, 270, 229, 38);
+    context.fillStyle = '#1f1f3f';
+    context.fillRect(4, 269, 232, 41);
+    context.fillStyle = '#5f5f7f';
+    context.fillRect(5, 270, 230, 39);
     context.fillStyle = '#000000';
-    context.fillRect(6, 271, 227, 36);
-    context.fillStyle = '#04a98b';
-    context.fillRect(23, 311, 188, 1);
-    context.fillStyle = '#81d7c4';
-    context.fillRect(24, 312, 185, 1);
-    const fontAtlas = this.textures.get('world-font-atlas').getSourceImage() as CanvasImageSource;
-    for (const [index, line] of this.visibleDialogueText(this.openingDialogueText).split('\n').slice(0, 3).entries()) {
-      drawBitmapText(context, fontAtlas, fontLayout, line, 14, 275 + index * 8, '#ffffff', 'left');
+    context.fillRect(6, 271, 228, 37);
+    // The source's dialogue corner assets are 1×1 white images.
+    context.fillStyle = '#ffffff';
+    context.fillRect(6, 271, 1, 1);
+    context.fillRect(233, 271, 1, 1);
+    context.fillRect(6, 307, 1, 1);
+    context.fillRect(233, 307, 1, 1);
+    for (const [index, line] of formatSourceDialogue(this.visibleDialogueText(this.openingDialogueText)).split('\n').slice(0, 3).entries()) {
+      drawBitmapText(context, fontAtlas, fontLayout, line, 14, 275 + index * (fontLayout.height + 2), '#ffffff', 'left');
     }
-    drawBitmapText(context, fontAtlas, fontLayout, 'Next', 1, 310, '#ffffff', 'left');
-    if (this.openingDialogVisible) {
-      drawBitmapText(context, fontAtlas, fontLayout, 'Skip', 239, 310, '#ffffff', 'right');
-    }
+    drawDialogueSoftKeys(
+      resolveLanguageString(this.worldLanguage, 2339) ?? 'Next',
+      this.openingDialogVisible ? resolveLanguageString(this.worldLanguage, 2338) ?? 'Skip' : '',
+    );
     this.openingDialogTexture?.refresh();
   }
 
@@ -6551,7 +6709,7 @@ export class WorldScene extends Phaser.Scene {
       const animation = this.npcAnimations.get(npc.imageId);
       if (animation !== undefined) {
         const container = this.add.container(x, y).setDepth(y).setVisible(visible);
-        container.add(this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 1));
+        container.add(this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 0));
         const emotionImage = this.add.image(0, -39, 'world-emotion-0')
           .setOrigin(0.5, 0)
           .setVisible(false);
@@ -6587,7 +6745,7 @@ export class WorldScene extends Phaser.Scene {
       if (initialEmotion !== undefined) this.setEventEmotionImage(emotionImage, initialEmotion);
       const bodyImage = this.add.image(0, 0, key).setOrigin(0.5, 1);
       container.add([
-        this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 1),
+        this.add.image(0, -3, 'hero-shadow').setOrigin(0.5, 0),
         bodyImage,
         emotionImage,
       ]);
@@ -7082,7 +7240,8 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private showAssetMessage(message: string): void {
-    this.add
+    this.clearAssetMessage();
+    this.assetMessageText = this.add
       .text(this.scale.width / 2, this.scale.height / 2, message, {
         fontFamily: 'monospace',
         fontSize: '10px',
@@ -7090,6 +7249,13 @@ export class WorldScene extends Phaser.Scene {
         align: 'center',
         lineSpacing: 5,
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setScrollFactor(0)
+      .setDepth(50001);
+  }
+
+  private clearAssetMessage(): void {
+    this.assetMessageText?.destroy();
+    this.assetMessageText = null;
   }
 }

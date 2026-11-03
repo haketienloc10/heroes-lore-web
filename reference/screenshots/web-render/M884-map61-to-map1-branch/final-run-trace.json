@@ -1,0 +1,3450 @@
+{
+  "id": "M884",
+  "success": true,
+  "profile": {
+    "name": "max-level",
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "level": 99,
+    "attributes": [
+      32767,
+      32767,
+      32767,
+      32767
+    ],
+    "maxHp": 394392
+  },
+  "start": {
+    "type": "fresh visible New Game",
+    "mapId": 64,
+    "tile": [
+      9,
+      8
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87
+    ],
+    "questFlags": []
+  },
+  "storyCheckpoints": {
+    "map63Chief": {
+      "mapId": 63,
+      "tile": [
+        9,
+        13
+      ],
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ],
+      "talkInputs": 17
+    },
+    "reahRescue": {
+      "trigger": {
+        "marker": -6,
+        "tile": [
+          7,
+          7
+        ],
+        "approach": [
+          7,
+          8
+        ],
+        "entry": "ArrowUp"
+      },
+      "dialogueCheckpoints": [
+        "|[Ronin] Oh, Reah! ",
+        "|[Ronin] Oh, Reah! ",
+        "|[Ronin] Reah, Reah!! Wake up!!",
+        "|[Ronin] Reah, Reah!! Wake up!!",
+        "|[Ronin] Reah, Reah!! Wake up!!",
+        "|[Ronin] Not good, I have to move her to the\nvillage first.",
+        "|[Ronin] Not good, I have to move her to the\nvillage first.",
+        "An absent friend Quest completed!",
+        "An absent friend Quest completed!",
+        "Received 300 EXP",
+        "Received 300 EXP"
+      ],
+      "confirmationInputs": 11,
+      "final": {
+        "mapId": 64,
+        "tile": [
+          11,
+          6
+        ],
+        "level": 99,
+        "hp": 394392,
+        "maxHp": 394392,
+        "dialogue": true,
+        "text": "|[Lesley] The injury is not serious. I think she\njust passed out because she's so exhausted.\nShe'll get better soon.",
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3,
+          1,
+          4,
+          75,
+          2,
+          5
+        ],
+        "questFlags": [
+          1,
+          2
+        ]
+      }
+    },
+    "templeOfFire": {
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392,
+      "dialogue": false,
+      "text": "Temple of Fire Quest acquired!",
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    },
+    "map27Reentry": {
+      "mapId": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        1,
+        75,
+        5,
+        6,
+        3
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  "routeSegments": [
+    {
+      "fromMap": 64,
+      "toMap": 0,
+      "from": [
+        10,
+        17
+      ],
+      "to": [
+        26,
+        24
+      ],
+      "route": "south exit; visible two-step doorway behavior"
+    },
+    {
+      "fromMap": 0,
+      "toMap": 63,
+      "marker": -4,
+      "approach": [
+        18,
+        19
+      ],
+      "to": [
+        10,
+        18
+      ]
+    },
+    {
+      "fromMap": 63,
+      "toMap": 0,
+      "marker": -1,
+      "to": [
+        18,
+        19
+      ]
+    },
+    {
+      "fromMap": 0,
+      "toMap": 27,
+      "to": [
+        5,
+        37
+      ],
+      "route": "story route after chief interaction"
+    },
+    {
+      "fromMap": 27,
+      "toMap": 64,
+      "marker": -6,
+      "approach": [
+        7,
+        8
+      ],
+      "entry": "ArrowUp",
+      "to": [
+        11,
+        6
+      ],
+      "confirmationInputs": 11
+    },
+    {
+      "fromMap": 64,
+      "toMap": 0,
+      "route": "south exit after Temple of Fire quest; doorway requires two-step input",
+      "to": [
+        26,
+        24
+      ]
+    },
+    {
+      "fromMap": 0,
+      "toMap": 27,
+      "to": [
+        5,
+        37
+      ],
+      "route": "visible replay of recorded Map0 story path"
+    },
+    {
+      "fromMap": 27,
+      "toMap": 2,
+      "exit": "north edge",
+      "marker": -1,
+      "to": [
+        4,
+        47
+      ],
+      "blockerAttacks": 5
+    },
+    {
+      "fromMap": 2,
+      "toMap": 60,
+      "marker": -1,
+      "markerTile": [
+        7,
+        0
+      ],
+      "approach": [
+        7,
+        1
+      ],
+      "to": [
+        17,
+        38
+      ]
+    },
+    {
+      "fromMap": 60,
+      "toMap": 61,
+      "exit": "west",
+      "triggerObservedAt": [
+        1,
+        3
+      ],
+      "to": [
+        4,
+        37
+      ]
+    },
+    {
+      "fromMap": 61,
+      "toMap": 1,
+      "exit": "east",
+      "candidateMarker": {
+        "value": -3,
+        "tile": [
+          39,
+          17
+        ],
+        "approach": [
+          38,
+          17
+        ]
+      },
+      "triggerObservedAt": [
+        37,
+        17
+      ],
+      "to": [
+        2,
+        17
+      ]
+    }
+  ],
+  "routeData": {
+    "map2ToMap60": {
+      "label": "map2-north-to-map60",
+      "current": {
+        "mapId": 60,
+        "tile": [
+          17,
+          38
+        ],
+        "level": 99,
+        "hp": 394392,
+        "maxHp": 394392,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4
+        ],
+        "enemies": 0
+      },
+      "transfers": [
+        {
+          "label": "map27-north-to-map2",
+          "fromMap": 27,
+          "toMap": 2,
+          "from": [
+            4,
+            47
+          ],
+          "to": [
+            4,
+            47
+          ],
+          "triggeredDuringRoute": true,
+          "level": 99,
+          "hp": 394392,
+          "gameFlags": [
+            0,
+            54,
+            87,
+            1,
+            75,
+            5,
+            6,
+            3
+          ],
+          "questFlags": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "label": "map2-north-to-map60",
+          "fromMap": 2,
+          "toMap": 60,
+          "marker": -1,
+          "markerTile": [
+            7,
+            0
+          ],
+          "approach": [
+            7,
+            1
+          ],
+          "triggeredDuringRoute": true,
+          "to": [
+            17,
+            38
+          ],
+          "level": 99,
+          "hp": 394392
+        }
+      ],
+      "trace": [
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            47
+          ],
+          "to": [
+            4,
+            46
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            46
+          ],
+          "to": [
+            4,
+            45
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            45
+          ],
+          "to": [
+            4,
+            44
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            44
+          ],
+          "to": [
+            4,
+            43
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            43
+          ],
+          "to": [
+            4,
+            42
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            42
+          ],
+          "to": [
+            5,
+            42
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            5,
+            42
+          ],
+          "to": [
+            6,
+            42
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            6,
+            42
+          ],
+          "to": [
+            7,
+            42
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map2-north-to-map60-approach",
+          "enemy": 17,
+          "tile": [
+            7,
+            41
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            42
+          ],
+          "to": [
+            7,
+            41
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            41
+          ],
+          "to": [
+            7,
+            40
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            40
+          ],
+          "to": [
+            7,
+            39
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            39
+          ],
+          "to": [
+            7,
+            38
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            38
+          ],
+          "to": [
+            7,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            37
+          ],
+          "to": [
+            8,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            37
+          ],
+          "to": [
+            9,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            9,
+            37
+          ],
+          "to": [
+            10,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            10,
+            37
+          ],
+          "to": [
+            11,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            37
+          ],
+          "to": [
+            12,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            37
+          ],
+          "to": [
+            12,
+            36
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            36
+          ],
+          "to": [
+            12,
+            35
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            35
+          ],
+          "to": [
+            12,
+            34
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            34
+          ],
+          "to": [
+            12,
+            33
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            33
+          ],
+          "to": [
+            12,
+            32
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            32
+          ],
+          "to": [
+            12,
+            31
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            31
+          ],
+          "to": [
+            11,
+            31
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            31
+          ],
+          "to": [
+            11,
+            30
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            30
+          ],
+          "to": [
+            11,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            29
+          ],
+          "to": [
+            11,
+            28
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            28
+          ],
+          "to": [
+            11,
+            27
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            27
+          ],
+          "to": [
+            11,
+            26
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            26
+          ],
+          "to": [
+            10,
+            26
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map2-north-to-map60-approach",
+          "enemy": 11,
+          "tile": [
+            9,
+            26
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "runtime-blocked",
+          "label": "map2-north-to-map60-approach",
+          "tile": [
+            9,
+            26
+          ]
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            10,
+            26
+          ],
+          "to": [
+            10,
+            27
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            10,
+            27
+          ],
+          "to": [
+            10,
+            26
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            10,
+            26
+          ],
+          "to": [
+            9,
+            26
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            9,
+            26
+          ],
+          "to": [
+            9,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            9,
+            25
+          ],
+          "to": [
+            8,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            25
+          ],
+          "to": [
+            7,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            25
+          ],
+          "to": [
+            6,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            6,
+            25
+          ],
+          "to": [
+            5,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            5,
+            25
+          ],
+          "to": [
+            5,
+            24
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map2-north-to-map60-approach",
+          "enemy": 10,
+          "tile": [
+            4,
+            24
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            5,
+            24
+          ],
+          "to": [
+            4,
+            24
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            24
+          ],
+          "to": [
+            4,
+            23
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            23
+          ],
+          "to": [
+            4,
+            22
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            22
+          ],
+          "to": [
+            4,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            21
+          ],
+          "to": [
+            4,
+            20
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            20
+          ],
+          "to": [
+            4,
+            19
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            19
+          ],
+          "to": [
+            4,
+            18
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            18
+          ],
+          "to": [
+            4,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            17
+          ],
+          "to": [
+            4,
+            16
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            16
+          ],
+          "to": [
+            4,
+            15
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            15
+          ],
+          "to": [
+            4,
+            14
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            14
+          ],
+          "to": [
+            4,
+            13
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            4,
+            13
+          ],
+          "to": [
+            5,
+            13
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            5,
+            13
+          ],
+          "to": [
+            6,
+            13
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            6,
+            13
+          ],
+          "to": [
+            7,
+            13
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            13
+          ],
+          "to": [
+            8,
+            13
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            13
+          ],
+          "to": [
+            8,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            12
+          ],
+          "to": [
+            9,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            9,
+            12
+          ],
+          "to": [
+            10,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            10,
+            12
+          ],
+          "to": [
+            11,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            12
+          ],
+          "to": [
+            12,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            12
+          ],
+          "to": [
+            13,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            13,
+            12
+          ],
+          "to": [
+            14,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            14,
+            12
+          ],
+          "to": [
+            15,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            15,
+            12
+          ],
+          "to": [
+            16,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            16,
+            12
+          ],
+          "to": [
+            17,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            17,
+            12
+          ],
+          "to": [
+            18,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            18,
+            12
+          ],
+          "to": [
+            19,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            19,
+            12
+          ],
+          "to": [
+            20,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            20,
+            12
+          ],
+          "to": [
+            20,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            20,
+            11
+          ],
+          "to": [
+            21,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            21,
+            11
+          ],
+          "to": [
+            21,
+            10
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map2-north-to-map60-approach",
+          "enemy": 4,
+          "tile": [
+            22,
+            10
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            21,
+            10
+          ],
+          "to": [
+            22,
+            10
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            10
+          ],
+          "to": [
+            22,
+            9
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            9
+          ],
+          "to": [
+            22,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            8
+          ],
+          "to": [
+            22,
+            7
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            7
+          ],
+          "to": [
+            22,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map2-north-to-map60-approach",
+          "enemy": 0,
+          "tile": [
+            22,
+            5
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            6
+          ],
+          "to": [
+            22,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            5
+          ],
+          "to": [
+            22,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            22,
+            4
+          ],
+          "to": [
+            21,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            21,
+            4
+          ],
+          "to": [
+            20,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            20,
+            4
+          ],
+          "to": [
+            19,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            19,
+            4
+          ],
+          "to": [
+            19,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            19,
+            5
+          ],
+          "to": [
+            19,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            19,
+            6
+          ],
+          "to": [
+            19,
+            7
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            19,
+            7
+          ],
+          "to": [
+            19,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            19,
+            8
+          ],
+          "to": [
+            18,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            18,
+            8
+          ],
+          "to": [
+            17,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            17,
+            8
+          ],
+          "to": [
+            16,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            16,
+            8
+          ],
+          "to": [
+            15,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            15,
+            8
+          ],
+          "to": [
+            15,
+            7
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            15,
+            7
+          ],
+          "to": [
+            15,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            15,
+            6
+          ],
+          "to": [
+            14,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            14,
+            6
+          ],
+          "to": [
+            13,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            13,
+            6
+          ],
+          "to": [
+            12,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            12,
+            6
+          ],
+          "to": [
+            11,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            11,
+            6
+          ],
+          "to": [
+            10,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            10,
+            6
+          ],
+          "to": [
+            9,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            9,
+            6
+          ],
+          "to": [
+            9,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            9,
+            5
+          ],
+          "to": [
+            8,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            5
+          ],
+          "to": [
+            8,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            4
+          ],
+          "to": [
+            8,
+            3
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            8,
+            3
+          ],
+          "to": [
+            7,
+            3
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map2-north-to-map60-approach",
+          "from": [
+            7,
+            3
+          ],
+          "to": [
+            7,
+            2
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "transfer-during-approach",
+          "label": "map2-north-to-map60-approach",
+          "fromMap": 2,
+          "toMap": 60,
+          "from": [
+            7,
+            2
+          ],
+          "to": [
+            17,
+            38
+          ],
+          "hp": 394392
+        }
+      ]
+    },
+    "map60ToMap61": {
+      "trace": [
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            38
+          ],
+          "to": [
+            17,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            37
+          ],
+          "to": [
+            17,
+            36
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            36
+          ],
+          "to": [
+            17,
+            35
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            35
+          ],
+          "to": [
+            17,
+            34
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            34
+          ],
+          "to": [
+            17,
+            33
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            33
+          ],
+          "to": [
+            17,
+            32
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            32
+          ],
+          "to": [
+            17,
+            31
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            31
+          ],
+          "to": [
+            17,
+            30
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            30
+          ],
+          "to": [
+            17,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            29
+          ],
+          "to": [
+            18,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            18,
+            29
+          ],
+          "to": [
+            19,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            19,
+            29
+          ],
+          "to": [
+            20,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            20,
+            29
+          ],
+          "to": [
+            21,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            29
+          ],
+          "to": [
+            21,
+            28
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            28
+          ],
+          "to": [
+            21,
+            27
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            27
+          ],
+          "to": [
+            21,
+            26
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            26
+          ],
+          "to": [
+            21,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            25
+          ],
+          "to": [
+            21,
+            24
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            24
+          ],
+          "to": [
+            21,
+            23
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            23
+          ],
+          "to": [
+            21,
+            22
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            21,
+            22
+          ],
+          "to": [
+            20,
+            22
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            20,
+            22
+          ],
+          "to": [
+            20,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            20,
+            21
+          ],
+          "to": [
+            19,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            19,
+            21
+          ],
+          "to": [
+            18,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            18,
+            21
+          ],
+          "to": [
+            17,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            21
+          ],
+          "to": [
+            16,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            16,
+            21
+          ],
+          "to": [
+            16,
+            20
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            16,
+            20
+          ],
+          "to": [
+            16,
+            19
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            16,
+            19
+          ],
+          "to": [
+            16,
+            18
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            16,
+            18
+          ],
+          "to": [
+            16,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            16,
+            17
+          ],
+          "to": [
+            17,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            17
+          ],
+          "to": [
+            17,
+            16
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            16
+          ],
+          "to": [
+            17,
+            15
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            15
+          ],
+          "to": [
+            17,
+            14
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            14
+          ],
+          "to": [
+            17,
+            13
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            13
+          ],
+          "to": [
+            17,
+            12
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            12
+          ],
+          "to": [
+            17,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            17,
+            11
+          ],
+          "to": [
+            16,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            16,
+            11
+          ],
+          "to": [
+            15,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            15,
+            11
+          ],
+          "to": [
+            14,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            14,
+            11
+          ],
+          "to": [
+            13,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            13,
+            11
+          ],
+          "to": [
+            12,
+            11
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            11
+          ],
+          "to": [
+            12,
+            10
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            10
+          ],
+          "to": [
+            12,
+            9
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            9
+          ],
+          "to": [
+            12,
+            8
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            8
+          ],
+          "to": [
+            12,
+            7
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            7
+          ],
+          "to": [
+            12,
+            6
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            6
+          ],
+          "to": [
+            12,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            12,
+            5
+          ],
+          "to": [
+            11,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            11,
+            5
+          ],
+          "to": [
+            10,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            10,
+            5
+          ],
+          "to": [
+            9,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            9,
+            5
+          ],
+          "to": [
+            8,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            8,
+            5
+          ],
+          "to": [
+            7,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            7,
+            5
+          ],
+          "to": [
+            6,
+            5
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            6,
+            5
+          ],
+          "to": [
+            6,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            6,
+            4
+          ],
+          "to": [
+            5,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            5,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            3,
+            4
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            3,
+            3
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map60-west-to-map61-approach",
+          "from": [
+            3,
+            3
+          ],
+          "to": [
+            2,
+            3
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "dialogue-trigger",
+          "label": "map60-west-to-map61-approach",
+          "tile": [
+            1,
+            3
+          ],
+          "text": "Temple of Fire Quest acquired!"
+        }
+      ],
+      "observedFinal": {
+        "mapId": 61,
+        "tile": [
+          4,
+          37
+        ],
+        "level": 99,
+        "hp": 394392,
+        "maxHp": 394392,
+        "dialogue": false,
+        "text": "Temple of Fire Quest acquired!",
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4
+        ],
+        "enemies": 22
+      }
+    },
+    "map61ToMap1": {
+      "trace": [
+        {
+          "type": "attack-blocker",
+          "label": "map61-east-to-map1-approach",
+          "enemy": 21,
+          "tile": [
+            5,
+            37
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            4,
+            37
+          ],
+          "to": [
+            5,
+            37
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            37
+          ],
+          "to": [
+            5,
+            36
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            36
+          ],
+          "to": [
+            5,
+            35
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map61-east-to-map1-approach",
+          "enemy": 19,
+          "tile": [
+            5,
+            34
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            35
+          ],
+          "to": [
+            5,
+            34
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            34
+          ],
+          "to": [
+            5,
+            33
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            33
+          ],
+          "to": [
+            5,
+            32
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            32
+          ],
+          "to": [
+            5,
+            31
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            31
+          ],
+          "to": [
+            5,
+            30
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            5,
+            30
+          ],
+          "to": [
+            6,
+            30
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            6,
+            30
+          ],
+          "to": [
+            7,
+            30
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            7,
+            30
+          ],
+          "to": [
+            7,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            7,
+            29
+          ],
+          "to": [
+            8,
+            29
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            29
+          ],
+          "to": [
+            8,
+            28
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            28
+          ],
+          "to": [
+            8,
+            27
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            27
+          ],
+          "to": [
+            8,
+            26
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            26
+          ],
+          "to": [
+            8,
+            25
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            25
+          ],
+          "to": [
+            8,
+            24
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            24
+          ],
+          "to": [
+            8,
+            23
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            23
+          ],
+          "to": [
+            8,
+            22
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            22
+          ],
+          "to": [
+            8,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            8,
+            21
+          ],
+          "to": [
+            9,
+            21
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            9,
+            21
+          ],
+          "to": [
+            9,
+            20
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            9,
+            20
+          ],
+          "to": [
+            9,
+            19
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map61-east-to-map1-approach",
+          "enemy": 12,
+          "tile": [
+            9,
+            18
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            9,
+            19
+          ],
+          "to": [
+            9,
+            18
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            9,
+            18
+          ],
+          "to": [
+            9,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            9,
+            17
+          ],
+          "to": [
+            10,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            10,
+            17
+          ],
+          "to": [
+            11,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            11,
+            17
+          ],
+          "to": [
+            12,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            12,
+            17
+          ],
+          "to": [
+            13,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            13,
+            17
+          ],
+          "to": [
+            14,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            14,
+            17
+          ],
+          "to": [
+            15,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            15,
+            17
+          ],
+          "to": [
+            16,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            16,
+            17
+          ],
+          "to": [
+            17,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map61-east-to-map1-approach",
+          "enemy": 13,
+          "tile": [
+            18,
+            17
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            17,
+            17
+          ],
+          "to": [
+            18,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            18,
+            17
+          ],
+          "to": [
+            19,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            19,
+            17
+          ],
+          "to": [
+            20,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            20,
+            17
+          ],
+          "to": [
+            21,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            21,
+            17
+          ],
+          "to": [
+            22,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            22,
+            17
+          ],
+          "to": [
+            23,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            23,
+            17
+          ],
+          "to": [
+            24,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            24,
+            17
+          ],
+          "to": [
+            25,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            25,
+            17
+          ],
+          "to": [
+            26,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            26,
+            17
+          ],
+          "to": [
+            27,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            27,
+            17
+          ],
+          "to": [
+            28,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "attack-blocker",
+          "label": "map61-east-to-map1-approach",
+          "enemy": 11,
+          "tile": [
+            29,
+            17
+          ],
+          "remains": false,
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            28,
+            17
+          ],
+          "to": [
+            29,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            29,
+            17
+          ],
+          "to": [
+            30,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            30,
+            17
+          ],
+          "to": [
+            31,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            31,
+            17
+          ],
+          "to": [
+            32,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            32,
+            17
+          ],
+          "to": [
+            33,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            33,
+            17
+          ],
+          "to": [
+            34,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            34,
+            17
+          ],
+          "to": [
+            35,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            35,
+            17
+          ],
+          "to": [
+            36,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "move",
+          "label": "map61-east-to-map1-approach",
+          "from": [
+            36,
+            17
+          ],
+          "to": [
+            37,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "transfer-during-route",
+          "label": "map61-east-to-map1-approach",
+          "fromMap": 61,
+          "toMap": 1,
+          "from": [
+            37,
+            17
+          ],
+          "to": [
+            2,
+            17
+          ],
+          "hp": 394392
+        },
+        {
+          "type": "transfer-during-approach",
+          "label": "map61-east-to-map1",
+          "to": [
+            2,
+            17
+          ]
+        }
+      ]
+    }
+  },
+  "final": {
+    "mapId": 1,
+    "tile": [
+      2,
+      17
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ],
+    "dialogue": false,
+    "text": "Temple of Fire Quest acquired!"
+  },
+  "method": "Fresh New Game and visible keyboard events delivered through Chromium CDP; live WorldScene reads only.",
+  "restrictions": {
+    "originalJarRead": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "inGameSaveOrLoad": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

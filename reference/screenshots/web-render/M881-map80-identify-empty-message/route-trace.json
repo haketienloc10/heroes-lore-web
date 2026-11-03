@@ -1,0 +1,157 @@
+{
+  "blacksmithApproach": [
+    12,
+    9
+  ],
+  "visibleMovement": [
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        18
+      ],
+      "to": [
+        10,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        17
+      ],
+      "to": [
+        10,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        16
+      ],
+      "to": [
+        10,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        10,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        14
+      ],
+      "to": [
+        10,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        13
+      ],
+      "to": [
+        10,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        12
+      ],
+      "to": [
+        10,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        11
+      ],
+      "to": [
+        10,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowUp",
+      "from": [
+        10,
+        10
+      ],
+      "to": [
+        10,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        10,
+        9
+      ],
+      "to": [
+        11,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "key": "ArrowRight",
+      "from": [
+        11,
+        9
+      ],
+      "to": [
+        12,
+        9
+      ]
+    }
+  ],
+  "serviceInputs": [
+    "ArrowUp",
+    "Enter",
+    "w",
+    "ArrowDown",
+    "Enter",
+    "Enter",
+    "Enter",
+    "Escape"
+  ],
+  "menuPath": [
+    "blacksmith-main",
+    "identify-target",
+    "message",
+    "blacksmith-main",
+    "closed"
+  ]
+}

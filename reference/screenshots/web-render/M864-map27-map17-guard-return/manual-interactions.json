@@ -1,0 +1,78 @@
+{
+  "initialMap27State": {
+    "mapId": 27,
+    "tile": [
+      5,
+      37
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3
+    ],
+    "questFlags": [],
+    "blockingEnemy": {
+      "sourceOrder": 14,
+      "tile": [
+        5,
+        36
+      ],
+      "hp": 43
+    }
+  },
+  "visibleInputs": [
+    {
+      "input": "5",
+      "result": "Enemy sourceOrder 14 at (5,36) changed to respawn-wait with 0 HP; hero stayed on Map27 (5,37), full HP."
+    },
+    {
+      "input": "ArrowUp",
+      "result": "Hero moved to Map27 (5,36); the dead enemy remained in respawn-wait."
+    },
+    {
+      "input": "Enter",
+      "result": "Map27 remained active at (5,36); flags were unchanged. The nearby enemy was alive at (3,37) in the next captured state."
+    }
+  ],
+  "map17Guard": {
+    "arrival": {
+      "mapId": 17,
+      "tile": [
+        12,
+        17
+      ],
+      "level": 99,
+      "hp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": [],
+      "dialogue": "$[Guard] You can't enter here. Please go back."
+    },
+    "confirmInput": "Enter",
+    "result": {
+      "mapId": 27,
+      "tile": [
+        27,
+        5
+      ],
+      "level": 99,
+      "hp": 394392,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3
+      ],
+      "questFlags": [],
+      "dialogueVisible": false
+    }
+  }
+}

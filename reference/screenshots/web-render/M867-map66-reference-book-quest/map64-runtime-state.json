@@ -1,0 +1,90 @@
+{
+  "mapId": 64,
+  "tile": [
+    10,
+    8
+  ],
+  "hp": 394392,
+  "maxHp": 394392,
+  "level": 99,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    1,
+    75,
+    5,
+    6,
+    86
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    19,
+    21
+  ],
+  "markers": [
+    [
+      10,
+      6,
+      4
+    ],
+    [
+      11,
+      6,
+      3
+    ],
+    [
+      10,
+      18,
+      2
+    ],
+    [
+      9,
+      19,
+      -1
+    ],
+    [
+      10,
+      19,
+      -1
+    ],
+    [
+      11,
+      19,
+      -1
+    ]
+  ],
+  "events": {
+    "descriptors": [
+      {
+        "cellIndex": 6,
+        "rawMarkerByte": 2
+      },
+      {
+        "cellIndex": 5,
+        "rawMarkerByte": 0
+      },
+      {
+        "cellIndex": 0,
+        "rawMarkerByte": 1
+      }
+    ],
+    "npcPlacements": [
+      {
+        "tileX": 10,
+        "tileY": 6,
+        "imageId": 16,
+        "sourceOrder": 0
+      },
+      {
+        "tileX": 10,
+        "tileY": 8,
+        "imageId": 14,
+        "sourceOrder": 1
+      }
+    ]
+  },
+  "enemies": []
+}

@@ -1,0 +1,93 @@
+{
+  "id": "M874",
+  "title": "Map61 west marker to Map62 on the max-level New Game route",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "route": {
+    "legs": [
+      {
+        "from": 60,
+        "startTile": [
+          1,
+          2
+        ],
+        "marker": -1,
+        "to": 61,
+        "arrivalTile": [
+          4,
+          37
+        ]
+      },
+      {
+        "from": 61,
+        "marker": -2,
+        "to": 62,
+        "arrivalTile": [
+          37,
+          21
+        ]
+      }
+    ],
+    "trace": "route-01-map60-map61-map62.json",
+    "screenshots": [
+      "01-map61-arrival.png",
+      "02-map62-arrival.png"
+    ],
+    "success": true,
+    "actions": 48,
+    "attacks": 2
+  },
+  "finalState": {
+    "file": "final-live-state.json",
+    "mapId": 62,
+    "tile": [
+      37,
+      21
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This capture verifies the Map60→Map61→Map62 route only.",
+    "It does not verify the rest of Map62, the campaign ending, ordinary-level balance or J2ME parity."
+  ]
+}

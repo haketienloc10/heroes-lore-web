@@ -1,0 +1,33 @@
+{
+  "source": "M869 continuation of the active visible New Game session after M868; gameplay used visible keyboard input",
+  "mapId": 63,
+  "tile": [
+    9,
+    13
+  ],
+  "level": 99,
+  "hp": 394392,
+  "maxHp": 394392,
+  "text": "|[Village chief] Welcome, Ronin.",
+  "dialogueVisible": true,
+  "gameFlags": [
+    0,
+    54,
+    87,
+    1,
+    75,
+    5,
+    6,
+    86,
+    8,
+    3
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    19,
+    21,
+    20
+  ]
+}

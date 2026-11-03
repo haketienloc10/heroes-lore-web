@@ -1,4 +1,5 @@
 import type { ConsumableCategory } from '../world/loot';
+import type { PlayerSkillLevelSlot } from '../world/player-skill-action';
 
 export interface GameplayHudState {
   hp: number;
@@ -17,7 +18,20 @@ export interface GameplayHudAssets {
   frame: CanvasImageSource[];
   digits: CanvasImageSource;
   itemCategoryIcons: Record<ConsumableCategory, CanvasImageSource>;
-  guardianSkillIcon?: CanvasImageSource;
+  skillIcons?: readonly (readonly CanvasImageSource[])[];
+  skillChargeOverlay?: CanvasImageSource;
+}
+
+export interface GameplayHudSkillBinding {
+  levelSlot: PlayerSkillLevelSlot;
+  chargeTicksRemaining: number;
+  chargeTicksMaximum: number;
+}
+
+export interface GameplayHudSkillState {
+  skillId: number;
+  slotOne: GameplayHudSkillBinding | null;
+  slotThree: GameplayHudSkillBinding | null;
 }
 
 /** Initial Ronin values from R10's source fields and the level-1 stat formula. */
@@ -54,12 +68,73 @@ function drawSmallNumber(
   }
 }
 
+function intrinsicImageDimension(
+  image: CanvasImageSource,
+  dimension: 'width' | 'height',
+  fallback: number,
+): number {
+  const imageWithDimensions = image as unknown as Record<string, unknown>;
+  const candidates = dimension === 'width'
+    ? ['naturalWidth', 'videoWidth', 'displayWidth', 'width']
+    : ['naturalHeight', 'videoHeight', 'displayHeight', 'height'];
+  for (const candidate of candidates) {
+    const value = imageWithDimensions[candidate];
+    if (typeof value === 'number' && Number.isFinite(value) && value > 0) return value;
+  }
+  return fallback;
+}
+
+function drawSourceRect(
+  context: CanvasRenderingContext2D,
+  color: string,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+): void {
+  context.fillStyle = color;
+  context.fillRect(x, y, width + 1, 1);
+  context.fillRect(x, y + 1, 1, height - 1);
+  context.fillRect(x + width, y + 1, 1, height - 1);
+  context.fillRect(x, y + height, width + 1, 1);
+}
+
+function drawSkillBinding(
+  context: CanvasRenderingContext2D,
+  assets: GameplayHudAssets,
+  skillState: GameplayHudSkillState,
+  binding: GameplayHudSkillBinding,
+  x: number,
+): void {
+  const icon = assets.skillIcons?.[skillState.skillId]?.[binding.levelSlot];
+  if (icon === undefined) return;
+
+  drawSourceRect(context, '#000000', x, 15, 14, 14);
+  context.drawImage(icon, x, 15);
+  if (binding.chargeTicksRemaining <= 0) return;
+
+  drawSourceRect(context, '#bf1f3f', x, 15, 14, 14);
+  if (assets.skillChargeOverlay === undefined || binding.chargeTicksMaximum <= 0) return;
+  const chargeMaskHeight = meterFillWidth(
+    binding.chargeTicksRemaining,
+    binding.chargeTicksMaximum,
+    13,
+  );
+  context.save();
+  context.beginPath();
+  context.rect(x + 1, 16, 13, chargeMaskHeight);
+  context.clip();
+  context.drawImage(assets.skillChargeOverlay, x, 15);
+  context.restore();
+}
+
 /** Draw the source `ar.a(Graphics)` gameplay HUD at the bottom of a 240px canvas. */
 export function drawGameplayHud(
   context: CanvasRenderingContext2D,
   assets: GameplayHudAssets,
   state: GameplayHudState,
   width = 240,
+  skillState?: GameplayHudSkillState,
 ): void {
   if (assets.frame.length < 7) throw new TypeError('Gameplay HUD needs seven source frame pieces');
   context.imageSmoothingEnabled = false;
@@ -76,10 +151,9 @@ export function drawGameplayHud(
   context.drawImage(assets.frame[6], width - 26, 0);
   context.drawImage(assets.frame[5], width - 30, 11);
 
-  if (assets.guardianSkillIcon !== undefined) {
-    context.strokeStyle = '#000000';
-    context.strokeRect(7, 15, 14, 14);
-    context.drawImage(assets.guardianSkillIcon, 7, 15);
+  if (skillState !== undefined) {
+    if (skillState.slotOne !== null) drawSkillBinding(context, assets, skillState, skillState.slotOne, 7);
+    if (skillState.slotThree !== null) drawSkillBinding(context, assets, skillState, skillState.slotThree, 29);
   }
 
   // `ar.a(Graphics)` sets source width `o = q.g - 67`, which is 173 at 240 px.
@@ -115,6 +189,14 @@ export function drawGameplayHud(
   }
 
   // The source puts the selected item category icon and stack count at the right.
-  context.drawImage(assets.itemCategoryIcons[state.selectedItemCategory], width - 10 - 11, 19 - 8);
+  const itemIcon = assets.itemCategoryIcons[state.selectedItemCategory];
+  const fallbackItemIconHeight = state.selectedItemCategory === 8 || state.selectedItemCategory === 9 ? 19 : 16;
+  const itemIconWidth = intrinsicImageDimension(itemIcon, 'width', 11);
+  const itemIconHeight = intrinsicImageDimension(itemIcon, 'height', fallbackItemIconHeight);
+  context.drawImage(
+    itemIcon,
+    width - 10 - Math.floor(itemIconWidth / 2),
+    19 - Math.floor(itemIconHeight / 2),
+  );
   drawSmallNumber(context, assets.digits, state.selectedItemCount, width - 4, 22);
 }

@@ -1,0 +1,28 @@
+{
+  "id": "M888",
+  "directInputsNotRecordedAsRouteMilestones": [
+    {
+      "phase": "Map71 Crusader order event",
+      "tile": [14, 11],
+      "actions": ["face up", "interact", "advance the visible event until it closes"],
+      "result": "Game flag 81 and quest flag 10 were set; category 18/item 7 was added."
+    },
+    {
+      "phase": "Map71 south return",
+      "tile": [10, 18],
+      "actions": ["press Down against the south marker"],
+      "result": "Transferred to Map70 [9,5]."
+    },
+    {
+      "phase": "Map70 west door check",
+      "tile": [3, 5],
+      "actions": ["face up toward marker -3"],
+      "result": "Visible text: Door is locked. No map transfer occurred."
+    },
+    {
+      "phase": "Map70 / Map71 return repeat",
+      "actions": ["walk to Map70 marker -4", "enter Map71 [10,18]", "press Down"],
+      "result": "Returned to Map70 [9,5] with the Order of Crusaders item still present."
+    }
+  ]
+}

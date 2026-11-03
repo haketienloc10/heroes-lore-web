@@ -1,0 +1,192 @@
+{
+  "id": "M868",
+  "title": "Reference book 1 quest completion on a visible max-level New Game",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "method": "Fresh visible New Game. Gameplay progression used visible keyboard input; runtime reads were limited to the active scene state, event dialogue, map/tile, HP, flags, wallet and inventory.",
+  "route": [
+    {
+      "from": 64,
+      "to": 0,
+      "trace": "route-01-map64-to-map0.json",
+      "screenshot": "01-map64-to-map0.png",
+      "success": true
+    },
+    {
+      "from": 0,
+      "to": 63,
+      "trace": "route-02-map0-to-map63.json",
+      "screenshot": "02-map0-to-map63.png",
+      "success": true
+    },
+    {
+      "map": 63,
+      "interaction": "NPC sets game flags 1, 4 and 75 and quest flag 1",
+      "trace": "route-03-map63-flag4-npc.json",
+      "screenshot": "03-map63-flag4-npc.png"
+    },
+    {
+      "from": 63,
+      "to": 0,
+      "trace": "route-04-map63-to-map0.json",
+      "screenshot": "04-map63-to-map0.png",
+      "success": true
+    },
+    {
+      "from": 0,
+      "to": 27,
+      "trace": "route-05-map0-to-map27.json",
+      "screenshot": "05-map0-to-map27.png",
+      "success": true
+    },
+    {
+      "map": 27,
+      "interaction": "Reah rescue dialogue completed with visible Enter inputs; event grants the quest completion and transfers to Map64",
+      "runnerTrace": "route-06-map27-reah-runner-raw.json",
+      "runnerReportedReason": "exit-marker-did-not-transfer",
+      "runnerNote": "The runner stopped when the marker started dialogue. Manual visible confirms then completed the event; the following live route starts on Map64."
+    },
+    {
+      "from": 64,
+      "to": 0,
+      "trace": "route-07-map64-to-map0-after-reah.json",
+      "screenshot": "07-map64-after-reah.png",
+      "success": true,
+      "quest": "Temple of Fire"
+    },
+    {
+      "from": 0,
+      "to": 79,
+      "trace": "route-08-map0-to-map79.json",
+      "screenshot": "08-map0-to-map79.png",
+      "success": true
+    },
+    {
+      "from": 79,
+      "to": 0,
+      "trace": "route-09-map79-to-map0.json",
+      "screenshot": "09-map79-to-map0.png",
+      "success": true
+    },
+    {
+      "from": 0,
+      "to": 66,
+      "trace": "route-10-map0-to-map66.json",
+      "screenshot": "10-map0-to-map66.png",
+      "success": true
+    },
+    {
+      "map": 66,
+      "interaction": "Lesley starts Reference book 1 Quest after Yes is selected; game flag 7 and quest flag 19 are set, with a category 18/item 12 note",
+      "evidence": "../M867-map66-reference-book-quest/capture.json"
+    },
+    {
+      "from": 66,
+      "to": 0,
+      "trace": "route-11-map66-to-map0.json",
+      "screenshot": "11-map66-to-map0.png",
+      "success": true
+    },
+    {
+      "from": 0,
+      "to": 63,
+      "trace": "route-12-map0-to-map63-after-lesley.json",
+      "screenshot": "12-map0-to-map63-after-lesley.png",
+      "success": true
+    },
+    {
+      "map": 63,
+      "interaction": "Village Chief gives Reference book 1; quest flag 21 and game flag 86 are set",
+      "trace": "route-13-map63-chief-book.json",
+      "screenshot": "13-map63-chief-book.png"
+    },
+    {
+      "from": 63,
+      "to": 0,
+      "trace": "route-14-map63-to-map0-after-book.json",
+      "screenshot": "14-map63-to-map0-after-book.png",
+      "success": true
+    },
+    {
+      "from": 0,
+      "to": 66,
+      "trace": "route-16-map0-to-map66-after-book.json",
+      "screenshot": "15-map0-to-map66-after-book.png",
+      "success": true
+    },
+    {
+      "map": 66,
+      "interaction": "Lesley displays the 500 GOLD and Boots reward and Reference book 1 Quest completed; after dialogue closes, live inventory and flags confirm completion",
+      "trace": "route-15-map66-lesley-delivery.json",
+      "screenshot": "16-map66-lesley-delivery.png"
+    }
+  ],
+  "finalState": {
+    "file": "final-live-state.json",
+    "mapId": 66,
+    "tile": [
+      7,
+      11
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "wallet": 827,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ],
+    "inventory": [
+      {
+        "category": 4,
+        "itemId": 1,
+        "count": 1,
+        "displayedReward": "Boots"
+      }
+    ],
+    "referenceBookPresent": false
+  },
+  "screenshots": [
+    {
+      "file": "17-map66-reference-book1-complete.png",
+      "observation": "WorldScene after the completion dialogue closes."
+    }
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This run verifies the captured route and this side quest only.",
+    "It does not verify the campaign ending, all maps, ordinary-level balance, service transactions or J2ME parity."
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "M869",
+  "title": "Village Chief response after Reference book 1 completion",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "start": {
+    "mapId": 66,
+    "tile": [
+      7,
+      11
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "routes": [
+    {
+      "from": 66,
+      "to": 0,
+      "trace": "route-01-map66-to-map0.json",
+      "screenshot": "01-map66-to-map0.png",
+      "success": true
+    },
+    {
+      "from": 0,
+      "to": 63,
+      "trace": "route-02-map0-to-map63.json",
+      "screenshot": "02-map0-to-map63.png",
+      "success": true
+    },
+    {
+      "from": 63,
+      "marker": 3,
+      "to": 0,
+      "arrivalTile": [
+        18,
+        19
+      ],
+      "trace": "route-03-map63-marker3-to-map0.json",
+      "screenshot": "04-map63-marker3-exit.png",
+      "success": true
+    }
+  ],
+  "interaction": {
+    "npc": "Village Chief",
+    "approachTile": [
+      9,
+      13
+    ],
+    "dialogue": "Welcome, Ronin.",
+    "trace": "route-03-chief-after-quest.json",
+    "screenshot": "03-chief-after-quest.png",
+    "gameFlagsChanged": false,
+    "questFlagsChanged": false
+  },
+  "finalState": {
+    "file": "final-map0-state.json",
+    "mapId": 0,
+    "tile": [
+      18,
+      19
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This capture verifies only the post-quest Village Chief interaction and the Map63 marker 3 return to Map0.",
+    "It does not establish the main-story gate, campaign ending, remaining map routes, ordinary-level balance or J2ME parity."
+  ]
+}

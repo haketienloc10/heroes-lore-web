@@ -1,0 +1,40 @@
+{
+  "source": "live WorldScene runtime read after visible dialogue closure; no persistence or storage access",
+  "mapId": 66,
+  "tile": [
+    7,
+    11
+  ],
+  "level": 99,
+  "hp": 394392,
+  "maxHp": 394392,
+  "wallet": 827,
+  "inventory": [
+    {
+      "category": 4,
+      "itemId": 1,
+      "count": 1
+    }
+  ],
+  "gameFlags": [
+    0,
+    54,
+    87,
+    1,
+    75,
+    5,
+    6,
+    86,
+    8
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    19,
+    21,
+    20
+  ],
+  "dialogueVisible": false,
+  "cutsceneStatus": "ended"
+}

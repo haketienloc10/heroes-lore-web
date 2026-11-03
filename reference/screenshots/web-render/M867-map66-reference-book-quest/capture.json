@@ -1,0 +1,639 @@
+{
+  "run": "M867",
+  "date": "2026-11-02",
+  "page": "http://127.0.0.1:5174/?testProfile=max-level",
+  "method": "Fresh visible New Game. All gameplay actions were visible keyboard inputs. Runtime reads were limited to current scene/map/tile/HP/flags, collision for routing, dialogue, and inventory changes returned by the active event cutscene.",
+  "restrictions": {
+    "inGameSaveLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarAccess": false,
+    "directMapStart": false,
+    "gameplayStateSeed": false
+  },
+  "profile": {
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392
+  },
+  "routes": [
+    {
+      "file": "route-01-map64-to-map0.json",
+      "success": true,
+      "reason": "reached-map0",
+      "final": {
+        "mapId": 0,
+        "tile": [
+          26,
+          24
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3
+        ],
+        "questFlags": [],
+        "dialogue": false
+      },
+      "actions": 11,
+      "attacks": 0
+    },
+    {
+      "file": "route-02-map0-to-map63.json",
+      "success": true,
+      "reason": "reached-map63",
+      "final": {
+        "mapId": 63,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3
+        ],
+        "questFlags": [],
+        "dialogue": false
+      },
+      "actions": 14,
+      "attacks": 0
+    },
+    {
+      "file": "route-03-map63-flag4-npc.json",
+      "success": true,
+      "reason": "map63-flag4-set",
+      "final": {
+        "mapId": 63,
+        "tile": [
+          9,
+          13
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3,
+          1,
+          4,
+          75
+        ],
+        "questFlags": [
+          1
+        ],
+        "dialogue": false
+      },
+      "actions": 26,
+      "attacks": 0
+    },
+    {
+      "file": "route-04-map63-to-map0.json",
+      "success": true,
+      "reason": "reached-map0",
+      "final": {
+        "mapId": 0,
+        "tile": [
+          18,
+          19
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3,
+          1,
+          4,
+          75
+        ],
+        "questFlags": [
+          1
+        ],
+        "dialogue": false
+      },
+      "actions": 6,
+      "attacks": 0
+    },
+    {
+      "file": "route-05-map0-to-map27.json",
+      "success": true,
+      "reason": "reached-map27",
+      "final": {
+        "mapId": 27,
+        "tile": [
+          5,
+          37
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3,
+          1,
+          4,
+          75
+        ],
+        "questFlags": [
+          1
+        ],
+        "dialogue": true
+      },
+      "actions": 38,
+      "attacks": 0
+    },
+    {
+      "file": "route-06-map27-reah-trigger.json",
+      "success": false,
+      "reason": "exit-marker-did-not-transfer",
+      "start": {
+        "mapId": 27,
+        "tile": [
+          5,
+          36
+        ],
+        "hp": 394392
+      },
+      "final": {
+        "mapId": 27,
+        "tile": [
+          7,
+          8
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          3,
+          1,
+          4,
+          75,
+          2
+        ],
+        "questFlags": [
+          1
+        ],
+        "dialogue": true
+      },
+      "actions": 72,
+      "attacks": 1
+    },
+    {
+      "file": "route-07-map64-to-map0-after-quest.json",
+      "success": true,
+      "reason": "reached-map0",
+      "final": {
+        "mapId": 0,
+        "tile": [
+          26,
+          24
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4
+        ],
+        "dialogue": false
+      },
+      "actions": 14,
+      "attacks": 0
+    },
+    {
+      "file": "route-08-map0-to-map79.json",
+      "success": true,
+      "reason": "reached-map79",
+      "final": {
+        "mapId": 79,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6
+        ],
+        "questFlags": [
+          1,
+          2,
+          4
+        ],
+        "dialogue": false
+      },
+      "actions": 37,
+      "attacks": 0
+    },
+    {
+      "file": "route-09-map79-to-map0.json",
+      "success": true,
+      "reason": "reached-map0",
+      "final": {
+        "mapId": 0,
+        "tile": [
+          14,
+          8
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4
+        ],
+        "dialogue": false
+      },
+      "actions": 2,
+      "attacks": 0
+    },
+    {
+      "file": "route-10-map0-to-map66.json",
+      "success": true,
+      "reason": "reached-map66",
+      "start": {
+        "mapId": 0,
+        "tile": [
+          14,
+          8
+        ],
+        "hp": 394392
+      },
+      "final": {
+        "mapId": 66,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6
+        ],
+        "questFlags": [
+          1,
+          2,
+          4
+        ],
+        "dialogue": false
+      },
+      "actions": 21,
+      "attacks": 0
+    },
+    {
+      "file": "route-11-map66-to-map0.json",
+      "success": true,
+      "reason": "reached-map0",
+      "final": {
+        "mapId": 0,
+        "tile": [
+          4,
+          17
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          7,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4,
+          19
+        ],
+        "dialogue": false
+      },
+      "actions": 9,
+      "attacks": 0
+    },
+    {
+      "file": "route-12-map0-to-map63-after-lesley.json",
+      "success": true,
+      "reason": "reached-map63",
+      "final": {
+        "mapId": 63,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          7,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4,
+          19
+        ],
+        "dialogue": false
+      },
+      "actions": 17,
+      "attacks": 0
+    },
+    {
+      "file": "route-13-map63-book-from-chief.json",
+      "success": null,
+      "reason": null,
+      "start": {
+        "mapId": 63,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392
+      },
+      "final": {
+        "mapId": 63,
+        "tile": [
+          9,
+          13
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          7,
+          3
+        ],
+        "questFlags": [
+          1,
+          2,
+          4,
+          19
+        ],
+        "dialogue": true,
+        "text": "|[Village chief] The book for Lesley? Here it is."
+      },
+      "actions": 8,
+      "attacks": 0
+    },
+    {
+      "file": "route-14-map63-to-map0-after-book.json",
+      "success": true,
+      "reason": "reached-map0",
+      "final": {
+        "mapId": 0,
+        "tile": [
+          18,
+          19
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          3,
+          86
+        ],
+        "questFlags": [
+          1,
+          2,
+          4,
+          19,
+          21
+        ],
+        "dialogue": false
+      },
+      "actions": 6,
+      "attacks": 0
+    },
+    {
+      "file": "route-15-map0-to-map64-after-book.json",
+      "success": true,
+      "reason": "reached-map64",
+      "final": {
+        "mapId": 64,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          86
+        ],
+        "questFlags": [
+          1,
+          2,
+          4,
+          19,
+          21
+        ],
+        "dialogue": false
+      },
+      "actions": 14,
+      "attacks": 0
+    },
+    {
+      "file": "route-16-map64-initial-interaction.json",
+      "success": null,
+      "reason": null,
+      "start": {
+        "mapId": 64,
+        "tile": [
+          10,
+          18
+        ],
+        "hp": 394392
+      },
+      "final": {
+        "mapId": 64,
+        "tile": [
+          10,
+          8
+        ],
+        "hp": 394392,
+        "maxHp": 394392,
+        "level": 99,
+        "gameFlags": [
+          0,
+          54,
+          87,
+          1,
+          75,
+          5,
+          6,
+          86
+        ],
+        "questFlags": [
+          1,
+          2,
+          4,
+          19,
+          21
+        ],
+        "dialogue": false,
+        "text": "|[Village chief] Welcome, Ronin."
+      },
+      "actions": 11,
+      "attacks": 0
+    }
+  ],
+  "storyObservations": [
+    {
+      "at": "Map63 NPC",
+      "result": "Set game flags 1, 4, 75 and quest flag 1."
+    },
+    {
+      "at": "Map27 marker -6",
+      "result": "Opened the Reah rescue scene. Visible confirmation showed “An absent friend Quest completed!” and “Received 300 EXP”, then the scene transferred to Map64; game flag 5 and quest flag 2 were set."
+    },
+    {
+      "at": "Map64 opening scene",
+      "result": "Granted “Temple of Fire Quest acquired!”; quest flags 1, 2, 4 were present."
+    },
+    {
+      "at": "Map0 marker -6 → Map66",
+      "result": "Transfer confirmed in the live scene at Map66 (10,18), full HP, no enemies."
+    },
+    {
+      "at": "Map66 Lesley",
+      "result": "The visible “Help him...?” choice defaulted to Yes. The game displayed “Reference book 1 Quest acquired!”, setting game flag 7 and quest flag 19 and adding category 18, item 12."
+    },
+    {
+      "at": "Map63 Village Chief",
+      "result": "The game displayed “The book for Lesley? Here it is.”, then “Reference book 1 is received.”; inventory changed to category 18, item 5, quest flag 21 and game flag 86 were set."
+    },
+    {
+      "at": "Later Map63 chief interaction",
+      "result": "Opened script 2 and displayed “Welcome, Ronin.” The next interaction repeated that line; this was not the later main-story script."
+    }
+  ],
+  "routeMismatch": {
+    "file": "12-map0-to-map66-runner-raw.json",
+    "runnerReported": "unexpected-map-66",
+    "cause": "The copied Map0→Map63 runner still compared the destination against 63. Its live movement trail ends with transfer to mapId 66; a fresh read-only scene snapshot independently confirmed Map66 (10,18). The corrected route-10 trace preserves the raw runner result in runnerReportedResult and marks the observed transfer."
+  },
+  "lastLiveState": {
+    "mapId": 64,
+    "tile": [
+      10,
+      8
+    ],
+    "hp": 394392,
+    "maxHp": 394392,
+    "level": 99,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21
+    ],
+    "inventory": [
+      {
+        "category": 18,
+        "itemId": 5,
+        "count": 1
+      }
+    ],
+    "dialogue": false
+  },
+  "interruption": "Chromium closed after the last Map64 interaction. A Map64→Map0 continuation runner then failed at its initial CDP connection, before sending any gameplay input. Continuing requires another fresh visible New Game.",
+  "remaining": "Deliver Reference book 1 to Lesley, reach later campaign branches and ending, verify service transactions, ordinary-level balance, and compare runtime behavior with the J2ME reference."
+}

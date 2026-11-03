@@ -1,0 +1,323 @@
+{
+  "id": "M883",
+  "title": "Loot-survival profile: Mithril pickup and successful Blacksmith upgrade",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=loot-survival",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "query": "?testProfile=loot-survival",
+      "startLevel": 1,
+      "startHp": 393216,
+      "startMaxHp": 393216,
+      "attributes": "Maximum supported values (32,767 each)",
+      "reason": "Mithril chance depends on player level; the level-99 profile makes the chance negative for the available enemies.",
+      "hpRestoration": "Enabled by the developer profile; HP remained full during this route."
+    }
+  },
+  "newGame": {
+    "mapId": 0,
+    "tile": [
+      22,
+      4
+    ],
+    "level": 1,
+    "hp": 393216,
+    "maxHp": 393216,
+    "gameFlags": [
+      0,
+      54,
+      87
+    ],
+    "questFlags": [],
+    "inventory": []
+  },
+  "milestones": [
+    {
+      "name": "Mithril pickup",
+      "mapId": 27,
+      "enemyKills": 9,
+      "heroLevelAfterFarming": 3,
+      "hp": 393240,
+      "maxHp": 393240,
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "dropTile": [
+        10,
+        14
+      ]
+    },
+    {
+      "name": "Map63 chief and return route",
+      "mapId": 0,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        4,
+        75
+      ],
+      "questFlags": [
+        1
+      ],
+      "evidenceScreenshots": [
+        "68-map63-chief-approach.png",
+        "69-map63-chief-complete.png"
+      ]
+    },
+    {
+      "name": "Reah rescue",
+      "mapId": 64,
+      "tile": [
+        11,
+        6
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276,
+      "questFlags": [
+        1,
+        2
+      ],
+      "returnedToMap64": true
+    },
+    {
+      "name": "Temple of Fire quest",
+      "mapId": 64,
+      "tile": [
+        11,
+        7
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276,
+      "gameFlags": [
+        0,
+        54,
+        87,
+        3,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ],
+      "visibleText": "Temple of Fire Quest acquired!"
+    },
+    {
+      "name": "Blacksmith upgrade",
+      "mapId": 79,
+      "tile": [
+        12,
+        9
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276,
+      "successMessage": "Refined successfully!",
+      "mithrilBefore": 1,
+      "mithrilAfter": 0,
+      "weaponBefore": {
+        "slot": 0,
+        "category": 0,
+        "itemId": 0,
+        "upgrade": 0
+      },
+      "weaponAfter": {
+        "slot": 0,
+        "category": 0,
+        "itemId": 0,
+        "upgrade": 1
+      },
+      "wallet": 327
+    }
+  ],
+  "transaction": {
+    "id": "M883",
+    "date": "2026-11-02",
+    "url": "http://127.0.0.1:5174/?testProfile=loot-survival",
+    "profile": "loot-survival",
+    "service": "Map79 Blacksmith",
+    "action": "upgrade",
+    "before": {
+      "inventory": [
+        {
+          "category": 11,
+          "itemId": 0,
+          "count": 1
+        }
+      ],
+      "weapon": {
+        "slot": 0,
+        "category": 0,
+        "itemId": 0,
+        "upgrade": 0
+      }
+    },
+    "confirmation": {
+      "service": "blacksmith",
+      "screen": "confirm",
+      "selection": 0,
+      "message": "",
+      "pendingAction": "upgrade",
+      "target": {
+        "location": "equipment",
+        "slot": 0
+      },
+      "confirmationSelection": 0,
+      "targets": []
+    },
+    "result": {
+      "message": "Refined successfully!",
+      "inventory": [],
+      "equipment": [
+        {
+          "slot": 0,
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 1
+        },
+        null,
+        {
+          "slot": 2,
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "slot": 3,
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "slot": 4,
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "success": true
+    },
+    "final": {
+      "mapId": 79,
+      "tile": [
+        12,
+        9
+      ],
+      "level": 6,
+      "hp": 393276,
+      "maxHp": 393276,
+      "wallet": 327,
+      "inventory": [],
+      "equipment": [
+        {
+          "slot": 0,
+          "category": 0,
+          "itemId": 0,
+          "upgrade": 1
+        },
+        null,
+        {
+          "slot": 2,
+          "category": 5,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "slot": 3,
+          "category": 6,
+          "itemId": 0,
+          "upgrade": 0
+        },
+        {
+          "slot": 4,
+          "category": 4,
+          "itemId": 0,
+          "upgrade": 0
+        }
+      ],
+      "gameFlags": [
+        0,
+        54,
+        87,
+        1,
+        75,
+        5,
+        6
+      ],
+      "questFlags": [
+        1,
+        2,
+        4
+      ],
+      "service": {
+        "service": "blacksmith",
+        "screen": "blacksmith-main",
+        "selection": 0,
+        "message": "Refined successfully!",
+        "pendingAction": "upgrade",
+        "target": {
+          "location": "equipment",
+          "slot": 0
+        },
+        "confirmationSelection": 0
+      }
+    },
+    "restrictions": {
+      "visibleKeyboardInput": true,
+      "directGameplayStateWrites": false,
+      "inGameSaveLoad": false,
+      "browserStorageRead": false,
+      "localSaveAccess": false,
+      "originalJarRead": false,
+      "directMapStart": false
+    }
+  },
+  "trace": "final-run-trace.json",
+  "screenshots": [
+    "60-newgame-opening.png",
+    "61-map64-start.png",
+    "62-map0-arrival.png",
+    "63-map27-arrival.png",
+    "67-mithril-inventory-confirmed.png",
+    "68-map63-chief-approach.png",
+    "69-map63-chief-complete.png",
+    "71-reah-dialogue.png",
+    "m883-resume-village.png",
+    "73-map0-after-temple-quest.png",
+    "74-map79-arrival.png",
+    "76-blacksmith-main.png",
+    "77-upgrade-targets.png",
+    "78-upgrade-confirm.png",
+    "80-success-message.png",
+    "81-upgrade-complete.png"
+  ],
+  "restrictions": {
+    "visibleKeyboardInput": true,
+    "directGameplayStateWrites": false,
+    "inGameSaveLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarRead": false,
+    "directMapStart": false
+  },
+  "limitations": [
+    "This verifies one browser-port campaign path and one successful upgrade of an equipped +0 weapon.",
+    "The run started at level 1 with maximum supported attributes, then gained levels through normal play; max level was intentionally avoided because it suppresses the required Mithril drop.",
+    "No J2ME runtime comparison, ordinary-level combat balance, physical keyboard/mobile input, or full-campaign ending is established."
+  ]
+}

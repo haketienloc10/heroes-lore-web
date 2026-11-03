@@ -1,0 +1,270 @@
+{
+  "id": "M884",
+  "date": "2026-11-02",
+  "title": "Visible max-level New Game through Map61 to Map1",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard events",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "attributes": [
+        32767,
+        32767,
+        32767,
+        32767
+      ],
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "success": true,
+  "startingState": {
+    "type": "fresh visible New Game",
+    "mapId": 64,
+    "tile": [
+      9,
+      8
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87
+    ],
+    "questFlags": []
+  },
+  "finalState": {
+    "mapId": 1,
+    "tile": [
+      2,
+      17
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ],
+    "dialogue": false,
+    "text": "Temple of Fire Quest acquired!"
+  },
+  "routeSegments": [
+    {
+      "fromMap": 64,
+      "toMap": 0,
+      "from": [
+        10,
+        17
+      ],
+      "to": [
+        26,
+        24
+      ],
+      "route": "south exit; visible two-step doorway behavior"
+    },
+    {
+      "fromMap": 0,
+      "toMap": 63,
+      "marker": -4,
+      "approach": [
+        18,
+        19
+      ],
+      "to": [
+        10,
+        18
+      ]
+    },
+    {
+      "fromMap": 63,
+      "toMap": 0,
+      "marker": -1,
+      "to": [
+        18,
+        19
+      ]
+    },
+    {
+      "fromMap": 0,
+      "toMap": 27,
+      "to": [
+        5,
+        37
+      ],
+      "route": "story route after chief interaction"
+    },
+    {
+      "fromMap": 27,
+      "toMap": 64,
+      "marker": -6,
+      "approach": [
+        7,
+        8
+      ],
+      "entry": "ArrowUp",
+      "to": [
+        11,
+        6
+      ],
+      "confirmationInputs": 11
+    },
+    {
+      "fromMap": 64,
+      "toMap": 0,
+      "route": "south exit after Temple of Fire quest; doorway requires two-step input",
+      "to": [
+        26,
+        24
+      ]
+    },
+    {
+      "fromMap": 0,
+      "toMap": 27,
+      "to": [
+        5,
+        37
+      ],
+      "route": "visible replay of recorded Map0 story path"
+    },
+    {
+      "fromMap": 27,
+      "toMap": 2,
+      "exit": "north edge",
+      "marker": -1,
+      "to": [
+        4,
+        47
+      ],
+      "blockerAttacks": 5
+    },
+    {
+      "fromMap": 2,
+      "toMap": 60,
+      "marker": -1,
+      "markerTile": [
+        7,
+        0
+      ],
+      "approach": [
+        7,
+        1
+      ],
+      "to": [
+        17,
+        38
+      ]
+    },
+    {
+      "fromMap": 60,
+      "toMap": 61,
+      "exit": "west",
+      "triggerObservedAt": [
+        1,
+        3
+      ],
+      "to": [
+        4,
+        37
+      ]
+    },
+    {
+      "fromMap": 61,
+      "toMap": 1,
+      "exit": "east",
+      "candidateMarker": {
+        "value": -3,
+        "tile": [
+          39,
+          17
+        ],
+        "approach": [
+          38,
+          17
+        ]
+      },
+      "triggerObservedAt": [
+        37,
+        17
+      ],
+      "to": [
+        2,
+        17
+      ]
+    }
+  ],
+  "evidence": {
+    "trace": "final-run-trace.json",
+    "screenshots": [
+      {
+        "file": "00-map64-start.png",
+        "state": "fresh New Game at level 99"
+      },
+      {
+        "file": "03-map63-chief-complete.png",
+        "state": "Map63 flags and quest flag 1 set"
+      },
+      {
+        "file": "07-map27-reah-approach.png",
+        "state": "Reah event approach"
+      },
+      {
+        "file": "08-map64-after-reah.png",
+        "state": "Reah rescue transferred to Map64"
+      },
+      {
+        "file": "09-map64-temple-quest-complete.png",
+        "state": "Temple of Fire Quest acquired"
+      },
+      {
+        "file": "11-map27-re-entry.png",
+        "state": "Map27 after recovery"
+      },
+      {
+        "file": "12-map2-arrival.png",
+        "state": "Map2 north route"
+      },
+      {
+        "file": "13-map60-arrival.png",
+        "state": "Map60 arrival"
+      },
+      {
+        "file": "14-map61-arrival.png",
+        "state": "Map61 arrival"
+      },
+      {
+        "file": "15-map1-final.png",
+        "state": "Map1 arrival from Map61 eastern branch"
+      }
+    ],
+    "supportingFiles": [
+      "chief-complete.json",
+      "reah-event.json",
+      "village-dialogue-complete.json",
+      "map27-reentry.json"
+    ]
+  },
+  "restrictions": {
+    "originalJarRead": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "inGameSaveOrLoad": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

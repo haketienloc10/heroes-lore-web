@@ -33,4 +33,4 @@ How does the source game allocate level-up points, commit the four character att
 ## Verification and limits
 
 - Vitest: 34 files / 225 tests passed. Typecheck passed. Production build passed; its larger JavaScript chunk is 1,410.04 kB minified and Vite reports its existing >500 kB chunk warning.
-- Passive HP/SP recovery rates and tick timing have not been ported or compared. The controlled browser replay uses a class-6 Ronin only; it does not compare the UI or derived stats against a running J2ME emulator. Natural progression, the map-53 Blue Brick route, and campaign viability remain unverified.
+- M97 subsequently modeled passive HP/SP recovery; see [FND-0037](FND-0037-player-hp-sp-recovery.md) for timing and parity limits. M798 later allocates points earned in a natural class-6 New Game and reaches Map82 ([route trace](../../reference/screenshots/web-render/M798-map42-line-of-sight/route-trace.json)). M96 itself remains a seeded class-6 replay, with no J2ME UI or derived-stat comparison. Other classes, the full campaign, and J2ME parity remain unverified.

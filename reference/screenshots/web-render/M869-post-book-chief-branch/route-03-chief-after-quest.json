@@ -1,0 +1,195 @@
+{
+  "start": {
+    "mapId": 63,
+    "tile": [
+      10,
+      18
+    ],
+    "hp": 394392,
+    "flags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "quests": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "approach": {
+    "mapId": 63,
+    "tile": [
+      9,
+      13
+    ],
+    "hp": 394392
+  },
+  "after": {
+    "mapId": 63,
+    "tile": [
+      9,
+      13
+    ],
+    "hp": 394392,
+    "maxHp": 394392,
+    "level": 99,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ],
+    "dialogue": true,
+    "text": "|[Village chief] Welcome, Ronin."
+  },
+  "actions": [
+    {
+      "action": 0,
+      "key": "ArrowUp",
+      "from": [
+        10,
+        18
+      ],
+      "to": [
+        10,
+        17
+      ],
+      "mapId": 63,
+      "hp": 394392
+    },
+    {
+      "action": 1,
+      "key": "ArrowUp",
+      "from": [
+        10,
+        17
+      ],
+      "to": [
+        10,
+        16
+      ],
+      "mapId": 63,
+      "hp": 394392
+    },
+    {
+      "action": 2,
+      "key": "ArrowUp",
+      "from": [
+        10,
+        16
+      ],
+      "to": [
+        10,
+        15
+      ],
+      "mapId": 63,
+      "hp": 394392
+    },
+    {
+      "action": 3,
+      "key": "ArrowUp",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        10,
+        14
+      ],
+      "mapId": 63,
+      "hp": 394392
+    },
+    {
+      "action": 4,
+      "key": "ArrowLeft",
+      "from": [
+        10,
+        14
+      ],
+      "to": [
+        9,
+        14
+      ],
+      "mapId": 63,
+      "hp": 394392
+    },
+    {
+      "action": 5,
+      "key": "ArrowUp",
+      "from": [
+        9,
+        14
+      ],
+      "to": [
+        9,
+        13
+      ],
+      "mapId": 63,
+      "hp": 394392
+    },
+    {
+      "type": "face-lesley",
+      "mapId": 63,
+      "tile": [
+        9,
+        13
+      ]
+    },
+    {
+      "type": "interact-lesley",
+      "mapId": 63,
+      "tile": [
+        9,
+        13
+      ],
+      "dialogue": true,
+      "text": "|[Village chief] Welcome, Ronin.",
+      "flags": [
+        0,
+        54,
+        87,
+        1,
+        75,
+        5,
+        6,
+        86,
+        8,
+        3
+      ],
+      "quests": [
+        1,
+        2,
+        4,
+        19,
+        21,
+        20
+      ],
+      "hp": 394392
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "trigger": {
+    "marker": -6,
+    "tile": [
+      7,
+      7
+    ],
+    "approach": [
+      7,
+      8
+    ],
+    "entry": "ArrowUp"
+  },
+  "checkpoints": [
+    "|[Ronin] Oh, Reah! ",
+    "|[Ronin] Oh, Reah! ",
+    "|[Ronin] Reah, Reah!! Wake up!!",
+    "|[Ronin] Reah, Reah!! Wake up!!",
+    "|[Ronin] Reah, Reah!! Wake up!!",
+    "|[Ronin] Not good, I have to move her to the\nvillage first.",
+    "|[Ronin] Not good, I have to move her to the\nvillage first.",
+    "An absent friend Quest completed!",
+    "An absent friend Quest completed!",
+    "Received 300 EXP",
+    "Received 300 EXP"
+  ],
+  "confirmationInputs": 11,
+  "final": {
+    "mapId": 64,
+    "tile": [
+      11,
+      6
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "dialogue": true,
+    "text": "|[Lesley] The injury is not serious. I think she\njust passed out because she's so exhausted.\nShe'll get better soon.",
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      4,
+      75,
+      2,
+      5
+    ],
+    "questFlags": [
+      1,
+      2
+    ]
+  },
+  "input": "visible keyboard events only",
+  "restrictions": {
+    "originalJarRead": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "inGameSaveOrLoad": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

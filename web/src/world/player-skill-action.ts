@@ -103,6 +103,16 @@ const SKILL_CHARGES = [
   [80, 270, 270],
 ] as const;
 
+/** Source `o.b[skillId * 3 + levelSlot]`, used by the HUD cooldown mask. */
+export function playerSkillChargeMaximum(skillId: number, levelSlot: PlayerSkillLevelSlot): number {
+  const charges = Number.isInteger(skillId) && skillId >= 0 && skillId < SKILL_CHARGES.length
+    ? SKILL_CHARGES[skillId]
+    : undefined;
+  const maximum = charges?.[levelSlot];
+  if (maximum === undefined) throw new RangeError('Unknown player skill or level slot');
+  return maximum;
+}
+
 const SKILL_DURATIONS = [
   [0, 0, 10],
   [4, 4, 10],

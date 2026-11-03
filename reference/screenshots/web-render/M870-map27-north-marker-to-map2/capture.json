@@ -1,0 +1,115 @@
+{
+  "id": "M870",
+  "title": "Map27 north marker to Map2 on the max-level New Game route",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "start": {
+    "mapId": 0,
+    "tile": [
+      18,
+      19
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "routes": [
+    {
+      "from": 0,
+      "to": 27,
+      "trace": "route-01-map0-to-map27.json",
+      "screenshot": "01-map0-to-map27.png",
+      "success": true,
+      "actions": 38,
+      "attacks": 0,
+      "arrivalTile": [
+        5,
+        37
+      ]
+    },
+    {
+      "from": 27,
+      "marker": -1,
+      "to": 2,
+      "trace": "route-02-map27-north-to-map2.json",
+      "screenshot": "02-map27-north-to-map2.png",
+      "success": true,
+      "actions": 70,
+      "attacks": 2,
+      "arrivalTile": [
+        4,
+        47
+      ]
+    }
+  ],
+  "finalState": {
+    "file": "final-live-state.json",
+    "mapId": 2,
+    "tile": [
+      4,
+      47
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "gameFlags": [
+      0,
+      54,
+      87,
+      1,
+      75,
+      5,
+      6,
+      86,
+      8,
+      3
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      19,
+      21,
+      20
+    ]
+  },
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "This capture verifies Map0→Map27→Map2 and two light attacks only.",
+    "It does not verify Map2's remaining branch, the campaign ending, ordinary-level balance or J2ME parity."
+  ]
+}

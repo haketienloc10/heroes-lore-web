@@ -1,0 +1,24 @@
+{
+  "id": "M892",
+  "directInputsNotRecordedAsRouteMilestones": [
+    {
+      "phase": "Map71 Crusader order event",
+      "tile": [14, 11],
+      "actions": ["face up", "interact", "advance the visible event until it closes"],
+      "result": "Set game flag 81 and quest flag 10; received category 18/item 7."
+    },
+    {
+      "phase": "Map71 to Map70 south marker",
+      "tile": [10, 18],
+      "actions": ["press Down into the marker"],
+      "result": "Transferred to Map70 [9,5]."
+    },
+    {
+      "phase": "Map70 south marker +1",
+      "approach": [4, 14],
+      "marker": { "value": 1, "tile": [4, 15] },
+      "actions": ["press Down onto the visible south-side passage"],
+      "result": "Transferred to Map69 [16,1] with full HP/SP and the Order of Crusaders item retained."
+    }
+  ]
+}

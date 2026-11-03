@@ -1,0 +1,166 @@
+{
+  "profile": "loot-survival",
+  "start": {
+    "mapId": 27,
+    "tile": [
+      16,
+      35
+    ],
+    "level": 2,
+    "hp": 393228
+  },
+  "moves": 2,
+  "kills": [
+    {
+      "cycle": 0,
+      "sourceOrder": 16,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "enemyTile": [
+        17,
+        35
+      ],
+      "dropRolls": [
+        {
+          "kind": "item",
+          "category": 2,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 17,
+          "tileY": 35,
+          "id": 2,
+          "ticksRemaining": 116
+        },
+        {
+          "kind": "item",
+          "category": 11,
+          "itemId": 0,
+          "count": 1,
+          "tileX": 17,
+          "tileY": 35,
+          "id": 3,
+          "ticksRemaining": 116
+        }
+      ],
+      "post": {
+        "tile": [
+          17,
+          35
+        ],
+        "level": 2,
+        "exp": 72,
+        "hp": 393228,
+        "maxHp": 393228,
+        "inventory": [],
+        "wallet": 300
+      }
+    },
+    {
+      "cycle": 1,
+      "sourceOrder": 17,
+      "enemyId": 24,
+      "rewardCode": 1,
+      "enemyTile": [
+        17,
+        36
+      ],
+      "dropRolls": [
+        {
+          "kind": "currency",
+          "sourceAmount": 3,
+          "tileX": 17,
+          "tileY": 36,
+          "id": 4,
+          "ticksRemaining": 115
+        }
+      ],
+      "post": {
+        "tile": [
+          17,
+          36
+        ],
+        "level": 2,
+        "exp": 108,
+        "hp": 393228,
+        "maxHp": 393228,
+        "inventory": [
+          {
+            "category": 2,
+            "itemId": 0,
+            "count": 1,
+            "equipmentState": {
+              "sourceFlag": true,
+              "upgradeByte": 0,
+              "bonusValues": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "subtypeBytes": [
+                8,
+                10,
+                -1
+              ]
+            }
+          },
+          {
+            "category": 11,
+            "itemId": 0,
+            "count": 1
+          }
+        ],
+        "wallet": 300
+      }
+    }
+  ],
+  "final": {
+    "mapId": 27,
+    "tile": [
+      17,
+      36
+    ],
+    "level": 2,
+    "exp": 108,
+    "hp": 393228,
+    "maxHp": 393228,
+    "inventory": [
+      {
+        "category": 2,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": [
+            8,
+            10,
+            -1
+          ]
+        }
+      },
+      {
+        "category": 11,
+        "itemId": 0,
+        "count": 1
+      }
+    ],
+    "wallet": 300,
+    "drops": [
+      {
+        "kind": "currency",
+        "sourceAmount": 3,
+        "tileX": 17,
+        "tileY": 36,
+        "id": 4,
+        "ticksRemaining": 108
+      }
+    ]
+  }
+}

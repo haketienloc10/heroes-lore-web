@@ -30,6 +30,7 @@ import {
   type StartupBrandSplashFrame,
 } from './startup-title';
 import { startupPointerKeys, type StartupPointerSelection } from './startup-pointer';
+import { isCampaignTestProfile } from './campaign-test-profile';
 import {
   buildStartupAboutPages,
   buildStartupHelpTopics,
@@ -451,10 +452,15 @@ export class StartupFlowScene extends Phaser.Scene {
     this.page = 'loading';
     this.renderPage();
     const guardianIndices = [...this.selectedGuardians].sort((first, second) => first - second);
+    const requestedTestProfile = new URLSearchParams(window.location.search).get('testProfile');
+    const testProfile = import.meta.env.DEV && isCampaignTestProfile(requestedTestProfile)
+      ? requestedTestProfile
+      : undefined;
     this.loadGameplayScenesAndStart({
       startRoute: 'new-game',
       guardianIndices,
       heroClassId: RONIN_HERO_CLASS_ID,
+      ...(testProfile === undefined ? {} : { testProfile }),
     });
   }
 
@@ -629,7 +635,8 @@ export class StartupFlowScene extends Phaser.Scene {
     const context = this.context!;
     context.fillStyle = '#3f1f3f';
     context.fillRect(0, 0, 240, 320);
-    this.drawPanel(PANEL_X, PANEL_Y, 4);
+    // The source main-menu panel sits one pixel lower than the selector panels.
+    this.drawPanel(PANEL_X, PANEL_Y + 1, 4);
     this.drawUi(18, Math.floor((PANEL_X + 155 - 109) / 2), 100 + this.selectedMenu * 16);
     for (let index = 0; index < STARTUP_MENU_STRING_IDS.length; index += 1) {
       const label = this.localizedText(STARTUP_MENU_STRING_IDS[index]);
@@ -637,10 +644,10 @@ export class StartupFlowScene extends Phaser.Scene {
         label,
         120,
         107 + index * 16,
-        index === this.selectedMenu ? '#ffffff' : '#000000',
+        '#ffffff',
       );
     }
-    this.drawSoftKeys('OK', 'Exit');
+    this.drawSoftKeys(this.localizedText(2336), this.localizedText(2335));
   }
 
   private drawHelpMenu(): void {
@@ -771,14 +778,14 @@ export class StartupFlowScene extends Phaser.Scene {
     context.fillStyle = '#3f1f3f';
     context.fillRect(0, 0, 240, 320);
     this.drawTopFrame(PANEL_X, PANEL_Y);
-    this.drawText('New Game', 120, 81, '#000000');
+    this.drawText('New Game', 120, 85, '#ffffff');
     this.drawPanel(PANEL_X, PANEL_Y + 24, 3);
-    this.drawText('Attacking ability is good.', 64, 115, '#000000', 'left');
-    this.drawText('Expert with swords', 64, 123, '#000000', 'left');
-    this.drawUi(19, 60, 165);
-    this.drawText('Ronin', 64, 165, '#000000', 'left');
+    this.drawText('Attacking ability is good.', 64, 115, '#ffffff', 'left');
+    this.drawText('Expert with swords', 64, 125, '#ffffff', 'left');
+    this.drawUi(19, 60, 160);
+    this.drawText('Ronin', 64, 165, '#ffffff', 'left');
     this.drawUi('ronin-face', 128, 157);
-    this.drawSoftKeys('OK', 'Back');
+    this.drawSoftKeys(this.localizedText(2336), this.localizedText(2337));
   }
 
   private drawGuardianSelection(confirming: boolean): void {
@@ -786,7 +793,7 @@ export class StartupFlowScene extends Phaser.Scene {
     context.fillStyle = '#3f1f3f';
     context.fillRect(0, 0, 240, 320);
     this.drawTopFrame(PANEL_X, PANEL_Y);
-    this.drawText('New Game', 120, 81, '#000000');
+    this.drawText('New Game', 120, 85, '#ffffff');
     this.drawPanel(PANEL_X, PANEL_Y + 24, 3);
 
     const selectionLineY = 167;
@@ -807,18 +814,18 @@ export class StartupFlowScene extends Phaser.Scene {
     }
 
     if (confirming) {
-      this.drawText('ARE YOU SURE?', 69, 190, '#000000', 'left');
+      this.drawText('ARE YOU SURE?', 69, 190, '#ffffff', 'left');
       this.drawUi(17, 118 + (this.confirmYes ? 0 : 28), 203);
-      this.drawText('YES', 122, 207, this.confirmYes ? '#ffffff' : '#000000', 'left');
-      this.drawText('NO', 150, 207, this.confirmYes ? '#000000' : '#ffffff', 'left');
+      this.drawText('YES', 122, 207, '#ffffff', 'left');
+      this.drawText('NO', 150, 207, '#ffffff', 'left');
     } else {
       const item = GUARDIANS[this.selectedGuardian];
-      this.drawText(item.name, 69, 179, '#000000', 'left');
+      this.drawText(item.name, 69, 180, '#ffffff', 'left');
       item.description.forEach((line, index) => {
-        this.drawText(line, 69, 194 + index * 8, '#000000', 'left');
+        this.drawText(line, 69, 195 + index * 10, '#ffffff', 'left');
       });
     }
-    this.drawSoftKeys('OK', 'Back');
+    this.drawSoftKeys(this.localizedText(2336), this.localizedText(2337));
   }
 
   private drawLoading(): void {
@@ -881,8 +888,8 @@ export class StartupFlowScene extends Phaser.Scene {
     context.fillStyle = '#000000';
     if (left.length > 0) context.fillRect(0, y, leftWidth + 2, font.height + 2);
     context.fillRect(240 - rightWidth - 2, y, rightWidth + 2, font.height + 2);
-    if (left.length > 0) this.drawText(left, 1, y + 1, '#ffffff', 'left');
-    this.drawText(right, 239, y + 1, '#ffffff', 'right');
+    if (left.length > 0) this.drawText(left, 1, y + 2, '#ffffff', 'left');
+    this.drawText(right, 239, y + 2, '#ffffff', 'right');
   }
 
   private textWidth(text: string): number {

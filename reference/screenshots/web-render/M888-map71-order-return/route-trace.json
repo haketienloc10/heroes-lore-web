@@ -1,0 +1,42 @@
+{
+  "id": "M888",
+  "source": "Fresh visible Chromium New Game; checkpoints transcribed from live WorldScene observations and screenshots.",
+  "note": "The prerequisite route to Map71 was repeated from New Game and follows the milestones detailed in M887. This trace records the new Map71 event and return behavior.",
+  "milestones": [
+    {
+      "step": 1,
+      "route": "Visible New Game -> Map63/Reah route -> Map19/22/24 items -> Map25 exchange -> Map10/11 -> Map63 follow-up -> Map69 -> Map70 -> Map71",
+      "result": "The fresh level-99 profile repeated the captured M887 prerequisite route and reached Map71. HP/SP remained 394392/394392."
+    },
+    {
+      "step": 2,
+      "route": "Map71 order event",
+      "result": "From [14,11], facing up, interaction with marker -3 completed the visible event. Game flag 81 and quest flag 10 were present afterward, and the inventory gained category 18/item 7. Quest flag 8 remained present."
+    },
+    {
+      "step": 3,
+      "route": "Map71 south marker -> Map70",
+      "result": "Pressing Down from [10,18] transferred to Map70 [9,5] while retaining game flag 81, quest flag 10, and the Order of Crusaders item."
+    },
+    {
+      "step": 4,
+      "route": "Map70 -> Map71 -> Map70 return repeat",
+      "result": "Visible movement through Map70 marker -4 re-entered Map71 [10,18]; pressing Down returned to Map70 [9,5]. At Map70 [3,5], pressing Up toward marker -3 displayed 'Door is locked.' and left the hero on Map70. The profile remained at full HP/SP."
+    }
+  ],
+  "finalState": {
+    "mapId": 70,
+    "tile": [9, 5],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameFlags": [0, 54, 87, 1, 75, 76, 11, 13, 14, 91, 16, 3, 27, 77, 84, 81],
+    "questFlags": [1, 2, 4, 6, 7, 5, 25, 26, 9, 8, 10],
+    "inventory": [
+      { "category": 9, "itemId": 0, "count": 5 },
+      { "category": 18, "itemId": 7, "count": 1 }
+    ]
+  }
+}

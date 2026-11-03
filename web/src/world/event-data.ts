@@ -376,6 +376,12 @@ export function applyInitialMapEventState(
     } else if (action.opcode === 111) {
       const emotionId = first > 127 ? first - 256 : first;
       heroEmotion = emotionId === 0 ? null : emotionId - 1;
+    } else if (action.opcode === 108) {
+      // The source dispatch returns without changing map state for opcode 108.
+    } else if (action.opcode === 106 || action.opcode === 107) {
+      throw new Error(`Source map startup opcode ${action.opcode} reaches an assertion failure`);
+    } else {
+      throw new Error(`Unsupported map startup opcode ${action.opcode}`);
     }
   }
 
@@ -435,7 +441,10 @@ export function resolveTriggerScript(
       if (!inventory.some((stack) => stack.category === sourceCategory &&
         stack.itemId === sourceItemId && stack.count >= sourceItemCount)) continue;
     }
-    if (scriptIndex === 255) continue;
+    // In the source dispatcher, the first row whose predicate matches is
+    // terminal even when its signed script index is -1 (0xff). That row
+    // deliberately suppresses later fallback rows for this trigger state.
+    if (scriptIndex === 255) return undefined;
 
     const commands = data.scripts[scriptIndex];
     if (commands !== undefined) return { scriptIndex, commands };

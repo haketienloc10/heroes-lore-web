@@ -1,0 +1,83 @@
+{
+  "id": "M875",
+  "title": "Map62 north marker path reachability from the Map61 entry",
+  "date": "2026-11-02",
+  "status": "CAPTURED",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "No gameplay input was sent for this route probe",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "probe": {
+    "start": {
+      "mapId": 62,
+      "tile": [
+        37,
+        21
+      ]
+    },
+    "targetMarker": {
+      "value": -2,
+      "cells": [
+        [
+          15,
+          0
+        ],
+        [
+          16,
+          0
+        ]
+      ]
+    },
+    "approachTiles": [
+      [
+        15,
+        1
+      ],
+      [
+        16,
+        1
+      ]
+    ],
+    "search": "reachable cells across runtime collision values >= 0; negative markers/walls excluded",
+    "reachableCellCount": 619,
+    "approachDistances": [
+      {
+        "tile": [
+          15,
+          1
+        ],
+        "distance": null
+      },
+      {
+        "tile": [
+          16,
+          1
+        ],
+        "distance": null
+      }
+    ],
+    "result": "No path from this arrival tile to either north-marker approach tile in the current live collision state."
+  },
+  "files": {
+    "routeProbe": "route-probe.json",
+    "runtimePathreachability": "runtime-pathreachability.json"
+  },
+  "limits": [
+    "This is a read-only collision reachability check from Map62 (37,21), not proof that the north marker is unreachable from every entry or flag state.",
+    "It does not verify Map62 combat, the campaign ending, ordinary-level balance or J2ME parity."
+  ],
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "originalJarRead": false,
+    "localSaveAccess": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}

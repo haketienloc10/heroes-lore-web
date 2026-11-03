@@ -235,4 +235,25 @@ describe('source shop, refiner, and blacksmith transactions', () => {
       roll: 81,
     });
   });
+
+  it('rejects an upgrade without Mithril before charging or rolling', () => {
+    const weapon = equipmentStack(0);
+    let rolled = false;
+    const result = upgradeCommerceEquipment(
+      [], [weapon, null, null, null, null], equipmentData, 300,
+      { location: 'equipment', slot: 0 },
+      () => { rolled = true; return 1; },
+    );
+
+    expect(result).toMatchObject({
+      status: 'not-enough-material',
+      inventory: [],
+      equipment: [{ equipmentState: { upgradeByte: 0 } }, null, null, null, null],
+      wallet: 300,
+      cost: 0,
+      materials: 1,
+      roll: null,
+    });
+    expect(rolled).toBe(false);
+  });
 });

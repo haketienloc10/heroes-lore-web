@@ -1,0 +1,314 @@
+{
+  "id": "M881",
+  "title": "Map80 Blacksmith empty identification message after locale mapping correction",
+  "date": "2026-11-02",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "input": "Visible keyboard input",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392
+    }
+  },
+  "arrival": {
+    "mapId": 80,
+    "tile": [
+      10,
+      18
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "wallet": 300,
+    "inventory": [],
+    "equipment": [
+      {
+        "category": 0,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      null,
+      {
+        "category": 5,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 6,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 4,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      }
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ]
+  },
+  "route": {
+    "blacksmithApproach": [
+      12,
+      9
+    ],
+    "visibleMovement": [
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          18
+        ],
+        "to": [
+          10,
+          17
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          17
+        ],
+        "to": [
+          10,
+          16
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          16
+        ],
+        "to": [
+          10,
+          15
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          15
+        ],
+        "to": [
+          10,
+          14
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          14
+        ],
+        "to": [
+          10,
+          13
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          13
+        ],
+        "to": [
+          10,
+          12
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          12
+        ],
+        "to": [
+          10,
+          11
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          11
+        ],
+        "to": [
+          10,
+          10
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowUp",
+        "from": [
+          10,
+          10
+        ],
+        "to": [
+          10,
+          9
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowRight",
+        "from": [
+          10,
+          9
+        ],
+        "to": [
+          11,
+          9
+        ]
+      },
+      {
+        "type": "move",
+        "key": "ArrowRight",
+        "from": [
+          11,
+          9
+        ],
+        "to": [
+          12,
+          9
+        ]
+      }
+    ],
+    "serviceInputs": [
+      "ArrowUp",
+      "Enter",
+      "w",
+      "ArrowDown",
+      "Enter",
+      "Enter",
+      "Enter",
+      "Escape"
+    ],
+    "menuPath": [
+      "blacksmith-main",
+      "identify-target",
+      "message",
+      "blacksmith-main",
+      "closed"
+    ]
+  },
+  "identify": {
+    "targets": [],
+    "message": "There is no device to identify",
+    "localeStringId": 2363
+  },
+  "final": {
+    "mapId": 80,
+    "tile": [
+      12,
+      9
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "wallet": 300,
+    "inventory": [],
+    "equipment": [
+      {
+        "category": 0,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      null,
+      {
+        "category": 5,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 6,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      },
+      {
+        "category": 4,
+        "itemId": 0,
+        "count": 1,
+        "identified": true,
+        "upgrade": 0
+      }
+    ],
+    "gameFlags": [
+      0,
+      54,
+      87,
+      3,
+      1,
+      75,
+      5,
+      6
+    ],
+    "questFlags": [
+      1,
+      2,
+      4
+    ],
+    "service": null
+  },
+  "transactionsCommitted": false,
+  "restrictions": {
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarRead": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "limits": [
+    "Current-build browser UI evidence only; no J2ME comparison.",
+    "This verifies only the empty Identify message path, not successful identification or other Blacksmith transactions."
+  ],
+  "screenshots": [
+    "01-map80-arrival.png",
+    "02-blacksmith-main.png",
+    "03-identify-empty-list.png",
+    "04-identify-empty-message.png",
+    "05-map80-final.png"
+  ]
+}

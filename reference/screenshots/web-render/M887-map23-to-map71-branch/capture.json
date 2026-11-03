@@ -1,0 +1,165 @@
+{
+  "id": "M887",
+  "title": "Map23 prerequisite chain through Map71 using visible max-level New Game",
+  "date": "2026-11-03",
+  "runtime": {
+    "url": "http://127.0.0.1:5174/?testProfile=max-level",
+    "browser": "Chromium via CDP",
+    "session": "Fresh temporary browser session. New Game and all gameplay actions used the visible UI and keyboard input.",
+    "profile": {
+      "name": "max-level",
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392
+    }
+  },
+  "setup": {
+    "character": "Ronin",
+    "guardians": [0, 1],
+    "confirmation": "Yes",
+    "route": "Visible New Game, then the Map63 Village Chief and Reah rescue routes; collect the Map19, Map22, and Map24 ingredients; complete the Map25 exchange; pass through Map10 and defeat the Map11 encounter; complete the Map63 quest follow-up and Map69 flag-25 interaction; continue through Maps70 and 71.",
+    "startingState": {
+      "mapId": 64,
+      "tile": [9, 8],
+      "level": 99,
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392
+    }
+  },
+  "observations": [
+    {
+      "route": "Map19 event -> Map21 gate -> Map22 item event",
+      "map19Event": {
+        "tile": [7, 14],
+        "gameFlag11Present": true,
+        "reward": { "category": 20, "itemId": 3, "count": 1 }
+      },
+      "map22Event": {
+        "npc": [12, 8],
+        "approach": [12, 9],
+        "gameFlag12Present": true,
+        "reward": { "category": 19, "itemId": 3, "count": 1 }
+      },
+      "screenshots": ["02-map19-item.png", "03-map22-item.png"]
+    },
+    {
+      "route": "Map23 -> Map24 reward -> Map25 exchange",
+      "map24Reward": {
+        "marker": -3,
+        "approach": [5, 5],
+        "gameFlag13Present": true,
+        "reward": { "category": 19, "itemId": 4, "count": 1 }
+      },
+      "map25Exchange": {
+        "tile": [17, 3],
+        "gameFlag14Present": true,
+        "reward": { "category": 19, "itemId": 0, "count": 1 },
+        "consumed": [
+          { "category": 19, "itemId": 3, "count": 1 },
+          { "category": 19, "itemId": 4, "count": 1 }
+        ]
+      },
+      "screenshots": ["04-map24-reward.png", "05-map25-reward.png"]
+    },
+    {
+      "route": "Map23 marker -6 -> Map10 -> Map11 encounter -> Map27",
+      "map10Arrival": { "tile": [8, 6], "gameFlag91Present": true },
+      "map11Arrival": { "tile": [10, 10], "gameFlag15Present": true },
+      "encounter": {
+        "tile": [10, 9],
+        "action": "Basic attack",
+        "result": "Encounter defeated; the event returned to Map10 at [9,2], then advanced to Map27."
+      },
+      "screenshots": ["06-map10-flag15.png", "07-map11-arrival.png", "08-map11-encounter-defeated.png"]
+    },
+    {
+      "route": "Map63 quest follow-up -> Map60 -> Map69 flag-25 gate -> Map70 -> Map71",
+      "map63Followup": {
+        "firstInteractionFlags": [19, 20],
+        "secondInteractionFlags": [21],
+        "secondInteractionReward": { "category": 18, "itemId": 0, "count": 1 }
+      },
+      "map69": {
+        "arrival": [10, 18],
+        "firstNpcInteraction": {
+          "tile": [14, 8],
+          "approach": [14, 9],
+          "setsGameFlag24": true,
+          "questFlag26Present": true,
+          "consumes": { "category": 18, "itemId": 0, "count": 1 },
+          "reward": { "category": 9, "itemId": 0, "count": 5 }
+        },
+        "secondNpcInteraction": {
+          "setsGameFlag25": true,
+          "clearsGameFlag24": true,
+          "questFlag9Present": true
+        },
+        "northMarker": -2
+      },
+      "map70Arrival": { "tile": [4, 13] },
+      "map71Arrival": {
+        "tile": [10, 12],
+        "gameFlagsAddedByTransfer": [27, 77, 84],
+        "gameFlag25Present": false,
+        "questFlag8Present": true
+      },
+      "screenshots": [
+        "09-map63-flag21.png",
+        "10-map69-arrival.png",
+        "11-map69-flag24.png",
+        "12-map69-flag25.png",
+        "13-map70-arrival.png",
+        "14-map71-final.png"
+      ]
+    }
+  ],
+  "finalState": {
+    "scene": "WorldScene",
+    "mapId": 71,
+    "tile": [10, 12],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameFlags": [0, 54, 87, 1, 75, 76, 11, 13, 14, 91, 16, 3, 27, 77, 84],
+    "questFlags": [1, 2, 4, 6, 7, 5, 25, 26, 9, 8],
+    "inventory": [{ "category": 9, "itemId": 0, "count": 5 }],
+    "opening": false,
+    "dialogue": false,
+    "commerce": null
+  },
+  "method": {
+    "inputs": "Visible keyboard movement, interaction, attack, and dialogue advancement only; New Game was chosen from the title screen.",
+    "observation": "Transient WorldScene state was read at visible route checkpoints for evidence. Screenshots show the corresponding browser-rendered checkpoints.",
+    "restrictions": "No in-game Save/Load, browser-storage read, local-save access, original-JAR access, direct map start, or gameplay-state seeding was used."
+  },
+  "limits": [
+    "This verifies the captured current-build Chromium route with the developer-only max-level profile; it does not establish ordinary-level survivability or J2ME parity.",
+    "The profile changes combat survivability, so the Map11 encounter result is not evidence of ordinary-level combat balance.",
+    "Reaching Map71 does not establish natural full-campaign completion or verify every map, event, ending, and Save/Load path."
+  ],
+  "screenshots": [
+    "00-title.png",
+    "01-map63-approach.png",
+    "02-map19-item.png",
+    "03-map22-item.png",
+    "04-map24-reward.png",
+    "05-map25-reward.png",
+    "06-map10-flag15.png",
+    "07-map11-arrival.png",
+    "08-map11-encounter-defeated.png",
+    "09-map63-flag21.png",
+    "10-map69-arrival.png",
+    "11-map69-flag24.png",
+    "12-map69-flag25.png",
+    "13-map70-arrival.png",
+    "14-map71-final.png"
+  ],
+  "routeTrace": "route-trace.json",
+  "manualInteractions": "manual-interactions.json"
+}
