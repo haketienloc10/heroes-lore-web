@@ -635,6 +635,17 @@ class MapResourcesMissingError extends Error {
   }
 }
 
+function clearCampaignTestRuntimeTelemetry(gameHost: HTMLElement | null | undefined): void {
+  if (gameHost === null || gameHost === undefined) return;
+  delete gameHost.dataset.testProfile;
+  delete gameHost.dataset.testMapId;
+  delete gameHost.dataset.testPlayerTileX;
+  delete gameHost.dataset.testPlayerTileY;
+  delete gameHost.dataset.testHp;
+  delete gameHost.dataset.testLevel;
+  delete gameHost.dataset.testRuntime;
+}
+
 export class WorldScene extends Phaser.Scene {
   private readonly randomStreams = createRuntimeSourceRandomStreams();
   private actor: PlayerActor = createPlayerActor();
@@ -780,7 +791,7 @@ export class WorldScene extends Phaser.Scene {
   private gameOverTexture: Phaser.Textures.CanvasTexture | null = null;
   private gameOverOverlay: Phaser.GameObjects.Image | null = null;
   private gameOptions: GameOptions = { ...DEFAULT_GAME_OPTIONS };
-  private campaignTestProfile: CampaignTestProfile | null = null;
+  declare private campaignTestProfile: CampaignTestProfile | null;
 
   constructor() {
     super({ key: 'WorldScene' });
@@ -886,22 +897,23 @@ export class WorldScene extends Phaser.Scene {
     const startRoute = typeof data === 'object' && data !== null && 'startRoute' in data
       ? (data as { startRoute?: unknown }).startRoute
       : undefined;
-    const requestedTestProfile = typeof data === 'object' && data !== null && 'testProfile' in data
-      ? (data as { testProfile?: unknown }).testProfile
-      : undefined;
-    this.campaignTestProfile = import.meta.env.DEV && startRoute === 'new-game' &&
-      isCampaignTestProfile(requestedTestProfile) ? requestedTestProfile : null;
     if (import.meta.env.DEV) {
+      const requestedTestProfile = typeof data === 'object' && data !== null && 'testProfile' in data
+        ? (data as { testProfile?: unknown }).testProfile
+        : undefined;
+      this.campaignTestProfile = startRoute === 'new-game' && isCampaignTestProfile(requestedTestProfile)
+        ? requestedTestProfile
+        : null;
       this.game.registry.set(
         'heroesLoreTestProfile',
         this.campaignTestProfile,
       );
-      this.clearCampaignTestRuntimeTelemetry();
       const gameHost = this.game.canvas?.parentElement;
+      clearCampaignTestRuntimeTelemetry(gameHost);
       if (gameHost !== null && gameHost !== undefined) {
         if (this.campaignTestProfile !== null) gameHost.dataset.testProfile = this.campaignTestProfile;
       }
-      this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.clearCampaignTestRuntimeTelemetry());
+      this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => clearCampaignTestRuntimeTelemetry(gameHost));
     }
     const guardianIndices = typeof data === 'object' && data !== null &&
       'guardianIndices' in data && Array.isArray((data as { guardianIndices?: unknown }).guardianIndices)
@@ -919,7 +931,7 @@ export class WorldScene extends Phaser.Scene {
       : (restoreState?.playthroughMode ?? 0);
     this.completionPoints = restoreState?.completionPoints ?? 0;
     this.playTimeSeconds = restoreState?.playTimeSeconds ?? 0;
-    this.characterAttributes = restoreState?.attributes ?? (this.campaignTestProfile !== null
+    this.characterAttributes = restoreState?.attributes ?? (import.meta.env.DEV && this.campaignTestProfile !== null
       ? createBoostedCampaignTestAttributes()
       : createBasePlayerAttributes(this.heroClassId));
     this.systemMenuVisible = false;
@@ -941,7 +953,7 @@ export class WorldScene extends Phaser.Scene {
     this.attributeDraft = createAttributeDraft(0);
     this.systemMenuMessage = '';
     this.hudState = { ...NEW_GAME_RONIN_HUD };
-    if (this.campaignTestProfile !== null) {
+    if (import.meta.env.DEV && this.campaignTestProfile !== null) {
       this.hudState = applyCampaignTestHud(this.hudState, this.campaignTestProfile);
     }
     this.wallet = NEW_GAME_WALLET;
@@ -1259,7 +1271,7 @@ export class WorldScene extends Phaser.Scene {
         : createStartingEquipment(this.heroClassId, this.equipmentDataTable);
       this.inventory = normalizeEquipmentInventory(this.inventory, this.equipmentDataTable);
       this.recalculateEquipmentStats();
-      if (this.campaignTestProfile !== null) {
+      if (import.meta.env.DEV && this.campaignTestProfile !== null) {
         this.hudState.hp = this.hudState.maxHp;
         this.hudState.sp = this.hudState.maxSp;
       }
@@ -1626,7 +1638,56 @@ export class WorldScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
-    if (import.meta.env.DEV) this.syncCampaignTestRuntimeTelemetry();
+    if (import.meta.env.DEV && this.campaignTestProfile !== null) {
+      const gameHost = this.game.canvas?.parentElement;
+      if (gameHost !== null && gameHost !== undefined) {
+        const activeMap = this.maps.get(this.currentMapId);
+        const tileX = this.actor.x >> 4;
+        const tileY = this.actor.y >> 4;
+        gameHost.dataset.testProfile = this.campaignTestProfile;
+        gameHost.dataset.testMapId = String(this.currentMapId);
+        gameHost.dataset.testPlayerTileX = String(tileX);
+        gameHost.dataset.testPlayerTileY = String(tileY);
+        gameHost.dataset.testHp = String(this.hudState.hp);
+        gameHost.dataset.testLevel = String(this.hudState.level);
+        gameHost.dataset.testRuntime = serializeCampaignTestRuntimeSnapshot({
+          profile: this.campaignTestProfile,
+          mapId: this.currentMapId,
+          player: {
+            tileX,
+            tileY,
+            direction: this.actor.direction,
+          },
+          hp: this.hudState.hp,
+          maxHp: this.hudState.maxHp,
+          sp: this.hudState.sp,
+          maxSp: this.hudState.maxSp,
+          level: this.hudState.level,
+          gameFlags: this.gameFlags,
+          questFlags: this.questFlags,
+          skillAction: {
+            skillId: this.playerSkillAction.skillId,
+            skillRank: this.playerSkillAction.skillRank,
+            phase: this.playerSkillAction.phase,
+            levelSlot: this.playerSkillAction.levelSlot,
+            tileX: this.playerSkillAction.tileX,
+            tileY: this.playerSkillAction.tileY,
+            effectAge: this.playerSkillAction.effectAge,
+            chargeTicksRemaining: this.playerSkillAction.chargeTicksRemaining,
+          },
+          dialogueOpen: this.openingDialogVisible || this.worldDialogueVisible,
+          transitionPending: this.loadingMapTransition,
+          enemies: (activeMap?.enemies ?? []).map((enemy) => ({
+            sourceOrder: enemy.sourceOrder,
+            enemyId: enemy.enemyId,
+            tileX: enemy.tileX,
+            tileY: enemy.tileY,
+            hp: enemy.hp,
+            state: enemy.state,
+          })),
+        });
+      }
+    }
     if (this.gameOverReturnPending) {
       this.gameOverReturnPending = false;
       this.scene.start('StartupFlowScene', { skipStartupSplash: true });
@@ -1920,71 +1981,8 @@ export class WorldScene extends Phaser.Scene {
     this.sourceCameraShakeOffset = null;
   }
 
-  private syncCampaignTestRuntimeTelemetry(): void {
-    if (this.campaignTestProfile === null) return;
-    const gameHost = this.game.canvas?.parentElement;
-    if (gameHost === null || gameHost === undefined) return;
-    const activeMap = this.maps.get(this.currentMapId);
-    const tileX = this.actor.x >> 4;
-    const tileY = this.actor.y >> 4;
-    gameHost.dataset.testProfile = this.campaignTestProfile;
-    gameHost.dataset.testMapId = String(this.currentMapId);
-    gameHost.dataset.testPlayerTileX = String(tileX);
-    gameHost.dataset.testPlayerTileY = String(tileY);
-    gameHost.dataset.testHp = String(this.hudState.hp);
-    gameHost.dataset.testLevel = String(this.hudState.level);
-    gameHost.dataset.testRuntime = serializeCampaignTestRuntimeSnapshot({
-      profile: this.campaignTestProfile,
-      mapId: this.currentMapId,
-      player: {
-        tileX,
-        tileY,
-        direction: this.actor.direction,
-      },
-      hp: this.hudState.hp,
-      maxHp: this.hudState.maxHp,
-      sp: this.hudState.sp,
-      maxSp: this.hudState.maxSp,
-      level: this.hudState.level,
-      gameFlags: this.gameFlags,
-      questFlags: this.questFlags,
-      skillAction: {
-        skillId: this.playerSkillAction.skillId,
-        skillRank: this.playerSkillAction.skillRank,
-        phase: this.playerSkillAction.phase,
-        levelSlot: this.playerSkillAction.levelSlot,
-        tileX: this.playerSkillAction.tileX,
-        tileY: this.playerSkillAction.tileY,
-        effectAge: this.playerSkillAction.effectAge,
-        chargeTicksRemaining: this.playerSkillAction.chargeTicksRemaining,
-      },
-      dialogueOpen: this.openingDialogVisible || this.worldDialogueVisible,
-      transitionPending: this.loadingMapTransition,
-      enemies: (activeMap?.enemies ?? []).map((enemy) => ({
-        sourceOrder: enemy.sourceOrder,
-        enemyId: enemy.enemyId,
-        tileX: enemy.tileX,
-        tileY: enemy.tileY,
-        hp: enemy.hp,
-        state: enemy.state,
-      })),
-    });
-  }
-
-  private clearCampaignTestRuntimeTelemetry(): void {
-    const gameHost = this.game.canvas?.parentElement;
-    if (gameHost === null || gameHost === undefined) return;
-    delete gameHost.dataset.testProfile;
-    delete gameHost.dataset.testMapId;
-    delete gameHost.dataset.testPlayerTileX;
-    delete gameHost.dataset.testPlayerTileY;
-    delete gameHost.dataset.testHp;
-    delete gameHost.dataset.testLevel;
-    delete gameHost.dataset.testRuntime;
-  }
-
   private beginGameOver(): void {
-    if (this.campaignTestProfile !== null) {
+    if (import.meta.env.DEV && this.campaignTestProfile !== null) {
       this.hudState.hp = this.hudState.maxHp;
       this.hudState.sp = this.hudState.maxSp;
       this.refreshGameplayHud();

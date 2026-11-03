@@ -17,22 +17,23 @@ How does the source replenish player HP and SP during world updates, and does th
 - HP recovery adds the character's HP attribute plus the sum of equipment HP bonuses. The initial timer is 67; after each pulse it resets to `min(67 + level, 100)`. SP recovery adds the Will attribute plus equipment Will bonuses, starts at 21, and resets to 21 after each pulse. The source stat calculation accumulates equipment bonuses in the same four attribute slots used by FND-0036.
 - `an.a()` initializes the transient timers. Class setup assigns the starting level afterward, so the new-character initial HP timer is 67. The source player save writes the level, current/max vitals, attributes and equipment, but not these timers; restoring the player therefore starts from initialized timer values rather than persisting partial countdowns.
 - The source gameplay paint/input path remains in mode 2 while the System overlay is drawn, so player and map ticks continue beneath it. Commerce handoffs use separate source modes.
-- The source has an `f54h` multiplier branch that doubles both recovery amounts. No assignment to that field was found in the extracted source call sites; the web implementation applies the ordinary amount and leaves this branch as an unresolved source path.
+- The `f54h` branch doubles both recovery amounts without changing either timer interval. FND-0038 later identifies the assignment: skill ID 1 level 2 sets `an.f54h` for its 81-update effect window. The web skill-action state models that window as `recoveryBoostTicksRemaining`, and `WorldScene` passes multiplier 2 to the recovery helper while it is active. Unit coverage checks the skill window and doubled HP/SP pulse; a targeted browser observation of this buff remains open ([FND-0038](FND-0038-player-skill-actions.md)).
 
 ## Browser implementation
 
 - `web/src/world/player-recovery.ts` models the transient signed-byte timers, idle/walking/other activity rates, level-based HP timer reset, 21-tick SP reset, equipment-adjusted attribute amounts, and source HP/SP clamping.
-- `WorldScene` advances recovery at the player's 71 ms world-tick boundary. It derives activity from the actor and active combo, applies current effective equipment attributes, and refreshes the HUD when a pulse changes a value.
+- `WorldScene` advances recovery at the player's 71 ms world-tick boundary. It derives activity from the actor and active combo, applies current effective equipment attributes, and refreshes the HUD when a pulse changes a value. During the skill-1 level-2 buff window it supplies the source multiplier 2.
 - The source System overlay no longer pauses world simulation. Commerce screens still hold the map simulation, matching their separate source mode.
-- Four unit tests cover initial timers, idle versus walking rates, action-state holds, equipment-adjusted gains, clamping, high-level timer bounds, and inactive gameplay.
+- Five recovery unit tests cover initial timers, idle versus walking rates, action-state holds, equipment-adjusted gains, clamping, high-level timer bounds, inactive gameplay, and the doubled pulse amount. A separate skill-action test covers the rank-20 buff window.
 
 ## Runtime evidence
 
 - Seeded a level-1 Ronin with HP `40/72`, SP `10/60`, base attributes `(8,5,3,4)`, and the reconstructed starting equipment.
 - Left the actor idle for 2.8 seconds, opened System, left the overlay visible for five seconds, then saved. The resulting browser save records HP `50/72` and SP `60/60`. This demonstrates timer-driven recovery while the overlay is open; the combined wait is wall-clock time, not a J2ME tick-by-tick comparison.
 - Chromium reported no page exceptions, console errors, or failed requests. See [M97 capture](../../reference/screenshots/web-render/M97-player-recovery/capture.json).
+- M910 attempted a fresh max-level New Game route to Map27 for walking recovery observation. After three REA launches, the final run reached Map64 `(9,8)` but short directional press/release actions did not change the runtime tile, so the route never reached an enemy. No damage or walking recovery was observed. The replay subtask is BLOCKED at its three-attempt limit; see [M910 notes](../../reference/screenshots/web-render/M910-walking-recovery-replay/attempt-notes.md) and its three retained Evidence IDs in [capture summary](../../reference/screenshots/web-render/M910-walking-recovery-replay/capture.json). The key-up-before-first-update explanation is an inference; this result does not establish an implementation defect.
 
 ## Verification and limits
 
 - Vitest: 35 files / 229 tests passed. Typecheck passed. Production build passed; the larger JavaScript chunk is 1,411.77 kB minified and Vite retains its >500 kB warning.
-- The runtime scenario is a seeded level-1 Ronin, not natural progression. Walking rates are covered by unit tests but have no browser/J2ME comparison. The `f54h` double-recovery branch, exact emulator timing, other classes, and long-term recovery during every game mode remain unverified.
+- The M97 runtime scenario is a seeded level-1 Ronin, not natural progression. The `f54h` double-recovery branch is source-derived and unit-tested, but has no targeted browser observation or J2ME comparison. Walking rates have no successful browser observation; M910's live replay is blocked after three attempts. Exact emulator timing, other classes, and long-term recovery during every game mode remain unverified.

@@ -452,10 +452,11 @@ export class StartupFlowScene extends Phaser.Scene {
     this.page = 'loading';
     this.renderPage();
     const guardianIndices = [...this.selectedGuardians].sort((first, second) => first - second);
-    const requestedTestProfile = new URLSearchParams(window.location.search).get('testProfile');
-    const testProfile = import.meta.env.DEV && isCampaignTestProfile(requestedTestProfile)
-      ? requestedTestProfile
-      : undefined;
+    let testProfile: string | undefined;
+    if (import.meta.env.DEV) {
+      const requestedTestProfile = new URLSearchParams(window.location.search).get('testProfile');
+      if (isCampaignTestProfile(requestedTestProfile)) testProfile = requestedTestProfile;
+    }
     this.loadGameplayScenesAndStart({
       startRoute: 'new-game',
       guardianIndices,
