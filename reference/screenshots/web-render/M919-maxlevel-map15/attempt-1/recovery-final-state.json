@@ -1,0 +1,509 @@
+{
+  "start": {
+    "format": "heroes-lore-campaign-test-runtime-v1",
+    "profile": "max-level",
+    "mapId": 27,
+    "player": {
+      "tileX": 23,
+      "tileY": 9,
+      "direction": 4
+    },
+    "resources": {
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392,
+      "level": 99
+    },
+    "gameFlags": [
+      0,
+      3,
+      54,
+      87
+    ],
+    "questFlags": [],
+    "skillAction": {
+      "skillId": 0,
+      "skillRank": 1,
+      "phase": 0,
+      "levelSlot": null,
+      "tileX": 0,
+      "tileY": 0,
+      "effectAge": 0,
+      "chargeTicksRemaining": [
+        0,
+        280,
+        280
+      ]
+    },
+    "dialogueOpen": false,
+    "transitionPending": false,
+    "enemies": [
+      {
+        "sourceOrder": 0,
+        "enemyId": 21,
+        "tileX": 11,
+        "tileY": 2,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 1,
+        "enemyId": 24,
+        "tileX": 7,
+        "tileY": 9,
+        "hp": 0,
+        "state": "respawn-wait"
+      },
+      {
+        "sourceOrder": 2,
+        "enemyId": 21,
+        "tileX": 29,
+        "tileY": 6,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 3,
+        "enemyId": 24,
+        "tileX": 5,
+        "tileY": 7,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 4,
+        "enemyId": 24,
+        "tileX": 21,
+        "tileY": 9,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 5,
+        "enemyId": 21,
+        "tileX": 27,
+        "tileY": 12,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 6,
+        "enemyId": 24,
+        "tileX": 5,
+        "tileY": 14,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 7,
+        "enemyId": 24,
+        "tileX": 26,
+        "tileY": 13,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 8,
+        "enemyId": 21,
+        "tileX": 34,
+        "tileY": 16,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 9,
+        "enemyId": 21,
+        "tileX": 24,
+        "tileY": 16,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 10,
+        "enemyId": 24,
+        "tileX": 27,
+        "tileY": 22,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 11,
+        "enemyId": 21,
+        "tileX": 32,
+        "tileY": 22,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 12,
+        "enemyId": 21,
+        "tileX": 16,
+        "tileY": 24,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 13,
+        "enemyId": 21,
+        "tileX": 37,
+        "tileY": 28,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 14,
+        "enemyId": 24,
+        "tileX": 16,
+        "tileY": 29,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 15,
+        "enemyId": 21,
+        "tileX": 32,
+        "tileY": 31,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 16,
+        "enemyId": 24,
+        "tileX": 22,
+        "tileY": 33,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 17,
+        "enemyId": 24,
+        "tileX": 16,
+        "tileY": 36,
+        "hp": 43,
+        "state": "alive"
+      }
+    ]
+  },
+  "path": [
+    {
+      "tile": [
+        5,
+        21
+      ],
+      "key": "ArrowLeft",
+      "dir": "L"
+    },
+    {
+      "tile": [
+        4,
+        21
+      ],
+      "key": "ArrowLeft",
+      "dir": "L"
+    },
+    {
+      "tile": [
+        4,
+        20
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        20
+      ],
+      "key": "ArrowLeft",
+      "dir": "L"
+    },
+    {
+      "tile": [
+        3,
+        19
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        18
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        17
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        16
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        15
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        14
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        13
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        12
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        3,
+        11
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        4,
+        11
+      ],
+      "key": "ArrowRight",
+      "dir": "R"
+    },
+    {
+      "tile": [
+        5,
+        11
+      ],
+      "key": "ArrowRight",
+      "dir": "R"
+    },
+    {
+      "tile": [
+        5,
+        10
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        5,
+        9
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        5,
+        8
+      ],
+      "key": "ArrowUp",
+      "dir": "U"
+    },
+    {
+      "tile": [
+        6,
+        8
+      ],
+      "key": "ArrowRight",
+      "dir": "R"
+    },
+    {
+      "tile": [
+        7,
+        8
+      ],
+      "key": "ArrowRight",
+      "dir": "R"
+    }
+  ],
+  "moved": 12,
+  "missed": 8,
+  "after": {
+    "mapId": 27,
+    "x": 23,
+    "y": 9,
+    "direction": 4,
+    "hp": 394392,
+    "maxHp": 394392,
+    "profile": "max-level",
+    "dialogueOpen": false,
+    "transitionPending": false,
+    "enemies": [
+      {
+        "sourceOrder": 0,
+        "enemyId": 21,
+        "tileX": 11,
+        "tileY": 2,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 1,
+        "enemyId": 24,
+        "tileX": 7,
+        "tileY": 9,
+        "hp": 0,
+        "state": "respawn-wait"
+      },
+      {
+        "sourceOrder": 2,
+        "enemyId": 21,
+        "tileX": 29,
+        "tileY": 6,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 3,
+        "enemyId": 24,
+        "tileX": 5,
+        "tileY": 7,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 4,
+        "enemyId": 24,
+        "tileX": 21,
+        "tileY": 9,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 5,
+        "enemyId": 21,
+        "tileX": 27,
+        "tileY": 12,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 6,
+        "enemyId": 24,
+        "tileX": 5,
+        "tileY": 14,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 7,
+        "enemyId": 24,
+        "tileX": 26,
+        "tileY": 13,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 8,
+        "enemyId": 21,
+        "tileX": 34,
+        "tileY": 16,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 9,
+        "enemyId": 21,
+        "tileX": 24,
+        "tileY": 16,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 10,
+        "enemyId": 24,
+        "tileX": 27,
+        "tileY": 22,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 11,
+        "enemyId": 21,
+        "tileX": 32,
+        "tileY": 22,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 12,
+        "enemyId": 21,
+        "tileX": 16,
+        "tileY": 24,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 13,
+        "enemyId": 21,
+        "tileX": 37,
+        "tileY": 28,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 14,
+        "enemyId": 24,
+        "tileX": 16,
+        "tileY": 29,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 15,
+        "enemyId": 21,
+        "tileX": 32,
+        "tileY": 31,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 16,
+        "enemyId": 24,
+        "tileX": 22,
+        "tileY": 33,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 17,
+        "enemyId": 24,
+        "tileX": 16,
+        "tileY": 36,
+        "hp": 43,
+        "state": "alive"
+      }
+    ]
+  }
+}

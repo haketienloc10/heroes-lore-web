@@ -1,0 +1,62 @@
+{
+  "id": "M916-followup-2",
+  "target": {
+    "sourceOrder": 14,
+    "enemyId": 24,
+    "tileBefore": [
+      9,
+      31
+    ],
+    "hpBefore": 43
+  },
+  "playerBefore": {
+    "mapId": 27,
+    "tile": [
+      10,
+      31
+    ],
+    "direction": 1,
+    "level": 99,
+    "hp": 394392,
+    "sp": 394392
+  },
+  "facingInput": "ArrowLeft",
+  "afterFacing": {
+    "mapId": 27,
+    "tile": [
+      10,
+      31
+    ],
+    "direction": 3,
+    "targetTile": [
+      9,
+      31
+    ]
+  },
+  "attackInput": "5 (light)",
+  "afterAttack": {
+    "mapId": 27,
+    "tile": [
+      10,
+      31
+    ],
+    "direction": 3,
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameOver": false,
+    "target": {
+      "sourceOrder": 14,
+      "enemyId": 24,
+      "tile": [
+        9,
+        31
+      ],
+      "hp": 0,
+      "state": "respawn-wait"
+    }
+  },
+  "attackChanged": true
+}

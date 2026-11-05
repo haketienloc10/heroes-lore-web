@@ -1,0 +1,605 @@
+{
+  "route": [
+    {
+      "i": 1,
+      "key": "L",
+      "before": [
+        25,
+        12
+      ],
+      "after": [
+        24,
+        12
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 2,
+      "key": "D",
+      "before": [
+        24,
+        12
+      ],
+      "after": [
+        24,
+        12
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 3,
+      "key": "L",
+      "before": [
+        24,
+        12
+      ],
+      "after": [
+        23,
+        12
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 4,
+      "key": "D",
+      "before": [
+        23,
+        12
+      ],
+      "after": [
+        23,
+        13
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 5,
+      "key": "D",
+      "before": [
+        23,
+        13
+      ],
+      "after": [
+        23,
+        14
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 6,
+      "key": "D",
+      "before": [
+        23,
+        14
+      ],
+      "after": [
+        23,
+        15
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 7,
+      "key": "D",
+      "before": [
+        23,
+        15
+      ],
+      "after": [
+        23,
+        16
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 8,
+      "key": "D",
+      "before": [
+        23,
+        16
+      ],
+      "after": [
+        23,
+        17
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 9,
+      "key": "D",
+      "before": [
+        23,
+        17
+      ],
+      "after": [
+        23,
+        18
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 10,
+      "key": "D",
+      "before": [
+        23,
+        18
+      ],
+      "after": [
+        23,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 11,
+      "key": "L",
+      "before": [
+        23,
+        19
+      ],
+      "after": [
+        22,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 12,
+      "key": "L",
+      "before": [
+        22,
+        19
+      ],
+      "after": [
+        21,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 13,
+      "key": "L",
+      "before": [
+        21,
+        19
+      ],
+      "after": [
+        20,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 14,
+      "key": "L",
+      "before": [
+        20,
+        19
+      ],
+      "after": [
+        19,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 15,
+      "key": "L",
+      "before": [
+        19,
+        19
+      ],
+      "after": [
+        18,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 16,
+      "key": "L",
+      "before": [
+        18,
+        19
+      ],
+      "after": [
+        17,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 17,
+      "key": "D",
+      "before": [
+        17,
+        19
+      ],
+      "after": [
+        17,
+        20
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 18,
+      "key": "U",
+      "before": [
+        17,
+        20
+      ],
+      "after": [
+        17,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 19,
+      "key": "L",
+      "before": [
+        17,
+        19
+      ],
+      "after": [
+        16,
+        19
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 20,
+      "key": "U",
+      "before": [
+        16,
+        19
+      ],
+      "after": [
+        16,
+        18
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 21,
+      "key": "U",
+      "before": [
+        16,
+        18
+      ],
+      "after": [
+        16,
+        17
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 22,
+      "key": "U",
+      "before": [
+        16,
+        17
+      ],
+      "after": [
+        16,
+        16
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 23,
+      "key": "U",
+      "before": [
+        16,
+        16
+      ],
+      "after": [
+        16,
+        15
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 24,
+      "key": "U",
+      "before": [
+        16,
+        15
+      ],
+      "after": [
+        16,
+        14
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 25,
+      "key": "U",
+      "before": [
+        16,
+        14
+      ],
+      "after": [
+        16,
+        13
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 26,
+      "key": "U",
+      "before": [
+        16,
+        13
+      ],
+      "after": [
+        16,
+        12
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 27,
+      "key": "L",
+      "before": [
+        16,
+        12
+      ],
+      "after": [
+        15,
+        12
+      ],
+      "dialogueOpen": false
+    },
+    {
+      "i": 28,
+      "key": "L",
+      "before": [
+        15,
+        12
+      ],
+      "after": [
+        14,
+        12
+      ],
+      "dialogueOpen": true
+    }
+  ],
+  "error": null,
+  "final": {
+    "format": "heroes-lore-campaign-test-runtime-v4",
+    "profile": "max-level",
+    "mapId": 4,
+    "mapSize": {
+      "width": 30,
+      "height": 40
+    },
+    "entityOccupiedCells": [
+      {
+        "tileX": 6,
+        "tileY": 5
+      },
+      {
+        "tileX": 18,
+        "tileY": 6
+      },
+      {
+        "tileX": 16,
+        "tileY": 14
+      },
+      {
+        "tileX": 6,
+        "tileY": 18
+      },
+      {
+        "tileX": 17,
+        "tileY": 19
+      },
+      {
+        "tileX": 16,
+        "tileY": 31
+      }
+    ],
+    "player": {
+      "tileX": 14,
+      "tileY": 12,
+      "direction": 3
+    },
+    "resources": {
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392,
+      "level": 99
+    },
+    "wallet": 300,
+    "inventory": [
+      {
+        "category": 20,
+        "itemId": 4,
+        "count": 1
+      },
+      {
+        "category": 20,
+        "itemId": 5,
+        "count": 1
+      },
+      {
+        "category": 20,
+        "itemId": 6,
+        "count": 1
+      }
+    ],
+    "equipment": [
+      {
+        "category": 0,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": [
+            15,
+            10,
+            -1
+          ]
+        }
+      },
+      null,
+      {
+        "category": 5,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": []
+        }
+      },
+      {
+        "category": 6,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": []
+        }
+      },
+      {
+        "category": 4,
+        "itemId": 0,
+        "count": 1,
+        "equipmentState": {
+          "sourceFlag": true,
+          "upgradeByte": 0,
+          "bonusValues": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subtypeBytes": []
+        }
+      }
+    ],
+    "groundDrops": [],
+    "gameFlags": [
+      0,
+      1,
+      3,
+      5,
+      6,
+      52,
+      53,
+      54,
+      69,
+      70,
+      71,
+      72,
+      75,
+      87
+    ],
+    "questFlags": [
+      1,
+      2,
+      4,
+      14,
+      16
+    ],
+    "skillAction": {
+      "skillId": 0,
+      "skillRank": 17,
+      "phase": 0,
+      "levelSlot": null,
+      "tileX": 7,
+      "tileY": 10,
+      "effectAge": 17,
+      "chargeTicksRemaining": [
+        0,
+        0,
+        280
+      ]
+    },
+    "combo": {
+      "stage": -1,
+      "frame": 0,
+      "activeStyle": null,
+      "queuedStyle": null,
+      "recoveryTicks": 0,
+      "tickRemainderMs": 23.639999999637276,
+      "comboLimit": 1
+    },
+    "dialogueOpen": true,
+    "transitionPending": false,
+    "enemies": [
+      {
+        "sourceOrder": 0,
+        "enemyId": 12,
+        "tileX": 6,
+        "tileY": 5,
+        "hp": 2160,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 1,
+        "enemyId": 12,
+        "tileX": 18,
+        "tileY": 6,
+        "hp": 2160,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 2,
+        "enemyId": 12,
+        "tileX": 17,
+        "tileY": 19,
+        "hp": 2160,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 3,
+        "enemyId": 12,
+        "tileX": 6,
+        "tileY": 18,
+        "hp": 2160,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 4,
+        "enemyId": 12,
+        "tileX": 16,
+        "tileY": 14,
+        "hp": 2160,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 5,
+        "enemyId": 12,
+        "tileX": 16,
+        "tileY": 31,
+        "hp": 2160,
+        "state": "alive"
+      }
+    ],
+    "npcs": []
+  }
+}

@@ -1,0 +1,1090 @@
+{
+  "id": "M916",
+  "url": "http://127.0.0.1:5174/?testProfile=max-level",
+  "browser": "Chromium Chrome/156.0.8078.4",
+  "start": {
+    "profile": "max-level",
+    "mapId": 64,
+    "tile": [
+      9,
+      8
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameOver": false,
+    "dialogue": false,
+    "enemiesAlive": 0,
+    "target": null
+  },
+  "map27Arrival": {
+    "profile": "max-level",
+    "mapId": 27,
+    "tile": [
+      5,
+      37
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameOver": false,
+    "dialogue": false,
+    "enemiesAlive": 18,
+    "target": {
+      "sourceOrder": 14,
+      "enemyId": 24,
+      "hp": 43,
+      "state": "alive"
+    }
+  },
+  "beforeAttack": {
+    "profile": "max-level",
+    "mapId": 27,
+    "tile": [
+      10,
+      31
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameOver": false,
+    "dialogue": false,
+    "enemiesAlive": 18,
+    "target": {
+      "sourceOrder": 14,
+      "enemyId": 24,
+      "hp": 43,
+      "state": "alive"
+    }
+  },
+  "final": {
+    "profile": "max-level",
+    "mapId": 27,
+    "tile": [
+      10,
+      31
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameOver": false,
+    "target": {
+      "sourceOrder": 14,
+      "enemyId": 24,
+      "tileBeforeAttack": [
+        9,
+        31
+      ],
+      "hpBefore": 43,
+      "hpAfter": 0,
+      "stateAfter": "respawn-wait"
+    }
+  },
+  "routeActionCount": 76,
+  "route": [
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        9,
+        8
+      ],
+      "to": [
+        10,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        8
+      ],
+      "to": [
+        10,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        9
+      ],
+      "to": [
+        10,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        10
+      ],
+      "to": [
+        10,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        11
+      ],
+      "to": [
+        10,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        12
+      ],
+      "to": [
+        10,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        13
+      ],
+      "to": [
+        10,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        14
+      ],
+      "to": [
+        10,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        10,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map64-exit",
+      "from": [
+        10,
+        16
+      ],
+      "to": [
+        10,
+        17
+      ]
+    },
+    {
+      "type": "transfer",
+      "from": 64,
+      "to": 0,
+      "tile": [
+        26,
+        24
+      ],
+      "input": "ArrowDown"
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        26,
+        24
+      ],
+      "to": [
+        25,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        25,
+        24
+      ],
+      "to": [
+        24,
+        24
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        24,
+        24
+      ],
+      "to": [
+        24,
+        23
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        24,
+        23
+      ],
+      "to": [
+        23,
+        23
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        23
+      ],
+      "to": [
+        23,
+        22
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        22
+      ],
+      "to": [
+        23,
+        21
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        21
+      ],
+      "to": [
+        23,
+        20
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        20
+      ],
+      "to": [
+        23,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        23,
+        19
+      ],
+      "to": [
+        22,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        22,
+        19
+      ],
+      "to": [
+        21,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        21,
+        19
+      ],
+      "to": [
+        20,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        20,
+        19
+      ],
+      "to": [
+        19,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        19,
+        19
+      ],
+      "to": [
+        18,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        19
+      ],
+      "to": [
+        17,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        17,
+        19
+      ],
+      "to": [
+        16,
+        19
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        19
+      ],
+      "to": [
+        16,
+        18
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        18
+      ],
+      "to": [
+        16,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        17
+      ],
+      "to": [
+        15,
+        17
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        15,
+        17
+      ],
+      "to": [
+        15,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        15,
+        16
+      ],
+      "to": [
+        14,
+        16
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        14,
+        16
+      ],
+      "to": [
+        14,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        14,
+        15
+      ],
+      "to": [
+        13,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        13,
+        15
+      ],
+      "to": [
+        12,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        12,
+        15
+      ],
+      "to": [
+        11,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        11,
+        15
+      ],
+      "to": [
+        10,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        10,
+        15
+      ],
+      "to": [
+        9,
+        15
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        15
+      ],
+      "to": [
+        9,
+        14
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        14
+      ],
+      "to": [
+        9,
+        13
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        13
+      ],
+      "to": [
+        9,
+        12
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        12
+      ],
+      "to": [
+        9,
+        11
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        11
+      ],
+      "to": [
+        9,
+        10
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        10
+      ],
+      "to": [
+        9,
+        9
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        9
+      ],
+      "to": [
+        9,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        9,
+        8
+      ],
+      "to": [
+        10,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        10,
+        8
+      ],
+      "to": [
+        11,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        11,
+        8
+      ],
+      "to": [
+        12,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        12,
+        8
+      ],
+      "to": [
+        13,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        13,
+        8
+      ],
+      "to": [
+        14,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        14,
+        8
+      ],
+      "to": [
+        15,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        15,
+        8
+      ],
+      "to": [
+        16,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        16,
+        8
+      ],
+      "to": [
+        17,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        17,
+        8
+      ],
+      "to": [
+        18,
+        8
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        8
+      ],
+      "to": [
+        18,
+        7
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        7
+      ],
+      "to": [
+        18,
+        6
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        6
+      ],
+      "to": [
+        18,
+        5
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        5
+      ],
+      "to": [
+        18,
+        4
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        4
+      ],
+      "to": [
+        18,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        18,
+        3
+      ],
+      "to": [
+        19,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        19,
+        3
+      ],
+      "to": [
+        20,
+        3
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map0-to-map27-approach",
+      "from": [
+        20,
+        3
+      ],
+      "to": [
+        20,
+        2
+      ]
+    },
+    {
+      "type": "transfer",
+      "from": 0,
+      "to": 27,
+      "tile": [
+        5,
+        37
+      ],
+      "input": "ArrowUp"
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        5,
+        37
+      ],
+      "to": [
+        5,
+        36
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        5,
+        36
+      ],
+      "to": [
+        5,
+        35
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        5,
+        35
+      ],
+      "to": [
+        5,
+        34
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        5,
+        34
+      ],
+      "to": [
+        5,
+        33
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        5,
+        33
+      ],
+      "to": [
+        5,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        5,
+        32
+      ],
+      "to": [
+        6,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        6,
+        32
+      ],
+      "to": [
+        7,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        7,
+        32
+      ],
+      "to": [
+        8,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        8,
+        32
+      ],
+      "to": [
+        9,
+        32
+      ]
+    },
+    {
+      "type": "move",
+      "label": "map27-combat-approach",
+      "from": [
+        9,
+        32
+      ],
+      "to": [
+        10,
+        32
+      ]
+    },
+    {
+      "type": "combat-approach",
+      "targetOrder": 14,
+      "targetId": 24,
+      "tile": [
+        10,
+        31
+      ]
+    },
+    {
+      "type": "light-attack",
+      "attempt": 1,
+      "targetOrder": 14,
+      "enemyHp": 43,
+      "enemyState": "alive",
+      "playerHp": 394392
+    },
+    {
+      "type": "light-attack",
+      "attempt": 2,
+      "targetOrder": 14,
+      "enemyHp": 43,
+      "enemyState": "alive",
+      "playerHp": 394392
+    },
+    {
+      "type": "light-attack",
+      "attempt": 3,
+      "targetOrder": 14,
+      "enemyHp": 43,
+      "enemyState": "alive",
+      "playerHp": 394392
+    }
+  ],
+  "actions": [
+    {
+      "step": "splash-to-title",
+      "key": "Enter"
+    },
+    {
+      "step": "title-to-menu",
+      "key": "Enter"
+    },
+    {
+      "step": "menu-to-hero",
+      "key": "Enter"
+    },
+    {
+      "step": "hero-to-guardians",
+      "key": "Enter"
+    },
+    {
+      "step": "select-guardian-one",
+      "key": "ArrowDown"
+    },
+    {
+      "step": "confirm-guardian-one",
+      "key": "Enter"
+    },
+    {
+      "step": "select-guardian-two",
+      "key": "ArrowDown"
+    },
+    {
+      "step": "confirm-guardian-two",
+      "key": "Enter"
+    },
+    {
+      "step": "confirm-new-game",
+      "key": "ArrowRight"
+    },
+    {
+      "step": "start-new-game",
+      "key": "Enter"
+    },
+    {
+      "step": "opening-transfer",
+      "key": "w"
+    }
+  ],
+  "runtimeErrors": [],
+  "restrictions": {
+    "visibleNewGame": true,
+    "isolatedBrowserProfile": "/tmp/heroes-lore-m916-profile",
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "localSaveAccess": false,
+    "originalJarRead": false,
+    "directMapStartOrGameplayStateSeed": false
+  },
+  "screenshots": [
+    "01-map64-max-level.png",
+    "02-map64-exit.png",
+    "03-map0-map27-approach.png",
+    "04-map27-arrival.png",
+    "05-map27-attack-followup.png"
+  ],
+  "staleTargetApproach": {
+    "profile": "max-level",
+    "mapId": 27,
+    "tile": [
+      10,
+      31
+    ],
+    "level": 99,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "gameOver": false,
+    "dialogue": false,
+    "enemiesAlive": 18,
+    "target": {
+      "sourceOrder": 14,
+      "enemyId": 24,
+      "hp": 43,
+      "state": "alive"
+    }
+  },
+  "followupAttempt": "attempt-2.json",
+  "combatOutcome": {
+    "target": {
+      "sourceOrder": 14,
+      "enemyId": 24,
+      "tileBeforeAttack": [
+        9,
+        31
+      ],
+      "hpBefore": 43,
+      "hpAfter": 0,
+      "stateAfter": "respawn-wait"
+    },
+    "facingInput": "ArrowLeft",
+    "playerHpBefore": 394392,
+    "playerHpAfter": 394392,
+    "gameOver": false
+  }
+}

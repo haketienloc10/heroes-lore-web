@@ -30,7 +30,12 @@ import {
   type StartupBrandSplashFrame,
 } from './startup-title';
 import { startupPointerKeys, type StartupPointerSelection } from './startup-pointer';
-import { isCampaignTestProfile } from './campaign-test-profile';
+import {
+  campaignTestMapPreviewMapId,
+  isCampaignTestProfile,
+  isCampaignTestScenario,
+  MAX_LEVEL_CAMPAIGN_TEST_PROFILE,
+} from './campaign-test-profile';
 import {
   buildStartupAboutPages,
   buildStartupHelpTopics,
@@ -453,15 +458,25 @@ export class StartupFlowScene extends Phaser.Scene {
     this.renderPage();
     const guardianIndices = [...this.selectedGuardians].sort((first, second) => first - second);
     let testProfile: string | undefined;
+    let testScenario: string | undefined;
     if (import.meta.env.DEV) {
-      const requestedTestProfile = new URLSearchParams(window.location.search).get('testProfile');
+      const params = new URLSearchParams(window.location.search);
+      const requestedTestProfile = params.get('testProfile');
       if (isCampaignTestProfile(requestedTestProfile)) testProfile = requestedTestProfile;
+      const requestedTestScenario = params.get('testScenario');
+      if (testProfile !== undefined && isCampaignTestScenario(requestedTestScenario)) {
+        if (campaignTestMapPreviewMapId(requestedTestScenario) === null ||
+          testProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE) {
+          testScenario = requestedTestScenario;
+        }
+      }
     }
     this.loadGameplayScenesAndStart({
       startRoute: 'new-game',
       guardianIndices,
       heroClassId: RONIN_HERO_CLASS_ID,
       ...(testProfile === undefined ? {} : { testProfile }),
+      ...(testScenario === undefined ? {} : { testScenario }),
     });
   }
 

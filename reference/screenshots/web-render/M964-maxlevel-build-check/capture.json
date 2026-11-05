@@ -1,0 +1,33 @@
+{
+  "id": "M964",
+  "date": "2026-11-04",
+  "browser": {
+    "product": "Chrome/156.0.8078.4",
+    "cdpEndpoint": "http://127.0.0.1:9518",
+    "url": "http://127.0.0.1:5174/?testProfile=max-level"
+  },
+  "observation": {
+    "mode": "passive screenshot",
+    "reaEvidenceId": "ev_2cec459076e5769a6d3b74332c7a40867e109e8d061a1274b08f1591c319934a",
+    "screenshot": "map27-target-hud.png",
+    "visibleScene": "Map27 desert encounter",
+    "visibleTargetPanel": {
+      "name": "Dust",
+      "level": 1,
+      "hpGauge": "visible red fill"
+    },
+    "routeEvidence": "../M928-target-hud-bottom-border/capture.json",
+    "routeWasReplayedInThisCapture": false
+  },
+  "validation": {
+    "typecheck": "passed",
+    "focusedTests": "24 passed across 3 files",
+    "fullWebTests": "535 passed across 60 files",
+    "productionBuild": "passed with the existing large-chunk warning",
+    "gitDiffCheck": "passed"
+  },
+  "limitations": [
+    "The screenshot records the already-open DEV session and does not constitute a new route replay.",
+    "This capture confirms the visible panel only; it does not establish full J2ME parity or normal-level combat balance."
+  ]
+}

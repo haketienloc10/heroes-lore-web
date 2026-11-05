@@ -11,6 +11,8 @@ import {
   resolveTriggerScript,
   sourceMapTransitionDirection,
 } from '../src/world/event-data';
+import map60EventsRaw from '../public/assets/generated/event-operations/6/60.json';
+import map61EventsRaw from '../public/assets/generated/event-operations/6/61.json';
 import { createWorldGrid } from '../src/world/map-data';
 import {
   advanceEventCutscene,
@@ -308,6 +310,34 @@ describe('raw map event trigger data', () => {
     });
     expect(resolveTriggerScript(events, 1, 2, new Set())).toBeUndefined();
     expect(resolveTriggerScript(events, 1, 3, new Set([0]))).toBeUndefined();
+  });
+
+  it('selects the Map60 investigation chain through the Map61 crest marker', () => {
+    const map60 = parseEventOperationData(map60EventsRaw);
+    const map61 = parseEventOperationData(map61EventsRaw);
+    const letter = { category: 18, itemId: 3, count: 1 };
+    const crest = { category: 20, itemId: 0, count: 1 };
+
+    const investigation = resolveTriggerScript(map60, 6, 2, new Set([0]), new Set(), [letter]);
+    expect(investigation?.scriptIndex).toBe(6);
+    expect(investigation?.commands).toContainEqual([9, 28, 0]);
+
+    const crestPickup = resolveTriggerScript(map61, -4, 2, new Set([0, 28]), new Set(), [letter]);
+    expect(crestPickup?.scriptIndex).toBe(3);
+    expect(crestPickup?.commands).toContainEqual([11, 20, 0]);
+    expect(crestPickup?.commands).toContainEqual([9, 30, 0]);
+    expect(resolveTriggerScript(map61, -4, 2, new Set([0]), new Set(), [letter])).toBeUndefined();
+    expect(resolveTriggerScript(map61, -4, 2, new Set([0, 30]), new Set(), [letter])?.scriptIndex).toBe(4);
+
+    expect(resolveTriggerScript(map60, 6, 2, new Set([0, 28, 30]), new Set(), [letter])?.scriptIndex).toBe(7);
+    const comboUnlock = resolveTriggerScript(
+      map60, 6, 2, new Set([0, 28, 30]), new Set(), [letter, crest],
+    );
+    expect(comboUnlock?.scriptIndex).toBe(8);
+    expect(comboUnlock?.commands).toContainEqual([19, 3, 0]);
+    expect(comboUnlock?.commands).toContainEqual([11, 18, 3]);
+    expect(comboUnlock?.commands).toContainEqual([11, 20, 0]);
+    expect(comboUnlock?.commands).toContainEqual([11, 18, 4]);
   });
 
   it('stops on a matching no-script row instead of running the fallback row', () => {

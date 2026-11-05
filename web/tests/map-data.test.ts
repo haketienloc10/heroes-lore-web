@@ -2,10 +2,12 @@ import { describe, expect, it } from 'vitest';
 import {
   applyDynamicMapTileChanges,
   createWorldGrid,
+  findMapPreviewSpawnTile,
   isCellPassable,
   parseBaseCollisionData,
   parseBaseMapData,
   parseMapDecorationData,
+  type BaseCollisionData,
 } from '../src/world/map-data';
 
 const map = {
@@ -62,6 +64,27 @@ describe('base map data', () => {
     expect(isCellPassable(world, -1, 0)).toBe(false);
     expect(isCellPassable(world, 2, 1)).toBe(false);
     expect(isCellPassable(world, 0, 0, true)).toBe(false);
+  });
+
+  it('chooses the nearest empty ordinary floor cell for map previews', () => {
+    const sourceCollision: BaseCollisionData = {
+      ...collision,
+      format: 'heroes-lore-base-collision-v1',
+      tileSize: 16,
+      width: 3,
+      height: 3,
+      values: [
+        [0, 4, 0],
+        [-1, 0, 0],
+        [0, 0, 0],
+      ],
+    };
+    expect(findMapPreviewSpawnTile(sourceCollision, new Set([4]))).toEqual({ tileX: 2, tileY: 1 });
+    expect(findMapPreviewSpawnTile(sourceCollision, new Set([3, 4, 5]))).toEqual({ tileX: 1, tileY: 2 });
+    expect(findMapPreviewSpawnTile({
+      ...sourceCollision,
+      values: sourceCollision.values.map((row) => row.map(() => -1)),
+    })).toBeNull();
   });
 
   it('applies ordered dynamic tile and signed collision writes without mutating the base grid', () => {

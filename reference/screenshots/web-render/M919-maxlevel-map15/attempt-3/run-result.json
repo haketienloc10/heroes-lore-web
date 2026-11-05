@@ -1,0 +1,388 @@
+{
+  "id": "M919-attempt-3",
+  "status": "five-consecutive-missed-moves",
+  "start": {
+    "profile": "max-level",
+    "mapId": 64,
+    "x": 9,
+    "y": 8,
+    "direction": 2,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "level": 99,
+    "flags": [
+      0,
+      54,
+      87
+    ],
+    "quests": [],
+    "dialogueOpen": false,
+    "transitionPending": false,
+    "enemies": []
+  },
+  "chiefHandled": true,
+  "reahHandled": false,
+  "handled": 84,
+  "skipped": 0,
+  "failedMoves": 6,
+  "stoppedAt": {
+    "index": 83,
+    "routeIndex": 84,
+    "reason": "five-consecutive-missed-moves",
+    "state": {
+      "profile": "max-level",
+      "mapId": 27,
+      "x": 7,
+      "y": 30,
+      "direction": 1,
+      "hp": 394392,
+      "maxHp": 394392,
+      "sp": 394392,
+      "maxSp": 394392,
+      "level": 99,
+      "flags": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        54,
+        75,
+        87
+      ],
+      "quests": [
+        1
+      ],
+      "dialogueOpen": false,
+      "transitionPending": false,
+      "enemies": [
+        {
+          "sourceOrder": 0,
+          "enemyId": 21,
+          "tileX": 7,
+          "tileY": 3,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 1,
+          "enemyId": 24,
+          "tileX": 10,
+          "tileY": 5,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 2,
+          "enemyId": 21,
+          "tileX": 28,
+          "tileY": 7,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 3,
+          "enemyId": 24,
+          "tileX": 7,
+          "tileY": 10,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 4,
+          "enemyId": 24,
+          "tileX": 19,
+          "tileY": 10,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 5,
+          "enemyId": 21,
+          "tileX": 32,
+          "tileY": 10,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 6,
+          "enemyId": 24,
+          "tileX": 10,
+          "tileY": 12,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 7,
+          "enemyId": 24,
+          "tileX": 27,
+          "tileY": 12,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 8,
+          "enemyId": 21,
+          "tileX": 33,
+          "tileY": 16,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 9,
+          "enemyId": 21,
+          "tileX": 20,
+          "tileY": 17,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 10,
+          "enemyId": 24,
+          "tileX": 27,
+          "tileY": 21,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 11,
+          "enemyId": 21,
+          "tileX": 34,
+          "tileY": 22,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 12,
+          "enemyId": 21,
+          "tileX": 13,
+          "tileY": 21,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 13,
+          "enemyId": 21,
+          "tileX": 37,
+          "tileY": 28,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 14,
+          "enemyId": 24,
+          "tileX": 8,
+          "tileY": 30,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 15,
+          "enemyId": 21,
+          "tileX": 31,
+          "tileY": 31,
+          "hp": 90,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 16,
+          "enemyId": 24,
+          "tileX": 22,
+          "tileY": 33,
+          "hp": 43,
+          "state": "alive"
+        },
+        {
+          "sourceOrder": 17,
+          "enemyId": 24,
+          "tileX": 16,
+          "tileY": 35,
+          "hp": 43,
+          "state": "alive"
+        }
+      ]
+    }
+  },
+  "final": {
+    "profile": "max-level",
+    "mapId": 27,
+    "x": 7,
+    "y": 30,
+    "direction": 1,
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "level": 99,
+    "flags": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      54,
+      75,
+      87
+    ],
+    "quests": [
+      1
+    ],
+    "dialogueOpen": false,
+    "transitionPending": false,
+    "enemies": [
+      {
+        "sourceOrder": 0,
+        "enemyId": 21,
+        "tileX": 7,
+        "tileY": 3,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 1,
+        "enemyId": 24,
+        "tileX": 10,
+        "tileY": 5,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 2,
+        "enemyId": 21,
+        "tileX": 28,
+        "tileY": 7,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 3,
+        "enemyId": 24,
+        "tileX": 7,
+        "tileY": 10,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 4,
+        "enemyId": 24,
+        "tileX": 19,
+        "tileY": 10,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 5,
+        "enemyId": 21,
+        "tileX": 32,
+        "tileY": 10,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 6,
+        "enemyId": 24,
+        "tileX": 10,
+        "tileY": 12,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 7,
+        "enemyId": 24,
+        "tileX": 27,
+        "tileY": 12,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 8,
+        "enemyId": 21,
+        "tileX": 33,
+        "tileY": 16,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 9,
+        "enemyId": 21,
+        "tileX": 20,
+        "tileY": 17,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 10,
+        "enemyId": 24,
+        "tileX": 27,
+        "tileY": 21,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 11,
+        "enemyId": 21,
+        "tileX": 34,
+        "tileY": 22,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 12,
+        "enemyId": 21,
+        "tileX": 13,
+        "tileY": 22,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 13,
+        "enemyId": 21,
+        "tileX": 37,
+        "tileY": 28,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 14,
+        "enemyId": 24,
+        "tileX": 8,
+        "tileY": 30,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 15,
+        "enemyId": 21,
+        "tileX": 31,
+        "tileY": 31,
+        "hp": 90,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 16,
+        "enemyId": 24,
+        "tileX": 22,
+        "tileY": 33,
+        "hp": 43,
+        "state": "alive"
+      },
+      {
+        "sourceOrder": 17,
+        "enemyId": 24,
+        "tileX": 16,
+        "tileY": 35,
+        "hp": 43,
+        "state": "alive"
+      }
+    ]
+  },
+  "errors": {
+    "page": [],
+    "console": [],
+    "badResponses": []
+  },
+  "routeTrace": "M712-natural-newgame/route-trace.json",
+  "restrictions": "Fresh visible New Game through the developer max-level profile; visible keyboard actions and read-only runtime telemetry only. No Save/Load, browser-storage read, local-save access, original JAR access, direct map start, or gameplay-state seed."
+}

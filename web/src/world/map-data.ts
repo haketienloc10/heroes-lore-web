@@ -40,6 +40,33 @@ export interface WorldGrid {
   collision: BaseCollisionData;
 }
 
+export interface MapPreviewSpawnTile {
+  tileX: number;
+  tileY: number;
+}
+
+/** Choose an unoccupied, ordinary floor cell near the map center for DEV map previews. */
+export function findMapPreviewSpawnTile(
+  collision: BaseCollisionData,
+  occupiedCellIndices: ReadonlySet<number> = new Set(),
+): MapPreviewSpawnTile | null {
+  const centerX = (collision.width - 1) / 2;
+  const centerY = (collision.height - 1) / 2;
+  let best: MapPreviewSpawnTile | null = null;
+  let bestDistance = Number.POSITIVE_INFINITY;
+  for (let tileY = 0; tileY < collision.height; tileY += 1) {
+    for (let tileX = 0; tileX < collision.width; tileX += 1) {
+      if (collision.values[tileY]?.[tileX] !== 0 ||
+        occupiedCellIndices.has(tileY * collision.width + tileX)) continue;
+      const distance = (tileX - centerX) ** 2 + (tileY - centerY) ** 2;
+      if (distance >= bestDistance) continue;
+      best = { tileX, tileY };
+      bestDistance = distance;
+    }
+  }
+  return best;
+}
+
 export interface DynamicMapTileChange {
   tileX: number;
   tileY: number;

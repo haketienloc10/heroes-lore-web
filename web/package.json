@@ -7,7 +7,7 @@
     "predev": "node ../tools/prepare_synth_worklet.mjs",
     "dev": "vite",
     "prebuild": "node ../tools/prepare_synth_worklet.mjs",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node ../tools/verify_production_profile_exclusion.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "audit:event-cutscenes": "node ../tools/audit_event_cutscene_coverage.mjs",

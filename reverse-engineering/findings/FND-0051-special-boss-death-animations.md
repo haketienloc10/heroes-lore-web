@@ -21,6 +21,11 @@ Render special `au` enemy subclasses through their source state-5 death countdow
 - The direct `ak.a(int,byte)` skill-damage path now retains source cursor 0 on lethal damage. Basic attacks, counter damage, and instant-kill damage that call `ak.b(int)` retain the `-1` cursor and advance to frame 0 on the next source tick.
 - Focused tests cover death-track presence/facing fallback and the direct-skill cursor. Full gates pass: 54 Vitest files / 435 tests, 40 converter tests, typecheck, production build (1,520.52 kB minified JavaScript; Vite's existing >500 kB warning), and `git diff --check`.
 
+## Current-build browser observation
+
+- M963's fresh visible max-level route defeats Map15 boss 39 and Map82 boss 42 with Skill 1. Their post-hit runtime snapshots show 0 HP and `death-pending`, and the route proceeds through the post-boss handoffs. See the [Map15 snapshot](../../reference/screenshots/web-render/M963-max-level-map11-map13/map15-boss-reapproach-and-skill1.runtime.json) and [frame](../../reference/screenshots/web-render/M963-max-level-map11-map13/map15-boss-reapproach-and-skill1.png), plus the [Map82 snapshot](../../reference/screenshots/web-render/M963-max-level-map11-map13/map82-boss-skill1.runtime.json) and [frame](../../reference/screenshots/web-render/M963-max-level-map11-map13/map82-boss-skill1.png).
+- These snapshots use runtime format v4 and do not expose the selected death/idle animation track or frame cursor. They verify live special-boss hit/death-state and route continuation, not the death animation sequence.
+
 ## Limits
 
-No browser capture or J2ME animation comparison was made. The change is based on checked-in decompiled source and extracted animation records; visible frame cadence and pixel parity remain unverified.
+M963 supplies browser evidence for special-boss hit/death-state and route continuation, but no browser sample tracks the death frames through the countdown and no J2ME animation comparison exists. The selected frame cadence and pixel parity remain unverified.

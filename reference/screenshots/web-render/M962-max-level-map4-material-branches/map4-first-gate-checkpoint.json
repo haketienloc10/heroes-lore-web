@@ -1,0 +1,990 @@
+{
+  "completedPulses": 40,
+  "stalls": 2,
+  "last": {
+    "pulse": 40,
+    "key": "L",
+    "before": {
+      "mapId": 4,
+      "player": {
+        "tileX": 5,
+        "tileY": 12,
+        "direction": 3
+      },
+      "hp": 394392
+    },
+    "after": {
+      "mapId": 4,
+      "player": {
+        "tileX": 4,
+        "tileY": 12,
+        "direction": 3
+      },
+      "hp": 394392,
+      "dialogueOpen": false
+    },
+    "stalled": false
+  },
+  "events": [
+    {
+      "pulse": 1,
+      "key": "R",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 14,
+          "tileY": 36,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 15,
+          "tileY": 36,
+          "direction": 4
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 2,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 15,
+          "tileY": 36,
+          "direction": 4
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 15,
+          "tileY": 36,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": true
+    },
+    {
+      "pulse": 3,
+      "key": "R",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 15,
+          "tileY": 36,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 36,
+          "direction": 4
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 4,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 36,
+          "direction": 4
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 35,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 5,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 35,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 34,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 6,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 34,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 33,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 7,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 33,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 32,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 8,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 32,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 31,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 9,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 31,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 30,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 10,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 30,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 29,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 11,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 29,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 28,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 12,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 28,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 27,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 13,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 27,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 26,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 14,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 26,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 25,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 15,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 25,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 24,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 16,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 24,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 23,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 17,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 23,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 22,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 18,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 22,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 22,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": true
+    },
+    {
+      "pulse": 19,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 22,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 21,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 20,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 21,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 20,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 21,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 20,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 19,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 22,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 16,
+          "tileY": 19,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 15,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 23,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 15,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 14,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 24,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 14,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 13,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 25,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 13,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 12,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 26,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 12,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 11,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 27,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 11,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 10,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 28,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 10,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 9,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 29,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 9,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 8,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 30,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 8,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 31,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 19,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 18,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 32,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 18,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 17,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 33,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 17,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 16,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 34,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 16,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 15,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 35,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 15,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 14,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 36,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 14,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 13,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 37,
+      "key": "U",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 13,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 12,
+          "direction": 1
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 38,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 7,
+          "tileY": 12,
+          "direction": 1
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 6,
+          "tileY": 12,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 39,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 6,
+          "tileY": 12,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 5,
+          "tileY": 12,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    },
+    {
+      "pulse": 40,
+      "key": "L",
+      "before": {
+        "mapId": 4,
+        "player": {
+          "tileX": 5,
+          "tileY": 12,
+          "direction": 3
+        },
+        "hp": 394392
+      },
+      "after": {
+        "mapId": 4,
+        "player": {
+          "tileX": 4,
+          "tileY": 12,
+          "direction": 3
+        },
+        "hp": 394392,
+        "dialogueOpen": false
+      },
+      "stalled": false
+    }
+  ]
+}

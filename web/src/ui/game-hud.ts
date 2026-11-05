@@ -1,4 +1,5 @@
 import type { ConsumableCategory } from '../world/loot';
+import { bitmapTextWidth, drawBitmapText, type BitmapFontData } from './bitmap-font';
 import type { PlayerSkillLevelSlot } from '../world/player-skill-action';
 
 export interface GameplayHudState {
@@ -32,6 +33,100 @@ export interface GameplayHudSkillState {
   skillId: number;
   slotOne: GameplayHudSkillBinding | null;
   slotThree: GameplayHudSkillBinding | null;
+}
+
+export interface EnemyTargetHudAssets {
+  fontAtlas: CanvasImageSource;
+  font: BitmapFontData;
+  digits: CanvasImageSource;
+}
+
+export interface EnemyTargetHudView {
+  name: string;
+  level: number;
+  hp: number;
+  maxHp: number;
+  shapeCode: number;
+}
+
+export const ENEMY_TARGET_HUD_WIDTH = 105;
+export const ENEMY_TARGET_HUD_HEIGHT = 27;
+
+/** Source ar.a(Graphics) uses a 77px HP span with five pixels reserved by its frame. */
+export function enemyTargetHudHpFillWidth(hp: number, maxHp: number): number {
+  if (!Number.isFinite(hp) || !Number.isFinite(maxHp) || hp <= 0 || maxHp <= 0) return 0;
+  return Math.max(0, Math.trunc((77 * (hp - 1)) / maxHp) + 1 - 5);
+}
+
+function drawEnemyTargetHudFrame(context: CanvasRenderingContext2D): void {
+  context.fillStyle = '#3f1f3f';
+  context.fillRect(1, 0, 103, 1);
+  context.fillRect(104, 1, 1, 25);
+  context.fillRect(1, 26, 103, 1);
+  context.fillRect(0, 1, 1, 25);
+
+  context.fillStyle = '#9f7f3f';
+  context.fillRect(1, 1, 102, 1);
+  context.fillRect(1, 1, 1, 24);
+
+  context.fillStyle = '#3f3f3f';
+  context.fillRect(103, 1, 1, 24);
+  context.fillRect(1, 25, 103, 1);
+  context.fillStyle = '#5f1f3f';
+  context.fillRect(2, 2, 101, 23);
+}
+
+function drawSmallNumberAt(
+  context: CanvasRenderingContext2D,
+  atlas: CanvasImageSource,
+  value: number,
+  x: number,
+  y: number,
+): void {
+  const digits = String(Math.max(0, Math.floor(value))).split('').map(Number);
+  for (const digit of digits) {
+    context.drawImage(atlas, digit * 5, 0, 5, 7, x, y, 5, 7);
+    x += 4;
+  }
+}
+
+/** Draw the source ar.a(Graphics) enemy name/level/HP panel at native size. */
+export function drawEnemyTargetHud(
+  context: CanvasRenderingContext2D,
+  assets: EnemyTargetHudAssets,
+  target: EnemyTargetHudView,
+  drawText: typeof drawBitmapText = drawBitmapText,
+): void {
+  context.clearRect(0, 0, ENEMY_TARGET_HUD_WIDTH, ENEMY_TARGET_HUD_HEIGHT);
+  context.imageSmoothingEnabled = false;
+  drawEnemyTargetHudFrame(context);
+
+  const nameColor = target.shapeCode === 1 ? '#ff7f2f'
+    : target.shapeCode === 2 ? '#ffff1f' : '#ffffff';
+  drawText(
+    context,
+    assets.fontAtlas,
+    assets.font,
+    target.name,
+    52,
+    4,
+    nameColor,
+    'center',
+  );
+
+  const levelLabel = 'LV ';
+  const labelWidth = bitmapTextWidth(levelLabel, assets.font);
+  context.fillStyle = '#000000';
+  context.fillRect(2, 17, labelWidth + 2, assets.font.height + 2);
+  // The source font draws its glyph pixels one row below the requested baseline.
+  drawText(context, assets.fontAtlas, assets.font, levelLabel, 3, 19, '#ffffff', 'left');
+  drawSmallNumberAt(context, assets.digits, target.level, labelWidth + 5, 18);
+
+  const hpWidth = enemyTargetHudHpFillWidth(target.hp, target.maxHp);
+  if (hpWidth > 0) {
+    context.fillStyle = '#ff3f2f';
+    context.fillRect(29, 22, hpWidth, 2);
+  }
 }
 
 /** Initial Ronin values from R10's source fields and the level-1 stat formula. */

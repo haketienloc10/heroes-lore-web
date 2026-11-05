@@ -104,6 +104,17 @@ describe('source enemy drops and tile pickup', () => {
     ]);
   });
 
+  it('continues through multiple failed one-weight candidates before a later item succeeds', () => {
+    const consecutiveOneWeightCandidates = {
+      ...enemy,
+      dropCandidates: [[0, 1, 1], [0, 2, 1], [0, 3, 1]] as Array<[number, number, number]>,
+    };
+    expect(rollEnemyDrops({ tileX: 0, tileY: 0, definition: consecutiveOneWeightCandidates }, 1,
+      scriptedRoller(1, 21, 21, 1, 100, 100))).toEqual([
+      { kind: 'item', category: 0, itemId: 3, count: 1, tileX: 0, tileY: 0 },
+    ]);
+  });
+
   it('collects a coin bundle on the current tile with the source ninefold multiplier', () => {
     const coin: GroundDrop = {
       id: 1,

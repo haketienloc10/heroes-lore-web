@@ -1,0 +1,236 @@
+{
+  "format": "heroes-lore-campaign-test-runtime-v4",
+  "profile": "max-level",
+  "mapId": 6,
+  "mapSize": {
+    "width": 17,
+    "height": 18
+  },
+  "entityOccupiedCells": [
+    {
+      "tileX": 5,
+      "tileY": 7
+    },
+    {
+      "tileX": 6,
+      "tileY": 7
+    },
+    {
+      "tileX": 11,
+      "tileY": 7
+    },
+    {
+      "tileX": 12,
+      "tileY": 7
+    },
+    {
+      "tileX": 12,
+      "tileY": 10
+    },
+    {
+      "tileX": 13,
+      "tileY": 10
+    },
+    {
+      "tileX": 8,
+      "tileY": 11
+    },
+    {
+      "tileX": 5,
+      "tileY": 13
+    },
+    {
+      "tileX": 11,
+      "tileY": 13
+    }
+  ],
+  "player": {
+    "tileX": 8,
+    "tileY": 14,
+    "direction": 1
+  },
+  "resources": {
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "level": 99
+  },
+  "wallet": 300,
+  "inventory": [
+    {
+      "category": 20,
+      "itemId": 4,
+      "count": 1
+    }
+  ],
+  "equipment": [
+    {
+      "category": 0,
+      "itemId": 0,
+      "count": 1,
+      "equipmentState": {
+        "sourceFlag": true,
+        "upgradeByte": 0,
+        "bonusValues": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "subtypeBytes": [
+          15,
+          10,
+          -1
+        ]
+      }
+    },
+    null,
+    {
+      "category": 5,
+      "itemId": 0,
+      "count": 1,
+      "equipmentState": {
+        "sourceFlag": true,
+        "upgradeByte": 0,
+        "bonusValues": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "subtypeBytes": []
+      }
+    },
+    {
+      "category": 6,
+      "itemId": 0,
+      "count": 1,
+      "equipmentState": {
+        "sourceFlag": true,
+        "upgradeByte": 0,
+        "bonusValues": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "subtypeBytes": []
+      }
+    },
+    {
+      "category": 4,
+      "itemId": 0,
+      "count": 1,
+      "equipmentState": {
+        "sourceFlag": true,
+        "upgradeByte": 0,
+        "bonusValues": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "subtypeBytes": []
+      }
+    }
+  ],
+  "groundDrops": [],
+  "gameFlags": [
+    0,
+    1,
+    3,
+    5,
+    6,
+    52,
+    53,
+    54,
+    69,
+    70,
+    75,
+    87
+  ],
+  "questFlags": [
+    1,
+    2,
+    4,
+    14,
+    16
+  ],
+  "skillAction": {
+    "skillId": 0,
+    "skillRank": 17,
+    "phase": 0,
+    "levelSlot": null,
+    "tileX": 7,
+    "tileY": 10,
+    "effectAge": 17,
+    "chargeTicksRemaining": [
+      0,
+      0,
+      280
+    ]
+  },
+  "combo": {
+    "stage": -1,
+    "frame": 0,
+    "activeStyle": null,
+    "queuedStyle": null,
+    "recoveryTicks": 0,
+    "tickRemainderMs": 57.12999999837087,
+    "comboLimit": 1
+  },
+  "dialogueOpen": false,
+  "transitionPending": false,
+  "enemies": [
+    {
+      "sourceOrder": 0,
+      "enemyId": 7,
+      "tileX": 5,
+      "tileY": 7,
+      "hp": 1555,
+      "state": "alive"
+    },
+    {
+      "sourceOrder": 1,
+      "enemyId": 7,
+      "tileX": 11,
+      "tileY": 7,
+      "hp": 1555,
+      "state": "alive"
+    },
+    {
+      "sourceOrder": 2,
+      "enemyId": 4,
+      "tileX": 8,
+      "tileY": 11,
+      "hp": 583,
+      "state": "alive"
+    },
+    {
+      "sourceOrder": 3,
+      "enemyId": 7,
+      "tileX": 12,
+      "tileY": 10,
+      "hp": 1555,
+      "state": "alive"
+    },
+    {
+      "sourceOrder": 4,
+      "enemyId": 4,
+      "tileX": 5,
+      "tileY": 13,
+      "hp": 583,
+      "state": "alive"
+    },
+    {
+      "sourceOrder": 5,
+      "enemyId": 4,
+      "tileX": 11,
+      "tileY": 13,
+      "hp": 583,
+      "state": "alive"
+    }
+  ],
+  "npcs": []
+}

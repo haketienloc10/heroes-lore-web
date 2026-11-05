@@ -170,6 +170,56 @@ describe('web save to source RMS mapping', () => {
     expect(decoded.flags).toEqual({ gameFlags: [0, 54], questFlags: [17], playthroughMode: 1 });
   });
 
+  it('round-trips structured saves through every class-specific source store', () => {
+    const classStores = [
+      { heroClassId: 6, primaryStoreName: '_k' },
+      { heroClassId: 7, primaryStoreName: '_s' },
+      { heroClassId: 8, primaryStoreName: '_w' },
+    ] as const;
+
+    for (const { heroClassId, primaryStoreName } of classStores) {
+      const classSave: GameSaveState = {
+        ...save,
+        heroClassId,
+        skillIds: [0],
+        activeSkillId: 0,
+        skillProgress: [{
+          skillId: 0,
+          skillRank: 1,
+          skillExperience: 0,
+          skillLevelSlotOne: 0,
+          skillLevelSlotThree: null,
+        }],
+        equipmentSlots: [null, null, null, null, null],
+        inventory: [],
+        specialInventory: [],
+      };
+      const stores = encodeGameSaveAsSourceRmsStores(classSave);
+
+      expect(stores).toMatchObject({ heroClassId, primaryStoreName, specialStoreName: '_o' });
+      const roundTrip = decodeSourceRmsStoresAsGameSave(
+        stores.heroClassId,
+        stores.primaryRecord,
+        stores.specialRecord,
+        equipmentCatalog,
+        { savedAt: classSave.savedAt },
+      );
+      expect(roundTrip).toMatchObject({
+        heroClassId,
+        mapId: classSave.mapId,
+        tileX: classSave.tileX,
+        tileY: classSave.tileY,
+        gameFlags: classSave.gameFlags,
+        questFlags: classSave.questFlags,
+        skillIds: [0],
+        activeSkillId: 0,
+        equipmentSlots: [null, null, null, null, null],
+        inventory: [],
+        specialInventory: [],
+      });
+    }
+  });
+
   it('imports the source-backed fields and supplies only fields absent from the native records', () => {
     const stores = encodeGameSaveAsSourceRmsStores(save);
     const imported = decodeSourceRmsStoresAsGameSave(

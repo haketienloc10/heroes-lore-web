@@ -42,6 +42,7 @@ import {
   applyDynamicCollisionChanges,
   applyDynamicMapTileChanges,
   createWorldGrid,
+  findMapPreviewSpawnTile,
   parseBaseMapData,
   parseBaseCollisionData,
   parseMapDecorationData,
@@ -95,7 +96,11 @@ import {
 } from '../world/source-enemy-ai';
 import { bitmapTextWidth, drawBitmapText, type BitmapFontData } from '../ui/bitmap-font';
 import {
+  drawEnemyTargetHud,
   drawGameplayHud,
+  ENEMY_TARGET_HUD_HEIGHT,
+  ENEMY_TARGET_HUD_WIDTH,
+  type EnemyTargetHudAssets,
   NEW_GAME_RONIN_HUD,
   type GameplayHudAssets,
   type GameplayHudSkillState,
@@ -300,10 +305,28 @@ import {
 import { awardSourceExperience, enemyExperienceSourceAmount } from '../world/progression';
 import {
   applyCampaignTestHud,
-  createBoostedCampaignTestAttributes,
+  campaignTestMapPreviewMapId,
+  createCampaignTestAttributes,
   isCampaignTestProfile,
+  isCampaignTestScenario,
+  MAP27_CLASS6_LUNGE_TEST_SCENARIO,
+  MAP27_CLASS6_LUNGE_TARGET_TEST_SCENARIO,
+  MAP27_CLASS6_SKILL2_TEST_SCENARIO,
+  MAP27_CLASS6_SKILL_RANK_TEST_SCENARIO,
+  MAP27_CLASS6_SKILL_RANK9_TEST_SCENARIO,
+  MAP27_CLASS6_SKILL3_TEST_SCENARIO,
+  MAP27_CLASS6_SKILL4_TEST_SCENARIO,
+  MAP27_CLASS6_SKILL5_TEST_SCENARIO,
+  MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO,
+  MAP80_REFINER_ORB_TEST_SCENARIO,
+  MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO,
+  MAP60_INVESTIGATION_TEST_SCENARIO,
+  MAX_LEVEL_CAMPAIGN_TEST_PROFILE,
+  resolveCampaignTestRecoveryAttributes,
+  restoreCampaignTestVitals,
   serializeCampaignTestRuntimeSnapshot,
   type CampaignTestProfile,
+  type CampaignTestScenario,
 } from '../world/campaign-test-profile';
 import {
   SOURCE_PLAYER_LEVEL_UP_ATLAS_FRAME_COUNT,
@@ -368,6 +391,7 @@ import {
   pickupGroundDrop,
   rollEnemyDrops,
   selectedConsumableCount,
+  storeItem,
   useConsumableAtIndex,
   useSelectedConsumable,
   type GroundDrop,
@@ -638,12 +662,16 @@ class MapResourcesMissingError extends Error {
 function clearCampaignTestRuntimeTelemetry(gameHost: HTMLElement | null | undefined): void {
   if (gameHost === null || gameHost === undefined) return;
   delete gameHost.dataset.testProfile;
+  delete gameHost.dataset.testScenario;
   delete gameHost.dataset.testMapId;
   delete gameHost.dataset.testPlayerTileX;
   delete gameHost.dataset.testPlayerTileY;
   delete gameHost.dataset.testHp;
   delete gameHost.dataset.testLevel;
   delete gameHost.dataset.testRuntime;
+  delete gameHost.dataset.testCommerceService;
+  delete gameHost.dataset.testCommerceScreen;
+  delete gameHost.dataset.testMapPreviewReady;
 }
 
 export class WorldScene extends Phaser.Scene {
@@ -691,6 +719,11 @@ export class WorldScene extends Phaser.Scene {
   private gameplayHudContext: CanvasRenderingContext2D | null = null;
   private gameplayHudAssets: GameplayHudAssets | null = null;
   private gameplayHudTexture: Phaser.Textures.CanvasTexture | null = null;
+  private enemyTargetHudState: { mapId: number; sourceOrder: number; remainingFrames: number } | null = null;
+  private enemyTargetHudContext: CanvasRenderingContext2D | null = null;
+  private enemyTargetHudAssets: EnemyTargetHudAssets | null = null;
+  private enemyTargetHudTexture: Phaser.Textures.CanvasTexture | null = null;
+  private enemyTargetHudImage: Phaser.GameObjects.Image | null = null;
   private pickupNoticeCanvas: HTMLCanvasElement | null = null;
   private pickupNoticeContext: CanvasRenderingContext2D | null = null;
   private pickupNoticeTexture: Phaser.Textures.CanvasTexture | null = null;
@@ -792,6 +825,7 @@ export class WorldScene extends Phaser.Scene {
   private gameOverOverlay: Phaser.GameObjects.Image | null = null;
   private gameOptions: GameOptions = { ...DEFAULT_GAME_OPTIONS };
   declare private campaignTestProfile: CampaignTestProfile | null;
+  declare private campaignTestScenario: CampaignTestScenario | null;
 
   constructor() {
     super({ key: 'WorldScene' });
@@ -828,6 +862,11 @@ export class WorldScene extends Phaser.Scene {
     this.gameplayHudContext = null;
     this.gameplayHudAssets = null;
     this.gameplayHudTexture = null;
+    this.enemyTargetHudState = null;
+    this.enemyTargetHudContext = null;
+    this.enemyTargetHudAssets = null;
+    this.enemyTargetHudTexture = null;
+    this.enemyTargetHudImage = null;
     this.pickupNoticeCanvas = null;
     this.pickupNoticeContext = null;
     this.pickupNoticeTexture = null;
@@ -887,7 +926,7 @@ export class WorldScene extends Phaser.Scene {
       this.gameOptions = { ...DEFAULT_GAME_OPTIONS };
     }
     for (const key of [
-      'gameplay-hud', 'world-system-menu', 'opening-dialog-overlay', 'world-game-over',
+      'gameplay-hud', 'enemy-target-hud', 'world-system-menu', 'opening-dialog-overlay', 'world-game-over',
       'world-pickup-notice',
     ]) {
       if (this.textures.exists(key)) this.textures.remove(key);
@@ -904,6 +943,13 @@ export class WorldScene extends Phaser.Scene {
       this.campaignTestProfile = startRoute === 'new-game' && isCampaignTestProfile(requestedTestProfile)
         ? requestedTestProfile
         : null;
+      const requestedTestScenario = typeof data === 'object' && data !== null && 'testScenario' in data
+        ? (data as { testScenario?: unknown }).testScenario
+        : undefined;
+      this.campaignTestScenario = this.campaignTestProfile !== null &&
+        isCampaignTestScenario(requestedTestScenario)
+        ? requestedTestScenario
+        : null;
       this.game.registry.set(
         'heroesLoreTestProfile',
         this.campaignTestProfile,
@@ -912,6 +958,7 @@ export class WorldScene extends Phaser.Scene {
       clearCampaignTestRuntimeTelemetry(gameHost);
       if (gameHost !== null && gameHost !== undefined) {
         if (this.campaignTestProfile !== null) gameHost.dataset.testProfile = this.campaignTestProfile;
+        if (this.campaignTestScenario !== null) gameHost.dataset.testScenario = this.campaignTestScenario;
       }
       this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => clearCampaignTestRuntimeTelemetry(gameHost));
     }
@@ -932,7 +979,7 @@ export class WorldScene extends Phaser.Scene {
     this.completionPoints = restoreState?.completionPoints ?? 0;
     this.playTimeSeconds = restoreState?.playTimeSeconds ?? 0;
     this.characterAttributes = restoreState?.attributes ?? (import.meta.env.DEV && this.campaignTestProfile !== null
-      ? createBoostedCampaignTestAttributes()
+      ? createCampaignTestAttributes(this.campaignTestProfile)
       : createBasePlayerAttributes(this.heroClassId));
     this.systemMenuVisible = false;
     this.skillMenuVisible = false;
@@ -1024,6 +1071,130 @@ export class WorldScene extends Phaser.Scene {
       this.questFlags = new Set();
       if (this.guardianIndices.length === 0) this.guardianIndices = [0, 1];
       this.skillIds = [...this.guardianIndices];
+      const previewMapId = import.meta.env.DEV
+        ? campaignTestMapPreviewMapId(this.campaignTestScenario)
+        : null;
+      if (import.meta.env.DEV && this.campaignTestScenario === MAP60_INVESTIGATION_TEST_SCENARIO) {
+        this.currentMapId = 60;
+        this.actor = createPlayerActor(17 * 16, 38 * 16);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 28]);
+        this.questFlags = new Set([1, 2, 4, 28, 29]);
+        this.inventory = [{ category: 18, itemId: 3, count: 1 }];
+        this.comboLimit = 2;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_LUNGE_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(2 * 16, 21 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.comboLimit = 4;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_LUNGE_TARGET_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.comboLimit = 4;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_SKILL2_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [2];
+        this.activeSkillId = 2;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_SKILL_RANK_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [2];
+        this.activeSkillId = 2;
+        this.playerSkillActionStates.set(2, createPlayerSkillActionState(
+          2,
+          this.characterAttributes.will,
+          1,
+          40,
+        ));
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_SKILL_RANK9_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [2];
+        this.activeSkillId = 2;
+        this.playerSkillActionStates.set(2, createPlayerSkillActionState(
+          2,
+          this.characterAttributes.will,
+          8,
+          1048,
+          0,
+          null,
+        ));
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_SKILL3_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [3];
+        this.activeSkillId = 3;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_SKILL4_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [4];
+        this.activeSkillId = 4;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_SKILL5_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(8 * 16, 31 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [5];
+        this.activeSkillId = 5;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO) {
+        this.currentMapId = 2;
+        this.actor = createPlayerActor(8 * 16, 27 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [5];
+        this.activeSkillId = 5;
+        const skillState = createPlayerSkillActionState(
+          5,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(5, {
+          ...skillState,
+          chargeTicksRemaining: [80, 270, 0],
+        });
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP80_REFINER_ORB_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 9 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.wallet = 1000;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(10 * 16, 9 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.wallet = 180;
+      } else if (import.meta.env.DEV && previewMapId !== null) {
+        this.currentMapId = previewMapId;
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+      }
     } else {
       this.currentMapId = 64;
       this.actor = createPlayerActor();
@@ -1269,7 +1440,25 @@ export class WorldScene extends Phaser.Scene {
       this.equipmentSlots = this.savedEquipmentLoadoutPresent
         ? cloneEquipmentLoadout(this.equipmentSlots)
         : createStartingEquipment(this.heroClassId, this.equipmentDataTable);
+      if (import.meta.env.DEV && this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO) {
+        const starterWeapon = this.equipmentSlots[0];
+        if (starterWeapon?.equipmentState !== undefined) {
+          this.equipmentSlots[0] = {
+            ...starterWeapon,
+            equipmentState: { ...starterWeapon.equipmentState, sourceFlag: false },
+          };
+        }
+      }
       this.inventory = normalizeEquipmentInventory(this.inventory, this.equipmentDataTable);
+      if (import.meta.env.DEV && this.campaignTestScenario === MAP80_REFINER_ORB_TEST_SCENARIO) {
+        const shield = findEquipmentItem(this.equipmentDataTable, 3, 0);
+        if (shield === undefined) throw new Error('Refiner Orb scenario shield data is missing');
+        const shieldState = createSourceEquipmentInventoryState(shield, () => 0, 'event', false);
+        const withShield = storeItem(this.inventory, 3, 0, 1, shieldState);
+        const withOrb = withShield === null ? null : storeItem(withShield, 17, 1, 1);
+        if (withOrb === null) throw new Error('Refiner Orb scenario inventory seed is invalid');
+        this.inventory = withOrb;
+      }
       this.recalculateEquipmentStats();
       if (import.meta.env.DEV && this.campaignTestProfile !== null) {
         this.hudState.hp = this.hudState.maxHp;
@@ -1613,13 +1802,48 @@ export class WorldScene extends Phaser.Scene {
         renderedWorld.enemySprites = rendered.enemySprites;
         renderedWorld.npcSprites = rendered.npcSprites;
         renderedWorld.enemies = enemies;
+        if (import.meta.env.DEV && id === 27 &&
+          (this.campaignTestScenario === MAP27_CLASS6_LUNGE_TARGET_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_CLASS6_SKILL2_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_CLASS6_SKILL_RANK_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_CLASS6_SKILL_RANK9_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_CLASS6_SKILL3_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_CLASS6_SKILL4_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_CLASS6_SKILL5_TEST_SCENARIO)) {
+          const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 14 && enemy.enemyId === 24);
+          if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining =
+            this.campaignTestScenario === MAP27_CLASS6_LUNGE_TARGET_TEST_SCENARIO ? 60 : 120;
+        }
+        if (import.meta.env.DEV && id === 2 &&
+          this.campaignTestScenario === MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO) {
+          const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 11 && enemy.enemyId === 10);
+          if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 180;
+        }
         renderedWorld.occupiedCellIndices = this.mapEntityOccupancy(renderedWorld);
         if (id !== this.currentMapId) this.setMapObjectsVisible(renderedWorld, false);
       }
       this.world = this.maps.get(this.currentMapId)?.world ?? null;
       this.playTimeSessionStartedAtMs = Date.now();
-      this.createHero();
       const entryMap = this.maps.get(this.currentMapId);
+      const previewMapId = import.meta.env.DEV
+        ? campaignTestMapPreviewMapId(this.campaignTestScenario)
+        : null;
+      if (previewMapId !== null) {
+        if (entryMap === undefined) {
+          this.showAssetMessage(`Map ${previewMapId} did not load for the developer preview.`);
+          return;
+        }
+        const spawn = findMapPreviewSpawnTile(
+          entryMap.world.collision,
+          entryMap.occupiedCellIndices,
+        );
+        if (spawn === null) {
+          this.showAssetMessage(`Map ${previewMapId} has no empty ordinary floor cell for the developer preview.`);
+          return;
+        }
+        this.actor = createPlayerActor(spawn.tileX * 16, spawn.tileY * 16);
+      }
+      this.createHero();
       if (entryMap !== undefined) this.centerCameraForMapEntry(entryMap);
       if (this.openingDialogVisible) {
         this.createOpeningCutsceneBlankOverlay();
@@ -1633,6 +1857,11 @@ export class WorldScene extends Phaser.Scene {
         const currentMap = this.maps.get(this.currentMapId);
         if (currentMap !== undefined) this.tryCurrentCellAutomaticEvent(currentMap);
       }
+      if (import.meta.env.DEV && previewMapId !== null &&
+        this.currentMapId === previewMapId && this.maps.has(previewMapId)) {
+        const gameHost = this.game.canvas?.parentElement;
+        if (gameHost !== null && gameHost !== undefined) gameHost.dataset.testMapPreviewReady = 'true';
+      }
     });
     this.load.start();
   }
@@ -1645,14 +1874,28 @@ export class WorldScene extends Phaser.Scene {
         const tileX = this.actor.x >> 4;
         const tileY = this.actor.y >> 4;
         gameHost.dataset.testProfile = this.campaignTestProfile;
+        if (this.campaignTestScenario !== null) gameHost.dataset.testScenario = this.campaignTestScenario;
         gameHost.dataset.testMapId = String(this.currentMapId);
         gameHost.dataset.testPlayerTileX = String(tileX);
         gameHost.dataset.testPlayerTileY = String(tileY);
         gameHost.dataset.testHp = String(this.hudState.hp);
         gameHost.dataset.testLevel = String(this.hudState.level);
+        gameHost.dataset.testCommerceService = this.commerceMenu?.service ?? '';
+        gameHost.dataset.testCommerceScreen = this.commerceMenu?.screen ?? '';
         gameHost.dataset.testRuntime = serializeCampaignTestRuntimeSnapshot({
           profile: this.campaignTestProfile,
           mapId: this.currentMapId,
+          mapSize: {
+            width: activeMap?.world.map.width ?? 0,
+            height: activeMap?.world.map.height ?? 0,
+          },
+          entityOccupiedCells: activeMap === undefined || activeMap.world.map.width <= 0
+            ? []
+            : [...activeMap.occupiedCellIndices]
+              .map((cellIndex) => ({
+                tileX: cellIndex % activeMap.world.map.width,
+                tileY: Math.floor(cellIndex / activeMap.world.map.width),
+              })),
           player: {
             tileX,
             tileY,
@@ -1663,17 +1906,29 @@ export class WorldScene extends Phaser.Scene {
           sp: this.hudState.sp,
           maxSp: this.hudState.maxSp,
           level: this.hudState.level,
+          wallet: this.wallet,
+          inventory: this.inventory,
+          equipment: this.equipmentSlots,
+          groundDrops: activeMap?.groundDrops ?? [],
           gameFlags: this.gameFlags,
           questFlags: this.questFlags,
           skillAction: {
             skillId: this.playerSkillAction.skillId,
             skillRank: this.playerSkillAction.skillRank,
+            skillExperience: this.playerSkillAction.skillExperience,
+            skillLevelSlotOne: this.playerSkillAction.skillLevelSlotOne,
+            skillLevelSlotThree: this.playerSkillAction.skillLevelSlotThree,
+            defenseBoostTicksRemaining: this.playerSkillAction.defenseBoostTicksRemaining,
             phase: this.playerSkillAction.phase,
             levelSlot: this.playerSkillAction.levelSlot,
             tileX: this.playerSkillAction.tileX,
             tileY: this.playerSkillAction.tileY,
             effectAge: this.playerSkillAction.effectAge,
             chargeTicksRemaining: this.playerSkillAction.chargeTicksRemaining,
+          },
+          combo: {
+            ...this.playerCombo,
+            comboLimit: this.comboLimit,
           },
           dialogueOpen: this.openingDialogVisible || this.worldDialogueVisible,
           transitionPending: this.loadingMapTransition,
@@ -1682,9 +1937,46 @@ export class WorldScene extends Phaser.Scene {
             enemyId: enemy.enemyId,
             tileX: enemy.tileX,
             tileY: enemy.tileY,
+            pixelX: enemy.pixelX,
+            pixelY: enemy.pixelY,
             hp: enemy.hp,
             state: enemy.state,
+            behaviorType: enemy.definition.behaviorType,
+            behaviorTiming: [...enemy.definition.behaviorTiming] as [number, number],
+            animationStateIndex: enemy.animationStateIndex ?? null,
+            animationDirection: enemy.animationDirection ?? null,
+            animationFrameIndex: enemy.animationFrameIndex ?? null,
+            attackCooldownTicksRemaining: enemy.attackCooldownTicksRemaining ?? null,
+            actionDelayTicksRemaining: enemy.actionDelayTicksRemaining ?? null,
+            pursuitRetargetProgress: enemy.pursuitRetargetProgress ?? null,
+            pursuitTarget: enemy.pursuitTarget ?? null,
+            attackAnimationTicksRemaining: enemy.attackAnimationTicksRemaining ?? null,
+            attackHitResolved: enemy.attackHitResolved ?? null,
+            sourceRenderedOnScreen: enemy.sourceRenderedOnScreen ?? null,
           })),
+          npcs: (activeMap?.events.npcPlacements ?? []).map((placement) => {
+            const sprite = activeMap?.npcSprites.get(placement.sourceOrder);
+            const tileSize = activeMap?.world.map.tileSize ?? 16;
+            const pixelX = sprite === undefined
+              ? placement.tileX * tileSize
+              : Math.round(sprite.container.x - tileSize / 2);
+            const pixelY = sprite === undefined
+              ? placement.tileY * tileSize
+              : Math.round(sprite.container.y - tileSize / 2);
+            const visible = activeMap?.visibleNpcSourceOrders.has(placement.sourceOrder) ?? false;
+            return {
+              sourceOrder: placement.sourceOrder,
+              npcId: placement.imageId,
+              tileX: Math.floor(pixelX / tileSize),
+              tileY: Math.floor(pixelY / tileSize),
+              pixelX,
+              pixelY,
+              direction: sprite?.direction ?? 2,
+              visible,
+              moving: sprite?.stateIndex === 1,
+              occupiesCells: visible && (sprite === undefined || sprite.stateIndex === 0),
+            };
+          }),
         });
       }
     }
@@ -1699,6 +1991,7 @@ export class WorldScene extends Phaser.Scene {
     const frameDelta = delta * gameSpeedScale(this.gameOptions);
     const sourcePaintClock = advanceSourcePaintClock(frameDelta, this.sourcePaintRemainderMs);
     this.sourcePaintRemainderMs = sourcePaintClock.remainderMs;
+    this.advanceEnemyTargetHudFrame(sourcePaintClock.passes);
     if (shouldResumeSourceEventBeforeWorldUpdate(
       this.openingCutsceneState?.sourceEventResumePending ?? false,
       this.actor.tickRemainderMs,
@@ -1982,11 +2275,13 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private beginGameOver(): void {
-    if (import.meta.env.DEV && this.campaignTestProfile !== null) {
-      this.hudState.hp = this.hudState.maxHp;
-      this.hudState.sp = this.hudState.maxSp;
-      this.refreshGameplayHud();
-      return;
+    if (import.meta.env.DEV) {
+      const restored = restoreCampaignTestVitals(this.hudState, this.campaignTestProfile);
+      if (restored !== null) {
+        this.hudState = restored;
+        this.refreshGameplayHud();
+        return;
+      }
     }
     this.gameOverSequence = beginGameOverSequence();
     this.pressedDirections = [];
@@ -2095,6 +2390,7 @@ export class WorldScene extends Phaser.Scene {
       map.enemies = map.enemies.map((enemy) => enemy.sourceOrder === result.target.sourceOrder
         ? beginEnemyDamageReaction(enemy, this.playerSkillAction.facing)
         : enemy);
+      this.showEnemyTargetHud(map, result.target, true);
       this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
       if (target.state === 'alive' && result.target.state === 'death-pending') {
         this.rewardDefeatedEnemy(map, result.target);
@@ -2129,6 +2425,7 @@ export class WorldScene extends Phaser.Scene {
       );
       map.enemies = result.combatants;
       if (result.kind !== 'hit') continue;
+      this.showEnemyTargetHud(map, result.target, true);
       this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
       if (target.state === 'alive' && result.target.state === 'death-pending') {
         this.rewardDefeatedEnemy(map, result.target);
@@ -2146,6 +2443,7 @@ export class WorldScene extends Phaser.Scene {
     const power = (this.playerSkillAction.skillRank * 2) + 40 + this.playerSkillAction.skillPowerStat;
     const result = applySourceCounterDamage([attacker], attacker.sourceOrder, power);
     if (result.kind !== 'hit') return attacker;
+    this.showEnemyTargetHud(map, result.target, false);
     this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
     if (attacker.state === 'alive' && result.target.state === 'death-pending') {
       this.rewardDefeatedEnemy(map, result.target);
@@ -2153,9 +2451,14 @@ export class WorldScene extends Phaser.Scene {
     return result.target;
   }
 
-  private recordSourcePlayerHit(direction: Direction | undefined): void {
+  private recordSourcePlayerHit(
+    direction: Direction | undefined,
+    map: RenderedWorld,
+    attacker: EnemyCombatant,
+  ): void {
     // `n` initializes actors facing south; source `an.a(...)` records the
     // attacker-facing direction and applies its offset on the next paint.
+    this.showEnemyTargetHud(map, attacker, false);
     this.playerHitFeedback = recordPlayerHitFeedback(
       this.playerHitFeedback,
       direction ?? 2,
@@ -2275,7 +2578,7 @@ export class WorldScene extends Phaser.Scene {
               (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
             );
             if (!defense.evaded) {
-              this.recordSourcePlayerHit(bossTick.enemy.animationDirection);
+              this.recordSourcePlayerHit(bossTick.enemy.animationDirection, currentMap, bossTick.enemy);
               this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
               this.refreshGameplayHud();
               this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
@@ -2377,7 +2680,7 @@ export class WorldScene extends Phaser.Scene {
               (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
             );
             if (!defense.evaded) {
-              this.recordSourcePlayerHit(bossTick.enemy.animationDirection);
+              this.recordSourcePlayerHit(bossTick.enemy.animationDirection, currentMap, bossTick.enemy);
               this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
               this.refreshGameplayHud();
               this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
@@ -2452,7 +2755,7 @@ export class WorldScene extends Phaser.Scene {
               (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
             );
             if (!defense.evaded) {
-              this.recordSourcePlayerHit(sourceTick.enemy.animationDirection);
+              this.recordSourcePlayerHit(sourceTick.enemy.animationDirection, currentMap, sourceTick.enemy);
               this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
               this.refreshGameplayHud();
               this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
@@ -2573,7 +2876,7 @@ export class WorldScene extends Phaser.Scene {
           (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
         );
         if (!result.evaded) {
-          this.recordSourcePlayerHit(consumed.animationDirection);
+          this.recordSourcePlayerHit(consumed.animationDirection, currentMap, consumed);
           this.hudState.hp = Math.max(0, this.hudState.hp - result.damage);
           this.refreshGameplayHud();
           this.showDamageNumber(playerTileX, playerTileY, -result.damage, 'hero');
@@ -2736,7 +3039,7 @@ export class WorldScene extends Phaser.Scene {
         (minimum, maximum) => this.randomStreams.range.nextSourceRange(minimum, maximum),
       );
       if (!defense.evaded) {
-        this.recordSourcePlayerHit(projectile.direction);
+        this.recordSourcePlayerHit(projectile.direction, map, counteredAttacker);
         this.hudState.hp = Math.max(0, this.hudState.hp - defense.damage);
         this.refreshGameplayHud();
         this.showDamageNumber(this.actor.x >> 4, this.actor.y >> 4, -defense.damage, 'hero');
@@ -2779,6 +3082,7 @@ export class WorldScene extends Phaser.Scene {
       map.enemies = attack.combatants.map((enemy) => enemy.sourceOrder === attack.target.sourceOrder
         ? beginEnemyDamageReaction(enemy, projectile.direction)
         : enemy);
+      this.showEnemyTargetHud(map, attack.target, true);
       this.applyPlayerWeaponProcCosts(attack.playerHpCost, attack.playerSpCost);
       this.showDamageNumber(attack.target.tileX, attack.target.tileY, attack.damage);
       if (target.state === 'alive' && attack.target.state === 'death-pending') {
@@ -3998,6 +4302,7 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private createGameplayHud(): void {
+    this.createEnemyTargetHud();
     if (this.gameplayHud !== null) return;
     const canvas = document.createElement('canvas');
     canvas.width = this.scale.width;
@@ -4031,6 +4336,85 @@ export class WorldScene extends Phaser.Scene {
       .setOrigin(0, 0)
       .setScrollFactor(0)
       .setDepth(50000);
+  }
+
+  private createEnemyTargetHud(): void {
+    if (this.enemyTargetHudImage !== null) return;
+    const canvas = document.createElement('canvas');
+    canvas.width = ENEMY_TARGET_HUD_WIDTH;
+    canvas.height = ENEMY_TARGET_HUD_HEIGHT;
+    const context = canvas.getContext('2d');
+    if (context === null || this.fontLayout === null) return;
+    this.enemyTargetHudContext = context;
+    this.enemyTargetHudAssets = {
+      fontAtlas: this.textures.get('world-font-atlas').getSourceImage() as CanvasImageSource,
+      font: this.fontLayout,
+      digits: this.textures.get('world-hud-digits').getSourceImage() as CanvasImageSource,
+    };
+    if (this.textures.exists('enemy-target-hud')) this.textures.remove('enemy-target-hud');
+    const texture = this.textures.addCanvas('enemy-target-hud', canvas);
+    if (texture === null) return;
+    this.enemyTargetHudTexture = texture;
+    this.enemyTargetHudImage = this.add.image(this.scale.width - ENEMY_TARGET_HUD_WIDTH, 2, texture)
+      .setOrigin(0, 0)
+      .setScrollFactor(0)
+      .setDepth(50001)
+      .setVisible(false);
+  }
+
+  private showEnemyTargetHud(map: RenderedWorld, enemy: EnemyCombatant, retainExistingTarget: boolean): void {
+    const existing = this.enemyTargetHudState;
+    const existingEnemy = existing?.mapId === this.currentMapId
+      ? map.enemies.find((candidate) => candidate.sourceOrder === existing.sourceOrder)
+      : undefined;
+    const keepExisting = retainExistingTarget && existing !== null && existingEnemy !== undefined &&
+      existingEnemy.state !== 'removed' && existingEnemy.state !== 'respawn-wait' &&
+      existing.sourceOrder !== enemy.sourceOrder;
+    this.enemyTargetHudState = {
+      mapId: this.currentMapId,
+      sourceOrder: keepExisting ? existing.sourceOrder : enemy.sourceOrder,
+      remainingFrames: 24,
+    };
+    this.refreshEnemyTargetHud();
+  }
+
+  private advanceEnemyTargetHudFrame(sourcePaintPasses: number): void {
+    const state = this.enemyTargetHudState;
+    if (state === null || sourcePaintPasses <= 0) return;
+    state.remainingFrames -= sourcePaintPasses;
+    if (state.remainingFrames <= 0) {
+      this.enemyTargetHudState = null;
+      this.enemyTargetHudImage?.setVisible(false);
+      return;
+    }
+    this.refreshEnemyTargetHud();
+  }
+
+  private refreshEnemyTargetHud(): void {
+    const state = this.enemyTargetHudState;
+    const context = this.enemyTargetHudContext;
+    const assets = this.enemyTargetHudAssets;
+    const texture = this.enemyTargetHudTexture;
+    const image = this.enemyTargetHudImage;
+    if (state === null || context === null || assets === null || texture === null || image === null) return;
+    const map = state.mapId === this.currentMapId ? this.maps.get(state.mapId) : undefined;
+    const target = map?.enemies.find((enemy) => enemy.sourceOrder === state.sourceOrder);
+    if (target === undefined || target.state === 'removed' || target.state === 'respawn-wait') {
+      this.enemyTargetHudState = null;
+      image.setVisible(false);
+      return;
+    }
+    const localizedName = resolveLanguageString(this.worldLanguage, Number(target.definition.labelToken)) ?? '';
+    drawEnemyTargetHud(context, assets, {
+      name: localizedName.split('\n')[0] ?? '',
+      level: target.definition.experienceRewardCode,
+      hp: Math.max(0, target.hp),
+      maxHp: target.definition.maxHp,
+      shapeCode: target.definition.shapeCode,
+    });
+    texture.refresh();
+    const y = this.playerSkillAction.phase === 2 ? 22 : 2;
+    image.setPosition(this.scale.width - ENEMY_TARGET_HUD_WIDTH, y).setVisible(true);
   }
 
   private refreshGameplayHud(): void {
@@ -7021,9 +7405,18 @@ export class WorldScene extends Phaser.Scene {
   }
 
   private advancePlayerRecovery(activity: PlayerRecoveryActivity): void {
+    const effectiveAttributes = this.equipmentStats?.attributes ?? this.characterAttributes;
+    const recoveryAttributes = import.meta.env.DEV && this.campaignTestProfile !== null
+      ? resolveCampaignTestRecoveryAttributes(
+        this.campaignTestProfile,
+        effectiveAttributes,
+        this.characterAttributes,
+        this.heroClassId,
+      )
+      : effectiveAttributes;
     const result = advancePlayerRecoveryTick(this.playerRecovery, activity, {
       level: this.hudState.level,
-      attributes: this.equipmentStats?.attributes ?? this.characterAttributes,
+      attributes: recoveryAttributes,
       hp: this.hudState.hp,
       maxHp: this.hudState.maxHp,
       sp: this.hudState.sp,
@@ -7113,6 +7506,7 @@ export class WorldScene extends Phaser.Scene {
         currentMap.enemies = currentMap.enemies.map((enemy) => enemy.sourceOrder === result.target.sourceOrder
           ? beginEnemyDamageReaction(enemy, this.actor.direction)
           : enemy);
+        this.showEnemyTargetHud(currentMap, result.target, true);
         this.applyPlayerWeaponProcCosts(result.playerHpCost, result.playerSpCost);
         this.showDamageNumber(result.target.tileX, result.target.tileY, result.damage);
         if (previousTargetState === 'alive' && result.target.state === 'death-pending') {

@@ -1,0 +1,7 @@
+# M916 evidence notes
+
+A fresh visible New Game used the DEV-only `max-level` profile in an isolated Chromium profile on the separate Vite origin `http://127.0.0.1:5174`. It reached Map64 `(9,8)` at level 99 with full 394,392 HP/SP, then followed the recorded natural Map64→Map0→Map27 route without a map seed or state injection.
+
+At Map27 `(5,37)`, the runtime showed 18 living enemies and the hero remained at full HP/SP. During the approach to one enemy, it moved from its original position; the first three attacks used the stale direction and did not hit. A live telemetry refresh found enemy 24 (source order 14) adjacent at `(9,31)`. The hero faced west and one light attack changed its HP from 43 to 0 (`respawn-wait`). The hero stayed at 394,392 HP, level 99, on Map27, and no Game Over sequence began. This records one successful attack and survival through the route; it does not prove all enemies, maps, or lethal-damage recovery.
+
+The run used visible keyboard input through CDP and read only the DEV runtime snapshot for route/combat observation. No in-game Save/Load, browser-storage read, local-save access, original-JAR access, direct map start, or gameplay-state seed was used. The initial route/capture is in [run-result.json](run-result.json), the corrected live-target hit is in [attempt-2.json](attempt-2.json), and the final browser frame is [05-map27-attack-followup.png](05-map27-attack-followup.png). REA screenshot evidence: `ev_547d39b9801b7f75a282b06d2ee48a1860d090b17b43d08c6288b00d9da7ce0f`.

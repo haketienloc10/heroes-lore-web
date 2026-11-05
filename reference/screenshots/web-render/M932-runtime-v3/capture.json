@@ -1,0 +1,30 @@
+{
+  "url": "http://127.0.0.1:5174/?testProfile=max-level",
+  "profile": "max-level",
+  "mapId": 0,
+  "player": {
+    "tileX": 22,
+    "tileY": 4,
+    "direction": 3
+  },
+  "resources": {
+    "hp": 394392,
+    "maxHp": 394392,
+    "sp": 394392,
+    "maxSp": 394392,
+    "level": 99
+  },
+  "npcCount": 12,
+  "visibleNpcCount": 9,
+  "occupyingNpcCount": 9,
+  "dialogueOpen": true,
+  "restrictions": {
+    "visibleNewGame": true,
+    "visibleKeyboardInput": true,
+    "inGameSaveOrLoad": false,
+    "browserStorageRead": false,
+    "localSaveRead": false,
+    "originalJarRead": false,
+    "directMapStartOrGameplayStateSeed": false
+  }
+}
