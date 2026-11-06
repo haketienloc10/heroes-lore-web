@@ -32,6 +32,22 @@ Nguồn đầy đủ: [session-audit.json](../../../reverse-engineering/findings
 
 R04: Down đầu `15:08:58.889013441Z` → `15:08:59.926765073Z`, bracket log **1037.721205 ms**; khoảng thả đến Down kế **1719.101485 ms**; Down hai `15:09:01.645896032Z` → `15:09:02.647555846Z`, bracket **1001.718762 ms**. Ảnh BED `15:08:58.040542904Z`; ảnh trong nhà sau Down đầu `15:09:01.284787465Z`; ảnh ngoài nhà `15:09:07.958948405Z`. Các mốc là ngày 2026-10-21 UTC.
 
+### Lượt live bổ sung M1028 — P1M-R17
+
+Một tiến trình và working directory mới được tạo bằng smoke setup New Game hiện có. Sau khi tới intro, W giữ 100 ms đưa game tới Map 64/BED; Down giữ 1000 ms rồi thả, nghỉ 1 giây, Down giữ 1000 ms rồi thả, nghỉ 5 giây và chụp OUTSIDE. Console ghi Map 0 → Map 64 → Map 0. Đây là lượt cửa ra live thứ hai đã quan sát; nó không bổ sung vào các log R02–R04 được lập trước đó.
+
+Ảnh BED và first-Down lần này cũng byte-identical với ảnh source R04 tương ứng; BED RGB-identical với ảnh web M1018. Ảnh OUTSIDE 240×320 khớp toàn bộ 76,800 pixel RGB với ảnh web M753 (0 changed pixels, MAE 0) và byte-identical với ảnh source R04 `04-Down-two-holds.png` (SHA-256 `ff2c0e389e249a72a5569e1b6fcf063d25ede395a7dcf25a9ba5d8da8625fcf3`). Ảnh browser first-Down cũ của M461 lệch live/source 761 pixel (0.9909%; RGB MAE 0.91503); lượt chụp web mới M1029 chưa lấy được canvas 240×320 nên chưa biết sai khác đó còn tồn tại ở build hiện tại hay không ([M1029 notes](../../screenshots/web-render/M1029-web-first-down/attempt-notes.md)). Xem [M1028 evidence](../../screenshots/web-render/M1028-live-j2me-map0-outside/evidence-notes.md) và [comparison metrics](../../screenshots/web-render/M1028-live-j2me-map0-outside/attempt-1/analysis.json). Đây là ba still frame, không chứng minh cadence, state nội bộ hay parity của các màn khác. Không dùng Save/Load, không truy cập save cục bộ có sẵn, không sửa JAR; thư mục runtime mới được xóa mà không kiểm tra nội dung.
+
+
+### Lượt web bổ sung M1030 — so sánh framebuffer native
+
+M1030 chụp trực tiếp WebGL drawing buffer 240×320 của Phaser, không lấy kích thước CSS canvas. Lượt đầu có ảnh BED, first-Down và OUTSIDE trên build hiện tại. So với ảnh R04, cả ba khung trùng chính xác ở 76.575 pixel ngoài ô kỹ năng HUD đầu tiên `[7,299,21,313]`; tổng sai khác 188–199 pixel nằm hết trong ô này. Lựa chọn kỹ năng của lượt web không được đồng bộ với ảnh R04, nên đây là đối chiếu khung cảnh và HUD ngoài ô kỹ năng, chưa phải đối chiếu cùng trạng thái HUD. Hai lượt chẩn đoán sau chỉ ở menu và không tính là replay gameplay. Xem [M1030 evidence](../../screenshots/web-render/M1030-native-webgl-house-route/evidence-notes.md). Lượt web dùng profile Chromium tạm mới, không đọc storage/save, không dùng Save/Load, không sửa hoặc đọc JAR, và không seed state.
+
+
+### Lượt web M1031 — đồng bộ lựa chọn kỹ năng
+
+Lượt tiếp theo dùng cùng chụp WebGL native 240×320 nhưng điều khiển menu theo trạng thái hiển thị, chọn Ronin, Hestia, Ran và Yes. Đọc runtime mới tạo xác nhận `heroClassId=6`, `guardianIndices=[0,1]`, `skillIds=[0,1]`, `activeSkillId=0`, level 1; không dùng hồ sơ test hoặc seed. Ảnh first-Down map 64/(9,15) và OUTSIDE map 0/(26,24) khớp R04/live J2ME toàn bộ 76.800 pixel. BED chênh 89 pixel chỉ trong icon skill khi bộ đếm charge còn 34; bộ đếm tự về 0 trước first-Down. M751 xác nhận toàn bộ HUD khớp sau cooldown. Chi tiết tại [M1031 evidence](../../screenshots/web-render/M1031-matched-skill-native-house-route/evidence-notes.md) và [analysis](../../screenshots/web-render/M1031-matched-skill-native-house-route/attempt-1/analysis.json). Không đọc storage/save, không Save/Load, không truy cập/sửa JAR.
+
 Bracket down/up bao gồm dispatch KeyListener: down được log trước gọi listener, up sau gọi listener. Chưa đo thời gian callback MIDlet, input latency, độ phân giải đồng hồ, overhead hoặc FPS. Console R04 có `map : 64` rồi `map : 0`; ảnh xác nhận chuyển nội thất → ngoài nhà, số map không xác nhận tên địa điểm hay state nội bộ.
 
 Không có snapshot byte trước launch của ba session cũ; RMS sạch là điều kiện được khai báo trong launch. RMS container sau dừng có hash khác nhau, không dùng làm bằng chứng cùng save/state, cũng không tự suy nội dung khác chỉ từ hash. RNG, toàn bộ state khởi tạo và callback ordering **chưa xác minh**. Ba session cũ **không phải ba replay tương đương HOUSE-EXIT-001**.

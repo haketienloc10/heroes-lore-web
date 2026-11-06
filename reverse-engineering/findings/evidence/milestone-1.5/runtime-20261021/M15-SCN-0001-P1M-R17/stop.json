@@ -1,0 +1,8 @@
+{
+  "pid": 1919260,
+  "method": "SIGTERM to verified owned FreeJ2ME PID after captures",
+  "processStopped": true,
+  "freshRuntimeCwdRemovedWithoutInspectingContents": true,
+  "saveActionUsed": false,
+  "existingLocalSavesAccessed": false
+}

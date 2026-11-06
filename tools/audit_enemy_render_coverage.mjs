@@ -49,6 +49,7 @@ try {
       MAP15_CF_RENDER_SPRITE_ID,
       MAP15_AZ_RENDER_SPRITE_ID,
       MAP15_AJ_RENDER_SPRITE_ID,
+      MAP82_BU_RENDER_SPRITE_ID,
       parseBossSpriteAnimationCatalog,
       parseBossAttackEffectCatalog,
     },
@@ -104,6 +105,7 @@ try {
     [MAP15_CF_RENDER_SPRITE_ID, [3, 39]],
     [MAP15_AZ_RENDER_SPRITE_ID, [3, 40]],
     [MAP15_AJ_RENDER_SPRITE_ID, [3, 41]],
+    [MAP82_BU_RENDER_SPRITE_ID, [4, 42]],
   ]);
   const missing = [];
   const missingDefinitions = [];

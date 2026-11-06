@@ -1,0 +1,3 @@
+{"utc": "2026-11-05T15:00:15.735940+00:00", "mono_ns": 1135399885139172, "producer": "X11 host control", "event": "focus", "window": "0x400023"}
+{"utc": "2026-11-05T15:00:15.736215+00:00", "mono_ns": 1135399885391988, "producer": "X11 host control", "event": "key_down", "window": "0x400023", "host_keysym": "Shift_L", "x11_keycode": 50, "planned_hold_ms": 120}
+{"utc": "2026-11-05T15:00:15.883892+00:00", "mono_ns": 1135400033096886, "producer": "X11 host control", "event": "key_up", "window": "0x400023", "host_keysym": "Shift_L", "x11_keycode": 50}

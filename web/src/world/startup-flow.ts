@@ -34,6 +34,7 @@ import {
   campaignTestMapPreviewMapId,
   isCampaignTestProfile,
   isCampaignTestScenario,
+  DAMAGE_SURVIVAL_CAMPAIGN_TEST_PROFILE,
   MAX_LEVEL_CAMPAIGN_TEST_PROFILE,
 } from './campaign-test-profile';
 import {
@@ -182,15 +183,23 @@ export class StartupFlowScene extends Phaser.Scene {
       this.fontLayout,
     );
     this.aboutPages = buildStartupAboutPages(this.startupLanguage, this.fontLayout);
-    try {
-      this.savedGames = readGameSaves(window.localStorage);
-    } catch {
+    const isolatedCampaignTest = import.meta.env.DEV && isCampaignTestProfile(
+      new URLSearchParams(window.location.search).get('testProfile'),
+    );
+    if (isolatedCampaignTest) {
       this.savedGames = [];
-    }
-    try {
-      this.options = readGameOptions(window.localStorage);
-    } catch {
       this.options = { ...DEFAULT_GAME_OPTIONS };
+    } else {
+      try {
+        this.savedGames = readGameSaves(window.localStorage);
+      } catch {
+        this.savedGames = [];
+      }
+      try {
+        this.options = readGameOptions(window.localStorage);
+      } catch {
+        this.options = { ...DEFAULT_GAME_OPTIONS };
+      }
     }
     gameMusic.setEnabled(this.options.sound);
     this.canvas = document.createElement('canvas');
@@ -466,7 +475,8 @@ export class StartupFlowScene extends Phaser.Scene {
       const requestedTestScenario = params.get('testScenario');
       if (testProfile !== undefined && isCampaignTestScenario(requestedTestScenario)) {
         if (campaignTestMapPreviewMapId(requestedTestScenario) === null ||
-          testProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE) {
+          testProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE ||
+          testProfile === DAMAGE_SURVIVAL_CAMPAIGN_TEST_PROFILE) {
           testScenario = requestedTestScenario;
         }
       }

@@ -1,0 +1,2 @@
+2026-11-05T15:07:18.683182314Z mono_ns=1135789081744893 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0001-P1M-R13/02-10s-framebuffer.png 240x320; not host presentation timing; no synchronization with game paint
+2026-11-05T15:07:21.889326094Z mono_ns=1135792282363096 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0001-P1M-R13/03-after-startup-Enter.png 240x320; not host presentation timing; no synchronization with game paint

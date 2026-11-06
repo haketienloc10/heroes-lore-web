@@ -1,0 +1,6 @@
+# Continue the visible New Game opening to BED Map64.
+down 87
+wait 200
+up 87
+wait 3000
+frame after-opening-skip

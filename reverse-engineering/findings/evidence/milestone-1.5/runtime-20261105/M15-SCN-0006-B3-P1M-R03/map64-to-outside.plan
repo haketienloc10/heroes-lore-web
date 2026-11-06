@@ -1,0 +1,11 @@
+# Reuse the observed two Down holds from BED Map64 to the outdoor Map0.
+down 40
+wait 1000
+up 40
+wait 700
+frame after-first-down
+down 40
+wait 1000
+up 40
+wait 3000
+frame outside

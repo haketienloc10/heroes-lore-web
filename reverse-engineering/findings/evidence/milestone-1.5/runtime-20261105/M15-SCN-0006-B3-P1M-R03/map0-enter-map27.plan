@@ -1,0 +1,10 @@
+# Restore the route endpoint (20,2), then step north into the collision-1 marker row.
+down 37
+wait 145
+up 37
+wait 100
+down 38
+wait 145
+up 38
+wait 3000
+frame map27-entry

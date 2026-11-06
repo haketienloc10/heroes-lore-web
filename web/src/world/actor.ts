@@ -11,7 +11,10 @@ export interface PlayerActor {
   stopAfterTile: boolean;
   queuedDirection: Direction | null;
   tickRemainderMs: number;
+  /** Source animation cursor; -1 is the newly selected walking state before its first update. */
   animationFrame: number;
+  /** Source `an.i` latch: the current-cell automatic event was polled without movement since. */
+  currentCellEventPolled: boolean;
 }
 
 export const WORLD_UPDATE_PERIOD_MS = 71;
@@ -41,6 +44,18 @@ export function createPlayerActor(x = 9 * 16, y = 8 * 16, direction: Direction =
     queuedDirection: null,
     tickRemainderMs: 0,
     animationFrame: 0,
+    currentCellEventPolled: false,
+  };
+}
+
+/** Claim the source's one automatic type-0 poll for the actor's current cell. */
+export function claimCurrentCellEventPoll(
+  actor: PlayerActor,
+): { actor: PlayerActor; shouldPoll: boolean } {
+  if (actor.currentCellEventPolled) return { actor, shouldPoll: false };
+  return {
+    actor: { ...actor, currentCellEventPolled: true },
+    shouldPoll: true,
   };
 }
 
@@ -52,6 +67,8 @@ export function requestActorDirection(actor: PlayerActor, direction: Direction):
       moving: true,
       stopAfterTile: false,
       queuedDirection: null,
+      // Source n.a(state) resets its frame cursor to -1. The first world update increments it to frame 0.
+      animationFrame: -1,
     };
   }
   return { ...actor, queuedDirection: direction, stopAfterTile: false };
@@ -157,6 +174,7 @@ function advanceOneUpdate(
     x: next.x + vector.x * PLAYER_HALF_TILE_STEP_PX,
     y: next.y + vector.y * PLAYER_HALF_TILE_STEP_PX,
     animationFrame: (next.animationFrame + 1) % 4,
+    currentCellEventPolled: false,
   };
   if (next.stopAfterTile && next.x % 16 === 0 && next.y % 16 === 0) {
     return stopActor(next);

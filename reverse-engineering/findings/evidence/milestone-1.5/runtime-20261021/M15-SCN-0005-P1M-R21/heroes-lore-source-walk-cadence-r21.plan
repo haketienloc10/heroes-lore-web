@@ -1,0 +1,9 @@
+down 87
+wait 80
+up 87
+wait 2000
+frame 01-after-skip
+wait 8000
+frame 02-map64-arrival
+burst 40 700 5 03-down-held
+burst none 250 5 04-idle-after-release

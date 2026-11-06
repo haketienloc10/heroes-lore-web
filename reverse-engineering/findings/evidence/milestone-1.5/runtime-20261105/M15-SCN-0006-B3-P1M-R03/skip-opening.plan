@@ -1,0 +1,8 @@
+# Continue the visible fresh New Game opening, then allow the Map64 scene to settle.
+down 87
+wait 200
+up 87
+wait 3000
+frame after-opening-skip
+wait 12000
+frame after-opening-settle

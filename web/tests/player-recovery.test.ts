@@ -114,4 +114,28 @@ describe('source player HP/SP recovery', () => {
       state: createPlayerRecoveryState(),
     });
   });
+
+  it('accepts effective recovery attributes that cross short bounds through equipment bonuses', () => {
+    const maxedVitals: PlayerRecoveryVitals = {
+      level: 99,
+      attributes: { power: 32767, hp: 32768, agility: 0, will: 32768 },
+      hp: 394392,
+      maxHp: 394404,
+      sp: 394392,
+      maxSp: 394404,
+    };
+    const result = advancePlayerRecoveryTick(
+      { hpTimer: 1, spTimer: 1 },
+      'idle',
+      maxedVitals,
+    );
+
+    expect(result).toMatchObject({
+      hp: maxedVitals.maxHp,
+      sp: maxedVitals.maxSp,
+      hpChange: 12,
+      spChange: 12,
+      state: { hpTimer: 100, spTimer: 21 },
+    });
+  });
 });

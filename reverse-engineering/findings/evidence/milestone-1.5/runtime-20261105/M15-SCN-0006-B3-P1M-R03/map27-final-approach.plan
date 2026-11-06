@@ -1,0 +1,6 @@
+# From the live tile (28,7), move north into the Map27->Map17 trigger row.
+down 38
+wait 435
+up 38
+wait 3000
+frame map17-arrival

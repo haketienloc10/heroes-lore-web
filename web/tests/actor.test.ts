@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   advanceActor,
+  claimCurrentCellEventPoll,
   createPlayerActor,
   didReachMapEventBoundary,
   releaseActorDirection,
@@ -9,6 +10,7 @@ import {
   WORLD_UPDATE_PERIOD_MS,
 } from '../src/world/actor';
 import { createWorldGrid, type BaseCollisionData, type BaseMapData } from '../src/world/map-data';
+import { EMPTY_PLAYER_COMBO, playerSpritePose } from '../src/world/player-combo';
 
 const map: BaseMapData = {
   format: 'heroes-lore-map-v1',
@@ -57,6 +59,40 @@ describe('source-shaped player movement', () => {
     expect(didReachMapEventBoundary(moving, blocked)).toBe(true);
   });
 
+  it('polls the current-cell automatic event once until the actor moves', () => {
+    const firstPoll = claimCurrentCellEventPoll(createPlayerActor(16, 16));
+    expect(firstPoll.shouldPoll).toBe(true);
+    expect(firstPoll.actor.currentCellEventPolled).toBe(true);
+
+    const repeatedPoll = claimCurrentCellEventPoll(firstPoll.actor);
+    expect(repeatedPoll.shouldPoll).toBe(false);
+    expect(repeatedPoll.actor).toBe(firstPoll.actor);
+
+    const moved = advanceActor(
+      worldWithCollision(),
+      requestActorDirection(firstPoll.actor, 4),
+      WORLD_UPDATE_PERIOD_MS,
+    );
+    expect(moved.currentCellEventPolled).toBe(false);
+  });
+
+  it('keeps the current-cell poll latched when an outgoing move is blocked', () => {
+    const polled = claimCurrentCellEventPoll(createPlayerActor(16, 16)).actor;
+    const blockedWorld = worldWithCollision([
+      [0, 0, 0, 0], [0, 0, -6, 0], [0, 0, 0, 0], [0, 0, 0, 0],
+    ]);
+    const moving = requestActorDirection(polled, 4);
+    const blocked = advanceActor(blockedWorld, moving, WORLD_UPDATE_PERIOD_MS);
+
+    expect(blocked).toMatchObject({
+      x: 16,
+      y: 16,
+      moving: false,
+      currentCellEventPolled: true,
+    });
+    expect(didReachMapEventBoundary(moving, blocked)).toBe(true);
+  });
+
   it('moves in 8-pixel increments on the 71 ms update period', () => {
     const world = worldWithCollision();
     let actor = requestActorDirection(createPlayerActor(16, 16), 4);
@@ -64,6 +100,29 @@ describe('source-shaped player movement', () => {
     expect(actor).toMatchObject({ x: 24, y: 16, moving: true, direction: 4 });
     actor = advanceActor(world, actor, WORLD_UPDATE_PERIOD_MS);
     expect(actor).toMatchObject({ x: 32, y: 16, moving: true });
+  });
+
+  it('resets and advances the source walk cursor on every movement start', () => {
+    const world = worldWithCollision();
+    let actor = requestActorDirection(createPlayerActor(16, 16), 2);
+    expect(actor.animationFrame).toBe(-1);
+    expect(playerSpritePose(EMPTY_PLAYER_COMBO, actor.direction, actor.moving, actor.animationFrame, false))
+      .toMatchObject({ animationSlot: 1, directionSlot: 1, frameIndex: 0 });
+
+    const frameSequence: number[] = [];
+    for (let update = 0; update < 4; update += 1) {
+      actor = advanceActor(world, actor, WORLD_UPDATE_PERIOD_MS);
+      frameSequence.push(actor.animationFrame);
+    }
+    expect(frameSequence).toEqual([0, 1, 2, 3]);
+
+    actor = releaseActorDirection(actor);
+    expect(playerSpritePose(EMPTY_PLAYER_COMBO, actor.direction, actor.moving, actor.animationFrame, false))
+      .toMatchObject({ animationSlot: 0, frameIndex: 0 });
+    actor = requestActorDirection(actor, 4);
+    expect(actor.animationFrame).toBe(-1);
+    actor = advanceActor(world, actor, WORLD_UPDATE_PERIOD_MS);
+    expect(actor.animationFrame).toBe(0);
   });
 
   it('stops at a blocked next cell and preserves the facing direction', () => {

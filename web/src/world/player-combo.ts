@@ -216,7 +216,7 @@ export function playerSpritePose(
   return {
     animationSlot: playerSpriteAnimationSlot(state, moving),
     directionSlot: direction - 1,
-    frameIndex: state.activeStyle !== null ? state.frame : moving ? movementFrame : 0,
+    frameIndex: state.activeStyle !== null ? state.frame : moving ? Math.max(0, movementFrame) : 0,
   };
 }
 

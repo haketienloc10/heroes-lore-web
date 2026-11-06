@@ -4,6 +4,7 @@ import type { PlayerAttributes } from './attributes';
 import type { EquipmentLoadout } from './equipment';
 import type { GroundDrop, InventoryStack } from './loot';
 import type { PlayerComboState } from './player-combo';
+import type { EnemyCombatant } from './combat';
 import { experienceRequiredForLevel } from './progression';
 import { createBasePlayerAttributes } from './attributes';
 
@@ -19,9 +20,44 @@ export const MAP27_CLASS6_SKILL_RANK9_TEST_SCENARIO = 'map27-class6-skill-rank9'
 export const MAP27_CLASS6_SKILL3_TEST_SCENARIO = 'map27-class6-skill3' as const;
 export const MAP27_CLASS6_SKILL4_TEST_SCENARIO = 'map27-class6-skill4' as const;
 export const MAP27_CLASS6_SKILL5_TEST_SCENARIO = 'map27-class6-skill5' as const;
+export const MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO = 'map27-weapon-proc-status' as const;
+export const MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO = 'map27-weapon-proc-status-slow' as const;
+export const MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO = 'map27-weapon-proc-status-defense' as const;
 export const MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO = 'map2-class6-skill5-element3' as const;
+export const MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO =
+  'map2-class6-skill3-level2-element3-mismatch' as const;
+export const MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO = 'map17-class6-skill3-level2' as const;
+export const MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO =
+  'map17-class6-skill0-level1-combo' as const;
+export const MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO =
+  'map17-class6-skill0-level2-counter-controlled' as const;
+export const MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO =
+  'map17-class6-skill4-level1-immunity' as const;
+export const MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO =
+  'map80-class6-skill1-level2-recovery' as const;
+export const MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO =
+  'map80-class6-skill0-level2-aura' as const;
+export const MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO =
+  'map80-class6-skill2-level2-cleanse' as const;
+export const MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO =
+  'map80-class6-skill4-level2-restore' as const;
 export const MAP80_REFINER_ORB_TEST_SCENARIO = 'map80-refiner-orb-attribute' as const;
 export const MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO = 'map80-blacksmith-identify' as const;
+export const MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO = 'map80-blacksmith-identify-direct' as const;
+export const MAP0_WALKING_RECOVERY_TEST_SCENARIO = 'map0-walking-recovery-controlled' as const;
+export const MAP76_EQUIPMENT_REWARD_TEST_SCENARIO = 'map76-equipment-reward' as const;
+export const MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO = 'map76-equipment-recovery-boundary' as const;
+export const MAP15_BOSS_DEATH_TEST_SCENARIO = 'map15-boss-death-animation' as const;
+export const MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO = 'map11-boss-death-fallback' as const;
+export const MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO =
+  'map11-boss-death-fallback-controlled' as const;
+export const MAP11_BOSS_AI_LIVE_TEST_SCENARIO = 'map11-boss-ai-live' as const;
+export const MAP13_AQ_AI_LIVE_TEST_SCENARIO = 'map13-aq-ai-live' as const;
+export const MAP59_KEY_PREVIEW_TEST_SCENARIO = 'map-preview-59-key' as const;
+export const MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO = 'map-preview-59-prereqs' as const;
+export const MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO = 'map53-flag82-bluebrick-route' as const;
+export const MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO = 'map54-current-cell-exit-latch' as const;
+export const MAP54_TO_MAP13_CHAIN_TEST_SCENARIO = 'map54-to-map13-chain' as const;
 export const CAMPAIGN_MAP_PREVIEW_TEST_SCENARIO_PREFIX = 'map-preview-' as const;
 export const CAMPAIGN_TEST_MAX_LEVEL = 99;
 export const CAMPAIGN_TEST_LOOT_LEVEL = 1;
@@ -39,9 +75,35 @@ export type CampaignTestScenario = typeof MAP60_INVESTIGATION_TEST_SCENARIO |
   typeof MAP27_CLASS6_SKILL3_TEST_SCENARIO |
   typeof MAP27_CLASS6_SKILL4_TEST_SCENARIO |
   typeof MAP27_CLASS6_SKILL5_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO |
   typeof MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO |
+  typeof MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO |
+  typeof MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO |
+  typeof MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO |
+  typeof MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO |
+  typeof MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO |
+  typeof MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO |
+  typeof MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO |
+  typeof MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO |
+  typeof MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO |
   typeof MAP80_REFINER_ORB_TEST_SCENARIO |
   typeof MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO |
+  typeof MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO |
+  typeof MAP0_WALKING_RECOVERY_TEST_SCENARIO |
+  typeof MAP76_EQUIPMENT_REWARD_TEST_SCENARIO |
+  typeof MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO |
+  typeof MAP15_BOSS_DEATH_TEST_SCENARIO |
+  typeof MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO |
+  typeof MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO |
+  typeof MAP11_BOSS_AI_LIVE_TEST_SCENARIO |
+  typeof MAP13_AQ_AI_LIVE_TEST_SCENARIO |
+  typeof MAP59_KEY_PREVIEW_TEST_SCENARIO |
+  typeof MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO |
+  typeof MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO |
+  typeof MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO |
+  typeof MAP54_TO_MAP13_CHAIN_TEST_SCENARIO |
   `${typeof CAMPAIGN_MAP_PREVIEW_TEST_SCENARIO_PREFIX}${number}`;
 
 export interface CampaignTestRuntimeEnemy {
@@ -58,6 +120,11 @@ export interface CampaignTestRuntimeEnemy {
   animationStateIndex: 0 | 1 | 2 | null;
   animationDirection: Direction | null;
   animationFrameIndex: number | null;
+  /** DEV observation of the source class and exact animation slot selected for rendering. */
+  sourceAu?: boolean;
+  renderSpriteId?: number;
+  renderAnimationStateIndex?: number | null;
+  deathUpdatesRemaining?: number;
   attackCooldownTicksRemaining: number | null;
   actionDelayTicksRemaining: number | null;
   pursuitRetargetProgress: number | null;
@@ -114,12 +181,28 @@ export interface CampaignTestRuntimeSnapshot {
     tileY: number;
     effectAge: number;
     chargeTicksRemaining: readonly number[];
+    recoveryBoostTicksRemaining: number;
   };
   combo: PlayerComboState & { comboLimit: number };
   dialogueOpen: boolean;
   transitionPending: boolean;
   enemies: readonly CampaignTestRuntimeEnemy[];
   npcs: readonly CampaignTestRuntimeNpc[];
+}
+
+export interface CampaignTestEnemyProjectile {
+  id: number;
+  sourceOrder: number;
+  spriteId: number;
+  direction: Direction;
+  tileX: number;
+  tileY: number;
+  frameIndex: number;
+  remainingSegments: number;
+  hitResolved: boolean;
+  sourceResource: string | null;
+  effectFrameCount: number | null;
+  renderedComponentCount: number;
 }
 
 export function isCampaignTestProfile(value: unknown): value is CampaignTestProfile {
@@ -138,19 +221,85 @@ export function isCampaignTestScenario(value: unknown): value is CampaignTestSce
     value === MAP27_CLASS6_SKILL3_TEST_SCENARIO ||
     value === MAP27_CLASS6_SKILL4_TEST_SCENARIO ||
     value === MAP27_CLASS6_SKILL5_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
     value === MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO ||
+    value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO ||
+    value === MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO ||
+    value === MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO ||
+    value === MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO ||
+    value === MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO ||
     value === MAP80_REFINER_ORB_TEST_SCENARIO ||
     value === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO ||
+    value === MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO ||
+    value === MAP0_WALKING_RECOVERY_TEST_SCENARIO ||
+    value === MAP76_EQUIPMENT_REWARD_TEST_SCENARIO ||
+    value === MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO ||
+    value === MAP15_BOSS_DEATH_TEST_SCENARIO ||
+    value === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO ||
+    value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO ||
+    value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO ||
+    value === MAP13_AQ_AI_LIVE_TEST_SCENARIO ||
+    value === MAP59_KEY_PREVIEW_TEST_SCENARIO ||
+    value === MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO ||
+    value === MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO ||
+    value === MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO ||
+    value === MAP54_TO_MAP13_CHAIN_TEST_SCENARIO ||
     campaignTestMapPreviewMapId(value) !== null;
 }
 
-/** Return the byte-sized map ID encoded by a DEV-only `map-preview-N` scenario. */
+/** Return the map ID encoded by a DEV-only map preview scenario. */
 export function campaignTestMapPreviewMapId(value: unknown): number | null {
+  if (value === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO) return 27;
+  if (value === MAP0_WALKING_RECOVERY_TEST_SCENARIO) return 0;
+  if (value === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO) return 11;
+  if (value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) return 11;
+  if (value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO) return 11;
+  if (value === MAP13_AQ_AI_LIVE_TEST_SCENARIO) return 13;
+  if (value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return 2;
+  if (value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO) return 17;
+  if (value === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) return 17;
+  if (value === MAP59_KEY_PREVIEW_TEST_SCENARIO || value === MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO) return 59;
+  if (value === MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO) return 53;
+  if (value === MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO ||
+    value === MAP54_TO_MAP13_CHAIN_TEST_SCENARIO) return 54;
   if (typeof value !== 'string') return null;
   const match = /^map-preview-(0|[1-9]\d{0,2})$/.exec(value);
   if (match?.[1] === undefined) return null;
   const mapId = Number(match[1]);
   return mapId <= 0xff ? mapId : null;
+}
+
+/** Optional fixed DEV preview spawn for route tests that model a named map-entry checkpoint. */
+export function campaignTestMapPreviewSpawnTile(
+  value: unknown,
+): { tileX: number; tileY: number } | null {
+  if (value === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO) return { tileX: 9, tileY: 31 };
+  if (value === MAP0_WALKING_RECOVERY_TEST_SCENARIO) return { tileX: 6, tileY: 22 };
+  if (value === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
+  if (value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
+  if (value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
+  if (value === MAP13_AQ_AI_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
+  if (value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return { tileX: 8, tileY: 27 };
+  if (value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO) return { tileX: 5, tileY: 11 };
+  if (value === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) return { tileX: 5, tileY: 11 };
+  if (value === MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO) return { tileX: 19, tileY: 38 };
+  if (value === MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO ||
+    value === MAP54_TO_MAP13_CHAIN_TEST_SCENARIO) return { tileX: 5, tileY: 13 };
+  return null;
 }
 
 /** Read-only state exposed on the gameplay host only for developer test-profile runs. */
@@ -173,7 +322,7 @@ export function serializeCampaignTestRuntimeSnapshot(snapshot: CampaignTestRunti
     .sort((left, right) => left.sourceOrder - right.sourceOrder)
     .map((npc) => ({ ...npc }));
   return JSON.stringify({
-    format: 'heroes-lore-campaign-test-runtime-v7',
+    format: 'heroes-lore-campaign-test-runtime-v9',
     profile: snapshot.profile,
     mapId: snapshot.mapId,
     mapSize: { ...snapshot.mapSize },
@@ -204,6 +353,28 @@ export function serializeCampaignTestRuntimeSnapshot(snapshot: CampaignTestRunti
     enemies,
     npcs,
   });
+}
+
+/** Expose active enemy statuses only on DEV test-profile pages for live combat verification. */
+export function serializeCampaignTestEnemyStatusSnapshot(
+  enemies: readonly Pick<EnemyCombatant, 'sourceOrder' | 'sourceStatusEffects'>[],
+): string {
+  return JSON.stringify([...enemies]
+    .filter((enemy) => (enemy.sourceStatusEffects?.length ?? 0) > 0)
+    .sort((left, right) => left.sourceOrder - right.sourceOrder)
+    .map((enemy) => ({
+      sourceOrder: enemy.sourceOrder,
+      effects: enemy.sourceStatusEffects?.map(({ id, ticksElapsed }) => ({ id, ticksElapsed })) ?? [],
+    })));
+}
+
+/** Expose active DEV-only projectile/effect render state for browser encounter checks. */
+export function serializeCampaignTestEnemyProjectileSnapshot(
+  projectiles: readonly CampaignTestEnemyProjectile[],
+): string {
+  return JSON.stringify([...projectiles]
+    .sort((left, right) => left.sourceOrder - right.sourceOrder || left.id - right.id)
+    .map((projectile) => ({ ...projectile })));
 }
 
 // Match the signed-short range accepted by the save parser for source stats.

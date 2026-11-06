@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R21",
+  "pid": 2116894,
+  "inherited_session": "M15-SCN-0001-P1M-R21",
+  "menu_run": "M15-SCN-0002-P1M-R21",
+  "profile": "P1M Motorola, 240x320, limiter 60",
+  "fixture": "Fresh visible class-6 New Game, opening scene before visible W/Skip; no state seeding or existing save",
+  "input_method": "FreeJ2ME KeyListener sequence probe; fresh session RMS only"
+}

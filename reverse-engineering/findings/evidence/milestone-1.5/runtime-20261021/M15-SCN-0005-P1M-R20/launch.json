@@ -1,0 +1,13 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R20",
+  "pid": 2102565,
+  "inherited_session": "M15-SCN-0001-P1M-R20",
+  "source_menu_session": "M15-SCN-0002-P1M-R20",
+  "utc": "2026-11-06T02:09:16.136068+00:00",
+  "profile": "FreeJ2ME-Plus 1.52, Motorola, 240x320, limiter60",
+  "source_jar_sha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "working_directory": "reference/recordings/M15-SCN-0001-P1M-R20 (fresh, separate RMS)",
+  "route": "fresh visible New Game; W/Skip; Map64 arrival screenshot 01-map64-arrival.png",
+  "instrumentation": "read-only frontbuffer capture through RuntimeFramebufferProbe; no game class transformation or field writes",
+  "save_policy": "existing local save directories not read or written; only the fresh run directory is active"
+}

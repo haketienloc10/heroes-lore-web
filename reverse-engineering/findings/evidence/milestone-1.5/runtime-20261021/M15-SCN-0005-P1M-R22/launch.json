@@ -1,0 +1,9 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R22",
+  "pid": 2127207,
+  "inherited_session": "M15-SCN-0001-P1M-R22",
+  "menu_run": "M15-SCN-0002-P1M-R22",
+  "profile": "P1M Motorola, 240x320, limiter 60",
+  "fixture": "Fresh visible class-6 New Game, opening screen to Map64 through W/Skip; visible Left-to-wall reposition then Right burst",
+  "input_method": "FreeJ2ME KeyListener burst; no game state writes"
+}

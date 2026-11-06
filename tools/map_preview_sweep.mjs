@@ -23,7 +23,8 @@ const concurrency = Number(process.env.HEROES_LORE_SWEEP_CONCURRENCY ?? 3);
 if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 4) {
   throw new Error('Sweep concurrency must be from 1 through 4');
 }
-const previouslyVerifiedMapIds = new Set([13]);
+const includePreviouslyVerified = process.env.HEROES_LORE_SWEEP_INCLUDE_PREVIOUSLY_VERIFIED === '1';
+const previouslyVerifiedMapIds = includePreviouslyVerified ? new Set() : new Set([13]);
 const manifestPath = join(
   root,
   'reference',
@@ -74,6 +75,7 @@ async function writeManifest(status) {
     concurrency,
     mapIds,
     skippedPreviouslyVerified,
+    includePreviouslyVerified,
     completeGeneratedAssetMapCount: completeAssetIds.length,
     completedCount: completed,
     passedCount: results.filter((result) => result.passed).length,

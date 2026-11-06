@@ -5,6 +5,7 @@ PLAN: file văn bản down/up <AWT>, wait <ms>, frame <name>, hoặc comment #.
 RUN phải là directory evidence đã tạo với launch.json và cùng PID session.
 """
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -27,8 +28,11 @@ def main():
     if retained.exists():
         raise FileExistsError(retained)
     shutil.copyfile(plan, retained)
+    sequence_probe = Path(os.environ.get(
+        'HEROES_LORE_SEQUENCE_PROBE_JAR',
+        '/tmp/heroes-lore-runtime-sequence/sequence-probe.jar'))
     subprocess.run(['java', '--add-modules', 'jdk.attach', '-cp', str(PROBE),
-                    'RuntimeStateProbe', str(pid), '/tmp/heroes-lore-runtime-sequence/sequence-probe.jar',
+                    'RuntimeStateProbe', str(pid), str(sequence_probe),
                     f'{rd}|{retained}|{ROOT / "reference/screenshots" / run}'], check=True)
 
 

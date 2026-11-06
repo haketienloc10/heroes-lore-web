@@ -77,6 +77,23 @@ public class RuntimeSequenceProbe {
                     }
                     case "wait": emit("wait_requested_ms=" + step[1]); Thread.sleep(Integer.parseInt(step[1])); break;
                     case "frame": RuntimeFramebufferProbe.agentmain(images.resolve(step[1] + ".png") + "|" + rd.resolve("framebuffer.log"), inst); break;
+                    case "burst": {
+                        String[] burstArgs = step[1].split(" ");
+                        if (burstArgs.length != 4) throw new IllegalArgumentException("burst <awt-code|none> <duration-ms> <interval-ms> <prefix>");
+                        Integer code = burstArgs[0].equals("none") ? null : Integer.parseInt(burstArgs[0]);
+                        int duration = Integer.parseInt(burstArgs[1]);
+                        int interval = Integer.parseInt(burstArgs[2]);
+                        String prefix = burstArgs[3];
+                        if (code != null) { mapping(code, inst); key(target, code, true); }
+                        RuntimeBurstFramebufferProbe.Burst burst;
+                        try { burst = RuntimeBurstFramebufferProbe.capture(duration, interval, inst); }
+                        finally { if (code != null) key(target, code, false); }
+                        emit("burst_capture_complete prefix=" + prefix + " duration_ms=" + duration
+                            + " interval_ms=" + interval + " input_released_before_png_encode=true");
+                        burst.write(images, rd.resolve(prefix + "-samples.log"), prefix);
+                        emit("burst_png_write_complete prefix=" + prefix);
+                        break;
+                    }
                     default: throw new IllegalArgumentException(line);
                 }
             }

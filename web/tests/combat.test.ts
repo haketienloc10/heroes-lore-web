@@ -174,12 +174,19 @@ describe('source-derived enemy damage rules', () => {
   it('applies defense-down and wakes a sleeping target before the evasion roll', () => {
     const enemy = starterEnemy()[0];
     const profile = { ...STARTER_RONIN_ATTACK, criticalChance: 0 };
+    const ordinary = resolveBasicAttack([enemy], 1, profile, 99);
+    expect(ordinary.kind).toBe('hit');
+    if (ordinary.kind !== 'hit') throw new Error('Expected the baseline attack to hit.');
+    expect(ordinary.damage).toBe(11);
+
     const weakened = resolveBasicAttack([{
       ...enemy,
       sourceStatusEffects: [{ id: 4, ticksElapsed: 0 }],
     }], 1, profile, 99);
     expect(weakened.kind).toBe('hit');
-    if (weakened.kind === 'hit') expect(weakened.damage).toBe(14);
+    if (weakened.kind !== 'hit') throw new Error('Expected the defense-down target to be hit.');
+    expect(weakened.damage).toBe(14);
+    expect(weakened.damage).toBeGreaterThan(ordinary.damage);
 
     const sleeping = {
       ...enemy,
@@ -189,6 +196,23 @@ describe('source-derived enemy damage rules', () => {
     const missed = resolveBasicAttack([sleeping], 1, profile, 0);
     expect(missed.kind).toBe('miss');
     expect(missed.combatants[0].sourceStatusEffects).toEqual([]);
+  });
+
+  it('does not apply defense-down to direct source skill damage', () => {
+    const enemy = starterEnemy()[0];
+    const ordinary = applySourceSkillDamage([enemy], enemy.sourceOrder, 25, 0);
+    const weakened = applySourceSkillDamage([{
+      ...enemy,
+      sourceStatusEffects: [{ id: 4 as const, ticksElapsed: 0 }],
+    }], enemy.sourceOrder, 25, 0);
+
+    expect(ordinary.kind).toBe('hit');
+    expect(weakened.kind).toBe('hit');
+    if (ordinary.kind !== 'hit' || weakened.kind !== 'hit') {
+      throw new Error('Expected both direct skill hits to land.');
+    }
+    expect(weakened.damage).toBe(ordinary.damage);
+    expect(weakened.target.hp).toBe(ordinary.target.hp);
   });
 
   it('uses the special au incoming-hit rules for evasion, damage, and status', () => {

@@ -1,0 +1,19 @@
+2026-11-06T02:48:54.322618255Z mono_ns=1174110198635155 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R21/heroes-lore-source-walk-cadence-r21.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-11-06T02:48:54.331906654Z mono_ns=1174110212068078 computed_emulator_mapping host_awt=87 internal=8 raw=-22
+2026-11-06T02:48:54.337924753Z mono_ns=1174110213938353 listener_dispatch_begin phase=down code=87
+2026-11-06T02:48:54.340301211Z mono_ns=1174110216317286 listener_dispatch_end phase=down code=87
+2026-11-06T02:48:54.340797494Z mono_ns=1174110216805502 wait_requested_ms=80
+2026-11-06T02:48:54.421578732Z mono_ns=1174110297640090 listener_dispatch_begin phase=up code=87
+2026-11-06T02:48:54.423878465Z mono_ns=1174110299932765 listener_dispatch_end phase=up code=87
+2026-11-06T02:48:54.424764056Z mono_ns=1174110300814873 wait_requested_ms=2000
+2026-11-06T02:48:56.434880923Z mono_ns=1174112310883798 wait_requested_ms=8000
+2026-11-06T02:49:04.446414818Z mono_ns=1174120322437493 computed_emulator_mapping host_awt=40 internal=1 raw=-6
+2026-11-06T02:49:04.447259343Z mono_ns=1174120323271384 listener_dispatch_begin phase=down code=40
+2026-11-06T02:49:04.448008993Z mono_ns=1174120324064943 listener_dispatch_end phase=down code=40
+2026-11-06T02:49:05.160822633Z mono_ns=1174121036964658 listener_dispatch_begin phase=up code=40
+2026-11-06T02:49:05.164141883Z mono_ns=1174121040191966 listener_dispatch_end phase=up code=40
+2026-11-06T02:49:05.175782173Z mono_ns=1174121051873873 burst_capture_complete prefix=03-down-held duration_ms=700 interval_ms=5 input_released_before_png_encode=true
+2026-11-06T02:49:05.878995290Z mono_ns=1174121755003573 burst_png_write_complete prefix=03-down-held
+2026-11-06T02:49:06.132246418Z mono_ns=1174122008514026 burst_capture_complete prefix=04-idle-after-release duration_ms=250 interval_ms=5 input_released_before_png_encode=true
+2026-11-06T02:49:06.414926941Z mono_ns=1174122290936782 burst_png_write_complete prefix=04-idle-after-release
+2026-11-06T02:49:06.415244382Z mono_ns=1174122291254682 sequence_end

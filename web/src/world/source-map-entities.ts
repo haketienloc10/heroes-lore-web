@@ -8,6 +8,7 @@ import {
   MAP15_AJ_RENDER_SPRITE_ID,
   MAP15_AZ_RENDER_SPRITE_ID,
   MAP15_CF_RENDER_SPRITE_ID,
+  MAP82_BU_RENDER_SPRITE_ID,
 } from './boss-sprites';
 
 /**
@@ -59,6 +60,7 @@ export function addSourceConstructedMapEnemies(
       tileY: 10,
       enemyId: 42,
       spriteId: 1,
+      renderSpriteId: MAP82_BU_RENDER_SPRITE_ID,
       sourceBehavior: 'map82-bu',
       // `bu.m()` sets inherited `ak.q` to 16; its `l()` callback dispatches marker 1.
       deathUpdatesBeforeRemoval: 16,

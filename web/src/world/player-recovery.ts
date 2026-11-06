@@ -28,6 +28,10 @@ export interface PlayerRecoveryTickResult {
 export const SOURCE_INITIAL_HP_RECOVERY_TIMER = 67;
 export const SOURCE_INITIAL_SP_RECOVERY_TIMER = 21;
 export const SOURCE_SP_RECOVERY_INTERVAL = 21;
+const SOURCE_ATTRIBUTE_MIN = -32768;
+const SOURCE_ATTRIBUTE_MAX = 32767;
+const SOURCE_EQUIPMENT_BONUS_MIN = -128;
+const SOURCE_EQUIPMENT_BONUS_MAX = 127;
 
 /**
  * The source constructor initializes its byte timers before class setup assigns
@@ -99,9 +103,15 @@ function validateState(state: PlayerRecoveryState): void {
 
 function validateVitals(vitals: PlayerRecoveryVitals): void {
   const { level, attributes, hp, maxHp, sp, maxSp } = vitals;
+  // Equipment bonuses are aggregated in a signed byte, then added to the
+  // source short attribute. The effective recovery value can cross short bounds.
   if (!Number.isInteger(level) || level < 1 || level > 99 ||
-    !Number.isInteger(attributes.hp) || attributes.hp < -32768 || attributes.hp > 32767 ||
-    !Number.isInteger(attributes.will) || attributes.will < -32768 || attributes.will > 32767 ||
+    !Number.isInteger(attributes.hp) ||
+      attributes.hp < SOURCE_ATTRIBUTE_MIN + SOURCE_EQUIPMENT_BONUS_MIN ||
+      attributes.hp > SOURCE_ATTRIBUTE_MAX + SOURCE_EQUIPMENT_BONUS_MAX ||
+    !Number.isInteger(attributes.will) ||
+      attributes.will < SOURCE_ATTRIBUTE_MIN + SOURCE_EQUIPMENT_BONUS_MIN ||
+      attributes.will > SOURCE_ATTRIBUTE_MAX + SOURCE_EQUIPMENT_BONUS_MAX ||
     !Number.isInteger(hp) || !Number.isInteger(maxHp) || maxHp < 1 || hp < 0 || hp > maxHp ||
     !Number.isInteger(sp) || !Number.isInteger(maxSp) || maxSp < 1 || sp < 0 || sp > maxSp) {
     throw new RangeError('Player recovery requires valid source stats and current vitals');

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import {
   actorOccupiedCellIndices,
   advanceActor,
+  claimCurrentCellEventPoll,
   createPlayerActor,
   displaceActorFromSourceHit,
   didReachMapEventBoundary,
@@ -270,6 +271,7 @@ import {
   MAP15_AJ_RENDER_SPRITE_ID,
   MAP15_AZ_RENDER_SPRITE_ID,
   MAP15_CF_RENDER_SPRITE_ID,
+  MAP82_BU_RENDER_SPRITE_ID,
   parseBossSpriteAnimationCatalog,
   parseBossAttackEffectCatalog,
   sourceBossDeathSpriteState,
@@ -306,6 +308,7 @@ import { awardSourceExperience, enemyExperienceSourceAmount } from '../world/pro
 import {
   applyCampaignTestHud,
   campaignTestMapPreviewMapId,
+  campaignTestMapPreviewSpawnTile,
   createCampaignTestAttributes,
   isCampaignTestProfile,
   isCampaignTestScenario,
@@ -317,13 +320,40 @@ import {
   MAP27_CLASS6_SKILL3_TEST_SCENARIO,
   MAP27_CLASS6_SKILL4_TEST_SCENARIO,
   MAP27_CLASS6_SKILL5_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO,
   MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO,
+  MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO,
   MAP80_REFINER_ORB_TEST_SCENARIO,
   MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO,
+  MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO,
+  MAP0_WALKING_RECOVERY_TEST_SCENARIO,
+  MAP76_EQUIPMENT_REWARD_TEST_SCENARIO,
+  MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO,
+  MAP15_BOSS_DEATH_TEST_SCENARIO,
+  MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO,
+  MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO,
+  MAP11_BOSS_AI_LIVE_TEST_SCENARIO,
+  MAP59_KEY_PREVIEW_TEST_SCENARIO,
+  MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO,
+  MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO,
+  MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO,
+  MAP54_TO_MAP13_CHAIN_TEST_SCENARIO,
   MAP60_INVESTIGATION_TEST_SCENARIO,
   MAX_LEVEL_CAMPAIGN_TEST_PROFILE,
   resolveCampaignTestRecoveryAttributes,
   restoreCampaignTestVitals,
+  serializeCampaignTestEnemyProjectileSnapshot,
+  serializeCampaignTestEnemyStatusSnapshot,
   serializeCampaignTestRuntimeSnapshot,
   type CampaignTestProfile,
   type CampaignTestScenario,
@@ -668,7 +698,9 @@ function clearCampaignTestRuntimeTelemetry(gameHost: HTMLElement | null | undefi
   delete gameHost.dataset.testPlayerTileY;
   delete gameHost.dataset.testHp;
   delete gameHost.dataset.testLevel;
+  delete gameHost.dataset.testPlayerSpritePose;
   delete gameHost.dataset.testRuntime;
+  delete gameHost.dataset.testEventCutscene;
   delete gameHost.dataset.testCommerceService;
   delete gameHost.dataset.testCommerceScreen;
   delete gameHost.dataset.testMapPreviewReady;
@@ -680,6 +712,7 @@ export class WorldScene extends Phaser.Scene {
   private playerCombo: PlayerComboState = { ...EMPTY_PLAYER_COMBO };
   private playerHitFeedback: PlayerHitFeedbackState = { ...EMPTY_PLAYER_HIT_FEEDBACK };
   private playerSkillAction: PlayerSkillActionState = createPlayerSkillActionState(0);
+  declare private campaignTestImmunityBlockedHits: number;
   private playerSkillActionStates = new Map<number, PlayerSkillActionState>();
   private nextPlayerSkillActionId = 1;
   private playerAttachedSkillVisuals: ActivePlayerSkillAttachedVisual[] = [];
@@ -920,10 +953,17 @@ export class WorldScene extends Phaser.Scene {
     this.pendingWorldDialogueFlags = [];
     this.pendingWorldDialogueTransition = undefined;
     this.pressedDirections = [];
-    try {
-      this.gameOptions = readGameOptions(window.localStorage);
-    } catch {
+    const isolatedCampaignTest = import.meta.env.DEV && isCampaignTestProfile(
+      new URLSearchParams(window.location.search).get('testProfile'),
+    );
+    if (isolatedCampaignTest) {
       this.gameOptions = { ...DEFAULT_GAME_OPTIONS };
+    } else {
+      try {
+        this.gameOptions = readGameOptions(window.localStorage);
+      } catch {
+        this.gameOptions = { ...DEFAULT_GAME_OPTIONS };
+      }
     }
     for (const key of [
       'gameplay-hud', 'enemy-target-hud', 'world-system-menu', 'opening-dialog-overlay', 'world-game-over',
@@ -1016,6 +1056,7 @@ export class WorldScene extends Phaser.Scene {
     this.playerCombo = { ...EMPTY_PLAYER_COMBO };
     this.playerHitFeedback = { ...EMPTY_PLAYER_HIT_FEEDBACK };
     this.playerSkillActionStates.clear();
+    if (import.meta.env.DEV) this.campaignTestImmunityBlockedHits = 0;
     this.nextPlayerSkillActionId = 1;
     this.guardianIndices = [...new Set(guardianIndices.filter((index): index is number =>
       Number.isInteger(index) && Number(index) >= 0 && Number(index) <= 2,
@@ -1082,6 +1123,13 @@ export class WorldScene extends Phaser.Scene {
         this.questFlags = new Set([1, 2, 4, 28, 29]);
         this.inventory = [{ category: 18, itemId: 3, count: 1 }];
         this.comboLimit = 2;
+      } else if (import.meta.env.DEV && (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)) {
+        this.currentMapId = 27;
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
       } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_CLASS6_LUNGE_TEST_SCENARIO) {
         this.currentMapId = 27;
         this.actor = createPlayerActor(2 * 16, 21 * 16, 4);
@@ -1175,6 +1223,177 @@ export class WorldScene extends Phaser.Scene {
           ...skillState,
           chargeTicksRemaining: [80, 270, 0],
         });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) {
+        this.currentMapId = 17;
+        this.actor = createPlayerActor(5 * 16, 11 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [4];
+        this.activeSkillId = 4;
+        const skillState = createPlayerSkillActionState(
+          4,
+          this.characterAttributes.will,
+          10,
+        );
+        this.playerSkillActionStates.set(4, {
+          ...skillState,
+          chargeTicksRemaining: [80, 0, 220],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO) {
+        this.currentMapId = 17;
+        this.actor = createPlayerActor(5 * 16, 11 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [0];
+        this.activeSkillId = 0;
+        const skillState = createPlayerSkillActionState(
+          0,
+          this.characterAttributes.will,
+          9,
+        );
+        this.playerSkillActionStates.set(0, {
+          ...skillState,
+          chargeTicksRemaining: [56, 0, 280],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO) {
+        this.currentMapId = 17;
+        this.actor = createPlayerActor(5 * 16, 11 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [0];
+        this.activeSkillId = 0;
+        const skillState = createPlayerSkillActionState(
+          0,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(0, {
+          ...skillState,
+          skillLevelSlotOne: 2,
+          skillLevelSlotThree: 1,
+          chargeTicksRemaining: [56, 280, 0],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO) {
+        this.currentMapId = 17;
+        this.actor = createPlayerActor(5 * 16, 11 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [3];
+        this.activeSkillId = 3;
+        const skillState = createPlayerSkillActionState(
+          3,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(3, {
+          ...skillState,
+          chargeTicksRemaining: [80, 270, 0],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) {
+        this.currentMapId = 2;
+        this.actor = createPlayerActor(8 * 16, 27 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [3];
+        this.activeSkillId = 3;
+        const skillState = createPlayerSkillActionState(
+          3,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(3, {
+          ...skillState,
+          chargeTicksRemaining: [80, 270, 0],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 15 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.skillIds = [0];
+        this.activeSkillId = 0;
+        const skillState = createPlayerSkillActionState(
+          0,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(0, {
+          ...skillState,
+          skillLevelSlotOne: 2,
+          chargeTicksRemaining: [56, 270, 0],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 9 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.skillIds = [1];
+        this.activeSkillId = 1;
+        const skillState = createPlayerSkillActionState(
+          1,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(1, {
+          ...skillState,
+          skillLevelSlotOne: 2,
+          chargeTicksRemaining: [220, 160, 0],
+        });
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 15 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.skillIds = [2];
+        this.activeSkillId = 2;
+        const skillState = createPlayerSkillActionState(
+          2,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(2, {
+          ...skillState,
+          skillLevelSlotOne: 2,
+          chargeTicksRemaining: [80, 50, 0],
+          comboPowerBoostTicksRemaining: 140,
+          defenseBoostTicksRemaining: 160,
+        });
+        this.playerStatus = applyPlayerPoison(this.playerStatus);
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 15 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.skillIds = [4];
+        this.activeSkillId = 4;
+        const skillState = createPlayerSkillActionState(
+          4,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(4, {
+          ...skillState,
+          skillLevelSlotOne: 2,
+          chargeTicksRemaining: [80, 270, 0],
+        });
       } else if (import.meta.env.DEV && this.campaignTestScenario === MAP80_REFINER_ORB_TEST_SCENARIO) {
         this.currentMapId = 80;
         this.actor = createPlayerActor(8 * 16, 9 * 16, 1);
@@ -1189,11 +1408,62 @@ export class WorldScene extends Phaser.Scene {
         this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
         this.questFlags = new Set([1, 2, 4]);
         this.wallet = 180;
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(12 * 16, 9 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.wallet = 180;
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP76_EQUIPMENT_REWARD_TEST_SCENARIO) {
+        this.currentMapId = 76;
+        this.actor = createPlayerActor(11 * 16, 4 * 16, 3);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 59]);
+        this.questFlags = new Set();
+        this.inventory = [{ category: 17, itemId: 5, count: 1 }];
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO) {
+        this.currentMapId = 76;
+        this.actor = createPlayerActor(11 * 16, 4 * 16, 3);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87]);
+        this.questFlags = new Set();
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP15_BOSS_DEATH_TEST_SCENARIO) {
+        this.currentMapId = 15;
+        this.actor = createPlayerActor(7 * 16, 8 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0]);
+        this.questFlags = new Set();
       } else if (import.meta.env.DEV && previewMapId !== null) {
         this.currentMapId = previewMapId;
         this.openingDialogVisible = false;
         this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
         this.questFlags = new Set();
+        if (this.campaignTestScenario === MAP59_KEY_PREVIEW_TEST_SCENARIO) {
+          this.inventory = [{ category: 19, itemId: 9, count: 1 }];
+        } else if (this.campaignTestScenario === MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO) {
+          this.inventory = [
+            { category: 19, itemId: 9, count: 1 },
+            { category: 21, itemId: 3, count: 1 },
+          ];
+        } else if (this.campaignTestScenario === MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO) {
+          this.gameFlags = new Set([0, 27, 31, 82]);
+          this.questFlags = new Set([1, 2, 4]);
+          this.inventory = [];
+        } else if (this.campaignTestScenario === MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO) {
+          this.gameFlags = new Set([0, 42]);
+          this.questFlags = new Set();
+          this.inventory = [];
+        } else if (this.campaignTestScenario === MAP54_TO_MAP13_CHAIN_TEST_SCENARIO) {
+          this.gameFlags = new Set([0, 42]);
+          this.questFlags = new Set();
+          this.inventory = [
+            { category: 19, itemId: 9, count: 1 },
+            { category: 21, itemId: 3, count: 1 },
+          ];
+        }
       }
     } else {
       this.currentMapId = 64;
@@ -1440,7 +1710,40 @@ export class WorldScene extends Phaser.Scene {
       this.equipmentSlots = this.savedEquipmentLoadoutPresent
         ? cloneEquipmentLoadout(this.equipmentSlots)
         : createStartingEquipment(this.heroClassId, this.equipmentDataTable);
-      if (import.meta.env.DEV && this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO) {
+      if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO) {
+        const helmet = findEquipmentItem(this.equipmentDataTable, 6, 12);
+        const currentHelmet = this.equipmentSlots[3];
+        if (helmet === undefined || currentHelmet === null || currentHelmet === undefined) {
+          throw new Error('Map76 recovery-boundary scenario helmet data is missing');
+        }
+        const equipmentState = createSourceEquipmentInventoryState(helmet, () => 0, 'event', false);
+        this.equipmentSlots[3] = {
+          ...currentHelmet,
+          itemId: helmet.itemId,
+          equipmentState: { ...equipmentState, bonusValues: [0, 1, 0, 0] },
+        };
+      }
+      if (import.meta.env.DEV && (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)) {
+        const weaponItemId = this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ? 33 :
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ? 34 : 31;
+        const weapon = findEquipmentItem(this.equipmentDataTable, 0, weaponItemId);
+        const currentWeapon = this.equipmentSlots[0];
+        if (weapon === undefined || currentWeapon === null || currentWeapon === undefined) {
+          throw new Error('Map27 weapon-proc scenario weapon data is missing');
+        }
+        const equipmentState = createSourceEquipmentInventoryState(weapon, () => 0, 'event', false);
+        this.equipmentSlots[0] = {
+          ...currentWeapon,
+          itemId: weapon.itemId,
+          equipmentState,
+        };
+      }
+      if (import.meta.env.DEV &&
+        (this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO)) {
         const starterWeapon = this.equipmentSlots[0];
         if (starterWeapon?.equipmentState !== undefined) {
           this.equipmentSlots[0] = {
@@ -1463,6 +1766,22 @@ export class WorldScene extends Phaser.Scene {
       if (import.meta.env.DEV && this.campaignTestProfile !== null) {
         this.hudState.hp = this.hudState.maxHp;
         this.hudState.sp = this.hudState.maxSp;
+      }
+      if (import.meta.env.DEV && this.campaignTestScenario === MAP0_WALKING_RECOVERY_TEST_SCENARIO) {
+        this.hudState.hp = Math.max(1, this.hudState.maxHp - 65534);
+        this.playerRecovery = createPlayerRecoveryState();
+      }
+      if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO) {
+        this.hudState.hp = Math.max(1, this.hudState.maxHp - 180000);
+        this.hudState.sp = Math.max(1, this.hudState.maxSp - 180000);
+        this.playerRecovery = { hpTimer: 127, spTimer: 127 };
+      }
+      if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO) {
+        this.hudState.hp = Math.max(1, this.hudState.maxHp - 180000);
+        this.hudState.sp = Math.max(1, this.hudState.maxSp - 180000);
+        this.playerRecovery = { hpTimer: 127, spTimer: 127 };
       }
     } catch {
       this.showAssetMessage('Player equipment state is invalid. Start a new game or load a valid save.');
@@ -1494,10 +1813,12 @@ export class WorldScene extends Phaser.Scene {
       const map15Actors = [39, 40, 41].map((enemyId) =>
         animationCatalog.sprites.find((animation) =>
           animation.bossId === 3 && animation.enemyId === enemyId));
+      const map82Boss = animationCatalog.sprites.find((animation) =>
+        animation.bossId === 4 && animation.enemyId === 42);
       if (map11Boss === undefined || map13Boss === undefined ||
-        map13SecondWave.some((animation) => animation === undefined) ||
+        map13SecondWave.some((animation) => animation === undefined) || map82Boss === undefined ||
         map15Actors.some((animation) => animation === undefined)) {
-        throw new TypeError('Map 11, map 13, or map 15 boss animation is missing');
+        throw new TypeError('Map 11, map 13, map 15, or map 82 boss animation is missing');
       }
       this.bossAnimations = new Map([
         [MAP11_CB_RENDER_SPRITE_ID, map11Boss],
@@ -1508,6 +1829,7 @@ export class WorldScene extends Phaser.Scene {
         [MAP15_CF_RENDER_SPRITE_ID, map15Actors[0]!],
         [MAP15_AZ_RENDER_SPRITE_ID, map15Actors[1]!],
         [MAP15_AJ_RENDER_SPRITE_ID, map15Actors[2]!],
+        [MAP82_BU_RENDER_SPRITE_ID, map82Boss],
       ]);
     } catch {
       this.showAssetMessage('Boss animation data is missing or invalid.\nRun npm run assets:extract.');
@@ -1803,6 +2125,19 @@ export class WorldScene extends Phaser.Scene {
         renderedWorld.npcSprites = rendered.npcSprites;
         renderedWorld.enemies = enemies;
         if (import.meta.env.DEV && id === 27 &&
+          (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)) {
+          const procTarget = enemies.find((enemy) => enemy.sourceOrder === 14 && enemy.enemyId === 24);
+          if (procTarget === undefined) throw new Error('Map27 weapon-proc scenario target is missing');
+          procTarget.hp = 5000000;
+          procTarget.state = 'alive';
+          procTarget.deathUpdatesRemaining = 0;
+          procTarget.respawnDelayRemaining = null;
+          procTarget.attackCooldownTicksRemaining = 900;
+          procTarget.actionDelayTicksRemaining = 900;
+        }
+        if (import.meta.env.DEV && id === 27 &&
           (this.campaignTestScenario === MAP27_CLASS6_LUNGE_TARGET_TEST_SCENARIO ||
             this.campaignTestScenario === MAP27_CLASS6_SKILL2_TEST_SCENARIO ||
             this.campaignTestScenario === MAP27_CLASS6_SKILL_RANK_TEST_SCENARIO ||
@@ -1819,6 +2154,65 @@ export class WorldScene extends Phaser.Scene {
           const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 11 && enemy.enemyId === 10);
           if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 180;
         }
+        if (import.meta.env.DEV && id === 17 &&
+          (this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)) {
+          const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 2 && enemy.enemyId === 8);
+          if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 900;
+        }
+        if (import.meta.env.DEV && id === 17 &&
+          this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO) {
+          for (const enemy of enemies) {
+            enemy.attackCooldownTicksRemaining = 900;
+            enemy.actionDelayTicksRemaining = 900;
+          }
+          const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 2 && enemy.enemyId === 8);
+          if (targetEnemy !== undefined) {
+            targetEnemy.animationDirection = 3;
+            targetEnemy.animationStateIndex = 0;
+            targetEnemy.animationFrameIndex = -1;
+            targetEnemy.attackCooldownTicksRemaining = 120;
+            targetEnemy.actionDelayTicksRemaining = 900;
+            targetEnemy.attackAnimationTicksRemaining = 0;
+            targetEnemy.attackHitResolved = false;
+          }
+        }
+        if (import.meta.env.DEV && id === 17 &&
+          this.campaignTestScenario === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) {
+          for (const enemy of enemies) enemy.actionDelayTicksRemaining = 900;
+          const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 2 && enemy.enemyId === 8);
+          if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 30;
+        }
+        if (import.meta.env.DEV && id === 2 &&
+          this.campaignTestScenario === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) {
+          const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 11 && enemy.enemyId === 10);
+          if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 900;
+        }
+        if (import.meta.env.DEV && id === 11 &&
+          this.campaignTestScenario === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO) {
+          const targetBoss = enemies.find((enemy) => enemy.enemyId === 32);
+          if (targetBoss !== undefined) targetBoss.actionDelayTicksRemaining = 900;
+        }
+        if (import.meta.env.DEV && id === 11 &&
+          this.campaignTestScenario === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) {
+          const targetBoss = enemies.find((enemy) => enemy.enemyId === 32);
+          if (targetBoss?.sourceCbAi !== undefined) {
+            targetBoss.sourceCbAi = {
+              ...targetBoss.sourceCbAi,
+              state: 1,
+              tick: 0,
+              patternIndex: 0,
+              attackType: 1,
+              attackDuration: 15,
+              attackCooldown: 900,
+              movementCooldown: 900,
+              stunTicksRemaining: 0,
+            };
+            targetBoss.animationStateIndex = 0;
+            targetBoss.animationDirection = 2;
+            targetBoss.animationFrameIndex = -1;
+          }
+        }
         renderedWorld.occupiedCellIndices = this.mapEntityOccupancy(renderedWorld);
         if (id !== this.currentMapId) this.setMapObjectsVisible(renderedWorld, false);
       }
@@ -1833,15 +2227,31 @@ export class WorldScene extends Phaser.Scene {
           this.showAssetMessage(`Map ${previewMapId} did not load for the developer preview.`);
           return;
         }
-        const spawn = findMapPreviewSpawnTile(
-          entryMap.world.collision,
-          entryMap.occupiedCellIndices,
-        );
-        if (spawn === null) {
+        const spawn = campaignTestMapPreviewSpawnTile(this.campaignTestScenario) ??
+          findMapPreviewSpawnTile(entryMap.world.collision, entryMap.occupiedCellIndices);
+        const spawnMarker = spawn === null
+          ? undefined
+          : entryMap.world.collision.values[spawn.tileY]?.[spawn.tileX];
+        const intentionalMarkerSpawn = (this.campaignTestScenario === MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP54_TO_MAP13_CHAIN_TEST_SCENARIO) &&
+          spawn?.tileX === 5 && spawn.tileY === 13 && spawnMarker === 8;
+        if (spawn === null || (spawnMarker !== 0 && !intentionalMarkerSpawn) ||
+          entryMap.occupiedCellIndices.has(spawn.tileY * entryMap.world.map.width + spawn.tileX)) {
           this.showAssetMessage(`Map ${previewMapId} has no empty ordinary floor cell for the developer preview.`);
           return;
         }
-        this.actor = createPlayerActor(spawn.tileX * 16, spawn.tileY * 16);
+        const spawnDirection = (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO) ? 4 :
+          this.campaignTestScenario === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO ? 1 :
+          this.campaignTestScenario === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO ? 4 :
+          this.campaignTestScenario === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO ? 4 :
+          this.campaignTestScenario === MAP11_BOSS_AI_LIVE_TEST_SCENARIO ? 4 :
+          this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO ? 4 : 2;
+        this.actor = createPlayerActor(spawn.tileX * 16, spawn.tileY * 16, spawnDirection);
       }
       this.createHero();
       if (entryMap !== undefined) this.centerCameraForMapEntry(entryMap);
@@ -1880,8 +2290,43 @@ export class WorldScene extends Phaser.Scene {
         gameHost.dataset.testPlayerTileY = String(tileY);
         gameHost.dataset.testHp = String(this.hudState.hp);
         gameHost.dataset.testLevel = String(this.hudState.level);
+        gameHost.dataset.testPlayerSpritePose = JSON.stringify({
+          ...playerSpritePose(
+            this.playerCombo,
+            this.actor.direction,
+            this.actor.moving,
+            this.actor.animationFrame,
+            this.hudState.hp <= 0,
+          ),
+          moving: this.actor.moving,
+        });
+        gameHost.dataset.testEnemyStatusEffects = serializeCampaignTestEnemyStatusSnapshot(
+          activeMap?.enemies ?? [],
+        );
+        gameHost.dataset.testEnemyProjectiles = serializeCampaignTestEnemyProjectileSnapshot(
+          (activeMap?.enemyProjectiles ?? []).map((projectile) => {
+            const effect = this.attackEffectForSprite(projectile.spriteId);
+            const bossAnimation = this.bossAnimations.get(projectile.spriteId);
+            const bossEffect = bossAnimation === undefined
+              ? undefined
+              : this.bossAttackEffects.get(bossAnimation.enemyId);
+            return {
+              ...projectile,
+              sourceResource: bossEffect?.sourceResource ?? null,
+              effectFrameCount: effect?.frameCount ?? null,
+              renderedComponentCount: activeMap?.enemyProjectileSprites.get(projectile.id)?.list.length ?? 0,
+            };
+          }),
+        );
         gameHost.dataset.testCommerceService = this.commerceMenu?.service ?? '';
         gameHost.dataset.testCommerceScreen = this.commerceMenu?.screen ?? '';
+        gameHost.dataset.testEventCutscene = JSON.stringify(this.openingCutsceneState === null ? null : {
+          scriptIndex: this.openingCutsceneState.scriptIndex,
+          commandIndex: this.openingCutsceneState.commandIndex,
+          status: this.openingCutsceneState.status,
+          choiceSelection: this.openingCutsceneState.choiceSelection,
+          dialogueStringIndex: this.openingCutsceneState.dialogueStringIndex,
+        });
         gameHost.dataset.testRuntime = serializeCampaignTestRuntimeSnapshot({
           profile: this.campaignTestProfile,
           mapId: this.currentMapId,
@@ -1919,6 +2364,7 @@ export class WorldScene extends Phaser.Scene {
             skillLevelSlotOne: this.playerSkillAction.skillLevelSlotOne,
             skillLevelSlotThree: this.playerSkillAction.skillLevelSlotThree,
             defenseBoostTicksRemaining: this.playerSkillAction.defenseBoostTicksRemaining,
+            recoveryBoostTicksRemaining: this.playerSkillAction.recoveryBoostTicksRemaining,
             phase: this.playerSkillAction.phase,
             levelSlot: this.playerSkillAction.levelSlot,
             tileX: this.playerSkillAction.tileX,
@@ -1932,28 +2378,38 @@ export class WorldScene extends Phaser.Scene {
           },
           dialogueOpen: this.openingDialogVisible || this.worldDialogueVisible,
           transitionPending: this.loadingMapTransition,
-          enemies: (activeMap?.enemies ?? []).map((enemy) => ({
-            sourceOrder: enemy.sourceOrder,
-            enemyId: enemy.enemyId,
-            tileX: enemy.tileX,
-            tileY: enemy.tileY,
-            pixelX: enemy.pixelX,
-            pixelY: enemy.pixelY,
-            hp: enemy.hp,
-            state: enemy.state,
-            behaviorType: enemy.definition.behaviorType,
-            behaviorTiming: [...enemy.definition.behaviorTiming] as [number, number],
-            animationStateIndex: enemy.animationStateIndex ?? null,
-            animationDirection: enemy.animationDirection ?? null,
-            animationFrameIndex: enemy.animationFrameIndex ?? null,
-            attackCooldownTicksRemaining: enemy.attackCooldownTicksRemaining ?? null,
-            actionDelayTicksRemaining: enemy.actionDelayTicksRemaining ?? null,
-            pursuitRetargetProgress: enemy.pursuitRetargetProgress ?? null,
-            pursuitTarget: enemy.pursuitTarget ?? null,
-            attackAnimationTicksRemaining: enemy.attackAnimationTicksRemaining ?? null,
-            attackHitResolved: enemy.attackHitResolved ?? null,
-            sourceRenderedOnScreen: enemy.sourceRenderedOnScreen ?? null,
-          })),
+          enemies: (activeMap?.enemies ?? []).map((enemy) => {
+            const renderSpriteId = enemy.renderSpriteId ?? enemy.spriteId ?? enemy.enemyId;
+            return {
+              sourceOrder: enemy.sourceOrder,
+              enemyId: enemy.enemyId,
+              tileX: enemy.tileX,
+              tileY: enemy.tileY,
+              pixelX: enemy.pixelX,
+              pixelY: enemy.pixelY,
+              hp: enemy.hp,
+              state: enemy.state,
+              behaviorType: enemy.definition.behaviorType,
+              behaviorTiming: [...enemy.definition.behaviorTiming] as [number, number],
+              animationStateIndex: enemy.animationStateIndex ?? null,
+              animationDirection: enemy.animationDirection ?? null,
+              animationFrameIndex: enemy.animationFrameIndex ?? null,
+              sourceAu: enemy.sourceAu === true,
+              renderSpriteId,
+              renderAnimationStateIndex: enemyRenderAnimationState(
+                enemy,
+                this.bossAnimations.get(renderSpriteId),
+              ),
+              deathUpdatesRemaining: enemy.deathUpdatesRemaining,
+              attackCooldownTicksRemaining: enemy.attackCooldownTicksRemaining ?? null,
+              actionDelayTicksRemaining: enemy.actionDelayTicksRemaining ?? null,
+              pursuitRetargetProgress: enemy.pursuitRetargetProgress ?? null,
+              pursuitTarget: enemy.pursuitTarget ?? null,
+              attackAnimationTicksRemaining: enemy.attackAnimationTicksRemaining ?? null,
+              attackHitResolved: enemy.attackHitResolved ?? null,
+              sourceRenderedOnScreen: enemy.sourceRenderedOnScreen ?? null,
+            };
+          }),
           npcs: (activeMap?.events.npcPlacements ?? []).map((placement) => {
             const sprite = activeMap?.npcSprites.get(placement.sourceOrder);
             const tileSize = activeMap?.world.map.tileSize ?? 16;
@@ -2862,7 +3318,12 @@ export class WorldScene extends Phaser.Scene {
             frameIndex: 0,
           });
         }
-        if (this.playerSkillAction.damageImmunityActive) return consumed;
+        if (this.playerSkillAction.damageImmunityActive) {
+          if (import.meta.env.DEV && this.campaignTestProfile !== null) {
+            this.campaignTestImmunityBlockedHits += 1;
+          }
+          return consumed;
+        }
         const countered = this.applyPlayerSkillCounterattack(currentMap, consumed);
         if (consumed.state === 'alive' && countered.state === 'death-pending') occupancyChanged = true;
         const defenseProfile = this.equipmentStats?.defense ?? starterRoninDefenseForLevel(this.hudState.level);
@@ -3021,7 +3482,12 @@ export class WorldScene extends Phaser.Scene {
       if (!result.hitPlayer || this.hudState.hp <= 0) continue;
       const attacker = map.enemies.find(({ sourceOrder }) => sourceOrder === projectile.sourceOrder);
       if (attacker === undefined) continue;
-      if (this.playerSkillAction.damageImmunityActive) continue;
+      if (this.playerSkillAction.damageImmunityActive) {
+        if (import.meta.env.DEV && this.campaignTestProfile !== null) {
+          this.campaignTestImmunityBlockedHits += 1;
+        }
+        continue;
+      }
       const counteredAttacker = this.applyPlayerSkillCounterattack(map, attacker);
       if (counteredAttacker !== attacker) {
         map.enemies = map.enemies.map((enemy) => enemy.sourceOrder === attacker.sourceOrder
@@ -3661,6 +4127,9 @@ export class WorldScene extends Phaser.Scene {
   private tryCurrentCellAutomaticEvent(currentMap: RenderedWorld): boolean {
     if (this.openingDialogVisible || this.worldDialogueVisible || this.actor.moving ||
       this.actor.x % 16 !== 0 || this.actor.y % 16 !== 0) return false;
+    const poll = claimCurrentCellEventPoll(this.actor);
+    this.actor = poll.actor;
+    if (!poll.shouldPoll) return false;
     const tileX = this.actor.x >> 4;
     const tileY = this.actor.y >> 4;
     const marker = currentMap.world.collision.values[tileY]?.[tileX];

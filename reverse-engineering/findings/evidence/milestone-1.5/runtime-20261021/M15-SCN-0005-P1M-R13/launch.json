@@ -1,0 +1,12 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R13",
+  "pid": 1857360,
+  "inherited_session": "M15-SCN-0001-P1M-R13",
+  "profile": "P1M Motorola",
+  "fixture": "Fresh New Game/Ronin/Hestia; exact preserved route from opening skip directly through Map64 exit to Map27; no preliminary BED movement.",
+  "input_method": "Existing RuntimeSequenceProbe synthetic emulator AWT KeyListener; X11 focused the emulator canvas before sequence.",
+  "referenceJarSha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "emulatorSha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445e8e92dd0297e12df0e",
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R13",
+  "rms_before": "new isolated working directory"
+}

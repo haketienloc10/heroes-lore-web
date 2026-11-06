@@ -83,6 +83,7 @@ describe('source-created map enemies', () => {
       enemyId: 42,
       sourceOrder: 4,
       spriteId: 1,
+      renderSpriteId: 298,
       sourceBehavior: 'map82-bu',
       deathUpdatesBeforeRemoval: 16,
       directTypeZeroMarkerOnRemoval: 1,

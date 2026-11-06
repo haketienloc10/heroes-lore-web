@@ -1,0 +1,3 @@
+2026-11-06T03:17:31.523564773Z mono_ns=1175686770718595 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0005-P1M-R22/01-after-skip.png 240x320; not host presentation timing; no synchronization with game paint
+2026-11-06T03:17:42.462815427Z mono_ns=1175694779767172 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0005-P1M-R22/02-map64-arrival.png 240x320; not host presentation timing; no synchronization with game paint
+2026-11-06T03:17:44.814185393Z mono_ns=1175697131146213 emulator_frontbuffer_capture /home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0005-P1M-R22/04-left-settled.png 240x320; not host presentation timing; no synchronization with game paint

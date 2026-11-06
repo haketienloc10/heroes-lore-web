@@ -1,0 +1,5 @@
+down 38
+wait 290
+up 38
+wait 300
+frame approach-1-up

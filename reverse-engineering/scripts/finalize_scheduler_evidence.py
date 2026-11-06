@@ -49,7 +49,7 @@ def main():
     source_names=['SchedulerInstrumenter.java','TraceProbe.java','SchedulerBytecodeAudit.java','SchedulerClockCalibration.java',
         'build_scheduler_probe.py','run_scheduler_verification.py','analyze_scheduler_trace.py','summarize_scheduler.py',
         'scheduler_xdamage.py','verify_scheduler_copies.py','calibrate_scheduler_clocks.py','finalize_scheduler_evidence.py',
-        'RuntimeStateProbe.java','RuntimeSequenceProbe.java','RuntimeFramebufferProbe.java','run_runtime_smoke.py','runtime_x11.py']
+        'RuntimeStateProbe.java','RuntimeSequenceProbe.java','RuntimeFramebufferProbe.java','RuntimeBurstFramebufferProbe.java','run_runtime_smoke.py','runtime_x11.py']
     sources=[item(ROOT/'reverse-engineering/scripts'/n) for n in source_names]
     binaries=[item(p) for root in [ROOT/'reference/recordings/scheduler-probe-v3',Path('/tmp/heroes-lore-runtime-probe'),Path('/tmp/heroes-lore-runtime-sequence')]
         for p in sorted(root.rglob('*')) if p.is_file() and p.suffix in ['.jar','.class'] and p.is_relative_to(ROOT)]
@@ -64,7 +64,7 @@ def main():
             assert p.read_bytes()==target.read_bytes()
             external.append({'original_path':str(p),'retained':item(target)})
     (E/'harness.json').write_text(json.dumps({'sources':sources,'local_binaries':binaries,'existing_attach_sidecars':external,
-        'sidecar_rebuild':'javac --add-modules jdk.attach -d <sidecar-dir> reverse-engineering/scripts/RuntimeStateProbe.java reverse-engineering/scripts/RuntimeFramebufferProbe.java reverse-engineering/scripts/RuntimeSequenceProbe.java; jar cfm <agent.jar> <manifest with Agent-Class> -C <sidecar-dir> .',
+        'sidecar_rebuild':'javac --add-modules jdk.attach -d <sidecar-dir> reverse-engineering/scripts/RuntimeStateProbe.java reverse-engineering/scripts/RuntimeFramebufferProbe.java reverse-engineering/scripts/RuntimeBurstFramebufferProbe.java reverse-engineering/scripts/RuntimeSequenceProbe.java; jar cfm <agent.jar> <manifest with Agent-Class> -C <sidecar-dir> .',
         'sidecar_agent_classes':{'probe-current.jar':'RuntimeStateProbe','frame-probe.jar':'RuntimeFramebufferProbe','sequence-probe.jar':'RuntimeSequenceProbe'},
         'runtime_game_field_writes':False},indent=2)+'\n')
     paths=[p for p in sorted(E.rglob('*')) if p.is_file() and p!=E/'manifest.json']

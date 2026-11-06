@@ -1,0 +1,11 @@
+{
+  "run_id": "M15-SCN-0006-B3-P1M-R02",
+  "utc": "2026-11-05T16:56:37.061608+00:00",
+  "pid": 1895458,
+  "cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R15",
+  "profile": "fresh isolated FreeJ2ME working directory, no reused RMS/profile or user save",
+  "referenceJarSha256": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "emulatorSha256": "92f84012958f2ca0692dbe7d258cea7aebd4e96f664445e8e92dd0297e12df0e",
+  "purpose": "attempt 2: continuous fresh-New-Game route to Map17 and bounded source behavior-3 observation",
+  "input": "synthetic AWT KeyListener only; RuntimeSequenceProbe; no game fields written"
+}

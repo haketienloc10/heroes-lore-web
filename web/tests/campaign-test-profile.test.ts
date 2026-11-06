@@ -5,6 +5,7 @@ import {
   applyCampaignTestHud,
   applyMaxLevelCampaignTestHud,
   campaignTestMapPreviewMapId,
+  campaignTestMapPreviewSpawnTile,
   CAMPAIGN_TEST_MAX_LEVEL,
   CAMPAIGN_TEST_LOOT_LEVEL,
   createCampaignTestAttributes,
@@ -22,19 +23,100 @@ import {
   MAP27_CLASS6_SKILL3_TEST_SCENARIO,
   MAP27_CLASS6_SKILL4_TEST_SCENARIO,
   MAP27_CLASS6_SKILL5_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO,
   MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO,
+  MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO,
   MAP80_REFINER_ORB_TEST_SCENARIO,
   MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO,
+  MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO,
+  MAP0_WALKING_RECOVERY_TEST_SCENARIO,
+  MAP76_EQUIPMENT_REWARD_TEST_SCENARIO,
+  MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO,
+  MAP15_BOSS_DEATH_TEST_SCENARIO,
+  MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO,
+  MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO,
+  MAP11_BOSS_AI_LIVE_TEST_SCENARIO,
+  MAP13_AQ_AI_LIVE_TEST_SCENARIO,
   MAP60_INVESTIGATION_TEST_SCENARIO,
+  MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO,
+  MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO,
+  MAP54_TO_MAP13_CHAIN_TEST_SCENARIO,
   MAX_LEVEL_CAMPAIGN_TEST_PROFILE,
   resolveCampaignTestRecoveryAttributes,
   restoreCampaignTestVitals,
+  serializeCampaignTestEnemyProjectileSnapshot,
+  serializeCampaignTestEnemyStatusSnapshot,
   serializeCampaignTestRuntimeSnapshot,
+  type CampaignTestEnemyProjectile,
   type CampaignTestRuntimeSnapshot,
 } from '../src/world/campaign-test-profile';
 import { experienceRequiredForLevel } from '../src/world/progression';
 
 describe('max-level campaign test profile', () => {
+  it('serializes active projectile effect frames and render components in stable source order', () => {
+    const projectiles = JSON.parse(serializeCampaignTestEnemyProjectileSnapshot([
+      {
+        id: 8,
+        sourceOrder: 4,
+        spriteId: 256,
+        direction: 4,
+        tileX: 12,
+        tileY: 9,
+        frameIndex: 3,
+        remainingSegments: 8,
+        hitResolved: false,
+        sourceResource: 'boss/atef/32',
+        effectFrameCount: 7,
+        renderedComponentCount: 1,
+      },
+      {
+        id: 5,
+        sourceOrder: 4,
+        spriteId: 256,
+        direction: 1,
+        tileX: 10,
+        tileY: 7,
+        frameIndex: 2,
+        remainingSegments: 8,
+        hitResolved: false,
+        sourceResource: 'boss/atef/32',
+        effectFrameCount: 7,
+        renderedComponentCount: 1,
+      },
+      {
+        id: 3,
+        sourceOrder: 1,
+        spriteId: 22,
+        direction: 2,
+        tileX: 3,
+        tileY: 4,
+        frameIndex: 1,
+        remainingSegments: 2,
+        hitResolved: true,
+        sourceResource: 'enm/atef/22',
+        effectFrameCount: 2,
+        renderedComponentCount: 0,
+      },
+    ])) as CampaignTestEnemyProjectile[];
+    expect(projectiles.map(({ id, sourceOrder, frameIndex, renderedComponentCount, sourceResource, effectFrameCount }) => ({
+      id, sourceOrder, frameIndex, renderedComponentCount, sourceResource, effectFrameCount,
+    }))).toEqual([
+      { id: 3, sourceOrder: 1, frameIndex: 1, renderedComponentCount: 0, sourceResource: 'enm/atef/22', effectFrameCount: 2 },
+      { id: 5, sourceOrder: 4, frameIndex: 2, renderedComponentCount: 1, sourceResource: 'boss/atef/32', effectFrameCount: 7 },
+      { id: 8, sourceOrder: 4, frameIndex: 3, renderedComponentCount: 1, sourceResource: 'boss/atef/32', effectFrameCount: 7 },
+    ]);
+  });
+
   it('raises the new-game HUD to level 99 without changing unrelated starting fields', () => {
     expect(applyMaxLevelCampaignTestHud(NEW_GAME_RONIN_HUD)).toEqual({
       ...NEW_GAME_RONIN_HUD,
@@ -136,9 +218,114 @@ describe('max-level campaign test profile', () => {
     expect(isCampaignTestScenario(MAP27_CLASS6_SKILL3_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP27_CLASS6_SKILL4_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP27_CLASS6_SKILL5_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
     expect(isCampaignTestScenario(MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO)).toBe(2);
+    expect(campaignTestMapPreviewSpawnTile(MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO)).toEqual({
+      tileX: 8,
+      tileY: 27,
+    });
+    expect(isCampaignTestScenario(MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO)).toBe(17);
+    expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)).toBe(17);
+    expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO)).toBe(17);
+    expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO)).toBe(17);
+    expect(campaignTestMapPreviewSpawnTile(MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 11,
+    });
+    expect(campaignTestMapPreviewSpawnTile(MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 11,
+    });
+    expect(campaignTestMapPreviewSpawnTile(MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 11,
+    });
+    expect(campaignTestMapPreviewSpawnTile(MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 11,
+    });
     expect(isCampaignTestScenario(MAP80_REFINER_ORB_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_BLACKSMITH_IDENTIFY_DIRECT_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP0_WALKING_RECOVERY_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP0_WALKING_RECOVERY_TEST_SCENARIO)).toBe(0);
+    expect(campaignTestMapPreviewSpawnTile(MAP0_WALKING_RECOVERY_TEST_SCENARIO)).toEqual({
+      tileX: 6,
+      tileY: 22,
+    });
+    expect(isCampaignTestScenario(MAP76_EQUIPMENT_REWARD_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP76_EQUIPMENT_RECOVERY_BOUNDARY_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP15_BOSS_DEATH_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO)).toBe(11);
+    expect(campaignTestMapPreviewSpawnTile(MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 9,
+    });
+    expect(isCampaignTestScenario(MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO)).toBe(11);
+    expect(campaignTestMapPreviewSpawnTile(MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 9,
+    });
+    expect(isCampaignTestScenario(MAP11_BOSS_AI_LIVE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP11_BOSS_AI_LIVE_TEST_SCENARIO)).toBe(11);
+    expect(campaignTestMapPreviewSpawnTile(MAP11_BOSS_AI_LIVE_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 9,
+    });
+    expect(isCampaignTestScenario(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toBe(13);
+    expect(campaignTestMapPreviewSpawnTile(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 10,
+    });
+    expect(isCampaignTestScenario(MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO)).toBe(54);
+    expect(campaignTestMapPreviewSpawnTile(MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 13,
+    });
+    expect(isCampaignTestScenario(MAP54_TO_MAP13_CHAIN_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP54_TO_MAP13_CHAIN_TEST_SCENARIO)).toBe(54);
+    expect(campaignTestMapPreviewSpawnTile(MAP54_TO_MAP13_CHAIN_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 13,
+    });
+    expect(campaignTestMapPreviewMapId(MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO)).toBe(53);
+    expect(campaignTestMapPreviewSpawnTile(MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO)).toEqual({
+      tileX: 19,
+      tileY: 38,
+    });
+    expect(campaignTestMapPreviewSpawnTile('map-preview-53')).toBeNull();
     expect(isCampaignTestScenario('map-preview-13')).toBe(true);
     expect(campaignTestMapPreviewMapId('map-preview-0')).toBe(0);
     expect(campaignTestMapPreviewMapId('map-preview-13')).toBe(13);
@@ -227,6 +414,7 @@ describe('max-level campaign test profile', () => {
         skillLevelSlotOne: 0,
         skillLevelSlotThree: null,
         defenseBoostTicksRemaining: 0,
+        recoveryBoostTicksRemaining: 0,
         phase: 3,
         levelSlot: 0,
         tileX: 18,
@@ -320,7 +508,7 @@ describe('max-level campaign test profile', () => {
     };
 
     expect(JSON.parse(serializeCampaignTestRuntimeSnapshot(snapshot))).toEqual({
-      format: 'heroes-lore-campaign-test-runtime-v7',
+      format: 'heroes-lore-campaign-test-runtime-v9',
       profile: 'max-level',
       mapId: 27,
       mapSize: { width: 64, height: 64 },
@@ -375,6 +563,7 @@ describe('max-level campaign test profile', () => {
         skillLevelSlotOne: 0,
         skillLevelSlotThree: null,
         defenseBoostTicksRemaining: 0,
+        recoveryBoostTicksRemaining: 0,
         phase: 3,
         levelSlot: 0,
         tileX: 18,
@@ -466,5 +655,42 @@ describe('max-level campaign test profile', () => {
         },
       ],
     });
+
+    const bossSnapshot = JSON.parse(serializeCampaignTestRuntimeSnapshot({
+      ...snapshot,
+      mapId: 15,
+      enemies: [{
+        ...snapshot.enemies[0]!,
+        enemyId: 39,
+        state: 'death-pending',
+        sourceAu: true,
+        renderSpriteId: 39,
+        renderAnimationStateIndex: 2,
+        deathUpdatesRemaining: 24,
+        animationFrameIndex: 3,
+      }],
+    })) as { enemies: Array<Record<string, unknown>> };
+    expect(bossSnapshot.enemies[0]).toMatchObject({
+      enemyId: 39,
+      state: 'death-pending',
+      sourceAu: true,
+      renderSpriteId: 39,
+      renderAnimationStateIndex: 2,
+      deathUpdatesRemaining: 24,
+      animationFrameIndex: 3,
+    });
+  });
+
+  it('serializes active enemy statuses in source order for browser verification', () => {
+    const statuses = JSON.parse(serializeCampaignTestEnemyStatusSnapshot([
+      { sourceOrder: 12, sourceStatusEffects: [{ id: 3, ticksElapsed: 7 }] },
+      { sourceOrder: 4, sourceStatusEffects: [{ id: 0, ticksElapsed: 11 }] },
+      { sourceOrder: 8, sourceStatusEffects: [] },
+    ]));
+
+    expect(statuses).toEqual([
+      { sourceOrder: 4, effects: [{ id: 0, ticksElapsed: 11 }] },
+      { sourceOrder: 12, effects: [{ id: 3, ticksElapsed: 7 }] },
+    ]);
   });
 });

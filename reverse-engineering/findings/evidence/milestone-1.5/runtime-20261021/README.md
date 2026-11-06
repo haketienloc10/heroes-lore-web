@@ -74,7 +74,8 @@ Tái lập case sau khi đã tạo snapshot hợp lệ trên máy:
 mkdir -p /tmp/heroes-lore-runtime-sequence
 javac -d /tmp/heroes-lore-runtime-sequence \
   reverse-engineering/scripts/RuntimeSequenceProbe.java \
-  reverse-engineering/scripts/RuntimeFramebufferProbe.java
+  reverse-engineering/scripts/RuntimeFramebufferProbe.java \
+  reverse-engineering/scripts/RuntimeBurstFramebufferProbe.java
 ```
 
 Tạo manifest JAR với `Agent-Class: RuntimeSequenceProbe`, đóng hai class trên thành `/tmp/heroes-lore-runtime-sequence/sequence-probe.jar`; helper attach vẫn là RuntimeStateProbe trong thư mục probe cũ. Không dùng manifest Agent-Class của RuntimeStateProbe cho sequence JAR. Sau đó chọn **run ID chưa tồn tại**:

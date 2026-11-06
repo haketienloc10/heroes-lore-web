@@ -12,6 +12,8 @@ export const MAP13_CC_RENDER_SPRITE_ID = 294;
 export const MAP15_CF_RENDER_SPRITE_ID = 295;
 export const MAP15_AZ_RENDER_SPRITE_ID = 296;
 export const MAP15_AJ_RENDER_SPRITE_ID = 297;
+/** Render-only key for map-82 `bu` from `/boss/spr/4_42`. */
+export const MAP82_BU_RENDER_SPRITE_ID = 298;
 
 export type BossSpriteState = 0 | 1 | 2 | 3 | 4 | 5;
 

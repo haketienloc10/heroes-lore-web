@@ -1,0 +1,106 @@
+# Fresh replay: skip opening, then three separately released Down holds to reach outside.
+down 87
+wait 100
+up 87
+wait 1200
+down 40
+wait 1000
+up 40
+wait 1000
+down 40
+wait 1000
+up 40
+wait 1000
+down 40
+wait 1000
+up 40
+wait 2000
+# Replays the preserved map-00 route segments from the observed outside spawn.
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 1
+down 37
+wait 290
+up 37
+wait 100
+down 38
+wait 145
+up 38
+wait 100
+down 37
+wait 145
+up 37
+wait 100
+down 38
+wait 580
+up 38
+wait 100
+frame map27-route-p1
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 2
+down 37
+wait 1015
+up 37
+wait 100
+down 38
+wait 290
+up 38
+wait 100
+down 37
+wait 145
+up 37
+wait 100
+down 38
+wait 145
+up 38
+wait 100
+down 37
+wait 145
+up 37
+wait 100
+down 38
+wait 145
+up 38
+wait 100
+down 37
+wait 725
+up 37
+wait 100
+frame map27-route-p2
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 3
+down 38
+wait 1015
+up 38
+wait 150
+frame map27-route-p3
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 4
+down 39
+wait 1305
+up 39
+wait 150
+frame map27-route-p4
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 5
+down 38
+wait 725
+up 38
+wait 150
+frame map27-route-p5
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 6
+down 39
+wait 290
+up 39
+wait 150
+frame map27-route-p6
+# map 6/00 from the confirmed map-change spawn (26,24), route segment 7
+down 38
+wait 290
+up 38
+wait 3000
+frame map27-route-p7
+# Approach the visible spawn from the replayed route, then face north at the near frame.
+down 39
+wait 725
+up 39
+wait 500
+down 38
+wait 725
+up 38
+wait 700
+frame before-raw53-close
