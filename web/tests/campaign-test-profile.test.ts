@@ -47,6 +47,8 @@ import {
   MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO,
   MAP11_BOSS_AI_LIVE_TEST_SCENARIO,
   MAP13_AQ_AI_LIVE_TEST_SCENARIO,
+  MAP13_CC_HEAL_LIVE_TEST_SCENARIO,
+  MAP13_BC_ATTACK_LIVE_TEST_SCENARIO,
   MAP60_INVESTIGATION_TEST_SCENARIO,
   MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO,
   MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO,
@@ -304,6 +306,18 @@ describe('max-level campaign test profile', () => {
     expect(isCampaignTestScenario(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toBe(true);
     expect(campaignTestMapPreviewMapId(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toBe(13);
     expect(campaignTestMapPreviewSpawnTile(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 10,
+    });
+    expect(isCampaignTestScenario(MAP13_CC_HEAL_LIVE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP13_CC_HEAL_LIVE_TEST_SCENARIO)).toBe(13);
+    expect(campaignTestMapPreviewSpawnTile(MAP13_CC_HEAL_LIVE_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 10,
+    });
+    expect(isCampaignTestScenario(MAP13_BC_ATTACK_LIVE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP13_BC_ATTACK_LIVE_TEST_SCENARIO)).toBe(13);
+    expect(campaignTestMapPreviewSpawnTile(MAP13_BC_ATTACK_LIVE_TEST_SCENARIO)).toEqual({
       tileX: 10,
       tileY: 10,
     });

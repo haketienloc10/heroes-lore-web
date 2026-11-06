@@ -43,6 +43,8 @@ const forbiddenMarkers = [
   'map27-weapon-proc-status-defense',
   'map11-boss-ai-live',
   'map13-aq-ai-live',
+  'map13-cc-heal-live',
+  'map13-bc-attack-live',
   'map2-class6-skill5-element3',
   'map2-class6-skill3-level2-element3-mismatch',
   'map17-class6-skill3-level2',

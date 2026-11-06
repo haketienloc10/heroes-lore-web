@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-/** Confirm Map11 boss 32 projectiles resolve to rendered /boss/atef/32 frames. */
+/** Confirm Map13 AQ projectiles resolve to rendered /boss/atef/35 frames. */
 
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
@@ -11,22 +11,22 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const attempt = Number(process.env.HEROES_LORE_M1090_ATTEMPT ?? 1);
+const attempt = Number(process.env.HEROES_LORE_M1091_ATTEMPT ?? 1);
 if (!Number.isInteger(attempt) || attempt < 1 || attempt > 3) {
-  throw new Error('M1090 attempt must be from 1 to 3');
+  throw new Error('M1091 attempt must be from 1 to 3');
 }
 const outputDir = join(root,
-  `reference/screenshots/web-render/M1090-map11-boss-attack-effect/attempt-${attempt}`);
-const profileDir = await mkdtemp(join(tmpdir(), 'heroes-lore-m1090-'));
+  `reference/screenshots/web-render/M1091-map13-aq-attack-effect/attempt-${attempt}`);
+const profileDir = await mkdtemp(join(tmpdir(), 'heroes-lore-m1091-'));
 const chromePath = process.env.HEROES_LORE_CHROME ??
   '/home/locdt/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome';
 const url = process.env.HEROES_LORE_URL ??
-  'http://127.0.0.1:5174/?testProfile=max-level&testScenario=map11-boss-ai-live';
+  'http://127.0.0.1:5174/?testProfile=max-level&testScenario=map13-aq-ai-live';
 const parsedUrl = new URL(url);
 if (parsedUrl.protocol !== 'http:' || !['127.0.0.1', 'localhost'].includes(parsedUrl.hostname) ||
   parsedUrl.searchParams.get('testProfile') !== 'max-level' ||
-  parsedUrl.searchParams.get('testScenario') !== 'map11-boss-ai-live') {
-  throw new Error('M1090 requires the local DEV max-level Map11 boss AI preview');
+  parsedUrl.searchParams.get('testScenario') !== 'map13-aq-ai-live') {
+  throw new Error('M1091 requires the local DEV max-level Map13 AQ AI preview');
 }
 
 let chrome;
@@ -192,7 +192,7 @@ async function screenshot(label, filename) {
 }
 
 function bossFrom(state) {
-  return state?.snapshot?.enemies.find((enemy) => enemy.enemyId === 32);
+  return state?.snapshot?.enemies.find((enemy) => enemy.enemyId === 35);
 }
 
 function relevantProjectiles(state, sourceOrder) {
@@ -210,15 +210,15 @@ async function run() {
     ['Enter', 'Enter', 13], ['ArrowRight', 'ArrowRight', 39], ['Enter', 'Enter', 13],
   ];
   for (const [key, code, vk] of presses) await keyTap(key, code, vk);
-  const start = await waitFor((state) => state?.mapId === 11 && state.scenario === 'map11-boss-ai-live' &&
+  const start = await waitFor((state) => state?.mapId === 13 && state.scenario === 'map13-aq-ai-live' &&
     state.mapPreviewReady && state.snapshot?.format === 'heroes-lore-campaign-test-runtime-v9' &&
-    bossFrom(state)?.state === 'alive', 'visible New Game to Map11 boss preview');
+    bossFrom(state)?.state === 'alive', 'visible New Game to Map13 AQ preview');
   const boss = bossFrom(start);
   if (start.profile !== 'max-level' || start.level !== 99 || start.hp !== start.snapshot.resources.maxHp ||
-    boss?.sourceAu !== true || boss.renderSpriteId !== 256) {
-    throw new Error(`Unexpected Map11 max-level starting state: ${JSON.stringify({ start, boss })}`);
+    boss?.sourceAu !== true || boss.renderSpriteId !== 291) {
+    throw new Error(`Unexpected Map13 max-level AQ starting state: ${JSON.stringify({ start, boss })}`);
   }
-  await screenshot('map11-boss-start', '01-map11-boss-start.png');
+  await screenshot('map13-aq-start', '01-map13-aq-start.png');
 
   const observed = [];
   const deadline = Date.now() + 15000;
@@ -228,34 +228,34 @@ async function run() {
     const state = await runtime();
     const current = relevantProjectiles(state, boss.sourceOrder);
     for (const projectile of current) {
-      if (projectile.sourceResource === 'boss/atef/32' && projectile.effectFrameCount === 7) {
+      if (projectile.sourceResource === 'boss/atef/35' && projectile.effectFrameCount === 2) {
         observed.push({ atMs: Date.now(), ...projectile });
       }
     }
-    projectiles = current.filter((projectile) => projectile.sourceResource === 'boss/atef/32' &&
-      projectile.effectFrameCount === 7 && projectile.renderedComponentCount > 0);
+    projectiles = current.filter((projectile) => projectile.sourceResource === 'boss/atef/35' &&
+      projectile.effectFrameCount === 2 && projectile.renderedComponentCount > 0);
     if (projectiles.length > 0) {
       impactState = state;
       break;
     }
     await delay(8);
   }
-  if (impactState === null) throw new Error('No boss/atef/32 projectile acquired a rendered image component');
-  await screenshot('boss-projectile-effect-visible', '02-boss-atef-32-projectile.png');
+  if (impactState === null) throw new Error('No boss/atef/35 projectile acquired a rendered image component');
+  await screenshot('aq-projectile-effect-visible', '02-boss-atef-35-projectile.png');
   const pageErrors = errors.filter((event) => event.method === 'Runtime.exceptionThrown' ||
     event.method === 'Network.loadingFailed' ||
     (event.method === 'Runtime.consoleAPICalled' && event.params.type === 'error') ||
     (event.method === 'Log.entryAdded' && event.params.entry?.level === 'error'));
   const directions = [...new Set(projectiles.map(({ direction }) => direction))].sort((a, b) => a - b);
-  const passed = impactState.mapId === 11 && impactState.profile === 'max-level' && impactState.level === 99 &&
+  const passed = impactState.mapId === 13 && impactState.profile === 'max-level' && impactState.level === 99 &&
     impactState.hp === impactState.snapshot.resources.maxHp && bossFrom(impactState)?.state === 'alive' &&
-    projectiles.length >= 1 && projectiles.every((projectile) => projectile.spriteId === 256 &&
-      projectile.sourceResource === 'boss/atef/32' && projectile.effectFrameCount === 7 &&
+    projectiles.length >= 1 && projectiles.every((projectile) => projectile.spriteId === 291 &&
+      projectile.sourceResource === 'boss/atef/35' && projectile.effectFrameCount === 2 &&
       projectile.renderedComponentCount > 0) && pageErrors.length === 0;
   const result = {
-    id: 'M1090', attempt, passed,
-    profile: 'max-level', scenario: 'map11-boss-ai-live',
-    route: 'visible New Game -> DEV Map11 boss preview -> default source cb AI -> observe a boss/atef/32 projectile with rendered atlas components',
+    id: 'M1091', attempt, passed,
+    profile: 'max-level', scenario: 'map13-aq-ai-live',
+    route: 'visible New Game -> DEV Map13 AQ preview at (10,10) -> source AQ AI -> observe a boss/atef/35 projectile with rendered atlas components',
     title,
     start: {
       mapId: start.mapId, tile: [start.tileX, start.tileY], level: start.level, hp: start.hp,
@@ -281,11 +281,11 @@ async function run() {
       temporaryProfile: 'isolated-and-deleted-after-capture' },
   };
   await writeFile(join(outputDir, 'result.json'), `${JSON.stringify(result, null, 2)}\n`);
-  if (!passed) throw new Error(`M1090 boss effect render criteria failed: ${JSON.stringify({ impact: result.impact, pageErrors })}`);
+  if (!passed) throw new Error(`M1091 AQ effect render criteria failed: ${JSON.stringify({ impact: result.impact, pageErrors })}`);
   process.stdout.write(`${JSON.stringify({ id: result.id, attempt, passed, start: result.start,
     impact: result.impact, observedEffectFrames: result.observedEffectFrames,
     observedDirections: result.observedDirections, browserErrors: pageErrors.length,
-    artifacts: `reference/screenshots/web-render/M1090-map11-boss-attack-effect/attempt-${attempt}` })}\n`);
+    artifacts: `reference/screenshots/web-render/M1091-map13-aq-attack-effect/attempt-${attempt}` })}\n`);
 }
 
 async function cleanup() {
@@ -306,14 +306,14 @@ try {
   await run();
 } catch (error) {
   const partial = {
-    id: 'M1090', attempt, passed: false, profile: 'max-level', scenario: 'map11-boss-ai-live',
+    id: 'M1091', attempt, passed: false, profile: 'max-level', scenario: 'map13-aq-ai-live',
     screenshots, browserErrors: errors,
     error: error instanceof Error ? error.message : String(error),
     browser: { product: 'Chromium', ownedProcess: true, stderr: stderr.slice(-3000) },
   };
   await mkdir(outputDir, { recursive: true });
   await writeFile(join(outputDir, 'result.json'), `${JSON.stringify(partial, null, 2)}\n`);
-  process.stderr.write(`${JSON.stringify({ id: 'M1090', attempt, passed: false, error: partial.error })}\n`);
+  process.stderr.write(`${JSON.stringify({ id: 'M1091', attempt, passed: false, error: partial.error })}\n`);
   process.exitCode = 1;
 } finally {
   await cleanup();

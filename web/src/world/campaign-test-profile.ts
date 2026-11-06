@@ -53,6 +53,8 @@ export const MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO =
   'map11-boss-death-fallback-controlled' as const;
 export const MAP11_BOSS_AI_LIVE_TEST_SCENARIO = 'map11-boss-ai-live' as const;
 export const MAP13_AQ_AI_LIVE_TEST_SCENARIO = 'map13-aq-ai-live' as const;
+export const MAP13_CC_HEAL_LIVE_TEST_SCENARIO = 'map13-cc-heal-live' as const;
+export const MAP13_BC_ATTACK_LIVE_TEST_SCENARIO = 'map13-bc-attack-live' as const;
 export const MAP59_KEY_PREVIEW_TEST_SCENARIO = 'map-preview-59-key' as const;
 export const MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO = 'map-preview-59-prereqs' as const;
 export const MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO = 'map53-flag82-bluebrick-route' as const;
@@ -99,6 +101,8 @@ export type CampaignTestScenario = typeof MAP60_INVESTIGATION_TEST_SCENARIO |
   typeof MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO |
   typeof MAP11_BOSS_AI_LIVE_TEST_SCENARIO |
   typeof MAP13_AQ_AI_LIVE_TEST_SCENARIO |
+  typeof MAP13_CC_HEAL_LIVE_TEST_SCENARIO |
+  typeof MAP13_BC_ATTACK_LIVE_TEST_SCENARIO |
   typeof MAP59_KEY_PREVIEW_TEST_SCENARIO |
   typeof MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO |
   typeof MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO |
@@ -245,6 +249,8 @@ export function isCampaignTestScenario(value: unknown): value is CampaignTestSce
     value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO ||
     value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO ||
     value === MAP13_AQ_AI_LIVE_TEST_SCENARIO ||
+    value === MAP13_CC_HEAL_LIVE_TEST_SCENARIO ||
+    value === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO ||
     value === MAP59_KEY_PREVIEW_TEST_SCENARIO ||
     value === MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO ||
     value === MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO ||
@@ -263,6 +269,8 @@ export function campaignTestMapPreviewMapId(value: unknown): number | null {
   if (value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) return 11;
   if (value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO) return 11;
   if (value === MAP13_AQ_AI_LIVE_TEST_SCENARIO) return 13;
+  if (value === MAP13_CC_HEAL_LIVE_TEST_SCENARIO) return 13;
+  if (value === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO) return 13;
   if (value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return 2;
   if (value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
@@ -291,6 +299,8 @@ export function campaignTestMapPreviewSpawnTile(
   if (value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
   if (value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
   if (value === MAP13_AQ_AI_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
+  if (value === MAP13_CC_HEAL_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
+  if (value === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
   if (value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return { tileX: 8, tileY: 27 };
   if (value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||

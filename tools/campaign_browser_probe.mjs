@@ -324,9 +324,11 @@ async function readRuntime() {
     const raw = host.dataset.testRuntime;
     const cutsceneRaw = host.dataset.testEventCutscene;
     const enemyStatusRaw = host.dataset.testEnemyStatusEffects;
+    const enemyProjectileRaw = host.dataset.testEnemyProjectiles;
     let runtime = null;
     let eventCutscene = null;
     let enemyStatusEffects = [];
+    let enemyProjectiles = [];
     if (raw) {
       try { runtime = JSON.parse(raw); } catch {}
     }
@@ -335,6 +337,9 @@ async function readRuntime() {
     }
     if (enemyStatusRaw) {
       try { enemyStatusEffects = JSON.parse(enemyStatusRaw); } catch {}
+    }
+    if (enemyProjectileRaw) {
+      try { enemyProjectiles = JSON.parse(enemyProjectileRaw); } catch {}
     }
     return {
       profile: host.dataset.testProfile ?? null,
@@ -346,6 +351,7 @@ async function readRuntime() {
       mapPreviewReady: host.dataset.testMapPreviewReady === 'true',
       runtime,
       enemyStatusEffects,
+      enemyProjectiles,
       eventCutscene,
     };
   })()`);
@@ -2397,6 +2403,21 @@ async function approachMapPreviewEnemyForAttack(initialState) {
 
 async function observeMapPreviewEnemyAttack(initialState, { includeMapReadySample = true } = {}) {
   const sample = (state, elapsedMs) => {
+    const combatants = (state?.runtime?.enemies ?? []).map((candidate) => ({
+      sourceOrder: candidate.sourceOrder,
+      enemyId: candidate.enemyId,
+      behaviorType: candidate.behaviorType,
+      tile: [candidate.tileX, candidate.tileY],
+      state: candidate.state,
+      animationStateIndex: candidate.animationStateIndex,
+      animationDirection: candidate.animationDirection,
+      animationFrameIndex: candidate.animationFrameIndex,
+      attackCooldownTicksRemaining: candidate.attackCooldownTicksRemaining,
+      actionDelayTicksRemaining: candidate.actionDelayTicksRemaining,
+      attackAnimationTicksRemaining: candidate.attackAnimationTicksRemaining,
+      attackHitResolved: candidate.attackHitResolved,
+      sourceRenderedOnScreen: candidate.sourceRenderedOnScreen,
+    }));
     const enemy = state?.runtime?.enemies?.find((candidate) =>
       candidate.sourceOrder === enemyObservationTarget.sourceOrder &&
       candidate.enemyId === enemyObservationTarget.enemyId &&
@@ -2406,6 +2427,8 @@ async function observeMapPreviewEnemyAttack(initialState, { includeMapReadySampl
       mapId: state?.mapId ?? null,
       playerTile: state === null ? null : [state.tileX, state.tileY],
       playerHp: state?.hp ?? null,
+      combatants,
+      enemyProjectiles: state?.enemyProjectiles ?? [],
       enemy: enemy === undefined ? null : {
         sourceOrder: enemy.sourceOrder,
         enemyId: enemy.enemyId,

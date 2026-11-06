@@ -343,12 +343,15 @@ import {
   MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO,
   MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO,
   MAP11_BOSS_AI_LIVE_TEST_SCENARIO,
+  MAP13_CC_HEAL_LIVE_TEST_SCENARIO,
+  MAP13_BC_ATTACK_LIVE_TEST_SCENARIO,
   MAP59_KEY_PREVIEW_TEST_SCENARIO,
   MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO,
   MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO,
   MAP54_CURRENT_CELL_EXIT_TEST_SCENARIO,
   MAP54_TO_MAP13_CHAIN_TEST_SCENARIO,
   MAP60_INVESTIGATION_TEST_SCENARIO,
+  DAMAGE_SURVIVAL_CAMPAIGN_TEST_PROFILE,
   MAX_LEVEL_CAMPAIGN_TEST_PROFILE,
   resolveCampaignTestRecoveryAttributes,
   restoreCampaignTestVitals,
@@ -1926,18 +1929,65 @@ export class WorldScene extends Phaser.Scene {
           decorations,
         );
         const effectiveDecorations = initialState.decorations;
-        const effectiveEvents = addSourceConstructedMapEnemies(mapId, {
+        const sourceConstructedEvents = addSourceConstructedMapEnemies(mapId, {
           ...events,
           npcPlacements: initialState.npcPlacements,
           enemyPlacements: initialState.enemyPlacements,
         });
+        const map13CcHealPreview = import.meta.env.DEV && mapId === 13 &&
+          this.campaignTestProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE &&
+          this.campaignTestScenario === MAP13_CC_HEAL_LIVE_TEST_SCENARIO;
+        const map13BcAttackPreview = import.meta.env.DEV && mapId === 13 &&
+          (this.campaignTestProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE ||
+            this.campaignTestProfile === DAMAGE_SURVIVAL_CAMPAIGN_TEST_PROFILE) &&
+          this.campaignTestScenario === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO;
+        const map13SecondWavePreview = map13CcHealPreview || map13BcAttackPreview;
+        const secondWaveEvents = map13SecondWavePreview
+          ? addSourceMap13SecondWaveEnemies({
+            ...sourceConstructedEvents,
+            enemyPlacements: sourceConstructedEvents.enemyPlacements.filter((placement) =>
+              placement.sourceBehavior !== 'map13-aq'),
+          })
+          : sourceConstructedEvents;
+        const effectiveEvents = map13BcAttackPreview
+          ? {
+            ...secondWaveEvents,
+            enemyPlacements: secondWaveEvents.enemyPlacements.filter((placement) =>
+              placement.sourceBehavior === 'map13-bc'),
+          }
+          : secondWaveEvents;
+        const enemies = createEnemyCombatants(effectiveEvents.enemyPlacements, this.enemyDataTable);
+        if (map13CcHealPreview) {
+          for (const enemy of enemies) {
+            if (enemy.enemyId === 36 && enemy.sourceBehavior === 'map13-af') {
+              enemy.hp = Math.trunc(enemy.definition.maxHp / 2) - 1;
+            }
+          }
+        }
+        if (map13BcAttackPreview) {
+          for (const enemy of enemies) {
+            if (enemy.enemyId !== 37 || enemy.sourceBehavior !== 'map13-bc' ||
+              enemy.sourceMap13Ai === undefined) continue;
+            enemy.sourceMap13Ai = {
+              ...enemy.sourceMap13Ai,
+              state: 3,
+              tick: 3,
+              attackCooldown: 0,
+              sampledPlayerTileX: null,
+              sampledPlayerTileY: null,
+            };
+            enemy.animationStateIndex = 2;
+            enemy.animationDirection = 2;
+            enemy.animationFrameIndex = -1;
+          }
+        }
         parsedMaps.push({
           id: mapId,
           map: initialState.world.map,
           decorations: effectiveDecorations,
           decorationObjectCount: decorations.objects.length,
           events: effectiveEvents,
-          enemies: createEnemyCombatants(effectiveEvents.enemyPlacements, this.enemyDataTable),
+          enemies,
           world: initialState.world,
           visibleNpcSourceOrders: initialState.visibleNpcSourceOrders,
           npcEmotions: initialState.npcEmotions,
