@@ -22,11 +22,26 @@ export const MAP27_CLASS6_SKILL4_TEST_SCENARIO = 'map27-class6-skill4' as const;
 export const MAP27_CLASS6_SKILL5_TEST_SCENARIO = 'map27-class6-skill5' as const;
 export const MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO = 'map27-weapon-proc-status' as const;
 export const MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO = 'map27-weapon-proc-status-slow' as const;
+export const MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO = 'map27-weapon-proc-status-slow-ai' as const;
 export const MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO = 'map27-weapon-proc-status-defense' as const;
+export const MAP27_WEAPON_PROC_POISON_TEST_SCENARIO = 'map27-weapon-proc-poison' as const;
+export const MAP6_WEAPON_PROC_POISON_TEST_SCENARIO = 'map6-weapon-proc-poison' as const;
+export const MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO = 'map27-weapon-proc-status-2' as const;
+export const MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO = 'map27-weapon-proc-damage' as const;
+export const MAP27_WEAPON_PROC_SP_TEST_SCENARIO = 'map27-weapon-proc-sp' as const;
+export const MAP27_WEAPON_PROC_HP_TEST_SCENARIO = 'map27-weapon-proc-hp' as const;
+export const MAP27_POISON_TICK_TEST_SCENARIO = 'map27-poison-tick' as const;
+export const MAP27_NO_TARGET_WANDER_TEST_SCENARIO = 'map27-no-target-wander' as const;
+export const MAP37_CLASS6_MULTITARGET_TEST_SCENARIO = 'map37-class6-multitarget' as const;
+export const MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO = 'map37-class6-triple-target' as const;
+export const MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO = 'map37-class6-light-followup' as const;
+export const MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO = 'map37-class6-heavy-stage4-sweep' as const;
 export const MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO = 'map2-class6-skill5-element3' as const;
+export const MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO = 'map2-class6-skill5-level1' as const;
 export const MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO =
   'map2-class6-skill3-level2-element3-mismatch' as const;
 export const MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO = 'map17-class6-skill3-level2' as const;
+export const MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO = 'map17-class6-skill3-level1' as const;
 export const MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO =
   'map17-class6-skill0-level1-combo' as const;
 export const MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO =
@@ -35,10 +50,13 @@ export const MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO =
   'map17-class6-skill4-level1-immunity' as const;
 export const MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO =
   'map80-class6-skill1-level2-recovery' as const;
+export const MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO =
+  'map80-class6-skill1-level1-sp' as const;
 export const MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO =
   'map80-class6-skill0-level2-aura' as const;
 export const MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO =
   'map80-class6-skill2-level2-cleanse' as const;
+export const MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO = 'map80-antidote-quick-use' as const;
 export const MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO =
   'map80-class6-skill4-level2-restore' as const;
 export const MAP80_REFINER_ORB_TEST_SCENARIO = 'map80-refiner-orb-attribute' as const;
@@ -53,6 +71,8 @@ export const MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO =
   'map11-boss-death-fallback-controlled' as const;
 export const MAP11_BOSS_AI_LIVE_TEST_SCENARIO = 'map11-boss-ai-live' as const;
 export const MAP13_AQ_AI_LIVE_TEST_SCENARIO = 'map13-aq-ai-live' as const;
+export const MAP13_AU_PROC_SP_TEST_SCENARIO = 'map13-au-proc-sp' as const;
+export const MAP13_AU_PROC_HP_TEST_SCENARIO = 'map13-au-proc-hp' as const;
 export const MAP13_CC_HEAL_LIVE_TEST_SCENARIO = 'map13-cc-heal-live' as const;
 export const MAP13_BC_ATTACK_LIVE_TEST_SCENARIO = 'map13-bc-attack-live' as const;
 export const MAP59_KEY_PREVIEW_TEST_SCENARIO = 'map-preview-59-key' as const;
@@ -79,16 +99,33 @@ export type CampaignTestScenario = typeof MAP60_INVESTIGATION_TEST_SCENARIO |
   typeof MAP27_CLASS6_SKILL5_TEST_SCENARIO |
   typeof MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO |
   typeof MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO |
   typeof MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_POISON_TEST_SCENARIO |
+  typeof MAP6_WEAPON_PROC_POISON_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_SP_TEST_SCENARIO |
+  typeof MAP27_WEAPON_PROC_HP_TEST_SCENARIO |
+  typeof MAP27_POISON_TICK_TEST_SCENARIO |
+  typeof MAP27_NO_TARGET_WANDER_TEST_SCENARIO |
+  typeof MAP37_CLASS6_MULTITARGET_TEST_SCENARIO |
+  typeof MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO |
+  typeof MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO |
+  typeof MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO |
   typeof MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO |
+  typeof MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO |
   typeof MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO |
   typeof MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO |
+  typeof MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO |
   typeof MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO |
   typeof MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO |
   typeof MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO |
   typeof MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO |
+  typeof MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO |
   typeof MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO |
   typeof MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO |
+  typeof MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO |
   typeof MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO |
   typeof MAP80_REFINER_ORB_TEST_SCENARIO |
   typeof MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO |
@@ -101,6 +138,8 @@ export type CampaignTestScenario = typeof MAP60_INVESTIGATION_TEST_SCENARIO |
   typeof MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO |
   typeof MAP11_BOSS_AI_LIVE_TEST_SCENARIO |
   typeof MAP13_AQ_AI_LIVE_TEST_SCENARIO |
+  typeof MAP13_AU_PROC_SP_TEST_SCENARIO |
+  typeof MAP13_AU_PROC_HP_TEST_SCENARIO |
   typeof MAP13_CC_HEAL_LIVE_TEST_SCENARIO |
   typeof MAP13_BC_ATTACK_LIVE_TEST_SCENARIO |
   typeof MAP59_KEY_PREVIEW_TEST_SCENARIO |
@@ -136,6 +175,8 @@ export interface CampaignTestRuntimeEnemy {
   attackAnimationTicksRemaining: number | null;
   attackHitResolved: boolean | null;
   sourceRenderedOnScreen: boolean | null;
+  /** DEV telemetry for the map-15 attacker/hazard state machine. */
+  sourceMap15Ai?: EnemyCombatant['sourceMap15Ai'];
 }
 
 export interface CampaignTestRuntimeNpc {
@@ -227,16 +268,29 @@ export function isCampaignTestScenario(value: unknown): value is CampaignTestSce
     value === MAP27_CLASS6_SKILL5_TEST_SCENARIO ||
     value === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
     value === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
     value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+    value === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_HP_TEST_SCENARIO ||
+    value === MAP27_POISON_TICK_TEST_SCENARIO ||
+    value === MAP27_NO_TARGET_WANDER_TEST_SCENARIO ||
     value === MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO ||
+    value === MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO ||
     value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO ||
     value === MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO ||
+    value === MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO ||
     value === MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO ||
     value === MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO ||
+    value === MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO ||
     value === MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO ||
     value === MAP80_REFINER_ORB_TEST_SCENARIO ||
     value === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO ||
@@ -249,6 +303,8 @@ export function isCampaignTestScenario(value: unknown): value is CampaignTestSce
     value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO ||
     value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO ||
     value === MAP13_AQ_AI_LIVE_TEST_SCENARIO ||
+    value === MAP13_AU_PROC_SP_TEST_SCENARIO ||
+    value === MAP13_AU_PROC_HP_TEST_SCENARIO ||
     value === MAP13_CC_HEAL_LIVE_TEST_SCENARIO ||
     value === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO ||
     value === MAP59_KEY_PREVIEW_TEST_SCENARIO ||
@@ -263,16 +319,33 @@ export function isCampaignTestScenario(value: unknown): value is CampaignTestSce
 export function campaignTestMapPreviewMapId(value: unknown): number | null {
   if (value === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
     value === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
-    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO) return 27;
+    value === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_HP_TEST_SCENARIO) return 27;
+  if (value === MAP27_POISON_TICK_TEST_SCENARIO ||
+    value === MAP27_NO_TARGET_WANDER_TEST_SCENARIO) return 27;
+  if (value === MAP37_CLASS6_MULTITARGET_TEST_SCENARIO ||
+    value === MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO ||
+    value === MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO ||
+    value === MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO) return 37;
+  if (value === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO) return 6;
   if (value === MAP0_WALKING_RECOVERY_TEST_SCENARIO) return 0;
   if (value === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO) return 11;
   if (value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) return 11;
   if (value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO) return 11;
   if (value === MAP13_AQ_AI_LIVE_TEST_SCENARIO) return 13;
+  if (value === MAP13_AU_PROC_SP_TEST_SCENARIO) return 13;
+  if (value === MAP13_AU_PROC_HP_TEST_SCENARIO) return 13;
   if (value === MAP13_CC_HEAL_LIVE_TEST_SCENARIO) return 13;
   if (value === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO) return 13;
-  if (value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return 2;
+  if (value === MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO ||
+    value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return 2;
   if (value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO) return 17;
   if (value === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) return 17;
@@ -293,16 +366,35 @@ export function campaignTestMapPreviewSpawnTile(
 ): { tileX: number; tileY: number } | null {
   if (value === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
     value === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
-    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO) return { tileX: 9, tileY: 31 };
+    value === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+    value === MAP27_WEAPON_PROC_HP_TEST_SCENARIO) return { tileX: 9, tileY: 31 };
+  if (value === MAP27_POISON_TICK_TEST_SCENARIO) return { tileX: 9, tileY: 31 };
+  if (value === MAP27_NO_TARGET_WANDER_TEST_SCENARIO) return { tileX: 10, tileY: 25 };
+  if (value === MAP37_CLASS6_MULTITARGET_TEST_SCENARIO ||
+    value === MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO ||
+    value === MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO) return { tileX: 10, tileY: 9 };
+  if (value === MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
+  if (value === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO) return { tileX: 10, tileY: 12 };
   if (value === MAP0_WALKING_RECOVERY_TEST_SCENARIO) return { tileX: 6, tileY: 22 };
   if (value === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
   if (value === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
   if (value === MAP11_BOSS_AI_LIVE_TEST_SCENARIO) return { tileX: 9, tileY: 9 };
   if (value === MAP13_AQ_AI_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
+  if (value === MAP13_AU_PROC_SP_TEST_SCENARIO) return { tileX: 9, tileY: 6 };
+  if (value === MAP13_AU_PROC_HP_TEST_SCENARIO) return { tileX: 9, tileY: 6 };
   if (value === MAP13_CC_HEAL_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
   if (value === MAP13_BC_ATTACK_LIVE_TEST_SCENARIO) return { tileX: 10, tileY: 10 };
-  if (value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) return { tileX: 8, tileY: 27 };
+  if (value === MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO ||
+    value === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) {
+    return { tileX: 8, tileY: 27 };
+  }
   if (value === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+    value === MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
     value === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO) return { tileX: 5, tileY: 11 };
   if (value === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) return { tileX: 5, tileY: 11 };

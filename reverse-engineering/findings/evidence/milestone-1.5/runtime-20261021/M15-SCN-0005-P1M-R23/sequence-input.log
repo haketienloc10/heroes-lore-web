@@ -1,0 +1,20 @@
+2026-11-07T00:57:35.534979644Z mono_ns=1247082832179663 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R23/heroes-lore-m1059-right-r23.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-11-07T00:57:35.540108204Z mono_ns=1247082837303273 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-11-07T00:57:35.540817854Z mono_ns=1247082838032003 listener_dispatch_begin phase=down code=37
+2026-11-07T00:57:35.542255514Z mono_ns=1247082839464983 listener_dispatch_end phase=down code=37
+2026-11-07T00:57:35.542806854Z mono_ns=1247082840082563 wait_requested_ms=100
+2026-11-07T00:57:35.643324974Z mono_ns=1247082940528953 listener_dispatch_begin phase=up code=37
+2026-11-07T00:57:35.643862454Z mono_ns=1247082941120253 listener_dispatch_end phase=up code=37
+2026-11-07T00:57:35.644588574Z mono_ns=1247082941768253 wait_requested_ms=700
+2026-11-07T00:57:36.356022194Z mono_ns=1247083653223923 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-11-07T00:57:36.356340794Z mono_ns=1247083653527583 listener_dispatch_begin phase=down code=37
+2026-11-07T00:57:36.356692694Z mono_ns=1247083653871563 listener_dispatch_end phase=down code=37
+2026-11-07T00:57:36.356893214Z mono_ns=1247083654070463 wait_requested_ms=100
+2026-11-07T00:57:36.457576394Z mono_ns=1247083754770743 listener_dispatch_begin phase=up code=37
+2026-11-07T00:57:36.457968344Z mono_ns=1247083755153243 listener_dispatch_end phase=up code=37
+2026-11-07T00:57:36.458569274Z mono_ns=1247083755749043 wait_requested_ms=700
+2026-11-07T00:57:37.179620204Z mono_ns=1247084476802763 wait_requested_ms=1000
+2026-11-07T00:57:38.185367414Z mono_ns=1247085482546733 sequence_end
+2026-11-07T01:01:18.458820712Z mono_ns=1247284253065263 sequence_begin plan=/home/locdt/heroes-lore-web/reverse-engineering/findings/evidence/milestone-1.5/runtime-20261021/M15-SCN-0005-P1M-R23/heroes-lore-m1059-burst-r23.plan; synthetic KeyListener, no automatic repeat; overhead unmeasured
+2026-11-07T01:01:18.459398422Z mono_ns=1247284253619123 wait_requested_ms=500
+2026-11-07T01:01:18.971792362Z mono_ns=1247284766012703 sequence_end

@@ -1,0 +1,20 @@
+{
+  "id": "M1142",
+  "purpose": "Observe the pinned J2ME build's Map27 behavior-0 enemy 24/order 14 with no player target, to compare with M1119.",
+  "emulator": "FreeJ2ME-Plus 1.52",
+  "profile": "fresh isolated FreeJ2ME instance; Motorola; 240x320; 60 FPS",
+  "jar": "/home/locdt/heroes-lore-web/original/heroes-lore-v2.1.2.jar",
+  "jarSha256Before": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "jarSha256After": "7eb032297967f5d8382cc4f1ab5c3016459e01b235b42a3b88c6a8bfe46c5f61",
+  "isolatedUserHome": "/tmp/heroes-lore-m1142-r01/home",
+  "isolatedWorkingDirectory": "/tmp/heroes-lore-m1142-r01",
+  "attempts": 3,
+  "maxLevelOverride": "Configured as a runtime-only watcher (level 99; 393216/393216 HP), but no active player instance was observed and no override was applied.",
+  "result": "No gameplay map state or enemy observation was captured.",
+  "restrictions": {
+    "originalJarModified": false,
+    "existingUserSaveAccessed": false,
+    "isolatedRmsContentsInspected": false,
+    "gameplayStateInjected": false
+  }
+}

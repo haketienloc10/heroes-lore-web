@@ -1,0 +1,8 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R25",
+  "pid": 2755302,
+  "inherited_session": "M15-SCN-0001-P1M-R25",
+  "profile": "P1M Motorola",
+  "fixture": "fresh visible New Game; W/Skip to Map64; no Save/Load",
+  "input_method": "FreeJ2ME AWT KeyListener; screenshot and read-only runtime snapshot"
+}

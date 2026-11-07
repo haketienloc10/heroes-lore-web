@@ -1,0 +1,7 @@
+down 87
+wait 80
+up 87
+wait 2000
+frame 01-after-skip
+wait 8000
+frame 02-map64-arrival

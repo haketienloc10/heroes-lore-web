@@ -1,0 +1,5 @@
+down 87
+wait 200
+up 87
+wait 5000
+frame after-intro-skip

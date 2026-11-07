@@ -1,0 +1,5 @@
+down 10
+wait 200
+up 10
+wait 8000
+frame after-opening-continue

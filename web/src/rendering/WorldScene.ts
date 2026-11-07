@@ -322,16 +322,33 @@ import {
   MAP27_CLASS6_SKILL5_TEST_SCENARIO,
   MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO,
   MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO,
   MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_POISON_TEST_SCENARIO,
+  MAP6_WEAPON_PROC_POISON_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_SP_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_HP_TEST_SCENARIO,
+  MAP27_POISON_TICK_TEST_SCENARIO,
+  MAP27_NO_TARGET_WANDER_TEST_SCENARIO,
+  MAP37_CLASS6_MULTITARGET_TEST_SCENARIO,
+  MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO,
+  MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO,
+  MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO,
   MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO,
+  MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO,
   MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO,
   MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO,
   MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO,
   MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO,
   MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO,
   MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO,
   MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO,
   MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO,
+  MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO,
   MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO,
   MAP80_REFINER_ORB_TEST_SCENARIO,
   MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO,
@@ -345,6 +362,8 @@ import {
   MAP11_BOSS_AI_LIVE_TEST_SCENARIO,
   MAP13_CC_HEAL_LIVE_TEST_SCENARIO,
   MAP13_BC_ATTACK_LIVE_TEST_SCENARIO,
+  MAP13_AU_PROC_SP_TEST_SCENARIO,
+  MAP13_AU_PROC_HP_TEST_SCENARIO,
   MAP59_KEY_PREVIEW_TEST_SCENARIO,
   MAP59_FULL_CHAIN_PREVIEW_TEST_SCENARIO,
   MAP53_BLUEBRICK_CHAIN_TEST_SCENARIO,
@@ -808,6 +827,7 @@ export class WorldScene extends Phaser.Scene {
   private comboLimit = 1;
   private hudState = { ...NEW_GAME_RONIN_HUD };
   private wallet = NEW_GAME_WALLET;
+  private specialWallet = 0;
   private inventoryValue: InventoryStack[] = [];
   private specialInventoryValue: InventoryStack[] = [];
   private preservedSourceRmsInventorySlots: {
@@ -1047,10 +1067,19 @@ export class WorldScene extends Phaser.Scene {
       this.hudState = applyCampaignTestHud(this.hudState, this.campaignTestProfile);
     }
     this.wallet = NEW_GAME_WALLET;
+    this.specialWallet = 0;
     this.equipmentSlots = [null, null, null, null, null];
     this.savedEquipmentLoadoutPresent = false;
     this.equipmentStats = null;
     this.comboLimit = 1;
+    if (import.meta.env.DEV &&
+      this.campaignTestScenario === MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO) {
+      this.comboLimit = 2;
+    }
+    if (import.meta.env.DEV &&
+      this.campaignTestScenario === MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO) {
+      this.comboLimit = 5;
+    }
     this.inventory = [];
     this.specialInventory = [];
     this.playerStatus = createPlayerStatusState();
@@ -1091,6 +1120,7 @@ export class WorldScene extends Phaser.Scene {
       this.comboLimit = restoreState.comboLimit;
       this.hudState = { ...restoreState.hud };
       this.wallet = restoreState.wallet;
+      this.specialWallet = restoreState.specialWallet ?? 0;
       this.inventory = restoreState.inventory.map((stack) => ({ ...stack }));
       this.specialInventory = restoreState.specialInventory.map((stack) => ({ ...stack }));
       this.preservedSourceRmsInventorySlots = {
@@ -1128,8 +1158,26 @@ export class WorldScene extends Phaser.Scene {
         this.comboLimit = 2;
       } else if (import.meta.env.DEV && (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
         this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
-        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)) {
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_HP_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_POISON_TICK_TEST_SCENARIO)) {
         this.currentMapId = 27;
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO) {
+        this.currentMapId = 6;
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP27_NO_TARGET_WANDER_TEST_SCENARIO) {
+        this.currentMapId = 27;
+        this.actor = createPlayerActor(10 * 16, 25 * 16, 2);
         this.openingDialogVisible = false;
         this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
         this.questFlags = new Set();
@@ -1226,6 +1274,23 @@ export class WorldScene extends Phaser.Scene {
           ...skillState,
           chargeTicksRemaining: [80, 270, 0],
         });
+      } else if (import.meta.env.DEV && this.campaignTestScenario === MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO) {
+        this.currentMapId = 2;
+        this.actor = createPlayerActor(8 * 16, 27 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [5];
+        this.activeSkillId = 5;
+        const skillState = createPlayerSkillActionState(
+          5,
+          this.characterAttributes.will,
+          20,
+        );
+        this.playerSkillActionStates.set(5, {
+          ...skillState,
+          chargeTicksRemaining: [80, 0, 220],
+        });
       } else if (import.meta.env.DEV &&
         this.campaignTestScenario === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO) {
         this.currentMapId = 17;
@@ -1301,6 +1366,25 @@ export class WorldScene extends Phaser.Scene {
           chargeTicksRemaining: [80, 270, 0],
         });
       } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO) {
+        this.currentMapId = 17;
+        this.actor = createPlayerActor(5 * 16, 11 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set(OBSERVED_NEW_GAME_FLAGS);
+        this.questFlags = new Set();
+        this.skillIds = [3];
+        this.activeSkillId = 3;
+        const skillState = createPlayerSkillActionState(
+          3,
+          this.characterAttributes.will,
+          9,
+        );
+        this.playerSkillActionStates.set(3, {
+          ...skillState,
+          skillLevelSlotThree: 1,
+          chargeTicksRemaining: [80, 0, 270],
+        });
+      } else if (import.meta.env.DEV &&
         this.campaignTestScenario === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO) {
         this.currentMapId = 2;
         this.actor = createPlayerActor(8 * 16, 27 * 16, 4);
@@ -1357,6 +1441,24 @@ export class WorldScene extends Phaser.Scene {
           chargeTicksRemaining: [220, 160, 0],
         });
       } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 9 * 16, 4);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.skillIds = [1];
+        this.activeSkillId = 1;
+        const skillState = createPlayerSkillActionState(
+          1,
+          this.characterAttributes.will,
+          9,
+        );
+        this.playerSkillActionStates.set(1, {
+          ...skillState,
+          chargeTicksRemaining: [220, 0, 270],
+        });
+      } else if (import.meta.env.DEV &&
         this.campaignTestScenario === MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO) {
         this.currentMapId = 80;
         this.actor = createPlayerActor(8 * 16, 15 * 16, 1);
@@ -1378,6 +1480,22 @@ export class WorldScene extends Phaser.Scene {
           defenseBoostTicksRemaining: 160,
         });
         this.playerStatus = applyPlayerPoison(this.playerStatus);
+      } else if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO) {
+        this.currentMapId = 80;
+        this.actor = createPlayerActor(8 * 16, 9 * 16, 1);
+        this.openingDialogVisible = false;
+        this.gameFlags = new Set([0, 54, 87, 3, 1, 75, 5, 6]);
+        this.questFlags = new Set([1, 2, 4]);
+        this.inventory = [{ category: 10, itemId: 0, count: 1 }];
+        this.hudState.selectedItemCategory = 10;
+        this.hudState.selectedItemCount = 1;
+        this.playerStatus = {
+          effects: [7],
+          poisonTicksElapsed: 0,
+          poisonRemovalPending: false,
+        };
+        this.playerRecovery = { hpTimer: 127, spTimer: 127 };
       } else if (import.meta.env.DEV &&
         this.campaignTestScenario === MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO) {
         this.currentMapId = 80;
@@ -1729,10 +1847,33 @@ export class WorldScene extends Phaser.Scene {
       }
       if (import.meta.env.DEV && (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
         this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
-        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)) {
-        const weaponItemId = this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ? 33 :
-          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ? 34 : 31;
-        const weapon = findEquipmentItem(this.equipmentDataTable, 0, weaponItemId);
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP27_WEAPON_PROC_HP_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP13_AU_PROC_SP_TEST_SCENARIO ||
+        this.campaignTestScenario === MAP13_AU_PROC_HP_TEST_SCENARIO)) {
+        const poisonScenario = this.campaignTestScenario === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO;
+        const status2Scenario = this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO;
+        const procDamageScenario = this.campaignTestScenario === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO;
+        const procSpScenario = this.campaignTestScenario === MAP27_WEAPON_PROC_SP_TEST_SCENARIO;
+        const map13AuProcSpScenario = this.campaignTestScenario === MAP13_AU_PROC_SP_TEST_SCENARIO;
+        const map13AuProcHpScenario = this.campaignTestScenario === MAP13_AU_PROC_HP_TEST_SCENARIO;
+        const procHpScenario = this.campaignTestScenario === MAP27_WEAPON_PROC_HP_TEST_SCENARIO;
+        const weaponCategory = poisonScenario ? 2 : 0;
+        const weaponItemId = poisonScenario ? 33 : status2Scenario ? 35 :
+          procSpScenario || map13AuProcSpScenario ? 30 :
+          procHpScenario || map13AuProcHpScenario ? 36 :
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ? 33 :
+            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ? 34 :
+              procDamageScenario ? 32 : 31;
+        const weapon = findEquipmentItem(this.equipmentDataTable, weaponCategory, weaponItemId);
         const currentWeapon = this.equipmentSlots[0];
         if (weapon === undefined || currentWeapon === null || currentWeapon === undefined) {
           throw new Error('Map27 weapon-proc scenario weapon data is missing');
@@ -1740,9 +1881,20 @@ export class WorldScene extends Phaser.Scene {
         const equipmentState = createSourceEquipmentInventoryState(weapon, () => 0, 'event', false);
         this.equipmentSlots[0] = {
           ...currentWeapon,
+          category: weapon.category,
           itemId: weapon.itemId,
           equipmentState,
         };
+        if (status2Scenario) {
+          const offhand = findEquipmentItem(this.equipmentDataTable, 3, 12);
+          if (offhand === undefined) throw new Error('Map27 status-2 scenario offhand data is missing');
+          this.equipmentSlots[1] = {
+            category: offhand.category,
+            itemId: offhand.itemId,
+            count: 1,
+            equipmentState: createSourceEquipmentInventoryState(offhand, () => 0, 'event', false),
+          };
+        }
       }
       if (import.meta.env.DEV &&
         (this.campaignTestScenario === MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO ||
@@ -1778,6 +1930,11 @@ export class WorldScene extends Phaser.Scene {
         this.campaignTestScenario === MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO) {
         this.hudState.hp = Math.max(1, this.hudState.maxHp - 180000);
         this.hudState.sp = Math.max(1, this.hudState.maxSp - 180000);
+        this.playerRecovery = { hpTimer: 127, spTimer: 127 };
+      }
+      if (import.meta.env.DEV &&
+        this.campaignTestScenario === MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO) {
+        this.hudState.sp = Math.max(1, this.hudState.maxSp - 100000);
         this.playerRecovery = { hpTimer: 127, spTimer: 127 };
       }
       if (import.meta.env.DEV &&
@@ -1937,6 +2094,10 @@ export class WorldScene extends Phaser.Scene {
         const map13CcHealPreview = import.meta.env.DEV && mapId === 13 &&
           this.campaignTestProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE &&
           this.campaignTestScenario === MAP13_CC_HEAL_LIVE_TEST_SCENARIO;
+        const map13AuProcPreview = import.meta.env.DEV && mapId === 13 &&
+          this.campaignTestProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE &&
+          (this.campaignTestScenario === MAP13_AU_PROC_SP_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP13_AU_PROC_HP_TEST_SCENARIO);
         const map13BcAttackPreview = import.meta.env.DEV && mapId === 13 &&
           (this.campaignTestProfile === MAX_LEVEL_CAMPAIGN_TEST_PROFILE ||
             this.campaignTestProfile === DAMAGE_SURVIVAL_CAMPAIGN_TEST_PROFILE) &&
@@ -1949,14 +2110,94 @@ export class WorldScene extends Phaser.Scene {
               placement.sourceBehavior !== 'map13-aq'),
           })
           : sourceConstructedEvents;
-        const effectiveEvents = map13BcAttackPreview
+        const effectiveEvents = map13AuProcPreview
+          ? {
+            ...sourceConstructedEvents,
+            enemyPlacements: sourceConstructedEvents.enemyPlacements.filter((placement) =>
+              placement.sourceBehavior === 'map13-aq'),
+          }
+          : map13BcAttackPreview
           ? {
             ...secondWaveEvents,
             enemyPlacements: secondWaveEvents.enemyPlacements.filter((placement) =>
               placement.sourceBehavior === 'map13-bc'),
           }
           : secondWaveEvents;
-        const enemies = createEnemyCombatants(effectiveEvents.enemyPlacements, this.enemyDataTable);
+        const map37HeavyStage4Sweep = import.meta.env.DEV && mapId === 37 &&
+          this.campaignTestScenario === MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO;
+        let mapEvents = effectiveEvents;
+        let enemyPlacements = effectiveEvents.enemyPlacements;
+        if (map37HeavyStage4Sweep) {
+          const targetCells = [
+            [9, 8, 18], [10, 9, 20], [9, 10, 18], [8, 9, 20],
+            [8, 8, 18], [10, 8, 20], [8, 10, 18], [10, 10, 20],
+          ] as const;
+          const templates = effectiveEvents.enemyPlacements;
+          if (templates.length === 0) throw new Error('Map37 sweep fixture has no enemy placement template');
+          enemyPlacements = targetCells.map(([tileX, tileY, enemyId], sourceOrder) => ({
+            ...templates[sourceOrder % templates.length],
+            tileX,
+            tileY,
+            enemyId,
+            sourceOrder,
+          }));
+          mapEvents = { ...effectiveEvents, enemyIds: [18, 20], enemyPlacements };
+        }
+        const enemies = createEnemyCombatants(enemyPlacements, this.enemyDataTable);
+        if (map37HeavyStage4Sweep) {
+          for (const enemy of enemies) {
+            enemy.hp = 5000000;
+            enemy.state = 'alive';
+            enemy.deathUpdatesRemaining = 0;
+            enemy.respawnDelayRemaining = null;
+            enemy.attackCooldownTicksRemaining = 900;
+            enemy.actionDelayTicksRemaining = 900;
+          }
+        }
+        if (import.meta.env.DEV && mapId === 37 &&
+          (this.campaignTestScenario === MAP37_CLASS6_MULTITARGET_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO)) {
+          const tripleTarget = this.campaignTestScenario === MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO;
+          for (const sourceOrder of tripleTarget ? [1, 2, 3] : [2, 3]) {
+            const target = enemies.find((enemy) => enemy.sourceOrder === sourceOrder);
+            if (target === undefined) throw new Error(`Map37 multi-target fixture enemy ${sourceOrder} is missing`);
+            if (tripleTarget && sourceOrder === 1) {
+              target.tileX = 9;
+              target.tileY = 8;
+              target.pixelX = 9 * 16;
+              target.pixelY = 8 * 16;
+            }
+            target.hp = 5000000;
+            target.state = 'alive';
+            target.deathUpdatesRemaining = 0;
+            target.respawnDelayRemaining = null;
+            target.attackCooldownTicksRemaining = 900;
+            target.actionDelayTicksRemaining = 900;
+          }
+        }
+        if (map13AuProcPreview) {
+          const procTarget = enemies.find((enemy) => enemy.enemyId === 35 && enemy.sourceAu === true);
+          if (procTarget === undefined || procTarget.sourceAqAi === undefined) {
+            throw new Error('Map13 source-au proc scenario target is missing');
+          }
+          procTarget.hp = 50000000;
+          procTarget.state = 'alive';
+          procTarget.deathUpdatesRemaining = 0;
+          procTarget.respawnDelayRemaining = null;
+          procTarget.sourceAqAi = {
+            ...procTarget.sourceAqAi,
+            state: 1,
+            tick: 0,
+            attackDelay: 900,
+            actionDelay: 900,
+            turnAccumulation: 0,
+          };
+          procTarget.animationStateIndex = 0;
+          procTarget.animationDirection = 2;
+          procTarget.animationFrameIndex = -1;
+        }
         if (map13CcHealPreview) {
           for (const enemy of enemies) {
             if (enemy.enemyId === 36 && enemy.sourceBehavior === 'map13-af') {
@@ -1986,7 +2227,7 @@ export class WorldScene extends Phaser.Scene {
           map: initialState.world.map,
           decorations: effectiveDecorations,
           decorationObjectCount: decorations.objects.length,
-          events: effectiveEvents,
+          events: mapEvents,
           enemies,
           world: initialState.world,
           visibleNpcSourceOrders: initialState.visibleNpcSourceOrders,
@@ -2177,10 +2418,46 @@ export class WorldScene extends Phaser.Scene {
         if (import.meta.env.DEV && id === 27 &&
           (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
             this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
-            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)) {
+            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_HP_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_POISON_TICK_TEST_SCENARIO)) {
           const procTarget = enemies.find((enemy) => enemy.sourceOrder === 14 && enemy.enemyId === 24);
           if (procTarget === undefined) throw new Error('Map27 weapon-proc scenario target is missing');
-          procTarget.hp = 5000000;
+          procTarget.hp = this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP27_WEAPON_PROC_HP_TEST_SCENARIO
+            ? 50000000 : 5000000;
+          procTarget.state = 'alive';
+          procTarget.deathUpdatesRemaining = 0;
+          procTarget.respawnDelayRemaining = null;
+          const slowAiScenario = this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO;
+          const poisonTickScenario = this.campaignTestScenario === MAP27_POISON_TICK_TEST_SCENARIO;
+          procTarget.attackCooldownTicksRemaining = slowAiScenario
+            ? procTarget.definition.behaviorTiming[1] * 2
+            : 900;
+          procTarget.actionDelayTicksRemaining = slowAiScenario ? 0 : 900;
+          if (poisonTickScenario) {
+            procTarget.sourceStatusEffects = [{ id: 3, ticksElapsed: 0 }];
+          }
+          if (slowAiScenario) {
+            procTarget.animationDirection = 3;
+            procTarget.animationStateIndex = 0;
+            procTarget.animationFrameIndex = -1;
+            procTarget.attackAnimationTicksRemaining = 0;
+            procTarget.attackHitResolved = false;
+          }
+        }
+        if (import.meta.env.DEV && id === 6 &&
+          this.campaignTestScenario === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO) {
+          const procTarget = enemies.find((enemy) => enemy.sourceOrder === 5 && enemy.enemyId === 4);
+          if (procTarget === undefined) throw new Error('Map6 poison-proc target is missing');
+          procTarget.hp = 50000000;
           procTarget.state = 'alive';
           procTarget.deathUpdatesRemaining = 0;
           procTarget.respawnDelayRemaining = null;
@@ -2200,12 +2477,14 @@ export class WorldScene extends Phaser.Scene {
             this.campaignTestScenario === MAP27_CLASS6_LUNGE_TARGET_TEST_SCENARIO ? 60 : 120;
         }
         if (import.meta.env.DEV && id === 2 &&
-          this.campaignTestScenario === MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO) {
+          (this.campaignTestScenario === MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO)) {
           const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 11 && enemy.enemyId === 10);
           if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 180;
         }
         if (import.meta.env.DEV && id === 17 &&
           (this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+            this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO ||
             this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)) {
           const targetEnemy = enemies.find((enemy) => enemy.sourceOrder === 2 && enemy.enemyId === 8);
           if (targetEnemy !== undefined) targetEnemy.actionDelayTicksRemaining = 900;
@@ -2290,14 +2569,29 @@ export class WorldScene extends Phaser.Scene {
           this.showAssetMessage(`Map ${previewMapId} has no empty ordinary floor cell for the developer preview.`);
           return;
         }
-        const spawnDirection = (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
+        const spawnDirection = this.campaignTestScenario === MAP13_AU_PROC_SP_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP13_AU_PROC_HP_TEST_SCENARIO ? 1 :
+          this.campaignTestScenario === MAP37_CLASS6_MULTITARGET_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO ? 1 :
+          this.campaignTestScenario === MAP6_WEAPON_PROC_POISON_TEST_SCENARIO ? 4 :
+          (this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO ||
           this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO ||
-          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO) ? 4 :
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_POISON_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_SP_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_WEAPON_PROC_HP_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP27_POISON_TICK_TEST_SCENARIO) ? 4 :
           this.campaignTestScenario === MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO ? 1 :
           this.campaignTestScenario === MAP11_BOSS_DEATH_FALLBACK_TEST_SCENARIO ? 4 :
           this.campaignTestScenario === MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO ? 4 :
           this.campaignTestScenario === MAP11_BOSS_AI_LIVE_TEST_SCENARIO ? 4 :
           this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO ||
+          this.campaignTestScenario === MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO ||
           this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO ||
           this.campaignTestScenario === MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO ||
           this.campaignTestScenario === MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO ? 4 : 2;
@@ -2340,6 +2634,12 @@ export class WorldScene extends Phaser.Scene {
         gameHost.dataset.testPlayerTileY = String(tileY);
         gameHost.dataset.testHp = String(this.hudState.hp);
         gameHost.dataset.testLevel = String(this.hudState.level);
+        gameHost.dataset.testSelectedItemCategory = String(this.hudState.selectedItemCategory);
+        gameHost.dataset.testPlayerStatus = JSON.stringify({
+          effects: [...this.playerStatus.effects],
+          poisonTicksElapsed: this.playerStatus.poisonTicksElapsed,
+          poisonRemovalPending: this.playerStatus.poisonRemovalPending,
+        });
         gameHost.dataset.testPlayerSpritePose = JSON.stringify({
           ...playerSpritePose(
             this.playerCombo,
@@ -2349,6 +2649,17 @@ export class WorldScene extends Phaser.Scene {
             this.hudState.hp <= 0,
           ),
           moving: this.actor.moving,
+        });
+        gameHost.dataset.testPlayerInputState = JSON.stringify({
+          pixelX: this.actor.x,
+          pixelY: this.actor.y,
+          tileX: tileX,
+          tileY: tileY,
+          direction: this.actor.direction,
+          moving: this.actor.moving,
+          stopAfterTile: this.actor.stopAfterTile,
+          queuedDirection: this.actor.queuedDirection,
+          pressedDirections: this.pressedDirections.map(({ code, direction }) => ({ code, direction })),
         });
         gameHost.dataset.testEnemyStatusEffects = serializeCampaignTestEnemyStatusSnapshot(
           activeMap?.enemies ?? [],
@@ -2458,6 +2769,9 @@ export class WorldScene extends Phaser.Scene {
               attackAnimationTicksRemaining: enemy.attackAnimationTicksRemaining ?? null,
               attackHitResolved: enemy.attackHitResolved ?? null,
               sourceRenderedOnScreen: enemy.sourceRenderedOnScreen ?? null,
+              ...(enemy.sourceMap15Ai === undefined ? {} : {
+                sourceMap15Ai: { ...enemy.sourceMap15Ai },
+              }),
             };
           }),
           npcs: (activeMap?.events.npcPlacements ?? []).map((placement) => {
@@ -2566,7 +2880,6 @@ export class WorldScene extends Phaser.Scene {
       (this.actor.tickRemainderMs + simulationDelta) / WORLD_UPDATE_PERIOD_MS,
     );
     for (let update = 0; update < fullWorldUpdates; update += 1) this.advancePickupNotice();
-    const occupiedCellIndices = this.maps.get(this.currentMapId)?.occupiedCellIndices;
     let remainingActorDelta = sourceActorDelta;
     while (remainingActorDelta > 0) {
       const previousActor = this.actor;
@@ -2582,6 +2895,9 @@ export class WorldScene extends Phaser.Scene {
           this.openingCutsceneState.status === 'shake' ||
           this.openingCutsceneState.cameraMoveSpeed !== 0
         );
+      // Skills and ordered cutscenes can change entity occupancy between the
+      // world updates batched into this rendered frame.
+      const occupiedCellIndices = this.maps.get(this.currentMapId)?.occupiedCellIndices;
       this.actor = advanceActor(this.world, previousActor, stepDelta, occupiedCellIndices);
       remainingActorDelta -= stepDelta;
       if (!this.openingDialogVisible && didReachMapEventBoundary(previousActor, this.actor)) {
@@ -6040,6 +6356,7 @@ export class WorldScene extends Phaser.Scene {
       comboLimit: this.comboLimit,
       hud: { ...this.hudState },
       wallet: this.wallet,
+      specialWallet: this.specialWallet,
       inventory: this.inventory.map((stack) => ({ ...stack })),
       ...(inventorySlotIndices === undefined ? {} : { sourceInventorySlotIndices: inventorySlotIndices }),
       specialInventory: this.specialInventory.map((stack) => ({ ...stack })),

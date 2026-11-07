@@ -141,6 +141,31 @@ describe('source-shaped player movement', () => {
     expect(actor).toMatchObject({ x: 16, y: 16, moving: false, direction: 4 });
   });
 
+  it('rechecks changed collision and occupancy snapshots at movement boundaries', () => {
+    const blockedValues = Array.from({ length: 4 }, () => [0, 0, 0, 0]);
+    blockedValues[1][2] = -1;
+    const blockedWorld = worldWithCollision(blockedValues);
+    const openWorld = worldWithCollision();
+    let actor = requestActorDirection(createPlayerActor(16, 16), 4);
+
+    actor = advanceActor(blockedWorld, actor, WORLD_UPDATE_PERIOD_MS);
+    expect(actor).toMatchObject({ x: 16, y: 16, moving: false, direction: 4 });
+
+    actor = requestActorDirection(actor, 4);
+    actor = advanceActor(openWorld, actor, WORLD_UPDATE_PERIOD_MS);
+    expect(actor).toMatchObject({ x: 24, y: 16, moving: true });
+    actor = advanceActor(openWorld, actor, WORLD_UPDATE_PERIOD_MS);
+    expect(actor).toMatchObject({ x: 32, y: 16, moving: true });
+
+    const enemyOccupiesNextCell = new Set([1 * 4 + 3]);
+    actor = advanceActor(openWorld, actor, WORLD_UPDATE_PERIOD_MS, enemyOccupiesNextCell);
+    expect(actor).toMatchObject({ x: 32, y: 16, moving: false, direction: 4 });
+
+    actor = requestActorDirection(actor, 4);
+    actor = advanceActor(openWorld, actor, WORLD_UPDATE_PERIOD_MS, new Set());
+    expect(actor).toMatchObject({ x: 40, y: 16, moving: true });
+  });
+
   it('finishes the current tile before stopping after a mid-tile release', () => {
     const world = worldWithCollision();
     let actor = requestActorDirection(createPlayerActor(16, 16), 2);

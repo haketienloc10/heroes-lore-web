@@ -1,0 +1,13 @@
+{
+  "task": "M1156 synchronized Map64 actor capture",
+  "attempt": 1,
+  "status": "inconclusive_runtime_exit",
+  "last_observed_screen": "NOW LOADING",
+  "actor_snapshot": "no live player/world actor fields observed",
+  "process_exit_status": 143,
+  "exit_cause": "unknown",
+  "map64_evidence": false,
+  "existing_save_accessed": false,
+  "in_game_save_or_load_used": false,
+  "pinned_jar_inspected_or_modified": false
+}

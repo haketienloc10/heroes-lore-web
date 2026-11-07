@@ -121,7 +121,7 @@ export function createSourceRmsStateFromGameSave(save: GameSaveState): SourceRms
     specialInventory: encodeInventorySlots(
       save.specialInventory,
       15,
-      0,
+      save.specialWallet ?? 0,
       'Special inventory',
       save.sourceSpecialInventorySlotIndices,
     ),
@@ -140,9 +140,6 @@ export function createGameSaveFromSourceRmsState(
   defaults: SourceRmsGameSaveDefaults,
 ): GameSaveState {
   const { player } = source;
-  if (source.specialInventory.wallet !== 0) {
-    throw new TypeError('A nonzero source special-inventory wallet has no web save field');
-  }
   const sourceSkills = player.skills.flatMap((skill, slot) => skill === null
     ? []
     : [{ skill, slot }]);
@@ -211,6 +208,7 @@ export function createGameSaveFromSourceRmsState(
       selectedItemCategory,
     },
     wallet: source.inventory.wallet,
+    specialWallet: source.specialInventory.wallet,
     inventory,
     sourceInventorySlotIndices,
     specialInventory,

@@ -88,6 +88,7 @@ const save: GameSaveState = {
     selectedItemCategory: 7,
   },
   wallet: 345,
+  specialWallet: 57,
   inventory: [
     { category: 7, itemId: 3, count: 2 },
     { category: 22, itemId: 4, count: 1 },
@@ -127,7 +128,7 @@ describe('web save to source RMS mapping', () => {
       flags: { gameFlags: [0, 54], questFlags: [17], playthroughMode: 1 },
       location: { mapId: 64, tileX: 9, tileY: 8 },
       specialInventory: {
-        wallet: 0,
+        wallet: 57,
         slots: [expect.any(Uint8Array), ...Array.from({ length: 14 }, () => null)],
       },
     });
@@ -163,6 +164,7 @@ describe('web save to source RMS mapping', () => {
       playTimeSeconds: 120,
     });
     expect(decoded.inventory.wallet).toBe(345);
+    expect(decoded.specialInventory.wallet).toBe(57);
     expect(decoded.inventory.slots[0]).toEqual(encodeSourceRmsItemRecord(save.inventory[0]));
     expect(decoded.inventory.slots[1]).toEqual(encodeSourceRmsItemRecord(save.inventory[1]));
     expect(decoded.specialInventory.slots[0]).toEqual(encodeSourceRmsItemRecord(save.specialInventory[0]));
@@ -249,6 +251,7 @@ describe('web save to source RMS mapping', () => {
       comboLimit: 2,
       hud: { ...save.hud, selectedItemCount: 2, selectedItemCategory: 7 },
       wallet: 345,
+      specialWallet: 57,
       inventory: save.inventory,
       specialInventory: save.specialInventory,
       equipmentSlots: [weapon, null, null, null, null],
@@ -305,16 +308,20 @@ describe('web save to source RMS mapping', () => {
     expect(cycle.sourceInventorySlotIndices).toEqual([7]);
   });
 
-  it('rejects source records with fields the web model cannot represent', () => {
+  it('preserves a nonzero special-inventory wallet through the web and source records', () => {
     const source = createSourceRmsStateFromGameSave(save);
     expect(() => createGameSaveFromSourceRmsState({
       ...source,
       player: { ...source.player, activeSkillSlot: 4 },
     }, equipmentCatalog, { savedAt: 1 })).toThrow('active skill slot is empty');
-    expect(() => createGameSaveFromSourceRmsState({
+    const imported = createGameSaveFromSourceRmsState({
       ...source,
-      specialInventory: { ...source.specialInventory, wallet: 1 },
-    }, equipmentCatalog, { savedAt: 1 })).toThrow('special-inventory wallet');
+      specialInventory: { ...source.specialInventory, wallet: 1234 },
+    }, equipmentCatalog, { savedAt: 1 });
+    expect(imported.specialWallet).toBe(1234);
+    const reExported = encodeGameSaveAsSourceRmsStores(imported);
+    expect(decodeSourceRmsSaveState(6, reExported.primaryRecord, reExported.specialRecord)
+      .specialInventory.wallet).toBe(1234);
   });
 
   it('rejects web saves without source-representable equipment or valid skill slots', () => {
@@ -352,6 +359,7 @@ describe('web save to source RMS mapping', () => {
       direction: 2,
       heroClassId: save.heroClassId,
       activeSkillId: save.activeSkillId,
+      specialWallet: save.specialWallet,
       inventory: save.inventory,
       specialInventory: save.specialInventory,
       equipmentSlots: save.equipmentSlots,

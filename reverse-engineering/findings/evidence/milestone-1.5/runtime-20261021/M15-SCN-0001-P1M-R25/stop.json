@@ -1,0 +1,8 @@
+{
+  "pid": 2755302,
+  "stopped_at_utc": "2026-11-07T02:33:47.321548+00:00",
+  "signal": "SIGTERM",
+  "reason": "Map64 source directional capture completed",
+  "save_load_used": false,
+  "existing_save_used": false
+}

@@ -1,0 +1,6 @@
+# Current title menu has New Game highlighted.
+down 10
+wait 200
+up 10
+wait 5000
+frame post-new-game-selection

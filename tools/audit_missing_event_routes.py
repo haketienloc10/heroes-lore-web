@@ -325,6 +325,22 @@ def build_report() -> dict[str, Any]:
             f"Extracted New Game route graph can enter maps without event resources: {reachable_missing_maps}"
         )
     unreachable_event_maps = sorted(event_ids - reachable_map_ids)
+    unreachable_event_map_id_set = set(unreachable_event_maps)
+    unreachable_event_map_incoming_transfers = [
+        {
+            "sourceMap": row["sourceMap"],
+            "markerGroup": row["markerGroup"],
+            "triggerType": row["triggerType"],
+            "scriptIndex": row["scriptIndex"],
+            "destinationMap": row["destinationMap"],
+            "arrivalTile": row["arrivalTile"],
+            "matchingCollisionCells": row["matchingCollisionCells"],
+            "possibleMatchingCollisionCells": row["possibleMatchingCollisionCells"],
+            "sourceActorDirectCallbackPossible": row["sourceActorDirectCallbackPossible"],
+        }
+        for row in rows
+        if row["destinationMap"] in unreachable_event_map_id_set
+    ]
 
     target_routes = [row for row in rows if row["destinationMap"] in missing_event_map_ids]
     return {
@@ -342,6 +358,7 @@ def build_report() -> dict[str, Any]:
             "startMapIds": [0],
             "reachableMapIds": sorted(reachable_map_ids),
             "unreachableEventMapIds": unreachable_event_maps,
+            "unreachableEventMapIncomingTransfers": unreachable_event_map_incoming_transfers,
             "reachableMissingEventMapIds": reachable_missing_maps,
             "transferEdgeCount": transfer_edge_count,
             "map3Marker3EdgeBlockedByPermissivePathCheck": not map3_marker3_reachable,

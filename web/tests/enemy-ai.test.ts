@@ -191,6 +191,49 @@ describe('source-derived enemy pursuit locomotion', () => {
     });
   });
 
+  it('finishes an in-flight half-step when a new blocker enters its destination cell', () => {
+    const base = enemyAt(4, 4);
+    const enemy = {
+      ...base,
+      definition: { ...base.definition, behaviorType: 0 as const, acquisitionRange: 0 },
+      animationDirection: 4 as const,
+    };
+    const randomValues = [1, 3];
+    const halfStep = advanceEnemyBehaviorTick(enemy, {
+      collision: collision(),
+      occupiedCellIndices: new Set([4 * 12 + 4]),
+      playerTileX: 10,
+      playerTileY: 10,
+      randomInteger: (minimum) => minimum,
+      rawRandomInteger: () => randomValues.shift() ?? 0,
+    }, 5);
+    expect(halfStep).toMatchObject({
+      pixelX: 72,
+      pixelY: 64,
+      tileX: 4,
+      tileY: 4,
+      animationStateIndex: 1,
+      animationDirection: 4,
+    });
+
+    const completed = advanceEnemyBehaviorTick(halfStep, {
+      collision: collision(),
+      occupiedCellIndices: new Set([4 * 12 + 4, 4 * 12 + 5]),
+      playerTileX: 10,
+      playerTileY: 10,
+      randomInteger: (minimum) => minimum,
+      rawRandomInteger: () => -1,
+    }, 5);
+    expect(completed).toMatchObject({
+      pixelX: 80,
+      pixelY: 64,
+      tileX: 5,
+      tileY: 4,
+      animationStateIndex: 1,
+      animationDirection: 4,
+    });
+  });
+
   it('faces an aligned nearby player without entering the occupied player cell', () => {
     const enemy = enemyAt(5, 6);
     expect(tick(enemy, 5, 7)).toMatchObject({

@@ -45,7 +45,7 @@ export interface MapPreviewSpawnTile {
   tileY: number;
 }
 
-/** Choose an unoccupied, ordinary floor cell near the map center for DEV map previews. */
+/** Choose an unoccupied ordinary floor cell with the most open exits for DEV map previews. */
 export function findMapPreviewSpawnTile(
   collision: BaseCollisionData,
   occupiedCellIndices: ReadonlySet<number> = new Set(),
@@ -53,14 +53,26 @@ export function findMapPreviewSpawnTile(
   const centerX = (collision.width - 1) / 2;
   const centerY = (collision.height - 1) / 2;
   let best: MapPreviewSpawnTile | null = null;
+  let bestExitCount = -1;
   let bestDistance = Number.POSITIVE_INFINITY;
   for (let tileY = 0; tileY < collision.height; tileY += 1) {
     for (let tileX = 0; tileX < collision.width; tileX += 1) {
       if (collision.values[tileY]?.[tileX] !== 0 ||
         occupiedCellIndices.has(tileY * collision.width + tileX)) continue;
+      let exitCount = 0;
+      for (const [offsetX, offsetY] of [[0, -1], [1, 0], [0, 1], [-1, 0]] as const) {
+        const neighborX = tileX + offsetX;
+        const neighborY = tileY + offsetY;
+        if (neighborX < 0 || neighborY < 0 || neighborX >= collision.width || neighborY >= collision.height) continue;
+        const neighborCollision = collision.values[neighborY]?.[neighborX];
+        if (neighborCollision === undefined || neighborCollision < 0 ||
+          occupiedCellIndices.has(neighborY * collision.width + neighborX)) continue;
+        exitCount += 1;
+      }
       const distance = (tileX - centerX) ** 2 + (tileY - centerY) ** 2;
-      if (distance >= bestDistance) continue;
+      if (exitCount < bestExitCount || (exitCount === bestExitCount && distance >= bestDistance)) continue;
       best = { tileX, tileY };
+      bestExitCount = exitCount;
       bestDistance = distance;
     }
   }

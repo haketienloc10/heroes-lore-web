@@ -1,0 +1,6 @@
+2026-11-07T03:24:31.726071317Z mono_ns=1255017399224073 capture_begin duration_ms=350 interval_ms=5; no game method or field writes
+2026-11-07T03:24:31.730735477Z mono_ns=1255017403824693 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-11-07T03:24:31.732949117Z mono_ns=1255017406036353 listener_dispatch phase=down code=39
+2026-11-07T03:24:32.085615647Z mono_ns=1255017758705943 listener_dispatch phase=up code=39
+2026-11-07T03:24:32.467697597Z mono_ns=1255018140790143 walk_capture_complete prefix=20-right input_released_before_png_encode=true
+2026-11-07T03:24:33.243971717Z mono_ns=1255018917063993 idle_capture_complete; no browser/game storage accessed

@@ -1,0 +1,16 @@
+[INFO] Loading MIDlet: Heroes Lore | Main Class: rpg.GameMIDlet
+[ERROR] javax.microedition.media.Manager: Couldn't open Tone Player: Can not open line
+[INFO] javax.microedition.midlet.MIDlet: Create MIDlet
+[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MAXMAPTILE
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-Demo
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-LangList
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-BuySetup
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: HO-URL-en-GB
+[INFO] javax.microedition.midlet.MIDlet: getAppProperty: MIDlet-Version
+[INFO] javax.microedition.lcdui.Canvas: Create Canvas:240, 320
+[ERROR] org.recompile.mobile.PlatformPlayer: Could not prefetch midi stream:Cannot invoke "javax.sound.midi.Synthesizer.getReceiver()" because "this.synthesizer" is null
+[ERROR] org.recompile.mobile.PlatformPlayer: Could not prefetch midi stream:Cannot invoke "javax.sound.midi.Synthesizer.getReceiver()" because "this.synthesizer" is null

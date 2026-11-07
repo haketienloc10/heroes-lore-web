@@ -42,11 +42,18 @@ public class RuntimeStateProbe {
             return String.valueOf(value);
         return value.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(value));
     }
+    private static void snapshotActor(Object actor) throws Exception {
+        for (Class<?> type = actor.getClass(); type != null && type != Object.class; type = type.getSuperclass()) {
+            fields(type, actor);
+        }
+    }
     private static void fields(Class<?> type, Object target) throws Exception {
         for (Field f : type.getDeclaredFields()) {
             boolean stat = Modifier.isStatic(f.getModifiers());
             if ((target == null) != stat) continue;
-            if (type.getName().equals("m") && !(f.getName().matches("[bcde]") && f.getType().isPrimitive())) continue;
+            if (type.getName().equals("m") &&
+                !(f.getName().matches("[bcde]") && f.getType().isPrimitive()) &&
+                !f.getName().equals("f271a") && !f.getType().getName().equals("an")) continue;
             f.setAccessible(true);
             Object v = f.get(target);
             log("field " + type.getName() + "." + f.getName() + ":" + f.getType().getTypeName() + "=" + value(v));
@@ -54,6 +61,8 @@ public class RuntimeStateProbe {
                 fields(v.getClass(), v);
                 fields(v.getClass().getSuperclass(), v);
             }
+            if (type.getName().equals("m") && f.getType().getName().equals("an") && v != null) snapshotActor(v);
+            if (type.getName().equals("m") && f.getName().equals("f271a") && v != null) snapshotActor(v);
         }
     }
     public static void agentmain(String args, Instrumentation inst) throws Exception {

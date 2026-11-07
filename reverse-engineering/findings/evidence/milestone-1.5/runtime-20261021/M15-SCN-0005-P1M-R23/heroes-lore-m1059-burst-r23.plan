@@ -1,0 +1,4 @@
+wait 500
+frame 06-aligned-idle-confirm
+burst 39 350 5 07-right-held
+burst none 250 5 08-idle-after-release

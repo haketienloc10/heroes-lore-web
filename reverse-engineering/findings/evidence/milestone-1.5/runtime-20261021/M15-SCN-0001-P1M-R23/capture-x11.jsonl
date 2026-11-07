@@ -1,0 +1,2 @@
+{"utc": "2026-11-07T00:53:45.255944+00:00", "mono_ns": 1246874049395673, "producer": "X11 host control", "event": "capture_begin", "window": "0x400023", "width": 480, "height": 640, "output": "/home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0001-P1M-R23/01-10s-X11.png"}
+{"utc": "2026-11-07T00:53:45.661515+00:00", "mono_ns": 1246874454964563, "producer": "X11 host control", "event": "capture_end", "window": "0x400023", "output": "/home/locdt/heroes-lore-web/reference/screenshots/M15-SCN-0001-P1M-R23/01-10s-X11.png"}

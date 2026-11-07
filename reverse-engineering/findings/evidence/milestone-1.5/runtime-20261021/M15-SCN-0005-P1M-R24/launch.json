@@ -1,0 +1,8 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R24",
+  "pid": 2739415,
+  "inherited_session": "M15-SCN-0001-P1M-R24",
+  "profile": "P1M Motorola, 240x320, limiter 60",
+  "fixture": "fresh visible class-6 New Game; one W/Skip input from opening dialogue; no Save/Load",
+  "input_method": "FreeJ2ME AWT KeyListener; framebuffer read only"
+}

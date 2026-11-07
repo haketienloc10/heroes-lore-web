@@ -50,6 +50,7 @@ const fixture = {
   comboLimit: 4,
   hud: { ...NEW_GAME_RONIN_HUD },
   wallet: 300,
+  specialWallet: 0,
   inventory: [],
   specialInventory: [{ category: 22, itemId: 6, count: 2 }],
   equipmentSlots: null,
@@ -156,6 +157,7 @@ describe('browser game save data', () => {
         selectedItemCategory: 9 as const,
       },
       wallet: 476,
+      specialWallet: 57,
       inventory: [
         { category: 2, itemId: 4, count: 1, equipmentState: equipmentState([1, 2, 3]) },
         { category: 9, itemId: 2, count: 3 },
@@ -178,6 +180,8 @@ describe('browser game save data', () => {
   });
 
   it('loads earlier version-one saves with default progression fields', () => {
+    const { specialWallet: _specialWallet, ...legacySpecialWalletSave } = fixture;
+    expect(parseGameSave(legacySpecialWalletSave)?.specialWallet).toBe(0);
     const { playthroughMode: _playthroughMode, ...legacyModeSave } = fixture;
     expect(parseGameSave(legacyModeSave)?.playthroughMode).toBe(0);
     const { completionPoints: _completionPoints, ...legacyCompletionSave } = fixture;
@@ -299,8 +303,25 @@ describe('browser game save data', () => {
   });
 
   it('loads version-one saves from before wallet and ordinary inventory persistence', () => {
-    const { wallet: _wallet, inventory: _inventory, specialInventory: _specialInventory, ...legacySave } = fixture;
-    expect(parseGameSave(legacySave)).toMatchObject({ wallet: 300, inventory: [], specialInventory: [] });
+    const {
+      wallet: _wallet,
+      specialWallet: _specialWallet,
+      inventory: _inventory,
+      specialInventory: _specialInventory,
+      ...legacySave
+    } = fixture;
+    expect(parseGameSave(legacySave)).toMatchObject({
+      wallet: 300,
+      specialWallet: 0,
+      inventory: [],
+      specialInventory: [],
+    });
+  });
+
+  it('persists and validates the separate source special-inventory wallet', () => {
+    expect(parseGameSave({ ...fixture, specialWallet: 42 })?.specialWallet).toBe(42);
+    expect(parseGameSave({ ...fixture, specialWallet: -1 })).toBeNull();
+    expect(parseGameSave({ ...fixture, specialWallet: 2_147_483_648 })).toBeNull();
   });
 
   it('persists equipment slots and rejects a category stored in the wrong source slot', () => {

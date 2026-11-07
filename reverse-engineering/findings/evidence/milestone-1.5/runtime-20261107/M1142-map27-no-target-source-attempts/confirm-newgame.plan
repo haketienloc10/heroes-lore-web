@@ -1,0 +1,6 @@
+# Ronin is selected in the visible New Game character screen.
+down 10
+wait 200
+up 10
+wait 7000
+frame post-new-game-confirm

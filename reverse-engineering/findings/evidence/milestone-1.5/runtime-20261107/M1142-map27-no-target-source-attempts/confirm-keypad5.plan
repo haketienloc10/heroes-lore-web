@@ -1,0 +1,5 @@
+down 53
+wait 200
+up 53
+wait 7000
+frame after-keypad5

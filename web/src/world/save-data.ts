@@ -250,6 +250,8 @@ export interface GameSaveState {
   comboLimit: number;
   hud: GameplayHudState;
   wallet: number;
+  /** Native `/o` record wallet for the separate 15-slot inventory; older saves default to zero. */
+  specialWallet?: number;
   inventory: InventoryStack[];
   /** Original occupied RMS slot indices, retained while an imported inventory is unchanged. */
   sourceInventorySlotIndices?: number[];
@@ -413,6 +415,7 @@ export function parseGameSave(value: unknown): GameSaveState | null {
   const comboLimit = data.comboLimit === undefined ? 1 : data.comboLimit;
   const hud = parseHudState(data.hud);
   const wallet = data.wallet === undefined ? NEW_GAME_WALLET : data.wallet;
+  const specialWallet = data.specialWallet === undefined ? 0 : data.specialWallet;
   const inventory = data.inventory === undefined ? [] : parseInventory(data.inventory);
   const specialInventory = data.specialInventory === undefined ? [] : parseSpecialInventory(data.specialInventory);
   const sourceInventorySlotIndices = inventory === null ? null : parseSourceInventorySlotIndices(
@@ -440,7 +443,8 @@ export function parseGameSave(value: unknown): GameSaveState | null {
     !isIntegerInRange(activeSkillId, 0, 5) || !skillIds.includes(Number(activeSkillId)) ||
     attributes === null ||
     !isIntegerInRange(comboLimit, 1, 127) ||
-    !isIntegerInRange(wallet, 0, 2_147_483_647) || inventory === null || specialInventory === null ||
+    !isIntegerInRange(wallet, 0, 2_147_483_647) ||
+    !isIntegerInRange(specialWallet, 0, 2_147_483_647) || inventory === null || specialInventory === null ||
     sourceInventorySlotIndices === null || sourceSpecialInventorySlotIndices === null ||
     data.equipmentSlots !== undefined && data.equipmentSlots !== null && equipmentSlots === null) return null;
   return {
@@ -464,6 +468,7 @@ export function parseGameSave(value: unknown): GameSaveState | null {
     comboLimit: Number(comboLimit),
     hud,
     wallet: Number(wallet),
+    specialWallet: Number(specialWallet),
     inventory,
     ...(sourceInventorySlotIndices === undefined ? {} : { sourceInventorySlotIndices }),
     specialInventory,

@@ -98,6 +98,33 @@ class MissingEventRouteAuditTests(unittest.TestCase):
         self.assertEqual(len(graph["reachableMapIds"]), 69)
         self.assertIn(82, graph["reachableMapIds"])
         self.assertEqual(graph["unreachableEventMapIds"], [50, 65, 68])
+        self.assertEqual(
+            graph["unreachableEventMapIncomingTransfers"],
+            [
+                {
+                    "sourceMap": 49,
+                    "markerGroup": 1,
+                    "triggerType": 0,
+                    "scriptIndex": 0,
+                    "destinationMap": 50,
+                    "arrivalTile": [5, 2],
+                    "matchingCollisionCells": [],
+                    "possibleMatchingCollisionCells": [],
+                    "sourceActorDirectCallbackPossible": False,
+                },
+                {
+                    "sourceMap": 67,
+                    "markerGroup": 2,
+                    "triggerType": 3,
+                    "scriptIndex": 1,
+                    "destinationMap": 68,
+                    "arrivalTile": [7, 17],
+                    "matchingCollisionCells": [],
+                    "possibleMatchingCollisionCells": [],
+                    "sourceActorDirectCallbackPossible": False,
+                },
+            ],
+        )
         self.assertEqual(graph["reachableMissingEventMapIds"], [])
         self.assertTrue(graph["map3Marker3EdgeBlockedByPermissivePathCheck"])
 

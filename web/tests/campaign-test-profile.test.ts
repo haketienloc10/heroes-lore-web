@@ -25,16 +25,33 @@ import {
   MAP27_CLASS6_SKILL5_TEST_SCENARIO,
   MAP27_WEAPON_PROC_STATUS_TEST_SCENARIO,
   MAP27_WEAPON_PROC_STATUS_SLOW_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO,
   MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_POISON_TEST_SCENARIO,
+  MAP6_WEAPON_PROC_POISON_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_SP_TEST_SCENARIO,
+  MAP27_WEAPON_PROC_HP_TEST_SCENARIO,
+  MAP27_POISON_TICK_TEST_SCENARIO,
+  MAP27_NO_TARGET_WANDER_TEST_SCENARIO,
+  MAP37_CLASS6_MULTITARGET_TEST_SCENARIO,
+  MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO,
+  MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO,
+  MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO,
   MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO,
+  MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO,
   MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO,
   MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO,
+  MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO,
   MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO,
   MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO,
   MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO,
   MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO,
   MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO,
+  MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO,
   MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO,
+  MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO,
   MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO,
   MAP80_REFINER_ORB_TEST_SCENARIO,
   MAP80_BLACKSMITH_IDENTIFY_TEST_SCENARIO,
@@ -47,6 +64,8 @@ import {
   MAP11_BOSS_DEATH_FALLBACK_CONTROLLED_TEST_SCENARIO,
   MAP11_BOSS_AI_LIVE_TEST_SCENARIO,
   MAP13_AQ_AI_LIVE_TEST_SCENARIO,
+  MAP13_AU_PROC_SP_TEST_SCENARIO,
+  MAP13_AU_PROC_HP_TEST_SCENARIO,
   MAP13_CC_HEAL_LIVE_TEST_SCENARIO,
   MAP13_BC_ATTACK_LIVE_TEST_SCENARIO,
   MAP60_INVESTIGATION_TEST_SCENARIO,
@@ -232,13 +251,97 @@ describe('max-level campaign test profile', () => {
       tileX: 9,
       tileY: 31,
     });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_STATUS_SLOW_AI_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
     expect(isCampaignTestScenario(MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)).toBe(true);
     expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)).toBe(27);
     expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_STATUS_DEFENSE_TEST_SCENARIO)).toEqual({
       tileX: 9,
       tileY: 31,
     });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_POISON_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_POISON_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_POISON_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP6_WEAPON_PROC_POISON_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP6_WEAPON_PROC_POISON_TEST_SCENARIO)).toBe(6);
+    expect(campaignTestMapPreviewSpawnTile(MAP6_WEAPON_PROC_POISON_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 12,
+    });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_STATUS2_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_DAMAGE_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_SP_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_SP_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_SP_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_WEAPON_PROC_HP_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_WEAPON_PROC_HP_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_WEAPON_PROC_HP_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_POISON_TICK_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_POISON_TICK_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_POISON_TICK_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 31,
+    });
+    expect(isCampaignTestScenario(MAP27_NO_TARGET_WANDER_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP27_NO_TARGET_WANDER_TEST_SCENARIO)).toBe(27);
+    expect(campaignTestMapPreviewSpawnTile(MAP27_NO_TARGET_WANDER_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 25,
+    });
+    expect(isCampaignTestScenario(MAP37_CLASS6_MULTITARGET_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP37_CLASS6_MULTITARGET_TEST_SCENARIO)).toBe(37);
+    expect(campaignTestMapPreviewSpawnTile(MAP37_CLASS6_MULTITARGET_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 9,
+    });
+    expect(isCampaignTestScenario(MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO)).toBe(37);
+    expect(campaignTestMapPreviewSpawnTile(MAP37_CLASS6_TRIPLE_TARGET_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 9,
+    });
+    expect(isCampaignTestScenario(MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO)).toBe(37);
+    expect(campaignTestMapPreviewSpawnTile(MAP37_CLASS6_LIGHT_FOLLOWUP_TEST_SCENARIO)).toEqual({
+      tileX: 10,
+      tileY: 9,
+    });
+    expect(isCampaignTestScenario(MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO)).toBe(37);
+    expect(campaignTestMapPreviewSpawnTile(MAP37_CLASS6_HEAVY_STAGE4_SWEEP_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 9,
+    });
     expect(isCampaignTestScenario(MAP2_CLASS6_SKILL5_ELEMENT3_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO)).toBe(2);
+    expect(campaignTestMapPreviewSpawnTile(MAP2_CLASS6_SKILL5_LEVEL1_TEST_SCENARIO)).toEqual({
+      tileX: 8,
+      tileY: 27,
+    });
     expect(isCampaignTestScenario(MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO)).toBe(true);
     expect(campaignTestMapPreviewMapId(MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO)).toBe(2);
     expect(campaignTestMapPreviewSpawnTile(MAP2_CLASS6_SKILL3_LEVEL2_ELEMENT3_MISMATCH_TEST_SCENARIO)).toEqual({
@@ -246,18 +349,26 @@ describe('max-level campaign test profile', () => {
       tileY: 27,
     });
     expect(isCampaignTestScenario(MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP80_CLASS6_SKILL1_LEVEL2_RECOVERY_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_CLASS6_SKILL1_LEVEL1_SP_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP80_CLASS6_SKILL0_LEVEL2_AURA_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP80_CLASS6_SKILL2_LEVEL2_CLEANSE_TEST_SCENARIO)).toBe(true);
+    expect(isCampaignTestScenario(MAP80_ANTIDOTE_QUICK_USE_TEST_SCENARIO)).toBe(true);
     expect(isCampaignTestScenario(MAP80_CLASS6_SKILL4_LEVEL2_RESTORE_TEST_SCENARIO)).toBe(true);
     expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO)).toBe(17);
+    expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO)).toBe(17);
     expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL0_LEVEL1_COMBO_TEST_SCENARIO)).toBe(17);
     expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL0_LEVEL2_COUNTER_CONTROLLED_TEST_SCENARIO)).toBe(17);
     expect(campaignTestMapPreviewMapId(MAP17_CLASS6_SKILL4_LEVEL1_IMMUNITY_TEST_SCENARIO)).toBe(17);
     expect(campaignTestMapPreviewSpawnTile(MAP17_CLASS6_SKILL3_LEVEL2_TEST_SCENARIO)).toEqual({
+      tileX: 5,
+      tileY: 11,
+    });
+    expect(campaignTestMapPreviewSpawnTile(MAP17_CLASS6_SKILL3_LEVEL1_TEST_SCENARIO)).toEqual({
       tileX: 5,
       tileY: 11,
     });
@@ -308,6 +419,18 @@ describe('max-level campaign test profile', () => {
     expect(campaignTestMapPreviewSpawnTile(MAP13_AQ_AI_LIVE_TEST_SCENARIO)).toEqual({
       tileX: 10,
       tileY: 10,
+    });
+    expect(isCampaignTestScenario(MAP13_AU_PROC_SP_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP13_AU_PROC_SP_TEST_SCENARIO)).toBe(13);
+    expect(campaignTestMapPreviewSpawnTile(MAP13_AU_PROC_SP_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 6,
+    });
+    expect(isCampaignTestScenario(MAP13_AU_PROC_HP_TEST_SCENARIO)).toBe(true);
+    expect(campaignTestMapPreviewMapId(MAP13_AU_PROC_HP_TEST_SCENARIO)).toBe(13);
+    expect(campaignTestMapPreviewSpawnTile(MAP13_AU_PROC_HP_TEST_SCENARIO)).toEqual({
+      tileX: 9,
+      tileY: 6,
     });
     expect(isCampaignTestScenario(MAP13_CC_HEAL_LIVE_TEST_SCENARIO)).toBe(true);
     expect(campaignTestMapPreviewMapId(MAP13_CC_HEAL_LIVE_TEST_SCENARIO)).toBe(13);

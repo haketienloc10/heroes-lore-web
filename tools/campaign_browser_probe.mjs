@@ -4,8 +4,9 @@
  * Drive a fresh New Game route or DEV map preview through normal game UI key
  * input in an owned Chromium process. Chromium is headless; screenshots capture the page.
  * The probe uses real CDP key-down/key-up events, so directional inputs can be
- * held across the game's update ticks. It reads only the DEV route telemetry
- * attributes and never accesses browser storage or game-save files. On a
+ * held across the game's update ticks. It reads only DEV route telemetry and
+ * records app calls to Storage APIs in its disposable Chromium profile. It
+ * never opens local game-save files. On a
  * map-preview, HEROES_LORE_OBSERVE_ENEMY=1 records bounded behavior-2/3 attack
  * animation and hit-resolution samples for a selected enemy source order;
  * HEROES_LORE_MAP66_NO_CHOICE=1, HEROES_LORE_MAP59_NO_CHOICE=1,
@@ -15,13 +16,20 @@
  * replays the Map53 checkpoint route through Map54 and the Map59→Map13 chain;
  * HEROES_LORE_MAP54_CURRENT_CELL_EXIT=1 checks the Map54 marker-8/marker-6 exit;
  * HEROES_LORE_MAP54_TO_MAP13_CHAIN=1 follows that exit through the Map59 and Map12 prerequisites.
+ * Map-preview routes can add an input-free observation window; setting
+ * HEROES_LORE_MAP_IDLE_SAMPLE_INTERVAL_MS records DEV actor input and Map15 AI state during it.
+ * HEROES_LORE_MAP_PREVIEW_MOVE_SMOKE=1 sends one visible directional move from the DEV preview spawn.
+ * HEROES_LORE_MAP37_CLASS6_MULTITARGET=1 verifies the class-6 heavy fan against two adjacent Map37 enemies;
+ * HEROES_LORE_MAP37_CLASS6_TRIPLE_TARGET=1 includes the third diagonal source cell;
+ * HEROES_LORE_MAP37_CLASS6_LIGHT_FOLLOWUP=1 checks the stage-1 light-combo fan;
+ * HEROES_LORE_MAP37_CLASS6_HEAVY_STAGE4_SWEEP=1 checks the eight-cell heavy stage-4 sweep.
  */
 
 import { spawn } from 'node:child_process';
 import { setTimeout as delay } from 'node:timers/promises';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -33,9 +41,20 @@ const mapPreviewId = routeTarget === 'map-preview'
 const map66NoChoiceBranch = process.env.HEROES_LORE_MAP66_NO_CHOICE === '1';
 const map27WeaponProcStatus = process.env.HEROES_LORE_MAP27_WEAPON_PROC_STATUS === '1';
 const map27WeaponProcStatusSlow = process.env.HEROES_LORE_MAP27_WEAPON_PROC_STATUS_SLOW === '1';
+const map27WeaponProcStatusSlowCooldown =
+  process.env.HEROES_LORE_MAP27_WEAPON_PROC_STATUS_SLOW_COOLDOWN === '1';
 const map27WeaponProcStatusDefense = process.env.HEROES_LORE_MAP27_WEAPON_PROC_STATUS_DEFENSE === '1';
+const map27PoisonTickTest = process.env.HEROES_LORE_MAP27_POISON_TICK_TEST === '1';
+const map27BasicDamageFormulaTest = process.env.HEROES_LORE_MAP27_BASIC_DAMAGE_FORMULA === '1';
+const map27WeaponProcDamageTest = process.env.HEROES_LORE_MAP27_WEAPON_PROC_DAMAGE === '1';
+const map27WeaponProcResource = process.env.HEROES_LORE_MAP27_WEAPON_PROC_RESOURCE ?? null;
+const map27WeaponProcResourceTest = map27WeaponProcResource !== null;
+const map13AuProcSpTest = process.env.HEROES_LORE_MAP13_AU_PROC_SP === '1';
+const map13AuProcHpTest = process.env.HEROES_LORE_MAP13_AU_PROC_HP === '1';
+const map13AuProcResourceTest = map13AuProcSpTest || map13AuProcHpTest;
+const map13AuProcResource = map13AuProcSpTest ? 'sp' : map13AuProcHpTest ? 'hp' : null;
 const map27WeaponProcStatusTest = map27WeaponProcStatus || map27WeaponProcStatusSlow ||
-  map27WeaponProcStatusDefense;
+  map27WeaponProcStatusSlowCooldown || map27WeaponProcStatusDefense;
 const map59NoChoiceBranch = process.env.HEROES_LORE_MAP59_NO_CHOICE === '1';
 const map59YesChoiceBranch = process.env.HEROES_LORE_MAP59_YES_CHOICE === '1';
 const map59FullChain = process.env.HEROES_LORE_MAP59_FULL_CHAIN === '1';
@@ -47,13 +66,32 @@ const map54ToMap13Chain = process.env.HEROES_LORE_MAP54_TO_MAP13_CHAIN === '1';
 if (map54CurrentCellExit && map54ToMap13Chain) {
   throw new Error('Select only one Map54 route probe');
 }
-const isolatedStorageProbe = map59ChoiceBranch || map54ItemPrize || map53BluebrickChain ||
-  map54CurrentCellExit || map54ToMap13Chain;
 const mapPreviewExitMapId = process.env.HEROES_LORE_MAP_PREVIEW_EXIT_MAP_ID === undefined
   ? null
   : Number(process.env.HEROES_LORE_MAP_PREVIEW_EXIT_MAP_ID);
+const mapPreviewMovementSmoke = process.env.HEROES_LORE_MAP_PREVIEW_MOVE_SMOKE === '1';
+const map37ClassSixMultiTargetTest = process.env.HEROES_LORE_MAP37_CLASS6_MULTITARGET === '1';
+const map37ClassSixTripleTargetTest = process.env.HEROES_LORE_MAP37_CLASS6_TRIPLE_TARGET === '1';
+const map37ClassSixLightFollowupTest = process.env.HEROES_LORE_MAP37_CLASS6_LIGHT_FOLLOWUP === '1';
+const map37ClassSixHeavyStage4SweepTest = process.env.HEROES_LORE_MAP37_CLASS6_HEAVY_STAGE4_SWEEP === '1';
+if ([map37ClassSixMultiTargetTest, map37ClassSixTripleTargetTest, map37ClassSixLightFollowupTest,
+  map37ClassSixHeavyStage4SweepTest]
+  .filter(Boolean).length > 1) {
+  throw new Error('Select only one Map37 class-6 fan probe');
+}
 const observeMapPreviewEnemy = process.env.HEROES_LORE_OBSERVE_ENEMY === '1';
 const approachMapPreviewEnemy = process.env.HEROES_LORE_APPROACH_ENEMY === '1';
+const mapPreviewIdleObservationMs = Number(process.env.HEROES_LORE_MAP_IDLE_OBSERVATION_MS ?? 0);
+const mapPreviewIdleSampleIntervalMs = Number(process.env.HEROES_LORE_MAP_IDLE_SAMPLE_INTERVAL_MS ?? 0);
+if (!Number.isInteger(mapPreviewIdleObservationMs) || mapPreviewIdleObservationMs < 0 ||
+  mapPreviewIdleObservationMs > 10000) {
+  throw new Error('Map idle observation must be from 0 through 10000 milliseconds');
+}
+if (!Number.isInteger(mapPreviewIdleSampleIntervalMs) || mapPreviewIdleSampleIntervalMs < 0 ||
+  mapPreviewIdleSampleIntervalMs > 1000 ||
+  (mapPreviewIdleSampleIntervalMs > 0 && mapPreviewIdleObservationMs === 0)) {
+  throw new Error('Map idle sample interval must be 0–1000 ms and requires an idle observation window');
+}
 const enemyObservationTarget = {
   sourceOrder: Number(process.env.HEROES_LORE_ENEMY_ORDER ?? 5),
   enemyId: Number(process.env.HEROES_LORE_ENEMY_ID ?? 4),
@@ -64,11 +102,40 @@ if (map27WeaponProcStatusTest && (routeTarget !== 'map-preview' || mapPreviewId 
   profileName !== 'max-level' || observeMapPreviewEnemy || mapPreviewExitMapId !== null)) {
   throw new Error('Weapon-proc status verification requires an isolated max-level Map27 preview');
 }
-if ([map27WeaponProcStatus, map27WeaponProcStatusSlow, map27WeaponProcStatusDefense]
+if (map27PoisonTickTest && (routeTarget !== 'map-preview' || mapPreviewId !== 27 ||
+  profileName !== 'max-level' || observeMapPreviewEnemy || mapPreviewExitMapId !== null ||
+  map27WeaponProcStatusTest)) {
+  throw new Error('Poison-tick verification requires an isolated max-level Map27 preview');
+}
+if (map27BasicDamageFormulaTest && (routeTarget !== 'map27-combat' || profileName !== 'damage-survival' ||
+  map27WeaponProcStatusTest || map27PoisonTickTest || observeMapPreviewEnemy)) {
+  throw new Error('Basic-damage formula verification requires a damage-survival New Game to Map27 route');
+}
+if (map27WeaponProcDamageTest && (routeTarget !== 'map-preview' || mapPreviewId !== 27 ||
+  profileName !== 'max-level' || observeMapPreviewEnemy || mapPreviewExitMapId !== null ||
+  map27WeaponProcStatusTest || map27PoisonTickTest)) {
+  throw new Error('Weapon-proc code-8 verification requires an isolated max-level Map27 preview');
+}
+if (map27WeaponProcResourceTest && (!['sp', 'hp'].includes(map27WeaponProcResource) ||
+  routeTarget !== 'map-preview' || mapPreviewId !== 27 || profileName !== 'max-level' ||
+  observeMapPreviewEnemy || mapPreviewExitMapId !== null || map27WeaponProcStatusTest ||
+  map27PoisonTickTest || map27WeaponProcDamageTest)) {
+  throw new Error('Weapon-proc resource verification requires an isolated max-level Map27 SP/HP fixture');
+}
+if (map13AuProcResourceTest && ([map13AuProcSpTest, map13AuProcHpTest].filter(Boolean).length !== 1 ||
+  routeTarget !== 'map-preview' || mapPreviewId !== 13 ||
+  profileName !== 'max-level' || observeMapPreviewEnemy || mapPreviewExitMapId !== null ||
+  map27WeaponProcStatusTest || map27PoisonTickTest || map27WeaponProcDamageTest ||
+  map27WeaponProcResourceTest)) {
+  throw new Error('Source-au proc resource verification requires an isolated max-level Map13 preview');
+}
+if ([map27WeaponProcStatus, map27WeaponProcStatusSlow, map27WeaponProcStatusSlowCooldown,
+  map27WeaponProcStatusDefense]
   .filter(Boolean).length > 1) {
   throw new Error('Select only one Map27 weapon-proc status mapping');
 }
-const supportedProfiles = routeTarget === 'map27-damage-pursuit'
+const supportedProfiles = routeTarget === 'map27-damage-pursuit' ||
+  (routeTarget === 'map27-combat' && map27BasicDamageFormulaTest)
   ? ['damage-survival']
   : routeTarget === 'map-preview' ? ['max-level', 'damage-survival'] : ['max-level'];
 if (!supportedProfiles.includes(profileName)) {
@@ -126,6 +193,63 @@ if (mapPreviewExitMapId !== null && (
 )) {
   throw new Error('Map-preview exit routing currently supports Map27 to Map17 without enemy observation');
 }
+if (mapPreviewMovementSmoke && (
+  routeTarget !== 'map-preview' || profileName !== 'max-level' || observeMapPreviewEnemy ||
+  mapPreviewExitMapId !== null || mapPreviewIdleObservationMs > 0 || map66NoChoiceBranch ||
+  map59ChoiceBranch || map54ItemPrize || map53BluebrickChain || map54CurrentCellExit ||
+  map54ToMap13Chain || map27WeaponProcStatusTest || map27PoisonTickTest ||
+  map27BasicDamageFormulaTest || map27WeaponProcDamageTest || map27WeaponProcResourceTest ||
+  map13AuProcResourceTest || map37ClassSixMultiTargetTest || map37ClassSixTripleTargetTest ||
+  map37ClassSixLightFollowupTest || map37ClassSixHeavyStage4SweepTest
+)) {
+  throw new Error('Map preview movement smoke requires an isolated DEV max-level preview');
+}
+if (map37ClassSixMultiTargetTest && (
+  routeTarget !== 'map-preview' || mapPreviewId !== 37 || profileName !== 'max-level' ||
+  observeMapPreviewEnemy || mapPreviewExitMapId !== null || mapPreviewMovementSmoke ||
+  mapPreviewIdleObservationMs > 0 || map27WeaponProcStatusTest || map27PoisonTickTest ||
+  map27BasicDamageFormulaTest || map27WeaponProcDamageTest || map27WeaponProcResourceTest ||
+  map13AuProcResourceTest
+)) {
+  throw new Error('Map37 multi-target verification requires an isolated DEV max-level Map37 preview');
+}
+if (map37ClassSixTripleTargetTest && (
+  routeTarget !== 'map-preview' || mapPreviewId !== 37 || profileName !== 'max-level' ||
+  observeMapPreviewEnemy || mapPreviewExitMapId !== null || mapPreviewMovementSmoke ||
+  mapPreviewIdleObservationMs > 0 || map27WeaponProcStatusTest || map27PoisonTickTest ||
+  map27BasicDamageFormulaTest || map27WeaponProcDamageTest || map27WeaponProcResourceTest ||
+  map13AuProcResourceTest
+)) {
+  throw new Error('Map37 triple-target verification requires an isolated DEV max-level Map37 preview');
+}
+if (map37ClassSixLightFollowupTest && (
+  routeTarget !== 'map-preview' || mapPreviewId !== 37 || profileName !== 'max-level' ||
+  observeMapPreviewEnemy || mapPreviewExitMapId !== null || mapPreviewMovementSmoke ||
+  mapPreviewIdleObservationMs > 0 || map27WeaponProcStatusTest || map27PoisonTickTest ||
+  map27BasicDamageFormulaTest || map27WeaponProcDamageTest || map27WeaponProcResourceTest ||
+  map13AuProcResourceTest
+)) {
+  throw new Error('Map37 light-follow-up verification requires an isolated DEV max-level Map37 preview');
+}
+if (map37ClassSixHeavyStage4SweepTest && (
+  routeTarget !== 'map-preview' || mapPreviewId !== 37 || profileName !== 'max-level' ||
+  observeMapPreviewEnemy || mapPreviewExitMapId !== null || mapPreviewMovementSmoke ||
+  mapPreviewIdleObservationMs > 0 || map27WeaponProcStatusTest || map27PoisonTickTest ||
+  map27BasicDamageFormulaTest || map27WeaponProcDamageTest || map27WeaponProcResourceTest ||
+  map13AuProcResourceTest
+)) {
+  throw new Error('Map37 heavy-stage-4 verification requires an isolated DEV max-level Map37 preview');
+}
+if (mapPreviewIdleObservationMs > 0 && (
+  routeTarget !== 'map-preview' || profileName !== 'max-level' || observeMapPreviewEnemy ||
+  mapPreviewExitMapId !== null || map66NoChoiceBranch || map59ChoiceBranch || map54ItemPrize ||
+  map53BluebrickChain || map54CurrentCellExit || map54ToMap13Chain || map27WeaponProcStatusTest ||
+  map27PoisonTickTest || map27BasicDamageFormulaTest || map27WeaponProcDamageTest ||
+  map27WeaponProcResourceTest || map13AuProcResourceTest || map37ClassSixLightFollowupTest ||
+  map37ClassSixHeavyStage4SweepTest
+)) {
+  throw new Error('Map idle observation requires an isolated DEV max-level map preview');
+}
 if (observeMapPreviewEnemy && (
   !Number.isInteger(enemyObservationTarget.sourceOrder) || enemyObservationTarget.sourceOrder < 0 ||
   !Number.isInteger(enemyObservationTarget.enemyId) || enemyObservationTarget.enemyId < 0 ||
@@ -141,29 +265,53 @@ if (!Number.isInteger(attemptNumber) || attemptNumber < 1 || attemptNumber > 3) 
 const defaultMilestoneId = routeTarget === 'map27-combat-cycle' ? 'M988'
   : routeTarget === 'map0-reentry' ? 'M1040'
   : routeTarget === 'map0-interaction' ? 'M1041'
-  : routeTarget === 'map27-combat' ? 'M987'
+  : routeTarget === 'map27-combat' ? (map27BasicDamageFormulaTest ? 'M1108' : 'M987')
     : routeTarget === 'map27-damage-pursuit' ? 'M992'
     : routeTarget === 'map27-pursuit' ? 'M989'
       : routeTarget === 'map0-mobile-touch' ? 'M991'
       : routeTarget === 'map27-mobile-touch' ? 'M990'
-      : routeTarget === 'map-preview' ? (map27WeaponProcStatusDefense ? 'M1084' : map27WeaponProcStatusSlow ? 'M1083' : map27WeaponProcStatus ? 'M1082' : map66NoChoiceBranch ? 'M1042' : map59NoChoiceBranch ? 'M1043' : map59YesChoiceBranch ? 'M1044' : map59FullChain ? 'M1045' : map54ItemPrize ? 'M1046' : map53BluebrickChain ? 'M1047' : map54ToMap13Chain ? 'M1051' : map54CurrentCellExit ? 'M1049' : mapPreviewExitMapId === 17 ? 'M1023' : 'M1010')
+  : routeTarget === 'map-preview' ? (map37ClassSixHeavyStage4SweepTest ? 'M1128' : map37ClassSixLightFollowupTest ? 'M1127' : map37ClassSixTripleTargetTest ? 'M1126' : map37ClassSixMultiTargetTest ? 'M1125' : map13AuProcHpTest ? 'M1113' : map13AuProcSpTest ? 'M1112' : map27WeaponProcResource === 'sp' ? 'M1110' : map27WeaponProcResource === 'hp' ? 'M1111' : map27WeaponProcDamageTest ? 'M1109' : map27PoisonTickTest ? 'M1106' : map27WeaponProcStatusDefense ? 'M1084' : map27WeaponProcStatusSlowCooldown ? 'M1105' : map27WeaponProcStatusSlow ? 'M1083' : map27WeaponProcStatus ? 'M1082' : map66NoChoiceBranch ? 'M1042' : map59NoChoiceBranch ? 'M1043' : map59YesChoiceBranch ? 'M1044' : map59FullChain ? 'M1045' : map54ItemPrize ? 'M1046' : map53BluebrickChain ? 'M1047' : map54ToMap13Chain ? 'M1051' : map54CurrentCellExit ? 'M1049' : mapPreviewExitMapId === 17 ? 'M1023' : 'M1010')
       : routeTarget === 'map27' ? 'M986' : 'M978';
 const requestedMilestoneId = process.env.HEROES_LORE_MILESTONE_ID;
 if (requestedMilestoneId !== undefined && !/^M\d{3,5}$/.test(requestedMilestoneId)) {
   throw new Error('HEROES_LORE_MILESTONE_ID must look like M1011');
 }
-const milestoneId = routeTarget === 'map-preview' && requestedMilestoneId !== undefined
-  ? requestedMilestoneId
-  : defaultMilestoneId;
+const milestoneId = requestedMilestoneId ?? defaultMilestoneId;
+const outputDirectoryOverride = process.env.HEROES_LORE_OUTPUT_DIR;
+const evidenceRoot = `${resolve(root, 'reference/screenshots/web-render')}${sep}`;
+const resolvedOutputOverride = outputDirectoryOverride === undefined
+  ? null
+  : resolve(root, outputDirectoryOverride);
+if (resolvedOutputOverride !== null && !resolvedOutputOverride.startsWith(evidenceRoot)) {
+  throw new Error('HEROES_LORE_OUTPUT_DIR must stay under reference/screenshots/web-render');
+}
 
 const chromePath = process.env.HEROES_LORE_CHROME ??
   '/home/locdt/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome';
-const previewScenario = mapPreviewId === null ? null : map27WeaponProcStatusDefense
+const previewScenario = mapPreviewId === null ? null : map13AuProcResourceTest
+  ? `map13-au-proc-${map13AuProcResource}`
+  : map27WeaponProcResourceTest
+  ? `map27-weapon-proc-${map27WeaponProcResource}`
+  : map27WeaponProcDamageTest
+  ? 'map27-weapon-proc-damage'
+  : map27PoisonTickTest
+  ? 'map27-poison-tick'
+  : map27WeaponProcStatusDefense
   ? 'map27-weapon-proc-status-defense'
-  : map27WeaponProcStatusSlow
-  ? 'map27-weapon-proc-status-slow'
+  : map27WeaponProcStatusSlow || map27WeaponProcStatusSlowCooldown
+  ? map27WeaponProcStatusSlowCooldown
+    ? 'map27-weapon-proc-status-slow-ai'
+    : 'map27-weapon-proc-status-slow'
   : map27WeaponProcStatus
   ? 'map27-weapon-proc-status'
+  : map37ClassSixLightFollowupTest
+  ? 'map37-class6-light-followup'
+  : map37ClassSixHeavyStage4SweepTest
+  ? 'map37-class6-heavy-stage4-sweep'
+  : map37ClassSixTripleTargetTest
+  ? 'map37-class6-triple-target'
+  : map37ClassSixMultiTargetTest
+  ? 'map37-class6-multitarget'
   : map59YesChoiceBranch
   ? 'map-preview-59-key'
   : map59FullChain ? 'map-preview-59-prereqs'
@@ -183,7 +331,7 @@ if (parsedStartUrl.searchParams.get('testProfile') !== profileName) {
 if (previewScenario !== null && parsedStartUrl.searchParams.get('testScenario') !== previewScenario) {
   throw new Error(`The start URL must select testScenario=${previewScenario}`);
 }
-const outputBaseDir = resolve(root, routeTarget === 'map27-combat-cycle'
+const outputBaseDir = resolvedOutputOverride ?? resolve(root, routeTarget === 'map27-combat-cycle'
   ? 'reference/screenshots/web-render/M988-max-level-map27-respawn'
   : routeTarget === 'map0-reentry'
     ? 'reference/screenshots/web-render/M1040-house-reentry'
@@ -196,14 +344,34 @@ const outputBaseDir = resolve(root, routeTarget === 'map27-combat-cycle'
   : routeTarget === 'map27-mobile-touch'
     ? 'reference/screenshots/web-render/M990-mobile-touch-map27-attack'
   : routeTarget === 'map27-combat'
-    ? 'reference/screenshots/web-render/M987-max-level-map27-combat'
+    ? (map27BasicDamageFormulaTest
+      ? 'reference/screenshots/web-render/M1108-map27-basic-damage-formula'
+      : 'reference/screenshots/web-render/M987-max-level-map27-combat')
     : routeTarget === 'map27-pursuit'
       ? 'reference/screenshots/web-render/M989-max-level-map27-pursuit'
     : routeTarget === 'map27'
       ? 'reference/screenshots/web-render/M986-max-level-map0-map27'
       : routeTarget === 'map-preview'
-        ? (map27WeaponProcStatusDefense
+        ? (map37ClassSixHeavyStage4SweepTest
+        ? 'reference/screenshots/web-render/M1128-map37-class6-heavy-stage4-sweep'
+        : map37ClassSixLightFollowupTest
+        ? 'reference/screenshots/web-render/M1127-map37-class6-light-followup'
+        : map37ClassSixTripleTargetTest
+        ? 'reference/screenshots/web-render/M1126-map37-class6-triple-target'
+        : map37ClassSixMultiTargetTest
+        ? 'reference/screenshots/web-render/M1125-map37-class6-multitarget'
+        : map13AuProcResourceTest
+        ? `reference/screenshots/web-render/${milestoneId}-map13-au-proc-${map13AuProcResource}`
+        : map27WeaponProcResourceTest
+        ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-${map27WeaponProcResource}`
+        : map27WeaponProcDamageTest
+        ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-damage`
+        : map27PoisonTickTest
+        ? `reference/screenshots/web-render/${milestoneId}-map27-poison-tick`
+        : map27WeaponProcStatusDefense
         ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-status-defense`
+          : map27WeaponProcStatusSlowCooldown
+          ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-status-slow-cooldown`
           : map27WeaponProcStatusSlow
           ? 'reference/screenshots/web-render/M1083-map27-weapon-proc-status-slow'
           : map66NoChoiceBranch
@@ -228,6 +396,8 @@ const outputBaseDir = resolve(root, routeTarget === 'map27-combat-cycle'
       : 'reference/screenshots/web-render/M978-max-level-held-input');
 const outputDir = routeTarget === 'map27-pursuit'
   ? join(outputBaseDir, `attempt-${attemptNumber}`)
+  : routeTarget === 'map27-combat' && map27BasicDamageFormulaTest
+    ? join(outputBaseDir, `attempt-${attemptNumber}`)
   : routeTarget === 'map0-reentry'
     ? join(outputBaseDir, `attempt-${attemptNumber}`)
   : routeTarget === 'map0-interaction'
@@ -243,6 +413,12 @@ const outputDir = routeTarget === 'map27-pursuit'
   : outputBaseDir;
 const userDataDir = await mkdtemp(join(tmpdir(), 'heroes-lore-owned-chromium-'));
 const observations = [];
+let mapPreviewMovementObservation = null;
+let mapPreviewIdleObservation = null;
+let map37ClassSixMultiTargetObservation = null;
+let map37ClassSixTripleTargetObservation = null;
+let map37ClassSixLightFollowupObservation = null;
+let map37ClassSixHeavyStage4SweepObservation = null;
 const cdpEvents = [];
 let browserProcess;
 let socket;
@@ -322,15 +498,20 @@ async function readRuntime() {
     const host = document.querySelector('#game');
     if (!host) return null;
     const raw = host.dataset.testRuntime;
+    const playerInputRaw = host.dataset.testPlayerInputState;
     const cutsceneRaw = host.dataset.testEventCutscene;
     const enemyStatusRaw = host.dataset.testEnemyStatusEffects;
     const enemyProjectileRaw = host.dataset.testEnemyProjectiles;
     let runtime = null;
+    let playerInputState = null;
     let eventCutscene = null;
     let enemyStatusEffects = [];
     let enemyProjectiles = [];
     if (raw) {
       try { runtime = JSON.parse(raw); } catch {}
+    }
+    if (playerInputRaw) {
+      try { playerInputState = JSON.parse(playerInputRaw); } catch {}
     }
     if (cutsceneRaw) {
       try { eventCutscene = JSON.parse(cutsceneRaw); } catch {}
@@ -349,6 +530,7 @@ async function readRuntime() {
       hp: host.dataset.testHp === undefined ? null : Number(host.dataset.testHp),
       level: host.dataset.testLevel === undefined ? null : Number(host.dataset.testLevel),
       mapPreviewReady: host.dataset.testMapPreviewReady === 'true',
+      playerInputState,
       runtime,
       enemyStatusEffects,
       enemyProjectiles,
@@ -385,6 +567,17 @@ async function tap(key, code, virtualKeyCode, textValue = undefined) {
   await delay(90);
   await cdp.send('Input.dispatchKeyEvent', { type: 'keyUp', ...keyParams });
   await delay(140);
+}
+
+async function pulseComboKey(key, code, virtualKeyCode, textValue) {
+  const keyParams = { key, code, windowsVirtualKeyCode: virtualKeyCode };
+  await cdp.send('Input.dispatchKeyEvent', { type: 'keyDown', ...keyParams });
+  if (textValue !== undefined) {
+    await cdp.send('Input.dispatchKeyEvent', { type: 'char', text: textValue, ...keyParams });
+  }
+  await delay(75);
+  await cdp.send('Input.dispatchKeyEvent', { type: 'keyUp', ...keyParams });
+  await delay(10);
 }
 
 async function holdUntil(key, code, virtualKeyCode, predicate, {
@@ -476,28 +669,41 @@ async function launch() {
     '--remote-debugging-port=0',
     `--user-data-dir=${userDataDir}`,
     '--window-size=780,380',
-    isolatedStorageProbe ? 'about:blank' : startUrl,
+    'about:blank',
   ], { stdio: ['ignore', 'ignore', 'pipe'] });
   browserProcess.stderr.setEncoding('utf8');
   browserProcess.stderr.on('data', (chunk) => { chromeStderr += chunk; });
   const port = await waitForDevToolsPort();
   await connectToPage(port);
-  if (isolatedStorageProbe) {
-    await cdp.send('Page.addScriptToEvaluateOnNewDocument', {
-      source: `(() => {
-        const calls = [];
-        Object.defineProperty(window, '__heroesLoreStorageCalls', { value: calls });
-        for (const method of ['getItem', 'setItem', 'removeItem', 'clear', 'key']) {
-          const original = Storage.prototype[method];
-          Storage.prototype[method] = function (...args) {
-            calls.push({ method, key: method === 'key' ? null : (args[0] ?? null) });
-            return original.apply(this, args);
-          };
-        }
-      })();`,
-    });
-    await cdp.send('Page.navigate', { url: startUrl });
-  }
+  await cdp.send('Page.addScriptToEvaluateOnNewDocument', {
+    source: `(() => {
+      const calls = [];
+      Object.defineProperty(window, '__heroesLoreStorageCalls', { value: calls });
+      const local = window.localStorage;
+      const session = window.sessionStorage;
+      const storeName = (store) => store === local ? 'localStorage' :
+        store === session ? 'sessionStorage' : 'unknownStorage';
+      for (const method of ['getItem', 'setItem', 'removeItem', 'clear', 'key']) {
+        const original = Storage.prototype[method];
+        Storage.prototype[method] = function (...args) {
+          calls.push({ store: storeName(this), method,
+            key: method === 'key' ? null : (args[0] ?? null) });
+          return original.apply(this, args);
+        };
+      }
+      const length = Object.getOwnPropertyDescriptor(Storage.prototype, 'length');
+      if (length?.get && length.configurable) {
+        Object.defineProperty(Storage.prototype, 'length', {
+          ...length,
+          get() {
+            calls.push({ store: storeName(this), method: 'length', key: null });
+            return length.get.call(this);
+          },
+        });
+      }
+    })();`,
+  });
+  await cdp.send('Page.navigate', { url: startUrl });
   if (routeTarget === 'map27-mobile-touch' || routeTarget === 'map0-mobile-touch') {
     await cdp.send('Emulation.setDeviceMetricsOverride', {
       width: 360,
@@ -576,11 +782,16 @@ async function startNewGameAndReachMapPreview() {
     timeoutMs: 30000,
     label: `map-preview-${mapPreviewId} in-bounds player spawn`,
   });
+  observations.push({ at: new Date().toISOString(), label: `map-preview-${mapPreviewId}-first-ready`, state: readyState });
+  if (mapPreviewMovementSmoke) {
+    mapPreviewMovementObservation = await runMapPreviewMovementSmoke(readyState);
+  }
   if (observeMapPreviewEnemy) {
     observations.push({ at: new Date().toISOString(), label: 'map-preview-enemy-first-ready-state', state: readyState });
     await saveScreenshot('02-map-preview-first-ready.png');
   }
-  await delay(300);
+  await delay(mapPreviewMovementSmoke || map37ClassSixMultiTargetTest || map37ClassSixTripleTargetTest ||
+    map37ClassSixLightFollowupTest || map37ClassSixHeavyStage4SweepTest ? 0 : 300);
   const settled = await observe(`map-preview-${mapPreviewId}-arrival`);
   const expectedLevel = profileName === 'max-level' ? 99 : 1;
   if (settled.level !== expectedLevel || settled.profile !== profileName || settled.mapId !== mapPreviewId) {
@@ -588,7 +799,492 @@ async function startNewGameAndReachMapPreview() {
   }
   await saveScreenshot(`01-map-preview-${mapPreviewId}.png`);
   if (observeMapPreviewEnemy) await saveScreenshot('03-map-preview-settled.png');
+  if (mapPreviewIdleObservationMs > 0) {
+    const idleSamples = [];
+    if (mapPreviewIdleSampleIntervalMs > 0) {
+      await cdp.evaluate(`(() => {
+        const host = document.querySelector('#game');
+        window.__heroesLoreMapIdleSamples = [];
+        const startedAt = performance.now();
+        window.__heroesLoreMapIdleTimer = setInterval(() => {
+          let runtime = null;
+          let playerInputState = null;
+          try { runtime = JSON.parse(host?.dataset.testRuntime ?? 'null'); } catch {}
+          try { playerInputState = JSON.parse(host?.dataset.testPlayerInputState ?? 'null'); } catch {}
+          window.__heroesLoreMapIdleSamples.push({
+            elapsedMs: Math.round(performance.now() - startedAt),
+            mapId: host?.dataset.testMapId === undefined ? null : Number(host.dataset.testMapId),
+            tile: [
+              host?.dataset.testPlayerTileX === undefined ? null : Number(host.dataset.testPlayerTileX),
+              host?.dataset.testPlayerTileY === undefined ? null : Number(host.dataset.testPlayerTileY),
+            ],
+            hp: host?.dataset.testHp === undefined ? null : Number(host.dataset.testHp),
+            playerInputState,
+            sourceMap15Actors: (runtime?.enemies ?? [])
+              .filter((enemy) => enemy.sourceMap15Ai !== undefined)
+              .map((enemy) => ({ sourceOrder: enemy.sourceOrder, enemyId: enemy.enemyId, ...enemy.sourceMap15Ai })),
+          });
+        }, ${mapPreviewIdleSampleIntervalMs});
+      })()`);
+      await delay(mapPreviewIdleObservationMs);
+      const pageSamples = await cdp.evaluate(`(() => {
+        clearInterval(window.__heroesLoreMapIdleTimer);
+        return window.__heroesLoreMapIdleSamples ?? [];
+      })()`);
+      if (Array.isArray(pageSamples)) idleSamples.push(...pageSamples);
+    } else {
+      await delay(mapPreviewIdleObservationMs);
+    }
+    const idleEnd = await observe(`map-preview-${mapPreviewId}-idle-end`);
+    const summarize = (state) => {
+      const runtime = state?.runtime;
+      const enemies = Array.isArray(runtime?.enemies) ? runtime.enemies : [];
+      const npcs = Array.isArray(runtime?.npcs) ? runtime.npcs : [];
+      return {
+        mapId: state?.mapId ?? null,
+        profile: state?.profile ?? null,
+        level: state?.level ?? null,
+        hp: state?.hp ?? null,
+        maxHp: runtime?.resources?.maxHp ?? null,
+        tile: [state?.tileX ?? null, state?.tileY ?? null],
+        playerInputState: state?.playerInputState ?? null,
+        mapSize: runtime?.mapSize ?? null,
+        enemyCount: enemies.length,
+        aliveEnemyCount: enemies.filter((enemy) => enemy.state === 'alive').length,
+        visibleEnemyCount: enemies.filter((enemy) => enemy.sourceRenderedOnScreen === true).length,
+        npcCount: npcs.length,
+        visibleNpcCount: npcs.filter((npc) => npc.visible === true).length,
+        enemyStates: enemies.map((enemy) => ({
+          sourceOrder: enemy.sourceOrder,
+          enemyId: enemy.enemyId,
+          tileX: enemy.tileX,
+          tileY: enemy.tileY,
+          hp: enemy.hp,
+          state: enemy.state,
+          animationStateIndex: enemy.animationStateIndex,
+          attackCooldownTicksRemaining: enemy.attackCooldownTicksRemaining,
+          pursuitTarget: enemy.pursuitTarget,
+          sourceMap15Ai: enemy.sourceMap15Ai ?? null,
+        })).sort((left, right) => left.sourceOrder - right.sourceOrder),
+      };
+    };
+    const startSummary = summarize(settled);
+    const endSummary = summarize(idleEnd);
+    const enemyStartByOrder = new Map(startSummary.enemyStates.map((enemy) => [enemy.sourceOrder, enemy]));
+    const enemyEndByOrder = new Map(endSummary.enemyStates.map((enemy) => [enemy.sourceOrder, enemy]));
+    const changedEnemySourceOrders = [...new Set([
+      ...enemyStartByOrder.keys(),
+      ...enemyEndByOrder.keys(),
+    ])].filter((sourceOrder) => JSON.stringify(enemyStartByOrder.get(sourceOrder)) !==
+      JSON.stringify(enemyEndByOrder.get(sourceOrder))).sort((left, right) => left - right);
+    const inBounds = Number.isInteger(idleEnd?.tileX) && Number.isInteger(idleEnd?.tileY) &&
+      idleEnd.tileX >= 0 && idleEnd.tileY >= 0 &&
+      idleEnd.tileX < idleEnd.runtime?.mapSize?.width && idleEnd.tileY < idleEnd.runtime?.mapSize?.height;
+    mapPreviewIdleObservation = {
+      durationMs: mapPreviewIdleObservationMs,
+      inputSentDuringWindow: false,
+      playerMovedDuringWindow: startSummary.tile[0] !== endSummary.tile[0] ||
+        startSummary.tile[1] !== endSummary.tile[1],
+      passed: idleEnd?.mapId === mapPreviewId && idleEnd?.runtime?.mapId === mapPreviewId &&
+        idleEnd?.profile === 'max-level' && idleEnd?.level === 99 && idleEnd?.hp > 0 && inBounds &&
+        startSummary.mapId === idleEnd?.mapId,
+      start: { ...startSummary, enemyStates: undefined },
+      end: { ...endSummary, enemyStates: undefined },
+      changedEnemyCount: changedEnemySourceOrders.length,
+      changedEnemySourceOrders,
+      ...(idleSamples.length === 0 ? {} : { samples: idleSamples }),
+    };
+    await saveScreenshot(`02-map-preview-${mapPreviewId}-idle-end.png`);
+  }
   return settled;
+}
+
+async function runMapPreviewMovementSmoke(initialState) {
+  const mapId = mapPreviewId;
+  if (!Number.isInteger(mapId) || initialState?.mapId !== mapId || initialState?.runtime === null) {
+    return { passed: false, status: 'invalid-preview-state', startTile: null, targetTile: null, attempts: [] };
+  }
+  const collisionPath = join(root, 'web', 'public', 'assets', 'generated', 'collision', '6',
+    `${String(mapId).padStart(2, '0')}.json`);
+  const collisionData = JSON.parse(await readFile(collisionPath, 'utf8'));
+  const directions = [
+    { name: 'up', dx: 0, dy: -1, key: 'ArrowUp', code: 'ArrowUp', virtualKeyCode: 38 },
+    { name: 'right', dx: 1, dy: 0, key: 'ArrowRight', code: 'ArrowRight', virtualKeyCode: 39 },
+    { name: 'down', dx: 0, dy: 1, key: 'ArrowDown', code: 'ArrowDown', virtualKeyCode: 40 },
+    { name: 'left', dx: -1, dy: 0, key: 'ArrowLeft', code: 'ArrowLeft', virtualKeyCode: 37 },
+  ];
+  const attempts = [];
+  let state = initialState;
+  for (const direction of directions) {
+    if (state?.mapId !== mapId || state?.runtime === null) break;
+    const startTile = { x: state.tileX, y: state.tileY };
+    const targetTile = { x: startTile.x + direction.dx, y: startTile.y + direction.dy };
+    const occupied = new Set((state.runtime.entityOccupiedCells ?? [])
+      .map((cell) => `${cell.tileX},${cell.tileY}`));
+    const marker = collisionData.values[targetTile.y]?.[targetTile.x];
+    if (marker !== 0 || occupied.has(`${targetTile.x},${targetTile.y}`)) continue;
+    await cdp.send('Input.dispatchKeyEvent', {
+      type: 'keyDown', key: direction.key, code: direction.code,
+      windowsVirtualKeyCode: direction.virtualKeyCode,
+    });
+    const keyDownAt = Date.now();
+    await delay(90);
+    await cdp.send('Input.dispatchKeyEvent', {
+      type: 'keyUp', key: direction.key, code: direction.code,
+      windowsVirtualKeyCode: direction.virtualKeyCode,
+    });
+    const keyPressDurationMs = Date.now() - keyDownAt;
+    const moveDeadline = Date.now() + 1500;
+    let moved = await readRuntime();
+    while (Date.now() < moveDeadline && moved?.mapId === mapId &&
+      moved?.tileX === startTile.x && moved?.tileY === startTile.y) {
+      await delay(20);
+      moved = await readRuntime();
+    }
+    const reachedTarget = moved?.mapId === mapId && moved?.tileX === targetTile.x && moved?.tileY === targetTile.y;
+    attempts.push({
+      direction: direction.name,
+      startTile,
+      targetTile,
+      observedTile: moved === null ? null : { x: moved.tileX, y: moved.tileY },
+      mapId: moved?.mapId ?? null,
+      hp: moved?.hp ?? null,
+      keyPressDurationMs,
+      reachedTarget,
+    });
+    if (reachedTarget) {
+      const final = await readRuntime();
+      return {
+        passed: final?.mapId === mapId && final?.level === 99 && final?.hp > 0,
+        status: 'moved-one-ordinary-cell',
+        startTile,
+        targetTile,
+        direction: direction.name,
+        afterRelease: final === null ? null : {
+          mapId: final.mapId,
+          tile: [final.tileX, final.tileY],
+          hp: final.hp,
+          level: final.level,
+        },
+        attempts,
+      };
+    }
+    if (moved?.mapId !== mapId || moved?.tileX !== startTile.x || moved?.tileY !== startTile.y) {
+      return {
+        passed: false,
+        status: 'unexpected-displacement-during-input',
+        startTile,
+        targetTile,
+        direction: direction.name,
+        observedTile: moved === null ? null : [moved.tileX, moved.tileY],
+        attempts,
+      };
+    }
+    state = moved;
+  }
+  return {
+    passed: false,
+    status: attempts.length === 0 ? 'no-clear-ordinary-neighbor' : 'no-neighbor-movement-observed',
+    startTile: { x: state?.tileX ?? initialState.tileX, y: state?.tileY ?? initialState.tileY },
+    targetTile: null,
+    attempts,
+  };
+}
+
+async function runMap37ClassSixMultiTargetAttack(initialState) {
+  const expectedTargets = [
+    { sourceOrder: 2, enemyId: 18 },
+    { sourceOrder: 3, enemyId: 20 },
+  ];
+  const summarize = (state) => expectedTargets.map(({ sourceOrder, enemyId }) => {
+    const enemy = state?.runtime?.enemies?.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    return enemy === undefined ? null : {
+      sourceOrder,
+      enemyId,
+      tile: [enemy.tileX, enemy.tileY],
+      hp: enemy.hp,
+      state: enemy.state,
+    };
+  });
+  const before = await readRuntime();
+  const targetsBefore = summarize(before);
+  if (before?.mapId !== 37 || before.tileX !== 10 || before.tileY !== 9 ||
+    before.runtime?.player?.direction !== 1 || before.level !== 99 ||
+    before.hp !== before.runtime?.resources?.maxHp || targetsBefore.some((target) => target === null)) {
+    throw new Error(`Map37 multi-target fixture was not ready at its expected state: ${JSON.stringify({ before, targetsBefore })}`);
+  }
+  observations.push({ at: new Date().toISOString(), label: 'map37-before-class6-heavy-fan', state: before });
+  await saveScreenshot('02-map37-before-class6-heavy-fan.png');
+  const inputStartedAt = Date.now();
+  await tap('7', 'Numpad7', 103, '7');
+  const after = await waitFor((state) => {
+    if (state?.mapId !== 37 || state?.runtime?.player?.direction !== 1) return false;
+    const targets = summarize(state);
+    return targets.every((target, index) => target !== null && target.hp < targetsBefore[index].hp);
+  }, { timeoutMs: 5000, intervalMs: 20, label: 'both Map37 fan targets lose HP' });
+  const targetsAfter = summarize(after);
+  await saveScreenshot('03-map37-class6-heavy-fan-hit.png');
+  const damage = targetsBefore.map((target, index) => ({
+    sourceOrder: target.sourceOrder,
+    enemyId: target.enemyId,
+    beforeHp: target.hp,
+    afterHp: targetsAfter[index]?.hp ?? null,
+    damage: targetsAfter[index] === null ? null : target.hp - targetsAfter[index].hp,
+  }));
+  const passed = damage.length === 2 && damage.every((entry) => Number.isInteger(entry.damage) && entry.damage > 0) &&
+    targetsAfter.every((target) => target?.state === 'alive' && target.hp > 0) &&
+    after.level === 99 && after.hp === before.hp && after.hp > 0;
+  return {
+    passed,
+    input: 'Numpad7 heavy stage 0',
+    sourceClass: 6,
+    player: { tile: [before.tileX, before.tileY], direction: before.runtime.player.direction,
+      level: before.level, hpBefore: before.hp, hpAfter: after.hp },
+    targetsBefore,
+    targetsAfter,
+    damage,
+    expectedSourceCells: [[10, 8], [11, 8], [9, 8]],
+    observedElapsedMs: Date.now() - inputStartedAt,
+  };
+}
+
+async function runMap37ClassSixTripleTargetAttack(initialState) {
+  const expectedTargets = [
+    { sourceOrder: 2, enemyId: 18, tile: [10, 8] },
+    { sourceOrder: 3, enemyId: 20, tile: [11, 8] },
+    { sourceOrder: 1, enemyId: 18, tile: [9, 8] },
+  ];
+  const summarize = (state) => expectedTargets.map(({ sourceOrder, enemyId }) => {
+    const enemy = state?.runtime?.enemies?.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    return enemy === undefined ? null : {
+      sourceOrder,
+      enemyId,
+      tile: [enemy.tileX, enemy.tileY],
+      hp: enemy.hp,
+      state: enemy.state,
+    };
+  });
+  const before = await readRuntime();
+  const targetsBefore = summarize(before);
+  if (before?.mapId !== 37 || before.tileX !== 10 || before.tileY !== 9 ||
+    before.runtime?.player?.direction !== 1 || before.level !== 99 ||
+    before.hp !== before.runtime?.resources?.maxHp || targetsBefore.some((target, index) =>
+      target === null || target.tile[0] !== expectedTargets[index].tile[0] ||
+      target.tile[1] !== expectedTargets[index].tile[1])) {
+    throw new Error(`Map37 triple-target fixture was not ready at its expected state: ${JSON.stringify({ before, targetsBefore })}`);
+  }
+  observations.push({ at: new Date().toISOString(), label: 'map37-before-class6-triple-fan', state: before });
+  await saveScreenshot('02-map37-before-class6-triple-fan.png');
+  const inputStartedAt = Date.now();
+  await tap('7', 'Numpad7', 103, '7');
+  const after = await waitFor((state) => {
+    if (state?.mapId !== 37 || state?.runtime?.player?.direction !== 1) return false;
+    const targets = summarize(state);
+    return targets.every((target, index) => target !== null && target.hp < targetsBefore[index].hp);
+  }, { timeoutMs: 5000, intervalMs: 20, label: 'all three Map37 fan targets lose HP' });
+  const targetsAfter = summarize(after);
+  await saveScreenshot('03-map37-class6-triple-fan-hit.png');
+  const damage = targetsBefore.map((target, index) => ({
+    sourceOrder: target.sourceOrder,
+    enemyId: target.enemyId,
+    tile: target.tile,
+    beforeHp: target.hp,
+    afterHp: targetsAfter[index]?.hp ?? null,
+    damage: targetsAfter[index] === null ? null : target.hp - targetsAfter[index].hp,
+  }));
+  const passed = damage.length === 3 && damage.every((entry) => Number.isInteger(entry.damage) && entry.damage > 0) &&
+    targetsAfter.every((target) => target?.state === 'alive' && target.hp > 0) &&
+    after.level === 99 && after.hp === before.hp && after.hp > 0;
+  return {
+    passed,
+    input: 'Numpad7 heavy stage 0',
+    sourceClass: 6,
+    player: { tile: [before.tileX, before.tileY], direction: before.runtime.player.direction,
+      level: before.level, hpBefore: before.hp, hpAfter: after.hp },
+    targetsBefore,
+    targetsAfter,
+    damage,
+    expectedSourceCells: [[10, 8], [11, 8], [9, 8]],
+    observedElapsedMs: Date.now() - inputStartedAt,
+  };
+}
+
+async function runMap37ClassSixLightFollowup(initialState) {
+  const expectedTargets = [
+    { sourceOrder: 2, enemyId: 18, tile: [10, 8] },
+    { sourceOrder: 3, enemyId: 20, tile: [11, 8] },
+    { sourceOrder: 1, enemyId: 18, tile: [9, 8] },
+  ];
+  const summarize = (state) => expectedTargets.map(({ sourceOrder, enemyId }) => {
+    const enemy = state?.runtime?.enemies?.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    return enemy === undefined ? null : {
+      sourceOrder,
+      enemyId,
+      tile: [enemy.tileX, enemy.tileY],
+      hp: enemy.hp,
+      state: enemy.state,
+    };
+  });
+  const before = await readRuntime();
+  const targetsBefore = summarize(before);
+  if (before?.mapId !== 37 || before.tileX !== 10 || before.tileY !== 9 ||
+    before.runtime?.player?.direction !== 1 || before.level !== 99 ||
+    before.hp !== before.runtime?.resources?.maxHp || before.runtime?.combo?.comboLimit !== 2 ||
+    targetsBefore.some((target, index) => target === null ||
+      target.tile[0] !== expectedTargets[index].tile[0] ||
+      target.tile[1] !== expectedTargets[index].tile[1])) {
+    throw new Error(`Map37 light-follow-up fixture was not ready: ${JSON.stringify({ before, targetsBefore })}`);
+  }
+  observations.push({ at: new Date().toISOString(), label: 'map37-before-class6-light-followup', state: before });
+  await saveScreenshot('02-map37-before-class6-light-followup.png');
+
+  await pulseComboKey('5', 'Numpad5', 101, '5');
+  await pulseComboKey('5', 'Numpad5', 101, '5');
+  const afterStage0 = await waitFor((state) => {
+    const targets = summarize(state);
+    return state?.mapId === 37 && targets[0]?.hp < targetsBefore[0].hp &&
+      targets[1]?.hp === targetsBefore[1].hp && targets[2]?.hp === targetsBefore[2].hp &&
+      state?.runtime?.combo?.stage === 0 && state.runtime.combo.activeStyle === 'light' &&
+      state.runtime.combo.queuedStyle === 'light';
+  }, { timeoutMs: 5000, intervalMs: 20, label: 'class-6 light stage-0 forward impact' });
+  const stage0Targets = summarize(afterStage0);
+  await saveScreenshot('03-map37-class6-light-stage0-hit.png');
+
+  const afterFollowup = await waitFor((state) => {
+    if (state?.mapId !== 37 || state?.runtime?.combo?.stage !== 1) return false;
+    const targets = summarize(state);
+    return targets.every((target, index) => target !== null && target.hp < stage0Targets[index].hp);
+  }, { timeoutMs: 5000, intervalMs: 20, label: 'class-6 light stage-1 fan hits all three targets' });
+  const targetsAfterFollowup = summarize(afterFollowup);
+  await saveScreenshot('04-map37-class6-light-stage1-fan-hit.png');
+  const damage = targetsAfterFollowup.map((target, index) => ({
+    sourceOrder: target.sourceOrder,
+    enemyId: target.enemyId,
+    tile: target.tile,
+    stage0Hp: stage0Targets[index]?.hp ?? null,
+    afterFollowupHp: target.hp,
+    followupDamage: stage0Targets[index] === null ? null : stage0Targets[index].hp - target.hp,
+    totalDamage: targetsBefore[index].hp - target.hp,
+  }));
+  const passed = afterStage0.runtime.combo.stage === 0 && afterFollowup.runtime.combo.stage === 1 &&
+    damage.length === 3 && damage.every((entry) => Number.isInteger(entry.followupDamage) && entry.followupDamage > 0) &&
+    targetsAfterFollowup.every((target) => target.state === 'alive' && target.hp > 0) &&
+    afterFollowup.level === 99 && afterFollowup.hp === before.hp && afterFollowup.hp > 0;
+  return {
+    passed,
+    inputs: ['Numpad5 light stage 0', 'Numpad5 queued light stage 1'],
+    sourceClass: 6,
+    comboLimit: before.runtime.combo.comboLimit,
+    player: { tile: [before.tileX, before.tileY], direction: before.runtime.player.direction,
+      level: before.level, hpBefore: before.hp, hpAfter: afterFollowup.hp },
+    targetsBefore,
+    stage0Targets,
+    targetsAfterFollowup,
+    damage,
+  };
+}
+
+async function runMap37ClassSixHeavyStage4Sweep(initialState) {
+  const expectedTargets = [
+    { sourceOrder: 0, enemyId: 18, tile: [9, 8] },
+    { sourceOrder: 1, enemyId: 20, tile: [10, 9] },
+    { sourceOrder: 2, enemyId: 18, tile: [9, 10] },
+    { sourceOrder: 3, enemyId: 20, tile: [8, 9] },
+    { sourceOrder: 4, enemyId: 18, tile: [8, 8] },
+    { sourceOrder: 5, enemyId: 20, tile: [10, 8] },
+    { sourceOrder: 6, enemyId: 18, tile: [8, 10] },
+    { sourceOrder: 7, enemyId: 20, tile: [10, 10] },
+  ];
+  const summarize = (state) => expectedTargets.map(({ sourceOrder, enemyId }) => {
+    const enemy = state?.runtime?.enemies?.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    return enemy === undefined ? null : {
+      sourceOrder,
+      enemyId,
+      tile: [enemy.tileX, enemy.tileY],
+      hp: enemy.hp,
+      state: enemy.state,
+    };
+  });
+  const before = await readRuntime();
+  const targetsBefore = summarize(before);
+  if (before?.mapId !== 37 || before.tileX !== 9 || before.tileY !== 9 ||
+    before.runtime?.player?.direction !== 1 || before.level !== 99 ||
+    before.hp !== before.runtime?.resources?.maxHp || before.runtime?.combo?.comboLimit !== 5 ||
+    targetsBefore.some((target, index) => target === null ||
+      target.tile[0] !== expectedTargets[index].tile[0] ||
+      target.tile[1] !== expectedTargets[index].tile[1])) {
+    throw new Error(`Map37 heavy-stage-4 sweep fixture was not ready: ${JSON.stringify({ before, targetsBefore })}`);
+  }
+  observations.push({ at: new Date().toISOString(), label: 'map37-before-class6-heavy-stage4-sweep', state: before });
+  await saveScreenshot('02-map37-before-class6-heavy-stage4-sweep.png');
+
+  const stageTransitions = [];
+  await pulseComboKey('5', 'Numpad5', 101, '5');
+  for (let stage = 0; stage <= 3; stage += 1) {
+    const active = await waitFor((state) => state?.mapId === 37 &&
+      state?.runtime?.combo?.stage === stage && state.runtime.combo.activeStyle === 'light', {
+      timeoutMs: 5000,
+      intervalMs: 5,
+      label: `class-6 light combo stage ${stage} begins`,
+    });
+    stageTransitions.push({ stage, style: active.runtime.combo.activeStyle, frame: active.runtime.combo.frame });
+    if (stage < 3) {
+      await pulseComboKey('5', 'Numpad5', 101, '5');
+      continue;
+    }
+    await saveScreenshot('03-map37-class6-light-stage3-before-heavy-queue.png');
+    await pulseComboKey('7', 'Numpad7', 103, '7');
+  }
+
+  const stage4Start = await waitFor((state) => state?.mapId === 37 &&
+    state?.runtime?.combo?.stage === 4 && state.runtime.combo.activeStyle === 'heavy' &&
+    state.runtime.combo.frame === 0, {
+    timeoutMs: 5000,
+    intervalMs: 5,
+    label: 'class-6 heavy stage 4 begins before its first impact frame',
+  });
+  const targetsBeforeSweep = summarize(stage4Start);
+  observations.push({ at: new Date().toISOString(), label: 'map37-class6-heavy-stage4-frame0', state: stage4Start });
+  await saveScreenshot('04-map37-class6-heavy-stage4-frame0.png');
+  const after = await waitFor((state) => {
+    if (state?.mapId !== 37 || state?.runtime?.combo?.stage !== 4 ||
+      state.runtime.combo.activeStyle !== 'heavy' || state.runtime.combo.frame < 1) return false;
+    const targets = summarize(state);
+    return targets.every((target, index) => target !== null && target.hp < targetsBeforeSweep[index].hp);
+  }, { timeoutMs: 5000, intervalMs: 5, label: 'heavy stage-4 frame-1 sweep damages all eight surrounding cells' });
+  const targetsAfter = summarize(after);
+  await saveScreenshot('05-map37-class6-heavy-stage4-sweep-hit.png');
+  const damage = targetsBeforeSweep.map((target, index) => ({
+    sourceOrder: target.sourceOrder,
+    enemyId: target.enemyId,
+    tile: target.tile,
+    beforeHp: target.hp,
+    afterHp: targetsAfter[index]?.hp ?? null,
+    damage: targetsAfter[index] === null ? null : target.hp - targetsAfter[index].hp,
+  }));
+  const passed = stageTransitions.length === 4 && stageTransitions.every(({ stage, style }) =>
+    style === 'light' && Number.isInteger(stage)) && stage4Start.runtime.combo.frame === 0 &&
+    after.runtime.combo.stage === 4 && after.runtime.combo.activeStyle === 'heavy' &&
+    damage.length === 8 && damage.every((entry) => Number.isInteger(entry.damage) && entry.damage > 0) &&
+    targetsAfter.every((target) => target.state === 'alive' && target.hp > 0) &&
+    after.level === 99 && after.hp === before.hp && after.hp > 0;
+  return {
+    passed,
+    inputs: ['Numpad5 x4 for light stages 0–3', 'Numpad7 queued heavy stage 4'],
+    sourceClass: 6,
+    comboLimit: before.runtime.combo.comboLimit,
+    player: { tile: [before.tileX, before.tileY], direction: before.runtime.player.direction,
+      level: before.level, hpBefore: before.hp, hpAfter: after.hp },
+    stageTransitions,
+    targetsBeforeSweep,
+    targetsAfter,
+    damage,
+    sourceCellOrder: expectedTargets.map(({ tile }) => tile),
+  };
 }
 
 function findMapPath(values, start, goals, occupied, blockedCells = new Set()) {
@@ -2697,6 +3393,9 @@ async function approachAndAttackMap27Enemy({ touch = false } = {}) {
       if (state?.mapId !== 27 || state.tileX !== step.from[0] || state.tileY !== step.from[1]) {
         throw new Error(`Map27 approach diverged before ${JSON.stringify(step)}: ${JSON.stringify(state)}`);
       }
+      const destinationOccupied = state.runtime?.entityOccupiedCells?.some((cell) =>
+        cell.tileX === step.to[0] && cell.tileY === step.to[1]);
+      if (destinationOccupied) break;
       const input = directionInputs.get(`${step.to[0] - step.from[0]},${step.to[1] - step.from[1]}`);
       if (input === undefined) throw new Error(`Invalid Map27 combat approach step: ${JSON.stringify(step)}`);
       const moved = await holdUntil(
@@ -2822,15 +3521,20 @@ async function approachAndAttackMap27Enemy({ touch = false } = {}) {
       tile: [beforeAttack.tileX, beforeAttack.tileY],
       direction: beforeAttack.runtime.player.direction,
       hp: beforeAttack.runtime.resources.hp,
+      maxHp: beforeAttack.runtime.resources.maxHp,
+      level: beforeAttack.runtime.resources.level,
       sp: beforeAttack.runtime.resources.sp,
     },
     targetBefore: { tile: [targetBefore.tileX, targetBefore.tileY], hp: targetBefore.hp, state: targetBefore.state },
+    damage: targetAfter?.hp === undefined ? null : targetBefore.hp - targetAfter.hp,
     facingInput: attackReady.direction,
     attackInput: touch ? 'mobile Attack touch control' : 'Numpad5 light attack',
     touchControl,
     playerAfter: {
       tile: [afterAttack?.tileX, afterAttack?.tileY],
       hp: afterAttack?.runtime?.resources.hp,
+      maxHp: afterAttack?.runtime?.resources.maxHp,
+      level: afterAttack?.runtime?.resources.level,
       sp: afterAttack?.runtime?.resources.sp,
     },
     targetAfter: targetAfter === undefined
@@ -3033,6 +3737,7 @@ async function runMap27WeaponProcStatus(
   statusId,
   statusName,
   maximumAttackCount = 20,
+  observeSlowCooldown = false,
 ) {
   const sourceOrder = 14;
   const enemyId = 24;
@@ -3070,6 +3775,53 @@ async function runMap27WeaponProcStatus(
     enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
   const observedStatusEffects = after?.enemyStatusEffects.find((entry) => entry.sourceOrder === sourceOrder) ?? null;
   const observedStatus = observedStatusEffects?.effects.some((effect) => effect.id === statusId) === true;
+  const slowCooldownSamples = [];
+  let slowCooldownObservation = null;
+  if (observeSlowCooldown && statusId === 1 && observedStatus) {
+    const cooldownObservationStartedAt = Date.now();
+    let matchingSample = null;
+    let current = after;
+    while (Date.now() - cooldownObservationStartedAt < 7000) {
+      const enemy = current?.runtime?.enemies.find((candidate) =>
+        candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+      const effects = current?.enemyStatusEffects.find((entry) => entry.sourceOrder === sourceOrder)?.effects ?? [];
+      const slowEffect = effects.find((effect) => effect.id === 1) ?? null;
+      const sample = {
+        elapsedMs: Date.now() - cooldownObservationStartedAt,
+        statusTicksElapsed: slowEffect?.ticksElapsed ?? null,
+        enemyState: enemy?.state ?? null,
+        animationStateIndex: enemy?.animationStateIndex ?? null,
+        attackCooldownTicksRemaining: enemy?.attackCooldownTicksRemaining ?? null,
+        attackAnimationTicksRemaining: enemy?.attackAnimationTicksRemaining ?? null,
+        behaviorTiming: enemy?.behaviorTiming ?? null,
+        enemyHp: enemy?.hp ?? null,
+        playerHp: current?.hp ?? null,
+      };
+      if (slowEffect !== null) slowCooldownSamples.push(sample);
+      const baseCooldownTicks = enemy?.behaviorTiming?.[1];
+      if (slowEffect !== null && enemy?.state === 'alive' && enemy.animationStateIndex === 2 &&
+        Number.isInteger(baseCooldownTicks) &&
+        enemy.attackCooldownTicksRemaining === baseCooldownTicks * 2 + 1) {
+        matchingSample = sample;
+        break;
+      }
+      if (slowEffect === null || current?.hp <= 0) break;
+      await delay(40);
+      current = await readRuntime();
+    }
+    if (matchingSample !== null) {
+      await observe('map27-status-1-doubled-attack-cooldown');
+      await saveScreenshot('04-map27-status-1-doubled-attack-cooldown.png');
+    }
+    slowCooldownObservation = {
+      passed: matchingSample !== null,
+      expectedMultiplier: 2,
+      observedAttackCooldownTicksRemaining: matchingSample?.attackCooldownTicksRemaining ?? null,
+      observedBaseCooldownTicks: matchingSample?.behaviorTiming?.[1] ?? null,
+      observedStatusTicksElapsed: matchingSample?.statusTicksElapsed ?? null,
+      samples: slowCooldownSamples,
+    };
+  }
   const followUpAttacks = [];
   if (statusId === 4 && observedStatus && statusEnemy?.hp !== undefined) {
     previousEnemyHp = statusEnemy.hp;
@@ -3102,7 +3854,8 @@ async function runMap27WeaponProcStatus(
   const followUpDamageMean = followUpAttacks.length === 0 ? null
     : followUpAttacks.reduce((sum, attack) => sum + (attack.damage ?? 0), 0) / followUpAttacks.length;
   return {
-    passed: observedStatus && finalEnemy?.hp > 0 && finalEnemy.hp < startingEnemy.hp &&
+    passed: observedStatus && (!observeSlowCooldown || slowCooldownObservation?.passed === true) &&
+      finalEnemy?.hp > 0 && finalEnemy.hp < startingEnemy.hp &&
       finalEnemy.state === 'alive' && after?.level === 99 && after.hp > 0 &&
       after.tileX === 9 && after.tileY === 31,
     source: {
@@ -3116,6 +3869,7 @@ async function runMap27WeaponProcStatus(
     attackCount: attacks.length,
     attacks,
     followUpAttacks,
+    slowCooldownObservation,
     defenseDownDamageCompared: statusId === 4 && attacks.length > 0 && followUpAttacks.length > 0
       ? {
         preStatusDamageMean,
@@ -3139,6 +3893,440 @@ async function runMap27WeaponProcStatus(
   };
 }
 
+async function runMap27WeaponProcDamage(initialState) {
+  const sourceOrder = 14;
+  const enemyId = 24;
+  const seededHp = 50000000;
+  const startingEnemy = initialState?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  const weapon = initialState?.runtime?.equipment?.[0];
+  const maxHp = initialState?.runtime?.resources?.maxHp;
+  const expectedHpCost = Number.isInteger(maxHp) ? Math.trunc(maxHp / 25) : null;
+  if (initialState?.mapId !== 27 || initialState.tileX !== 9 || initialState.tileY !== 31 ||
+    startingEnemy?.tileX !== 10 || startingEnemy?.tileY !== 31 || startingEnemy.hp !== seededHp ||
+    startingEnemy.state !== 'alive' || weapon?.category !== 0 || weapon?.itemId !== 32 ||
+    weapon.equipmentState?.subtypeBytes?.[2] !== 8 || expectedHpCost === null) {
+    throw new Error(`Proc-code-8 fixture did not initialize as expected: ${JSON.stringify({
+      mapId: initialState?.mapId,
+      tile: [initialState?.tileX, initialState?.tileY],
+      target: startingEnemy,
+      weapon: weapon === undefined ? null : { category: weapon.category, itemId: weapon.itemId,
+        subtypeBytes: weapon.equipmentState?.subtypeBytes },
+      maxHp,
+    })}`);
+  }
+
+  await saveScreenshot('02-map27-proc-code-8-before.png');
+  let previous = initialState;
+  let previousEnemyHp = startingEnemy.hp;
+  let procObservation = null;
+  const attacks = [];
+  for (let attackIndex = 1; attackIndex <= 50; attackIndex += 1) {
+    await tap('5', 'Numpad5', 101, '5');
+    let state = await readRuntime();
+    let enemy = state?.runtime?.enemies.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    const hitDeadline = Date.now() + 1200;
+    while (enemy?.hp === previousEnemyHp && Date.now() < hitDeadline) {
+      await delay(40);
+      state = await readRuntime();
+      enemy = state?.runtime?.enemies.find((candidate) =>
+        candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    }
+    const enemyDamage = enemy?.hp === undefined ? null : previousEnemyHp - enemy.hp;
+    const playerHpCost = previous?.hp === undefined || state?.hp === undefined
+      ? null
+      : previous.hp - state.hp;
+    const attack = {
+      attackIndex,
+      enemyHp: enemy?.hp ?? null,
+      enemyDamage,
+      enemyState: enemy?.state ?? null,
+      playerHp: state?.hp ?? null,
+      playerHpCost,
+      combo: state?.runtime?.combo ?? null,
+    };
+    attacks.push(attack);
+    if (playerHpCost === expectedHpCost && (enemyDamage ?? 0) > 0) {
+      procObservation = { ...attack, screenshot: '03-map27-proc-code-8-observed.png' };
+      await observe('map27-proc-code-8-observed');
+      await saveScreenshot('03-map27-proc-code-8-observed.png');
+      break;
+    }
+    if (enemy?.hp !== undefined) previousEnemyHp = enemy.hp;
+    previous = state;
+    if (enemy?.state !== 'alive' || (state?.hp ?? 0) <= 0) break;
+  }
+  const finalSnapshot = await readRuntime();
+  const finalEnemy = finalSnapshot?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  const passed = procObservation !== null && finalSnapshot?.mapId === 27 &&
+    finalSnapshot.level === 99 && finalSnapshot.hp > 0 && finalSnapshot.tileX === 9 &&
+    finalSnapshot.tileY === 31 && procObservation.enemyDamage > 0 &&
+    procObservation.playerHpCost === expectedHpCost && finalEnemy?.state === 'alive' &&
+    finalEnemy.hp > 0;
+  return {
+    passed,
+    source: {
+      weapon: { category: weapon.category, itemId: weapon.itemId,
+        procCode: weapon.equipmentState.subtypeBytes[2] },
+      enemyId,
+      sourceOrder,
+      seededEnemyHp: seededHp,
+    },
+    expected: { hpCost: expectedHpCost, formula: 'trunc(maxHp / 25)', maxHp },
+    attackCount: attacks.length,
+    procObservation,
+    attacks,
+    final: {
+      mapId: finalSnapshot?.mapId,
+      playerTile: [finalSnapshot?.tileX, finalSnapshot?.tileY],
+      level: finalSnapshot?.level,
+      hp: finalSnapshot?.hp,
+      maxHp: finalSnapshot?.runtime?.resources?.maxHp,
+      enemyHp: finalEnemy?.hp ?? null,
+      enemyState: finalEnemy?.state ?? null,
+    },
+  };
+}
+
+async function runMap27WeaponProcResource(initialState, resource) {
+  const sourceOrder = 14;
+  const enemyId = 24;
+  const seededHp = 50000000;
+  const procCode = resource === 'sp' ? 3 : 4;
+  const itemId = resource === 'sp' ? 30 : 36;
+  const startingEnemy = initialState?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  const weapon = initialState?.runtime?.equipment?.[0];
+  if (initialState?.mapId !== 27 || initialState.tileX !== 9 || initialState.tileY !== 31 ||
+    startingEnemy?.tileX !== 10 || startingEnemy?.tileY !== 31 || startingEnemy.hp !== seededHp ||
+    startingEnemy.state !== 'alive' || weapon?.category !== 0 || weapon?.itemId !== itemId ||
+    weapon.equipmentState?.subtypeBytes?.[2] !== procCode) {
+    throw new Error(`Proc-code-${procCode} fixture did not initialize as expected: ${JSON.stringify({
+      mapId: initialState?.mapId,
+      tile: [initialState?.tileX, initialState?.tileY],
+      target: startingEnemy,
+      weapon: weapon === undefined ? null : { category: weapon.category, itemId: weapon.itemId,
+        subtypeBytes: weapon.equipmentState?.subtypeBytes },
+    })}`);
+  }
+
+  await saveScreenshot('02-map27-proc-resource-before.png');
+  let previous = initialState;
+  let previousEnemyHp = startingEnemy.hp;
+  const attacks = [];
+  let procObservation = null;
+  for (let attackIndex = 1; attackIndex <= 50; attackIndex += 1) {
+    await tap('5', 'Numpad5', 101, '5');
+    let state = await readRuntime();
+    let enemy = state?.runtime?.enemies.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    const hitDeadline = Date.now() + 1200;
+    while (enemy?.hp === previousEnemyHp && Date.now() < hitDeadline) {
+      await delay(40);
+      state = await readRuntime();
+      enemy = state?.runtime?.enemies.find((candidate) =>
+        candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    }
+    const enemyDamage = enemy?.hp === undefined ? null : previousEnemyHp - enemy.hp;
+    const playerHpCost = previous?.hp === undefined || state?.hp === undefined
+      ? null : previous.hp - state.hp;
+    const playerSpCost = previous?.runtime?.resources?.sp === undefined ||
+      state?.runtime?.resources?.sp === undefined
+      ? null : previous.runtime.resources.sp - state.runtime.resources.sp;
+    const expectedCost = (enemyDamage ?? 0) <= 0 ? null : resource === 'sp'
+      ? Math.trunc((enemyDamage * 80) / 100)
+      : Math.trunc(enemyDamage / 2);
+    const attack = {
+      attackIndex,
+      enemyHp: enemy?.hp ?? null,
+      enemyDamage,
+      enemyState: enemy?.state ?? null,
+      playerHp: state?.hp ?? null,
+      playerHpCost,
+      playerSp: state?.runtime?.resources?.sp ?? null,
+      playerSpCost,
+      expectedCost,
+      combo: state?.runtime?.combo ?? null,
+    };
+    attacks.push(attack);
+    const actualCost = resource === 'sp' ? playerSpCost : playerHpCost;
+    if (expectedCost !== null && actualCost === expectedCost && expectedCost > 0 &&
+      (resource === 'sp' ? playerHpCost === 0 : playerSpCost === 0)) {
+      procObservation = { ...attack, screenshot: '03-map27-proc-resource-observed.png' };
+      await observe(`map27-proc-code-${procCode}-${resource}-drain-observed`);
+      await saveScreenshot('03-map27-proc-resource-observed.png');
+      break;
+    }
+    if (enemy?.hp !== undefined) previousEnemyHp = enemy.hp;
+    previous = state;
+    if (enemy?.state !== 'alive' || (state?.hp ?? 0) <= 0) break;
+  }
+  const finalSnapshot = await readRuntime();
+  const finalEnemy = finalSnapshot?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  return {
+    passed: procObservation !== null && finalSnapshot?.mapId === 27 &&
+      finalSnapshot.level === 99 && finalSnapshot.hp > 0 && finalSnapshot.tileX === 9 &&
+      finalSnapshot.tileY === 31 && finalEnemy?.state === 'alive' && finalEnemy.hp > 0,
+    source: { resource, weapon: { category: weapon.category, itemId,
+      procCode: weapon.equipmentState.subtypeBytes[2] }, enemyId, sourceOrder, seededEnemyHp: seededHp },
+    expected: { formula: resource === 'sp' ? 'trunc(calculatedDamage * 80 / 100)' :
+      'trunc(calculatedDamage / 2)', cost: procObservation?.expectedCost ?? null },
+    attackCount: attacks.length,
+    procObservation,
+    attacks,
+    final: {
+      mapId: finalSnapshot?.mapId,
+      playerTile: [finalSnapshot?.tileX, finalSnapshot?.tileY],
+      level: finalSnapshot?.level,
+      hp: finalSnapshot?.hp,
+      maxHp: finalSnapshot?.runtime?.resources?.maxHp,
+      sp: finalSnapshot?.runtime?.resources?.sp,
+      maxSp: finalSnapshot?.runtime?.resources?.maxSp,
+      enemyHp: finalEnemy?.hp ?? null,
+      enemyState: finalEnemy?.state ?? null,
+    },
+  };
+}
+
+async function runMap13AuProcResource(initialState, resource) {
+  const enemyId = 35;
+  const seededHp = 50000000;
+  const procCode = resource === 'sp' ? 3 : 4;
+  const itemId = resource === 'sp' ? 30 : 36;
+  const startingTarget = initialState?.runtime?.enemies.find((enemy) => enemy.enemyId === enemyId);
+  const weapon = initialState?.runtime?.equipment?.[0];
+  const sourceOrder = startingTarget?.sourceOrder;
+  if (initialState?.mapId !== 13 || initialState.tileX !== 9 || initialState.tileY !== 6 ||
+    initialState.runtime?.player?.direction !== 1 || startingTarget?.sourceAu !== true ||
+    startingTarget.hp !== seededHp || startingTarget.state !== 'alive' ||
+    weapon?.category !== 0 || weapon?.itemId !== itemId ||
+    weapon.equipmentState?.subtypeBytes?.[2] !== procCode || sourceOrder === undefined) {
+    throw new Error(`Source-au proc-code-${procCode} fixture did not initialize as expected: ${JSON.stringify({
+      mapId: initialState?.mapId,
+      tile: [initialState?.tileX, initialState?.tileY],
+      playerDirection: initialState?.runtime?.player?.direction,
+      target: startingTarget,
+      weapon: weapon === undefined ? null : { category: weapon.category, itemId: weapon.itemId,
+        subtypeBytes: weapon.equipmentState?.subtypeBytes },
+    })}`);
+  }
+
+  await saveScreenshot(`02-map13-au-proc-${resource}-before.png`);
+  let previous = initialState;
+  let previousEnemyHp = startingTarget.hp;
+  const attacks = [];
+  let procObservation = null;
+  for (let attackIndex = 1; attackIndex <= 50; attackIndex += 1) {
+    await tap('5', 'Numpad5', 101, '5');
+    let state = await readRuntime();
+    let enemy = state?.runtime?.enemies.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    const hitDeadline = Date.now() + 1200;
+    while (enemy?.hp === previousEnemyHp && Date.now() < hitDeadline) {
+      await delay(40);
+      state = await readRuntime();
+      enemy = state?.runtime?.enemies.find((candidate) =>
+        candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    }
+    const enemyDamage = enemy?.hp === undefined ? null : previousEnemyHp - enemy.hp;
+    const playerHpCost = previous?.hp === undefined || state?.hp === undefined
+      ? null : previous.hp - state.hp;
+    const playerSpCost = previous?.runtime?.resources?.sp === undefined ||
+      state?.runtime?.resources?.sp === undefined
+      ? null : previous.runtime.resources.sp - state.runtime.resources.sp;
+    const expectedCost = (enemyDamage ?? 0) <= 0 ? null : resource === 'sp'
+      ? Math.trunc((enemyDamage * 30) / 100)
+      : Math.trunc(enemyDamage / 2);
+    const actualCost = resource === 'sp' ? playerSpCost : playerHpCost;
+    const otherCost = resource === 'sp' ? playerHpCost : playerSpCost;
+    const attack = {
+      attackIndex,
+      enemyHp: enemy?.hp ?? null,
+      enemyDamage,
+      enemyState: enemy?.state ?? null,
+      playerHp: state?.hp ?? null,
+      playerHpCost,
+      playerSp: state?.runtime?.resources?.sp ?? null,
+      playerSpCost,
+      expectedCost,
+      direction: state?.runtime?.player?.direction ?? null,
+      combo: state?.runtime?.combo ?? null,
+    };
+    attacks.push(attack);
+    if (expectedCost !== null && expectedCost > 0 && actualCost === expectedCost && otherCost === 0) {
+      procObservation = { ...attack, screenshot: `03-map13-au-proc-${resource}-observed.png` };
+      await observe(`map13-source-au-proc-code-${procCode}-${resource}-cost-observed`);
+      await saveScreenshot(`03-map13-au-proc-${resource}-observed.png`);
+      break;
+    }
+    if (enemy?.hp !== undefined) previousEnemyHp = enemy.hp;
+    previous = state;
+    if (enemy?.state !== 'alive' || (state?.hp ?? 0) <= 0) break;
+  }
+  const finalSnapshot = await readRuntime();
+  const finalEnemy = finalSnapshot?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  const startingHp = initialState.hp ?? null;
+  const finalHp = finalSnapshot?.hp ?? null;
+  const startingSp = initialState.runtime?.resources?.sp ?? null;
+  const finalSp = finalSnapshot?.runtime?.resources?.sp ?? null;
+  return {
+    passed: procObservation !== null && finalSnapshot?.mapId === 13 &&
+      finalSnapshot.profile === 'max-level' && finalSnapshot.level === 99 && finalSnapshot.hp > 0 &&
+      finalSnapshot.tileX === 9 && finalSnapshot.tileY === 6 &&
+      finalSnapshot.runtime?.player?.direction === 1 && finalEnemy?.sourceAu === true &&
+      finalEnemy?.state === 'alive' && finalEnemy.hp > 0 && startingSp !== null &&
+      finalSp !== null && startingHp !== null && finalHp !== null &&
+      (resource === 'sp'
+        ? finalSp < startingSp && finalHp === startingHp
+        : finalHp < startingHp && finalSp === startingSp),
+    source: { enemyId, sourceOrder, sourceAu: startingTarget.sourceAu,
+      weapon: { category: weapon.category, itemId,
+        procCode: weapon.equipmentState.subtypeBytes[2] }, seededEnemyHp: seededHp },
+    expected: { formula: resource === 'sp' ? 'trunc(calculatedDamage * 30 / 100)' :
+      'trunc(calculatedDamage / 2)', cost: procObservation?.expectedCost ?? null },
+    attackCount: attacks.length,
+    procObservation,
+    attacks,
+    final: {
+      mapId: finalSnapshot?.mapId,
+      playerTile: [finalSnapshot?.tileX, finalSnapshot?.tileY],
+      playerDirection: finalSnapshot?.runtime?.player?.direction ?? null,
+      level: finalSnapshot?.level,
+      hp: finalHp,
+      maxHp: finalSnapshot?.runtime?.resources?.maxHp,
+      sp: finalSp,
+      maxSp: finalSnapshot?.runtime?.resources?.maxSp,
+      enemyHp: finalEnemy?.hp ?? null,
+      enemyState: finalEnemy?.state ?? null,
+      enemySourceAu: finalEnemy?.sourceAu ?? null,
+    },
+  };
+}
+
+async function runMap27PoisonTickObservation(initialState) {
+  const sourceOrder = 14;
+  const enemyId = 24;
+  const startingEnemy = initialState?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  const startingStatus = initialState?.enemyStatusEffects.find((entry) => entry.sourceOrder === sourceOrder)
+    ?.effects.find((effect) => effect.id === 3);
+  if (initialState?.mapId !== 27 || initialState.tileX !== 9 || initialState.tileY !== 31 ||
+    startingEnemy?.hp <= 0 || startingEnemy?.hp > 5000000 || startingEnemy?.state !== 'alive' ||
+    startingStatus === undefined || startingStatus.ticksElapsed < 0 || startingStatus.ticksElapsed >= 40) {
+    throw new Error(`Direct poison-tick fixture did not initialize as expected: ${JSON.stringify({
+      initialState: { mapId: initialState?.mapId, tile: [initialState?.tileX, initialState?.tileY] },
+      startingEnemy,
+      startingStatus,
+    })}`);
+  }
+  const preObservationPulseTicks = Array.from({ length: Math.floor(startingStatus.ticksElapsed / 8) },
+    (_unused, index) => (index + 1) * 8);
+  const preObservationPulseDamage = 5000000 - startingEnemy.hp;
+  const preObservationPulseDamageValid = preObservationPulseTicks.length === 0
+    ? preObservationPulseDamage === 0
+    : preObservationPulseDamage >= preObservationPulseTicks.length * 15 &&
+      preObservationPulseDamage <= preObservationPulseTicks.length * 25;
+
+  await saveScreenshot('02-map27-poison-status-active.png');
+  const startedAt = Date.now();
+  const samples = [{
+    elapsedMs: 0,
+    statusTicksElapsed: startingStatus.ticksElapsed,
+    enemyHp: startingEnemy.hp,
+    enemyState: startingEnemy.state,
+    playerHp: initialState.hp,
+  }];
+  const pulses = [];
+  let previousStatusTick = startingStatus.ticksElapsed;
+  let previousEnemyHp = startingEnemy.hp;
+  let current = initialState;
+  let expiredState = null;
+  let capturedPulse = false;
+  while (Date.now() - startedAt < 7000) {
+    await delay(20);
+    current = await readRuntime();
+    const enemy = current?.runtime?.enemies.find((candidate) =>
+      candidate.sourceOrder === sourceOrder && candidate.enemyId === enemyId);
+    const effect = current?.enemyStatusEffects.find((entry) => entry.sourceOrder === sourceOrder)
+      ?.effects.find((candidate) => candidate.id === 3);
+    if (enemy === undefined || enemy === null) {
+      throw new Error('Map27 poison-tick target disappeared before status expiry');
+    }
+    const currentStatusTick = effect?.ticksElapsed ?? null;
+    const hpLoss = previousEnemyHp - enemy.hp;
+    if (hpLoss > 0) {
+      const pulseTick = currentStatusTick ?? (previousStatusTick === 39 ? 40 : null);
+      pulses.push({
+        statusTick: pulseTick,
+        previousStatusTick,
+        damage: hpLoss,
+        enemyHp: enemy.hp,
+      });
+      if (!capturedPulse) {
+        await saveScreenshot('03-map27-poison-pulse.png');
+        capturedPulse = true;
+      }
+    }
+    if (currentStatusTick !== previousStatusTick || hpLoss > 0) {
+      samples.push({
+        elapsedMs: Date.now() - startedAt,
+        statusTicksElapsed: currentStatusTick,
+        enemyHp: enemy.hp,
+        enemyState: enemy.state,
+        playerHp: current?.hp ?? null,
+      });
+    }
+    if (currentStatusTick === null) {
+      expiredState = current;
+      await saveScreenshot('04-map27-poison-status-expired.png');
+      break;
+    }
+    previousStatusTick = currentStatusTick;
+    previousEnemyHp = enemy.hp;
+  }
+
+  const targetAtEnd = expiredState?.runtime?.enemies.find((enemy) =>
+    enemy.sourceOrder === sourceOrder && enemy.enemyId === enemyId);
+  const lastActiveTick = samples.filter((sample) => sample.statusTicksElapsed !== null)
+    .at(-1)?.statusTicksElapsed ?? null;
+  const observedPulseTicks = pulses.map((pulse) => pulse.statusTick);
+  const pulsesUseEightTickPeriod = pulses.length >= 3 && observedPulseTicks.every((tick, index) =>
+    tick !== null && tick % 8 === 0 && (index === 0 || tick - observedPulseTicks[index - 1] === 8));
+  const validPulseDamage = pulses.length >= 3 && pulses.every((pulse) =>
+    pulse.damage >= 15 && pulse.damage <= 25);
+  const monotonic = samples.filter((sample) => sample.statusTicksElapsed !== null)
+    .every((sample, index, activeSamples) => index === 0 ||
+      sample.statusTicksElapsed >= activeSamples[index - 1].statusTicksElapsed);
+  const passed = preObservationPulseDamageValid && expiredState !== null &&
+    targetAtEnd?.state === 'alive' && targetAtEnd.hp > 0 &&
+    expiredState?.profile === 'max-level' && expiredState.mapId === 27 && expiredState.level === 99 &&
+    expiredState.hp > 0 && lastActiveTick === 39 && monotonic && pulsesUseEightTickPeriod &&
+    validPulseDamage && pulses.at(-1)?.statusTick === 40;
+  return {
+    passed,
+    source: { enemyId, sourceOrder, seededHp: 5000000, observedHpAtProbeStart: startingEnemy.hp,
+      seededStatusId: 3, initialStatusTick: startingStatus.ticksElapsed,
+      preObservationPulseTicks, preObservationPulseDamage, preObservationPulseDamageValid },
+    expected: { lifetimeTicks: 40, poisonPeriodTicks: 8, pulseDamageRange: [15, 25] },
+    sampleCount: samples.length,
+    lastActiveTick,
+    expired: expiredState !== null && expiredState.enemyStatusEffects
+      .find((entry) => entry.sourceOrder === sourceOrder)?.effects.some((effect) => effect.id === 3) !== true,
+    monotonic,
+    pulsesUseEightTickPeriod,
+    validPulseDamage,
+    pulses,
+    samples,
+    targetAtEnd: { state: targetAtEnd?.state ?? null, hp: targetAtEnd?.hp ?? null },
+    playerAtEnd: { level: expiredState?.level ?? null, hp: expiredState?.hp ?? null,
+      maxHp: expiredState?.runtime?.resources.maxHp ?? null },
+  };
+}
+
 async function run() {
   await mkdir(outputDir, { recursive: true });
   await launch();
@@ -3147,11 +4335,36 @@ async function run() {
     : await startNewGameAndReachMap64();
   const weaponProcStatusObservation = map27WeaponProcStatusTest
     ? await runMap27WeaponProcStatus(before,
-      map27WeaponProcStatusDefense ? 5 : map27WeaponProcStatusSlow ? 1 : 0,
-      map27WeaponProcStatusDefense ? 34 : map27WeaponProcStatusSlow ? 33 : 31,
-      map27WeaponProcStatusDefense ? 4 : map27WeaponProcStatusSlow ? 1 : 0,
-      map27WeaponProcStatusDefense ? 'defense-down' : map27WeaponProcStatusSlow ? 'slow' : 'sleep',
-      map27WeaponProcStatusDefense ? 30 : 20)
+      map27WeaponProcStatusDefense ? 5 : map27WeaponProcStatusSlow || map27WeaponProcStatusSlowCooldown ? 1 : 0,
+      map27WeaponProcStatusDefense ? 34 : map27WeaponProcStatusSlow || map27WeaponProcStatusSlowCooldown ? 33 : 31,
+      map27WeaponProcStatusDefense ? 4 : map27WeaponProcStatusSlow || map27WeaponProcStatusSlowCooldown ? 1 : 0,
+      map27WeaponProcStatusDefense ? 'defense-down' : map27WeaponProcStatusSlow || map27WeaponProcStatusSlowCooldown ? 'slow' : 'sleep',
+      map27WeaponProcStatusDefense ? 30 : 20,
+      map27WeaponProcStatusSlowCooldown)
+    : null;
+  const weaponProcDamageObservation = map27WeaponProcDamageTest
+    ? await runMap27WeaponProcDamage(before)
+    : null;
+  const weaponProcResourceObservation = map27WeaponProcResourceTest
+    ? await runMap27WeaponProcResource(before, map27WeaponProcResource)
+    : null;
+  const map13AuProcResourceObservation = map13AuProcResourceTest
+    ? await runMap13AuProcResource(before, map13AuProcResource)
+    : null;
+  const poisonTickObservation = map27PoisonTickTest
+    ? await runMap27PoisonTickObservation(before)
+    : null;
+  map37ClassSixMultiTargetObservation = map37ClassSixMultiTargetTest
+    ? await runMap37ClassSixMultiTargetAttack(before)
+    : null;
+  map37ClassSixTripleTargetObservation = map37ClassSixTripleTargetTest
+    ? await runMap37ClassSixTripleTargetAttack(before)
+    : null;
+  map37ClassSixLightFollowupObservation = map37ClassSixLightFollowupTest
+    ? await runMap37ClassSixLightFollowup(before)
+    : null;
+  map37ClassSixHeavyStage4SweepObservation = map37ClassSixHeavyStage4SweepTest
+    ? await runMap37ClassSixHeavyStage4Sweep(before)
     : null;
   const map66NoChoiceObservation = map66NoChoiceBranch
     ? await runMap66NoChoiceBranch(before)
@@ -3267,9 +4480,7 @@ async function run() {
     event.method === 'Runtime.exceptionThrown' || event.method === 'Network.loadingFailed' ||
     (event.method === 'Runtime.consoleAPICalled' && event.params.type === 'error') ||
     (event.method === 'Log.entryAdded' && event.params.entry?.level === 'error'));
-  const browserStorageAccesses = isolatedStorageProbe
-    ? await cdp.evaluate('window.__heroesLoreStorageCalls ?? []')
-    : null;
+  const browserStorageAccesses = await cdp.evaluate('window.__heroesLoreStorageCalls ?? []');
   const expectedFinalMap = routeTarget === 'map-preview'
     ? (map53BluebrickChain || map59FullChain ? 13 : map59YesChoiceBranch ? 12 :
       map54ToMap13Chain ? 13 : map54CurrentCellExit ? 59 : mapPreviewExitMapId ?? mapPreviewId)
@@ -3295,6 +4506,27 @@ async function run() {
           (profileName !== 'damage-survival' || enemyObservation.playerHpMinimum < enemyObservation.playerHpStart)
       : map27WeaponProcStatusTest
         ? weaponProcStatusObservation?.passed === true
+      : map13AuProcResourceTest
+        ? map13AuProcResourceObservation?.passed === true
+      : map27WeaponProcDamageTest
+        ? weaponProcDamageObservation?.passed === true
+      : map27WeaponProcResourceTest
+        ? weaponProcResourceObservation?.passed === true
+      : map27PoisonTickTest
+        ? poisonTickObservation?.passed === true
+      : map37ClassSixMultiTargetTest
+        ? map37ClassSixMultiTargetObservation?.passed === true
+      : map37ClassSixTripleTargetTest
+        ? map37ClassSixTripleTargetObservation?.passed === true
+      : map37ClassSixLightFollowupTest
+        ? map37ClassSixLightFollowupObservation?.passed === true
+      : map37ClassSixHeavyStage4SweepTest
+        ? map37ClassSixHeavyStage4SweepObservation?.passed === true
+      : map27BasicDamageFormulaTest
+        ? combatObservation?.enemyId === 24 && combatObservation?.targetBefore?.hp === 43 &&
+          combatObservation?.damage === 11 && combatObservation?.playerBefore?.level === 1 &&
+          combatObservation?.playerBefore?.hp === combatObservation?.playerBefore?.maxHp &&
+          combatObservation?.playerBefore?.maxHp > 720 && combatObservation?.playerAfter?.hp > 0
         : map59NoChoiceBranch
           ? map59NoChoiceObservation?.after?.hp > 0
         : map59YesChoiceBranch
@@ -3309,9 +4541,15 @@ async function run() {
           ? map54CurrentCellExitObservation?.passed === true && browserStorageAccesses?.length === 0
         : map53BluebrickChain
           ? map53BluebrickObservation?.passed === true
+      : mapPreviewMovementSmoke
+        ? mapPreviewMovementObservation?.passed === true && finalState?.hp > 0
         : mapPreviewExitMapId !== null
           ? mapPreviewRoute?.arrived === true && finalState?.hp > 0
-      : finalState?.hp === before?.hp) && mapPreviewReady && errors.length === 0 &&
+      : mapPreviewIdleObservationMs > 0
+        ? mapPreviewIdleObservation?.passed === true
+      : map27BasicDamageFormulaTest
+        ? finalState?.hp > 0
+        : finalState?.hp === before?.hp) && mapPreviewReady && errors.length === 0 &&
     (routeTarget !== 'map0-reentry' || afterMap0?.mapId === 0 && houseReentry?.mapId === 64 &&
       houseReentry.tileX === 10 && houseReentry.tileY === 18 && houseReentry.hp === before.hp) &&
     (routeTarget !== 'map0-interaction' || afterMap0?.mapId === 0 &&
@@ -3350,6 +4588,8 @@ async function run() {
       ? 'visible-UI-New-Game -> max-level Map64 -> held Down to Map0/(26,24) -> held Up across marker -5 -> Map64/(10,18)'
       : routeTarget === 'map27-damage-pursuit'
       ? 'UI-key-input-New-Game -> Map64 -> held-ArrowDown -> Map0 -> Map27 -> damage-survival pursuit and attack trace'
+      : routeTarget === 'map27-combat' && map27BasicDamageFormulaTest
+      ? 'visible New Game -> Map64 -> Map0 -> Map27 -> level-1 damage-survival basic attack against data0 enemy 24'
       : routeTarget === 'map27-mobile-touch'
       ? 'mobile-emulated-UI-key-input-New-Game -> Map64 -> held-ArrowDown -> Map0 -> Map27 -> Attack touch control'
       : routeTarget === 'map0-mobile-touch'
@@ -3358,8 +4598,28 @@ async function run() {
       ? 'UI-key-input-New-Game -> Map64 -> held-ArrowDown -> Map0 -> Map27 -> light attack -> enemy respawn'
       : routeTarget === 'map-preview' && mapPreviewExitMapId !== null
         ? 'visible-UI-New-Game -> DEV max-level Map27 preview -> live north exit event -> Map17'
+      : routeTarget === 'map-preview' && map37ClassSixMultiTargetTest
+        ? 'visible-UI-New-Game -> DEV max-level Map37 fixture -> Numpad7 class-6 heavy stage-0 fan -> verify two enemies lose HP'
+      : routeTarget === 'map-preview' && map37ClassSixTripleTargetTest
+        ? 'visible-UI-New-Game -> DEV max-level Map37 fixture -> Numpad7 class-6 heavy stage-0 fan -> verify all three source-cell targets lose HP'
+      : routeTarget === 'map-preview' && map37ClassSixLightFollowupTest
+        ? 'visible-UI-New-Game -> DEV max-level Map37 fixture -> Numpad5 light stage 0 then queued Numpad5 stage 1 -> verify stage-1 fan damage on all three source cells'
+      : routeTarget === 'map-preview' && map37ClassSixHeavyStage4SweepTest
+        ? 'visible-UI-New-Game -> DEV max-level Map37 eight-target fixture -> Numpad5 x4 light stages then queued Numpad7 heavy stage 4 -> verify eight-cell sweep'
+      : routeTarget === 'map-preview' && mapPreviewMovementSmoke
+        ? 'visible-UI-New-Game -> DEV max-level map preview -> one ordinary cardinal movement step'
+      : routeTarget === 'map-preview' && map37ClassSixMultiTargetTest
+        ? 'visible-UI-New-Game -> DEV max-level Map37 fixture -> Numpad7 class-6 heavy stage-0 fan -> verify two enemies lose HP'
+      : routeTarget === 'map-preview' && map27WeaponProcDamageTest
+        ? 'visible-UI-New-Game -> DEV max-level Map27 proc-code-8 fixture -> Numpad5 attack -> observe maxHP/25 cost and surviving target'
+      : routeTarget === 'map-preview' && map27WeaponProcResourceTest
+        ? `visible-UI-New-Game -> DEV max-level Map27 proc-code-${map27WeaponProcResource === 'sp' ? '3' : '4'} fixture -> Numpad5 attack -> observe ${map27WeaponProcResource.toUpperCase()} drain`
+      : routeTarget === 'map-preview' && map13AuProcResourceTest
+        ? `visible-UI-New-Game -> DEV max-level Map13 source-AQ fixture -> source-au proc-code-${map13AuProcResource === 'sp' ? 3 : 4} hit -> observe ${map13AuProcResource === 'sp' ? '30% SP drain' : 'half-damage HP cost'}`
       : routeTarget === 'map-preview' && map27WeaponProcStatusTest
-        ? `visible-UI-New-Game -> DEV max-level Map27 proc-status fixture -> Numpad5 attacks with source proc weapon -> observe enemy ${map27WeaponProcStatusDefense ? 'defense-down' : map27WeaponProcStatusSlow ? 'slowdown' : 'sleep'} status`
+        ? `visible-UI-New-Game -> DEV max-level Map27 proc-status fixture -> Numpad5 attacks with source proc weapon -> observe enemy ${map27WeaponProcStatusDefense ? 'defense-down' : map27WeaponProcStatusSlow || map27WeaponProcStatusSlowCooldown ? 'slowdown' : 'sleep'} status${map27WeaponProcStatusSlowCooldown ? ' and doubled cooldown' : ''}`
+      : routeTarget === 'map-preview' && map27PoisonTickTest
+        ? 'visible-UI-New-Game -> DEV max-level Map27 direct status-3 fixture -> observe periodic poison damage and expiry'
       : routeTarget === 'map-preview' && map66NoChoiceBranch
         ? 'visible-UI-New-Game -> DEV max-level Map66 preview -> visible walk to Lesley -> select No -> script 1 ends without quest/item changes'
       : routeTarget === 'map-preview' && map59NoChoiceBranch
@@ -3379,7 +4639,9 @@ async function run() {
       : routeTarget === 'map-preview'
         ? observeMapPreviewEnemy
           ? `visible-UI-New-Game -> DEV ${profileName} map preview ${mapPreviewId}; ${approachMapPreviewEnemy ? 'visible approach -> ' : ''}seeded live behavior-${enemyObservationTarget.behaviorType} enemy observation`
-          : `visible-UI-New-Game -> DEV ${profileName} map preview ${mapPreviewId}; new-game flags, map state seeded`
+          : mapPreviewIdleObservationMs > 0
+            ? `visible-UI-New-Game -> DEV ${profileName} map preview ${mapPreviewId}; ${mapPreviewIdleObservationMs}ms input-free runtime observation`
+            : `visible-UI-New-Game -> DEV ${profileName} map preview ${mapPreviewId}; new-game flags, map state seeded`
       : routeTarget === 'map27-combat'
         ? 'UI-key-input-New-Game -> Map64 -> held-ArrowDown -> Map0 -> Map27 -> light attack'
         : routeTarget === 'map27-pursuit'
@@ -3404,12 +4666,22 @@ async function run() {
     map54CurrentCellExitObservation,
     map54ToMap13ChainObservation,
     map53BluebrickObservation,
+    poisonTickObservation,
     weaponProcStatusObservation,
+    weaponProcDamageObservation,
+    weaponProcResourceObservation,
+    map13AuProcResourceObservation,
     enemyApproach,
     combatObservation,
     pursuitObservation,
     respawnObservation,
     enemyObservation,
+    mapPreviewMovementObservation,
+    mapPreviewIdleObservation,
+    map37ClassSixMultiTargetObservation,
+    map37ClassSixTripleTargetObservation,
+    map37ClassSixLightFollowupObservation,
+    map37ClassSixHeavyStage4SweepObservation,
     finalState,
     browserStorageAccesses,
     observations,
@@ -3417,10 +4689,11 @@ async function run() {
     browser: { product: 'Chromium', ownedProcess: true, temporaryProfile: 'isolated-and-deleted-after-capture' },
     restrictions: {
       saveFilesAccessed: false,
-      browserStorageRead: isolatedStorageProbe ? browserStorageAccesses.length > 0 : null,
-      browserStorageWrite: isolatedStorageProbe
-        ? browserStorageAccesses.some(({ method }) => ['setItem', 'removeItem', 'clear'].includes(method))
-        : null,
+      browserStorageRead: browserStorageAccesses.some(({ method }) =>
+        ['getItem', 'key', 'length'].includes(method)),
+      browserStorageWrite: browserStorageAccesses.some(({ method }) =>
+        ['setItem', 'removeItem', 'clear'].includes(method)),
+      browserStorageProfile: 'fresh temporary Chromium profile, removed after capture',
       gameSaveActionUsed: false,
       mapStateSeeded: routeTarget === 'map-preview',
       originalJarAccessed: false,
@@ -3441,6 +4714,14 @@ async function run() {
       routeStepCount: mapPreviewRoute.routeStepCount,
       arrived: mapPreviewRoute.arrived,
       finalTile: mapPreviewRoute.finalTile,
+    },
+    mapPreviewMovement: mapPreviewMovementObservation === null ? null : {
+      passed: mapPreviewMovementObservation.passed,
+      status: mapPreviewMovementObservation.status,
+      direction: mapPreviewMovementObservation.direction ?? null,
+      startTile: mapPreviewMovementObservation.startTile,
+      targetTile: mapPreviewMovementObservation.targetTile,
+      attempts: mapPreviewMovementObservation.attempts.length,
     },
     map66NoChoice: map66NoChoiceObservation === null ? null : {
       passed: map66NoChoiceObservation.passed,
@@ -3514,6 +4795,11 @@ async function run() {
       map54: map53BluebrickObservation.map54,
       final: map53BluebrickObservation.final,
     },
+    poisonTickObservation,
+    map37ClassSixMultiTarget: map37ClassSixMultiTargetObservation,
+    map37ClassSixTripleTarget: map37ClassSixTripleTargetObservation,
+    map37ClassSixLightFollowup: map37ClassSixLightFollowupObservation,
+    map37ClassSixHeavyStage4Sweep: map37ClassSixHeavyStage4SweepObservation,
     enemyApproach,
     enemyObservation: enemyObservation === null ? null : {
       target: enemyObservation.target,
@@ -3527,6 +4813,20 @@ async function run() {
       playerHpRemainedPositive: enemyObservation.playerHpRemainedPositive,
     },
     weaponProcStatus: weaponProcStatusObservation,
+    weaponProcDamage: weaponProcDamageObservation,
+    weaponProcResource: weaponProcResourceObservation,
+    poisonTickObservation,
+    basicAttackDamageFormula: map27BasicDamageFormulaTest ? {
+      sourceAttackPower: 16,
+      enemyId: 24,
+      sourceEnemyDefense: 5,
+      playerElement: 0,
+      damageExpected: 11,
+      damageObserved: combatObservation?.damage ?? null,
+      playerLevel: combatObservation?.playerBefore?.level ?? null,
+      playerHp: combatObservation?.playerBefore?.hp ?? null,
+      playerMaxHp: combatObservation?.playerBefore?.maxHp ?? null,
+    } : null,
     pursuit: pursuitObservation === null ? null : {
       sampleCount: pursuitObservation.sampleCount,
       durationMs: pursuitObservation.actualDurationMs,
@@ -3553,8 +4853,26 @@ async function run() {
       : routeTarget === 'map27-mobile-touch'
       ? `reference/screenshots/web-render/M990-mobile-touch-map27-attack/attempt-${attemptNumber}`
       : routeTarget === 'map-preview'
-      ? (map27WeaponProcStatusDefense
+      ? (map37ClassSixHeavyStage4SweepTest
+        ? `reference/screenshots/web-render/M1128-map37-class6-heavy-stage4-sweep/attempt-${attemptNumber}`
+        : map37ClassSixLightFollowupTest
+        ? `reference/screenshots/web-render/M1127-map37-class6-light-followup/attempt-${attemptNumber}`
+        : map37ClassSixTripleTargetTest
+        ? `reference/screenshots/web-render/M1126-map37-class6-triple-target/attempt-${attemptNumber}`
+        : map37ClassSixMultiTargetTest
+        ? `reference/screenshots/web-render/M1125-map37-class6-multitarget/attempt-${attemptNumber}`
+        : map13AuProcResourceTest
+        ? `reference/screenshots/web-render/${milestoneId}-map13-au-proc-${map13AuProcResource}/attempt-${attemptNumber}`
+        : map27PoisonTickTest
+        ? `reference/screenshots/web-render/${milestoneId}-map27-poison-tick/attempt-${attemptNumber}`
+        : map27WeaponProcDamageTest
+        ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-damage/attempt-${attemptNumber}`
+        : map27WeaponProcResourceTest
+        ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-${map27WeaponProcResource}/attempt-${attemptNumber}`
+        : map27WeaponProcStatusDefense
         ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-status-defense/attempt-${attemptNumber}`
+        : map27WeaponProcStatusSlowCooldown
+        ? `reference/screenshots/web-render/${milestoneId}-map27-weapon-proc-status-slow-cooldown/attempt-${attemptNumber}`
         : map27WeaponProcStatusSlow
         ? `reference/screenshots/web-render/M1083-map27-weapon-proc-status-slow/attempt-${attemptNumber}`
         : map66NoChoiceBranch
@@ -3581,7 +4899,9 @@ async function run() {
       : routeTarget === 'map27'
         ? 'reference/screenshots/web-render/M986-max-level-map0-map27'
       : routeTarget === 'map27-combat'
-          ? 'reference/screenshots/web-render/M987-max-level-map27-combat'
+          ? (map27BasicDamageFormulaTest
+            ? `reference/screenshots/web-render/M1108-map27-basic-damage-formula/attempt-${attemptNumber}`
+            : 'reference/screenshots/web-render/M987-max-level-map27-combat')
           : routeTarget === 'map27-pursuit'
             ? `reference/screenshots/web-render/M989-max-level-map27-pursuit/attempt-${attemptNumber}`
             : 'reference/screenshots/web-render/M978-max-level-held-input',
@@ -3612,11 +4932,19 @@ async function cleanup() {
 try {
   await run();
 } catch (error) {
+  const latestRuntime = await readRuntime().catch(() => null);
+  const browserErrors = cdpEvents.filter((event) =>
+    event.method === 'Runtime.exceptionThrown' || event.method === 'Network.loadingFailed' ||
+    (event.method === 'Runtime.consoleAPICalled' && event.params.type === 'error') ||
+    (event.method === 'Log.entryAdded' && event.params.entry?.level === 'error'));
+  await saveScreenshot('failure-state.png').catch(() => {});
   const partial = {
     id: milestoneId,
     profile: profileName,
     passed: false,
     observations,
+    latestRuntime,
+    browserErrors,
     error: error instanceof Error ? error.message : String(error),
     browser: { stderr: chromeStderr.slice(-4000) },
   };

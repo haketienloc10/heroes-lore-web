@@ -66,7 +66,7 @@ describe('base map data', () => {
     expect(isCellPassable(world, 0, 0, true)).toBe(false);
   });
 
-  it('chooses the nearest empty ordinary floor cell for map previews', () => {
+  it('chooses the nearest empty ordinary floor among equally open preview cells', () => {
     const sourceCollision: BaseCollisionData = {
       ...collision,
       format: 'heroes-lore-base-collision-v1',
@@ -85,6 +85,25 @@ describe('base map data', () => {
       ...sourceCollision,
       values: sourceCollision.values.map((row) => row.map(() => -1)),
     })).toBeNull();
+  });
+
+  it('prefers a preview spawn with available exits over a closer enclosed floor cell', () => {
+    const sourceCollision: BaseCollisionData = {
+      ...collision,
+      format: 'heroes-lore-base-collision-v1',
+      tileSize: 16,
+      width: 5,
+      height: 5,
+      values: [
+        [-1, -1, -1, -1, -1],
+        [0, -1, -1, -1, -1],
+        [0, 0, 0, -1, -1],
+        [0, -1, -1, -1, -1],
+        [-1, -1, -1, -1, -1],
+      ],
+    };
+
+    expect(findMapPreviewSpawnTile(sourceCollision)).toEqual({ tileX: 0, tileY: 2 });
   });
 
   it('applies ordered dynamic tile and signed collision writes without mutating the base grid', () => {

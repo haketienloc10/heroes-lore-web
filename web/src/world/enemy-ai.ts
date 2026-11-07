@@ -463,7 +463,9 @@ export function advanceEnemyPursuitTick(
 ): EnemyCombatant {
   if (enemy.state !== 'alive' || !usesOrdinarySourceEnemyUpdate(enemy)) return enemy;
 
-  // Source `n.e()` finishes the second 8-pixel half-step without replanning.
+  // Source `n.mo107a()` skips its collision check while either half-tile flag
+  // is set, so `n.e()` finishes the second 8-pixel half-step even if a blocker
+  // entered the destination cell after movement began.
   if (enemy.pixelX % 16 !== 0 || enemy.pixelY % 16 !== 0) {
     return moveHalfTile(enemy, enemy.animationDirection ?? 2);
   }

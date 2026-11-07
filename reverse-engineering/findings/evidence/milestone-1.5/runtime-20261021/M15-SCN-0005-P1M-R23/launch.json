@@ -1,0 +1,11 @@
+{
+  "run_id": "M15-SCN-0005-P1M-R23",
+  "pid": 2721609,
+  "inherited_session": "M15-SCN-0001-P1M-R23",
+  "menu_run": "M15-SCN-0002-P1M-R23",
+  "profile": "P1M Motorola, 240x320, limiter 60",
+  "fixture": "Fresh visible class-6 New Game; W/Skip reaches Map64 source spawn (9,8); two visible Left taps target (7,8), then Right burst",
+  "input_method": "FreeJ2ME KeyListener burst; no game state writes",
+  "process_cwd": "/home/locdt/heroes-lore-web/reference/recordings/M15-SCN-0001-P1M-R23",
+  "source_spawn_basis": "FND-0006 documents Map64 initial coordinate (144,128), cell (9,8), from source opening transfer and browser route; verify visual route captures separately"
+}

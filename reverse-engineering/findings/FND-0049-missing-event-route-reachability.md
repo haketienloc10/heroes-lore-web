@@ -79,6 +79,16 @@ Within the extracted class-6 spatial trigger data, three of the five transfers i
 
 M349 adds the New Game graph closure, and M350 includes the modeled map-15 dynamic collision callback plus direct marker callbacks from map actors. The current source-map start at 0 reaches 69 maps under this deliberately permissive transfer model, including map 82, and none of the nine map IDs lacking extracted event resources is reached. The map-3→43 selector is removed from the closure only after the entry-specific BFS unions all decoded collision writes and still finds no path. `python3 tools/test_audit_missing_event_routes.py` covers signed marker writes, unioned passability, callback writes, direct dispatch, graph edge selection, and the generated-data result; all five tests pass. This result does not replace a live full-playthrough check.
 
+### Event-backed maps outside the New Game transfer closure
+
+M1118 reruns the same permissive class-6 graph audit and identifies event-backed maps 50, 65, and 68 outside its 69-map closure. The report now includes inbound transfer rows for unreachable event maps, so the static gap is specific:
+
+- Map49 script 0 targets Map50 `(5,2)` through type-0 marker group 1. The base collision grid and all decoded startup/script collision writes contain no selectable positive marker 1, and no modeled direct actor callback selects it.
+- Map67 script 1 targets Map68 `(7,17)` through type-3 marker group 2. The base collision grid and all decoded startup/script writes contain neither marker `2` nor `-2`, and no modeled direct actor callback selects it.
+- No opcode-7 transfer in the 72 extracted class-6 event tables targets Map65.
+
+These are static findings about the extracted class-6 data and modeled callbacks, not proof that an unmodeled source callback or another class variant cannot reach these maps. No trigger, collision marker, placeholder event table, browser state, save, or original JAR was created or changed. Do not claim these maps are naturally reachable without new source or runtime evidence. The additional rows and 69/72 closure are covered by the five tests in `tools/test_audit_missing_event_routes.py`.
+
 ## Missing-resource loader behavior
 
 The missing `.evt` behavior is now bounded by the checked-in decompiled loader and the browser loader:

@@ -1,0 +1,8 @@
+2026-11-07T03:17:24.870248486Z mono_ns=1254633555185043 capture_begin duration_ms=350 interval_ms=5; no game method or field writes
+2026-11-07T03:17:24.878005136Z mono_ns=1254633562937553 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-11-07T03:17:24.885413576Z mono_ns=1254633570345813 listener_dispatch phase=down code=39
+2026-11-07T03:17:24.888568706Z mono_ns=1254633573515703 listener_dispatch phase=up code=39
+2026-11-07T03:17:49.273930521Z mono_ns=1254654374921673 capture_begin duration_ms=350 interval_ms=5; no game method or field writes
+2026-11-07T03:17:49.275348201Z mono_ns=1254654376336473 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-11-07T03:17:49.276353771Z mono_ns=1254654377340063 listener_dispatch phase=down code=39
+2026-11-07T03:17:49.279233321Z mono_ns=1254654380223573 listener_dispatch phase=up code=39

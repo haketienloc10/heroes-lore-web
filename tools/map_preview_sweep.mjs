@@ -23,6 +23,14 @@ const concurrency = Number(process.env.HEROES_LORE_SWEEP_CONCURRENCY ?? 3);
 if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 4) {
   throw new Error('Sweep concurrency must be from 1 through 4');
 }
+const idleObservationMs = Number(process.env.HEROES_LORE_MAP_IDLE_OBSERVATION_MS ?? 0);
+if (!Number.isInteger(idleObservationMs) || idleObservationMs < 0 || idleObservationMs > 10000) {
+  throw new Error('Map idle observation must be from 0 through 10000 milliseconds');
+}
+const movementSmoke = process.env.HEROES_LORE_MAP_PREVIEW_MOVE_SMOKE === '1';
+if (movementSmoke && idleObservationMs > 0) {
+  throw new Error('Map movement smoke cannot run with an idle observation window');
+}
 const includePreviouslyVerified = process.env.HEROES_LORE_SWEEP_INCLUDE_PREVIOUSLY_VERIFIED === '1';
 const previouslyVerifiedMapIds = includePreviouslyVerified ? new Set() : new Set([13]);
 const manifestPath = join(
@@ -73,6 +81,8 @@ async function writeManifest(status) {
     profile: 'max-level',
     attemptNumber,
     concurrency,
+    idleObservationMs,
+    movementSmoke,
     mapIds,
     skippedPreviouslyVerified,
     includePreviouslyVerified,
@@ -116,6 +126,8 @@ async function runMap(mapId) {
       HEROES_LORE_MAP_ID: String(mapId),
       HEROES_LORE_ROUTE_ATTEMPT: String(attemptNumber),
       HEROES_LORE_MILESTONE_ID: milestoneId,
+      HEROES_LORE_MAP_IDLE_OBSERVATION_MS: String(idleObservationMs),
+      HEROES_LORE_MAP_PREVIEW_MOVE_SMOKE: movementSmoke ? '1' : '0',
     },
     stdio: ['ignore', 'pipe', 'pipe'],
   });
@@ -152,6 +164,8 @@ async function runMap(mapId) {
       maxSp: finalState.runtime?.resources?.maxSp ?? null,
     },
     browserErrorCount: Array.isArray(probeResult?.errors) ? probeResult.errors.length : null,
+    movement: probeResult?.mapPreviewMovementObservation ?? null,
+    idleObservation: probeResult?.mapPreviewIdleObservation ?? null,
     resultPath: resultPath.startsWith(root) ? resultPath.slice(root.length + 1) : resultPath,
     stdout: stdout.trim().slice(-1200),
     stderr: stderr.trim().slice(-2000),
@@ -178,6 +192,7 @@ process.stdout.write(`${JSON.stringify({
   passed: results.length - failed.length,
   failed: failed.map((result) => result.mapId),
   skippedPreviouslyVerified,
+  movementSmoke,
   manifest: manifestPath.slice(root.length + 1),
 })}\n`);
 if (failed.length > 0) process.exitCode = 1;

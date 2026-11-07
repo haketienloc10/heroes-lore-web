@@ -1,0 +1,24 @@
+2026-11-07T02:31:49.260048281Z mono_ns=1252170314796813 capture_begin prefix=r25-up duration_ms=350 interval_ms=5; framebuffer reads only; no game method or field writes
+2026-11-07T02:31:49.271779331Z mono_ns=1252170326526963 computed_emulator_mapping host_awt=38 internal=0 raw=-1
+2026-11-07T02:31:49.275502631Z mono_ns=1252170330264753 listener_dispatch phase=down code=38
+2026-11-07T02:31:49.637073401Z mono_ns=1252170692101113 listener_dispatch phase=up code=38
+2026-11-07T02:31:50.025259691Z mono_ns=1252171080026223 walk_capture_complete prefix=r25-up input_released_before_png_encode=true
+2026-11-07T02:31:50.869426661Z mono_ns=1252171924175373 idle_capture_complete prefix=r25-up; no browser/game storage accessed
+2026-11-07T02:33:16.812920203Z mono_ns=1252250690164593 capture_begin prefix=r25-down duration_ms=350 interval_ms=5; framebuffer reads only; no game method or field writes
+2026-11-07T02:33:16.815334453Z mono_ns=1252250692585323 computed_emulator_mapping host_awt=40 internal=1 raw=-6
+2026-11-07T02:33:16.822965283Z mono_ns=1252250700219663 listener_dispatch phase=down code=40
+2026-11-07T02:33:17.177124553Z mono_ns=1252251054409443 listener_dispatch phase=up code=40
+2026-11-07T02:33:17.527036633Z mono_ns=1252251404280123 walk_capture_complete prefix=r25-down input_released_before_png_encode=true
+2026-11-07T02:33:18.348018343Z mono_ns=1252252225271193 idle_capture_complete prefix=r25-down; no browser/game storage accessed
+2026-11-07T02:33:18.588590593Z mono_ns=1252252465835973 capture_begin prefix=r25-left duration_ms=350 interval_ms=5; framebuffer reads only; no game method or field writes
+2026-11-07T02:33:18.589726933Z mono_ns=1252252466967363 computed_emulator_mapping host_awt=37 internal=2 raw=-2
+2026-11-07T02:33:18.591638983Z mono_ns=1252252468903443 listener_dispatch phase=down code=37
+2026-11-07T02:33:18.945247003Z mono_ns=1252252822495623 listener_dispatch phase=up code=37
+2026-11-07T02:33:22.875513680Z mono_ns=1252253169972843 walk_capture_complete prefix=r25-left input_released_before_png_encode=true
+2026-11-07T02:33:23.704294340Z mono_ns=1252253998734783 idle_capture_complete prefix=r25-left; no browser/game storage accessed
+2026-11-07T02:33:23.911840190Z mono_ns=1252254206298813 capture_begin prefix=r25-right duration_ms=350 interval_ms=5; framebuffer reads only; no game method or field writes
+2026-11-07T02:33:23.913593120Z mono_ns=1252254208036353 computed_emulator_mapping host_awt=39 internal=3 raw=-5
+2026-11-07T02:33:23.917227140Z mono_ns=1252254211698813 listener_dispatch phase=down code=39
+2026-11-07T02:33:24.269465360Z mono_ns=1252254564058083 listener_dispatch phase=up code=39
+2026-11-07T02:33:24.613464350Z mono_ns=1252254907977333 walk_capture_complete prefix=r25-right input_released_before_png_encode=true
+2026-11-07T02:33:25.426793090Z mono_ns=1252255721232453 idle_capture_complete prefix=r25-right; no browser/game storage accessed

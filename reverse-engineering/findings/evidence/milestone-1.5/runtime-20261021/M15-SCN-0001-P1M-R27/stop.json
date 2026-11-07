@@ -1,0 +1,17 @@
+{
+  "task": "M1156 synchronized Map64 actor capture",
+  "attempt": 2,
+  "status": "passed_idle_position_alignment",
+  "map": 64,
+  "source_actor_tile_start": [9, 8],
+  "source_actor_tile_after_two_left_inputs": [7, 8],
+  "web_actor_tile": [7, 8],
+  "camera_translation": [-3, -4],
+  "changed_pixels": 0,
+  "compared_pixels": 65412,
+  "dynamic_walk_parity": "not established",
+  "existing_save_accessed": false,
+  "in_game_save_or_load_used": false,
+  "pinned_jar_inspected_or_modified": false,
+  "process_stopped_cleanly": true
+}

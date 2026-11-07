@@ -1,0 +1,14 @@
+down 37
+wait 100
+up 37
+wait 700
+frame 03-after-left-1
+down 37
+wait 100
+up 37
+wait 700
+frame 04-after-left-2
+wait 1000
+frame 05-aligned-idle
+burst 39 300 5 06-right-held
+burst none 250 5 07-idle-after-release
